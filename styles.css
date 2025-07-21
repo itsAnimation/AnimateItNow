@@ -428,6 +428,50 @@ body.dark .info-section p {
   }
 }
 
+/* Contributors Page */
+.contributor-card {
+  background: var(--card-bg);
+  border-radius: 1.1rem;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none; /* Removes underline from the link */
+  color: var(--primary-text);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.contributor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.contributor-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Makes the image circular */
+  margin-bottom: 1rem;
+  border: 3px solid var(--accent);
+}
+
+.contributor-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.contributor-card p {
+  font-size: 0.9rem;
+  color: #555; /* A slightly muted text color */
+}
+
+body.dark .contributor-card p {
+  color: #bbb;
+}
+
+body.dark .contributor-card:hover {
+  box-shadow: 0 8px 24px rgba(79, 140, 255, 0.15);
+}
+
 /* Main headings on all pages */
 .contributors-main h1,
 .contact-main h1 {
@@ -443,131 +487,4 @@ body.dark .info-section p {
     font-size: 1.4rem;
     margin-top: 5.5rem;
   }
-}
-
-
-
-/* Contact Form Styles */
-.contact-main {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0rem 1rem 1rem 1rem; 
-}
-
-
-.contact-container {
-  background: var(--card-bg);
-  border-radius: 1.2rem;
-  box-shadow: var(--card-shadow);
-  padding: 2.5rem;
-  margin-top: 2rem;
-}
-
-.contact-form {
-  width: 100%;
-}
-
-.form-group {
-  margin-bottom: 1.8rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-  color: var(--primary-text);
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-family: inherit;
-  background: var(--primary-bg);
-  color: var(--primary-text);
-  transition: border-color 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.submit-btn {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.85rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  width: 100%;
-}
-
-.submit-btn:hover {
-  background: #2563eb;
-}
-
-/* Dark theme support */
-body.dark .form-group input,
-body.dark .form-group textarea {
-  border-color: #374151;
-  background: var(--card-bg);
-}
-
-body.dark .form-group input:focus,
-body.dark .form-group textarea:focus {
-  border-color: var(--accent);
-}
-
-/* Mobile responsive */
-@media (max-width: 700px) {
-  .contact-main {
-    padding: 5rem 1rem 2rem 1rem;
-  }
-  
-  .contact-container {
-    padding: 2rem;
-  }
-}
-
-/* Disabled button styles */
-.submit-btn:disabled,
-.submit-btn.disabled {
-    background: #9ca3af;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-    opacity: 0.6;
-}
-
-.submit-btn:disabled:hover,
-.submit-btn.disabled:hover {
-    background: #9ca3af;
-    transform: none;
-    box-shadow: none;
-}
-
-/* Dark theme disabled state */
-body.dark .submit-btn:disabled,
-body.dark .submit-btn.disabled {
-    background: #4b5563;
-    color: #9ca3af;
-}
-
-body.dark .submit-btn:disabled:hover,
-body.dark .submit-btn.disabled:hover {
-    background: #4b5563;
 }
