@@ -200,6 +200,24 @@ themeToggle.addEventListener('click', () => {
       case 'modal':
         content = getModalCode(type);
         break;
+      case 'card_hover':
+        content = getCardHoverCode(type);
+        break;
+      case 'Testinomials_Sliders':
+        content = getTestinomialsSlidersCode(type);
+        break;
+      case '404':
+        content = get404Code(type);
+        break;
+      case 'profile_card':
+        content = getProfileCardCode(type);
+        break;
+      case 'timer':
+        content = getTimerCode(type);
+        break;
+      case 'hero-background':
+        content = getHeroBackgroundCode(type);
+        break;
       default:
         content = 'Code not available';
     }
@@ -295,6 +313,84 @@ document.querySelector('.login-form').addEventListener('submit', function(e) {
         return `.modal-overlay {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.4);\n  justify-content: center;\n  align-items: center;\n  z-index: 999;\n}\n\n.modal-content {\n  background: #fff;\n  padding: 2rem;\n  border-radius: 1rem;\n  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);\n  min-width: 300px;\n  max-width: 90vw;\n  text-align: center;\n}`;
       case 'js':
         return `document.getElementById('open-modal').onclick = function() {\n  document.getElementById('modal').style.display = 'flex';\n};\n\ndocument.getElementById('close-modal').onclick = function() {\n  document.getElementById('modal').style.display = 'none';\n};\n\n// Close modal when clicking outside\ndocument.getElementById('modal').onclick = function(e) {\n  if (e.target === this) {\n    this.style.display = 'none';\n  }\n};`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function getCardHoverCode(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Card Hover Template | AnimateItNow</title>\n    <link rel=\"stylesheet\" href=\"../styles.css\" />\n    <style>\n      body.dark-theme {\n        --card-bg: #2c2c2c;\n        --card-shadow: rgba(255, 255, 255, 0.05);\n        --card-shadow-hover: rgba(255, 255, 255, 0.1);\n        --text-primary: #f1f1f1;\n        --text-secondary: #aaaaaa;\n      }\n      ... (rest of the style and HTML from card_hover.html) ...\n    </style>\n  </head>\n  <body>\n    <nav class=\"navbar\">\n      <div class=\"nav-left\">\n        <img src=\"../images/logo.png\" alt=\"Logo\" class=\"logo\" />\n        <span class=\"site-name\">AnimateItNow</span>\n      </div>\n      <ul class=\"nav-links\">\n        <li><a href=\"../index.html\">Home</a></li>\n        <li><a href=\"../templates.html\" class=\"active\">Templates</a></li>\n        <li><a href=\"../contributors.html\">Contributors</a></li>\n        <li><a href=\"../contact.html\">Contact</a></li>\n      </ul>\n      <button id=\"theme-toggle\" aria-label=\"Toggle dark/light mode\">🌙</button>\n    </nav>\n    <main class=\"templates-main\" >\n      ... (rest of the HTML from card_hover.html) ...\n    </main>\n    <footer>\n      <p>Made with ❤️ by Anuj and Contributors</p>\n    </footer>\n    <script src=\"../script.js\"></script>\n  </body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// No additional JS for card hover template.`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function getTestinomialsSlidersCode(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Testimonials Slider</title>\n    <link rel=\"stylesheet\" href=\"../styles.css\" />\n  </head>\n  <style>\n    ... (rest of the style and HTML from Testinomials_Sliders.html) ...\n  </style>\n  <body>\n   <nav class=\"navbar\">\n      ... (rest of the HTML from Testinomials_Sliders.html) ...\n    </nav>\n    <main>\n      ... (rest of the HTML from Testinomials_Sliders.html) ...\n    </main>\n    <script src=\"../script.js\"></script>\n  </body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// JS for slider navigation is in the HTML <script> tag.`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function get404Code(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n  <title>404 - Page Not Found</title>\n  <link rel=\"stylesheet\" href=\"../styles.css\" />\n</head>\n<style>\n    ... (rest of the style and HTML from 404.html) ...\n</style>\n<body>\n    <nav class=\"navbar\">\n      ... (rest of the HTML from 404.html) ...\n    </nav>\n  <div class=\"container\">\n    ... (rest of the HTML from 404.html) ...\n  </div>\n  <script src=\"script.js\"></script>\n</body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// No additional JS for 404 template.`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function getProfileCardCode(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n  <title>Profile Card</title>\n  <link rel=\"stylesheet\" href=\"../styles.css\" />\n  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css\" />\n  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css\" integrity=\"sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />\n</head>\n<style>\n    ... (rest of the style and HTML from profile_card.html) ...\n</style>\n<body>\n    <nav class=\"navbar\">\n      ... (rest of the HTML from profile_card.html) ...\n    </nav>\n  <div class=\"card\">\n    ... (rest of the HTML from profile_card.html) ...\n  </div>\n</body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// No additional JS for profile card template.`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function getTimerCode(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Countdown Timer | AnimateItNow</title>\n    <link rel=\"stylesheet\" href=\"../styles.css\" />\n  </head>\n  <body>\n    ... (rest of the HTML from timer.html) ...\n  </body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// JS for countdown is in the HTML <script> tag.`;
+      default:
+        return 'Code not available';
+    }
+  }
+
+  function getHeroBackgroundCode(type) {
+    switch (type) {
+      case 'html':
+        return `<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>Next-Level Animated Hero Section</title>\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;700&display=swap\" />\n  <link rel=\"stylesheet\" href=\"../styles.css\" />\n  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\" />\n  <style>\n    ... (rest of the style and HTML from hero-background.html) ...\n  </style>\n</head>\n<body>\n  ... (rest of the HTML from hero-background.html) ...\n</body>\n</html>`;
+      case 'css':
+        return `/* CSS is in the <style> tag in the HTML above */`;
+      case 'js':
+        return `// JS for particles and waves is in the HTML <script> tag.`;
       default:
         return 'Code not available';
     }
