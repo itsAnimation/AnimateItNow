@@ -1,4 +1,25 @@
 window.addEventListener('DOMContentLoaded', () => {
+  //making heading dynamic
+function typeWriter(){
+  const el=document.getElementById("change");
+  const text=el.textContent;
+  function start(){
+  el.textContent="";
+  let index=0;
+  let interval=setInterval(function(){
+    if(index<text.length){
+el.textContent+=text.charAt(index);
+index++;    }
+else{
+  clearInterval(interval);
+  setTimeout(start,1000);
+}
+  },100);
+}
+start();}
+typeWriter();
+
+
 // Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
