@@ -155,5 +155,11 @@
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
     <script src="../script.js"></script>
+    <script>
+      if (window.location.search.includes('embed=1')) {
+        document.querySelector('.navbar')?.remove();
+        document.querySelector('footer')?.remove();
+      }
+    </script>
   </body>
 </html>

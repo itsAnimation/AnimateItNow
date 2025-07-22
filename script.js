@@ -127,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const titleElement = document.getElementById('preview-title');
     
     titleElement.textContent = title;
-    frame.src = templateUrl;
+    // Always append ?embed=1 for preview
+    frame.src = templateUrl + (templateUrl.includes('?') ? '&' : '?') + 'embed=1';
     modal.classList.add('active');
   };
 
