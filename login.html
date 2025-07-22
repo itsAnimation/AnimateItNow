@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Rotate Login Page</title>
+  <style>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #222;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+.container {
+  perspective: 1200px;
+}
+
+.card {
+  width: 350px;
+  height: 450px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background: #333;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+input {
+  margin: 10px 0;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: #ff4b2b;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+
+p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+span {
+  color: #1abc9c;
+  cursor: pointer;
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card">
+        <!-- Register Form -->
+        <div class="face back">
+        <h2>Register</h2>
+        <input type="text" id="regUsername" placeholder="Username">
+        <input type="email" id="regEmail" placeholder="Email">
+        <input type="password" id="regPassword" placeholder="Password">
+        <button onclick="registerUser()">Register</button>
+        <p>Already have an account? <span onclick="rotateCard()">Login</span></p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="face front">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+        <p>Don't have an account? <span onclick="rotateCard()">Register</span></p>
+        </div>
+
+  </div>
+</div>
+
+
+  <script>
+  function rotateCard() {
+    const card = document.getElementById('card');
+    card.classList.toggle('flipped');
+  }
+
+  
+  function registerUser() {
+    const username = document.getElementById("regUsername").value;
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+
+    if (!username || !email || !password) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    const userData = {
+      username: username,
+      email: email,
+      password: password
+    };
+
+    localStorage.setItem("user", JSON.stringify(userData));
+    alert("Registration successful!");
+    rotateCard(); // switch to login view
+  }
+
+  function loginUser() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser) {
+      alert("No registered user found. Please register first.");
+      return;
+    }
+
+    if (storedUser.email === email && storedUser.password === password) {
+      alert("Login successful! Welcome " + storedUser.username);
+      // Redirect or load dashboard logic here
+    } else {
+      alert("Invalid email or password.");
+    }
+  }
+
+</script>
+
+</body>
+</html>
