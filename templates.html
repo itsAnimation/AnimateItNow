@@ -67,9 +67,9 @@
       <section class="templates-grid">
         <article class="template-card">
           <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
           <a class="template-btn" href="templates/login.html">View Template</a>
         </article>
+
         <article class="template-card">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
@@ -91,8 +91,35 @@
             class="template-preview tilt-preview"
             style="background: #4f8cff"
           ></div>
-          <a class="template-btn" href="templates/tilt-card.html">View Template</a>
+          <a class="template-btn" href="templates/tilt-card.html"
+            >View Template</a
+          >
         </article>
+        <article class="template-card">
+          <h2>Slide In Text</h2>
+          <div
+            class="template-preview slide-preview"
+            style="background: #4f8cff"
+          >
+            <span class="slide-text">Slide</span>
+          </div>
+          <a class="template-btn" href="templates/slide-in-text.html"
+            >View Template</a
+          >
+        </article>
+<article class="template-card">
+  <h2>Floating Bubbles</h2>
+  <div class="template-preview bubble-preview" style="background: #4f8cff; position: relative; overflow: hidden;">
+    <div class="bubble" style="left: 10%; animation-delay: 0s; width: 15px; height: 15px;"></div>
+    <div class="bubble" style="left: 25%; animation-delay: 1s; width: 20px; height: 20px;"></div>
+    <div class="bubble" style="left: 40%; animation-delay: 2s; width: 18px; height: 18px;"></div>
+    <div class="bubble" style="left: 55%; animation-delay: 1.5s; width: 22px; height: 22px;"></div>
+    <div class="bubble" style="left: 70%; animation-delay: 0.8s; width: 14px; height: 14px;"></div>
+    <div class="bubble" style="left: 85%; animation-delay: 2.5s; width: 19px; height: 19px;"></div>
+  </div>
+  <a class="template-btn" href="templates/bubbles.html">View Template</a>
+</article>
+
       </section>
     </main>
 
@@ -130,7 +157,9 @@
 
       // Event listener for the toggle button
       themeToggle.addEventListener("click", () => {
-        const newTheme = body.classList.contains("dark-theme") ? "light" : "dark";
+        const newTheme = body.classList.contains("dark-theme")
+          ? "light"
+          : "dark";
         localStorage.setItem("theme", newTheme);
         applyTheme(newTheme);
       });

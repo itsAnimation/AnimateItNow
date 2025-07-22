@@ -15,6 +15,7 @@ function setTheme(dark) {
   }
 }
 
+
 // Load theme preference
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') setTheme(true);
@@ -135,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const card = document.createElement('a');
           card.href = contributor.html_url;
           card.className = 'contributor-card'; // Use a new class for specific styling
-          card.target = '_blank'; // Open link in a new tab
+          card.target = '_blank'; 
           card.rel = 'noopener noreferrer';
 
           card.innerHTML = `
@@ -153,5 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 });
+
 
 

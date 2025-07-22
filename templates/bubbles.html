@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Floating Bubbles | AnimateItNow</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .bubble-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .bubbles-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      background: #4f8cff;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -40px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      animation: floatUp 7s infinite ease-in;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -40px;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(30px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <main class="bubble-wrapper">
+    <div class="bubbles-container">
+      <!-- 20+ Bubbles -->
+       <div class="bubble" style="left: 10%; width: 16px; height: 16px; animation-delay: 0s;"></div>
+      <div class="bubble" style="left: 20%; width: 22px; height: 22px; animation-delay: 1s;"></div>
+      <div class="bubble" style="left: 30%; width: 18px; height: 18px; animation-delay: 0.5s;"></div>
+      <div class="bubble" style="left: 40%; width: 14px; height: 14px; animation-delay: 2s;"></div>
+      <div class="bubble" style="left: 50%; width: 24px; height: 24px; animation-delay: 1.2s;"></div>
+      <div class="bubble" style="left: 60%; width: 20px; height: 20px; animation-delay: 2.5s;"></div>
+      <div class="bubble" style="left: 70%; width: 15px; height: 15px; animation-delay: 1.8s;"></div>
+      <div class="bubble" style="left: 80%; width: 28px; height: 28px; animation-delay: 0.3s;"></div>
+      <div class="bubble" style="left: 90%; width: 12px; height: 12px; animation-delay: 2.2s;"></div>
+      <div class="bubble" style="left: 15%; width: 20px; height: 20px; animation-delay: 3s;"></div>
+      <div class="bubble" style="left: 25%; width: 16px; height: 16px; animation-delay: 1.4s;"></div>
+      <div class="bubble" style="left: 35%; width: 22px; height: 22px; animation-delay: 2.8s;"></div>
+      <div class="bubble" style="left: 45%; width: 18px; height: 18px; animation-delay: 0.6s;"></div>
+      <div class="bubble" style="left: 55%; width: 26px; height: 26px; animation-delay: 2.3s;"></div>
+      <div class="bubble" style="left: 65%; width: 19px; height: 19px; animation-delay: 0.9s;"></div>
+      <div class="bubble" style="left: 7%; width: 23px; height: 23px; animation-delay: 1.6s;"></div>
+      <div class="bubble" style="left: 85%; width: 17px; height: 17px; animation-delay: 3.2s;"></div>
+      <div class="bubble" style="left: 95%; width: 21px; height: 21px; animation-delay: 2.7s;"></div>
+      <div class="bubble" style="left: 5%; width: 14px; height: 14px; animation-delay: 1.1s;"></div>
+      <div class="bubble" style="left: 5%; width: 25px; height: 25px; animation-delay: 0.7s;"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Anuj and Contributors</p>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

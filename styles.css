@@ -813,3 +813,75 @@ body.dark .submit-btn:disabled:hover,
 body.dark .submit-btn.disabled:hover {
   background: #4b5563;
 }
+
+/* Slide In Text Template */
+.slide-preview {
+  background: #4f8cff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  /* Remove custom height */
+}
+
+
+.slide-text {
+  animation: slideIn 1s ease-out forwards;
+  opacity: 0;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.bubble-preview {
+  background: linear-gradient(to top, #2193b0, #6dd5ed);
+  position: relative;
+  overflow: hidden;
+}
+
+.bubble {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -30px;
+  animation: floatUp 5s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+  left: 30%;
+  animation-delay: 0s;
+}
+.bubble:nth-child(2) {
+  left: 60%;
+  animation-delay: 1s;
+}
+.bubble:nth-child(3) {
+  left: 45%;
+  animation-delay: 2s;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -30px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    bottom: 150px;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
