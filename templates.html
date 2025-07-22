@@ -26,27 +26,77 @@
       <h1 class="fade-in">Templates Gallery</h1>
       <section class="templates-grid">
         <article class="template-card scroll-fade">
-          <h2>Login Page UI</h2>
+          <h2>Login Form Template</h2>
+          <p class="template-description">Beautiful animated login form with modern styling</p>
           <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View</a>
+          <div class="template-actions">
+            <button class="template-btn preview-btn" onclick="openPreview('templates/login.html', 'Login Form Template')">Live Preview</button>
+            <button class="template-btn code-btn" onclick="viewCode('login')">View Code</button>
+          </div>
         </article>
         <article class="template-card scroll-fade">
-          <h2>Hover Button Effects</h2>
+          <h2>Animated Buttons</h2>
+          <p class="template-description">Interactive buttons with hover effects and animations</p>
           <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View</a>
+          <div class="template-actions">
+            <button class="template-btn preview-btn" onclick="openPreview('templates/button.html', 'Animated Buttons')">Live Preview</button>
+            <button class="template-btn code-btn" onclick="viewCode('button')">View Code</button>
+          </div>
         </article>
         <article class="template-card scroll-fade">
-          <h2>Loaders</h2>
+          <h2>Loading Animations</h2>
+          <p class="template-description">Smooth loading spinners and progress indicators</p>
           <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View</a>
+          <div class="template-actions">
+            <button class="template-btn preview-btn" onclick="openPreview('templates/loader.html', 'Loading Animations')">Live Preview</button>
+            <button class="template-btn code-btn" onclick="viewCode('loader')">View Code</button>
+          </div>
         </article>
         <article class="template-card scroll-fade">
-          <h2>Modal/Popup Templates</h2>
+          <h2>Modal Dialogs</h2>
+          <p class="template-description">Responsive modal popups with smooth animations</p>
           <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View</a>
+          <div class="template-actions">
+            <button class="template-btn preview-btn" onclick="openPreview('templates/modal.html', 'Modal Dialogs')">Live Preview</button>
+            <button class="template-btn code-btn" onclick="viewCode('modal')">View Code</button>
+          </div>
         </article>
       </section>
     </main>
+
+    <!-- Preview Modal -->
+    <div id="preview-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="preview-title">Template Preview</h3>
+          <button class="close-btn" onclick="closePreview()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe id="preview-frame" src="" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Modal -->
+    <div id="code-modal" class="modal-overlay">
+      <div class="modal-content code-modal-content">
+        <div class="modal-header">
+          <h3 id="code-title">Template Code</h3>
+          <button class="close-btn" onclick="closeCodeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="code-tabs">
+            <button class="tab-btn active" onclick="showCodeTab('html')">HTML</button>
+            <button class="tab-btn" onclick="showCodeTab('css')">CSS</button>
+            <button class="tab-btn" onclick="showCodeTab('js')">JavaScript</button>
+          </div>
+          <div class="code-content">
+            <pre id="code-display"><code></code></pre>
+          </div>
+          <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>

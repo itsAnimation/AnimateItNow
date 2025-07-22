@@ -249,10 +249,9 @@ body.dark .info-section p {
   background: var(--card-bg);
   border-radius: 1.1rem;
   box-shadow: var(--card-shadow);
-  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
@@ -263,14 +262,22 @@ body.dark .info-section p {
   transform: translateY(0);
 }
 .template-card h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1.1rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
   color: var(--accent);
   font-weight: 600;
+  text-align: center;
+}
+.template-description {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 .template-preview {
-  width: 100px;
-  height: 70px;
+  width: 120px;
+  height: 80px;
   border-radius: 0.7rem;
   margin-bottom: 1.2rem;
   background: #e0e7ff;
@@ -280,6 +287,7 @@ body.dark .info-section p {
   box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
   position: relative;
   overflow: hidden;
+  align-self: center;
 }
 /* Dummy previews for each template */
 .login-preview {
@@ -363,13 +371,13 @@ body.dark .info-section p {
 }
 
 .template-btn {
-  margin-top: 0.7rem;
+  flex: 1;
   background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 2em;
-  padding: 0.6em 1.5em;
-  font-size: 1rem;
+  padding: 0.6em 1em;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
@@ -380,6 +388,203 @@ body.dark .info-section p {
   transform: scale(1.05);
 }
 
+.template-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.preview-btn {
+  background: var(--accent);
+}
+
+.code-btn {
+  background: #6b7280;
+}
+
+.code-btn:hover {
+  background: #4b5563;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-modal-content {
+  width: 80vw;
+  height: 80vh;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--primary-text);
+  font-size: 1.2rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #f3f4f6;
+  color: var(--primary-text);
+}
+
+.modal-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#preview-frame {
+  width: 100%;
+  height: 70vh;
+  border: none;
+}
+
+/* Code Modal Specific Styles */
+.code-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: color 0.2s, background 0.2s;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  background: var(--card-bg);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab-btn:hover {
+  color: var(--primary-text);
+  background: #f3f4f6;
+}
+
+.code-content {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+#code-display {
+  margin: 0;
+  padding: 1.5rem;
+  background: #1f2937;
+  color: #f9fafb;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow: auto;
+  height: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.copy-btn:hover {
+  background: #2563eb;
+}
+
+/* Dark theme support */
+body.dark .modal-header {
+  border-bottom-color: #374151;
+}
+
+body.dark .code-tabs {
+  background: #374151;
+  border-bottom-color: #4b5563;
+}
+
+body.dark .tab-btn {
+  color: #9ca3af;
+}
+
+body.dark .tab-btn:hover {
+  color: #f3f4f6;
+  background: #4b5563;
+}
+
+body.dark .tab-btn.active {
+  background: var(--card-bg);
+}
+
+body.dark .close-btn:hover {
+  background: #374151;
+}
+
+body.dark .template-description {
+  color: #9ca3af;
+}
 /* Responsive Design */
 @media (max-width: 900px) {
   main {
