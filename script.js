@@ -1,3 +1,4 @@
+window.addEventListener('DOMContentLoaded', () => {
 // Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
@@ -43,3 +44,79 @@ window.addEventListener('DOMContentLoaded', () => {
     observer.observe(section);
   });
 }); 
+
+// Contact form validation
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.contact-form');
+    const submitBtn = document.querySelector('.submit-btn');
+    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+    
+    // Initially disable the submit button
+    submitBtn.disabled = true;
+    
+    // Function to check if all required fields are filled
+    function checkFormValidity() {
+        let allFieldsFilled = true;
+        
+        formInputs.forEach(input => {
+            if (input.value.trim() === '') {
+                allFieldsFilled = false;
+            }
+        });
+        
+        // Enable/disable button based on form validity
+        if (allFieldsFilled) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('disabled');
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('disabled');
+        }
+    }
+    
+    // Add event listeners to all form inputs
+    formInputs.forEach(input => {
+        input.addEventListener('input', checkFormValidity);
+        input.addEventListener('blur', checkFormValidity);
+    });
+});
+
+  const contributorsGrid = document.getElementById('contributors-grid');
+
+  if (contributorsGrid) {
+    
+    const apiUrl = 'https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors';
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(contributors => {
+        contributorsGrid.innerHTML = ''; // Clear any loading text/placeholders
+
+        contributors.forEach(contributor => {
+          // Create the card as a link to the contributor's profile
+          const card = document.createElement('a');
+          card.href = contributor.html_url;
+          card.className = 'contributor-card'; // Use a new class for specific styling
+          card.target = '_blank'; // Open link in a new tab
+          card.rel = 'noopener noreferrer';
+
+          card.innerHTML = `
+            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+            <h3>${contributor.login}</h3>
+            <p>Contributions: ${contributor.contributions}</p>
+          `;
+
+          contributorsGrid.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching contributors:', error);
+        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+      });
+  }
+});
