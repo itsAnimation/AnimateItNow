@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Card</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<style>
+    body {
+  height: 100vh;
+  background: linear-gradient(135deg, #4f8cff, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  background: rgba(255, 255, 255, 0.007);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 300px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 1s ease forwards;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* Avatar */
+.avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #ffffff88;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.avatar img:hover {
+  transform: scale(1.1);
+}
+
+
+.card h2 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: #ffffffcc;
+  margin: 0.5rem 0 1.5rem;
+}
+
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social {
+  background: #ffffff33;
+  color: #4f8cff;
+  border-color: #4f8cff;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.social:hover {
+  background: #ffffffaa;
+  color: white;
+  transform: scale(1.2);
+}
+</style>
+<body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+  <div class="card">
+    <div class="avatar">
+      <img src="https://i.pravatar.cc/150?img=68" alt="Profile Image" />
+    </div>
+    <h2>Radha Vale</h2>
+    <p>Web Developer | Fantasy Writer</p>
+    <div class="social-links">
+      <a href="#" class="social" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" class="social" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" class="social" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+  </div>
+
+
+  
+</body>
+</html>

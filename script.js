@@ -25,7 +25,6 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Fade-in and scroll animations
-window.addEventListener('DOMContentLoaded', () => {
   // Animate landing section
   document.querySelectorAll('.fade-in').forEach(el => {
     el.style.opacity = 1;
@@ -43,7 +42,41 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.scroll-fade').forEach(section => {
     observer.observe(section);
   });
-}); 
+
+
+
+// testinomial ke liye 
+const slider = document.getElementById('slider');
+if(slider){
+  const slides = document.querySelectorAll('.card');
+let current = 0;
+let total = slides.length;
+
+
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.card');
+  const total = slides.length;
+  if (index >= total) current = 0;
+  else if (index < 0) current = total - 1;
+  else current = index;
+  slider.style.transform = `translateX(-${current * 100}%)`;
+}
+
+function nextSlide() {
+  showSlide(current + 1);
+}
+
+function prevSlide() {
+  showSlide(current - 1);
+}
+
+setInterval(() => {
+  nextSlide();
+}, 5000);
+
+}
+
 
 // Contact form validation
 document.addEventListener('DOMContentLoaded', function() {
@@ -120,3 +153,5 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 });
+
+
