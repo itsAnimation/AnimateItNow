@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Templates | AnimateItNow</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-
   <body>
     <nav class="navbar">
       <div class="nav-left">
-        <img src="images/logo.png" alt="Logo" class="logo" />
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
         <span class="site-name">AnimateItNow</span>
       </div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -23,27 +26,27 @@
     </nav>
 
     <main class="templates-main">
-      <h1 class="fade-in">Templates Gallery</h1>
+      <h1>Templates Gallery</h1>
       <section class="templates-grid">
-        <article class="template-card scroll-fade">
+        <article class="template-card">
           <h2>Login Page UI</h2>
           <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View</a>
+          <a class="template-btn" href="templates/login.html">View Template</a>
         </article>
-        <article class="template-card scroll-fade">
+        <article class="template-card">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View</a>
+          <a class="template-btn" href="templates/button.html">View Template</a>
         </article>
-        <article class="template-card scroll-fade">
+        <article class="template-card">
           <h2>Loaders</h2>
           <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View</a>
+          <a class="template-btn" href="templates/loader.html">View Template</a>
         </article>
-        <article class="template-card scroll-fade">
-          <h2>Modal/Popup Templates</h2>
+        <article class="template-card">
+          <h2>Popup Templates</h2>
           <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View</a>
+          <a class="template-btn" href="templates/modal.html">View Template</a>
         </article>
         <article class="template-card scroll-fade">
           <h2>Cards Templates</h2>
@@ -79,6 +82,54 @@
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const prefersDarkScheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
+
+      // Check for saved theme or preferred scheme
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        themeToggle.textContent = "☀️";
+      } else if (currentTheme === "light") {
+        document.body.classList.remove("dark-theme");
+        themeToggle.textContent = "🌙";
+      } else if (prefersDarkScheme.matches) {
+        document.body.classList.add("dark-theme");
+        themeToggle.textContent = "☀️";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        if (document.body.classList.contains("dark-theme")) {
+          document.body.classList.remove("dark-theme");
+          localStorage.setItem("theme", "light");
+          themeToggle.textContent = "🌙";
+        } else {
+          document.body.classList.add("dark-theme");
+          localStorage.setItem("theme", "dark");
+          themeToggle.textContent = "☀️";
+        }
+      });
+
+      // Scroll animation for cards
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".template-card").forEach((card) => {
+        observer.observe(card);
+      });
+    </script>
   </body>
 </html>

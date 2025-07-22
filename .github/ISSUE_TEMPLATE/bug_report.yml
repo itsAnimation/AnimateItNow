@@ -1,0 +1,58 @@
+name: "🐞 Bug Report"
+description: File a detailed bug report to help us improve
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "### 🐛 Describe the Bug"
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of what the bug is.
+      placeholder: "The app crashes when I..."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "### 📸 Screenshots (if any)"
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add screenshots to help explain your problem (use Markdown image format).
+      placeholder: "![Screenshot](url)"
+    validations:
+      required: false
+
+  - type: input
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce the behavior?
+      placeholder: "1. Go to...
+2. Click on...
+3. See error"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: What OS/browser/device are you using?
+      placeholder: "Windows 11, Chrome 123.0"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical

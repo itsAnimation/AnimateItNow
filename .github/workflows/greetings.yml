@@ -1,0 +1,11 @@
+name: Greet New Contributors
+on: [pull_request, issues]
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: "🎉 Welcome! Thanks for opening your first issue!"
+          pr-message: "🚀 Thanks for your first pull request! We’ll review it soon."
