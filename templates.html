@@ -122,99 +122,105 @@ body.dark-theme .template-btn:hover {
   transition: color 0.3s ease, background-color 0.3s ease;
 }
     </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
+ </head>
+ <body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
+    </div>
 
-    <main class="templates-main">
-      <h1>Templates Gallery</h1>
-      <section class="templates-grid">
-        <article class="template-card">
-          <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Hover Button Effects</h2>
-          <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Loaders</h2>
-          <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Popup Templates</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View Template</a>
-        </article>
-      </section>
-    </main>
+  </nav>
 
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer>
+  <main class="templates-main">
+    <h1>Templates Gallery</h1>
+    <section class="templates-grid">
+      <article class="template-card">
+        <h2>Login Page UI</h2>
+        <div class="template-preview login-preview"></div>
+        <a class="template-btn" href="templates/login.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Hover Button Effects</h2>
+        <div class="template-preview button-preview"></div>
+        <a class="template-btn" href="templates/button.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Loaders</h2>
+        <div class="template-preview loader-preview"></div>
+        <a class="template-btn" href="templates/loader.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Popup Templates</h2>
+        <div class="template-preview modal-preview"></div>
+        <a class="template-btn" href="templates/modal.html">View Template</a>
+      </article>
+    </section>
+  </main>
 
-    <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const prefersDarkScheme = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
+  <footer>
+    <p>Made with ❤️ by Anuj and Contributors</p>
+  </footer>
 
-      // Check for saved theme or preferred scheme
-      const currentTheme = localStorage.getItem("theme");
-      if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
-        themeToggle.textContent = "☀️";
-      } else if (currentTheme === "light") {
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById("theme-toggle");
+    const prefersDarkScheme = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+
+    // Check for saved theme or preferred scheme
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    } else if (currentTheme === "light") {
+      document.body.classList.remove("dark-theme");
+      themeToggle.textContent = "🌙";
+    } else if (prefersDarkScheme.matches) {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (document.body.classList.contains("dark-theme")) {
         document.body.classList.remove("dark-theme");
+        localStorage.setItem("theme", "light");
         themeToggle.textContent = "🌙";
-      } else if (prefersDarkScheme.matches) {
+      } else {
         document.body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
         themeToggle.textContent = "☀️";
       }
+    });
 
-      themeToggle.addEventListener("click", () => {
-        if (document.body.classList.contains("dark-theme")) {
-          document.body.classList.remove("dark-theme");
-          localStorage.setItem("theme", "light");
-          themeToggle.textContent = "🌙";
-        } else {
-          document.body.classList.add("dark-theme");
-          localStorage.setItem("theme", "dark");
-          themeToggle.textContent = "☀️";
-        }
-      });
+    // Scroll animation for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      // Scroll animation for cards
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+    document.querySelectorAll(".template-card").forEach((card) => {
+      observer.observe(card);
+    });
+  </script>
+</body>
 
-      document.querySelectorAll(".template-card").forEach((card) => {
-        observer.observe(card);
-      });
-    </script>
-  </body>
 </html>

@@ -1,70 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | AnimateItNow</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <style>
-      /* Responsive navigation styles */
-      #menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 2rem;
-        cursor: pointer;
-        margin-left: auto;
-        margin-right: 1rem;
-        color: inherit;
-      }
 
-      @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-          flex-direction: column;
-          background-color: var(--bg-color, white);
-          position: absolute;
-          top: 60px;
-          right: 10px;
-          padding: 1rem;
-          border-radius: 8px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          z-index: 999;
-        }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+</head>
 
-        .nav-links.show {
-          display: flex;
-        }
-
-        #menu-toggle {
-          display: block;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
-
-      <!-- Toggle Button for Mobile -->
-      <button id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
-
+<body class="contact">
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </li>
       </ul>
-
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
+    </div>
     
-    <main class="contact-main">
+  </nav>
+
+  <main class="main-section">
+    <div class="contact-main">
       <h1 class="fade-in">Get in Touch</h1>
       <div class="contact-container">
         <form class="contact-form">
@@ -87,28 +53,20 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
+          <div class="contact-button">
+            <button type="submit" class="submit-btn">Send Message</button>
+          </div>
 
-          <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
-    </main>
-    
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+  </main>
 
-    <!-- Mobile Navbar Toggle Script -->
-    <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const navLinks = document.querySelector(".nav-links");
+  <footer>
+    <p>Made with ❤️ by Anuj and Contributors</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
 
-      if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("show");
-        });
-      }
-    </script>
-  </body>
 </html>
