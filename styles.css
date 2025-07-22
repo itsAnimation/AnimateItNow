@@ -208,14 +208,19 @@ main {
   margin: 0 auto;
   padding: 2.5rem 1rem 2rem 1rem;
   max-width: 900px;
+  padding-bottom: 8.5rem;/* Space for footer */
+  display: flex;/* Main content area used flex */
+  flex-direction: column;
+  gap: 3rem;/* Space between sections */
 }
 .info-section {
-  margin: 3rem 0;
+  /* margin: 3rem 0; */
+  
   padding: 2rem 1.5rem;
   background: var(--card-bg);
   border-radius: 1.2rem;
   box-shadow: var(--card-shadow);
-  opacity: 0;
+  
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
 }
@@ -285,27 +290,32 @@ body.dark .info-section p {
 }
 
 /* Templates Page */
+
 .templates-main {
   max-width: 1100px;
   margin: 0 auto;
   padding: 6rem 1rem 2rem 1rem;
 }
+
 .templates-main h1 {
   text-align: center;
   margin-bottom: 2.5rem;
   font-size: 2.1rem;
   font-weight: 700;
+  color: rgb(0, 0, 0);
 }
+
 .templates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   width: 100%;
 }
+
 .template-card {
   background: var(--card-bg);
   border-radius: 1.1rem;
-  box-shadow: var(--card-shadow);
+  box-shadow: black;
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
@@ -313,18 +323,20 @@ body.dark .info-section p {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
-  animation: none;
 }
+
 .template-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 .template-card h2 {
   font-size: 1.2rem;
   margin-bottom: 1.1rem;
-  color: var(--accent);
+  color: black;
   font-weight: 600;
 }
+
 .template-preview {
   width: 100px;
   height: 70px;
@@ -338,11 +350,13 @@ body.dark .info-section p {
   position: relative;
   overflow: hidden;
 }
-/* Dummy previews for each template */
+
+/* Preview styles */
 .login-preview {
   background: linear-gradient(135deg, #4f8cff 60%, #e0e7ff 100%);
   position: relative;
 }
+
 .login-preview::before {
   content: "";
   display: block;
@@ -355,9 +369,11 @@ body.dark .info-section p {
   top: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
+
 .button-preview {
-  background: linear-gradient(90deg, #fff 60%, #4f8cff 100%);
+  background: linear-gradient(90deg, var(--light) 60%, var(--primary) 100%);
 }
+
 .button-preview::before {
   content: "";
   display: block;
@@ -370,6 +386,7 @@ body.dark .info-section p {
   top: 26px;
   animation: buttonPulse 1.2s infinite alternate;
 }
+
 @keyframes buttonPulse {
   0% {
     opacity: 0.7;
@@ -379,12 +396,14 @@ body.dark .info-section p {
     transform: scale(1.08);
   }
 }
+
 .loader-preview {
-  background: #fff;
+  background: var(--light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .loader-preview::before {
   content: "";
   display: block;
@@ -395,6 +414,7 @@ body.dark .info-section p {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -403,15 +423,17 @@ body.dark .info-section p {
     transform: rotate(360deg);
   }
 }
+
 .modal-preview {
-  background: #fff;
+  background: var(--light);
 }
+
 .modal-preview::before {
   content: "";
   display: block;
   width: 60px;
   height: 30px;
-  background: #e0e7ff;
+  background: #4f8cff;
   border-radius: 6px;
   position: absolute;
   left: 20px;
@@ -422,7 +444,7 @@ body.dark .info-section p {
 .template-btn {
   margin-top: 0.7rem;
   background: var(--accent);
-  color: #fff;
+  color: var(--light);
   border: none;
   border-radius: 2em;
   padding: 0.6em 1.5em;
@@ -431,59 +453,69 @@ body.dark .info-section p {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
   transition: background 0.2s, transform 0.2s;
+  text-decoration: none;
 }
 .template-btn:hover {
-  background: #2563eb;
+  background: var(--secondary);
   transform: scale(1.05);
+}
+
+footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0;
+  font-size: 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 0;
+  z-index: 100;
 }
 
 /* Responsive Design */
 @media (max-width: 900px) {
-  main {
+  .templates-main {
     max-width: 98vw;
   }
 }
+
 @media (max-width: 700px) {
   .navbar {
     padding: 0 1rem;
   }
+
   .nav-links {
     gap: 1rem;
   }
-  .landing-section h1 {
-    font-size: 2rem;
-  }
-  .landing-section h2 {
-    font-size: 1.1rem;
-  }
-  .cta-btn {
-    font-size: 1rem;
-    padding: 0.8em 1.5em;
-  }
-  .info-section {
-    padding: 1.2rem 0.7rem;
-  }
+
   .templates-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
+
   .templates-main h1 {
     font-size: 1.4rem;
   }
 }
+
 @media (max-width: 500px) {
   .navbar {
     flex-direction: column;
     height: auto;
     padding: 0.5rem 0.5rem;
   }
+
   .nav-left {
     margin-bottom: 0.5rem;
   }
+
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .site-name {
     font-size: 1rem;
   }
@@ -509,7 +541,7 @@ body.dark .info-section p {
 .contributor-avatar {
   width: 90px;
   height: 90px;
-  border-radius: 50%; 
+  border-radius: 50%;
   margin-bottom: 1rem;
   border: 3px solid var(--accent);
 }
@@ -550,15 +582,12 @@ body.dark .contributor-card:hover {
   }
 }
 
-
-
 /* Contact Form Styles */
 .contact-main {
   max-width: 600px;
   margin: 0 auto;
-  padding: 0rem 1rem 1rem 1rem; 
+  padding: 0rem 1rem 1rem 1rem;
 }
-
 
 .contact-container {
   background: var(--card-bg);
@@ -642,7 +671,7 @@ body.dark .form-group textarea:focus {
   .contact-main {
     padding: 5rem 1rem 2rem 1rem;
   }
-  
+
   .contact-container {
     padding: 2rem;
   }
@@ -651,28 +680,28 @@ body.dark .form-group textarea:focus {
 /* Disabled button styles */
 .submit-btn:disabled,
 .submit-btn.disabled {
-    background: #9ca3af;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-    opacity: 0.6;
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
 }
 
 .submit-btn:disabled:hover,
 .submit-btn.disabled:hover {
-    background: #9ca3af;
-    transform: none;
-    box-shadow: none;
+  background: #9ca3af;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Dark theme disabled state */
 body.dark .submit-btn:disabled,
 body.dark .submit-btn.disabled {
-    background: #4b5563;
-    color: #9ca3af;
+  background: #4b5563;
+  color: #9ca3af;
 }
 
 body.dark .submit-btn:disabled:hover,
 body.dark .submit-btn.disabled:hover {
-    background: #4b5563;
+  background: #4b5563;
 }

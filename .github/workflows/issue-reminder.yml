@@ -1,0 +1,14 @@
+name: Issue Reminder
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: '⏳ This issue has been quiet for a while. Please update or it will be closed.'
+          days-before-stale: 7
+          days-before-close: 14

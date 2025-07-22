@@ -1,0 +1,11 @@
+name: Check for Duplicate Issues
+on:
+  issues:
+    types: [opened]
+jobs:
+  check-duplicates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/label-duplicate@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
