@@ -1,7 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
   //making heading dynamic
 function typeWriter(){
-  const el=document.getElementById("change");
+  const el=document.getElementById("modify");
+  if(!el)return;
   const text=el.textContent;
   function start(){
   el.textContent="";
