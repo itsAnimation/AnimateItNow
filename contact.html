@@ -6,6 +6,42 @@
     <title>Contact | AnimateItNow</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
+    <style>
+      /* Responsive navigation styles */
+      #menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 1rem;
+        color: inherit;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          background-color: var(--bg-color, white);
+          position: absolute;
+          top: 60px;
+          right: 10px;
+          padding: 1rem;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 999;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        #menu-toggle {
+          display: block;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -14,12 +50,17 @@
         <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
         <span class="site-name">AnimateItNow</span>
       </div>
+
+      <!-- Toggle Button for Mobile -->
+      <button id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
+
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     </nav>
     
@@ -29,24 +70,24 @@
         <form class="contact-form">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" required />
           </div>
-          
+
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required />
           </div>
-          
+
           <div class="form-group">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required>
+            <input type="text" id="subject" name="subject" required />
           </div>
-          
+
           <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
-          
+
           <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
@@ -55,6 +96,19 @@
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
+
     <script src="script.js"></script>
+
+    <!-- Mobile Navbar Toggle Script -->
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+      }
+    </script>
   </body>
 </html>
