@@ -52,14 +52,14 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.15);
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.82);
   color: var(--nav-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0.8rem 0.8rem 0.5rem rgba(0, 0, 0, 0.04);
   z-index: 1000;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(12px);
@@ -88,6 +88,8 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
 }
 .nav-links a {
@@ -106,7 +108,7 @@ body {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   color: var(--nav-text);
   transition: color var(--transition);
 }
@@ -232,12 +234,12 @@ footer {
   text-align: center;
   padding: 1.2rem 0;
   font-size: 1rem;
-  position: fixed;
+  position: fixed; 
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-top: 0;
-  z-index: 100;
+  margin-top: 0; 
+   z-index: 100;
 }
 
 /* Dark Theme */
@@ -249,14 +251,21 @@ body.dark {
   --footer-bg: #23272f;
   --footer-text: #f3f3f3;
   --card-bg: #23272f;
+  --background-image: url("images/bgdark.png");
 }
 body.dark .landing-section {
-  background: linear-gradient(120deg, #23272f 0%, #181a20 100%);
+  /* background: linear-gradient(120deg, #23272f 0%, #181a20 100%); */
+  background: var(--background-image);
+   background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
 }
 body.dark .info-section p {
-  color: #ccc;
+  color: #c4c0c0;
 }
-
+ body.dark .landing-section p{
+  color: #c4c0c0;
+ }
 /* Templates Page */
 
 
@@ -266,9 +275,8 @@ body.dark .info-section p {
 .templates-main {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 6rem 1rem 2rem 1rem;
+  padding: 6rem 1rem 6rem 1rem;
 }
-
 
 .templates-main h1 {
   text-align: center;
@@ -500,7 +508,8 @@ body.dark .info-section p {
   background: var(--accent);
   color: var(--light);
   border: none;
-  border-radius: 2em;
+  border-radius: 0.3em;
+  text-decoration: none;
   padding: 0.6em 1.5em;
   font-size: 1rem;
   font-weight: 600;
@@ -637,20 +646,39 @@ body.dark .contributor-card:hover {
 }
 
 /* Contact Form Styles */
-.contact-main {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0rem 1rem 1rem 1rem;
+.contact{
+    background: url("images/bg.jpg");
+   background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
 }
-
+.main-section{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-main {
+  width: 80%;
+  padding: 0rem 1rem 1rem 1rem 1rem;
+  margin:3rem 0 5rem 0 ;
+}
+.contact-main h1{
+  font-size: 3.5rem;
+  margin-top: 2rem;
+}
 .contact-container {
   background: var(--card-bg);
   border-radius: 1.2rem;
-  box-shadow: var(--card-shadow);
+  box-shadow: 0.5rem 0.5rem 1rem ;
   padding: 2.5rem;
   margin-top: 2rem;
+  transition: all 1s linear;
 }
 
+.contact-container:hover{
+  transform: scale(1.01);
+}
 .contact-form {
   width: 100%;
 }
@@ -691,6 +719,11 @@ body.dark .contributor-card:hover {
   min-height: 120px;
 }
 
+.contact-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .submit-btn {
   background: var(--accent);
   color: #fff;
@@ -701,7 +734,7 @@ body.dark .contributor-card:hover {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease;
-  width: 100%;
+  width: 40%;
 }
 
 .submit-btn:hover {
@@ -713,6 +746,27 @@ body.dark .form-group input,
 body.dark .form-group textarea {
   border-color: #374151;
   background: var(--card-bg);
+}
+
+body.dark .contact-main h1{
+  color: #ffffff;
+}
+
+body.dark .navbar{
+   background: var(--primary-bg);
+   box-shadow: 0.8rem 0.8rem 0.5rem rgba(0, 0, 0, 0.04);
+}
+
+body.dark .contact-container{
+  box-shadow: 0.3rem 0.3rem 0.3rem rgba(255, 255, 255, 0.365);
+
+}
+
+body.contact.dark{
+  background: var(--background-image);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
 }
 
 body.dark .form-group input:focus,
