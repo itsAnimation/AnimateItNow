@@ -75,4 +75,4 @@ For questions, suggestions, or collaboration, reach out via [LinkedIn](https://w
 
 ---
 
-Made with ❤️ by Anuj and Contributors
+Made with ❤️ by Anuj and Contributors!
