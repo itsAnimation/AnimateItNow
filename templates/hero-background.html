@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stunning Animated Hero Section</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #4f8cff 0%, #2563eb 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow: hidden;
+      z-index: 1;
+      padding-top: 60px;
+      padding-bottom: 80px;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      animation: fadeInUp 1.2s cubic-bezier(.5,0,0,1) both;
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 2.2rem;
+      color: #e0e7ff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      animation: fadeInUp 1.6s cubic-bezier(.5,0,0,1) both;
+    }
+    .hero-btn {
+      background: linear-gradient(90deg, #4f8cff 60%, #60a5fa 100%);
+      color: #fff;
+      border: none;
+      border-radius: 2em;
+      padding: 1em 2.5em;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px rgba(79, 140, 255, 0.18);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeInUp 2s cubic-bezier(.5,0,0,1) both;
+    }
+    .hero-btn:hover {
+      background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
+      transform: scale(1.06);
+    }
+    /* Animated Waves */
+    .waves {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 180px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .waves svg {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: waveMove 12s linear infinite;
+    }
+    .waves .wave2 {
+      opacity: 0.7;
+      animation-duration: 18s;
+      animation-direction: reverse;
+    }
+    .waves .wave3 {
+      opacity: 0.5;
+      animation-duration: 24s;
+    }
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .hero-title { font-size: 2rem; }
+      .hero-section { min-height: 300px; padding-top: 40px; padding-bottom: 60px; }
+      .waves { height: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-section">
+    <h1 class="hero-title">Create Stunning Hero Sections</h1>
+    <div class="hero-subtitle">With animated gradients, SVG waves, and modern UI</div>
+    <button class="hero-btn">Get Started</button>
+    <div class="waves">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#fff" fill-opacity="0.18" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,133.3C840,107,960,85,1080,101.3C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+      </svg>
+      <svg class="wave2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#fff" fill-opacity="0.12" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,197.3C840,224,960,224,1080,197.3C1200,171,1320,85,1380,42.7L1440,0L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+      </svg>
+      <svg class="wave3" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#fff" fill-opacity="0.08" d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,197.3C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+      </svg>
+    </div>
+  </div>
+  <script>
+    if (window.location.search.includes('embed=1')) {
+      document.querySelector('.navbar')?.remove();
+      document.querySelector('footer')?.remove();
+    }
+  </script>
+</body>
+</html>
