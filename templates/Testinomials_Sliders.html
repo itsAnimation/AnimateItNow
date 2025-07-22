@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonials Slider</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <style>
+    
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        
+    }
+    .testimonial-section {
+      max-width: 1000px;
+      margin-top:20vh ;
+      text-align: center;
+      /* position: relative;
+      top: 50vh;
+      left: 50vw;
+      transform: translate(-50%, -50%); */
+    }
+
+    .testimonial-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      gap: 2rem;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .card {
+      min-width: 100%;
+      max-width: 100%;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease-in-out;
+      /* flex: 0 0 100%; */
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--white);
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-weight: normal;
+      font-size: 1rem;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 45%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    .buttons button {
+      background-color: var(--white);
+      color: var(--primary);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #e4e4e4;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 1.5rem;
+      }
+
+      .slider {
+        gap: 4rem;
+      }
+
+      .card p {
+        font-size: 1rem;
+      }
+
+      .buttons button {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+
+  <body>
+   <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+    <main>
+      <section class="testimonial-section">
+        <h2>What Our Users Say</h2>
+        <div class="slider-container">
+          <div class="slider" id="slider">
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=1" alt="Profile" />
+              <p>"This platform is extremely helpful and user-friendly."</p>
+              <h3>- Radha Singh</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=2" alt="Profile" />
+              <p>"Design and responsiveness are really impressive!"</p>
+              <h3>- Om Patel</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=3" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=4" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=5" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=6" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=7" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+            <div class="card">
+              <img src="https://i.pravatar.cc/100?img=8" alt="Profile" />
+              <p>"Everything is so smooth, loved the animation!"</p>
+              <h3>- Latika Mehra</h3>
+            </div>
+          </div>
+          <div class="buttons">
+            <button onclick="prevSlide()">⟨</button>
+            <button onclick="nextSlide()">⟩</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

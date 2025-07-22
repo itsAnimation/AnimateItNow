@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Hover Template | AnimateItNow</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body.dark-theme {
+        --card-bg: #2c2c2c;
+        --card-shadow: rgba(255, 255, 255, 0.05);
+        --card-shadow-hover: rgba(255, 255, 255, 0.1);
+        --text-primary: #f1f1f1;
+        --text-secondary: #aaaaaa;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        background: var(--card-bg);
+        border-radius: 20px;
+        box-shadow: 0 8px 24px var(--card-shadow);
+        margin-bottom: 60px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 32px var(--card-shadow-hover);
+      }
+
+      .card:nth-of-type(2) {
+        animation-delay: 0.2s;
+      }
+
+      .card-vertical .template-preview {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .card-vertical {
+        flex-direction: column;
+        width: 250px;
+        max-width: 100%;
+      }
+      .card-vertical .template-preview img {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .template-card {
+        align-items: stretch;
+      }
+
+      .template-preview {
+        flex: 1.2;
+        min-width: 300px;
+      }
+
+      .template-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .card:hover .template-preview img {
+        transform: scale(1.05);
+      }
+
+      .template-info {
+        flex: 1;
+        min-width: 300px;
+        padding: 30px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .template-info h2 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+        color: var(--text-primary);
+      }
+
+      .template-info p {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--accent);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        align-self: flex-start;
+      }
+      .btn:hover {
+        background-color: #2f75f7;
+      }
+
+      
+
+      
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .card {
+          flex-direction: column !important;
+        }
+        .template-card .template-info,
+        .template-card .template-preview {
+          order: unset !important;
+        }
+        .template-info {
+          text-align: left !important;
+        }
+        .template-info .btn {
+          align-self: flex-start !important;
+        }
+      }
+
+      .links{
+        display: flex;
+        
+      }
+      .button{
+       display: flex;
+       flex-wrap: wrap;
+        background-color: var(--accent);
+        color: #fff;
+        padding: 12px 3px;
+        border-radius: 8px;
+        margin: 3px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        
+      }
+
+      .button:hover {
+        background-color: #2f75f7;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <main class="templates-main" >
+      
+        <article class="card card-vertical">
+          <div class="template-preview">
+            <img
+              src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg"
+              alt="Vertical Card Preview"
+            />
+          </div>
+          <div class="template-info">
+            <h2>Card Title</h2>
+            <p>
+              This is some quick example text to build on the card title and
+              make up the bulk of the card's content.
+            </p>
+            <a href="#" class="btn">Go Somewhere</a>
+          </div>
+        </article>
+
+        <article class="card card-vertical">
+          
+          <div class="template-info">
+            <h2>Card Title</h2>
+            <h4 style="color: #2c2c2c;">Sub Title</h4>
+            <p>
+              This is some quick example text to build on the card title and
+              make up the bulk of the card's content.
+            </p>
+            <div class="links">
+                <a href="#" class="button">Card Link</a>
+                <a href="#" class="button">Another Link</a>
+            </div>
+            
+          </div>
+        </article>
+
+
+
+      
+    </main>
+
+    <footer>
+      <p>Made with ❤️ by Anuj and Contributors</p>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
