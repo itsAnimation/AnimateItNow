@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Tilt Card | AnimateItNow</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        .tilt-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        .tilt-container {
+            perspective: 1000px;
+        }
+
+        .tilt-card {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #4f8cff, #2563eb);
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.1s ease;
+            transform-style: preserve-3d;
+        }
+        .tilt-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateZ(50px);
+        }
+        .tilt-card p {
+            font-size: 1rem;
+            transform: translateZ(30px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="Logo" class="logo" />
+            <span class="site-name">AnimateItNow</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../templates.html" class="active">Templates</a></li>
+            <li><a href="../contributors.html">Contributors</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <main class="templates-main">
+        <h1>3D Tilt Card Effect</h1>
+
+        <div class="tilt-gallery">
+            <div class="tilt-container">
+                <div class="tilt-card">
+                    <h2>3D</h2>
+                    <p>Move your mouse over this card.</p>
+                </div>
+            </div>
+
+            <div class="tilt-container">
+                <div class="tilt-card" style="background: linear-gradient(135deg, #ff4f81, #eb256d)">
+                    <h2>Tilt</h2>
+                    <p>This effect works independently.</p>
+                </div>
+            </div>
+
+            <div class="tilt-container">
+                <div class="tilt-card" style="background: linear-gradient(135deg, #42e695, #38b000)">
+                    <h2>Card</h2>
+                    <p>Add as many as you want.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const tiltContainers = document.querySelectorAll('.tilt-container');
+        tiltContainers.forEach(container => {
+            const card = container.querySelector('.tilt-card');
+            container.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            container.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                card.style.transition = 'transform 0.5s ease';
+            });
+            container.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.1s ease';
+            });
+        });
+    </script>
+
+    <footer>
+        <p>Made with ❤️ by Anuj and Contributors</p>
+    </footer>
+    <script src="../script.js"></script>
+</body>
+
+</html>
