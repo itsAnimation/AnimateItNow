@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById('contributors-grid');
   if (contributorsGrid) {
-    fetch('https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors')
+    fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
       .then(res => res.json())
       .then(contributors => {
         contributorsGrid.innerHTML = '';

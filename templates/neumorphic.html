@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuromorphic Button Gallery</title>
+  <style>
+    body {
+      background: #e0e0e0;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .level {
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      background: #f5f5f5;
+      box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+    }
+
+    .neu-btn {
+      padding: 16px 36px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      background: #e0e0e0;
+      box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+      cursor: pointer;
+    }
+
+    .level2 .neu-btn {
+      transition: all 0.3s ease;
+    }
+
+    .level2 .neu-btn:hover {
+      box-shadow: 4px 4px 10px #bebebe, -4px -4px 10px #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .level3 .neu-btn {
+      position: relative;
+      color: #555;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .level3 .neu-btn::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(60deg, #ff0000, #ff9900, #ccff00, #33ff00, #00ffff, #3300ff, #ff00cc, #ff0000);
+      background-size: 400%;
+      z-index: 0;
+      filter: blur(8px);
+      opacity: 0;
+      border-radius: 16px;
+      animation: rainbowGlow 10s linear infinite;
+      transition: opacity 0.3s ease;
+    }
+
+    .level3 .neu-btn:hover::before {
+      opacity: 1;
+    }
+
+    .level3 .neu-btn::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    .level3 .neu-btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .level3 .neu-btn:active {
+      transform: scale(0.95);
+      box-shadow: inset 8px 8px 15px #bebebe, inset -8px -8px 15px #ffffff;
+    }
+
+    @keyframes rainbowGlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .code-block {
+      display: none;
+      text-align: left;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #2d2d2d;
+      color: #f8f8f2;
+      font-family: monospace;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .toggle-btn {
+  margin-top: 1rem;
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #0069d9;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="level level1">
+    <h2>Level 1 - Basic Neumorphism</h2>
+    <button class="neu-btn">Level 1</button>
+    <br />
+    <button class="toggle-btn" onclick="toggleCode(1)">Show Code</button>
+    <pre class="code-block" id="code1">
+body {
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+}
+.neu-btn {
+  padding: 16px 36px;
+  font-size: 16px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+}
+    </pre>
+  </div>
+
+  <div class="level level2">
+    <h2>Level 2 - Interactive Neumorphism</h2>
+    <button class="neu-btn">Level 2</button>
+    <br />
+    <button class="toggle-btn" onclick="toggleCode(2)">Show Code</button>
+    <pre class="code-block" id="code2">
+.neu-btn {
+  padding: 16px 36px;
+  font-size: 16px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+  transition: all 0.3s ease;
+}
+.neu-btn:hover {
+  box-shadow: 4px 4px 10px #bebebe, -4px -4px 10px #ffffff;
+  transform: translateY(-2px);
+}
+    </pre>
+  </div>
+
+  <div class="level level3">
+    <h2>Level 3 - Rainbow Glow Neumorphism</h2>
+    <button class="neu-btn"><span>Level 3</span></button>
+    <br />
+    <button class="toggle-btn" onclick="toggleCode(3)">Show Code</button>
+    <pre class="code-block" id="code3">
+.neu-btn {
+  position: relative;
+  padding: 16px 36px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background: #e0e0e0;
+  color: #555;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.neu-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    60deg,
+    #ff0000,
+    #ff9900,
+    #ccff00,
+    #33ff00,
+    #00ffff,
+    #3300ff,
+    #ff00cc,
+    #ff0000
+  );
+  background-size: 400%;
+  z-index: 0;
+  filter: blur(8px);
+  opacity: 0;
+  border-radius: 16px;
+  animation: rainbowGlow 10s linear infinite;
+  transition: opacity 0.3s ease;
+}
+.neu-btn:hover::before {
+  opacity: 1;
+}
+.neu-btn::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  z-index: 1;
+}
+.neu-btn span {
+  position: relative;
+  z-index: 2;
+}
+.neu-btn:active {
+  transform: scale(0.95);
+  box-shadow: inset 8px 8px 15px #bebebe, inset -8px -8px 15px #ffffff;
+}
+@keyframes rainbowGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+    </pre>
+  </div>
+
+  <script>
+    function toggleCode(level) {
+      const block = document.getElementById("code" + level);
+      block.style.display = block.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+
+</html>
