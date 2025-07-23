@@ -91,6 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
           card.href = contributor.html_url;
           card.className = 'contributor-card';
           card.target = '_blank';
+          card.style.color = 'black';
           card.rel = 'noopener noreferrer';
           card.innerHTML = `
             <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
@@ -102,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.error('Error fetching contributors:', err);
-        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+        contributorsGrid.innerHTML = '<p">Could not load contributors at this time.</p>';
       });
   }
 

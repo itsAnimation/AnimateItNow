@@ -6,8 +6,8 @@
 }
 :root {
   --primary-bg: #f9f9f9;
-  --primary-text: #222;
-  --accent: #4f8cff;
+  --primary-text: #444242;
+  --accent: #122c5d;
   --nav-bg: #fff;
   --nav-text: #222;
   --footer-bg: #222;
@@ -17,6 +17,8 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --primary: #4f8cff;
   --white: #ffffff;
+  --light: #f0f0f0; /* Added a light variable for general use */
+  --secondary: #2563eb; /* Defined secondary color for hover states etc. */
 }
 body {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -40,6 +42,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 500;
   transition: background-color 0.3s ease;
+  color: black; /* Set default color here */
 }
 
 .list-group-item:hover {
@@ -52,7 +55,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 18px 50px;
-  background: rgba(50, 100, 245, 0.7);
+  background: #122c5d;
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -88,6 +91,12 @@ body {
   /* Add animation in website Name */
   animation: typing 3s steps(14) 1s infinite,
     blink 0.6s infinite step-end alternate;
+
+  /* Gradient Text for Site Name */
+  background: linear-gradient(to right, #ffffff, #d1e9ff); /* Light gradient for dark background */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Makes text transparent to show gradient */
 }
 
 @keyframes typing {
@@ -111,13 +120,6 @@ body {
   }
 }
 
-/* .site-name {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #1b1717;
-  animation: fadeInLeft 0.8s ease;
-}  */
-
 /* Navigation Links */
 .nav-links {
   display: flex;
@@ -137,6 +139,7 @@ body {
   position: relative;
   transition: all 0.3s ease;
   border-radius: 6px;
+  color: rgba(255, 255, 255);
 }
 
 /* add underline in navLinks */
@@ -157,9 +160,9 @@ body {
 
 .nav-links a.active,
 .nav-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255,0);
   box-shadow: 0 0 12px rgba(66, 150, 255, 0.4);
-  color: #d1e9ff;
+  color: #4195e4;
 }
 
 .nav-links a::after {
@@ -185,20 +188,20 @@ body {
 }
 
 .github-icon svg path {
-  fill: #24292e; 
+  fill: #24292e;
 }
 
 
 @media (prefers-color-scheme: dark) {
   .github-icon svg path {
-    fill: #ffffff; 
+    fill: #ffffff;
   }
 }
 
 
 .github-icon:hover svg path,
 .github-icon:focus svg path {
-  fill: #0366d6; 
+  fill: #0366d6;
 }
 
 /* Theme Toggle */
@@ -329,15 +332,13 @@ main {
   gap: 3rem; /* Space between sections */
 }
 .info-section {
-  /* margin: 3rem 0; */
-
   padding: 2rem 1.5rem;
   background: var(--card-bg);
   border-radius: 1.2rem;
   box-shadow: var(--card-shadow);
-
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
+  background-color: whitesmoke; /* Set default background here */
 }
 .info-section.visible {
   opacity: 1;
@@ -348,13 +349,12 @@ main {
   color: var(--accent);
 }
 .info-section p {
-  color: #444;
+  color: black; /* Set default text color here */
 }
 
 /* Footer */
-/* FOOTER */
 .footer {
-  background: linear-gradient(to right, #3b5fff, #3e87ff);
+  background: linear-gradient(to right, #98a6e3, #122c5d);
   color: #ffffff;
   padding: 50px 20px 30px;
   margin-top: 80px;
@@ -417,6 +417,7 @@ main {
 
 .footer-right li {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .footer-right a {
@@ -481,7 +482,7 @@ main {
   .footer-right {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     text-align: center;
     width: 100%;
     margin-top: 20px;
@@ -515,7 +516,6 @@ body.dark {
   --background-image: url("images/bgdark.png");
 }
 body.dark .landing-section {
-  /* background: linear-gradient(120deg, #23272f 0%, #181a20 100%); */
   background: var(--background-image);
   background-repeat: no-repeat;
   background-size: cover;
@@ -526,6 +526,14 @@ body.dark .info-section p {
 }
 body.dark .landing-section p {
   color: #c4c0c0;
+}
+/* Apply dark theme to info-section background */
+body.dark .info-section {
+    background-color: var(--card-bg); /* Use card-bg for consistency */
+}
+body.dark .list-group-item {
+    background-color: var(--card-bg); /* Use card-bg for consistency */
+    color: var(--primary-text); /* Ensure text is readable in dark mode */
 }
 /* Templates Page */
 
@@ -541,12 +549,25 @@ body.dark .landing-section p {
   margin: 2.5rem;
   font-size: 2.5rem;
   font-weight: 700;
-
   letter-spacing: 1px;
   animation: fadeIn 1s ease-in-out;
 
-  color: rgb(0, 0, 0);
+  /* Gradient Text for Templates Gallery */
+  background: linear-gradient(to right, #4a76a8, #2e4a6a); /* Blue to Darker Blue */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Makes text transparent to show gradient */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+/* Dark theme specific gradient for Templates Gallery */
+body.dark .templates-main h1 {
+  background: linear-gradient(to right, #88b0ea, #a8d8e8); /* Soft blue to lighter blue for dark theme */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Keep dark shadow for light gradient on dark background */
+}
+
 
 .templates-grid {
   display: grid;
@@ -558,7 +579,7 @@ body.dark .landing-section p {
 .template-card {
   background: var(--card-bg);
   border-radius: 1.1rem;
-  box-shadow: black;
+  box-shadow: black; /* This looks like an incomplete value, consider replacing with var(--card-shadow) */
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
@@ -585,7 +606,7 @@ body.dark .landing-section p {
 .template-card h2 {
   font-size: 1.2rem;
   margin-bottom: 1.1rem;
-  color: black;
+  color: var(--primary-text); /* Use theme-aware text color */
   font-weight: 600;
   text-align: center;
 }
@@ -595,7 +616,7 @@ body.dark .landing-section p {
   height: 90px;
   border-radius: 0.8rem;
   margin-bottom: 1.2rem;
-  background: #e0e7ff;
+  background: #4f8cff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -609,21 +630,24 @@ body.dark .landing-section p {
 }
 
 .template-btn {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
+  margin-top: 0.7rem;
+  background: var(--accent);
+  color: var(--light);
   border: none;
-  border-radius: 0.6rem;
-  background-color: var(--accent);
-  color: white;
-  font-weight: 600;
+  border-radius: 0.3em;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 0.6em 1.5em;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
+  transition: background 0.2s, transform 0.2s;
+  text-decoration: none;
 }
-
 .template-btn:hover {
-  transform: translateY(-2px);
-  background-color: var(--accent);
-  opacity: 1;
+  background: var(--secondary); /* Used the newly defined --secondary variable */
+  transform: scale(1.05);
+  color: var(--light); /* Ensure text color remains light on hover */
 }
 
 /* Preview styles */
@@ -755,29 +779,10 @@ body.dark .landing-section p {
     transform: translateX(-50%) rotate(360deg);
   }
 }
-.template-btn {
-  margin-top: 0.7rem;
-  background: var(--accent);
-  color: var(--light);
-  border: none;
-  border-radius: 0.3em;
-  text-decoration: none;
-  padding: 0.6em 1.5em;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
-  transition: background 0.2s, transform 0.2s;
-  text-decoration: none;
-}
-.template-btn:hover {
-  background: var(--secondary);
-  transform: scale(1.05);
-}
 
 footer {
-  background: black;
-  color: white;
+  background: black; /* This is an old rule that will be overridden by .footer below */
+  color: white; /* This is an old rule that will be overridden by .footer below */
   text-align: center;
   padding: 1.2rem 0;
   font-size: 1rem;
@@ -847,7 +852,7 @@ footer {
   padding: 1.5rem;
   text-align: center;
   text-decoration: none; /* Removes underline from the link */
-  color: var(--primary-text);
+  color: black; /* Default color for contributor card text */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -891,6 +896,8 @@ body.dark .contributor-card:hover {
   margin-bottom: 2.5rem;
   font-size: 2.1rem;
   font-weight: 700;
+  /* Default color for these headings, adjust if you want gradient here too */
+  color: var(--primary-text);
 }
 @media (max-width: 700px) {
   .contributors-main h1,
@@ -915,7 +922,7 @@ body.dark .contributor-card:hover {
 }
 .contact-main {
   width: 80%;
-  padding: 0rem 1rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   margin: 3rem 0 5rem 0;
 }
 .contact-main h1 {
@@ -1101,11 +1108,11 @@ body.dark .submit-btn.disabled:hover {
 }
 
 /* Fix template headings in dark mode */
+/* The rules below are replaced by more specific gradient rules above
 body.dark .templates-main h1 {
   color: #f3f3f3;
 }
-
 body.dark .template-card h2 {
   color: #f3f3f3;
 }
-
+*/
