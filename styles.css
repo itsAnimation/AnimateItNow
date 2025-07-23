@@ -66,8 +66,6 @@ body {
 .nav-left {
   display: flex;
   align-items: center;
-  width: 25ch; 
-  position: relative;
   gap: 12px;
 }
 
@@ -76,46 +74,13 @@ body {
   width: 36px;
   animation: pulse 2s infinite;
 }
-.site-name { 
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-  cursor: pointer; 
-  border-right: 2px solid var(--white);
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  /* Add animation in website Name */
-  animation: typing 3s steps(14) 1s infinite, blink 0.6s infinite step-end alternate;
-}
 
-@keyframes typing{ 
-  0%{
-    width: 0;
-  }
-  50%{
-    width: 14ch;
-  }
-  70%{
-    width: 14ch;
-  }
-  100%{
-    width: 0;
-  }
-}
-
-@keyframes blink{
-  50% {border-color: transparent;}
-}
-  
-
-
-/* .site-name {
+.site-name {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #1b1717;
+  color: #ffffff;
   animation: fadeInLeft 0.8s ease;
-}  */
+}
 
 /* Navigation Links */
 .nav-links {
@@ -128,7 +93,9 @@ body {
   display: flex;
   align-items: center;
 }
-.nav-links a { 
+
+.nav-links a {
+  color: #e6f0ff;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -138,23 +105,7 @@ body {
   border-radius: 6px;
 }
 
-/* add underline in navLinks */
-.nav-links a::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after{
-  width: 100%;
-}
-
-.nav-links a.active,
+/* Hover effect: bluish glow + underline */
 .nav-links a:hover {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 12px rgba(66, 150, 255, 0.4);
@@ -293,7 +244,7 @@ body {
 main {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 2.5rem 1rem 2rem 1rem;
   max-width: 900px;
   padding-bottom: 8.5rem; /* Space for footer */
   display: flex; /* Main content area used flex */
@@ -482,8 +433,7 @@ body.dark .info-section p {
 .templates-main {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 6rem 1rem 2rem 1rem;
-  margin-bottom: 5rem;
+  padding: 6rem 1rem 6rem 1rem;
 }
 
 .templates-main h1 {
@@ -512,7 +462,8 @@ body.dark .info-section p {
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  opacity: 0;
   transform: translateY(40px);
 
   animation: none;
