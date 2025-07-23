@@ -10,6 +10,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
+      .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+        align-items: center;
+      }
+
+      .nav-right{
+        display: flex;
+        gap: 1.5rem;
+      }
+
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
       body.dark-theme {
         background-color: #121212;
@@ -205,14 +217,17 @@ body.dark-theme .hero-preview {
         <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
         <span class="site-name">AnimateItNow</span>
       </div>
+      <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="templates.html">Templates</a></li>
+        <li><a href="templates.html" class="active">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      </div>
     </nav>
+
 
     <main class="templates-main">
       <h1>Templates Gallery</h1>
