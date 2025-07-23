@@ -1,10 +1,11 @@
-# AnimateItNow 🚀✨
+# AnimateItNow 🚀✨.
 
 Welcome to **AnimateItNow** — a creative, open-source hub for beautiful web UI components and animations!
 
 ---
 
 ## 🌈 What is AnimateItNow?
+
 
 AnimateItNow is a collaborative platform where contributors share, discover, and learn from stunning web UI components and CSS/JS animations. Whether you're a beginner or a pro, you can:
 
