@@ -1,42 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contributors | AnimateItNow</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-  </head>
-  <style>
 
-    .contributors-main{
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributors | AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <style>
+    .contributors-main {
       margin-bottom: 10rem;
     }
-
   </style>
+</head>
 
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html" class="active">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
-    <main class="contributors-main">
-      <h1 class="fade-in">Meet Our Contributors</h1>
-      <div id="contributors-grid" class="templates-grid">
     </div>
-    </main>
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+  </nav>
+
+  <main class="contributors-main scroll-fade">
+    <h1 class="fade-in">Meet Our Contributors</h1>
+    <div id="contributors-grid" class="templates-grid scroll-fade">
+      <!-- Cards get populated dynamically -->
+    </div>
+  </main>
+
+  <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a></li>
+          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a></li>
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </div>
+  </footer>
+  <div id="cursor-snake"></div>
+
+  <script src="script.js"></script>
+</body>
 </html>
