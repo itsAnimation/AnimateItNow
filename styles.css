@@ -1109,3 +1109,63 @@ body.dark .template-card h2 {
   color: #f3f3f3;
 }
 
+
+/* ✨ Animation Preview Styles */
+.fade-in {
+  animation: fadeInPreview 1s ease forwards;
+}
+
+@keyframes fadeInPreview {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce {
+  animation: bouncePreview 1s ease;
+}
+
+@keyframes bouncePreview {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.zoom-in {
+  animation: zoomInPreview 0.7s ease forwards;
+}
+
+@keyframes zoomInPreview {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUpPreview 1s ease forwards;
+}
+
+@keyframes slideUpPreview {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

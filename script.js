@@ -145,3 +145,25 @@ function animateSnake() {
 }
 animateSnake();
 });
+
+// ✨ Animation Preview Feature
+const previewBtn = document.getElementById('preview-btn');
+const animText = document.getElementById('anim-text');
+const animSelect = document.getElementById('anim-select');
+const animOutput = document.getElementById('anim-output');
+
+if (previewBtn && animText && animSelect && animOutput) {
+  previewBtn.addEventListener('click', () => {
+    const text = animText.value.trim();
+    const animation = animSelect.value;
+
+    if (text !== '') {
+      animOutput.textContent = text;
+      animOutput.className = ''; // Clear previous classes
+      void animOutput.offsetWidth; // Force reflow to restart animation
+      animOutput.classList.add(animation);
+    } else {
+      animOutput.textContent = 'Please enter some text!';
+    }
+  });
+}
