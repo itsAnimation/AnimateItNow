@@ -70,7 +70,7 @@ body {
 .nav-left {
   display: flex;
   align-items: center;
-  width: 25ch; 
+  width: 25ch;
   position: relative;
   gap: 12px;
 }
@@ -80,39 +80,40 @@ body {
   width: 36px;
   animation: pulse 2s infinite;
 }
-.site-name { 
+.site-name {
   font-weight: 700;
   font-size: 1.3rem;
   letter-spacing: 0.5px;
-  cursor: pointer; 
+  cursor: pointer;
   border-right: 2px solid var(--white);
   white-space: nowrap;
   overflow: hidden;
   width: 0;
   /* Add animation in website Name */
-  animation: typing 3s steps(14) 1s infinite, blink 0.6s infinite step-end alternate;
+  animation: typing 3s steps(14) 1s infinite,
+    blink 0.6s infinite step-end alternate;
 }
 
-@keyframes typing{ 
-  0%{
+@keyframes typing {
+  0% {
     width: 0;
   }
-  50%{
+  50% {
     width: 14ch;
   }
-  70%{
+  70% {
     width: 14ch;
   }
-  100%{
+  100% {
     width: 0;
   }
 }
 
-@keyframes blink{
-  50% {border-color: transparent;}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
-  
-
 
 /* .site-name {
   font-size: 1.6rem;
@@ -146,7 +147,7 @@ body {
 }
 
 /* add underline in navLinks */
-.nav-links a::after{
+.nav-links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -157,7 +158,7 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after{
+.nav-links a:hover::after {
   width: 100%;
 }
 
@@ -193,6 +194,23 @@ body {
 }
 
 
+.github-icon svg path {
+  fill: #24292e; 
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .github-icon svg path {
+    fill: #ffffff; 
+  }
+}
+
+
+.github-icon:hover svg path,
+.github-icon:focus svg path {
+  fill: #0366d6; 
+}
+
 /* Theme Toggle */
 #theme-toggle {
   margin-top: 4px;
@@ -211,15 +229,25 @@ body {
 
 /* Animations */
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 @keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
-
 
 /* Landing Section */
 .landing-section {
@@ -343,7 +371,7 @@ main {
   padding: 50px 20px 30px;
   margin-top: 80px;
   box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   position: relative;
   width: 100%;
 }
@@ -354,6 +382,7 @@ main {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  width: 100%;
   max-width: 800px; /* 🔹 Decreased width */
   margin: 0 auto;
   padding-bottom: 20px;
@@ -363,7 +392,7 @@ main {
 .footer-left {
   flex: 1;
   min-width: 260px;
-  padding-right: 30px;
+  padding-right: 50px;
 }
 
 .footer-left h2 {
@@ -382,12 +411,14 @@ main {
 .footer-right {
   flex: 1;
   min-width: 220px;
+  padding-left: 50px;
 }
 
 .footer-right h4 {
   font-size: 1.2rem;
   margin-bottom: 12px;
   color: #ffffff;
+  padding: 5px;
 }
 
 .footer-right ul {
@@ -408,9 +439,8 @@ main {
 }
 
 .footer-right a:hover {
-  color: #ffec99;
+  color: #e4f2fc;
   transform: translateX(5px);
-  text-decoration: underline;
 }
 
 /* Bottom section with copyright */
@@ -418,7 +448,7 @@ main {
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.85;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
   padding-top: 15px;
   margin-top: 20px;
   max-width: 800px; /* 🔹 Match with content width */
@@ -454,16 +484,36 @@ main {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .footer-content {
+    display: flex;
     flex-direction: column;
+    align-items: center; /* ✅ Ensure footer sections are centered */
     text-align: center;
-    gap: 30px;
   }
 
-  .footer-left, .footer-right {
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .footer-right ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
     padding: 0;
+    margin: 10px 0 0 0;
+  }
+
+  .footer-right li {
+    margin: 0;
   }
 }
-
 
 /* Dark Theme */
 body.dark {
@@ -479,16 +529,16 @@ body.dark {
 body.dark .landing-section {
   /* background: linear-gradient(120deg, #23272f 0%, #181a20 100%); */
   background: var(--background-image);
-   background-repeat: no-repeat;
-  background-size:cover;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
 }
 body.dark .info-section p {
   color: #c4c0c0;
 }
- body.dark .landing-section p{
+body.dark .landing-section p {
   color: #c4c0c0;
- }
+}
 /* Templates Page */
 
 .templates-main {
@@ -524,7 +574,7 @@ body.dark .info-section p {
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   transform: translateY(40px);
 
   animation: none;
@@ -863,14 +913,14 @@ body.dark .contributor-card:hover {
 }
 
 /* Contact Form Styles */
-.contact{
-    background: url("images/bg.jpg");
-   background-repeat: no-repeat;
-  background-size:cover;
+.contact {
+  background: url("images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
 }
-.main-section{
-  width:100%;
+.main-section {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -878,22 +928,22 @@ body.dark .contributor-card:hover {
 .contact-main {
   width: 80%;
   padding: 0rem 1rem 1rem 1rem 1rem;
-  margin:3rem 0 5rem 0 ;
+  margin: 3rem 0 5rem 0;
 }
-.contact-main h1{
+.contact-main h1 {
   font-size: 3.5rem;
   margin-top: 2rem;
 }
 .contact-container {
   background: var(--card-bg);
   border-radius: 1.2rem;
-  box-shadow: 0.5rem 0.5rem 1rem ;
+  box-shadow: 0.5rem 0.5rem 1rem;
   padding: 2.5rem;
   margin-top: 2rem;
   transition: all 1s linear;
 }
 
-.contact-container:hover{
+.contact-container:hover {
   transform: scale(1.01);
 }
 .contact-form {
@@ -936,7 +986,7 @@ body.dark .contributor-card:hover {
   min-height: 120px;
 }
 
-.contact-button{
+.contact-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -965,24 +1015,23 @@ body.dark .form-group textarea {
   background: var(--card-bg);
 }
 
-body.dark .contact-main h1{
+body.dark .contact-main h1 {
   color: #ffffff;
 }
 
-body.dark .navbar{
-   background: var(--primary-bg);
-   box-shadow: 0.8rem 0.8rem 0.5rem rgba(0, 0, 0, 0.04);
+body.dark .navbar {
+  background: var(--primary-bg);
+  box-shadow: 0.8rem 0.8rem 0.5rem rgba(0, 0, 0, 0.04);
 }
 
-body.dark .contact-container{
+body.dark .contact-container {
   box-shadow: 0.3rem 0.3rem 0.3rem rgba(255, 255, 255, 0.365);
-
 }
 
-body.contact.dark{
+body.contact.dark {
   background: var(--background-image);
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   background-position: center;
 }
 
@@ -1062,3 +1111,13 @@ body.dark .submit-btn.disabled:hover {
   transition: transform 0.2s ease;
   will-change: transform, left, top;
 }
+
+/* Fix template headings in dark mode */
+body.dark .templates-main h1 {
+  color: #f3f3f3;
+}
+
+body.dark .template-card h2 {
+  color: #f3f3f3;
+}
+
