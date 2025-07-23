@@ -5,70 +5,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page UI | AnimateItNow</title>
     <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      
+      /* Main container layout */
+      .main {
+        flex: 1;
+        display: flex;
+        min-height: 100vh;
+        margin-bottom: 3rem;
+      }
+      
+      .templates-main {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Code and Output areas side by side for large screens */
+      .code-area,
+      .output-area {
+        width: 50%;
+        padding: 10px;
+        height: 100vh;
+      }
+      
+      .code-area {
+        background: #f4f4f4;
+        border-right: 1px solid #ccc;
+        overflow: auto;
+        padding: 10px;
+      }
+      
+      .code-area h3,
+      .output-area h3 {
+        text-align: center;
+        color: #1a1a1a;
+        padding: 10px;
+      }
+      
+      pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+        padding: 10px;
+        height: 100vh;
+      }
+      
+      .output-area {
+        background: white;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 90%;
+        border: none;
+      }
+      
+      /* Responsive Design for smaller screens */
+      @media (max-width: 900px) {
+        .main {
+          flex-direction: column; /* Stack vertically */
+        }
+        .code-area,
+        .output-area {
+          width: 100%;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid #ccc;
+        }
+        iframe {
+          height: 300px; /* Reduce iframe height on mobile */
+        }
+      }
+      
+      body.dark-theme .templates-main h1 {
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+    </style>
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-left">
         <img src="../images/logo.png" alt="Logo" class="logo" />
         <span class="site-name">AnimateItNow</span>
       </div>
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li>
+          <a href="../index.html">Home</a>
+        </li>
+        <li>
+          <a href="../templates.html" class="active">Templates</a>
+        </li>
+        <li>
+          <a href="../contributors.html">Contributors</a>
+        </li>
+        <li>
+          <a href="../contact.html">Contact</a>
+        </li>
       </ul>
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     </nav>
+
+    <!-- Main Content -->
     <main class="templates-main">
-      <h1>Login Page UI</h1>
-      <form
-        class="login-form"
-        style="
-          max-width: 350px;
-          margin: 2rem auto;
-          padding: 2rem;
-          background: #fff;
-          border-radius: 1rem;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-          display: flex;
-          flex-direction: column;
-          gap: 1.2rem;
-        ">
-        <input
-          type="text"
-          placeholder="Username"
-          style="
-            padding: 0.8em 1em;
-            border-radius: 0.5em;
-            border: 1px solid #e0e7ff;
-          " />
-        <input
-          type="password"
-          placeholder="Password"
-          style="
-            padding: 0.8em 1em;
-            border-radius: 0.5em;
-            border: 1px solid #e0e7ff;
-          " />
-        <button
-          type="submit"
-          style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 0.8em 1em;
-            border: none;
-            border-radius: 0.5em;
-            font-weight: 600;
-            cursor: pointer;
-          ">
-          Login
-        </button>
-      </form>
+      <h1>Login Page Template</h1>
+
+      <div class="main">
+        <!-- Code display -->
+        <div class="code-area">
+          <h3>Template Code</h3>
+          <pre id="code"></pre>
+        </div>
+
+        <!-- Output display -->
+        <div class="output-area">
+          <h3>Live Output</h3>
+          <iframe id="output"></iframe>
+        </div>
+      </div>
     </main>
+
+    <!-- Footer -->
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
+
+    <!-- Script -->
+    <script>
+      const templates = {
+        login: `
+                      <!DOCTYPE html>
+                      <html>
+                      <head>
+                        <style>
+                          body { font-family: Arial; background: #e0e0e0; margin:0; }
+                          .login-box {
+                            width: 300px;
+                            margin: 100px auto;
+                            padding: 20px;
+                            background: white;
+                            border-radius: 8px;
+                            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                            text-align: center;
+                          }
+                          h2 {
+                            margin-bottom: 15px;
+                            font-size: 24px;
+                            color: #333;
+                          }
+                          input {
+                            width: 75%;
+                            padding: 10px;
+                            margin: 10px;
+                          }
+                          button {
+                            width: 60%;
+                            padding: 10px;
+                            background: #28a745;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                          }
+                          button:hover {
+                            background: #218838;
+                          }
+                        </style>
+                      </head>
+                      <body>
+                        <div class="login-box">
+                          <h2>Login</h2>
+                          <input type="text" placeholder="Username">
+                          <input type="password" placeholder="Password">
+                          <button>Login</button>
+                        </div>
+                      </body>
+                      </html>`
+      }
+      
+      function loadTemplate(name) {
+        let templateContent = templates[name]
+      
+        // Apply dark mode to iframe if parent has dark-theme
+        if (document.body.classList.contains('dark-theme')) {
+          templateContent = templateContent.replace('background: #e0e0e0;', 'background: #121212; color: #fff;').replace('color: #333;', 'color: #fff;').replace('background: white;', 'background: #1e1e1e;')
+        }
+      
+        // Show code on left
+        document.getElementById('code').textContent = templates[name].trim()
+      
+        // Load output in iframe
+        document.getElementById('output').srcdoc = templateContent
+      }
+      
+      // Default load
+      loadTemplate('login')
+    </script>
+
     <script src="../script.js"></script>
   </body>
 </html>

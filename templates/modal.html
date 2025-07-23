@@ -3,8 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modal/Popup Templates | AnimateItNow</title>
+    <title>Popup Template | AnimateItNow</title>
     <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .main {
+        flex: 1;
+        display: flex;
+        min-height: 115vh;
+        margin-bottom: 3rem;
+      }
+      .templates-main {
+        display: flex;
+        flex-direction: column;
+      }
+      .code-area {
+        width: 50%;
+        padding: 10px;
+        background: #f4f4f4;
+        border-right: 1px solid #ccc;
+        overflow: auto;
+      }
+      .code-area h3 {
+        text-align: center;
+        color: black;
+        padding: 10px;
+      }
+      pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+      }
+      .output-area {
+        width: 50%;
+        padding: 10px;
+        background: white;
+      }
+      
+      .output-area h3 {
+        color: black;
+        text-align: center;
+        padding: 10px;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 90%;
+        border: none;
+      }
+      
+      /* Responsive - stack panels on mobile/tablet */
+      @media (max-width: 900px) {
+        .main {
+          flex-direction: column;
+        }
+        .code-area,
+        .output-area {
+          width: 100%;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid #ccc;
+        }
+        iframe {
+          height: 300px;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -13,84 +85,100 @@
         <span class="site-name">AnimateItNow</span>
       </div>
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li>
+          <a href="../index.html">Home</a>
+        </li>
+        <li>
+          <a href="../templates.html" class="active">Templates</a>
+        </li>
+        <li>
+          <a href="../contributors.html">Contributors</a>
+        </li>
+        <li>
+          <a href="../contact.html">Contact</a>
+        </li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <button id="theme-toggle">🌙</button>
     </nav>
+
     <main class="templates-main">
-      <h1>Modal/Popup Templates</h1>
-      <button
-        id="open-modal"
-        style="
-          background: #4f8cff;
-          color: #fff;
-          padding: 0.8em 2em;
-          border: none;
-          border-radius: 2em;
-          font-size: 1.1rem;
-          font-weight: 600;
-          box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-          margin-top: 2rem;
-          cursor: pointer;
-        ">
-        Open Modal
-      </button>
-      <div
-        id="modal"
-        style="
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background: rgba(0, 0, 0, 0.4);
-          justify-content: center;
-          align-items: center;
-          z-index: 999;
-        ">
-        <div
-          style="
-            background: #fff;
-            padding: 2rem 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
-            min-width: 300px;
-            max-width: 90vw;
-            text-align: center;
-          ">
-          <h2 style="margin-bottom: 1rem">This is a Modal Popup!</h2>
-          <button
-            id="close-modal"
-            style="
-              background: #2563eb;
-              color: #fff;
-              padding: 0.6em 1.5em;
-              border: none;
-              border-radius: 2em;
-              font-size: 1rem;
-              font-weight: 600;
-              cursor: pointer;
-            ">
-            Close
-          </button>
+      <h1>Popup Template</h1>
+      <div class="main">
+        <div class="code-area">
+          <h3>Template Code</h3>
+          <pre id="code"></pre>
+        </div>
+        <div class="output-area">
+          <h3>Live Output</h3>
+          <iframe id="output"></iframe>
         </div>
       </div>
-      <script>
-        document.getElementById("open-modal").onclick = function () {
-          document.getElementById("modal").style.display = "flex";
-        };
-        document.getElementById("close-modal").onclick = function () {
-          document.getElementById("modal").style.display = "none";
-        };
-      </script>
     </main>
+
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
+
+    <script>
+      const templates = {
+        popup: `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                      <style>
+                        body { display:flex; justify-content:center; align-items:center; height:100vh; background:#f4f4f4; margin:0; }
+                        .popup-btn { padding:12px 20px; background:#e67e22; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+                        .popup {
+                          display:none;
+                          position:fixed;
+                          top:50%;
+                          left:50%;
+                          transform:translate(-50%, -50%);
+                          background:#fff;
+                          padding:20px;
+                          box-shadow:0 4px 10px rgba(0,0,0,0.2);
+                          border-radius:8px;
+                        }
+                        .popup.active { display:block; }
+                        .popup h2 { margin:0 0 10px; }
+                        .close-btn {
+                          margin-top:10px;
+                          background:#c0392b;
+                          color:#fff;
+                          padding:8px 16px;
+                          border:none;
+                          border-radius:5px;
+                          cursor:pointer;
+                        }
+                      </style>
+                    </head>
+                    <body>
+                      <button class="popup-btn" onclick="document.querySelector('.popup').classList.add('active')">
+                      Open Popup
+                      </button>
+                      <div class="popup">
+                        <h2>Hello!</h2>
+                        <p>This is a popup message.</p>
+                        <button class="close-btn" onclick="document.querySelector('.popup').classList.remove('active')">
+                        Close
+                        </button>
+                      </div>
+                    </body>
+                    </html>
+                  `
+      }
+      
+      function loadTemplate(name) {
+        let content = templates[name]
+        if (document.body.classList.contains('dark-theme')) {
+          content = content.replace('background:#f4f4f4;', 'background:#121212; color:#fff;').replace('background:#fff;', 'background:#1e1e1e; color:#fff;')
+        }
+        document.getElementById('code').textContent = templates[name].trim()
+        document.getElementById('output').srcdoc = content
+      }
+      loadTemplate('popup')
+    </script>
+
     <script src="../script.js"></script>
   </body>
 </html>

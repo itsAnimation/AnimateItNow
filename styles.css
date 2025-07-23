@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   --primary-bg: #f9f9f9;
   --primary-text: #222;
@@ -15,9 +16,10 @@
   --card-bg: #fff;
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --primary: #4f8cff;
+  --primary: #4f8cff;
   --white: #ffffff;
 }
+
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: var(--primary-bg);
@@ -27,7 +29,8 @@ body {
 }
 
 .list-group {
-  list-style: none; /* Removes bullets */
+  list-style: none;
+  /* Removes bullets */
   padding: 0;
   margin: 0;
 }
@@ -37,7 +40,7 @@ body {
   margin: 8px 0;
   padding: 12px 16px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
@@ -74,22 +77,26 @@ body {
   display: flex;
   align-items: center;
 }
+
 .logo {
   width: 36px;
   height: 36px;
   margin-right: 0.75rem;
   object-fit: contain;
 }
+
 .site-name {
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: 0.5px;
 }
+
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
+
 .nav-links a {
   text-decoration: none;
   color: var(--nav-text);
@@ -97,10 +104,12 @@ body {
   transition: color var(--transition);
   position: relative;
 }
+
 .nav-links a.active,
 .nav-links a:hover {
   color: var(--accent);
 }
+
 #theme-toggle {
   background: none;
   border: none;
@@ -126,23 +135,27 @@ body {
   text-align: center;
   position: relative;
 }
+
 .landing-section h1 {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
 }
+
 .landing-section h2 {
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 1.2rem;
   color: #4f8cff;
 }
+
 .landing-section p {
   max-width: 600px;
   margin: 0 auto 2rem auto;
   font-size: 1.1rem;
-  color: #444;
+  color: #cdbcbc;
 }
+
 .cta-btn {
   display: inline-block;
   background: var(--accent);
@@ -156,6 +169,7 @@ body {
   transition: background 0.2s, transform 0.2s;
   animation: bounce 1.2s infinite alternate;
 }
+
 .cta-btn:hover {
   background: #2563eb;
   transform: scale(1.05);
@@ -167,25 +181,31 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s forwards;
 }
+
 .fade-in.delay-1 {
   animation-delay: 0.3s;
 }
+
 .fade-in.delay-2 {
   animation-delay: 0.6s;
 }
+
 @keyframes bounce {
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-10px);
   }
@@ -197,30 +217,37 @@ main {
   margin: 0 auto;
   padding: 2.5rem 1rem 2rem 1rem;
   max-width: 900px;
-  padding-bottom: 8.5rem;/* Space for footer */
-  display: flex;/* Main content area used flex */
+  padding-bottom: 8.5rem;
+  /* Space for footer */
+  display: flex;
+  /* Main content area used flex */
   flex-direction: column;
-  gap: 3rem;/* Space between sections */
+  gap: 3rem;
+  /* Space between sections */
 }
+
 .info-section {
   /* margin: 3rem 0; */
-  
+
   padding: 2rem 1.5rem;
   background: var(--card-bg);
   border-radius: 1.2rem;
   box-shadow: var(--card-shadow);
-  
+
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
 }
+
 .info-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 .info-section h2 {
   margin-bottom: 0.7rem;
   color: var(--accent);
 }
+
 .info-section p {
   color: #444;
 }
@@ -232,12 +259,11 @@ footer {
   text-align: center;
   padding: 1.2rem 0;
   font-size: 1rem;
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   margin-top: 0;
-  z-index: 100;
 }
 
 /* Dark Theme */
@@ -250,9 +276,11 @@ body.dark {
   --footer-text: #f3f3f3;
   --card-bg: #23272f;
 }
+
 body.dark .landing-section {
   background: linear-gradient(120deg, #23272f 0%, #181a20 100%);
 }
+
 body.dark .info-section p {
   color: #ccc;
 }
@@ -282,6 +310,10 @@ body.dark .info-section p {
   color: rgb(0, 0, 0);
 }
 
+body.dark .templates-main h1 {
+  color: #fff;
+}
+
 .templates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -300,7 +332,7 @@ body.dark .info-section p {
   opacity: 0;
   transform: translateY(40px);
 
-  
+
   animation: none;
   position: relative;
   overflow: hidden;
@@ -362,7 +394,7 @@ body.dark .info-section p {
 
 .template-btn:hover {
   transform: translateY(-2px);
-  background-color: var(--accent); 
+  background-color: var(--accent);
   opacity: 1;
 }
 
@@ -406,6 +438,7 @@ body.dark .info-section p {
   0% {
     opacity: 0.7;
   }
+
   100% {
     opacity: 1;
     transform: scale(1.08);
@@ -434,6 +467,7 @@ body.dark .info-section p {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -455,6 +489,7 @@ body.dark .info-section p {
   top: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
+
 .timer-preview {
   background: linear-gradient(135deg, #e0e7ff 60%, #4f8cff 100%);
   position: relative;
@@ -474,13 +509,14 @@ body.dark .info-section p {
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .timer-preview::after {
   content: "";
   position: absolute;
   width: 2px;
   height: 20px;
   background-color: #4f8cff;
-  top: calc(50% - 20px); 
+  top: calc(50% - 20px);
   left: 50%;
   transform-origin: bottom center;
   transform: translateX(-50%) rotate(0deg);
@@ -491,10 +527,12 @@ body.dark .info-section p {
   from {
     transform: translateX(-50%) rotate(0deg);
   }
+
   to {
     transform: translateX(-50%) rotate(360deg);
   }
 }
+
 .template-btn {
   margin-top: 0.7rem;
   background: var(--accent);
@@ -509,6 +547,7 @@ body.dark .info-section p {
   transition: background 0.2s, transform 0.2s;
   text-decoration: none;
 }
+
 .template-btn:hover {
   background: var(--secondary);
   transform: scale(1.05);
@@ -525,7 +564,6 @@ footer {
   bottom: 0;
   width: 100%;
   margin-top: 0;
-  z-index: 100;
 }
 
 /* Responsive Design */
@@ -582,7 +620,8 @@ footer {
   box-shadow: var(--card-shadow);
   padding: 1.5rem;
   text-align: center;
-  text-decoration: none; /* Removes underline from the link */
+  text-decoration: none;
+  /* Removes underline from the link */
   color: var(--primary-text);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -628,7 +667,9 @@ body.dark .contributor-card:hover {
   font-size: 2.1rem;
   font-weight: 700;
 }
+
 @media (max-width: 700px) {
+
   .contributors-main h1,
   .contact-main h1 {
     font-size: 1.4rem;

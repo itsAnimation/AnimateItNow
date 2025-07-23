@@ -3,22 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hover Button Effects | AnimateItNow</title>
+    <title>Card Hover Template | AnimateItNow</title>
     <link rel="stylesheet" href="../styles.css" />
     <style>
-      .hover-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
       }
-      .hover-btn.glow:hover {
-        background: #2563eb;
+      .main {
+        flex: 1;
+        display: flex;
+        min-height: 100vh;
+        margin-bottom: 3rem;
       }
-      .hover-btn.outline:hover {
-        background: #4f8cff;
+      .templates-main {
+        display: flex;
+        flex-direction: column;
+      }
+      .code-area {
+        width: 50%;
+        padding: 10px;
+        height: 70vh;
+        background: #f4f4f4;
+        border-right: 1px solid #ccc;
+        overflow: auto;
+      }
+      .code-area h3 {
+        text-align: center;
+        color: #1a1a1a;
+        padding: 10px;
+      }
+      pre {
+        background: #272822;
+        color: #f8f8f2;
+        padding: 10px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+        height: 90%;
+      }
+      .output-area {
+        width: 50%;
+        padding: 10px;
+        height: 70vh;
+        background: white;
+      }
+      .output-area h3 {
+        text-align: center;
+        color: #000;
+        padding: 10px;
+      }
+      iframe {
+        width: 100%;
+        height: 70%;
+        border: none;
+      }
+      body.dark-theme .templates-main h1 {
         color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
-      .hover-btn.gradient:hover {
-        background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
+      
+      /* Responsive - stack panels on mobile/tablet */
+      @media (max-width: 900px) {
+        .main {
+          flex-direction: column;
+        }
+        .code-area,
+        .output-area {
+          width: 100%;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid #ccc;
+        }
+        iframe {
+          height: 300px;
+        }
       }
     </style>
   </head>
@@ -29,131 +90,83 @@
         <span class="site-name">AnimateItNow</span>
       </div>
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
+        <li>
+          <a href="../index.html">Home</a>
+        </li>
+        <li>
+          <a href="../templates.html" class="active">Templates</a>
+        </li>
+        <li>
+          <a href="../contributors.html">Contributors</a>
+        </li>
+        <li>
+          <a href="../contact.html">Contact</a>
+        </li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <button id="theme-toggle">🌙</button>
     </nav>
+
     <main class="templates-main">
       <h1>Hover Button Effects</h1>
-      <div
-        style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-        <button
-          class="hover-btn glow"
-          style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Glow
-        </button>
-        <button
-          class="hover-btn outline"
-          style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Outline
-        </button>
-        <button
-          class="hover-btn gradient"
-          style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Gradient
-        </button>
-      </div>
-      <div
-        style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-        <button
-          class="hover-btn glow"
-          style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Glow
-        </button>
-        <button
-          class="hover-btn outline"
-          style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Outline
-        </button>
-        <button
-          class="hover-btn gradient"
-          style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-          Gradient
-        </button>
+      <div class="main">
+        <div class="code-area">
+          <h3>Template Code</h3>
+          <pre id="code"></pre>
+        </div>
+        <div class="output-area">
+          <h3>Live Output</h3>
+          <iframe id="output"></iframe>
+        </div>
       </div>
     </main>
+
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
+
+    <script>
+      const templates = {
+        hoverButton: `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                      <style>
+                        body { display:flex; justify-content:center; align-items:center; height:100vh; background:#f4f4f4; }
+                        .btn {
+                          padding: 12px 24px;
+                          border: none;
+                          background: #3498db;
+                          color: #fff;
+                          font-size: 18px;
+                          cursor: pointer;
+                          transition: 0.3s ease;
+                          border-radius: 5px;
+                        }
+                        .btn:hover {
+                          background: #2980b9;
+                          transform: scale(1.05);
+                          box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                        }
+                      </style>
+                    </head>
+                    <body>
+                      <button class="btn">Hover Me</button>
+                    </body>
+                    </html>
+                  `
+      }
+      
+      function loadTemplate(name) {
+        let content = templates[name]
+        if (document.body.classList.contains('dark-theme')) {
+          content = content.replace('background:#f4f4f4;', 'background:#121212;')
+        }
+        document.getElementById('code').textContent = templates[name].trim()
+        document.getElementById('output').srcdoc = content
+      }
+      loadTemplate('hoverButton')
+    </script>
+
     <script src="../script.js"></script>
   </body>
 </html>
