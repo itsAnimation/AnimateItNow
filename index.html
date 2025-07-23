@@ -1,162 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnimateItNow</title>
+  <title>AnimateItNow - Creative Web Components Hub</title>
+  <meta name="description" content="A collaborative, open-source platform for sharing and discovering stunning web UI components." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bg-animation">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+      </div>
     </div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" aria-label="GitHub Repo" class="github-icon">
-<svg height="24" viewBox="0 0 16 16" width="24" fill="currentColor" aria-hidden="true">
-  <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 
-  0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 
-  1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
-  0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012.01-.27c.68 
-  0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 
-  2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 
-  3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 
-  2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 
-  8c0-4.42-3.58-8-8-8z"></path>
-</svg></a></li>
-        <li>
-          <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-        </li>
-      </ul>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar glass-effect slide-down">
+    <div class="nav-container">
+      <div class="nav-left fade-in-left">
+        <div class="logo-container">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo pulse" />
+          <span class="site-name gradient-text">Animate It Now</span>
+        </div>
+      </div>
+      <div class="nav-right fade-in-right">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="templates.html" class="nav-link">Templates</a></li>
+          <li><a href="contributors.html" class="nav-link">Contributors</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li>
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" class="github-btn hover-lift">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+          <li>
+            <button id="theme-toggle" class="theme-toggle hover-rotate">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+        <div class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
     </div>
   </nav>
 
-
-    <header class="landing-section">
-      <h1 class="fade-in">Welcome to AnimateItNow</h1>
-      <h2 class="fade-in delay-1">
-        A creative space where contributors build beautiful web components.
-      </h2>
-      <p class="fade-in delay-2">
-        This project is a collaborative, open-source platform for sharing and
-        discovering stunning web UI components. Join us to contribute, learn,
-        and inspire others!
-      </p>
-      <a href="templates.html" class="cta-btn bounce">Get Started</a>
-    </header>
-
-
-    <main>
-      <section id="what-is" class="info-section scroll-fade">
-        <h2>What is this project?</h2>
-        <p>
-          AnimateItNow is a community-driven collection of reusable web
-          components, templates, and UI ideas. Anyone can contribute and use
-          these resources for their own projects.
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge fade-in-up delay-1">
+          <i class="fas fa-rocket"></i>
+          <span>Open Source Project</span>
+        </div>
+        <h1 class="hero-title fade-in-up delay-2">
+          Welcome to <span class="gradient-text">AnimateItNow</span>
+        </h1>
+        <h2 class="hero-subtitle fade-in-up delay-3">
+          A creative space where contributors build beautiful web components
+        </h2>
+        <p class="hero-description fade-in-up delay-4">
+          This project is a collaborative, open-source platform for sharing and
+          discovering stunning web UI components. Join us to contribute, learn,
+          and inspire others!
         </p>
-      </section>
-      <section id="how-to-contribute" class="info-section scroll-fade">
-        <h2>How to contribute?</h2>
-        <p>
-          Fork our repository, add your creative web components, and submit a
-          pull request! All skill levels are welcome. Check out our Templates
-          page for inspiration.
-        </p>
-      </section>
-      <section id="why-open-source" class="info-section scroll-fade ">
-        <h2>Why open source?</h2>
-        <p>
-          Open source empowers everyone to learn, share, and build together. Our
-          hub is a place for collaboration, growth, and innovation in web
-          design.
-        </p>
-      </section>
-      <section class = "info-section scroll-fade">
-        <h2>List Group</h2>
-        <ul class = "list-group">
-          <li class ="list-group-items">HTML Basics</li>
-          <li class="list-group-items">CSS Styling</li>
-          <li class ="list-group-items">Javascript Logic</li>
-          <li class="list-group-items">Animations</li>
-          <li  class="list-group-items">Open Source Contributors</li>   
-        </ul>
-      </section>
-    </main>
-   <footer>
-    <p>Made with ❤️ by Anuj and Contributors</p>
-  </footer>
-  <main>
-    <section id="what-is" class="info-section scroll-fade">
-      <h2>What is this project?</h2>
-      <p>
-        AnimateItNow is a community-driven collection of reusable web
-        components, templates, and UI ideas. Anyone can contribute and use
-        these resources for their own projects.
-      </p>
+        <div class="hero-buttons fade-in-up delay-5">
+          <a href="templates.html" class="btn btn-primary hover-lift">
+            <span>Get Started</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#features" class="btn btn-secondary hover-lift">
+            <span>Learn More</span>
+            <i class="fas fa-play"></i>
+          </a>
+        </div>
+        <div class="hero-stats fade-in-up delay-6">
+          <div class="stat-item">
+            <div class="stat-number counter" data-target="150">0</div>
+            <div class="stat-label">Components</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number counter" data-target="50">0</div>
+            <div class="stat-label">Contributors</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number counter" data-target="1000">0</div>
+            <div class="stat-label">Downloads</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-in-right delay-3">
+        <div class="code-window">
+          <div class="window-header">
+            <div class="window-controls">
+              <span class="control close"></span>
+              <span class="control minimize"></span>
+              <span class="control maximize"></span>
+            </div>
+            <div class="window-title">component.jsx</div>
+          </div>
+          <div class="code-content">
+            <div class="code-line">
+              <span class="code-keyword">const</span> 
+              <span class="code-variable">AnimatedButton</span> = 
+              <span class="code-punctuation">() => {</span>
+            </div>
+            <div class="code-line">
+              <span class="code-keyword">return</span> 
+              <span class="code-punctuation">(</span>
+            </div>
+            <div class="code-line">
+              <span class="code-tag">&lt;button</span> 
+              <span class="code-attribute">className</span>=
+              <span class="code-string">"animated-btn"</span>
+              <span class="code-tag">&gt;</span>
+            </div>
+            <div class="code-line">
+              <span class="code-text">Click me!</span>
+            </div>
+            <div class="code-line">
+              <span class="code-tag">&lt;/button&gt;</span>
+            </div>
+            <div class="code-line">
+              <span class="code-punctuation">);</span>
+            </div>
+            <div class="code-line">
+              <span class="code-punctuation">};</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator bounce">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header text-center fade-in-up">
+          <h2 class="section-title">Why Choose AnimateItNow?</h2>
+          <p class="section-subtitle">Discover what makes our platform special</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card glass-card hover-lift fade-in-up delay-1">
+            <div class="feature-icon">
+              <i class="fas fa-lightbulb pulse-icon"></i>
+            </div>
+            <h3>What is this project?</h3>
+            <p>
+              AnimateItNow is a community-driven collection of reusable web
+              components, templates, and UI ideas. Anyone can contribute and use
+              these resources for their own projects.
+            </p>
+            <div class="feature-link">
+              <a href="#" class="link-arrow">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="feature-card glass-card hover-lift fade-in-up delay-2">
+            <div class="feature-icon">
+              <i class="fas fa-code-branch pulse-icon"></i>
+            </div>
+            <h3>How to contribute?</h3>
+            <p>
+              Fork our repository, add your creative web components, and submit a
+              pull request! All skill levels are welcome. Check out our Templates
+              page for inspiration.
+            </p>
+            <div class="contribution-steps">
+              <div class="step-item">
+                <span class="step-number">1</span>
+                <span>Fork</span>
+              </div>
+              <div class="step-item">
+                <span class="step-number">2</span>
+                <span>Code</span>
+              </div>
+              <div class="step-item">
+                <span class="step-number">3</span>
+                <span>Submit</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card glass-card hover-lift fade-in-up delay-3">
+            <div class="feature-icon">
+              <i class="fas fa-heart pulse-icon"></i>
+            </div>
+            <h3>Why open source?</h3>
+            <p>
+              Open source empowers everyone to learn, share, and build together. Our
+              hub is a place for collaboration, growth, and innovation in web
+              design.
+            </p>
+            <div class="feature-benefits">
+              <span class="benefit-tag">Free</span>
+              <span class="benefit-tag">Collaborative</span>
+              <span class="benefit-tag">Educational</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="how-to-contribute" class="info-section scroll-fade">
-      <h2>How to contribute?</h2>
-      <p>
-        Fork our repository, add your creative web components, and submit a
-        pull request! All skill levels are welcome. Check out our Templates
-        page for inspiration.
-      </p>
+    <!-- Skills Section -->
+    <section class="skills-section">
+      <div class="container">
+        <div class="section-header text-center fade-in-up">
+          <h2 class="section-title">What You'll Master</h2>
+          <p class="section-subtitle">Build your web development skills with our comprehensive resources</p>
+        </div>
+        <div class="skills-container">
+          <div class="skills-list fade-in-left">
+            <div class="skill-item hover-lift">
+              <div class="skill-icon">
+                <i class="fab fa-html5"></i>
+              </div>
+              <div class="skill-content">
+                <h4>HTML Basics</h4>
+                <p>Structure and semantics</p>
+                <div class="skill-progress">
+                  <div class="progress-bar" data-width="90%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-item hover-lift">
+              <div class="skill-icon">
+                <i class="fab fa-css3-alt"></i>
+              </div>
+              <div class="skill-content">
+                <h4>CSS Styling</h4>
+                <p>Design and layout mastery</p>
+                <div class="skill-progress">
+                  <div class="progress-bar" data-width="85%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-item hover-lift">
+              <div class="skill-icon">
+                <i class="fab fa-js-square"></i>
+              </div>
+              <div class="skill-content">
+                <h4>JavaScript Logic</h4>
+                <p>Interactivity and behavior</p>
+                <div class="skill-progress">
+                  <div class="progress-bar" data-width="80%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-item hover-lift">
+              <div class="skill-icon">
+                <i class="fas fa-magic"></i>
+              </div>
+              <div class="skill-content">
+                <h4>Animations</h4>
+                <p>Motion and transitions</p>
+                <div class="skill-progress">
+                  <div class="progress-bar" data-width="75%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-item hover-lift">
+              <div class="skill-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="skill-content">
+                <h4>Open Source</h4>
+                <p>Community collaboration</p>
+                <div class="skill-progress">
+                  <div class="progress-bar" data-width="95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="skills-visual fade-in-right">
+            <div class="floating-elements">
+              <div class="floating-card card-1">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+              </div>
+              <div class="floating-card card-2">
+                <i class="fab fa-vue"></i>
+                <span>Vue</span>
+              </div>
+              <div class="floating-card card-3">
+                <i class="fab fa-angular"></i>
+                <span>Angular</span>
+              </div>
+              <div class="floating-card card-4">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="why-open-source" class="info-section scroll-fade">
-      <h2>Why open source?</h2>
-      <p>
-        Open source empowers everyone to learn, share, and build together. Our
-        hub is a place for collaboration, growth, and innovation in web
-        design.
-      </p>
-    </section>
-
-    <section class="info-section scroll-fade">
-      <h2>List Group</h2>
-      <ul class="list-group">
-        <li class="list-group-items">HTML Basics</li>
-        <li class="list-group-items">CSS Styling</li>
-        <li class="list-group-items">Javascript Logic</li>
-        <li class="list-group-items">Animations</li>
-        <li class="list-group-items">Open Source Contributors</li>
-      </ul>
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content glass-card fade-in-up">
+          <div class="cta-text">
+            <h2>Ready to Start Creating?</h2>
+            <p>Join our community of developers and start building amazing web components today!</p>
+          </div>
+          <div class="cta-buttons">
+            <a href="templates.html" class="btn btn-primary btn-large hover-lift">
+              <i class="fas fa-rocket"></i>
+              <span>Get Started Now</span>
+            </a>
+            <a href="https://github.com/itsAnimation/AnimateItNow" class="btn btn-outline btn-large hover-lift">
+              <i class="fab fa-github"></i>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="footer scroll-fade">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
-      </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
-        </ul>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-bg">
+      <div class="footer-shapes">
+        <div class="footer-shape shape-1"></div>
+        <div class="footer-shape shape-2"></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-main fade-in-up">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+              <h3 class="gradient-text">AnimateItNow</h3>
+            </div>
+            <p>Creating impactful web animations and templates for everyone. Join our community and build the future of web development.</p>
+            <div class="social-links">
+              <a href="https://github.com/itsAnimation/AnimateItNow" class="social-link hover-lift">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/anujshrivastava1/" class="social-link hover-lift">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:contact@animateitnow.com" class="social-link hover-lift">
+                <i class="fas fa-envelope"></i>
+              </a>
+              <a href="#" class="social-link hover-lift">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Getting Started</a></li>
+                <li><a href="#">API Reference</a></li>
+                <li><a href="#">Examples</a></li>
+                <li><a href="#">Community</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Bug Reports</a></li>
+                <li><a href="#">Feature Requests</a></li>
+                <li><a href="#">Status</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-newsletter fade-in-up delay-1">
+          <h4>Stay Updated</h4>
+          <p>Get the latest updates on new components and features</p>
+          <form class="newsletter-form">
+            <div class="input-group">
+              <input type="email" placeholder="Enter your email" required />
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom fade-in-up delay-2">
+        <div class="footer-bottom-content">
+          <p>
+            © 2025 AnimateItNow. Made with 
+            <span class="heart-beat">❤️</span> 
+            by <span class="highlight">Anuj</span> and Contributors.
+          </p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scroll-to-top" class="scroll-to-top hover-lift">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Cursor Effect -->
   <div id="cursor-snake"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="images/logo.png" alt="Loading..." />
+      </div>
+      <div class="loading-spinner"></div>
+      <p>Loading AnimateItNow...</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>
