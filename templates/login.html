@@ -1,74 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page UI | AnimateItNow</title>
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
-    <main class="templates-main">
-      <h1>Login Page UI</h1>
-      <form
-        class="login-form"
-        style="
-          max-width: 350px;
-          margin: 2rem auto;
-          padding: 2rem;
-          background: #fff;
-          border-radius: 1rem;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-          display: flex;
-          flex-direction: column;
-          gap: 1.2rem;
-        ">
-        <input
-          type="text"
-          placeholder="Username"
-          style="
-            padding: 0.8em 1em;
-            border-radius: 0.5em;
-            border: 1px solid #e0e7ff;
-          " />
-        <input
-          type="password"
-          placeholder="Password"
-          style="
-            padding: 0.8em 1em;
-            border-radius: 0.5em;
-            border: 1px solid #e0e7ff;
-          " />
-        <button
-          type="submit"
-          style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 0.8em 1em;
-            border: none;
-            border-radius: 0.5em;
-            font-weight: 600;
-            cursor: pointer;
-          ">
-          Login
-        </button>
-      </form>
-    </main>
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer>
-    <script src="../script.js"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login Variants with Custom Navbar and Dark Mode</title>
+<style>
+  /* CSS Variables for Light and Dark mode */
+  :root {
+    --nav-text: #222;
+    --accent: #007BFF;
+    --background: #f5f5f5;
+    --text-color: #222;
+    --transition: 0.3s ease;
+  }
+  body.dark {
+    --nav-text: #ddd;
+    --accent: #55aaff;
+    --background: #121212;
+    --text-color: #ddd;
+  }
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: var(--background);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
+  }
+
+  /* Your navbar CSS with variables */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    transition: background var(--transition), color var(--transition);
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.75rem;
+    object-fit: contain;
+    background: var(--accent);
+    border-radius: 6px;
+  }
+  .site-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--nav-text);
+    font-weight: 500;
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+  #theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1.5rem;
+    color: var(--nav-text);
+    transition: color var(--transition);
+  }
+
+  /* Section wrapper */
+  section {
+    max-width: 400px;
+    margin: 100px auto 50px; /* add top margin for fixed navbar */
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: background-color var(--transition), color var(--transition);
+  }
+  body.dark section {
+    background: #1e1e1e;
+    color: var(--text-color);
+  }
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    margin-bottom: 25px;
+    color: #666;
+  }
+  body.dark .subtitle {
+    color: #aaa;
+  }
+
+  /* Login Form Base */
+  form.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  form.login-form input[type="text"],
+  form.login-form input[type="email"],
+  form.login-form input[type="password"] {
+    padding: 0.8em 1em;
+    border-radius: 0.5em;
+    border: 1px solid #e0e7ff;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  }
+  body.dark form.login-form input[type="text"],
+  body.dark form.login-form input[type="email"],
+  body.dark form.login-form input[type="password"] {
+    background: #333;
+    border-color: #555;
+    color: #ddd;
+  }
+  form.login-form input::placeholder {
+    color: #999;
+  }
+  body.dark form.login-form input::placeholder {
+    color: #bbb;
+  }
+
+  form.login-form button {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.8em 1em;
+    border: none;
+    border-radius: 0.5em;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  form.login-form button:hover {
+    background: #3a6fcc;
+  }
+
+  /* Variant 2 - Elevated Card */
+  .variant-2 {
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
+  /* Variant 3 - Dark Theme */
+  .variant-3 {
+    background: var(--accent);
+    color: white;
+    padding: 2rem 2rem 3rem;
+  }
+  .variant-3 input[type="text"],
+  .variant-3 input[type="email"],
+  .variant-3 input[type="password"] {
+    background: white;
+    color: #222;
+    border: none;
+  }
+  .variant-3 input::placeholder {
+    color: #444;
+  }
+  .variant-3 button {
+    background: white;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .variant-3 button:hover {
+    background: #dbe9ff;
+  }
+
+  /* Variant 4 - Minimal Underline */
+  .variant-4 input[type="text"],
+  .variant-4 input[type="email"],
+  .variant-4 input[type="password"] {
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+    background: transparent;
+    padding-left: 0;
+    font-size: 1rem;
+    color: inherit;
+  }
+  body.dark .variant-4 input {
+    border-bottom-color: #55aaff;
+    color: #ddd;
+  }
+  .variant-4 button {
+    background: var(--accent);
+    border-radius: 9999px;
+    padding: 0.7em 2em;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    color: white;
+  }
+  .variant-4 button:hover {
+    background: #0056b3;
+  }
+
+  /* Expand code */
+  .expand-btn {
+    display: inline-block;
+    margin: 20px auto 10px;
+    padding: 8px 18px;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .expand-btn:hover {
+    background-color: #0056b3;
+  }
+  .code-block {
+    display: none;
+    background: #222;
+    color: #ddd;
+    padding: 20px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    text-align: left;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    section {
+      width: 90%;
+      padding: 20px 15px;
+    }
+    .nav-links {
+      gap: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+     <img src="../images/logo.png" alt="Logo" class="logo" />
+    <span class="site-name">AnimateItNow</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../templates.html" class="active">Templates</a></li>
+    <li><a href="../contributors.html">Contributors</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+</nav>
+
+<section>
+  <h2>Login Variant 1 - Classic</h2>
+  <p class="subtitle">Simple white card login form</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;form class="login-form"&gt;
+  &lt;input type="text" placeholder="Username" required /&gt;
+  &lt;input type="password" placeholder="Password" required /&gt;
+  &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;style&gt;
+form.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+form.login-form input[type="text"],
+form.login-form input[type="password"] {
+  padding: 0.8em 1em;
+  border-radius: 0.5em;
+  border: 1px solid #e0e7ff;
+  font-size: 1rem;
+}
+form.login-form button {
+  background: #4f8cff;
+  color: #fff;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+form.login-form button:hover {
+  background: #3a6fcc;
+}
+&lt;/style&gt;
+  </pre>
+</section>
+
+<section class="variant-2">
+  <h2>Login Variant 2 - Elevated Card</h2>
+  <p class="subtitle">White card with shadow and smooth edges</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;section class="variant-2"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="email" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-2 {
+  box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+}
+form.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+form.login-form input {
+  padding: 0.8em 1em;
+  border-radius: 0.5em;
+  border: 1px solid #e0e7ff;
+  font-size: 1rem;
+}
+form.login-form button {
+  background: #4f8cff;
+  color: #fff;
+  padding: 0.8em 1em;
+  border: none;
+  border-radius: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+form.login-form button:hover {
+  background: #3a6fcc;
+}
+&lt;/style&gt;
+  </pre>
+</section>
+
+<section class="variant-3">
+  <h2>Login Variant 3 - Dark Themed</h2>
+  <p class="subtitle">Colored background with white form inputs</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;section class="variant-3"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-3 {
+  background: #4f8cff;
+  color: white;
+  padding: 2rem 2rem 3rem;
+}
+.variant-3 input {
+  background: white;
+  color: #222;
+  border: none;
+}
+.variant-3 input::placeholder {
+  color: #444;
+}
+.variant-3 button {
+  background: white;
+  color: #4f8cff;
+  font-weight: 700;
+}
+.variant-3 button:hover {
+  background: #dbe9ff;
+}
+&lt;/style&gt;
+  </pre>
+</section>
+
+<section class="variant-4">
+  <h2>Login Variant 4 - Minimal Underline</h2>
+  <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
+    <input type="text" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;section class="variant-4"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-4 input {
+  border: none;
+  border-bottom: 2px solid #4f8cff;
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  font-size: 1rem;
+  color: inherit;
+}
+.variant-4 button {
+  background: #4f8cff;
+  border-radius: 9999px;
+  padding: 0.7em 2em;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+}
+.variant-4 button:hover {
+  background: #0056b3;
+}
+&lt;/style&gt;
+  </pre>
+</section>
+
+<script>
+  // Toggle code block visibility
+  function toggleCode(button) {
+    const codeBlock = button.nextElementSibling;
+    const isVisible = codeBlock.style.display === "block";
+    codeBlock.style.display = isVisible ? "none" : "block";
+    button.textContent = isVisible ? "Show Code" : "Hide Code";
+  }
+
+  // Dark mode toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  const navbar = document.getElementById('navbar');
+
+  themeToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    navbar.classList.toggle('dark');
+    if(body.classList.contains('dark')) {
+      themeToggleBtn.textContent = '☀️';
+    } else {
+      themeToggleBtn.textContent = '🌙';
+    }
+  });
+</script>
+
+</body>
 </html>
