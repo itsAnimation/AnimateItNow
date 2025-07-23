@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glassmorphism Profile Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .glass-card {
+      width: 320px;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      text-align: center;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: scale(1.03);
+    }
+
+    .glass-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .glass-name {
+      margin: 10px 0 5px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .glass-role {
+      font-size: 1rem;
+      color: #e0dede;
+      margin-bottom: 20px;
+    }
+
+    .glass-socials a img {
+      width: 28px;
+      margin: 0 10px;
+      transition: transform 0.2s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .glass-socials a:hover img {
+      transform: scale(1.2);
+    }
+
+    h2 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Glassmorphism Profile Card Component added by AkshitBhandariCodes -->
+  <div>
+    <h2>Glassmorphism Profile Card</h2>
+    <div class="glass-card">
+      <img
+        src="https://randomuser.me/api/portraits/men/75.jpg"
+        alt="Profile Picture"
+        class="glass-avatar"
+      />
+      <h3 class="glass-name">Akshit Bhandari</h3>
+      <p class="glass-role">Frontend Developer</p>
+      <div class="glass-socials">
+        <a href="https://github.com/akshitbhandaricodes" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+        </a>
+        <a href="https://linkedin.com/in/akshitbhandaricodes" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".glass-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        console.log("Clicked on profile card!");
+      });
+    });
+  </script>
+</body>
+</html>

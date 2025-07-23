@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature Section Variants with Expandable Code</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Your navbar CSS (unchanged) */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Base variables and body */
+    :root {
+      --nav-text: #222;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      padding-top: 64px; /* offset for fixed navbar */
+      color: #222;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      transition: color 0.3s ease;
+    }
+
+    .card-container,
+    .icon-container,
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #f0f0f0;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      transition: 0.3s;
+      color: #222;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .card p {
+      color: #666;
+    }
+
+    .icon-box {
+      text-align: center;
+      width: 180px;
+      color: #222;
+    }
+
+    .circle {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 10px;
+      background: #4CAF50;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+
+    .accordion-item {
+      margin-bottom: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      color: #222;
+    }
+
+    .accordion-title {
+      background: #eee;
+      padding: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .accordion-content {
+      padding: 15px;
+      display: none;
+      background: #f9f9f9;
+    }
+
+    .step-box {
+      border-left: 5px solid #2196F3;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f0f8ff;
+      width: 280px;
+      color: #222;
+    }
+
+    .step-box .step-number {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2196F3;
+    }
+
+    /* Code reveal */
+    .expand-btn {
+      display: block;
+      margin: 25px auto 10px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .expand-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .code-block {
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 20px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    @media (max-width: 600px) {
+      .card, .step-box, .icon-box {
+        width: 90%;
+      }
+    }
+
+    /* Dark mode variables */
+    body.dark-theme {
+      --nav-text: #eee;
+      --accent: #90caf9;
+      background-color: #121212;
+      color: #eee;
+    }
+
+    body.dark-theme .navbar {
+      background: rgba(40, 40, 40, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
+
+    body.dark-theme .nav-links a {
+      color: var(--nav-text);
+    }
+    body.dark-theme .nav-links a.active,
+    body.dark-theme .nav-links a:hover {
+      color: var(--accent);
+    }
+    body.dark-theme #theme-toggle {
+      color: var(--nav-text);
+    }
+
+    body.dark-theme section {
+      background-color: #1f1f1f;
+      box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+    }
+
+    body.dark-theme .subtitle {
+      color: #bbb;
+    }
+
+    body.dark-theme .card {
+      background-color: #222;
+      color: #ddd;
+    }
+    body.dark-theme .card:hover {
+      box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+      transform: translateY(-5px);
+    }
+    body.dark-theme .card h3 {
+      color: #ddd;
+    }
+    body.dark-theme .card p {
+      color: #bbb;
+    }
+    body.dark-theme .icon-box {
+      color: #ddd;
+    }
+    body.dark-theme .circle {
+      background: #388e3c;
+      color: #ddd;
+    }
+    body.dark-theme .accordion-item {
+      border-color: #444;
+      color: #ddd;
+    }
+    body.dark-theme .accordion-title {
+      background: #333;
+    }
+    body.dark-theme .accordion-content {
+      background: #222;
+    }
+    body.dark-theme .step-box {
+      background: #222;
+      border-left-color: #90caf9;
+      color: #ddd;
+    }
+    body.dark-theme .step-box .step-number {
+      color: #90caf9;
+    }
+    body.dark-theme .code-block {
+      background-color: #111;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <!-- Feature Card Section -->
+  <section>
+    <h2>1. Feature Cards</h2>
+    <p class="subtitle">Simple feature cards with hover effect</p>
+    <div class="card-container">
+      <div class="card">
+        <h3>Live Chat</h3>
+        <p>Connect instantly with others in real-time.</p>
+      </div>
+      <div class="card">
+        <h3>Dashboard</h3>
+        <p>Track your tasks and stats in one place.</p>
+      </div>
+      <div class="card">
+        <h3>Reminders</h3>
+        <p>Get automated alerts and notifications.</p>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;style&gt;
+.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
+.card {
+  background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px;
+}
+.card:hover {
+  transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+&lt;/style&gt;
+
+&lt;div class="card"&gt;
+  &lt;h3&gt;Live Chat&lt;/h3&gt;
+  &lt;p&gt;Connect instantly with others.&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </section>
+
+  <!-- Icon Features Section -->
+  <section>
+    <h2>2. Icon-Based Features</h2>
+    <p class="subtitle">Circular icons with short descriptions</p>
+    <div class="icon-container">
+      <div class="icon-box">
+        <div class="circle">💬</div>
+        <h4>Chat</h4>
+        <p>Talk live with users</p>
+      </div>
+      <div class="icon-box">
+        <div class="circle">📊</div>
+        <h4>Analytics</h4>
+        <p>Monitor activity</p>
+      </div>
+      <div class="icon-box">
+        <div class="circle">🔔</div>
+        <h4>Alerts</h4>
+        <p>Stay updated</p>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;div class="icon-box"&gt;
+  &lt;div class="circle"&gt;💬&lt;/div&gt;
+  &lt;h4&gt;Chat&lt;/h4&gt;
+  &lt;p&gt;Talk live with users&lt;/p&gt;
+&lt;/div&gt;
+.circle {
+  width: 70px; height: 70px; border-radius: 50%; background: #4CAF50;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+}
+    </div>
+  </section>
+
+  <!-- Accordion Section -->
+  <section>
+    <h2>3. Accordion Features</h2>
+    <p class="subtitle">Expandable/collapsible details</p>
+    <div class="accordion-item">
+      <div class="accordion-title" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        What is the feature about?
+      </div>
+      <div class="accordion-content">
+        This feature allows you to connect and collaborate.
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-title" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        Is my data safe?
+      </div>
+      <div class="accordion-content">
+        Yes, we use strong encryption for your data.
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;div class="accordion-item"&gt;
+  &lt;div class="accordion-title"&gt;Click to expand&lt;/div&gt;
+  &lt;div class="accordion-content"&gt;Hidden content here&lt;/div&gt;
+&lt;/div&gt;
+
+.accordion-title { background: #eee; padding: 15px; cursor: pointer; }
+.accordion-content { display: none; background: #f9f9f9; padding: 15px; }
+    </div>
+  </section>
+
+  <!-- Step Section -->
+  <section>
+    <h2>4. Numbered Steps</h2>
+    <p class="subtitle">Use this for tutorials or onboarding</p>
+    <div class="steps-container">
+      <div class="step-box">
+        <div class="step-number">Step 1</div>
+        <p>Create your account.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-number">Step 2</div>
+        <p>Customize your dashboard.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-number">Step 3</div>
+        <p>Join community events.</p>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;div class="step-box"&gt;
+  &lt;div class="step-number"&gt;Step 1&lt;/div&gt;
+  &lt;p&gt;Create your account.&lt;/p&gt;
+&lt;/div&gt;
+
+.step-box {
+  border-left: 5px solid #2196F3;
+  background: #f0f8ff; padding: 15px; border-radius: 8px;
+}
+    </div>
+  </section>
+
+  <script>
+    function toggleCode(button) {
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
+
+    // Dark mode toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      if(document.body.classList.contains('dark-theme')) {
+        themeToggleBtn.textContent = '☀️';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+      } else {
+        themeToggleBtn.textContent = '🌙';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+      }
+    });
+  </script>
+</body>
+</html>
