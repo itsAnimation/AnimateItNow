@@ -1,28 +1,46 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Theme toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
 
-  function setTheme(dark) {
-    if (dark) {
-      body.classList.add('dark');
-      themeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function setTheme(dark) {
+        if (dark) {
+            body.classList.add('dark');
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark');
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
     }
-  }
 
-  const savedTheme = localStorage.getItem('theme');
-  setTheme(savedTheme === 'dark');
+    const savedTheme = localStorage.getItem('theme');
+    setTheme(savedTheme === 'dark');
 
-  themeToggle?.addEventListener('click', () => {
-    setTheme(!body.classList.contains('dark'));
-  });
+    themeToggle?.addEventListener('click', () => {
+        setTheme(!body.classList.contains('dark'));
+    });
 
-  // 🔽 Scroll Reveal Animation
+    // ✨ NEW: Animated Header Text (Added to your script)
+    const animatedH1 = document.querySelector('.landing-section .fade-in');
+    if (animatedH1 && animatedH1.tagName === 'H1') { // Target only the H1
+        const text = animatedH1.textContent.trim();
+        const words = text.split(' ');
+        animatedH1.innerHTML = ''; // Clear original text
+        words.forEach((word, index) => {
+            const span = document.createElement('span');
+           span.textContent = word;
+animatedH1.appendChild(document.createTextNode(' ')); // Adds a space after each word
+            span.className = 'word';
+            span.style.animationDelay = `${index * 0.15}s`;
+            animatedH1.appendChild(span);
+        });
+        animatedH1.style.opacity = 1; // Make container visible
+    }
+
+ // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -32,116 +50,169 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.2 });
 
+  // This line finds the general containers
   document.querySelectorAll('.scroll-fade').forEach(el => {
     observer.observe(el);
   });
-
-  // 🧪 Testimonial slider
-  const slider = document.getElementById('slider');
-  if (slider) {
-    const slides = document.querySelectorAll('.card');
-    let current = 0;
-
-    function showSlide(index) {
-      const total = slides.length;
-      if (index >= total) current = 0;
-      else if (index < 0) current = total - 1;
-      else current = index;
-      slider.style.transform = `translateX(-${current * 100}%)`;
-    }
-
-    function nextSlide() {
-      showSlide(current + 1);
-    }
-
-    setInterval(() => {
-      nextSlide();
-    }, 5000);
-  }
-
-  // 📨 Contact form validation
-  const contactForm = document.querySelector('.contact-form');
-  const submitBtn = document.querySelector('.submit-btn');
-
-  if (contactForm && submitBtn) {
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    submitBtn.disabled = true;
-
-    function checkFormValidity() {
-      let allFieldsFilled = [...formInputs].every(input => input.value.trim() !== '');
-      submitBtn.disabled = !allFieldsFilled;
-      submitBtn.classList.toggle('disabled', !allFieldsFilled);
-    }
-
-    formInputs.forEach(input => {
-      input.addEventListener('input', checkFormValidity);
-      input.addEventListener('blur', checkFormValidity);
-    });
-  }
-
-  // 🧑‍💻 Contributors fetch
-  const contributorsGrid = document.getElementById('contributors-grid');
-  if (contributorsGrid) {
-    fetch('https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors')
-      .then(res => res.json())
-      .then(contributors => {
-        contributorsGrid.innerHTML = '';
-        contributors.forEach(contributor => {
-          const card = document.createElement('a');
-          card.href = contributor.html_url;
-          card.className = 'contributor-card';
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
-          card.innerHTML = `
-            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
-            <h3>${contributor.login}</h3>
-            <p>Contributions: ${contributor.contributions}</p>
-          `;
-          contributorsGrid.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error('Error fetching contributors:', err);
-        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
-      });
-  }
-
-// 🐍 Cursor Snake Trail Animation
-
-
-const snakeContainer = document.createElement('div');
-snakeContainer.id = 'cursor-snake';
-document.body.appendChild(snakeContainer);
-
-const dots = [];
-const dotCount = 20;
-for (let i = 0; i < dotCount; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'snake-dot';
-  snakeContainer.appendChild(dot);
-  dots.push({ el: dot, x: 0, y: 0 });
-}
-
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animateSnake() {
-  let x = mouseX, y = mouseY;
-  dots.forEach((dot, i) => {
-    dot.x += (x - dot.x) * 0.2;
-    dot.y += (y - dot.y) * 0.2;
-    dot.el.style.left = dot.x + 'px';
-    dot.el.style.top = dot.y + 'px';
-    dot.el.style.transform = `scale(${1 - i / dotCount})`;
-    x = dot.x;
-    y = dot.y;
+  
+  // ✨ ADD THIS LINE to also find and animate the template cards
+  document.querySelectorAll('.template-card').forEach(el => {
+    observer.observe(el);
   });
-  requestAnimationFrame(animateSnake);
-}
-animateSnake();
+    // 🧪 Testimonial slider
+    const slider = document.getElementById('slider');
+    if (slider) {
+        const slides = document.querySelectorAll('.card');
+        let current = 0;
+
+        function showSlide(index) {
+            const total = slides.length;
+            if (index >= total) current = 0;
+            else if (index < 0) current = total - 1;
+            else current = index;
+            slider.style.transform = `translateX(-${current * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(current + 1);
+        }
+
+        setInterval(() => {
+            nextSlide();
+        }, 5000);
+    }
+
+    // 📨 Contact form validation
+    const contactForm = document.querySelector('.contact-form');
+    const submitBtn = document.querySelector('.submit-btn');
+
+    if (contactForm && submitBtn) {
+        const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+        submitBtn.disabled = true;
+
+        function checkFormValidity() {
+            let allFieldsFilled = [...formInputs].every(input => input.value.trim() !== '');
+            submitBtn.disabled = !allFieldsFilled;
+            submitBtn.classList.toggle('disabled', !allFieldsFilled);
+        }
+
+        formInputs.forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('blur', checkFormValidity);
+        });
+    }
+
+    // 🧑‍💻 Contributors fetch
+    const contributorsGrid = document.getElementById('contributors-grid');
+    if (contributorsGrid) {
+        fetch('https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors')
+            .then(res => res.json())
+            .then(contributors => {
+                contributorsGrid.innerHTML = '';
+                contributors.forEach(contributor => {
+                    const card = document.createElement('a');
+                    card.href = contributor.html_url;
+                    card.className = 'contributor-card';
+                    card.target = '_blank';
+                    card.rel = 'noopener noreferrer';
+                    card.innerHTML = `
+                      <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+                      <h3>${contributor.login}</h3>
+                      <p>Contributions: ${contributor.contributions}</p>
+                    `;
+                    contributorsGrid.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.error('Error fetching contributors:', err);
+                contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+            });
+    }
+
+    // 🐍 Cursor Snake Trail Animation
+    const snakeContainer = document.createElement('div');
+    snakeContainer.id = 'cursor-snake';
+    document.body.appendChild(snakeContainer);
+
+    const dots = [];
+    const dotCount = 20;
+    for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'snake-dot';
+        snakeContainer.appendChild(dot);
+        dots.push({
+            el: dot,
+            x: 0,
+            y: 0
+        });
+    }
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateSnake() {
+        let x = mouseX,
+            y = mouseY;
+        dots.forEach((dot, i) => {
+            dot.x += (x - dot.x) * 0.2;
+            dot.y += (y - dot.y) * 0.2;
+            dot.el.style.left = dot.x + 'px';
+            dot.el.style.top = dot.y + 'px';
+            dot.el.style.transform = `scale(${(dotCount - i) / dotCount})`;
+            x = dot.x;
+            y = dot.y;
+        });
+        requestAnimationFrame(animateSnake);
+    }
+    animateSnake();
 });
+// ✨ Typewriter Effect for Site Name
+  const siteNameElement = document.querySelector('.site-name');
+  if (siteNameElement) {
+    const text = "AnimateItNow";
+    let index = 0;
+    let isDeleting = false;
+    const typingSpeed = 150; // Time in ms between each character
+    const deletingSpeed = 75;
+    const pauseAtEnd = 2000; // Pause for 2 seconds after typing
+
+    function typeEffect() {
+      // Determine the current text to display
+      const currentText = text.substring(0, index);
+
+      // Update the element's HTML with the text and cursor
+      siteNameElement.innerHTML = currentText + '<span class="cursor"></span>';
+
+      if (!isDeleting) {
+        // Typing forward
+        index++;
+        if (index > text.length) {
+          // Finished typing, pause and then start deleting
+          index = text.length;
+          isDeleting = true;
+          setTimeout(typeEffect, pauseAtEnd);
+        } else {
+          setTimeout(typeEffect, typingSpeed);
+        }
+      } else {
+        // Deleting
+        index--;
+        if (index < 0) {
+          // Finished deleting, start typing again
+          index = 0;
+          isDeleting = false;
+          setTimeout(typeEffect, typingSpeed);
+        } else {
+          setTimeout(typeEffect, deletingSpeed);
+        }
+      }
+    }
+
+    // Start the animation
+    typeEffect();
+  }
