@@ -80,6 +80,8 @@
 
     // Contact form validation
     const contactForm = document.querySelector('.contact-form');
+
+    
     if (contactForm) {
       const submitBtn = document.querySelector('.submit-btn');
       const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
