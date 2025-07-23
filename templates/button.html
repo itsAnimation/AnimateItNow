@@ -1,48 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hover Button Effects | AnimateItNow</title>
-    <link rel="stylesheet" href="../styles.css" />
-    <style>
-      .hover-btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
-      }
-      .hover-btn.glow:hover {
-        background: #2563eb;
-      }
-      .hover-btn.outline:hover {
-        background: #4f8cff;
-        color: #fff;
-      }
-      .hover-btn.gradient:hover {
-        background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <h1 class="site-name">Animate It Now</h1>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
-    <main class="templates-main">
-      <h1>Hover Button Effects</h1>
-      <div
-        style="
-=======
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,6 +7,23 @@
   <link rel="stylesheet" href="../styles.css" />
 
   <style>
+    .btn11:hover {
+  color: #000 !important;
+  background-color: white !important;
+  transition-duration: 0.5s;
+}
+
+.btn10:hover {
+  scale: 105%;
+  border-radius: 5px !important;
+  transition-duration: 1s;
+}
+.btn12:hover {
+  scale: 95%;
+  border-radius: 5px;
+  transition-duration: 0.5s;
+}
+
     .hover-btn:hover {
       transform: scale(1.08);
       box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
@@ -148,7 +122,6 @@
   <main class="templates-main">
     <h1>Hover Button Effects</h1>
     <div style="
->>>>>>> 56b2a3da98b2e1a850b844ce5dad50ac3924f888
           display: flex;
           gap: 2rem;
           justify-content: center;
@@ -166,7 +139,7 @@
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
           ">
-        Glow
+        Button 1
       </button>
       <button class="hover-btn outline" style="
             background: #fff;
@@ -180,7 +153,7 @@
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
           ">
-        Outline
+        Button 2
       </button>
       <button class="hover-btn gradient" style="
             background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
@@ -194,59 +167,9 @@
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
           ">
-        Gradient
+        Button 3
       </button>
-    </div>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="hover-btn glow" style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            
-          ">
-        Glow
-      </button>
-      <button class="hover-btn outline" style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Outline
-      </button>
-      <button class="hover-btn gradient" style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Gradient
-      </button>
-    </div>
+ 
     <div style="
           display: flex;
           gap: 2rem;
@@ -294,6 +217,55 @@
             z-index: 0;
         ">
         Gradient
+      </button>
+    </div>
+    </div>
+    <div style="
+          display: flex;
+          gap: 2rem;
+          justify-content: center;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+        ">
+      <button class="btn10" style="
+            
+            padding: 1em 2em;
+            border: none;
+            border-radius: 2em;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            
+        
+        ">
+        Hover Me
+      </button>
+      <button class="btn11" style="
+            color: white;
+            background-color: #000;
+            padding: 1em 2em;
+            border-radius: 2em;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            z-index: 0;
+        ">
+        Hover Me
+      </button>
+      <button class="btn12" style="
+            padding: 1em 2em;
+            border: none;
+            border-radius: 2px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+        ">
+        Hover Me
       </button>
     </div>
   </main>
