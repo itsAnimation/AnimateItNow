@@ -206,10 +206,36 @@ body.dark-theme .hero-preview {
 .hero-preview .hero-text-line.short {
   width: 50%;
 }
+.template-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid #666;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #555;
+}
 
 
-     
-    </style>
+  
+  </style>
   </head>
   <body>
     <nav class="navbar">
@@ -230,6 +256,7 @@ body.dark-theme .hero-preview {
 
 
     <main class="templates-main">
+      <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">←</a>
       <h1>Templates Gallery</h1>
       <section class="templates-grid">
         <article class="template-card">
