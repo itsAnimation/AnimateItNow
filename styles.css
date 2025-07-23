@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-bg: #f9f9f9;
+  --primary-bg: #fbf7f7;
   --primary-text: #222;
   --accent: #4f8cff;
   --nav-bg: #fff;
@@ -119,13 +119,32 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 80px;
-  background: url("images/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  
   text-align: center;
   position: relative;
 }
+/* added mask ink effect */
+.landing-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  background-image: url("images/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+
+  mask-image: url("images/ink.gif");
+  mask-size: cover;
+  mask-position: center;
+/* for browser support */
+
+  -webkit-mask-image: url("images/ink.gif");
+  -webkit-mask-size: cover;
+  -webkit-mask-position: center;
+}
+
 .landing-section h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -200,7 +219,8 @@ main {
   padding-bottom: 8.5rem;/* Space for footer */
   display: flex;/* Main content area used flex */
   flex-direction: column;
-  gap: 3rem;/* Space between sections */
+  gap: 4rem;/* Space between sections */
+  
 }
 .info-section {
   /* margin: 3rem 0; */
@@ -238,6 +258,7 @@ footer {
   width: 100%;
   margin-top: 0;
   z-index: 100;
+  border-top: white solid;
 }
 
 /* Dark Theme */
