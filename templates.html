@@ -215,62 +215,82 @@ body.dark-theme .hero-preview {
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     </nav>
 
-    <main class="templates-main">
-      <h1>Templates Gallery</h1>
-      <section class="templates-grid">
-        <article class="template-card">
-          <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Hover Button Effects</h2>
-          <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Loaders</h2>
-          <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Popup Templates</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View Template</a>
-        </article>
-
-        <article class="template-card">
-          <h2>Glassmorphism profile card</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
-        </article>
-
-
-   <article class="template-card">
-  <h2>Feature Cards UI</h2>
-  <div class="template-preview feature-preview">
-    <div class="mini-card">Card1</div>
-    <div class="mini-card">Card2</div>
-    <div class="mini-card">Card3</div>
+<main class="templates-main">
+  <!-- 🔍 Search Bar & Category Filter Start -->
+  <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+    <input
+      type="text"
+      id="search-bar"
+      placeholder="Search templates..."
+      style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 220px;"
+      aria-label="Search templates"
+    />
+    <select
+      id="category-filter"
+      style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc;"
+      aria-label="Filter by category"
+    >
+      <option value="">All Categories</option>
+      <option value="login">Login</option>
+      <option value="button">Button</option>
+      <option value="loader">Loader</option>
+      <option value="popup">Popup</option>
+      <option value="glassmorphism">Glassmorphism</option>
+      <option value="feature">Feature</option>
+      <option value="hero">Hero</option>
+    </select>
   </div>
-  <a class="template-btn" href="templates/feature.html">View Template</a>
-</article>
-
-<article class="template-card">
-  <h2>Hero Section Template</h2>
-  <div class="template-preview hero-preview">
-    <div class="hero-image"></div>
-    <div class="hero-text-line"></div>
-    <div class="hero-text-line short"></div>
+  <!-- 🔍 Search Bar & Category Filter End -->
+  <h1>Templates Gallery</h1>
+  <section class="templates-grid">
+    <article class="template-card" data-category="login">
+      <h2>Login Page UI</h2>
+      <div class="template-preview login-preview"></div>
+      <a class="template-btn" href="templates/login.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="button">
+      <h2>Hover Button Effects</h2>
+      <div class="template-preview button-preview"></div>
+      <a class="template-btn" href="templates/button.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="loader">
+      <h2>Loaders</h2>
+      <div class="template-preview loader-preview"></div>
+      <a class="template-btn" href="templates/loader.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="popup">
+      <h2>Popup Templates</h2>
+      <div class="template-preview modal-preview"></div>
+      <a class="template-btn" href="templates/modal.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="glassmorphism">
+      <h2>Glassmorphism profile card</h2>
+      <div class="template-preview modal-preview"></div>
+      <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="feature">
+      <h2>Feature Cards UI</h2>
+      <div class="template-preview feature-preview">
+        <div class="mini-card">Card1</div>
+        <div class="mini-card">Card2</div>
+        <div class="mini-card">Card3</div>
+      </div>
+      <a class="template-btn" href="templates/feature.html">View Template</a>
+    </article>
+    <article class="template-card" data-category="hero">
+      <h2>Hero Section Template</h2>
+      <div class="template-preview hero-preview">
+        <div class="hero-image"></div>
+        <div class="hero-text-line"></div>
+        <div class="hero-text-line short"></div>
+      </div>
+      <a class="template-btn" href="templates/hero.html">View Template</a>
+    </article>
+  </section>
+  <div id="no-results" style="display:none; text-align:center; margin-top:2rem; color:#888; font-size:1.2rem;">
+    No results found.
   </div>
-  <a class="template-btn" href="templates/hero.html">View Template</a>
-</article>
-
-
-
-
-      </section>
-    </main>
+</main>
 
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
@@ -323,6 +343,36 @@ body.dark-theme .hero-preview {
       document.querySelectorAll(".template-card").forEach((card) => {
         observer.observe(card);
       });
+
+         // 🔍 Search & Category Filter Functionality
+  const searchBar = document.getElementById('search-bar');
+  const categoryFilter = document.getElementById('category-filter');
+  const templateCards = document.querySelectorAll('.template-card');
+  const noResultsMsg = document.getElementById('no-results');
+
+  function filterTemplates() {
+    const query = searchBar.value.trim().toLowerCase();
+    const selectedCategory = categoryFilter.value;
+    let visibleCount = 0;
+
+    templateCards.forEach(card => {
+      const title = card.querySelector('h2').textContent.trim().toLowerCase();
+      const category = card.getAttribute('data-category');
+      const matchesTitle = title.startsWith(query);
+      const matchesCategory = !selectedCategory || category === selectedCategory;
+      if (matchesTitle && matchesCategory) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  searchBar.addEventListener('input', filterTemplates);
+  categoryFilter.addEventListener('change', filterTemplates);
     </script>
   </body>
 </html>
