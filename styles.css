@@ -4,6 +4,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 :root {
   --primary-bg: #f9f9f9;
   --primary-text: #222;
@@ -24,6 +33,15 @@ body {
   color: var(--primary-text);
   transition: background var(--transition), color var(--transition);
   min-height: 100vh;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;
 }
 
 .list-group {
@@ -226,12 +244,25 @@ main {
 }
 
 /* Footer */
-footer {
+footer.footer {
+  position: static !important;
+  margin-top: auto;
+  width: 100%;
   background: var(--footer-bg);
   color: var(--footer-text);
   text-align: center;
   padding: 1.2rem 0;
   font-size: 1rem;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container > main {
+  flex: 1;
   position: fixed; 
   left: 0;
   bottom: 0;
