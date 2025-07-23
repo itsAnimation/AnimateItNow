@@ -16,6 +16,8 @@
     --card-bg: #fff;
     --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --light: #f9f9f9;
+    --secondary: #2563eb;
     --primary: #4f8cff;
     --white: #ffffff;
 }
@@ -61,7 +63,6 @@ body {
     font-size: 1.6rem;
     font-weight: bold;
     color: #ffffff;
-    animation: fadeInLeft 0.8s ease;
 }
 
 /* Navigation Links */
@@ -87,7 +88,7 @@ body {
     border-radius: 6px;
 }
 
-/* Hover effect: bluish glow + underline */
+.nav-links a.active,
 .nav-links a:hover {
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 12px rgba(66, 150, 255, 0.4);
@@ -114,6 +115,21 @@ body {
     font-weight: 600;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 6px;
+}
+
+.github-icon svg path {
+    fill: #24292e;
+}
+
+@media (prefers-color-scheme: dark) {
+    .github-icon svg path {
+        fill: #ffffff;
+    }
+}
+
+.github-icon:hover svg path,
+.github-icon:focus svg path {
+    fill: #0366d6;
 }
 
 /* Theme Toggle */
@@ -152,7 +168,6 @@ body {
     }
 }
 
-
 /* Landing Section */
 .landing-section {
     min-height: 100vh;
@@ -161,10 +176,8 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 80px;
-    background: url("images/bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: url("images/bg.jpg") center center / cover no-repeat;
+    background-attachment: fixed;
     text-align: center;
     position: relative;
 }
@@ -235,17 +248,20 @@ body {
 
 /* ✨ NEW Floating and Faster Animation */
 .landing-section h1 .word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px) scale(0.9); /* Start slightly smaller and lower */
-  animation: revealWord 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; /* Faster duration */
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    /* Start slightly smaller and lower */
+    animation: revealWord 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    /* Faster duration */
 }
 
 @keyframes revealWord {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1); /* End at normal size */
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        /* End at normal size */
+    }
 }
 
 /* ✨ Updated Fade-in for other elements */
@@ -287,10 +303,10 @@ main {
 
 .info-section {
     padding: 2rem 1.5rem;
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.85);
+    /* Light semi-transparent */
     border-radius: 1.2rem;
     box-shadow: var(--card-shadow);
-
     transform: translateY(40px);
     transition: opacity 0.7s, transform 0.7s;
 }
@@ -465,6 +481,11 @@ body.dark .landing-section {
     background-position: center;
 }
 
+body.dark .info-section {
+    background: rgba(24, 26, 32, 0.7); /* Dark semi-transparent */
+    backdrop-filter: blur(5px);
+}
+
 body.dark .info-section p,
 body.dark .landing-section p {
     color: #cbd5e1;
@@ -475,7 +496,6 @@ body.dark .concept-item {
 }
 
 /* Templates Page */
-
 .templates-main {
     max-width: 1100px;
     margin: 0 auto;
@@ -487,7 +507,6 @@ body.dark .concept-item {
     margin: 2.5rem;
     font-size: 2.5rem;
     font-weight: 700;
-
     letter-spacing: 1px;
     color: var(--primary-text);
 }
@@ -511,7 +530,6 @@ body.dark .concept-item {
     transform: translateY(40px);
     position: relative;
     overflow: hidden;
-
     transition: opacity 0.7s, transform 0.7s;
 }
 
@@ -1019,52 +1037,66 @@ body.dark .submit-btn.disabled:hover {
     transition: transform 0.2s ease;
     will-change: transform, left, top;
 }
+
 /* New keyframes for the fade-in effect */
 @keyframes fadeInAndReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px); /* Optional: makes it slide up as it fades */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        /* Optional: makes it slide up as it fades */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Keyframes for the gradient movement (no changes here) */
 @keyframes gradient-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
 }
 
 .gradient-text-animated {
-  /* Gradient and clipping styles (no changes here) */
-  background: linear-gradient(90deg, #ff8a00, #e52e71, #2a00ff, #ff8a00);
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
+    /* Gradient and clipping styles (no changes here) */
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #2a00ff, #ff8a00);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-  /* ✨ APPLY BOTH ANIMATIONS HERE */
-  animation: 
-    gradient-flow 5s linear infinite, /* This is the continuous gradient animation */
-    fadeInAndReveal 1.2s ease-out forwards; /* This is the one-time fade-in animation */
+    /* ✨ APPLY BOTH ANIMATIONS HERE */
+    animation: gradient-flow 5s linear infinite,
+        /* This is the continuous gradient animation */
+        fadeInAndReveal 1.2s ease-out forwards;
+    /* This is the one-time fade-in animation */
 }
+
 /* Blinking cursor for the typing effect */
 .site-name .cursor {
-  display: inline-block;
-  background-color: #e6f0ff; /* Cursor color */
-  margin-left: 2px;
-  width: 3px;
-  animation: blink 1s infinite;
+    display: inline-block;
+    background-color: #e6f0ff;
+    /* Cursor color */
+    margin-left: 2px;
+    width: 3px;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0;
-  }
+    50% {
+        opacity: 0;
+    }
 }
+
+/* Fix template headings in dark mode */
+body.dark .templates-main h1 {
+    color: #f3f3f3;
+}
+
+body.dark .template-card h2 {
+    color: #f3f3f3;
+} 
