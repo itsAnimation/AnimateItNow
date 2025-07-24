@@ -18,6 +18,10 @@
     @keyframes l4 { to { transform: rotate(1turn); } }
     @keyframes l26 { 100% { transform: rotate(1turn); } }
 
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     /*  Loader Container */
     .loader-container {
       display: flex;
@@ -126,6 +130,63 @@
     .loader-l5::after {
       transform: rotate(60deg);
     }
+
+    .loader-l6 {
+      text-align: center;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #333;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .dot:nth-child(1) {
+      background-color: #ff6b6b; /* Red */
+      animation-delay: 0s;
+    }
+
+    .dot:nth-child(2) {
+      background-color: #feca57; /* Yellow */
+      animation-delay: 0.15s;
+    }
+
+    .dot:nth-child(3) {
+      background-color: #1dd1a1; /* Green */
+      animation-delay: 0.3s;
+    }
+
+    .dot:nth-child(4) {
+      background-color: #2e86de; /* Blue */
+      animation-delay: 0.45s;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .loading-text {
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: #333;
+      font-weight: 600;
+      margin-left: 30px;
+    }
     footer{
       margin: auto;
       width: fit-content;
@@ -158,6 +219,15 @@
       <div class="loader-l3"></div>
       <div class="loader-l4"></div>
       <div class="loader-l5"></div>
+      <div class="loader-l6">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="loading-text">LOADING...</div>
+  </div>
     </div>
   </main>
 
