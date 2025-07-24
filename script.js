@@ -147,5 +147,19 @@ if (!isMobile) {
   animateSnake();
 }
 
+  // 🚦 ProgressBar Functionality
+  function updateProgressBar() {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (windowScroll / documentHeight) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      progressBar.style.width = scrollPercent + '%';
+    }
+  }
+  window.addEventListener('scroll', updateProgressBar);
+  // Initialize on load
+  updateProgressBar();
+
 
 });
