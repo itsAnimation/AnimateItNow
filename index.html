@@ -4,25 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AnimateItNow</title>
+
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="progress-bar"></div>
     <nav class="navbar scroll-fade">
         <div class="nav-left">
             <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
             <span class="site-name">AnimateItNow</span>
         </div>
-        <div class="">
+        <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="templates.html">Templates</a></li>
                 <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li>
-                    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+                    <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012.01-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
                 </li>
+                <li><button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button></li>
             </ul>
         </div>
     </nav>
@@ -37,47 +44,88 @@
             discovering stunning web UI components. Join us to contribute, learn,
             and inspire others!
         </p>
-        <a href="#what-is" class="cta-btn">Get Started</a>
+        <a href="#faq" class="cta-btn">Get Started</a>
     </header>
 
     <main>
-        <section id="what-is" class="info-section scroll-fade">
-            <h2>What is this project?</h2>
-            <p>
-                AnimateItNow is a community-driven collection of reusable web
-                components, templates, and UI ideas. Anyone can contribute and use
-                these resources for their own projects.
-            </p>
-        </section>
-
-        <section id="how-to-contribute" class="info-section scroll-fade">
-            <h2>How to contribute?</h2>
-            <p>
-                Fork our repository, add your creative web components, and submit a
-                pull request! All skill levels are welcome. Check out our Templates
-                page for inspiration.
-            </p>
-        </section>
-
-        <section id="why-open-source" class="info-section scroll-fade">
-            <h2>Why open source?</h2>
-            <p>
-                Open source empowers everyone to learn, share, and build together. Our
-                hub is a place for collaboration, growth, and innovation in web
-                design.
-            </p>
-        </section>
-
-        <section id="core-concepts" class="info-section scroll-fade">
-            <h2>Core Concepts</h2>
-            <ul class="concepts-list">
-                <li class="concept-item"><span>HTML Semantics</span></li>
-                <li class="concept-item"><span>CSS Styling & Animations</span></li>
-                <li class="concept-item"><span>JavaScript Logic</span></li>
-                <li class="concept-item"><span>Open Source Contribution</span></li>
-                <li class="concept-item"><span>Creative UI/UX</span></li>
-            </ul>
-        </section>
+        <section id="faq" class="faq-section info-section scroll-fade">
+            <div class="faq-container">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <p class="faq-subtitle">Everything you need to know about AnimateItNow</p>
+                <div class="faq-list">
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>What is this project?</h3>
+                            <div class="faq-icon-static"><i class="fas fa-question"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>AnimateItNow is a community-driven hub of reusable web components and templates.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>How to contribute?</h3>
+                            <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Fork the repo, add your component, then open a pull request. All skill levels are welcome.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>Why open source?</h3>
+                            <div class="faq-icon-static"><i class="fas fa-users"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Open source accelerates learning, sharing and building great software together.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>HTML Basics</h3>
+                            <div class="faq-icon-static"><i class="fas fa-code"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Master semantic HTML to create accessible, well-structured web pages.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>CSS Styling</h3>
+                            <div class="faq-icon-static"><i class="fas fa-paint-brush"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Use modern CSS to craft responsive layouts and beautiful visual effects.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>JavaScript Logic</h3>
+                            <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Add interactivity with efficient, modern JavaScript.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>Animations</h3>
+                            <div class="faq-icon-static"><i class="fas fa-wave-square"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Create smooth, engaging animations that delight users.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header">
+                            <h3>Open Source Contributors</h3>
+                            <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                            <p>Join our friendly community and collaborate on exciting web-dev projects.</p>
+                        </div>
+                    </div>
+                </div></div></section>
     </main>
 
     <div class="footer-wave-container">
