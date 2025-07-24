@@ -1,0 +1,35 @@
+name: Check for Duplicate Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  check-duplicates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for duplicate issue titles
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+
+            const currentTitle = context.payload.issue.title.trim().toLowerCase();
+            const duplicate = issues.find(issue =>
+              issue.title.trim().toLowerCase() === currentTitle &&
+              issue.number !== context.payload.issue.number
+            );
+
+            if (duplicate) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                body: `⚠️ This issue looks similar to [#${duplicate.number} - ${duplicate.title}](${duplicate.html_url}). Please check existing issues before creating a new one.`
+              });
+            }
