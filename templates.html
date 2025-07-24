@@ -203,9 +203,37 @@
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       }
 
-      .hero-preview .hero-text-line.short {
-        width: 50%;
-      }
+
+.hero-preview .hero-text-line.short {
+  width: 50%;
+}
+.template-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid #666;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #555;
+}
+
 
       /* ADDED: Social Share Preview CSS */
       .social-share-preview {
@@ -222,54 +250,7 @@
         box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
       }
 
-      body.dark-theme .social-share-preview {
-        background-color: #2a2a2a; /* Dark background */
-        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-      }
 
-      /* Optional: Slight scaling on hover for the preview icons */
-      .social-share-preview .social-icon-preview {
-        transition: transform 0.2s ease-in-out;
-      }
-      .social-share-preview:hover .social-icon-preview {
-        transform: scale(1.1);
-      }
-      /* Navbar Preview */
-    .navbar-preview {
-      background-color: #4f8cff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 12px;
-      gap: 8px;
-      height: 90px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-    }
-
-    body.dark-theme .navbar-preview {
-      background-color: #2a2a2a;
-    }
-
-    .navbar-line {
-      height: 10px;
-      border-radius: 5px;
-      background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    .navbar-line.logo {
-      width: 40%;
-    }
-
-    .navbar-line.link {
-      width: 70%;
-    }
-
-    .navbar-line.link.short {
-      width: 50%;
-    }
-    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -292,6 +273,7 @@
 
 
     <main class="templates-main">
+      <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">←</a>
       <h1>Templates Gallery</h1>
       <section class="templates-grid">
         <article class="template-card">

@@ -11,6 +11,33 @@
     .contributors-main {
       margin-bottom: 10rem;
     }
+    .template-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  border: 1px solid #666;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #555;
+}
+
   </style>
 </head>
 
@@ -34,6 +61,7 @@
   </nav>
 
   <main class="contributors-main scroll-fade">
+    <a href="javascript:history.back()" class="back-btn" aria-label="Go Back">←</a>
     <h1 class="fade-in">Meet Our Contributors</h1>
     <div id="contributors-grid" class="templates-grid scroll-fade">
       <!-- Cards get populated dynamically -->
