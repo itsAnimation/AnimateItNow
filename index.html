@@ -28,18 +28,34 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
              target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo"
              class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor">
-              <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c..."></path>
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
             </svg>
           </a>
         </li>
+        <!--dark mode toggle -->
         <li><button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button></li>
       </ul>
     </div>
@@ -56,7 +72,11 @@
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-    <a href="#faq" class="cta-btn bounce">Get Started</a>
+<a href="#faq" class="cta-btn bounce"
+   onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
+   Get Started
+</a>
+
   </header>
 
   <!-- ───────── MAIN ───────── -->
@@ -75,7 +95,7 @@
               <div class="faq-icon-static"><i class="fas fa-question"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>AnimateItNow is a community-driven hub of reusable web components and templates.</p>
+              <p>AnimateItNow is a collaborative platform a community-driven hub of reusable web components and templates.</p>
             </div>
           </div>
 
@@ -86,7 +106,13 @@
               <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Fork the repo, add your component, then open a pull request. All skill levels are welcome.</p>
+              <p>
+                <li>Fork this repository to your own GitHub account.</li> 
+         <li> Add your unique and creative web components or improvements.</li>
+          <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
+         <li>Submit a Pull Request with a short description of your changes.</li> 
+          <li>Need ideas? Check out our Templates page for inspiration!</li> 
+              </p>
             </div>
           </div>
 
@@ -97,7 +123,10 @@
               <div class="faq-icon-static"><i class="fas fa-users"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Open source accelerates learning, sharing and building great software together.</p>
+              <p>Open source is more than just code — it's collaboration, learning, and community. 
+                It breaks down barriers, allowing developers from all backgrounds to contribute,
+                 grow, and build real-world solutions together. By sharing our work openly, 
+                 we encourage innovation, transparency, and continuous improvement.</p>
             </div>
           </div>
 
@@ -152,7 +181,19 @@
               <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Join our friendly community and collaborate on exciting web-dev projects.</p>
+              <p>Join our welcoming community and collaborate on fun, creative, and impactful web development projects. 
+                Whether you're just starting out or an experienced dev, there's a place for you here!</p>
+            </div>
+          </div>
+
+          <!-- 9 -->
+           <div class="faq-item glow-wrap">
+            <div class="faq-question-header">
+              <h3>Is AnimateItNow responsive on all devices?</h3>
+              <div class="faq-icon-static"><i class="fa-solid fa-mobile-screen"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Absolutely! All components are designed with responsiveness in mind. Feel free to report issues if any component breaks on smaller screens.</p>
             </div>
           </div>
         </div><!-- /faq-list -->

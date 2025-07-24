@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -909,10 +908,11 @@
       section {
         width: 90%;
         padding: 20px 15px;
-      }
 
-      .nav-links {
-        gap: 10px;
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
       }
 
       .variant-10 {
@@ -961,9 +961,12 @@
         padding: 15px;
       }
     }
-  </style>
+    .nav-links {
+      gap: 10px;
+    }
+  }
+</style>
 </head>
-
 <body>
   <nav class="navbar" id="navbar">
     <div class="nav-left">
@@ -994,6 +997,7 @@
   <input type="password" placeholder="Password" required />
   <button type="submit">Login</button>
 </form>
+
 
 <style>
 form.login-form {
@@ -1038,6 +1042,7 @@ form.login-form button:hover {
     <pre class="code-block">
 <section class="variant-2">
   <form class="login-form">
+
     <input type="email" placeholder="Email" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Sign In</button>
@@ -1089,13 +1094,23 @@ form.login-form button:hover {
     <pre class="code-block">
 <section class="variant-3">
   <form class="login-form">
+
     <input type="text" placeholder="Username" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
-</section>
 
-<style>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;section class="variant-3"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
 .variant-3 {
   background: #4f8cff;
   color: white;
@@ -1133,13 +1148,23 @@ form.login-form button:hover {
     <pre class="code-block">
 <section class="variant-4">
   <form class="login-form">
+
     <input type="text" placeholder="Email" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Sign In</button>
   </form>
-</section>
 
-<style>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
+&lt;section class="variant-4"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
 .variant-4 input {
   border: none;
   border-bottom: 2px solid #4f8cff;
@@ -1222,6 +1247,7 @@ form.login-form button:hover {
 }
 </style>
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-6">
@@ -1276,6 +1302,7 @@ form.login-form button:hover {
 }
 </style>
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-7">
@@ -1335,6 +1362,7 @@ form.login-form button:hover {
 }
 </style>
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-8">
@@ -1391,6 +1419,7 @@ form.login-form button:hover {
 }
 </style>
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-9">
