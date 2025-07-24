@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   --primary-bg: #f9f9f9;
     --primary-text:  #222; /* Your unique conflicting change */
@@ -15,17 +16,23 @@
   --card-bg: #fff;
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --light: #f9f9f9;
+  --secondary: #2563eb; 
   --primary: #4f8cff;
   --white: #ffffff;
   --light: #f0f0f0; /* Added a light variable for general use */
   --secondary: #2563eb; /* Defined secondary color for hover states etc. */
 }
+
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--primary-bg);
+  /* background: url("images/bg.jpg") no-repeat center center fixed; */
+  /* background-size: cover; */
+  background-color: var(--primary-bg);
   color: var(--primary-text);
   transition: background var(--transition), color var(--transition);
   min-height: 100vh;
+  transition: background 0.5s ease 0.2s;
 }
 
 .list-group {
@@ -143,7 +150,7 @@ body {
 }
 
 /* add underline in navLinks */
-.nav-links a::after {
+/* .nav-links a::after{
   content: "";
   position: absolute;
   left: 0;
@@ -152,7 +159,7 @@ body {
   height: 2px;
   background-color: var(--accent);
   transition: width 0.3s ease;
-}
+} */
 
 .nav-links a:hover::after {
   width: 100%;
@@ -204,6 +211,17 @@ body {
   fill: #0366d6;
 }
 
+/* ProgressBar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 0.4rem;
+  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
+  z-index: 9999;
+}
+
 /* Theme Toggle */
 #theme-toggle {
   background: transparent;
@@ -242,19 +260,28 @@ body {
 
 /* Landing Section */
 .landing-section {
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background: url('images/bg.jpg') center center / cover no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding-top: 80px;
-  background: url("images/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  align-items: center;
   text-align: center;
-  position: relative;
 }
+
+
+.landing-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 150px;
+  width: 100%;
+}
+
+
 .landing-section h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -333,7 +360,7 @@ main {
 }
 .info-section {
   padding: 2rem 1.5rem;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.85);  /* Light semi-transparent */
   border-radius: 1.2rem;
   box-shadow: var(--card-shadow);
   transform: translateY(40px);
@@ -352,7 +379,8 @@ main {
   color: black; /* Set default text color here */
 }
 
-/* Footer */
+
+/* FOOTER */
 .footer {
   background: linear-gradient(to right, #98a6e3, #122c5d);
   color: #ffffff;
@@ -507,20 +535,25 @@ main {
 /* Dark Theme */
 body.dark {
   --primary-bg: #181a20;
-  --primary-text: #f3f3f3;
+  --primary-text: #f9f9f9;;
   --nav-bg: #23272f;
   --nav-text: #f3f3f3;
   --footer-bg: #23272f;
   --footer-text: #f3f3f3;
   --card-bg: #23272f;
-  --background-image: url("images/bgdark.png");
-}
-body.dark .landing-section {
-  background: var(--background-image);
-  background-repeat: no-repeat;
+  background: url("images/bgdark.png") no-repeat center center fixed;
   background-size: cover;
   background-position: center;
 }
+
+body.dark .landing-section {
+  height: 100vh;
+  width: 100%;
+  background: url("images/bgdark.png") no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
 body.dark .info-section p {
   color: #c4c0c0;
 }
@@ -579,17 +612,15 @@ body.dark .templates-main h1 {
 .template-card {
   background: var(--card-bg);
   border-radius: 1.1rem;
-  box-shadow: black; /* This looks like an incomplete value, consider replacing with var(--card-shadow) */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* This looks like an incomplete value, consider replacing with var(--card-shadow) */
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   transform: translateY(40px);
-
   animation: none;
   position: relative;
   overflow: hidden;
-
   transition: opacity 0.7s, transform 0.7s;
 }
 
@@ -780,21 +811,60 @@ body.dark .templates-main h1 {
   }
 }
 
-footer {
-  background: black; /* This is an old rule that will be overridden by .footer below */
+.footer {
+  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4); /* This is an old rule that will be overridden by .footer below */
   color: white; /* This is an old rule that will be overridden by .footer below */
   text-align: center;
-  padding: 1.2rem 0;
+  padding: 1.5rem 1rem;
   font-size: 1rem;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  margin-top: 0;
-  z-index: 100;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  min-width: 250px;
+}
+
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  gap: 1rem;
+}
+
+.footer-right ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  text-align: left;
+}
+
+.footer-bottom {
+  padding-top: 1rem;
+  font-size: 0.9rem;
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+  .footer-left {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 @media (max-width: 900px) {
   .templates-main {
     max-width: 98vw;
@@ -1107,12 +1177,145 @@ body.dark .submit-btn.disabled:hover {
   will-change: transform, left, top;
 }
 
-/* Fix template headings in dark mode */
-/* The rules below are replaced by more specific gradient rules above
-body.dark .templates-main h1 {
-  color: #f3f3f3;git diff my-conflict-feature-branch upstream/main -- <path/to/the/chosen/file>
+/* Smooth transition for all key elements */
+body,
+.navbar,
+.info-section,
+.footer,
+.contact-container,
+.template-card,
+.contributor-card,
+.form-group input,
+.form-group textarea {
+  transition: background 0.4s ease 0.2s, color 0.4s ease 0.2s, box-shadow 0.4s ease 0.2s;
 }
-body.dark .template-card h2 {
-  color: #f3f3f3;
+/* ───────── STATIC FAQ SECTION ───────── */
+.faq-section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+.faq-container{max-width:900px;margin:0 auto}
+
+.faq-title{
+  text-align:center;font-size:2.5rem;margin-bottom:1rem;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
 }
-*/
+.faq-subtitle{
+  text-align:center;font-size:1.2rem;margin-bottom:3rem;opacity:.9;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.faq-list{display:flex;flex-direction:column;gap:2rem}
+
+/* card shell */
+.faq-item{
+  position:relative;overflow:hidden;
+  background:var(--card-bg,#fff);
+  border:2px solid #e2e8f0;border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.faq-item:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  border-color:var(--accent,#667eea);
+}
+.faq-item::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#667eea,#764ba2);
+  transform:scaleX(0);transform-origin:left;transition:.3s;
+}
+.faq-item:hover::before{transform:scaleX(1)}
+
+/* question header */
+.faq-question-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:2rem;
+  background:linear-gradient(135deg,transparent 0%,rgba(102,126,234,.03) 100%);
+}
+.faq-question-header h3{
+  margin:0;font-size:1.3rem;font-weight:600;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* icon circle */
+.faq-icon-static{
+  width:30px;height:30px;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;flex-shrink:0;transition:.3s;
+}
+.faq-item:hover .faq-icon-static{transform:scale(1.1) rotate(5deg)}
+
+.faq-answer-content{padding:2rem}
+.faq-answer-content p{margin:0;line-height:1.7;color:var(--primary-text)}
+
+/* moving neon-style glow */
+.glow-wrap{position:relative;z-index:0}
+.glow-wrap::before{
+  content:'';position:absolute;inset:-3px;border-radius:inherit;
+  background:conic-gradient(#ff6ec4 0%,#7873f5 25%,#3bf5ff 50%,#7873f5 75%,#ff6ec4 100%);
+  background-size:300% 300%;filter:blur(3px);
+  animation:glowShift 6s linear infinite;z-index:-1;
+}
+@keyframes glowShift{
+  from{background-position:0% 50%}
+  to{background-position:100% 50%}
+}
+
+/* dark-mode tweaks */
+body.dark .faq-question-header{background:linear-gradient(135deg,transparent 0%,rgba(102,126,234,.08) 100%)}
+body.dark .faq-answer-content p{color:#cbd5e1}
+body.dark .glow-wrap::before{opacity:.8}
+
+/* responsive */
+@media (max-width:768px){
+  .faq-section{padding:2rem 1rem}
+  .faq-title{font-size:2rem}
+  .faq-question-header{padding:1.5rem}
+  .faq-answer-content{padding:1.5rem}
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.contact-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 250px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.submit-btn:hover {
+  background-color: #357ABD;
+}
+
+@media (max-width: 480px) {
+  .submit-btn {
+    font-size: 0.95rem;
+    max-width: 100%;
+    padding: 12px 16px;
+  }
+}
+
