@@ -269,6 +269,24 @@
     .navbar-line.link.short {
       width: 50%;
     }
+      .search-bar-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .search-bar-sample {
+    width: 80%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.7rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    pointer-events: none; /* prevent interaction in preview */
+  }
+
     </style>
   </head>
   <body>
@@ -341,6 +359,15 @@
             <div class="hero-text-line short"></div>
           </div>
           <a class="template-btn" href="templates/hero.html">View Template</a>
+        </article>
+
+        <article class="template-card">
+          <h2>Stylish Search Bars</h2>
+          <div class="template-preview search-bar-preview">
+            <input type="text" placeholder="Search..." class="search-bar-sample" disabled />
+            <input type="text" placeholder="Search with suggestions" class="search-bar-sample" disabled />
+          </div>
+          <a class="template-btn" href="templates/searchbars.html">View Template</a>
         </article>
 
         <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
