@@ -21,6 +21,7 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 - **Live Previews**: See animations in action before using
 - **Easy Navigation**: Browse templates, contributors, and contact info
 - **Theme Toggle**: Switch between light and dark modes
+- **Mouse Tracker**:disable in mobile layout 
 
 ---
 
