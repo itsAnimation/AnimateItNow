@@ -274,17 +274,21 @@
   }
 
   .code-block {
-    display: none;
-    background: #222;
-    color: #ddd;
-    padding: 20px;
-    font-size: 0.85rem;
-    border-radius: 8px;
-    margin-top: 10px;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+      max-height: 0;
+      overflow: hidden;
+      background: #222;
+      color: #ddd;
+      padding: 0 20px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+    }
+
+    .code-block.expanded {
+      max-height: 1000px; /* large enough to fit full code */
+      padding: 20px;}
 
   @media (max-width: 768px) {
     .hero-1, .hero-4 {
@@ -651,10 +655,9 @@
 <script>
   // Toggle code block visibility
   function toggleCode(button) {
-    const code = button.nextElementSibling;
-    const isVisible = code.style.display === "block";
-    code.style.display = isVisible ? "none" : "block";
-    button.textContent = isVisible ? "Show Code" : "Hide Code";
+      const code = button.nextElementSibling;
+      const expanded = code.classList.toggle("expanded");
+      button.textContent = expanded ? "Hide Code" : "Show Code"
   }
 
   // Dark mode toggle

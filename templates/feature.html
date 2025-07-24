@@ -209,23 +209,32 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      
     }
     .expand-btn:hover {
       background-color: #0056b3;
     }
 
     .code-block {
-      display: none;
+      max-height: 0;
+      overflow: hidden;
       background: #222;
       color: #ddd;
-      padding: 20px;
+      padding: 0 20px;
       font-size: 0.85rem;
       border-radius: 8px;
       margin-top: 10px;
       white-space: pre-wrap;
-      overflow-x: auto;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: max-height 0.5s ease, padding 0.5s ease;
     }
+
+    .code-block.expanded {
+      max-height: 1000px; /* large enough to fit full code */
+      padding: 20px;}
+    /* --- Smoother "Show Code" Animation --- */
+
+
+
 
     @media (max-width: 600px) {
       .card, .step-box, .icon-box {
@@ -464,11 +473,10 @@
   </section>
 
   <script>
-    function toggleCode(button) {
+     function toggleCode(button) {
       const code = button.nextElementSibling;
-      const isVisible = code.style.display === "block";
-      code.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
+      const expanded = code.classList.toggle("expanded");
+      button.textContent = expanded ? "Hide Code" : "Show Code"
     }
 
     // Dark mode toggle

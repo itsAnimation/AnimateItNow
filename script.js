@@ -145,3 +145,4 @@ function animateSnake() {
 }
 animateSnake();
 });
+
