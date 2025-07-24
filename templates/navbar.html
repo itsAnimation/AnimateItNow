@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar Features Showcase</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    :root {
+      --nav-text: #222;
+      --bg-light: #f5f5f5;
+      --bg-dark: #121212;
+      --text-dark: #fff;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 64px;
+      background: var(--bg-light);
+      color: var(--nav-text);
+      transition: background-color var(--transition), color var(--transition);
+    }
+    .dark-theme {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 20px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+    section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .dark-theme section {
+      background: #1e1e1e;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .demo-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .demo-card {
+      width: 320px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      padding: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .demo-card:hover {
+      transform: translateY(-4px);
+    }
+   .demo-preview {
+      background: white;
+      height: 200px;
+      overflow-y: auto;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .demo-preview::-webkit-scrollbar {
+      width: 8px;
+    }
+    .demo-preview::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+    .expand-btn {
+      display: block;
+      margin: 14px auto 6px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .expand-btn:active {
+      opacity: 0.6;
+    }
+    .code-block {
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 16px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .hamburger-btn {
+      display: block;
+      font-size: 24px;
+      background: #eee;
+      padding: 8px;
+      width: 40px;
+      text-align: center;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .demo-nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .demo-nav-links a {
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+
+  <section>
+    <h2>Navbar Feature Demos</h2>
+    <div class="demo-container">
+
+      <div class="demo-card">
+        <h3>Sticky Header</h3>
+        <div class="demo-preview">
+          <div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;">I'm stuck to the top!</div>
+          <div style="height:400px;">
+            <p>Scroll below me...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Vivamus sodales lacinia odio.</p>
+            <p>Aliquam erat volutpat.</p>
+            <p>Phasellus interdum sapien et justo.</p>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+&lt;div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
+&lt;div style="height:400px;"&gt;...&lt;/div&gt;
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Hamburger Menu</h3>
+        <div class="demo-preview">
+          <div class="hamburger-btn" onclick="toggleHamburger(this)">☰</div>
+          <div class="demo-nav-links">
+            <a href="#">Link One</a>
+            <a href="#">Link Two</a>
+            <a href="#">Link Three</a>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+&lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;☰&lt;/div&gt;
+&lt;div class="demo-nav-links"&gt;
+  &lt;a href="#"&gt;Link One&lt;/a&gt;
+  &lt;a href="#"&gt;Link Two&lt;/a&gt;
+  &lt;a href="#"&gt;Link Three&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.hamburger-btn { cursor: pointer; }
+.demo-nav-links { display: none; }
+&lt;/style&gt;
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function toggleCode(button) {
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
+
+    function toggleHamburger(btn) {
+      const links = btn.nextElementSibling;
+      links.style.display = links.style.display === "flex" ? "none" : "flex";
+    }
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    function updateThemeIcon() {
+      if (document.body.classList.contains('dark-theme')) {
+        themeToggleBtn.textContent = '☀';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+      } else {
+        themeToggleBtn.textContent = '🌙';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      updateThemeIcon();
+    });
+
+    window.addEventListener('DOMContentLoaded', updateThemeIcon);
+  </script>
+</body>
+</html>
