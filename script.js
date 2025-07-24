@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById('contributors-grid');
   if (contributorsGrid) {
-    fetch('https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors')
+    fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
       .then(res => res.json())
       .then(contributors => {
         contributorsGrid.innerHTML = '';
@@ -106,42 +106,46 @@ window.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-// 🐍 Cursor Snake Trail Animation
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
+if (!isMobile) {
 
-const snakeContainer = document.createElement('div');
-snakeContainer.id = 'cursor-snake';
-document.body.appendChild(snakeContainer);
+  const snakeContainer = document.createElement('div');
+  snakeContainer.id = 'cursor-snake';
+  document.body.appendChild(snakeContainer);
 
-const dots = [];
-const dotCount = 20;
-for (let i = 0; i < dotCount; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'snake-dot';
-  snakeContainer.appendChild(dot);
-  dots.push({ el: dot, x: 0, y: 0 });
-}
+  const dots = [];
+  const dotCount = 20;
+  for (let i = 0; i < dotCount; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'snake-dot';
+    snakeContainer.appendChild(dot);
+    dots.push({ el: dot, x: 0, y: 0 });
+  }
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animateSnake() {
-  let x = mouseX, y = mouseY;
-  dots.forEach((dot, i) => {
-    dot.x += (x - dot.x) * 0.2;
-    dot.y += (y - dot.y) * 0.2;
-    dot.el.style.left = dot.x + 'px';
-    dot.el.style.top = dot.y + 'px';
-    dot.el.style.transform = `scale(${1 - i / dotCount})`;
-    x = dot.x;
-    y = dot.y;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
-  requestAnimationFrame(animateSnake);
+
+  function animateSnake() {
+    let x = mouseX, y = mouseY;
+    dots.forEach((dot, i) => {
+      dot.x += (x - dot.x) * 0.2;
+      dot.y += (y - dot.y) * 0.2;
+      dot.el.style.left = dot.x + 'px';
+      dot.el.style.top = dot.y + 'px';
+      dot.el.style.transform = `scale(${1 - i / dotCount})`;
+      x = dot.x;
+      y = dot.y;
+    });
+    requestAnimationFrame(animateSnake);
+  }
+  animateSnake();
 }
-animateSnake();
+
+
 });

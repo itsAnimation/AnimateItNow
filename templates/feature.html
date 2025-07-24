@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feature Section Variants with Expandable Code</title>
-  <link rel="stylesheet" href="../styles.css" />
   <style>
-    /* Your navbar CSS (unchanged) */
+    /* Your navbar CSS */
     .navbar {
       position: fixed;
       top: 0;
@@ -113,7 +112,10 @@
 
     .card-container,
     .icon-container,
-    .steps-container {
+    .steps-container,
+    .flip-card-container,
+    .glass-card-container,
+    .hover-reveal-card-container {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -227,8 +229,126 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Flip Card Styles */
+    .flip-card {
+      background-color: transparent;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      font-family: sans-serif;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 12px; /* Added for consistency */
+      overflow: hidden; /* Added for consistency */
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+    }
+
+    .flip-card-front {
+      background-color: #f0f0f0;
+      color: #222;
+    }
+
+    .flip-card-back {
+      background-color: #282c34;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    /* Glassmorphism Card Styles */
+.glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden; /* Important to clip background inside the card */
+  color: #fff;
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.pinimg.com/736x/b2/fb/21/b2fb21f206c56acc2007ed7e587d9770.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+
+
+    /* Hover Reveal Card Styles */
+    .hover-card {
+      width: 300px;
+      height: 200px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: background 0.3s ease;
+      color: #222;
+    }
+
+    .hover-card-content {
+      position: absolute;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .hover-card .hidden-text {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      color: #666;
+    }
+
+    .hover-card:hover {
+      background: #e0e0e0;
+    }
+
+    .hover-card:hover .hidden-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 600px) {
-      .card, .step-box, .icon-box {
+      .card, .step-box, .icon-box, .flip-card, .glass-card, .hover-card {
         width: 90%;
       }
     }
@@ -310,6 +430,37 @@
       background-color: #111;
       color: #ddd;
     }
+
+    /* Dark mode for new cards */
+    body.dark-theme .flip-card-front {
+      background-color: #222;
+      color: #ddd;
+    }
+
+    body.dark-theme .flip-card-back {
+      background-color: #333;
+      color: #eee;
+    }
+
+    body.dark-theme .glass-card {
+      background: rgba(255, 255, 255, 0.05); /* Lighter for dark mode glass */
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #eee;
+    }
+
+    body.dark-theme .hover-card {
+      background: #222;
+      color: #ddd;
+    }
+
+    body.dark-theme .hover-card:hover {
+      background: #333;
+    }
+
+    body.dark-theme .hover-card .hidden-text {
+      color: #bbb;
+    }
   </style>
 </head>
 <body>
@@ -326,8 +477,7 @@
     </ul>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
   </nav>
-
-  <!-- Feature Card Section -->
+<!-- Feature Card Section -->
   <section>
     <h2>1. Feature Cards</h2>
     <p class="subtitle">Simple feature cards with hover effect</p>
@@ -347,16 +497,6 @@
     </div>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <div class="code-block">
-&lt;style&gt;
-.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
-.card {
-  background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px;
-}
-.card:hover {
-  transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-&lt;/style&gt;
-
 &lt;div class="card"&gt;
   &lt;h3&gt;Live Chat&lt;/h3&gt;
   &lt;p&gt;Connect instantly with others.&lt;/p&gt;
@@ -364,7 +504,7 @@
     </div>
   </section>
 
-  <!-- Icon Features Section -->
+<!-- Icon Features Section -->
   <section>
     <h2>2. Icon-Based Features</h2>
     <p class="subtitle">Circular icons with short descriptions</p>
@@ -392,14 +532,10 @@
   &lt;h4&gt;Chat&lt;/h4&gt;
   &lt;p&gt;Talk live with users&lt;/p&gt;
 &lt;/div&gt;
-.circle {
-  width: 70px; height: 70px; border-radius: 50%; background: #4CAF50;
-  display: flex; align-items: center; justify-content: center; color: #fff;
-}
     </div>
   </section>
 
-  <!-- Accordion Section -->
+<!-- Accordion Section -->
   <section>
     <h2>3. Accordion Features</h2>
     <p class="subtitle">Expandable/collapsible details</p>
@@ -425,9 +561,6 @@
   &lt;div class="accordion-title"&gt;Click to expand&lt;/div&gt;
   &lt;div class="accordion-content"&gt;Hidden content here&lt;/div&gt;
 &lt;/div&gt;
-
-.accordion-title { background: #eee; padding: 15px; cursor: pointer; }
-.accordion-content { display: none; background: #f9f9f9; padding: 15px; }
     </div>
   </section>
 
@@ -455,11 +588,92 @@
   &lt;div class="step-number"&gt;Step 1&lt;/div&gt;
   &lt;p&gt;Create your account.&lt;/p&gt;
 &lt;/div&gt;
+    </div>
+  </section>
 
-.step-box {
-  border-left: 5px solid #2196F3;
-  background: #f0f8ff; padding: 15px; border-radius: 8px;
-}
+  <!-- Flip Card Section -->
+
+  <section>
+    <h2>5. Flip Card</h2>
+    <p class="subtitle">A card that flips on hover</p>
+    <div class="flip-card-container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Hover Me!</h3>
+          </div>
+          <div class="flip-card-back">
+            <p>Surprise 👀</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;div class="flip-card"&gt;
+  &lt;div class="flip-card-inner"&gt;
+    &lt;div class="flip-card-front"&gt;
+      &lt;h3&gt;Hover Me!&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="flip-card-back"&gt;
+      &lt;p&gt;Surprise 👀&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </div>
+  </section>
+
+  <!-- Glassmorphism Card Section -->
+  <section>
+    <h2>6. Glassmorphism Card</h2>
+    <p class="subtitle">
+      A modern, translucent card effect
+    </p>
+
+  <div class="glass-card-container">
+    <div class="glass-card">
+      <div class="card-bg"></div> <!-- background image goes behind -->
+      <h3>Glass UI</h3>
+      <p>Glass content</p>
+    </div>
+  </div>
+
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+
+  <div class="code-block">
+  &lt;div class="glass-card"&gt;<br/>
+  &nbsp;&nbsp;&lt;div class="card-bg"&gt;&lt;/div&gt;<br/>
+  &nbsp;&nbsp;&lt;div class="glass-content"&gt;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Glass UI&lt;/h3&gt;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Frosty &amp; Cool &lt;/p&gt;<br/>
+  &nbsp;&nbsp;&lt;/div&gt;<br/>
+  &lt;/div&gt;
+</div>
+
+</section>
+
+
+
+  <!-- Hover Reveal Card Section -->
+  <section>
+    <h2>7. Hover Reveal Card</h2>
+    <p class="subtitle">Content revealed on hover</p>
+    <div class="hover-reveal-card-container">
+      <div class="hover-card">
+        <div class="hover-card-content">
+          <h3>Hover Me</h3>
+          <p class="hidden-text">You found the secret! 🔐</p>
+        </div>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+&lt;div class="hover-card"&gt;
+  &lt;div class="hover-card-content"&gt;
+    &lt;h3&gt;Hover Me&lt;/h3&gt;
+    &lt;p class="hidden-text"&gt;You found the secret! 🔐&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
     </div>
   </section>
 
