@@ -5,204 +5,634 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Navbar Features Showcase</title>
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
     :root {
-      --nav-text: #222;
-      --bg-light: #f5f5f5;
-      --bg-dark: #121212;
-      --text-dark: #fff;
-      --accent: #007BFF;
+      --nav-text: #2c3e50;
+      --bg-light: #f8fafc;
+      --bg-dark: #1a202c;
+      --text-dark: #e2e8f0;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #2d3748;
       --transition: 0.3s ease;
     }
-    body {
-      font-family: Arial, sans-serif;
+
+    * {
       margin: 0;
-      padding-top: 64px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', -apple-system, Arial, sans-serif;
+      padding-top: 80px;
       background: var(--bg-light);
       color: var(--nav-text);
       transition: background-color var(--transition), color var(--transition);
     }
+
     .dark-theme {
       background: var(--bg-dark);
       color: var(--text-dark);
     }
-    .navbar {
+
+    /* Original Navbar Styles */
+    .main-navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.15);
+      height: 80px;
+      background: rgba(255, 255, 255, 0.95);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
     }
-    .nav-left {
+
+    .dark-theme .main-navbar {
+      background: rgba(26, 32, 44, 0.95);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .main-navbar .nav-left {
       display: flex;
       align-items: center;
+      gap: 1rem;
     }
-    .logo {
-      width: 36px;
-      height: 36px;
-      margin-right: 0.75rem;
+
+    .main-navbar .logo {
+      width: 40px;
+      height: 40px;
       object-fit: contain;
     }
-    .site-name {
+
+    .main-navbar .site-name {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.025em;
     }
-    .nav-links {
+
+    .main-navbar .nav-links {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       margin: 0;
       padding: 0;
     }
-    .nav-links a {
+
+    .main-navbar .nav-links a {
       text-decoration: none;
       color: var(--nav-text);
       font-weight: 500;
+      font-size: 1rem;
       transition: color var(--transition);
       position: relative;
+      padding: 0.5rem 0;
     }
-    .nav-links a.active,
-    .nav-links a:hover {
+
+    .dark-theme .main-navbar .nav-links a {
+      color: var(--text-dark);
+    }
+
+    .main-navbar .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+    }
+
+    .main-navbar .nav-links a.active::after,
+    .main-navbar .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      animation: slideIn 0.3s ease;
+    }
+
+    .main-navbar .nav-links a:hover {
       color: var(--accent);
     }
+
+    @keyframes slideIn {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .main-navbar .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     #theme-toggle {
       cursor: pointer;
       background: none;
       border: none;
-      font-size: 20px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: 0.3s ease;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: transform var(--transition);
     }
+
+    #theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .main-navbar .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Demo Section Styles */
     section {
-      max-width: 1100px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg-light);
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
+
     .dark-theme section {
-      background: #1e1e1e;
+      background: var(--card-bg-dark);
     }
+
     h2 {
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.025em;
     }
+
     .demo-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1rem;
     }
+
     .demo-card {
-      width: 320px;
-      background: #f0f0f0;
+      background: var(--card-bg-light);
       border-radius: 12px;
-      padding: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: 0.3s;
+      padding: 2rem;
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #e5e7eb;
     }
+
     .demo-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.15);
     }
-   .demo-preview {
-      background: white;
+
+    .dark-theme .demo-card {
+      background: var(--card-bg-dark);
+      border-color: #4b5563;
+    }
+
+    .demo-preview {
+      background: #f8fafc;
       height: 200px;
       overflow-y: auto;
       border-radius: 8px;
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 1rem;
     }
+
+    .dark-theme .demo-preview {
+      background: #2d3748;
+      border-color: #4b5563;
+    }
+
     .demo-preview::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
+
     .demo-preview::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
+      background: #9ca3af;
+      border-radius: 3px;
     }
-    .expand-btn {
+
+    .dark-theme .demo-preview::-webkit-scrollbar-thumb {
+      background: #6b7280;
+    }
+
+    .expand-btn, .copy-btn {
       display: block;
-      margin: 14px auto 6px;
-      padding: 8px 18px;
+      margin: 0.5rem auto;
+      padding: 0.5rem 1.5rem;
       background-color: var(--accent);
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      font-weight: 500;
+      transition: background-color var(--transition);
     }
-    .expand-btn:active {
-      opacity: 0.6;
+
+    .expand-btn:hover, .copy-btn:hover {
+      background-color: var(--accent-hover);
     }
+
     .code-block {
       display: none;
-      background: #222;
-      color: #ddd;
-      padding: 16px;
-      font-size: 0.85rem;
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: 1rem;
+      font-size: 0.875rem;
       border-radius: 8px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      overflow-x: auto;
+      margin-top: 1rem;
+      position: relative;
+      font-family: 'Fira Code', monospace;
     }
-    .hamburger-btn {
+
+    .code-block.show {
       display: block;
-      font-size: 24px;
-      background: #eee;
-      padding: 8px;
-      width: 40px;
-      text-align: center;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: -1rem;
+      right: 1rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .hamburger-btn {
+      font-size: 1.25rem;
+      background: none;
+      padding: 0.5rem;
       border-radius: 6px;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
+
     .demo-nav-links {
       display: none;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.5rem;
     }
-    .demo-nav-links a {
+
+    .demo-nav-links.show {
+      display: flex;
+    }
+
+    /* Navbar 1 Styles */
+    .navbar1 {
+      background: #0f172a;
+      padding: 1.3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      border-bottom: 1px solid #334155;
+    }
+
+    .navbar1 .logo {
+      color: #60a5fa;
+      font-size: 1.9rem;
+      font-weight: 700;
       text-decoration: none;
-      color: #333;
+      letter-spacing: 1px;
+    }
+
+    .navbar1 .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar1 .nav-links li {
+      margin-left: 2.5rem;
+    }
+
+    .navbar1 .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.3rem 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .navbar1 .nav-links a.active {
+      color: #ffffff;
+      background: #60a5fa;
+      border-radius: 6px;
+    }
+
+    .navbar1 .nav-links a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #60a5fa;
+      bottom: -2px;
+      left: 0;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .navbar1 .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .navbar1 .nav-links a:hover {
+      color: #60a5fa;
+      transform: translateY(-2px);
+    }
+
+    .navbar1 .nav-links .fa-rocket {
+      margin-right: 0.5rem;
+    }
+
+    .navbar1 .menu-toggle {
+      display: none;
+      color: #60a5fa;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Navbar 3 Styles */
+    .navbar3 {
+      background: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .dark-theme .navbar3 {
+      background: #2d3748;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar3 .logo {
+      color: #1f2937;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .dark-theme .navbar3 .logo {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar3 .nav-links li {
+      margin-left: 2rem;
+      position: relative;
+    }
+
+    .navbar3 .nav-links a {
+      color: #1f2937;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.2rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .dark-theme .navbar3 .nav-links a {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .nav-links a.active {
+      color: #ffffff;
+      background: #3b82f6;
+      border-radius: 6px;
+      padding: 0.2rem 0.8rem;
+    }
+
+    .navbar3 .nav-links a:hover {
+      color: #3b82f6;
+    }
+
+    .navbar3 .nav-links .fa-envelope {
+      margin-right: 0.5rem;
+    }
+
+    .navbar3 .dropdown {
+      position: relative;
+    }
+
+    .navbar3 .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu {
+      background: #2d3748;
+    }
+
+    .navbar3 .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .navbar3 .dropdown-menu li {
+      margin: 0;
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar3 .dropdown-menu a {
+      font-size: 1rem;
+      color: #1f2937;
+      display: block;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu a {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .dropdown-menu a:hover {
+      background: #f3f4f6;
+      color: #3b82f6;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu a:hover {
+      background: #374151;
+    }
+
+    .navbar3 .dropdown > a::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .navbar3 .menu-toggle {
+      display: none;
+      color: #1f2937;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .dark-theme .navbar3 .menu-toggle {
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 768px) {
+      .main-navbar {
+        height: 64px;
+        padding: 0 1rem;
+      }
+
+      .main-navbar .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--card-bg-light);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark-theme .main-navbar .nav-links {
+        background: var(--card-bg-dark);
+      }
+
+      .main-navbar .nav-links.show {
+        display: flex;
+      }
+
+      .main-navbar .hamburger {
+        display: block;
+      }
+
+      .main-navbar .site-name {
+        font-size: 1.25rem;
+      }
+
+      .navbar1 .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        background: #0f172a;
+        width: 100%;
+        padding: 1rem;
+        display: none;
+        border-top: 1px solid #334155;
+      }
+
+      .navbar1 .nav-links.active {
+        display: flex;
+      }
+
+      .navbar1 .nav-links li {
+        margin: 0.5rem 0;
+      }
+
+      .navbar1 .menu-toggle {
+        display: block;
+      }
+
+      .navbar3 .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        padding: 1rem;
+        display: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark-theme .navbar3 .nav-links {
+        background: #2d3748;
+      }
+
+      .navbar3 .nav-links.active {
+        display: flex;
+      }
+
+      .navbar3 .nav-links li {
+        margin: 0.5rem 0;
+      }
+
+      .navbar3 .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: #f9fafb;
+      }
+
+      .dark-theme .navbar3 .dropdown-menu {
+        background: #374151;
+      }
+
+      .navbar3 .dropdown:hover .dropdown-menu {
+        display: none;
+      }
+
+      .navbar3 .dropdown.active .dropdown-menu {
+        display: block;
+      }
+
+      .navbar3 .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
+  <nav class="main-navbar">
     <div class="nav-left">
       <img src="../images/logo.png" alt="Logo" class="logo" />
       <span class="site-name">AnimateItNow</span>
     </div>
-
     <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="../templates.html" class="active"><i class="fas fa-layer-group"></i> Templates</a></li>
+      <li><a href="../contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+      <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
-    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <div class="nav-right">
+      <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+    </div>
   </nav>
 
   <section>
     <h2>Navbar Feature Demos</h2>
     <div class="demo-container">
-
       <div class="demo-card">
-        <h3>Sticky Header</h3>
+        <h3><i class="fas fa-sticky-note"></i> Sticky Header</h3>
         <div class="demo-preview">
-          <div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;">I'm stuck to the top!</div>
+          <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!</div>
           <div style="height:400px;">
             <p>Scroll below me...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -213,61 +643,423 @@
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
-&lt;div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
-&lt;div style="height:400px;"&gt;...&lt;/div&gt;
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!</div>
+            <div style="height:400px;">...</div>
+          </pre>
         </div>
       </div>
 
       <div class="demo-card">
-        <h3>Hamburger Menu</h3>
+        <h3><i class="fas fa-bars"></i> Hamburger Menu</h3>
         <div class="demo-preview">
-          <div class="hamburger-btn" onclick="toggleHamburger(this)">☰</div>
+          <div class="hamburger-btn" onclick="toggleHamburger(this)"><i class="fas fa-bars"></i></div>
           <div class="demo-nav-links">
-            <a href="#">Link One</a>
-            <a href="#">Link Two</a>
-            <a href="#">Link Three</a>
+            <a href="#"><i class="fas fa-link"></i> Link One</a>
+            <a href="#"><i class="fas fa-link"></i> Link Two</a>
+            <a href="#"><i class="fas fa-link"></i> Link Three</a>
           </div>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
-&lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;☰&lt;/div&gt;
-&lt;div class="demo-nav-links"&gt;
-  &lt;a href="#"&gt;Link One&lt;/a&gt;
-  &lt;a href="#"&gt;Link Two&lt;/a&gt;
-  &lt;a href="#"&gt;Link Three&lt;/a&gt;
-&lt;/div&gt;
-
-&lt;style&gt;
-.hamburger-btn { cursor: pointer; }
-.demo-nav-links { display: none; }
-&lt;/style&gt;
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            <div class="hamburger-btn" onclick="toggleHamburger(this)"><i class="fas fa-bars"></i></div>
+            <div class="demo-nav-links">
+              <a href="#"><i class="fas fa-link"></i> Link One</a>
+              <a href="#"><i class="fas fa-link"></i> Link Two</a>
+              <a href="#"><i class="fas fa-link"></i> Link Three</a>
+            </div>
+            <style>
+              .hamburger-btn { cursor: pointer; }
+              .demo-nav-links { display: none; }
+              .demo-nav-links.show { display: flex; }
+            </style>
+          </pre>
         </div>
       </div>
 
+      <div class="demo-card">
+        <h3><i class="fas fa-rocket"></i> Modern Navbar 1</h3>
+        <div class="demo-preview">
+          <nav class="navbar1">
+            <a href="#" class="logo">Launch</a>
+            <ul class="nav-links">
+              <li><a href="#" class="active"><i class="fas fa-rocket"></i> Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </div>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            <nav class="navbar1">
+              <a href="#" class="logo">Launch</a>
+              <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fas fa-rocket"></i> Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+              <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </div>
+            </nav>
+            <style>
+              .navbar1 {
+                background: #0f172a;
+                padding: 1.3rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid #334155;
+              }
+              .navbar1 .logo {
+                color: #60a5fa;
+                font-size: 1.9rem;
+                font-weight: 700;
+                text-decoration: none;
+                letter-spacing: 1px;
+              }
+              .navbar1 .nav-links {
+                display: flex;
+                list-style: none;
+              }
+              .navbar1 .nav-links li {
+                margin-left: 2.5rem;
+              }
+              .navbar1 .nav-links a {
+                color: #e2e8f0;
+                text-decoration: none;
+                font-size: 1.1rem;
+                position: relative;
+                padding: 0.3rem 0.8rem;
+                transition: all 0.3s ease;
+              }
+              .navbar1 .nav-links a.active {
+                color: #ffffff;
+                background: #60a5fa;
+                border-radius: 6px;
+              }
+              .navbar1 .nav-links a::before {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background: #60a5fa;
+                bottom: -2px;
+                left: 0;
+                transition: width 0.3s ease-in-out;
+              }
+              .navbar1 .nav-links a:hover::before {
+                width: 100%;
+              }
+              .navbar1 .nav-links a:hover {
+                color: #60a5fa;
+                transform: translateY(-2px);
+              }
+              .navbar1 .nav-links .fa-rocket {
+                margin-right: 0.5rem;
+              }
+              .navbar1 .menu-toggle {
+                display: none;
+                color: #60a5fa;
+                font-size: 1.5rem;
+                cursor: pointer;
+              }
+              @media (max-width: 768px) {
+                .navbar1 .nav-links {
+                  flex-direction: column;
+                  position: absolute;
+                  top: 64px;
+                  left: 0;
+                  background: #0f172a;
+                  width: 100%;
+                  padding: 1rem;
+                  display: none;
+                  border-top: 1px solid #334155;
+                }
+                .navbar1 .nav-links.active {
+                  display: flex;
+                }
+                .navbar1 .nav-links li {
+                  margin: 0.5rem 0;
+                }
+                .navbar1 .menu-toggle {
+                  display: block;
+                }
+              }
+            </style>
+            <script>
+              const menuToggle1 = document.querySelector('.navbar1 .menu-toggle');
+              const navLinks1 = document.querySelector('.navbar1 .nav-links');
+              menuToggle1.addEventListener('click', () => {
+                navLinks1.classList.toggle('active');
+              });
+            </script>
+          </pre>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3><i class="fas fa-envelope"></i> Modern Navbar 3 with Dropdown</h3>
+        <div class="demo-preview">
+          <nav class="navbar3">
+            <a href="#" class="logo">Company</a>
+            <ul class="nav-links">
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li class="dropdown">
+                <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Email</a></li>
+                  <li><a href="#">Phone</a></li>
+                  <li><a href="#">Support</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Portfolio</a></li>
+            </ul>
+            <div class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </div>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            <nav class="navbar3">
+              <a href="#" class="logo">Company</a>
+              <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                  <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Support</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Portfolio</a></li>
+              </ul>
+              <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </div>
+            </nav>
+            <style>
+              .navbar3 {
+                background: #fff;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                position: relative;
+              }
+              .dark-theme .navbar3 {
+                background: #2d3748;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              }
+              .navbar3 .logo {
+                color: #1f2937;
+                font-size: 1.8rem;
+                font-weight: 600;
+                text-decoration: none;
+              }
+              .dark-theme .navbar3 .logo {
+                color: #e2e8f0;
+              }
+              .navbar3 .nav-links {
+                display: flex;
+                list-style: none;
+              }
+              .navbar3 .nav-links li {
+                margin-left: 2rem;
+                position: relative;
+              }
+              .navbar3 .nav-links a {
+                color: #1f2937;
+                text-decoration: none;
+                font-size: 1.1rem;
+                padding: 0.2rem 0;
+                transition: all 0.3s ease;
+              }
+              .dark-theme .navbar3 .nav-links a {
+                color: #e2e8f0;
+              }
+              .navbar3 .nav-links a.active {
+                color: #ffffff;
+                background: #3b82f6;
+                border-radius: 6px;
+                padding: 0.2rem 0.8rem;
+              }
+              .navbar3 .nav-links a:hover {
+                color: #3b82f6;
+              }
+              .navbar3 .nav-links .fa-envelope {
+                margin-right: 0.5rem;
+              }
+              .navbar3 .dropdown {
+                position: relative;
+              }
+              .navbar3 .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                min-width: 150px;
+                z-index: 1000;
+              }
+              .dark-theme .navbar3 .dropdown-menu {
+                background: #2d3748;
+              }
+              .navbar3 .dropdown:hover .dropdown-menu {
+                display: block;
+              }
+              .navbar3 .dropdown-menu li {
+                margin: 0;
+                padding: 0.5rem 1rem;
+              }
+              .navbar3 .dropdown-menu a {
+                font-size: 1rem;
+                color: #1f2937;
+                display: block;
+              }
+              .dark-theme .navbar3 .dropdown-menu a {
+                color: #e2e8f0;
+              }
+              .navbar3 .dropdown-menu a:hover {
+                background: #f3f4f6;
+                color: #3b82f6;
+              }
+              .dark-theme .navbar3 .dropdown-menu a:hover {
+                background: #374151;
+              }
+              .navbar3 .dropdown > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                margin-left: 0.5rem;
+                font-size: 0.8rem;
+              }
+              .navbar3 .menu-toggle {
+                display: none;
+                color: #1f2937;
+                font-size: 1.5rem;
+                cursor: pointer;
+              }
+              .dark-theme .navbar3 .menu-toggle {
+                color: #e2e8f0;
+              }
+              @media (max-width: 768px) {
+                .navbar3 .nav-links {
+                  flex-direction: column;
+                  position: absolute;
+                  top: 64px;
+                  left: 0;
+                  background: #fff;
+                  width: 100%;
+                  padding: 1rem;
+                  display: none;
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .dark-theme .navbar3 .nav-links {
+                  background: #2d3748;
+                }
+                .navbar3 .nav-links.active {
+                  display: flex;
+                }
+                .navbar3 .nav-links li {
+                  margin: 0.5rem 0;
+                }
+                .navbar3 .dropdown-menu {
+                  position: static;
+                  box-shadow: none;
+                  background: #f9fafb;
+                }
+                .dark-theme .navbar3 .dropdown-menu {
+                  background: #374151;
+                }
+                .navbar3 .dropdown:hover .dropdown-menu {
+                  display: none;
+                }
+                .navbar3 .dropdown.active .dropdown-menu {
+                  display: block;
+                }
+                .navbar3 .menu-toggle {
+                  display: block;
+                }
+              }
+            </style>
+            <script>
+              const menuToggle = document.querySelector('.navbar3 .menu-toggle');
+              const navLinks2 = document.querySelector('.navbar3 .nav-links');
+              const dropdown = document.querySelector('.navbar3 .dropdown');
+              menuToggle.addEventListener('click', () => {
+                navLinks2.classList.toggle('active');
+              });
+              dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                  dropdown.classList.toggle('active');
+                  e.preventDefault();
+                }
+              });
+            </script>
+          </pre>
+        </div>
+      </div>
     </div>
   </section>
 
   <script>
     function toggleCode(button) {
-      const code = button.nextElementSibling;
-      const isVisible = code.style.display === "block";
-      code.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
+      const codeBlock = button.nextElementSibling;
+      const isVisible = codeBlock.classList.contains('show');
+      codeBlock.classList.toggle('show');
+      button.textContent = isVisible ? 'Show Code' : 'Hide Code';
     }
 
     function toggleHamburger(btn) {
       const links = btn.nextElementSibling;
-      links.style.display = links.style.display === "flex" ? "none" : "flex";
+      links.classList.toggle('show');
+    }
+
+    function copyCode(btn) {
+      const codeText = btn.nextElementSibling.textContent;
+      navigator.clipboard.writeText(codeText).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
     }
 
     const themeToggleBtn = document.getElementById('theme-toggle');
+    const hamburgerBtn = document.querySelector('.main-navbar .hamburger');
+    const navLinks = document.querySelector('.main-navbar .nav-links');
 
     function updateThemeIcon() {
+      const icon = themeToggleBtn.querySelector('i');
       if (document.body.classList.contains('dark-theme')) {
-        themeToggleBtn.textContent = '☀';
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
         themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
       } else {
-        themeToggleBtn.textContent = '🌙';
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
         themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
       }
     }
@@ -275,6 +1067,33 @@
     themeToggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
       updateThemeIcon();
+    });
+
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.navbar1 .menu-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const navLinks = btn.parentElement.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.navbar3 .menu-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const navLinks = btn.parentElement.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.navbar3 .dropdown').forEach(dropdown => {
+      dropdown.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          dropdown.classList.toggle('active');
+          e.preventDefault();
+        }
+      });
     });
 
     window.addEventListener('DOMContentLoaded', updateThemeIcon);
