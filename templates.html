@@ -234,6 +234,41 @@
       .social-share-preview:hover .social-icon-preview {
         transform: scale(1.1);
       }
+      /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+      height: 90px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+
+    body.dark-theme .navbar-preview {
+      background-color: #2a2a2a;
+    }
+
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-line.logo {
+      width: 40%;
+    }
+
+    .navbar-line.link {
+      width: 70%;
+    }
+
+    .navbar-line.link.short {
+      width: 50%;
+    }
     </style>
   </head>
   <body>
@@ -321,6 +356,21 @@
             >View Template</a
           >
         </article>
+        <article class="template-card">
+          <h2>Neumorphic Button Effects</h2>
+          <div class="template-preview neumorphic-preview"></div>
+          <a class="template-btn" href="templates/neumorphic.html">View Template</a>
+          </article>
+         <!--NAVBAR--->
+      <article class="template-card">
+        <h2>Navbar Variants</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line logo"></div>
+          <div class="navbar-line link"></div>
+          <div class="navbar-line link short"></div>
+        </div>
+        <a class="template-btn" href="templates/navbar.html">View Template</a>
+      </article> 
       </section>
     </main>
     <footer class="footer">
