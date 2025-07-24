@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Navbar Features Showcase</title>
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
     :root {
       --nav-text: #2c3e50;
@@ -20,9 +19,14 @@
       --transition: 0.3s ease;
     }
 
-    body {
-      font-family: 'Inter', -apple-system, Arial, sans-serif;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', -apple-system, Arial, sans-serif;
       padding-top: 80px;
       background: var(--bg-light);
       color: var(--nav-text);
@@ -34,7 +38,8 @@
       color: var(--text-dark);
     }
 
-    .navbar {
+    /* Original Navbar Styles */
+    .main-navbar {
       position: fixed;
       top: 0;
       left: 0;
@@ -50,30 +55,30 @@
       backdrop-filter: blur(20px);
     }
 
-    .dark-theme .navbar {
+    .dark-theme .main-navbar {
       background: rgba(26, 32, 44, 0.95);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     }
 
-    .nav-left {
+    .main-navbar .nav-left {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
-    .logo {
+    .main-navbar .logo {
       width: 40px;
       height: 40px;
       object-fit: contain;
     }
 
-    .site-name {
+    .main-navbar .site-name {
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: -0.025em;
     }
 
-    .nav-links {
+    .main-navbar .nav-links {
       list-style: none;
       display: flex;
       gap: 2rem;
@@ -81,7 +86,7 @@
       padding: 0;
     }
 
-    .nav-links a {
+    .main-navbar .nav-links a {
       text-decoration: none;
       color: var(--nav-text);
       font-weight: 500;
@@ -91,19 +96,19 @@
       padding: 0.5rem 0;
     }
 
-    .dark-theme .nav-links a {
+    .dark-theme .main-navbar .nav-links a {
       color: var(--text-dark);
     }
 
-    .nav-links a.active {
+    .main-navbar .nav-links a.active {
       color: #ffffff;
       background: var(--accent);
       border-radius: 6px;
       padding: 0.5rem 1rem;
     }
 
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
+    .main-navbar .nav-links a.active::after,
+    .main-navbar .nav-links a:hover::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -114,21 +119,16 @@
       animation: slideIn 0.3s ease;
     }
 
-    .nav-links a:hover {
+    .main-navbar .nav-links a:hover {
       color: var(--accent);
     }
 
     @keyframes slideIn {
-      from {
-        width: 0;
-      }
-
-      to {
-        width: 100%;
-      }
+      from { width: 0; }
+      to { width: 100%; }
     }
 
-    .nav-right {
+    .main-navbar .nav-right {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -148,7 +148,7 @@
       transform: scale(1.1);
     }
 
-    .hamburger {
+    .main-navbar .hamburger {
       display: none;
       font-size: 1.5rem;
       background: none;
@@ -157,6 +157,7 @@
       padding: 0.5rem;
     }
 
+    /* Demo Section Styles */
     section {
       max-width: 1200px;
       margin: 2rem auto;
@@ -188,21 +189,23 @@
     .demo-card {
       background: var(--card-bg-light);
       border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
       transition: transform var(--transition), box-shadow var(--transition);
       width: 100%;
-      max-width: 600px;
+      max-width: 800px;
       margin: 0 auto;
+      border: 1px solid #e5e7eb;
     }
 
     .demo-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.15);
     }
 
     .dark-theme .demo-card {
       background: var(--card-bg-dark);
+      border-color: #4b5563;
     }
 
     .demo-preview {
@@ -233,8 +236,7 @@
       background: #6b7280;
     }
 
-    .expand-btn,
-    .copy-btn {
+    .expand-btn, .copy-btn {
       display: block;
       margin: 0.5rem auto;
       padding: 0.5rem 1.5rem;
@@ -247,8 +249,7 @@
       transition: background-color var(--transition);
     }
 
-    .expand-btn:hover,
-    .copy-btn:hover {
+    .expand-btn:hover, .copy-btn:hover {
       background-color: var(--accent-hover);
     }
 
@@ -270,7 +271,7 @@
 
     .copy-btn {
       position: absolute;
-      top: 1rem;
+      top: -1rem;
       right: 1rem;
       padding: 0.25rem 0.75rem;
       font-size: 0.875rem;
@@ -295,227 +296,219 @@
       display: flex;
     }
 
-    /* Navbar 1: Gradient Slide - Created by Satyam12x */
-    .navbar-1 {
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      padding: 0 2rem;
-      animation: gradientShift 5s ease infinite;
+    /* Navbar 1 Styles */
+    .navbar1 {
+      background: #0f172a;
+      padding: 1.3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      border-bottom: 1px solid #334155;
     }
 
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
+    .navbar1 .logo {
+      color: #60a5fa;
+      font-size: 1.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
     }
 
-    .navbar-1 .nav-links a {
-      color: white;
-      padding: 0.5rem 1rem;
+    .navbar1 .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar1 .nav-links li {
+      margin-left: 2.5rem;
+    }
+
+    .navbar1 .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.3rem 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .navbar1 .nav-links a.active {
+      color: #ffffff;
+      background: #60a5fa;
       border-radius: 6px;
     }
 
-    .navbar-1 .nav-links a.active {
-      background: rgba(255, 255, 255, 0.3);
-      color: #ffffff;
-    }
-
-    .navbar-1 .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
-      color: white;
-    }
-
-    /* Navbar 2: Neon Glow - Created by Satyam12x */
-    .navbar-2 {
-      background: var(--card-bg-light);
-      border-bottom: 2px solid #e5e7eb;
-    }
-
-    .dark-theme .navbar-2 {
-      background: var(--card-bg-dark);
-      border-color: #4b5563;
-    }
-
-    .navbar-2 .nav-links a {
-      padding: 0.5rem 1rem;
-      position: relative;
-    }
-
-    .navbar-2 .nav-links a.active {
-      color: #ffffff;
-      background: var(--accent);
-    }
-
-    .navbar-2 .nav-links a:hover::before {
+    .navbar1 .nav-links a::before {
       content: '';
       position: absolute;
+      width: 0;
+      height: 2px;
+      background: #60a5fa;
       bottom: -2px;
       left: 0;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .navbar1 .nav-links a:hover::before {
       width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #3b82f6, #ec4899);
-      box-shadow: 0 0 8px #3b82f6, 0 0 16px #ec4899;
-      animation: neonGlow 1s ease-in-out;
     }
 
-    @keyframes neonGlow {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Navbar 3: Slide Up - Created by Satyam12x */
-    .navbar-3 {
-      background: #111827;
-      padding: 0 2rem;
-    }
-
-    .navbar-3 .nav-links a {
-      color: #e2e8f0;
-      padding: 0.5rem 1rem;
-      transform: translateY(10px);
-      opacity: 0;
-      animation: slideUp 0.5s ease forwards;
-      animation-delay: calc(0.1s * var(--i));
-    }
-
-    .navbar-3 .nav-links a.active {
-      color: #ffffff;
-      background: var(--accent);
-    }
-
-    @keyframes slideUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .navbar-3 .nav-links a:hover {
-      color: #ffffff;
+    .navbar1 .nav-links a:hover {
+      color: #60a5fa;
       transform: translateY(-2px);
     }
 
-    /* Navbar 4: Flip Effect - Created by Satyam12x */
-    .navbar-4 {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
+    .navbar1 .nav-links .fa-rocket {
+      margin-right: 0.5rem;
     }
 
-    .dark-theme .navbar-4 {
-      background: #2d3748;
-      border-color: #4b5563;
+    .navbar1 .menu-toggle {
+      display: none;
+      color: #60a5fa;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
-    .navbar-4 .nav-links a {
-      padding: 0.5rem 1rem;
+    /* Navbar 3 Styles */
+    .navbar3 {
+      background: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       position: relative;
-      perspective: 1000px;
     }
 
-    .navbar-4 .nav-links a.active {
+    .dark-theme .navbar3 {
+      background: #2d3748;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar3 .logo {
+      color: #1f2937;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .dark-theme .navbar3 .logo {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar3 .nav-links li {
+      margin-left: 2rem;
+      position: relative;
+    }
+
+    .navbar3 .nav-links a {
+      color: #1f2937;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.2rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .dark-theme .navbar3 .nav-links a {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .nav-links a.active {
       color: #ffffff;
-      background: var(--accent);
-    }
-
-    .navbar-4 .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
       background: #3b82f6;
-      transform: rotateX(-90deg);
-      transform-origin: bottom;
-      transition: transform 0.3s ease;
+      border-radius: 6px;
+      padding: 0.2rem 0.8rem;
     }
 
-    .navbar-4 .nav-links a:hover::before {
-      transform: rotateX(0deg);
+    .navbar3 .nav-links a:hover {
+      color: #3b82f6;
     }
 
-    /* Navbar 5: Icon Toggle - Created by Satyam12x */
-    .navbar-5 {
-      background: #f1f5f9;
-      padding: 0 2rem;
+    .navbar3 .nav-links .fa-envelope {
+      margin-right: 0.5rem;
     }
 
-    .dark-theme .navbar-5 {
+    .navbar3 .dropdown {
+      position: relative;
+    }
+
+    .navbar3 .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu {
+      background: #2d3748;
+    }
+
+    .navbar3 .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .navbar3 .dropdown-menu li {
+      margin: 0;
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar3 .dropdown-menu a {
+      font-size: 1rem;
+      color: #1f2937;
+      display: block;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu a {
+      color: #e2e8f0;
+    }
+
+    .navbar3 .dropdown-menu a:hover {
+      background: #f3f4f6;
+      color: #3b82f6;
+    }
+
+    .dark-theme .navbar3 .dropdown-menu a:hover {
       background: #374151;
     }
 
-    .navbar-5 .nav-links a .text {
-      display: inline;
+    .navbar3 .dropdown > a::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
     }
 
-    .navbar-5 .nav-links a .icon {
+    .navbar3 .menu-toggle {
       display: none;
+      color: #1f2937;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
 
-    .navbar-5 .nav-links a.active {
-      color: #ffffff;
-      background: var(--accent);
-    }
-
-    @media (max-width: 1024px) {
-      .navbar-5 .nav-links a .text {
-        display: none;
-      }
-
-      .navbar-5 .nav-links a .icon {
-        display: inline;
-      }
-    }
-
-    .navbar-5 .nav-links a {
-      padding: 0.5rem 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .navbar-5 .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #3b82f6);
-      transition: left 0.3s ease;
-    }
-
-    .navbar-5 .nav-links a:hover::after {
-      left: 0;
+    .dark-theme .navbar3 .menu-toggle {
+      color: #e2e8f0;
     }
 
     @media (max-width: 768px) {
-
-      .navbar,
-      .navbar-1,
-      .navbar-2,
-      .navbar-3,
-      .navbar-4,
-      .navbar-5 {
+      .main-navbar {
         height: 64px;
         padding: 0 1rem;
       }
 
-      .nav-links {
+      .main-navbar .nav-links {
         display: none;
         position: absolute;
         top: 64px;
@@ -527,35 +520,96 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
 
-      .dark-theme .nav-links {
+      .dark-theme .main-navbar .nav-links {
         background: var(--card-bg-dark);
       }
 
-      .nav-links.show {
+      .main-navbar .nav-links.show {
         display: flex;
       }
 
-      .navbar-5 .nav-links a .text {
-        display: inline;
-      }
-
-      .navbar-5 .nav-links a .icon {
-        display: none;
-      }
-
-      .hamburger {
+      .main-navbar .hamburger {
         display: block;
       }
 
-      .site-name {
+      .main-navbar .site-name {
         font-size: 1.25rem;
+      }
+
+      .navbar1 .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        background: #0f172a;
+        width: 100%;
+        padding: 1rem;
+        display: none;
+        border-top: 1px solid #334155;
+      }
+
+      .navbar1 .nav-links.active {
+        display: flex;
+      }
+
+      .navbar1 .nav-links li {
+        margin: 0.5rem 0;
+      }
+
+      .navbar1 .menu-toggle {
+        display: block;
+      }
+
+      .navbar3 .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        padding: 1rem;
+        display: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark-theme .navbar3 .nav-links {
+        background: #2d3748;
+      }
+
+      .navbar3 .nav-links.active {
+        display: flex;
+      }
+
+      .navbar3 .nav-links li {
+        margin: 0.5rem 0;
+      }
+
+      .navbar3 .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: #f9fafb;
+      }
+
+      .dark-theme .navbar3 .dropdown-menu {
+        background: #374151;
+      }
+
+      .navbar3 .dropdown:hover .dropdown-menu {
+        display: none;
+      }
+
+      .navbar3 .dropdown.active .dropdown-menu {
+        display: block;
+      }
+
+      .navbar3 .menu-toggle {
+        display: block;
       }
     }
   </style>
 </head>
-
 <body>
-  <nav class="navbar">
+  <nav class="main-navbar">
     <div class="nav-left">
       <img src="../images/logo.png" alt="Logo" class="logo" />
       <span class="site-name">AnimateItNow</span>
@@ -578,8 +632,7 @@
       <div class="demo-card">
         <h3><i class="fas fa-sticky-note"></i> Sticky Header</h3>
         <div class="demo-preview">
-          <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!
-          </div>
+          <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!</div>
           <div style="height:400px;">
             <p>Scroll below me...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -592,8 +645,8 @@
         <div class="code-block">
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           <pre>
-            &lt;div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
-            &lt;div style="height:400px;"&gt;...&lt;/div&gt;
+            <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!</div>
+            <div style="height:400px;">...</div>
           </pre>
         </div>
       </div>
@@ -612,356 +665,359 @@
         <div class="code-block">
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           <pre>
-            &lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;&lt;i class="fas fa-bars"&gt;&lt;/i&gt;&lt;/div&gt;
-            &lt;div class="demo-nav-links"&gt;
-              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link One&lt;/a&gt;
-              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link Two&lt;/a&gt;
-              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link Three&lt;/a&gt;
-            &lt;/div&gt;
-            &lt;style&gt;
+            <div class="hamburger-btn" onclick="toggleHamburger(this)"><i class="fas fa-bars"></i></div>
+            <div class="demo-nav-links">
+              <a href="#"><i class="fas fa-link"></i> Link One</a>
+              <a href="#"><i class="fas fa-link"></i> Link Two</a>
+              <a href="#"><i class="fas fa-link"></i> Link Three</a>
+            </div>
+            <style>
               .hamburger-btn { cursor: pointer; }
               .demo-nav-links { display: none; }
               .demo-nav-links.show { display: flex; }
-            &lt;/style&gt;
+            </style>
           </pre>
         </div>
       </div>
 
-      <!-- Navbar 1: Gradient Slide - Created by Satyam12x -->
       <div class="demo-card">
-        <h3><i class="fas fa-palette"></i> Gradient Slide Navbar</h3>
+        <h3><i class="fas fa-rocket"></i> Modern Navbar 1</h3>
         <div class="demo-preview">
-          <nav class="navbar-1">
-            <div class="nav-left">
-              <span class="site-name">Gradient</span>
-            </div>
+          <nav class="navbar1">
+            <a href="#" class="logo">Launch</a>
             <ul class="nav-links">
-              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
-              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
-              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
+              <li><a href="#" class="active"><i class="fas fa-rocket"></i> Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
             </ul>
+            <div class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </div>
           </nav>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           <pre>
-            &lt;!-- Navbar 1: Gradient Slide - Created by Satyam12x --&gt;
-            &lt;nav class="navbar-1"&gt;
-              &lt;div class="nav-left"&gt;
-                &lt;span class="site-name"&gt;Gradient&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;ul class="nav-links"&gt;
-                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/nav&gt;
-            &lt;style&gt;
-              .navbar-1 {
-                background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-                padding: 0 2rem;
-                animation: gradientShift 5s ease infinite;
+            <nav class="navbar1">
+              <a href="#" class="logo">Launch</a>
+              <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fas fa-rocket"></i> Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+              <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </div>
+            </nav>
+            <style>
+              .navbar1 {
+                background: #0f172a;
+                padding: 1.3rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                width: 100%;
+                border-bottom: 1px solid #334155;
               }
-              @keyframes gradientShift {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
+              .navbar1 .logo {
+                color: #60a5fa;
+                font-size: 1.9rem;
+                font-weight: 700;
+                text-decoration: none;
+                letter-spacing: 1px;
               }
-              .navbar-1 .nav-links a {
-                color: white;
-                padding: 0.5rem 1rem;
+              .navbar1 .nav-links {
+                display: flex;
+                list-style: none;
+              }
+              .navbar1 .nav-links li {
+                margin-left: 2.5rem;
+              }
+              .navbar1 .nav-links a {
+                color: #e2e8f0;
+                text-decoration: none;
+                font-size: 1.1rem;
+                position: relative;
+                padding: 0.3rem 0.8rem;
+                transition: all 0.3s ease;
+              }
+              .navbar1 .nav-links a.active {
+                color: #ffffff;
+                background: #60a5fa;
                 border-radius: 6px;
               }
-              .navbar-1 .nav-links a.active {
-                background: rgba(255, 255, 255, 0.3);
-                color: #ffffff;
-              }
-              .navbar-1 .nav-links a:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: scale(1.05);
-                color: white;
-              }
-            &lt;/style&gt;
-          </pre>
-        </div>
-      </div>
-
-      <!-- Navbar 2: Neon Glow - Created by Satyam12x -->
-      <div class="demo-card">
-        <h3><i class="fas fa-lightbulb"></i> Neon Glow Navbar</h3>
-        <div class="demo-preview">
-          <nav class="navbar-2">
-            <div class="nav-left">
-              <span class="site-name">Neon</span>
-            </div>
-            <ul class="nav-links">
-              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
-              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
-              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
-            </ul>
-          </nav>
-        </div>
-        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <pre>
-            &lt;!-- Navbar 2: Neon Glow - Created by Satyam12x --&gt;
-            &lt;nav class="navbar-2"&gt;
-              &lt;div class="nav-left"&gt;
-                &lt;span class="site-name"&gt;Neon&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;ul class="nav-links"&gt;
-                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/nav&gt;
-            &lt;style&gt;
-              .navbar-2 {
-                background: #ffffff;
-                border-bottom: 2px solid #e5e7eb;
-              }
-              .dark-theme .navbar-2 {
-                background: #2d3748;
-                border-color: #4b5563;
-              }
-              .navbar-2 .nav-links a {
-                padding: 0.5rem 1rem;
-                position: relative;
-              }
-              .navbar-2 .nav-links a.active {
-                color: #ffffff;
-                background: #3b82f6;
-              }
-              .navbar-2 .nav-links a:hover::before {
+              .navbar1 .nav-links a::before {
                 content: '';
                 position: absolute;
+                width: 0;
+                height: 2px;
+                background: #60a5fa;
                 bottom: -2px;
                 left: 0;
+                transition: width 0.3s ease-in-out;
+              }
+              .navbar1 .nav-links a:hover::before {
                 width: 100%;
-                height: 2px;
-                background: linear-gradient(90deg, #3b82f6, #ec4899);
-                box-shadow: 0 0 8px #3b82f6, 0 0 16px #ec4899;
-                animation: neonGlow 1s ease-in-out;
               }
-              @keyframes neonGlow {
-                0% { opacity: 0; transform: scale(0.8); }
-                100% { opacity: 1; transform: scale(1); }
-              }
-            &lt;/style&gt;
-          </pre>
-        </div>
-      </div>
-
-      <!-- Navbar 3: Slide Up - Created by="")
-      <div class="demo-card">
-        <h3><i class="fas fa-arrow-up"></i> Slide Up Navbar</h3>
-        <div class="demo-preview">
-          <nav class="navbar-3">
-            <div class="nav-left">
-              <span class="site-name">Slide</span>
-            </div>
-            <ul class="nav-links">
-              <li><a href="#" style="--i: 1;" class="active"><i class="fas fa-home"></i> Home</a></li>
-              <li><a href="#" style="--i: 2;"><i class="fas fa-layer-group"></i> Templates</a></li>
-              <li><a href="#" style="--i: 3;"><i class="fas fa-users"></i> Contributors</a></li>
-            </ul>
-          </nav>
-        </div>
-        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <pre>
-            &lt;!-- Navbar 3: Slide Up - Created by Satyam12x --&gt;
-            &lt;nav class="navbar-3"&gt;
-              &lt;div class="nav-left"&gt;
-                &lt;span class="site-name"&gt;Slide&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;ul class="nav-links"&gt;
-                &lt;li&gt;&lt;a href="#" style="--i: 1;" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#" style="--i: 2;"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#" style="--i: 3;"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/nav&gt;
-            &lt;style&gt;
-              .navbar-3 {
-                background: #111827;
-                padding: 0 2rem;
-              }
-              .navbar-3 .nav-links a {
-                color: #e2e8f0;
-                padding: 0.5rem 1rem;
-                transform: translateY(10px);
-                opacity: 0;
-                animation: slideUp 0.5s ease forwards;
-                animation-delay: calc(0.1s * var(--i));
-              }
-              .navbar-3 .nav-links a.active {
-                color: #ffffff;
-                background: #3b82f6;
-              }
-              @keyframes slideUp {
-                to { transform: translateY(0); opacity: 1; }
-              }
-              .navbar-3 .nav-links a:hover {
-                color: #ffffff;
+              .navbar1 .nav-links a:hover {
+                color: #60a5fa;
                 transform: translateY(-2px);
               }
-            &lt;/style&gt;
+              .navbar1 .nav-links .fa-rocket {
+                margin-right: 0.5rem;
+              }
+              .navbar1 .menu-toggle {
+                display: none;
+                color: #60a5fa;
+                font-size: 1.5rem;
+                cursor: pointer;
+              }
+              @media (max-width: 768px) {
+                .navbar1 .nav-links {
+                  flex-direction: column;
+                  position: absolute;
+                  top: 64px;
+                  left: 0;
+                  background: #0f172a;
+                  width: 100%;
+                  padding: 1rem;
+                  display: none;
+                  border-top: 1px solid #334155;
+                }
+                .navbar1 .nav-links.active {
+                  display: flex;
+                }
+                .navbar1 .nav-links li {
+                  margin: 0.5rem 0;
+                }
+                .navbar1 .menu-toggle {
+                  display: block;
+                }
+              }
+            </style>
+            <script>
+              const menuToggle1 = document.querySelector('.navbar1 .menu-toggle');
+              const navLinks1 = document.querySelector('.navbar1 .nav-links');
+              menuToggle1.addEventListener('click', () => {
+                navLinks1.classList.toggle('active');
+              });
+            </script>
           </pre>
         </div>
       </div>
 
-      <!-- Navbar 4: Flip Effect - Created by Satyam12x -->
       <div class="demo-card">
-        <h3><i class="fas fa-sync-alt"></i> Flip Effect Navbar</h3>
+        <h3><i class="fas fa-envelope"></i> Modern Navbar 3 with Dropdown</h3>
         <div class="demo-preview">
-          <nav class="navbar-4">
-            <div class="nav-left">
-              <span class="site-name">Flip</span>
-            </div>
+          <nav class="navbar3">
+            <a href="#" class="logo">Company</a>
             <ul class="nav-links">
-              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
-              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
-              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li class="dropdown">
+                <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Email</a></li>
+                  <li><a href="#">Phone</a></li>
+                  <li><a href="#">Support</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Portfolio</a></li>
             </ul>
+            <div class="menu-toggle">
+              <i class="fas fa-bars"></i>
+            </div>
           </nav>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           <pre>
-            &lt;!-- Navbar 4: Flip Effect - Created by Satyam12x --&gt;
-            &lt;nav class="navbar-4"&gt;
-              &lt;div class="nav-left"&gt;
-                &lt;span class="site-name"&gt;Flip&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;ul class="nav-links"&gt;
-                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/nav&gt;
-            &lt;style&gt;
-              .navbar-4 {
-                background: #ffffff;
-                border-bottom: 1px solid #e5e7eb;
-              }
-              .dark-theme .navbar-4 {
-                background: #2d3748;
-                border-color: #4b5563;
-              }
-              .navbar-4 .nav-links a {
-                padding: 0.5rem 1rem;
+            <nav class="navbar3">
+              <a href="#" class="logo">Company</a>
+              <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                  <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Phone</a></li>
+                    <li><a href="#">Support</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Portfolio</a></li>
+              </ul>
+              <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </div>
+            </nav>
+            <style>
+              .navbar3 {
+                background: #fff;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 position: relative;
-                perspective: 1000px;
               }
-              .navbar-4 .nav-links a.active {
+              .dark-theme .navbar3 {
+                background: #2d3748;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              }
+              .navbar3 .logo {
+                color: #1f2937;
+                font-size: 1.8rem;
+                font-weight: 600;
+                text-decoration: none;
+              }
+              .dark-theme .navbar3 .logo {
+                color: #e2e8f0;
+              }
+              .navbar3 .nav-links {
+                display: flex;
+                list-style: none;
+              }
+              .navbar3 .nav-links li {
+                margin-left: 2rem;
+                position: relative;
+              }
+              .navbar3 .nav-links a {
+                color: #1f2937;
+                text-decoration: none;
+                font-size: 1.1rem;
+                padding: 0.2rem 0;
+                transition: all 0.3s ease;
+              }
+              .dark-theme .navbar3 .nav-links a {
+                color: #e2e8f0;
+              }
+              .navbar3 .nav-links a.active {
                 color: #ffffff;
                 background: #3b82f6;
+                border-radius: 6px;
+                padding: 0.2rem 0.8rem;
               }
-              .navbar-4 .nav-links a::before {
-                content: '';
+              .navbar3 .nav-links a:hover {
+                color: #3b82f6;
+              }
+              .navbar3 .nav-links .fa-envelope {
+                margin-right: 0.5rem;
+              }
+              .navbar3 .dropdown {
+                position: relative;
+              }
+              .navbar3 .dropdown-menu {
+                display: none;
                 position: absolute;
-                bottom: 0;
+                top: 100%;
                 left: 0;
-                width: 100%;
-                height: 2px;
-                background: #3b82f6;
-                transform: rotateX(-90deg);
-                transform-origin: bottom;
-                transition: transform 0.3s ease;
+                background: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                min-width: 150px;
+                z-index: 1000;
               }
-              .navbar-4 .nav-links a:hover::before {
-                transform: rotateX(0deg);
+              .dark-theme .navbar3 .dropdown-menu {
+                background: #2d3748;
               }
-            &lt;/style&gt;
-          </pre>
-        </div>
-      </div>
-
-      <!-- Navbar 5: Icon Toggle - Created by Satyam12x -->
-      <div class="demo-card">
-        <h3><i class="fas fa-icons"></i> Icon Toggle Navbar</h3>
-        <div class="demo-preview">
-          <nav class="navbar-5">
-            <div class="nav-left">
-              <span class="site-name">Icon</span>
-            </div>
-            <ul class="nav-links">
-              <li><a href="#" class="active"><i class="fas fa-home icon"></i><span class="text"> Home</span></a></li>
-              <li><a href="#"><i class="fas fa-layer-group icon"></i><span class="text"> Templates</span></a></li>
-              <li><a href="#"><i class="fas fa-users icon"></i><span class="text"> Contributors</span></a></li>
-            </ul>
-            <div class="nav-right">
-              <button class="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
-            </div>
-          </nav>
-        </div>
-        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-block">
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          <pre>
-            &lt;!-- Navbar 5: Icon Toggle - Created by Satyam12x --&gt;
-            &lt;nav class="navbar-5"&gt;
-              &lt;div class="nav-left"&gt;
-                &lt;span class="site-name"&gt;Icon&lt;/span&gt;
-              &lt;/div&gt;
-              &lt;ul class="nav-links"&gt;
-                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Templates&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href#"&gt;&lt;i class="fas fa-users icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Contributors&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-              &lt;/ul&gt;
-              &lt;div class="nav-right"&gt;
-                &lt;button class="hamburger" aria-label="Toggle menu"&gt;&lt;i class="fas fa-bars"&gt;&lt;/i&gt;&lt;/button&gt;
-              &lt;/div&gt;
-            &lt;/nav&gt;
-            &lt;style&gt;
-              .navbar-5 {
-                background: #f1f5f9;
-                padding: 0 2rem;
+              .navbar3 .dropdown:hover .dropdown-menu {
+                display: block;
               }
-              .dark-theme .navbar-5 {
+              .navbar3 .dropdown-menu li {
+                margin: 0;
+                padding: 0.5rem 1rem;
+              }
+              .navbar3 .dropdown-menu a {
+                font-size: 1rem;
+                color: #1f2937;
+                display: block;
+              }
+              .dark-theme .navbar3 .dropdown-menu a {
+                color: #e2e8f0;
+              }
+              .navbar3 .dropdown-menu a:hover {
+                background: #f3f4f6;
+                color: #3b82f6;
+              }
+              .dark-theme .navbar3 .dropdown-menu a:hover {
                 background: #374151;
               }
-              .navbar-5 .nav-links a .text {
-                display: inline;
+              .navbar3 .dropdown > a::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                margin-left: 0.5rem;
+                font-size: 0.8rem;
               }
-              .navbar-5 .nav-links a .icon {
+              .navbar3 .menu-toggle {
                 display: none;
+                color: #1f2937;
+                font-size: 1.5rem;
+                cursor: pointer;
               }
-              .navbar-5 .nav-links a.active {
-                color: #ffffff;
-                background: #3b82f6;
+              .dark-theme .navbar3 .menu-toggle {
+                color: #e2e8f0;
               }
-              @media (max-width: 1024px) {
-                .navbar-5 .nav-links a .text {
+              @media (max-width: 768px) {
+                .navbar3 .nav-links {
+                  flex-direction: column;
+                  position: absolute;
+                  top: 64px;
+                  left: 0;
+                  background: #fff;
+                  width: 100%;
+                  padding: 1rem;
+                  display: none;
+                  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .dark-theme .navbar3 .nav-links {
+                  background: #2d3748;
+                }
+                .navbar3 .nav-links.active {
+                  display: flex;
+                }
+                .navbar3 .nav-links li {
+                  margin: 0.5rem 0;
+                }
+                .navbar3 .dropdown-menu {
+                  position: static;
+                  box-shadow: none;
+                  background: #f9fafb;
+                }
+                .dark-theme .navbar3 .dropdown-menu {
+                  background: #374151;
+                }
+                .navbar3 .dropdown:hover .dropdown-menu {
                   display: none;
                 }
-                .navbar-5 .nav-links a .icon {
-                  display: inline;
+                .navbar3 .dropdown.active .dropdown-menu {
+                  display: block;
+                }
+                .navbar3 .menu-toggle {
+                  display: block;
                 }
               }
-              .navbar-5 .nav-links a {
-                padding: 0.5rem 1rem;
-                position: relative;
-                overflow: hidden;
-              }
-              .navbar-5 .nav-links a::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: -100%;
-                width: 100%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, #3b82f6);
-                transition: left 0.3s ease;
-              }
-              .navbar-5 .nav-links a:hover::after {
-                left: 0;
-              }
-            &lt;/style&gt;
+            </style>
+            <script>
+              const menuToggle = document.querySelector('.navbar3 .menu-toggle');
+              const navLinks2 = document.querySelector('.navbar3 .nav-links');
+              const dropdown = document.querySelector('.navbar3 .dropdown');
+              menuToggle.addEventListener('click', () => {
+                navLinks2.classList.toggle('active');
+              });
+              dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                  dropdown.classList.toggle('active');
+                  e.preventDefault();
+                }
+              });
+            </script>
           </pre>
         </div>
       </div>
@@ -992,8 +1048,8 @@
     }
 
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const hamburgerBtn = document.querySelector('.navbar .hamburger');
-    const navLinks = document.querySelector('.navbar .nav-links');
+    const hamburgerBtn = document.querySelector('.main-navbar .hamburger');
+    const navLinks = document.querySelector('.main-navbar .nav-links');
 
     function updateThemeIcon() {
       const icon = themeToggleBtn.querySelector('i');
@@ -1017,15 +1073,30 @@
       navLinks.classList.toggle('show');
     });
 
-    document.querySelectorAll('.navbar-5 .hamburger').forEach(btn => {
+    document.querySelectorAll('.navbar1 .menu-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
-        const navLinks = btn.parentElement.previousElementSibling;
-        navLinks.classList.toggle('show');
+        const navLinks = btn.parentElement.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.navbar3 .menu-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const navLinks = btn.parentElement.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.navbar3 .dropdown').forEach(dropdown => {
+      dropdown.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          dropdown.classList.toggle('active');
+          e.preventDefault();
+        }
       });
     });
 
     window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </script>
 </body>
-
 </html>
