@@ -105,73 +105,101 @@ window.addEventListener('DOMContentLoaded', () => {
         contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
       });
   }
-  
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
-const cursorToggle = document.getElementById('cursorToggle');
 
-function enableSnakeCursor() {
-  // Avoid duplicate containers if the toggle is flipped on again
-  if (document.getElementById('cursor-snake')) return;
+  // Hamburger Menu Toggle
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
 
-  const snakeContainer = document.createElement('div');
-  snakeContainer.id = 'cursor-snake';
-  document.body.appendChild(snakeContainer);
-
-  const dots = [];
-  const dotCount = 20;
-  for (let i = 0; i < dotCount; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'snake-dot';
-    snakeContainer.appendChild(dot);
-    dots.push({ el: dot, x: 0, y: 0 });
-  }
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function animateSnake() {
-    let x = mouseX, y = mouseY;
-    dots.forEach((dot, i) => {
-      dot.x += (x - dot.x) * 0.2;
-      dot.y += (y - dot.y) * 0.2;
-      dot.el.style.left = dot.x + 'px';
-      dot.el.style.top = dot.y + 'px';
-      dot.el.style.transform = `scale(${1 - i / dotCount})`;
-      x = dot.x;
-      y = dot.y;
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
     });
 
-    // Save the animation ID to stop later
-    snakeContainer.animationId = requestAnimationFrame(animateSnake);
+    // Close Mobile Menu When Clicking a Link
+    const mobileLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Close Mobile Menu When Clicking Outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      }
+    });
   }
 
-  animateSnake();
-}
+  // Snake Cursor
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const cursorToggle = document.getElementById('cursorToggle');
 
-function disableSnakeCursor() {
-  const snake = document.getElementById('cursor-snake');
-  if (snake) {
-    cancelAnimationFrame(snake.animationId); // Stop the animation
-    snake.remove(); // Remove all dots
-  }
-}
+  function enableSnakeCursor() {
+    // Avoid duplicate containers if the toggle is flipped on again
+    if (document.getElementById('cursor-snake')) return;
 
-// Add toggle functionality
-if (!isMobile && cursorToggle) {
-  cursorToggle.addEventListener('change', function () {
-    if (this.checked) {
-      enableSnakeCursor();
-    } else {
-      disableSnakeCursor();
+    const snakeContainer = document.createElement('div');
+    snakeContainer.id = 'cursor-snake';
+    document.body.appendChild(snakeContainer);
+
+    const dots = [];
+    const dotCount = 20;
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'snake-dot';
+      snakeContainer.appendChild(dot);
+      dots.push({ el: dot, x: 0, y: 0 });
     }
-  });
-}
 
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateSnake() {
+      let x = mouseX, y = mouseY;
+      dots.forEach((dot, i) => {
+        dot.x += (x - dot.x) * 0.2;
+        dot.y += (y - dot.y) * 0.2;
+        dot.el.style.left = dot.x + 'px';
+        dot.el.style.top = dot.y + 'px';
+        dot.el.style.transform = `scale(${1 - i / dotCount})`;
+        x = dot.x;
+        y = dot.y;
+      });
+
+      // Save the animation ID to stop later
+      snakeContainer.animationId = requestAnimationFrame(animateSnake);
+    }
+
+    animateSnake();
+  }
+
+  function disableSnakeCursor() {
+    const snake = document.getElementById('cursor-snake');
+    if (snake) {
+      cancelAnimationFrame(snake.animationId); // Stop the animation
+      snake.remove(); // Remove all dots
+    }
+  }
+
+  // Add toggle functionality
+  if (!isMobile && cursorToggle) {
+    cursorToggle.addEventListener('change', function () {
+      if (this.checked) {
+        enableSnakeCursor();
+      } else {
+        disableSnakeCursor();
+      }
+    });
+  }
 
   // 🚦 ProgressBar Functionality
   function updateProgressBar() {
@@ -186,6 +214,4 @@ if (!isMobile && cursorToggle) {
   window.addEventListener('scroll', updateProgressBar);
   // Initialize on load
   updateProgressBar();
-
-
 });
