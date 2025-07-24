@@ -10,7 +10,8 @@
   --primary-text: #222;
   --accent: #4f8cff;
   --nav-bg: #fff;
-  --nav-text: #222;
+  --nav-text: rgba(255,255,255);
+  --nav-text-60: rgba(255,255,255,0.7);
   --footer-bg: #222;
   --footer-text: #fff;
   --card-bg: #fff;
@@ -67,6 +68,9 @@ body {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.navbar:hover{
+  cursor: pointer;
 }
 
 /* Left Logo Section */
@@ -136,14 +140,17 @@ body {
   display: flex;
   align-items: center;
 }
+
 .nav-links a {
+  color: var(--nav-text-60);
   text-decoration: none;
-  font-weight: 500;
   font-size: 1rem;
   padding: 8px 10px;
   position: relative;
   transition: all 0.3s ease;
   border-radius: 6px;
+  font-weight: 500; 
+  display: inline-block;
 }
 
 /* add underline in navLinks */
@@ -164,32 +171,35 @@ body {
 
 .nav-links a.active,
 .nav-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 12px rgba(66, 150, 255, 0.4);
-  color: #d1e9ff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  color: white;
 }
 
 .nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  bottom: 6px;
-  width: 0%;
-  height: 2px;
-  background-color: #d1e9ff;
-  transition: width 0.3s ease;
+  content: '';
+    position: absolute;
+    left: 8px;
+    bottom:3px;
+    width: 84%;
+    height: 1px;
+    background: #fff;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
 }
 
 .nav-links a:hover::after {
-  width: 80%;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .nav-links a.active {
-  color: #ffffff;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  color: var(--nav-text);
+  font-size: 1.1rem;
 }
+
 
 .github-icon svg path {
   fill: #24292e; 
@@ -210,11 +220,13 @@ body {
 
 /* Theme Toggle */
 #theme-toggle {
+  margin-top: 4px;
   background: transparent;
   border: none;
   color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease;
 }
 
