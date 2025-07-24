@@ -514,11 +514,16 @@ body.dark {
   --footer-text: #cccccc;
   --card-bg: #1e1e2f;
   --background-image: url("images/bgdark.png");
+
+  background: var(--background-image) no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 body.dark .landing-section {
-  background: var(--background-image);
-  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  background: var(--background-image) no-repeat center center fixed;
   background-size: cover;
   background-position: center;
 }
@@ -548,6 +553,10 @@ body.dark .template-card button {
 
 body.dark .template-card button:hover {
   background: linear-gradient(145deg, #0072ff, #00c6ff);
+}
+
+body.dark .info-section p {
+  color: #c4c0c0;
 }
 
 /**/
