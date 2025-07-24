@@ -33,6 +33,38 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 4. Update the gallery page to showcase your work
 5. **Submit a Pull Request** with a short description and preview
 
+
+
+---
+
+### 🔃 How to **Raise a Pull Request** (PR)
+
+📌 **GitHub Docs:**  
+**→** [About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+
+📌 **Step-by-step guide (GitHub Docs):**  
+**→** [Creating a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+📌 **Beginner-friendly video (YouTube):**  
+**→** [How to Fork, Clone, Commit and Create a Pull Request](https://www.youtube.com/watch?v=HUP7Vqqtngk)
+
+📝 Snippet to include:
+```md
+Want to contribute? Here's how:
+
+1. Fork this repository
+2. Clone your forked repo
+3. Create a new branch
+4. Make your changes
+5. Commit and push
+6. Open a Pull Request (PR)
+
+Need help?
+- [How to clone a repo (GitHub Docs)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+- [How to create a pull request (GitHub Docs)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [Watch this YouTube tutorial](https://www.youtube.com/watch?v=HUP7Vqqtngk)
+
+
 All skill levels are welcome! Check out the [Templates Gallery](./templates.html) for inspiration.
 
 ---
