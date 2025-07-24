@@ -1,208 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Navbar Features Showcase</title>
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --nav-text: #222;
-      --bg-light: #f5f5f5;
-      --bg-dark: #121212;
-      --text-dark: #fff;
-      --accent: #007BFF;
+      --nav-text: #2c3e50;
+      --bg-light: #f8fafc;
+      --bg-dark: #1a202c;
+      --text-dark: #e2e8f0;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #2d3748;
       --transition: 0.3s ease;
     }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Inter', -apple-system, Arial, sans-serif;
       margin: 0;
-      padding-top: 64px;
+      padding-top: 80px;
       background: var(--bg-light);
       color: var(--nav-text);
       transition: background-color var(--transition), color var(--transition);
     }
+
     .dark-theme {
       background: var(--bg-dark);
       color: var(--text-dark);
     }
+
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.15);
+      height: 80px;
+      background: rgba(255, 255, 255, 0.95);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(20px);
     }
+
+    .dark-theme .navbar {
+      background: rgba(26, 32, 44, 0.95);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
     .nav-left {
       display: flex;
       align-items: center;
+      gap: 1rem;
     }
+
     .logo {
-      width: 36px;
-      height: 36px;
-      margin-right: 0.75rem;
+      width: 40px;
+      height: 40px;
       object-fit: contain;
     }
+
     .site-name {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      letter-spacing: -0.025em;
     }
+
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       margin: 0;
       padding: 0;
     }
+
     .nav-links a {
       text-decoration: none;
       color: var(--nav-text);
       font-weight: 500;
+      font-size: 1rem;
       transition: color var(--transition);
       position: relative;
+      padding: 0.5rem 0;
     }
-    .nav-links a.active,
+
+    .dark-theme .nav-links a {
+      color: var(--text-dark);
+    }
+
+    .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      animation: slideIn 0.3s ease;
+    }
+
     .nav-links a:hover {
       color: var(--accent);
     }
+
+    @keyframes slideIn {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     #theme-toggle {
       cursor: pointer;
       background: none;
       border: none;
-      font-size: 20px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: 0.3s ease;
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: transform var(--transition);
     }
+
+    #theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
     section {
-      max-width: 1100px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg-light);
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
+
     .dark-theme section {
-      background: #1e1e1e;
+      background: var(--card-bg-dark);
     }
+
     h2 {
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 10px;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.025em;
     }
+
     .demo-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 1rem;
     }
+
     .demo-card {
-      width: 320px;
-      background: #f0f0f0;
+      background: var(--card-bg-light);
       border-radius: 12px;
-      padding: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: 0.3s;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
     }
+
     .demo-card:hover {
-      transform: translateY(-4px);
+      transform: scale(1.02);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
     }
-   .demo-preview {
-      background: white;
+
+    .dark-theme .demo-card {
+      background: var(--card-bg-dark);
+    }
+
+    .demo-preview {
+      background: #f8fafc;
       height: 200px;
       overflow-y: auto;
       border-radius: 8px;
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 1rem;
     }
+
+    .dark-theme .demo-preview {
+      background: #2d3748;
+      border-color: #4b5563;
+    }
+
     .demo-preview::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
+
     .demo-preview::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
+      background: #9ca3af;
+      border-radius: 3px;
     }
-    .expand-btn {
+
+    .dark-theme .demo-preview::-webkit-scrollbar-thumb {
+      background: #6b7280;
+    }
+
+    .expand-btn,
+    .copy-btn {
       display: block;
-      margin: 14px auto 6px;
-      padding: 8px 18px;
+      margin: 0.5rem auto;
+      padding: 0.5rem 1.5rem;
       background-color: var(--accent);
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      font-weight: 500;
+      transition: background-color var(--transition);
     }
-    .expand-btn:active {
-      opacity: 0.6;
+
+    .expand-btn:hover,
+    .copy-btn:hover {
+      background-color: var(--accent-hover);
     }
+
     .code-block {
       display: none;
-      background: #222;
-      color: #ddd;
-      padding: 16px;
-      font-size: 0.85rem;
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: 1rem;
+      font-size: 0.875rem;
       border-radius: 8px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      overflow-x: auto;
+      margin-top: 1rem;
+      position: relative;
+      font-family: 'Fira Code', monospace;
     }
-    .hamburger-btn {
+
+    .code-block.show {
       display: block;
-      font-size: 24px;
-      background: #eee;
-      padding: 8px;
-      width: 40px;
-      text-align: center;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .hamburger-btn {
+      font-size: 1.25rem;
+      background: none;
+      padding: 0.5rem;
       border-radius: 6px;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
+
     .demo-nav-links {
       display: none;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.5rem;
     }
-    .demo-nav-links a {
-      text-decoration: none;
-      color: #333;
+
+    .demo-nav-links.show {
+      display: flex;
+    }
+
+    /* Navbar 1: Gradient Slide - Created by Satyam12x */
+    .navbar-1 {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      padding: 0 2rem;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .navbar-1 .nav-links a {
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+
+    .navbar-1 .nav-links a.active {
+      background: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+
+    .navbar-1 .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+      color: white;
+    }
+
+    /* Navbar 2: Neon Glow - Created by Satyam12x */
+    .navbar-2 {
+      background: var(--card-bg-light);
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .dark-theme .navbar-2 {
+      background: var(--card-bg-dark);
+      border-color: #4b5563;
+    }
+
+    .navbar-2 .nav-links a {
+      padding: 0.5rem 1rem;
+      position: relative;
+    }
+
+    .navbar-2 .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    .navbar-2 .nav-links a:hover::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #ec4899);
+      box-shadow: 0 0 8px #3b82f6, 0 0 16px #ec4899;
+      animation: neonGlow 1s ease-in-out;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Navbar 3: Slide Up - Created by Satyam12x */
+    .navbar-3 {
+      background: #111827;
+      padding: 0 2rem;
+    }
+
+    .navbar-3 .nav-links a {
+      color: #e2e8f0;
+      padding: 0.5rem 1rem;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: slideUp 0.5s ease forwards;
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+    .navbar-3 .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .navbar-3 .nav-links a:hover {
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Navbar 4: Flip Effect - Created by Satyam12x */
+    .navbar-4 {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .dark-theme .navbar-4 {
+      background: #2d3748;
+      border-color: #4b5563;
+    }
+
+    .navbar-4 .nav-links a {
+      padding: 0.5rem 1rem;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .navbar-4 .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    .navbar-4 .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #3b82f6;
+      transform: rotateX(-90deg);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-4 .nav-links a:hover::before {
+      transform: rotateX(0deg);
+    }
+
+    /* Navbar 5: Icon Toggle - Created by Satyam12x */
+    .navbar-5 {
+      background: #f1f5f9;
+      padding: 0 2rem;
+    }
+
+    .dark-theme .navbar-5 {
+      background: #374151;
+    }
+
+    .navbar-5 .nav-links a .text {
+      display: inline;
+    }
+
+    .navbar-5 .nav-links a .icon {
+      display: none;
+    }
+
+    .navbar-5 .nav-links a.active {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    @media (max-width: 1024px) {
+      .navbar-5 .nav-links a .text {
+        display: none;
+      }
+
+      .navbar-5 .nav-links a .icon {
+        display: inline;
+      }
+    }
+
+    .navbar-5 .nav-links a {
+      padding: 0.5rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar-5 .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #3b82f6);
+      transition: left 0.3s ease;
+    }
+
+    .navbar-5 .nav-links a:hover::after {
+      left: 0;
+    }
+
+    @media (max-width: 768px) {
+
+      .navbar,
+      .navbar-1,
+      .navbar-2,
+      .navbar-3,
+      .navbar-4,
+      .navbar-5 {
+        height: 64px;
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--card-bg-light);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark-theme .nav-links {
+        background: var(--card-bg-dark);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .navbar-5 .nav-links a .text {
+        display: inline;
+      }
+
+      .navbar-5 .nav-links a .icon {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .site-name {
+        font-size: 1.25rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <nav class="navbar">
     <div class="nav-left">
       <img src="../images/logo.png" alt="Logo" class="logo" />
       <span class="site-name">AnimateItNow</span>
     </div>
-
     <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="../templates.html" class="active"><i class="fas fa-layer-group"></i> Templates</a></li>
+      <li><a href="../contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+      <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
-    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <div class="nav-right">
+      <button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+    </div>
   </nav>
 
   <section>
     <h2>Navbar Feature Demos</h2>
     <div class="demo-container">
-
       <div class="demo-card">
-        <h3>Sticky Header</h3>
+        <h3><i class="fas fa-sticky-note"></i> Sticky Header</h3>
         <div class="demo-preview">
-          <div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;">I'm stuck to the top!</div>
+          <div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;">I'm stuck to the top!
+          </div>
           <div style="height:400px;">
             <p>Scroll below me...</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -213,61 +590,420 @@
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
-&lt;div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
-&lt;div style="height:400px;"&gt;...&lt;/div&gt;
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;div style="position:sticky; top:0; background:#3b82f6; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
+            &lt;div style="height:400px;"&gt;...&lt;/div&gt;
+          </pre>
         </div>
       </div>
 
       <div class="demo-card">
-        <h3>Hamburger Menu</h3>
+        <h3><i class="fas fa-bars"></i> Hamburger Menu</h3>
         <div class="demo-preview">
-          <div class="hamburger-btn" onclick="toggleHamburger(this)">☰</div>
+          <div class="hamburger-btn" onclick="toggleHamburger(this)"><i class="fas fa-bars"></i></div>
           <div class="demo-nav-links">
-            <a href="#">Link One</a>
-            <a href="#">Link Two</a>
-            <a href="#">Link Three</a>
+            <a href="#"><i class="fas fa-link"></i> Link One</a>
+            <a href="#"><i class="fas fa-link"></i> Link Two</a>
+            <a href="#"><i class="fas fa-link"></i> Link Three</a>
           </div>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
         <div class="code-block">
-&lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;☰&lt;/div&gt;
-&lt;div class="demo-nav-links"&gt;
-  &lt;a href="#"&gt;Link One&lt;/a&gt;
-  &lt;a href="#"&gt;Link Two&lt;/a&gt;
-  &lt;a href="#"&gt;Link Three&lt;/a&gt;
-&lt;/div&gt;
-
-&lt;style&gt;
-.hamburger-btn { cursor: pointer; }
-.demo-nav-links { display: none; }
-&lt;/style&gt;
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;&lt;i class="fas fa-bars"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;div class="demo-nav-links"&gt;
+              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link One&lt;/a&gt;
+              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link Two&lt;/a&gt;
+              &lt;a href="#"&gt;&lt;i class="fas fa-link"&gt;&lt;/i&gt; Link Three&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;style&gt;
+              .hamburger-btn { cursor: pointer; }
+              .demo-nav-links { display: none; }
+              .demo-nav-links.show { display: flex; }
+            &lt;/style&gt;
+          </pre>
         </div>
       </div>
 
+      <!-- Navbar 1: Gradient Slide - Created by Satyam12x -->
+      <div class="demo-card">
+        <h3><i class="fas fa-palette"></i> Gradient Slide Navbar</h3>
+        <div class="demo-preview">
+          <nav class="navbar-1">
+            <div class="nav-left">
+              <span class="site-name">Gradient</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
+              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
+            </ul>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;!-- Navbar 1: Gradient Slide - Created by Satyam12x --&gt;
+            &lt;nav class="navbar-1"&gt;
+              &lt;div class="nav-left"&gt;
+                &lt;span class="site-name"&gt;Gradient&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;style&gt;
+              .navbar-1 {
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+                padding: 0 2rem;
+                animation: gradientShift 5s ease infinite;
+              }
+              @keyframes gradientShift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+              }
+              .navbar-1 .nav-links a {
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+              }
+              .navbar-1 .nav-links a.active {
+                background: rgba(255, 255, 255, 0.3);
+                color: #ffffff;
+              }
+              .navbar-1 .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: scale(1.05);
+                color: white;
+              }
+            &lt;/style&gt;
+          </pre>
+        </div>
+      </div>
+
+      <!-- Navbar 2: Neon Glow - Created by Satyam12x -->
+      <div class="demo-card">
+        <h3><i class="fas fa-lightbulb"></i> Neon Glow Navbar</h3>
+        <div class="demo-preview">
+          <nav class="navbar-2">
+            <div class="nav-left">
+              <span class="site-name">Neon</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
+              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
+            </ul>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;!-- Navbar 2: Neon Glow - Created by Satyam12x --&gt;
+            &lt;nav class="navbar-2"&gt;
+              &lt;div class="nav-left"&gt;
+                &lt;span class="site-name"&gt;Neon&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;style&gt;
+              .navbar-2 {
+                background: #ffffff;
+                border-bottom: 2px solid #e5e7eb;
+              }
+              .dark-theme .navbar-2 {
+                background: #2d3748;
+                border-color: #4b5563;
+              }
+              .navbar-2 .nav-links a {
+                padding: 0.5rem 1rem;
+                position: relative;
+              }
+              .navbar-2 .nav-links a.active {
+                color: #ffffff;
+                background: #3b82f6;
+              }
+              .navbar-2 .nav-links a:hover::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, #3b82f6, #ec4899);
+                box-shadow: 0 0 8px #3b82f6, 0 0 16px #ec4899;
+                animation: neonGlow 1s ease-in-out;
+              }
+              @keyframes neonGlow {
+                0% { opacity: 0; transform: scale(0.8); }
+                100% { opacity: 1; transform: scale(1); }
+              }
+            &lt;/style&gt;
+          </pre>
+        </div>
+      </div>
+
+      <!-- Navbar 3: Slide Up - Created by="")
+      <div class="demo-card">
+        <h3><i class="fas fa-arrow-up"></i> Slide Up Navbar</h3>
+        <div class="demo-preview">
+          <nav class="navbar-3">
+            <div class="nav-left">
+              <span class="site-name">Slide</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#" style="--i: 1;" class="active"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="#" style="--i: 2;"><i class="fas fa-layer-group"></i> Templates</a></li>
+              <li><a href="#" style="--i: 3;"><i class="fas fa-users"></i> Contributors</a></li>
+            </ul>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;!-- Navbar 3: Slide Up - Created by Satyam12x --&gt;
+            &lt;nav class="navbar-3"&gt;
+              &lt;div class="nav-left"&gt;
+                &lt;span class="site-name"&gt;Slide&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#" style="--i: 1;" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#" style="--i: 2;"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#" style="--i: 3;"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;style&gt;
+              .navbar-3 {
+                background: #111827;
+                padding: 0 2rem;
+              }
+              .navbar-3 .nav-links a {
+                color: #e2e8f0;
+                padding: 0.5rem 1rem;
+                transform: translateY(10px);
+                opacity: 0;
+                animation: slideUp 0.5s ease forwards;
+                animation-delay: calc(0.1s * var(--i));
+              }
+              .navbar-3 .nav-links a.active {
+                color: #ffffff;
+                background: #3b82f6;
+              }
+              @keyframes slideUp {
+                to { transform: translateY(0); opacity: 1; }
+              }
+              .navbar-3 .nav-links a:hover {
+                color: #ffffff;
+                transform: translateY(-2px);
+              }
+            &lt;/style&gt;
+          </pre>
+        </div>
+      </div>
+
+      <!-- Navbar 4: Flip Effect - Created by Satyam12x -->
+      <div class="demo-card">
+        <h3><i class="fas fa-sync-alt"></i> Flip Effect Navbar</h3>
+        <div class="demo-preview">
+          <nav class="navbar-4">
+            <div class="nav-left">
+              <span class="site-name">Flip</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="#"><i class="fas fa-layer-group"></i> Templates</a></li>
+              <li><a href="#"><i class="fas fa-users"></i> Contributors</a></li>
+            </ul>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;!-- Navbar 4: Flip Effect - Created by Satyam12x --&gt;
+            &lt;nav class="navbar-4"&gt;
+              &lt;div class="nav-left"&gt;
+                &lt;span class="site-name"&gt;Flip&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home"&gt;&lt;/i&gt; Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group"&gt;&lt;/i&gt; Templates&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Contributors&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;style&gt;
+              .navbar-4 {
+                background: #ffffff;
+                border-bottom: 1px solid #e5e7eb;
+              }
+              .dark-theme .navbar-4 {
+                background: #2d3748;
+                border-color: #4b5563;
+              }
+              .navbar-4 .nav-links a {
+                padding: 0.5rem 1rem;
+                position: relative;
+                perspective: 1000px;
+              }
+              .navbar-4 .nav-links a.active {
+                color: #ffffff;
+                background: #3b82f6;
+              }
+              .navbar-4 .nav-links a::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #3b82f6;
+                transform: rotateX(-90deg);
+                transform-origin: bottom;
+                transition: transform 0.3s ease;
+              }
+              .navbar-4 .nav-links a:hover::before {
+                transform: rotateX(0deg);
+              }
+            &lt;/style&gt;
+          </pre>
+        </div>
+      </div>
+
+      <!-- Navbar 5: Icon Toggle - Created by Satyam12x -->
+      <div class="demo-card">
+        <h3><i class="fas fa-icons"></i> Icon Toggle Navbar</h3>
+        <div class="demo-preview">
+          <nav class="navbar-5">
+            <div class="nav-left">
+              <span class="site-name">Icon</span>
+            </div>
+            <ul class="nav-links">
+              <li><a href="#" class="active"><i class="fas fa-home icon"></i><span class="text"> Home</span></a></li>
+              <li><a href="#"><i class="fas fa-layer-group icon"></i><span class="text"> Templates</span></a></li>
+              <li><a href="#"><i class="fas fa-users icon"></i><span class="text"> Contributors</span></a></li>
+            </ul>
+            <div class="nav-right">
+              <button class="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+            </div>
+          </nav>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <pre>
+            &lt;!-- Navbar 5: Icon Toggle - Created by Satyam12x --&gt;
+            &lt;nav class="navbar-5"&gt;
+              &lt;div class="nav-left"&gt;
+                &lt;span class="site-name"&gt;Icon&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;ul class="nav-links"&gt;
+                &lt;li&gt;&lt;a href="#" class="active"&gt;&lt;i class="fas fa-home icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;&lt;i class="fas fa-layer-group icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Templates&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href#"&gt;&lt;i class="fas fa-users icon"&gt;&lt;/i&gt;&lt;span class="text"&gt; Contributors&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;
+              &lt;div class="nav-right"&gt;
+                &lt;button class="hamburger" aria-label="Toggle menu"&gt;&lt;i class="fas fa-bars"&gt;&lt;/i&gt;&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/nav&gt;
+            &lt;style&gt;
+              .navbar-5 {
+                background: #f1f5f9;
+                padding: 0 2rem;
+              }
+              .dark-theme .navbar-5 {
+                background: #374151;
+              }
+              .navbar-5 .nav-links a .text {
+                display: inline;
+              }
+              .navbar-5 .nav-links a .icon {
+                display: none;
+              }
+              .navbar-5 .nav-links a.active {
+                color: #ffffff;
+                background: #3b82f6;
+              }
+              @media (max-width: 1024px) {
+                .navbar-5 .nav-links a .text {
+                  display: none;
+                }
+                .navbar-5 .nav-links a .icon {
+                  display: inline;
+                }
+              }
+              .navbar-5 .nav-links a {
+                padding: 0.5rem 1rem;
+                position: relative;
+                overflow: hidden;
+              }
+              .navbar-5 .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: -100%;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #3b82f6);
+                transition: left 0.3s ease;
+              }
+              .navbar-5 .nav-links a:hover::after {
+                left: 0;
+              }
+            &lt;/style&gt;
+          </pre>
+        </div>
+      </div>
     </div>
   </section>
 
   <script>
     function toggleCode(button) {
-      const code = button.nextElementSibling;
-      const isVisible = code.style.display === "block";
-      code.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
+      const codeBlock = button.nextElementSibling;
+      const isVisible = codeBlock.classList.contains('show');
+      codeBlock.classList.toggle('show');
+      button.textContent = isVisible ? 'Show Code' : 'Hide Code';
     }
 
     function toggleHamburger(btn) {
       const links = btn.nextElementSibling;
-      links.style.display = links.style.display === "flex" ? "none" : "flex";
+      links.classList.toggle('show');
+    }
+
+    function copyCode(btn) {
+      const codeText = btn.nextElementSibling.textContent;
+      navigator.clipboard.writeText(codeText).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
     }
 
     const themeToggleBtn = document.getElementById('theme-toggle');
+    const hamburgerBtn = document.querySelector('.navbar .hamburger');
+    const navLinks = document.querySelector('.navbar .nav-links');
 
     function updateThemeIcon() {
+      const icon = themeToggleBtn.querySelector('i');
       if (document.body.classList.contains('dark-theme')) {
-        themeToggleBtn.textContent = '☀';
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
         themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
       } else {
-        themeToggleBtn.textContent = '🌙';
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
         themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
       }
     }
@@ -277,7 +1013,19 @@
       updateThemeIcon();
     });
 
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.navbar-5 .hamburger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const navLinks = btn.parentElement.previousElementSibling;
+        navLinks.classList.toggle('show');
+      });
+    });
+
     window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </script>
 </body>
+
 </html>

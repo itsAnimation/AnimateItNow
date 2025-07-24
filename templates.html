@@ -1,250 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Templates | AnimateItNow</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      .navbar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between; 
-        align-items: center;
-      }
 
-      .nav-right{
-        display: flex;
-        gap: 1.5rem;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates | AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .navbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      body.dark-theme {
-        background-color: #121212;
-        color: #f5f5f5;
-      }
+    .nav-right {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-      /* ✅ Heading fix */
-      body.dark-theme .templates-main h1 {
-        color: #ffffff;
-        font-weight: bold;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      }
+    /* 🌒 DARK MODE GLOBAL TEXT FIXES */
+    body.dark-theme {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
 
-      /* ✅ Template card titles */
-      body.dark-theme .template-card h2 {
-        color: #ffffff;
-      }
+    /* ✅ Heading fix */
+    body.dark-theme .templates-main h1 {
+      color: #ffffff;
+      font-weight: bold;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
 
-      /* ✅ Button text */
-      body.dark-theme .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    /* ✅ Navbar items */
+    body.dark-theme .navbar,
+    body.dark-theme .nav-links a,
+    body.dark-theme .site-name {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
 
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #fff;
-      }
+    body.dark-theme .nav-links a:hover {
+      color: #90caf9;
+    }
 
-      /* ✅ Navbar items */
-      body.dark-theme .navbar,
-      body.dark-theme .nav-links a,
-      body.dark-theme .site-name {
-        background-color: #1a1a1a;
-        color: #ffffff;
-      }
+    /* 🧼 Remove margins to prevent light-space bleed */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
 
-      body.dark-theme .nav-links a:hover {
-        color: #90caf9;
-      }
+    /* 💡 Smooth transitions for navbar and links */
+    .navbar,
+    .nav-links a {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
 
-      /* 🧼 Remove margins to prevent light-space bleed */
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        overflow-x: hidden;
-      }
+    /* 🖼 Templates grid layout */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-      /* 💡 Smooth transitions */
-      .templates-main h1,
-      .template-card h2,
-      .template-btn,
-      .navbar,
-      .nav-links a {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* ✨ Make text inside template cards fully visible */
-      body.dark-theme .template-card h2,
-      body.dark-theme .template-btn,
-      body.dark-theme .template-card {
-        color: #ffffff;
-      }
+    /* 🔧 Template card container */
+    .template-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-      /* 🎯 Bonus: ensure buttons look clickable and clean */
-      body.dark-theme .template-btn {
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    /* 🌒 Dark mode for template card */
+    body.dark-theme .template-card {
+      background: rgba(30, 30, 30, 0.9);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
 
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
+    /* 🎯 Enhanced hover effect for template cards */
+    .template-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.95);
+    }
 
-      /* 🌟 Optional: animate the visibility for style */
-      .template-card h2,
-      .template-btn {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* 🔧 Template card container */
-      body.dark-theme .template-card {
-        background-color: #1e1e1e;
-        color: #ffffff;
-        border: 1px solid #444;
-      }
+    body.dark-theme .template-card:hover {
+      background: rgba(40, 40, 40, 0.95);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.1);
+    }
 
-      /* 🖋 Titles inside cards */
-      body.dark-theme .template-card h2 {
-        color: #ffffff;
-      }
+    /* 🌟 Gradient border on hover */
+    .template-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #4f8cff, #90caf9);
+      border-radius: 16px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
 
-      /* 🔘 Buttons */
-      body.dark-theme .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    .template-card:hover::before {
+      opacity: 1;
+    }
 
-      /* 🖱 Hover effect for buttons */
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
+    /* 🖋 Template card titles */
+    .template-card h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 16px;
+      color: #1a1a1a;
+      transform: translateY(0);
+      transition: transform 0.4s ease, color 0.4s ease;
+    }
 
-      /* 🪄 Smooth transitions */
-      .template-card h2,
-      .template-btn {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* Keep consistent size and shape */
-      /* Base preview style */
-      .feature-preview,
-      .hero-preview {
-        height: 90px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-        background-color: #f0f0f0;
-        box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 10px;
-        box-sizing: border-box;
-      }
+    body.dark-theme .template-card h2 {
+      color: #ffffff;
+    }
 
-      /* Dark mode support */
-      body.dark-theme .feature-preview,
-      body.dark-theme .hero-preview {
-        background-color: #2a2a2a;
-        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-      }
+    .template-card:hover h2 {
+      transform: translateY(-5px);
+    }
 
-      /* Feature Cards Preview: 3 mini cards */
-      .feature-preview {
-        background-color: #4f8cff;
-        padding: 12px;
-        gap: 10px;
-      }
+    /* 🔘 Template button */
+    .template-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, #4f8cff, #90caf9);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+      transform: translateY(0);
+    }
 
-      .feature-preview .mini-card {
-        background-color: white;
-        flex: 1;
-        border-radius: 6px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        color: #555;
-        font-weight: 600;
-      }
+    body.dark-theme .template-btn {
+      background: linear-gradient(45deg, #3b6cd1, #6da8e5);
+    }
 
-      /* Hero Section Preview: big rectangle + text lines */
-      .hero-preview {
-        background-color: #4f8cff;
-        flex-direction: column;
-        padding: 14px;
-        gap: 8px;
-      }
+    .template-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(45deg, #3b6cd1, #6da8e5);
+    }
 
-      .hero-preview .hero-image {
-        background-color: white;
-        border-radius: 8px;
-        width: 100%;
-        height: 50px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      }
+    body.dark-theme .template-btn:hover {
+      background: linear-gradient(45deg, #2e55a8, #5b8cd1);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+    }
 
-      .hero-preview .hero-text-line {
-        background-color: white;
-        border-radius: 5px;
-        height: 8px;
-        width: 80%;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      }
+    /* 🪄 Smooth transitions for card content */
+    .template-card h2,
+    .template-btn {
+      transition: transform 0.4s ease, color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    }
 
-      .hero-preview .hero-text-line.short {
-        width: 50%;
-      }
+    /* 📏 Template preview */
+    .template-preview {
+      height: 120px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      box-sizing: border-box;
+    }
 
-      /* ADDED: Social Share Preview CSS */
-      .social-share-preview {
-        background-color: #4f8cff; /* A unifying blue */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        font-size: 28px;
-        color: white; /* Icons color */
-        height: 90px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-      }
+    body.dark-theme .template-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
 
-      body.dark-theme .social-share-preview {
-        background-color: #2a2a2a; /* Dark background */
-        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-      }
+    /* Feature Cards Preview: 3 mini cards */
+    .feature-preview {
+      background-color: #4f8cff;
+      padding: 12px;
+      gap: 10px;
+    }
 
-      /* Optional: Slight scaling on hover for the preview icons */
-      .social-share-preview .social-icon-preview {
-        transition: transform 0.2s ease-in-out;
-      }
-      .social-share-preview:hover .social-icon-preview {
-        transform: scale(1.1);
-      }
-      /* Navbar Preview */
+    .feature-preview .mini-card {
+      background-color: white;
+      flex: 1;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* Hero Section Preview: big rectangle + text lines */
+    .hero-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      padding: 14px;
+      gap: 10px;
+    }
+
+    .hero-preview .hero-image {
+      background-color: white;
+      border-radius: 8px;
+      width: 100%;
+      height: 60px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-preview .hero-text-line {
+      background-color: white;
+      border-radius: 5px;
+      height: 10px;
+      width: 80%;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-preview .hero-text-line.short {
+      width: 50%;
+    }
+
+    /* ADDED: Social Share Preview CSS */
+    .social-share-preview {
+      background-color: #4f8cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-size: 32px;
+      color: white;
+      height: 120px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-theme .social-share-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
+
+    .social-share-preview .social-icon-preview {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .social-share-preview:hover .social-icon-preview {
+      transform: scale(1.1);
+    }
+
+    /* Navbar Preview */
     .navbar-preview {
       background-color: #4f8cff;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 12px;
-      gap: 8px;
-      height: 90px;
+      gap: 10px;
+      height: 120px;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     body.dark-theme .navbar-preview {
@@ -252,7 +290,7 @@
     }
 
     .navbar-line {
-      height: 10px;
+      height: 12px;
       border-radius: 5px;
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -269,17 +307,16 @@
     .navbar-line.link.short {
       width: 50%;
     }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="images/logo.png" alt="Logo" class="logo" /> 
-         <h1 class="site-name">
-          Animate It Now  
-         </h1>
-      </div> 
-      <div class="nav-right">
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="Logo" class="logo" />
+      <h1 class="site-name">Animate It Now</h1>
+    </div>
+    <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html" class="active">Templates</a></li>
@@ -287,80 +324,69 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-      </div>
-    </nav>
+    </div>
+  </nav>
 
-
-    <main class="templates-main">
-      <h1>Templates Gallery</h1>
-      <section class="templates-grid">
-        <article class="template-card">
-          <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Hover Button Effects</h2>
-          <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Loaders</h2>
-          <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Popup Templates</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View Template</a>
-        </article>
-
-        <article class="template-card">
-          <h2>Glassmorphism profile card</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/glassmorphism.html"
-            >View Template</a
-          >
-        </article>
-
-        <article class="template-card">
-          <h2>Feature Cards UI</h2>
-          <div class="template-preview feature-preview">
-            <div class="mini-card">Card1</div>
-            <div class="mini-card">Card2</div>
-            <div class="mini-card">Card3</div>
-          </div>
-          <a class="template-btn" href="templates/feature.html">View Template</a>
-        </article>
-
-        <article class="template-card">
-          <h2>Hero Section Template</h2>
-          <div class="template-preview hero-preview">
-            <div class="hero-image"></div>
-            <div class="hero-text-line"></div>
-            <div class="hero-text-line short"></div>
-          </div>
-          <a class="template-btn" href="templates/hero.html">View Template</a>
-        </article>
-
-        <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
-        <article class="template-card">
-          <h2>Animated Social Share Buttons</h2>
-          <div class="template-preview social-share-preview">
-            <i class="fab fa-facebook-f social-icon-preview"></i>
-            <i class="fab fa-twitter social-icon-preview"></i>
-            <i class="fab fa-instagram social-icon-preview"></i>
-          </div>
-          <a class="template-btn" href="templates/social-share-buttons.html"
-            >View Template</a
-          >
-        </article>
-        <article class="template-card">
-          <h2>Neumorphic Button Effects</h2>
-          <div class="template-preview neumorphic-preview"></div>
-          <a class="template-btn" href="templates/neumorphic.html">View Template</a>
-          </article>
-         <!--NAVBAR--->
+  <main class="templates-main">
+    <h1>Templates Gallery</h1>
+    <section class="templates-grid">
+      <article class="template-card">
+        <h2>Login Page UI</h2>
+        <div class="template-preview login-preview"></div>
+        <a class="template-btn" href="templates/login.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Hover Button Effects</h2>
+        <div class="template-preview button-preview"></div>
+        <a class="template-btn" href="templates/button.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Loaders</h2>
+        <div class="template-preview loader-preview"></div>
+        <a class="template-btn" href="templates/loader.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Popup Templates</h2>
+        <div class="template-preview modal-preview"></div>
+        <a class="template-btn" href="templates/modal.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Glassmorphism Profile Card</h2>
+        <div class="template-preview modal-preview"></div>
+        <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Feature Cards UI</h2>
+        <div class="template-preview feature-preview">
+          <div class="mini-card">Card1</div>
+          <div class="mini-card">Card2</div>
+          <div class="mini-card">Card3</div>
+        </div>
+        <a class="template-btn" href="templates/feature.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Hero Section Template</h2>
+        <div class="template-preview hero-preview">
+          <div class="hero-image"></div>
+          <div class="hero-text-line"></div>
+          <div class="hero-text-line short"></div>
+        </div>
+        <a class="template-btn" href="templates/hero.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Animated Social Share Buttons</h2>
+        <div class="template-preview social-share-preview">
+          <i class="fab fa-facebook-f social-icon-preview"></i>
+          <i class="fab fa-twitter social-icon-preview"></i>
+          <i class="fab fa-instagram social-icon-preview"></i>
+        </div>
+        <a class="template-btn" href="templates/social-share-buttons.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Neumorphic Button Effects</h2>
+        <div class="template-preview neumorphic-preview"></div>
+        <a class="template-btn" href="templates/neumorphic.html">View Template</a>
+      </article>
       <article class="template-card">
         <h2>Navbar Variants</h2>
         <div class="template-preview navbar-preview">
@@ -369,94 +395,84 @@
           <div class="navbar-line link short"></div>
         </div>
         <a class="template-btn" href="templates/navbar.html">View Template</a>
-      </article> 
-      </section>
-    </main>
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
-        </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li>
-              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
-                >🌐 GitHub</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >💼 LinkedIn</a
-              >
-            </li>
-            <li>
-              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"
-                >📧 Email Us</a
-              >
-            </li>
-          </ul>
-        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
       </div>
-      <div class="footer-bottom">
-        <p>
-          © 2025 AnimateItNow. Made with ❤️ by
-          <span class="highlight">Anuj</span> and Contributors.
-        </p>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+          </li>
+          <li>
+            <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a>
+          </li>
+        </ul>
       </div>
-    </footer>
-    <div id="cursor-snake"></div>
-    <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const prefersDarkScheme = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
+    </div>
+    <div class="footer-bottom">
+      <p>
+        © 2025 AnimateItNow. Made with ❤️ by
+        <span class="highlight">Anuj</span> and Contributors.
+      </p>
+    </div>
+  </footer>
+  <div id="cursor-snake"></div>
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById("theme-toggle");
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-      // Check for saved theme or preferred scheme
-      const currentTheme = localStorage.getItem("theme");
-      if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
-        themeToggle.textContent = "☀️";
-      } else if (currentTheme === "light") {
+    // Check for saved theme or preferred scheme
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    } else if (currentTheme === "light") {
+      document.body.classList.remove("dark-theme");
+      themeToggle.textContent = "🌙";
+    } else if (prefersDarkScheme.matches) {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (document.body.classList.contains("dark-theme")) {
         document.body.classList.remove("dark-theme");
+        localStorage.setItem("theme", "light");
         themeToggle.textContent = "🌙";
-      } else if (prefersDarkScheme.matches) {
+      } else {
         document.body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
         themeToggle.textContent = "☀️";
       }
+    });
 
-      themeToggle.addEventListener("click", () => {
-        if (document.body.classList.contains("dark-theme")) {
-          document.body.classList.remove("dark-theme");
-          localStorage.setItem("theme", "light");
-          themeToggle.textContent = "🌙";
-        } else {
-          document.body.classList.add("dark-theme");
-          localStorage.setItem("theme", "dark");
-          themeToggle.textContent = "☀️";
-        }
-      });
+    // Scroll animation for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      // Scroll animation for cards
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+    document.querySelectorAll(".template-card").forEach((card) => {
+      observer.observe(card);
+    });
+  </script>
+</body>
 
-      document.querySelectorAll(".template-card").forEach((card) => {
-        observer.observe(card);
-      });
-    </script>
-  </body>
 </html>
