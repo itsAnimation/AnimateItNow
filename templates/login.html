@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login Variants with Custom Navbar and Dark Mode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     /* CSS Variables for Light and Dark mode */
     :root {
@@ -36,7 +39,7 @@
       transition: background-color var(--transition), color var(--transition);
     }
 
-    /* Your navbar CSS with variables */
+    /* Navbar CSS with variables */
     .navbar {
       position: fixed;
       top: 0;
@@ -112,7 +115,6 @@
     section {
       max-width: 400px;
       margin: 100px auto 50px;
-      /* add top margin for fixed navbar */
       padding: 30px 20px;
       background: #fff;
       border-radius: 12px;
@@ -256,8 +258,6 @@
       background: #0056b3;
     }
 
-    /* NEW VARIANTS */
-
     /* Variant 5 - Glassmorphism */
     .variant-5 {
       background: rgba(255, 255, 255, 0.25);
@@ -287,12 +287,10 @@
     }
 
     @keyframes shimmer {
-
       0%,
       100% {
         transform: translateX(-100%) translateY(-100%) rotate(45deg);
       }
-
       50% {
         transform: translateX(100%) translateY(100%) rotate(45deg);
       }
@@ -643,9 +641,241 @@
       left: 100%;
     }
 
+    /* Variant 10 - Tabbed Interface */
+    .variant-10 {
+      max-width: 480px;
+      width: 100%;
+      margin: 100px auto 50px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body.dark .variant-10 {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+
+    .variant-10 .header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    body.dark .variant-10 .header {
+      border-bottom: 2px solid #555;
+    }
+
+    .variant-10 .back-button {
+      cursor: pointer;
+      color: #111418;
+      transition: color 0.3s;
+    }
+
+    body.dark .variant-10 .back-button {
+      color: #ddd;
+    }
+
+    .variant-10 .back-button:hover {
+      color: #2563eb;
+    }
+
+    .variant-10 .title {
+      text-align: center;
+      padding: 20px;
+      color: #111418;
+      font-size: 28px;
+      font-weight: 700;
+      border-bottom: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .variant-10 .title {
+      color: #ddd;
+      border-bottom: 2px solid #555;
+    }
+
+    .variant-10 .toggle-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    body.dark .variant-10 .toggle-tabs {
+      border-bottom: 2px solid #555;
+    }
+
+    .variant-10 .toggle-tabs button {
+      padding: 10px 20px;
+      border: none;
+      background: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-bottom: 2px solid transparent;
+      color: #111418;
+    }
+
+    body.dark .variant-10 .toggle-tabs button {
+      color: #ddd;
+    }
+
+    .variant-10 .toggle-tabs button.active {
+      color: #2563eb;
+      border-bottom: 2px solid #2563eb;
+    }
+
+    .variant-10 .toggle-tabs button:hover {
+      color: #2563eb;
+    }
+
+    .variant-10 .form-container {
+      padding: 20px;
+    }
+
+    .variant-10 .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .variant-10 .form-group input {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-bottom: 2px solid #e5e7eb;
+      font-size: 16px;
+      color: #111418;
+      background: transparent;
+      transition: border-color 0.3s;
+    }
+
+    body.dark .variant-10 .form-group input {
+      color: #ddd;
+      border-bottom: 2px solid #555;
+    }
+
+    .variant-10 .form-group input:focus {
+      outline: none;
+      border-bottom-color: #2563eb;
+    }
+
+    .variant-10 .form-group input::placeholder {
+      color: #6b7280;
+    }
+
+    body.dark .variant-10 .form-group input::placeholder {
+      color: #aaa;
+    }
+
+    .variant-10 .form-group .error {
+      color: #dc2626;
+      font-size: 12px;
+      position: absolute;
+      bottom: -18px;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .variant-10 .form-group.invalid .error {
+      opacity: 1;
+    }
+
+    .variant-10 .forgot-password {
+      display: block;
+      text-align: center;
+      padding: 10px 0;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    body.dark .variant-10 .forgot-password {
+      color: #aaa;
+    }
+
+    .variant-10 .forgot-password:hover {
+      color: #2563eb;
+    }
+
+    .variant-10 .button-group {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .variant-10 .button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .variant-10 .primary-button {
+      background: #2563eb;
+      color: white;
+    }
+
+    .variant-10 .primary-button:hover {
+      background: #1d4ed8;
+    }
+
+    .variant-10 .secondary-button {
+      background: transparent;
+      color: #111418;
+      border: 2px solid #e5e7eb;
+    }
+
+    body.dark .variant-10 .secondary-button {
+      color: #ddd;
+      border: 2px solid #555;
+    }
+
+    .variant-10 .secondary-button:hover {
+      background: #f3f4f6;
+    }
+
+    body.dark .variant-10 .secondary-button:hover {
+      background: #2a2a2a;
+    }
+
+    .variant-10 #signup-form {
+      display: none;
+    }
+
+    .variant-10 .fade-in {
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* Expand code */
     .expand-btn {
-      display: inline-block;
+      display: block;
       margin: 20px auto 10px;
       padding: 8px 18px;
       background-color: var(--accent);
@@ -684,12 +914,57 @@
       .nav-links {
         gap: 10px;
       }
+
+      .variant-10 {
+        max-width: 90%;
+        margin: 80px auto 40px;
+      }
+
+      .variant-10 .title {
+        font-size: 24px;
+        padding: 15px;
+      }
+
+      .variant-10 .form-container {
+        padding: 15px;
+      }
+
+      .variant-10 .button-group {
+        padding: 15px;
+      }
+
+      .variant-10 .toggle-tabs {
+        padding: 8px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .variant-10 {
+        max-width: 600px;
+        margin: 100px auto 50px;
+      }
+
+      .variant-10 .title {
+        font-size: 32px;
+        padding: 30px;
+      }
+
+      .variant-10 .form-container {
+        padding: 30px;
+      }
+
+      .variant-10 .button-group {
+        padding: 30px;
+      }
+
+      .variant-10 .toggle-tabs {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <nav class="navbar" id="navbar">
     <div class="nav-left">
       <img src="../images/logo.png" alt="Logo" class="logo" />
@@ -714,13 +989,13 @@
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;form class="login-form"&gt;
-  &lt;input type="text" placeholder="Username" required /&gt;
-  &lt;input type="password" placeholder="Password" required /&gt;
-  &lt;button type="submit"&gt;Login&lt;/button&gt;
-&lt;/form&gt;
+<form class="login-form">
+  <input type="text" placeholder="Username" required />
+  <input type="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+</form>
 
-&lt;style&gt;
+<style>
 form.login-form {
   display: flex;
   flex-direction: column;
@@ -747,7 +1022,7 @@ form.login-form button {
 form.login-form button:hover {
   background: #3a6fcc;
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -761,15 +1036,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-2"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-2">
+  <form class="login-form">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-2 {
   box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
 }
@@ -798,7 +1073,7 @@ form.login-form button {
 form.login-form button:hover {
   background: #3a6fcc;
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -812,15 +1087,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-3"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="text" placeholder="Username" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;Login&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-3">
+  <form class="login-form">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-3 {
   background: #4f8cff;
   color: white;
@@ -842,7 +1117,7 @@ form.login-form button:hover {
 .variant-3 button:hover {
   background: #dbe9ff;
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -856,15 +1131,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-4"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="text" placeholder="Email" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-4">
+  <form class="login-form">
+    <input type="text" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-4 input {
   border: none;
   border-bottom: 2px solid #4f8cff;
@@ -887,7 +1162,7 @@ form.login-form button:hover {
 .variant-4 button:hover {
   background: #0056b3;
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -901,15 +1176,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-5"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-5">
+  <form class="login-form">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-5 {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(20px);
@@ -923,7 +1198,8 @@ form.login-form button:hover {
   top: -50%; left: -50%;
   width: 200%; height: 200%;
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
-  animation: shimmer 3s ease-in-out infinite;
+  animation: shimmer 3s ease-in-out;
+  display: inline-block;
 }
 @keyframes shimmer {
   0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
@@ -944,7 +1220,7 @@ form.login-form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -958,19 +1234,19 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-6"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;LOGIN&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-6">
+  <form class="login-form">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">LOGIN</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-6 {
   background: #000;
   color: #fff;
-  border: 2px solid #333;
+  border: 2px твердый #333;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
 }
 .variant-6 h2 {
@@ -998,7 +1274,7 @@ form.login-form button:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -1012,15 +1288,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-7"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="text" placeholder="Username" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;SIGN IN&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-7">
+  <form class="login-form">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">SIGN IN</button>
+    </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-7 {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -1057,7 +1333,7 @@ form.login-form button:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -1071,15 +1347,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-8"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email Address" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;ACCESS&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-8">
+  <form class="login-form">
+    <input type="email" placeholder="Email Address" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">ACCESS</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-8 {
   background: linear-gradient(145deg, #f0f0f0, #cacaca);
   border: none;
@@ -1113,7 +1389,7 @@ form.login-form button:hover {
   box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
   transform: translateY(-2px);
 }
-&lt;/style&gt;
+</style>
   </pre>
   </section>
 
@@ -1127,15 +1403,15 @@ form.login-form button:hover {
     </form>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
-&lt;section class="variant-9"&gt;
-  &lt;form class="login-form"&gt;
-    &lt;input type="text" placeholder="Username" required /&gt;
-    &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;ENTER&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/section&gt;
+<section class="variant-9">
+  <form class="login-form">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">ENTER</button>
+  </form>
+</section>
 
-&lt;style&gt;
+<style>
 .variant-9 {
   background: #fff;
   position: relative;
@@ -1173,8 +1449,283 @@ form.login-form button:hover {
   transform: translateX(3px);
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
 }
-&lt;/style&gt;
+</style>
   </pre>
+  </section>
+
+  <section class="variant-10">
+    <h2>Login Variant 10 - Tabbed Interface</h2>
+    <p class="subtitle">Interactive login/signup with tabs and validation</p>
+    <div class="header">
+      <div class="back-button" onclick="history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+          <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+        </svg>
+      </div>
+    </div>
+    <h2 class="title">Welcome user</h2>
+    <div class="toggle-tabs">
+      <button class="tab-button active" data-target="login-form">Login</button>
+      <button class="tab-button" data-target="signup-form">Sign Up</button>
+    </div>
+    <div class="form-container">
+      <form id="login-form" class="login-form fade-in">
+        <div class="form-group">
+          <input type="text" placeholder="Username" id="login-username">
+          <span class="error">Username is required</span>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" id="login-password">
+          <span class="error">Password is required</span>
+        </div>
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <div class="button-group">
+          <button type="button" class="button primary-button" onclick="handleLogin()">Log in</button>
+          <button type="button" class="button secondary-button" onclick="switchToSignup()">New user? Sign Up</button>
+        </div>
+      </form>
+      <form id="signup-form" class="login-form">
+        <div class="form-group">
+          <input type="text" placeholder="Username" id="signup-username">
+          <span class="error">Username is required</span>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email" id="signup-email">
+          <span class="error">Valid email is required</span>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" id="signup-password">
+          <span class="error">Password must be at least 8 characters</span>
+        </div>
+        <div class="button-group">
+          <button type="button" class="button primary-button" onclick="handleSignup()">Sign Up</button>
+          <button type="button" class="button secondary-button" onclick="switchToLogin()">Existing user? Log In</button>
+        </div>
+      </form>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+<section class="variant-10">
+  <div class="header">
+    <div class="back-button" onclick="history.back()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+      </svg>
+    </div>
+  </div>
+  <h2 class="title">Welcome user</h2>
+  <div class="toggle-tabs">
+    <button class="tab-button active" data-target="login-form">Login</button>
+    <button class="tab-button" data-target="signup-form">Sign Up</button>
+  </div>
+  <div class="form-container">
+    <form id="login-form" class="login-form fade-in">
+      <div class="form-group">
+        <input type="text" placeholder="Username" id="login-username">
+        <span class="error">Username is required</span>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" id="login-password">
+        <span class="error">Password is required</span>
+      </div>
+      <a href="#" class="forgot-password">Forgot password?</a>
+      <div class="button-group">
+        <button type="button" class="button primary-button" onclick="handleLogin()">Log in</button>
+        <button type="button" class="button secondary-button" onclick="switchToSignup()">New user? Sign Up</button>
+      </div>
+    </form>
+    <form id="signup-form" class="login-form">
+      <div class="form-group">
+        <input type="text" placeholder="Username" id="signup-username">
+        <span class="error">Username is required</span>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" id="signup-email">
+        <span class="error">Valid email is required</span>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" id="signup-password">
+        <span class="error">Password must be at least 8 characters</span>
+      </div>
+      <div class="button-group">
+        <button type="button" class="button primary-button" onclick="handleSignup()">Sign Up</button>
+        <button type="button" class="button secondary-button" onclick="switchToLogin()">Existing user? Log In</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+.variant-10 {
+  max-width: 480px;
+  width: 100%;
+  margin: 100px auto 50px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+.variant-10 .header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e5e7eb;
+}
+.variant-10 .back-button {
+  cursor: pointer;
+  color: #111418;
+  transition: color 0.3s;
+}
+.variant-10 .back-button:hover {
+  color: #2563eb;
+}
+.variant-10 .title {
+  text-align: center;
+  padding: 20px;
+  color: #111418;
+  font-size: 28px;
+  font-weight: 700;
+  border-bottom: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+.variant-10 .toggle-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+.variant-10 .toggle-tabs button {
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-bottom: 2px solid transparent;
+}
+.variant-10 .toggle-tabs button.active {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+.variant-10 .toggle-tabs button:hover {
+  color: #2563eb;
+}
+.variant-10 .form-container {
+  padding: 20px;
+}
+.variant-10 .form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+.variant-10 .form-group input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-bottom: 2px solid #e5e7eb;
+  font-size: 16px;
+  color: #111418;
+  background: transparent;
+  transition: border-color 0.3s;
+}
+.variant-10 .form-group input:focus {
+  outline: none;
+  border-bottom-color: #2563eb;
+}
+.variant-10 .form-group input::placeholder {
+  color: #6b7280;
+}
+.variant-10 .form-group .error {
+  color: #dc2626;
+  font-size: 12px;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.variant-10 .form-group.invalid .error {
+  opacity: 1;
+}
+.variant-10 .forgot-password {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.variant-10 .forgot-password:hover {
+  color: #2563eb;
+}
+.variant-10 .button-group {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.variant-10 .button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+.variant-10 .primary-button {
+  background: #2563eb;
+  color: white;
+}
+.variant-10 .primary-button:hover {
+  background: #1d4ed8;
+}
+.variant-10 .secondary-button {
+  background: transparent;
+  color: #111418;
+  border: 2px solid #e5e7eb;
+}
+.variant-10 .secondary-button:hover {
+  background: #f3f4f6;
+}
+.variant-10 #signup-form {
+  display: none;
+}
+.variant-10 .fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (min-width: 768px) {
+  .variant-10 {
+    max-width: 600px;
+    margin: 100px auto 50px;
+  }
+  .variant-10 .title {
+    font-size: 32px;
+    padding: 30px;
+  }
+  .variant-10 .form-container {
+    padding: 30px;
+  }
+  .variant-10 .button-group {
+    padding: 30px;
+  }
+  .variant-10 .toggle-tabs {
+    padding: 15px;
+  }
+}
+</style>
+    </pre>
   </section>
 
   <script>
@@ -1200,8 +1751,77 @@ form.login-form button:hover {
         themeToggleBtn.textContent = '🌙';
       }
     });
+
+    // Variant 10 - Tabbed Interface scripts
+    const tabs = document.querySelectorAll('.variant-10 .tab-button');
+    const forms = document.querySelectorAll('.variant-10 .form-container form');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        forms.forEach(form => form.style.display = 'none');
+        const targetForm = document.getElementById(tab.dataset.target);
+        targetForm.style.display = 'block';
+        targetForm.classList.add('fade-in');
+        setTimeout(() => targetForm.classList.remove('fade-in'), 300);
+      });
+    });
+
+    function switchToSignup() {
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector('.variant-10 [data-target="signup-form"]').classList.add('active');
+      forms.forEach(form => form.style.display = 'none');
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('signup-form').classList.add('fade-in');
+      setTimeout(() => document.getElementById('signup-form').classList.remove('fade-in'), 300);
+    }
+
+    function switchToLogin() {
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector('.variant-10 [data-target="login-form"]').classList.add('active');
+      forms.forEach(form => form.style.display = 'none');
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('login-form').classList.add('fade-in');
+      setTimeout(() => document.getElementById('login-form').classList.remove('fade-in'), 300);
+    }
+
+    function validateInput(input, minLength = 1) {
+      const parent = input.parentElement;
+      if (input.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValid = emailRegex.test(input.value);
+        parent.classList.toggle('invalid', !isValid);
+        return isValid;
+      }
+      const isValid = input.value.length >= minLength;
+      parent.classList.toggle('invalid', !isValid);
+      return isValid;
+    }
+
+    function handleLogin() {
+      const username = document.getElementById('login-username');
+      const password = document.getElementById('login-password');
+      const isValid = validateInput(username) && validateInput(password, 8);
+      if (isValid) {
+        alert('Logging in...');
+      } else {
+        alert('Please fill in all fields correctly');
+      }
+    }
+
+    function handleSignup() {
+      const username = document.getElementById('signup-username');
+      const email = document.getElementById('signup-email');
+      const password = document.getElementById('signup-password');
+      const isValid = validateInput(username) && validateInput(email) && validateInput(password, 8);
+      if (isValid) {
+        alert('Signing up...');
+      } else {
+        alert('Please fill in all fields correctly');
+      }
+    }
   </script>
-
 </body>
-
 </html>
