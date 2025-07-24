@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Developer Portfolio Templates with Custom Navbar and Dark Mode</title>
+  <style>
+    /* CSS Variables for Light and Dark mode */
+    :root {
+      --nav-text: #222;
+      --accent: #007BFF;
+      --background: #f5f5f5;
+      --text-color: #222;
+      --transition: 0.3s ease;
+    }
+
+    body.dark {
+      --nav-text: #ddd;
+      --accent: #55aaff;
+      --background: #121212;
+      --text-color: #ddd;
+    }
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--text-color);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    /* Navbar CSS with variables */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+      background: var(--accent);
+      border-radius: 6px;
+    }
+
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Section wrapper */
+    section {
+      max-width: 900px;
+      margin: 100px auto 50px;
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    body.dark section {
+      background: #1e1e1e;
+      color: var(--text-color);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      color: #666;
+    }
+
+    body.dark .subtitle {
+      color: #aaa;
+    }
+
+    /* Portfolio Base Styles */
+    .portfolio-template {
+      width: 100%;
+      min-height: 500px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .portfolio-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .portfolio-name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-title {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .portfolio-section {
+      padding: 1.5rem 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-item {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .project-card {
+      padding: 1.5rem;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .project-tech {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Template 1 - Light Theme */
+    .template-1 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .template-1 .portfolio-avatar {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .template-1 .portfolio-nav a {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .template-1 .portfolio-nav a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .template-1 .portfolio-section {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .template-1 .skill-item {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .template-1 .project-card {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .template-1 .tech-tag {
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    /* Template 2 - Dark Theme */
+    .template-2 {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+
+    .template-2 .portfolio-avatar {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+    }
+
+    .template-2 .portfolio-nav a {
+      background: #1a1a1a;
+      color: #e0e0e0;
+      border: 1px solid #333;
+    }
+
+    .template-2 .portfolio-nav a:hover {
+      background: #333;
+      border-color: #555;
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+    }
+
+    .template-2 .portfolio-section {
+      background: #111;
+      border: 1px solid #222;
+    }
+
+    .template-2 .skill-item {
+      background: #1a1a1a;
+      color: #4ecdc4;
+      border: 1px solid #333;
+    }
+
+    .template-2 .project-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+    }
+
+    .template-2 .project-card:hover {
+      border-color: #555;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+    }
+
+    .template-2 .tech-tag {
+      background: #333;
+      color: #ff6b6b;
+    }
+
+    /* Template 3 - Minimalistic */
+    .template-3 {
+      background: #fafafa;
+      color: #333;
+      border: 1px solid #e0e0e0;
+    }
+
+    .template-3 .portfolio-avatar {
+      background: #333;
+      color: white;
+    }
+
+    .template-3 .portfolio-nav a {
+      background: transparent;
+      color: #333;
+      border: 2px solid #333;
+    }
+
+    .template-3 .portfolio-nav a:hover {
+      background: #333;
+      color: white;
+    }
+
+    .template-3 .portfolio-section {
+      background: white;
+      border: 1px solid #e0e0e0;
+    }
+
+    .template-3 .skill-item {
+      background: white;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    .template-3 .project-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+    }
+
+    .template-3 .project-card:hover {
+      border-color: #333;
+    }
+
+    .template-3 .tech-tag {
+      background: #f0f0f0;
+      color: #666;
+    }
+
+    /* Expand code */
+    .expand-btn {
+      display: inline-block;
+      margin: 20px auto 10px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+
+    .expand-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .code-block {
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 20px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      text-align: left;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      section {
+        width: 95%;
+        padding: 20px 15px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .portfolio-nav {
+        gap: 1rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <section>
+    <h2>Portfolio Template 1 - Light Gradient</h2>
+    <p class="subtitle">Modern gradient design with glassmorphism effects</p>
+    <div class="portfolio-template template-1">
+      <div class="portfolio-header">
+        <div class="portfolio-avatar">JD</div>
+        <div class="portfolio-name">John Doe</div>
+        <div class="portfolio-title">Full Stack Developer</div>
+        <nav class="portfolio-nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>About Me</h3>
+        <p>Passionate full-stack developer with 5+ years of experience creating web applications. I love turning complex
+          problems into simple, beautiful designs.</p>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-item">JavaScript</div>
+          <div class="skill-item">React</div>
+          <div class="skill-item">Node.js</div>
+          <div class="skill-item">Python</div>
+          <div class="skill-item">MongoDB</div>
+          <div class="skill-item">AWS</div>
+        </div>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Featured Projects</h3>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-title">E-Commerce Platform</div>
+            <div class="project-desc">Full-stack e-commerce solution with payment integration</div>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-title">Task Management App</div>
+            <div class="project-desc">Collaborative task management with real-time updates</div>
+            <div class="project-tech">
+              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">Socket.io</span>
+              <span class="tech-tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">&lt;div class="portfolio-template template-1"&gt;
+  &lt;div class="portfolio-header"&gt;
+    &lt;div class="portfolio-avatar"&gt;JD&lt;/div&gt;
+    &lt;div class="portfolio-name"&gt;John Doe&lt;/div&gt;
+    &lt;div class="portfolio-title"&gt;Full Stack Developer&lt;/div&gt;
+    &lt;nav class="portfolio-nav"&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+      &lt;a href="#skills"&gt;Skills&lt;/a&gt;
+      &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+      &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="portfolio-section"&gt;
+    &lt;h3&gt;About Me&lt;/h3&gt;
+    &lt;p&gt;Passionate full-stack developer...&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="portfolio-section"&gt;
+    &lt;h3&gt;Skills&lt;/h3&gt;
+    &lt;div class="skills-grid"&gt;
+      &lt;div class="skill-item"&gt;JavaScript&lt;/div&gt;
+      &lt;div class="skill-item"&gt;React&lt;/div&gt;
+      &lt;!-- More skills --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.template-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.template-1 .portfolio-avatar {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.template-1 .portfolio-nav a {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.template-1 .portfolio-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.template-1 .skill-item {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+&lt;/style&gt;</pre>
+  </section>
+
+  <section>
+    <h2>Portfolio Template 2 - Dark Theme</h2>
+    <p class="subtitle">Sleek dark design with neon accents and modern styling</p>
+    <div class="portfolio-template template-2">
+      <div class="portfolio-header">
+        <div class="portfolio-avatar">AS</div>
+        <div class="portfolio-name">Alex Smith</div>
+        <div class="portfolio-title">Frontend Developer & UI/UX Designer</div>
+        <nav class="portfolio-nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>About Me</h3>
+        <p>Creative frontend developer specializing in modern web technologies and user experience design. I craft
+          digital experiences that are both beautiful and functional.</p>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Technical Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-item">React</div>
+          <div class="skill-item">TypeScript</div>
+          <div class="skill-item">Next.js</div>
+          <div class="skill-item">Tailwind</div>
+          <div class="skill-item">Figma</div>
+          <div class="skill-item">GraphQL</div>
+        </div>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Recent Work</h3>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-title">Design System</div>
+            <div class="project-desc">Comprehensive design system for enterprise applications</div>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Storybook</span>
+              <span class="tech-tag">Figma</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-title">Analytics Dashboard</div>
+            <div class="project-desc">Real-time data visualization dashboard</div>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">D3.js</span>
+              <span class="tech-tag">TypeScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">&lt;div class="portfolio-template template-2"&gt;
+  &lt;div class="portfolio-header"&gt;
+    &lt;div class="portfolio-avatar"&gt;AS&lt;/div&gt;
+    &lt;div class="portfolio-name"&gt;Alex Smith&lt;/div&gt;
+    &lt;div class="portfolio-title"&gt;Frontend Developer & UI/UX Designer&lt;/div&gt;
+    &lt;nav class="portfolio-nav"&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+      &lt;a href="#skills"&gt;Skills&lt;/a&gt;
+      &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+      &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="portfolio-section"&gt;
+    &lt;h3&gt;About Me&lt;/h3&gt;
+    &lt;p&gt;Creative frontend developer...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.template-2 {
+  background: #0a0a0a;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.template-2 .portfolio-avatar {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  color: white;
+}
+
+.template-2 .portfolio-nav a {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+.template-2 .portfolio-nav a:hover {
+  background: #333;
+  border-color: #555;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.template-2 .portfolio-section {
+  background: #111;
+  border: 1px solid #222;
+}
+
+.template-2 .skill-item {
+  background: #1a1a1a;
+  color: #4ecdc4;
+  border: 1px solid #333;
+}
+
+.template-2 .project-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+
+.template-2 .tech-tag {
+  background: #333;
+  color: #ff6b6b;
+}
+&lt;/style&gt;</pre>
+  </section>
+
+  <section>
+    <h2>Portfolio Template 3 - Minimalistic</h2>
+    <p class="subtitle">Clean and simple design focusing on content and readability</p>
+    <div class="portfolio-template template-3">
+      <div class="portfolio-header">
+        <div class="portfolio-avatar">MJ</div>
+        <div class="portfolio-name">Maria Johnson</div>
+        <div class="portfolio-title">Backend Developer</div>
+        <nav class="portfolio-nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>About</h3>
+        <p>Experienced backend developer focused on building scalable and efficient server-side applications. I enjoy
+          solving complex technical challenges and optimizing system performance.</p>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Core Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-item">Python</div>
+          <div class="skill-item">Django</div>
+          <div class="skill-item">PostgreSQL</div>
+          <div class="skill-item">Docker</div>
+          <div class="skill-item">Redis</div>
+          <div class="skill-item">AWS</div>
+        </div>
+      </div>
+
+      <div class="portfolio-section">
+        <h3>Projects</h3>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-title">API Gateway</div>
+            <div class="project-desc">Microservices API gateway with authentication and rate limiting</div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Redis</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-title">Data Pipeline</div>
+            <div class="project-desc">ETL pipeline for processing large datasets</div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Apache Airflow</span>
+              <span class="tech-tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">&lt;div class="portfolio-template template-3"&gt;
+  &lt;div class="portfolio-header"&gt;
+    &lt;div class="portfolio-avatar"&gt;MJ&lt;/div&gt;
+    &lt;div class="portfolio-name"&gt;Maria Johnson&lt;/div&gt;
+    &lt;div class="portfolio-title"&gt;Backend Developer&lt;/div&gt;
+    &lt;nav class="portfolio-nav"&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+      &lt;a href="#skills"&gt;Skills&lt;/a&gt;
+      &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+      &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="portfolio-section"&gt;
+    &lt;h3&gt;About&lt;/h3&gt;
+    &lt;p&gt;Experienced backend developer...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.template-3 {
+  background: #fafafa;
+  color: #333;
+  border: 1px solid #e0e0e0;
+}
+
+.template-3 .portfolio-avatar {
+  background: #333;
+  color: white;
+}
+
+.template-3 .portfolio-nav a {
+  background: transparent;
+  color: #333;
+  border: 2px solid #333;
+}
+
+.template-3 .portfolio-nav a:hover {
+  background: #333;
+  color: white;
+}
+
+.template-3 .portfolio-section {
+  background: white;
+  border: 1px solid #e0e0e0;
+}
+
+.template-3 .skill-item {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.template-3 .project-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+}
+
+.template-3 .tech-tag {
+  background: #f0f0f0;
+  color: #666;
+}
+&lt;/style&gt;</pre>
+  </section>
+
+  <script>
+    // Toggle code block visibility
+    function toggleCode(button) {
+      const codeBlock = button.nextElementSibling;
+      const isVisible = codeBlock.style.display === "block";
+      codeBlock.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
+
+    // Dark mode toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    const navbar = document.getElementById('navbar');
+
+    themeToggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      navbar.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        themeToggleBtn.textContent = '☀️';
+      } else {
+        themeToggleBtn.textContent = '🌙';
+      }
+    });
+  </script>
+</body>
+
+</html>
