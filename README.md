@@ -21,6 +21,7 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 - **Live Previews**: See animations in action before using
 - **Easy Navigation**: Browse templates, contributors, and contact info
 - **Theme Toggle**: Switch between light and dark modes
+- **Mouse Tracker**:disable in mobile layout 
 
 ---
 
@@ -42,6 +43,20 @@ All skill levels are welcome! Check out the [Templates Gallery](./templates.html
 
 - [LinkedIn](https://www.linkedin.com/in/anujshrivastava1/)
 - [GitHub](https://github.com/AnujShrivastava01)
+
+---
+
+## 🔖 Project Insights
+
+<ul style="font-size: 14px;">
+  <li>🛠 <strong>Pull Requests:</strong> <a href="https://github.com/itsAnimation/AnimateItNow/pulls">View PRs</a></li>
+  <li>🐛 <strong>Issues:</strong> <a href="https://github.com/itsAnimation/AnimateItNow/issues">View Issues</a></li>
+  <li>⭐ <strong>Stars:</strong> <a href="https://github.com/itsAnimation/AnimateItNow/stargazers">View Stars</a></li>
+  <li>🍴 <strong>Forks:</strong> <a href="https://github.com/itsAnimation/AnimateItNow/network">View Forks</a></li>
+  <li>🧪 <strong>Last Commit:</strong> <a href="https://github.com/itsAnimation/AnimateItNow/commits/main">See Latest</a></li>
+  <li>📬 <strong>Contributions:</strong> <img alt="Contributions Welcome" src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg"></li>
+  <li>📦 <strong>Version:</strong> <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue"></li>
+</ul>
 
 ---
 
