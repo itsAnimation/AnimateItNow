@@ -5,13 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hover Button Effects | AnimateItNow</title>
   <link rel="stylesheet" href="../styles.css" />
-
   <style>
-    .hover-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
+    body.dark-theme {
+      --card-bg: #2c2c2c;
+      --card-shadow: rgba(255, 255, 255, 0.05);
+      --card-shadow-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f1f1f1;
+      --text-secondary: #aaaaaa;
+      --accent: #55aaff;
     }
 
+    .templates-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6rem 1rem 2rem 1rem;
+      min-height: calc(100vh - 64px - 60px);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+    }
+
+    .button-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--card-bg, #fff);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px var(--card-shadow, rgba(79, 140, 255, 0.12));
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 300px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .button-card:hover {
+      box-shadow: 0 8px 24px var(--card-shadow-hover, rgba(79, 140, 255, 0.18));
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 1em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: #2563eb;
+    }
+
+    .hover-btn {
+      padding: 1em 2em;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 2em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      color: white;
+    }
+
+    /* Original Buttons */
     .hover-btn.glow:hover {
       background: #2563eb;
     }
@@ -24,7 +99,8 @@
     .hover-btn.gradient:hover {
       background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
     }
-    .btn::after{
+
+    .btn::after {
       content: "";
       z-index: -1;
       position: absolute;
@@ -34,60 +110,152 @@
       left: 0;
       top: 0;
       border-radius: 2em;
-    
-    }
-    /* glowing button */
-    .btn::before{
-        content: "";
-        background: linear-gradient(
-            45deg,
-            #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
-            rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
-            rgb(220, 19, 169),rgb(222, 18, 18)
-        );
-        position: absolute;
-        top:-2px;
-        left: -2px;
-        background-size:600%;
-        z-index: -1;
-        width: calc(100% + 0.3em);
-        height: calc(100% + 0.3em);
-        filter: blur(1em);
-        animation: glow 20s linear infinite;
-        border-radius: 2px;
-        opacity: 0;
-
-
-    }
-    @keyframes glow{
-        0%{
-            background-position: 0 0;
-        }
-        50%{
-            background-position: 400% 0;
-        }
-        100%{background-position: 0 0;}
-    }
-    .btn:hover{
-       transform: scale(1.08);
-    }
-    .btn:hover::before{
-        opacity: 1;
-        
     }
 
-    .btn:active:after{
-        background: transparent;
-
+    .btn::before {
+      content: "";
+      background: linear-gradient(
+        45deg,
+        #f11616, rgb(224, 210, 10), rgb(106, 223, 10),
+        rgba(16, 205, 139, 0.942), rgb(9, 194, 223), rgba(55, 13, 221, 0.871),
+        rgb(220, 19, 169), rgb(222, 18, 18)
+      );
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 600%;
+      z-index: -1;
+      width: calc(100% + 0.3em);
+      height: calc(100% + 0.3em);
+      filter: blur(1em);
+      animation: glow 20s linear infinite;
+      border-radius: 2px;
+      opacity: 0;
     }
 
-    .btn:active{
-        color: #000;
-        font-weight: bold;
+    @keyframes glow {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn:active::after {
+      background: transparent;
+    }
+
+    .btn:active {
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* New Buttons */
+    .hover-btn.scale-shine {
+      background: #2563eb;
+    }
+
+    .hover-btn.scale-shine:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+    }
+
+    .hover-btn.scale-shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.4s ease;
+    }
+
+    .hover-btn.scale-shine:hover::before {
+      left: 100%;
+    }
+
+    .hover-btn.border-expand {
+      background: #16a34a;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hover-btn.border-expand::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: transparent;
+      border: 2px solid #ffffff;
+      border-radius: 2em;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .hover-btn.border-expand:hover::before {
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+    }
+
+    .hover-btn.border-expand:hover {
+      background: #15803d;
+    }
+
+    .hover-btn.gradient-slide {
+      background: linear-gradient(90deg, #ec4899 0%, #f43f5e 100%);
+      position: relative;
+    }
+
+    .hover-btn.gradient-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #f43f5e 0%, #ec4899 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .hover-btn.gradient-slide:hover::before {
+      opacity: 1;
+    }
+
+    .hover-btn.gradient-slide:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(236, 72, 153, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .button-card {
+        max-width: 90%;
+      }
+
+      .hover-btn {
+        padding: 0.8em 1.5em;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
-
 <body>
   <nav class="navbar">
     <div class="nav-left">
@@ -104,159 +272,189 @@
   </nav>
   <main class="templates-main">
     <h1>Hover Button Effects</h1>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="hover-btn glow" style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Glow
-      </button>
-      <button class="hover-btn outline" style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Outline
-      </button>
-      <button class="hover-btn gradient" style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Gradient
-      </button>
+    <!-- Original Glow Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn glow" style="
+              background: #4f8cff;
+              color: #fff;
+              padding: 1em 2em;
+              border: none;
+              border-radius: 2em;
+              font-weight: 600;
+              box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+              transition: background 0.2s, transform 0.2s;
+              cursor: pointer;">
+          Glow
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('glow')">Copy Code</button>
     </div>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="hover-btn glow" style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            
-          ">
-        Glow
-      </button>
-      <button class="hover-btn outline" style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Outline
-      </button>
-      <button class="hover-btn gradient" style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Gradient
-      </button>
+    <!-- Original Outline Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn outline" style="
+              background: #fff;
+              color: #4f8cff;
+              padding: 1em 2em;
+              border: 2px solid #4f8cff;
+              border-radius: 2em;
+              font-size: 1.1rem;
+              font-weight: 600;
+              box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+              transition: background 0.2s, transform 0.2s;
+              cursor: pointer;">
+          Outline
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('outline')">Copy Code</button>
     </div>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="btn" style="
-            
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
-            
-        
-        ">
-        Glow
-      </button>
-      <button class="btn" style="
-            padding: 1em 2em;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            color: white;
-            position: relative;
-            z-index: 0;
-        ">
-        Outline
-      </button>
-      <button class="btn" style="
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: white;
-            position: relative;
-            z-index: 0;
-        ">
-        Gradient
-      </button>
+    <!-- Original Gradient Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn gradient" style="
+              background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
+              color: #fff;
+              padding: 1em 2em;
+              border: none;
+              border-radius: 2em;
+              font-size: 1.1rem;
+              font-weight: 600;
+              box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+              transition: background 0.2s, transform 0.2s;
+              cursor: pointer;">
+          Gradient
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('gradient')">Copy Code</button>
+    </div>
+    <!-- Original Glow (btn class) Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="btn" style="
+              color: #fff;
+              padding: 1em 2em;
+              border: none;
+              border-radius: 2em;
+              font-weight: 600;
+              cursor: pointer;
+              position: relative;
+              z-index: 0;">
+          Glow
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('glow-btn')">Copy Code</button>
+    </div>
+    <!-- Original Outline (btn class) Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="btn" style="
+              padding: 1em 2em;
+              border-radius: 2em;
+              font-size: 1.1rem;
+              font-weight: 600;
+              cursor: pointer;
+              border: none;
+              color: white;
+              position: relative;
+              z-index: 0;">
+          Outline
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('outline-btn')">Copy Code</button>
+    </div>
+    <!-- Original Gradient (btn class) Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="btn" style="
+              padding: 1em 2em;
+              border: none;
+              border-radius: 2em;
+              font-size: 1.1rem;
+              font-weight: 600;
+              cursor: pointer;
+              color: white;
+              position: relative;
+              z-index: 0;">
+          Gradient
+        </button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('gradient-btn')">Copy Code</button>
+    </div>
+    <!-- New Scale & Shine Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn scale-shine">Scale & Shine</button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('scale-shine')">Copy Code</button>
+    </div>
+    <!-- New Border Expand Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn border-expand">Border Expand</button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('border-expand')">Copy Code</button>
+    </div>
+    <!-- New Gradient Slide Button -->
+    <div class="button-card">
+      <div class="button-row">
+        <button class="hover-btn gradient-slide">Gradient Slide</button>
+      </div>
+      <button class="copy-btn" onclick="copyCode('gradient-slide')">Copy Code</button>
     </div>
   </main>
   <footer>
     <p>Made with ❤️ by Anuj and Contributors</p>
   </footer>
+  <script>
+    function copyCode(buttonType) {
+      let htmlCode, cssCode;
+      switch (buttonType) {
+        case 'glow':
+          htmlCode = `<button class="hover-btn glow" style="background: #4f8cff; color: #fff; padding: 1em 2em; border: none; border-radius: 2em; font-weight: 600; box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12); transition: background 0.2s, transform 0.2s; cursor: pointer;">Glow</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18); }\n.hover-btn.glow:hover { background: #2563eb; }`;
+          break;
+        case 'outline':
+          htmlCode = `<button class="hover-btn outline" style="background: #fff; color: #4f8cff; padding: 1em 2em; border: 2px solid #4f8cff; border-radius: 2em; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12); transition: background 0.2s, transform 0.2s; cursor: pointer;">Outline</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18); }\n.hover-btn.outline:hover { background: #4f8cff; color: #fff; }`;
+          break;
+        case 'gradient':
+          htmlCode = `<button class="hover-btn gradient" style="background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%); color: #fff; padding: 1em 2em; border: none; border-radius: 2em; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12); transition: background 0.2s, transform 0.2s; cursor: pointer;">Gradient</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18); }\n.hover-btn.gradient:hover { background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%); }`;
+          break;
+        case 'glow-btn':
+          htmlCode = `<button class="btn" style="color: #fff; padding: 1em 2em; border: none; border-radius: 2em; font-weight: 600; cursor: pointer; position: relative; z-index: 0;">Glow</button>`;
+          cssCode = `.btn::after { content: ""; z-index: -1; position: absolute; width: 100%; height: 100%; background-color: #333; left: 0; top: 0; border-radius: 2em; }\n.btn::before { content: ""; background: linear-gradient(45deg, #f11616, rgb(224, 210, 10), rgb(106, 223, 10), rgba(16, 205, 139, 0.942), rgb(9, 194, 223), rgba(55, 13, 221, 0.871), rgb(220, 19, 169), rgb(222, 18, 18)); position: absolute; top: -2px; left: -2px; background-size: 600%; z-index: -1; width: calc(100% + 0.3em); height: calc(100% + 0.3em); filter: blur(1em); animation: glow 20s linear infinite; border-radius: 2px; opacity: 0; }\n@keyframes glow { 0% { background-position: 0 0; } 50% { background-position: 400% 0; } 100% { background-position: 0 0; } }\n.btn:hover { transform: scale(1.08); }\n.btn:hover::before { opacity: 1; }\n.btn:active::after { background: transparent; }\n.btn:active { color: #000; font-weight: bold; }`;
+          break;
+        case 'outline-btn':
+          htmlCode = `<button class="btn" style="padding: 1em 2em; border-radius: 2em; font-size: 1.1rem; font-weight: 600; cursor: pointer; border: none; color: white; position: relative; z-index: 0;">Outline</button>`;
+          cssCode = `.btn::after { content: ""; z-index: -1; position: absolute; width: 100%; height: 100%; background-color: #333; left: 0; top: 0; border-radius: 2em; }\n.btn::before { content: ""; background: linear-gradient(45deg, #f11616, rgb(224, 210, 10), rgb(106, 223, 10), rgba(16, 205, 139, 0.942), rgb(9, 194, 223), rgba(55, 13, 221, 0.871), rgb(220, 19, 169), rgb(222, 18, 18)); position: absolute; top: -2px; left: -2px; background-size: 600%; z-index: -1; width: calc(100% + 0.3em); height: calc(100% + 0.3em); filter: blur(1em); animation: glow 20s linear infinite; border-radius: 2px; opacity: 0; }\n@keyframes glow { 0% { background-position: 0 0; } 50% { background-position: 400% 0; } 100% { background-position: 0 0; } }\n.btn:hover { transform: scale(1.08); }\n.btn:hover::before { opacity: 1; }\n.btn:active::after { background: transparent; }\n.btn:active { color: #000; font-weight: bold; }`;
+          break;
+        case 'gradient-btn':
+          htmlCode = `<button class="btn" style="padding: 1em 2em; border: none; border-radius: 2em; font-size: 1.1rem; font-weight: 600; cursor: pointer; color: white; position: relative; z-index: 0;">Gradient</button>`;
+          cssCode = `.btn::after { content: ""; z-index: -1; position: absolute; width: 100%; height: 100%; background-color: #333; left: 0; top: 0; border-radius: 2em; }\n.btn::before { content: ""; background: linear-gradient(45deg, #f11616, rgb(224, 210, 10), rgb(106, 223, 10), rgba(16, 205, 139, 0.942), rgb(9, 194, 223), rgba(55, 13, 221, 0.871), rgb(220, 19, 169), rgb(222, 18, 18)); position: absolute; top: -2px; left: -2px; background-size: 600%; z-index: -1; width: calc(100% + 0.3em); height: calc(100% + 0.3em); filter: blur(1em); animation: glow 20s linear infinite; border-radius: 2px; opacity: 0; }\n@keyframes glow { 0% { background-position: 0 0; } 50% { background-position: 400% 0; } 100% { background-position: 0 0; } }\n.btn:hover { transform: scale(1.08); }\n.btn:hover::before { opacity: 1; }\n.btn:active::after { background: transparent; }\n.btn:active { color: #000; font-weight: bold; }`;
+          break;
+        case 'scale-shine':
+          htmlCode = `<button class="hover-btn scale-shine">Scale & Shine</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn.scale-shine { background: #2563eb; }\n.hover-btn.scale-shine:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5); }\n.hover-btn.scale-shine::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: left 0.4s ease; }\n.hover-btn.scale-shine:hover::before { left: 100%; }`;
+          break;
+        case 'border-expand':
+          htmlCode = `<button class="hover-btn border-expand">Border Expand</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn.border-expand { background: #16a34a; position: relative; z-index: 1; }\n.hover-btn.border-expand::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: transparent; border: 2px solid #ffffff; border-radius: 2em; transform: translate(-50%, -50%); transition: all 0.3s ease; z-index: -1; }\n.hover-btn.border-expand:hover::before { width: calc(100% + 10px); height: calc(100% + 10px); }\n.hover-btn.border-expand:hover { background: #15803d; }`;
+          break;
+        case 'gradient-slide':
+          htmlCode = `<button class="hover-btn gradient-slide">Gradient Slide</button>`;
+          cssCode = `.hover-btn { padding: 1em 2em; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 2em; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s ease; width: 100%; max-width: 200px; text-align: center; color: white; }\n.hover-btn.gradient-slide { background: linear-gradient(90deg, #ec4899 0%, #f43f5e 100%); position: relative; }\n.hover-btn.gradient-slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #f43f5e 0%, #ec4899 100%); opacity: 0; transition: opacity 0.3s ease; z-index: -1; }\n.hover-btn.gradient-slide:hover::before { opacity: 1; }\n.hover-btn.gradient-slide:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(236, 72, 153, 0.4); }`;
+          break;
+      }
+      const code = `${htmlCode}\n\n<style>\n${cssCode}\n</style>`;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('Code copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  </script>
   <script src="../script.js"></script>
 </body>
-
 </html>
