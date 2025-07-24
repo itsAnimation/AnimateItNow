@@ -10,6 +10,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
+      .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+        align-items: center;
+      }
+
+      .nav-right{
+        display: flex;
+        gap: 1.5rem;
+      }
+
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
       body.dark-theme {
         background-color: #121212;
@@ -123,97 +135,161 @@
         transition: color 0.3s ease, background-color 0.3s ease;
       }
       /* Keep consistent size and shape */
-/* Base preview style */
-.feature-preview,
-.hero-preview {
-  height: 90px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  background-color: #f0f0f0;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px;
-  box-sizing: border-box;
-}
+      /* Base preview style */
+      .feature-preview,
+      .hero-preview {
+        height: 90px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        background-color: #f0f0f0;
+        box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
 
-/* Dark mode support */
-body.dark-theme .feature-preview,
-body.dark-theme .hero-preview {
-  background-color: #2a2a2a;
-  box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-}
+      /* Dark mode support */
+      body.dark-theme .feature-preview,
+      body.dark-theme .hero-preview {
+        background-color: #2a2a2a;
+        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+      }
 
-/* Feature Cards Preview: 3 mini cards */
-.feature-preview {
-  background-color: #4f8cff;
-  padding: 12px;
-  gap: 10px;
-}
+      /* Feature Cards Preview: 3 mini cards */
+      .feature-preview {
+        background-color: #4f8cff;
+        padding: 12px;
+        gap: 10px;
+      }
 
-.feature-preview .mini-card {
-  background-color: white;
-  flex: 1;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #555;
-  font-weight: 600;
-  user-select: none;
-}
+      .feature-preview .mini-card {
+        background-color: white;
+        flex: 1;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #555;
+        font-weight: 600;
+      }
 
-/* Hero Section Preview: big rectangle + text lines */
-.hero-preview {
-  background-color: #4f8cff;
-  flex-direction: column;
-  padding: 14px;
-  gap: 8px;
-}
+      /* Hero Section Preview: big rectangle + text lines */
+      .hero-preview {
+        background-color: #4f8cff;
+        flex-direction: column;
+        padding: 14px;
+        gap: 8px;
+      }
 
-.hero-preview .hero-image {
-  background-color: white;
-  border-radius: 8px;
-  width: 100%;
-  height: 50px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
+      .hero-preview .hero-image {
+        background-color: white;
+        border-radius: 8px;
+        width: 100%;
+        height: 50px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
 
-.hero-preview .hero-text-line {
-  background-color: white;
-  border-radius: 5px;
-  height: 8px;
-  width: 80%;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
+      .hero-preview .hero-text-line {
+        background-color: white;
+        border-radius: 5px;
+        height: 8px;
+        width: 80%;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      }
 
-.hero-preview .hero-text-line.short {
-  width: 50%;
-}
+      .hero-preview .hero-text-line.short {
+        width: 50%;
+      }
 
+      /* ADDED: Social Share Preview CSS */
+      .social-share-preview {
+        background-color: #4f8cff; /* A unifying blue */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        font-size: 28px;
+        color: white; /* Icons color */
+        height: 90px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      }
 
-     
+      body.dark-theme .social-share-preview {
+        background-color: #2a2a2a; /* Dark background */
+        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+      }
+
+      /* Optional: Slight scaling on hover for the preview icons */
+      .social-share-preview .social-icon-preview {
+        transition: transform 0.2s ease-in-out;
+      }
+      .social-share-preview:hover .social-icon-preview {
+        transform: scale(1.1);
+      }
+      /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+      height: 90px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+
+    body.dark-theme .navbar-preview {
+      background-color: #2a2a2a;
+    }
+
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-line.logo {
+      width: 40%;
+    }
+
+    .navbar-line.link {
+      width: 70%;
+    }
+
+    .navbar-line.link.short {
+      width: 50%;
+    }
     </style>
   </head>
   <body>
     <nav class="navbar">
       <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
+        <img src="images/logo.png" alt="Logo" class="logo" /> 
+         <h1 class="site-name">
+          Animate It Now  
+         </h1>
+      </div> 
+      <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="templates.html">Templates</a></li>
+        <li><a href="templates.html" class="active">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      </div>
     </nav>
+
 
     <main class="templates-main">
       <h1>Templates Gallery</h1>
@@ -242,40 +318,98 @@ body.dark-theme .hero-preview {
         <article class="template-card">
           <h2>Glassmorphism profile card</h2>
           <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
+          <a class="template-btn" href="templates/glassmorphism.html"
+            >View Template</a
+          >
         </article>
 
+        <article class="template-card">
+          <h2>Feature Cards UI</h2>
+          <div class="template-preview feature-preview">
+            <div class="mini-card">Card1</div>
+            <div class="mini-card">Card2</div>
+            <div class="mini-card">Card3</div>
+          </div>
+          <a class="template-btn" href="templates/feature.html">View Template</a>
+        </article>
 
-   <article class="template-card">
-  <h2>Feature Cards UI</h2>
-  <div class="template-preview feature-preview">
-    <div class="mini-card">Card1</div>
-    <div class="mini-card">Card2</div>
-    <div class="mini-card">Card3</div>
-  </div>
-  <a class="template-btn" href="templates/feature.html">View Template</a>
-</article>
+        <article class="template-card">
+          <h2>Hero Section Template</h2>
+          <div class="template-preview hero-preview">
+            <div class="hero-image"></div>
+            <div class="hero-text-line"></div>
+            <div class="hero-text-line short"></div>
+          </div>
+          <a class="template-btn" href="templates/hero.html">View Template</a>
+        </article>
 
-<article class="template-card">
-  <h2>Hero Section Template</h2>
-  <div class="template-preview hero-preview">
-    <div class="hero-image"></div>
-    <div class="hero-text-line"></div>
-    <div class="hero-text-line short"></div>
-  </div>
-  <a class="template-btn" href="templates/hero.html">View Template</a>
-</article>
-
-
-
-
+        <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
+        <article class="template-card">
+          <h2>Animated Social Share Buttons</h2>
+          <div class="template-preview social-share-preview">
+            <i class="fab fa-facebook-f social-icon-preview"></i>
+            <i class="fab fa-twitter social-icon-preview"></i>
+            <i class="fab fa-instagram social-icon-preview"></i>
+          </div>
+          <a class="template-btn" href="templates/social-share-buttons.html"
+            >View Template</a
+          >
+        </article>
+        <article class="template-card">
+          <h2>Neumorphic Button Effects</h2>
+          <div class="template-preview neumorphic-preview"></div>
+          <a class="template-btn" href="templates/neumorphic.html">View Template</a>
+          </article>
+         <!--NAVBAR--->
+      <article class="template-card">
+        <h2>Navbar Variants</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line logo"></div>
+          <div class="navbar-line link"></div>
+          <div class="navbar-line link short"></div>
+        </div>
+        <a class="template-btn" href="templates/navbar.html">View Template</a>
+      </article> 
       </section>
     </main>
-
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                >🌐 GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >💼 LinkedIn</a
+              >
+            </li>
+            <li>
+              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"
+                >📧 Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
+      </div>
     </footer>
-
+    <div id="cursor-snake"></div>
     <script>
       // Theme toggle functionality
       const themeToggle = document.getElementById("theme-toggle");

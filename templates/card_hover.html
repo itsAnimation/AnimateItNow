@@ -48,7 +48,9 @@
 
       .card-vertical {
         flex-direction: column;
-        width: 250px;
+        width: 300px;
+        justify-content: center;
+        height: 400px;
         max-width: 100%;
       }
       .card-vertical .template-preview img {
@@ -56,7 +58,13 @@
         width: 100%;
         object-fit: cover;
       }
-
+      .templates-main {
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 6rem 1rem 2rem 1rem;
+      }
       .template-card {
         align-items: stretch;
       }
@@ -80,10 +88,12 @@
       .template-info {
         flex: 1;
         min-width: 300px;
-        padding: 30px 40px;
+        padding: 10px 30px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 10px;
+
       }
 
       .template-info h2 {
@@ -152,10 +162,10 @@
       }
       .button{
        display: flex;
-       flex-wrap: wrap;
+       
         background-color: var(--accent);
         color: #fff;
-        padding: 12px 3px;
+        padding: 10px 8px;
         border-radius: 8px;
         margin: 3px;
         text-decoration: none;
@@ -205,10 +215,10 @@
         </article>
 
         <article class="card card-vertical">
-          
+          <div style="width: 300px; height: 100px; "></div>
           <div class="template-info">
-            <h2>Card Title</h2>
-            <h4 style="color: #2c2c2c;">Sub Title</h4>
+            <h2 style="margin-bottom: 0; padding-bottom: 0;">Card Title</h2>
+            <h4 style="color:var(--text-secondary);">Sub Title</h4>
             <p>
               This is some quick example text to build on the card title and
               make up the bulk of the card's content.
