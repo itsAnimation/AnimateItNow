@@ -28,9 +28,18 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
             target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo"
@@ -38,6 +47,7 @@
             <img src="./images/github-mark-white.png" class="github-logo">
           </a>
         </li>
+        <!--dark mode toggle -->
         <li><button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button></li>
       </ul>
     </div>
@@ -54,7 +64,11 @@
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-    <a href="#faq" class="cta-btn bounce">Get Started</a>
+<a href="#faq" class="cta-btn bounce"
+   onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
+   Get Started
+</a>
+
   </header>
 
   <!-- ───────── MAIN ───────── -->
@@ -73,7 +87,7 @@
               <div class="faq-icon-static"><i class="fas fa-question"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>AnimateItNow is a community-driven hub of reusable web components and templates.</p>
+              <p>AnimateItNow is a collaborative platform a community-driven hub of reusable web components and templates.</p>
             </div>
           </div>
 
@@ -84,7 +98,13 @@
               <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Fork the repo, add your component, then open a pull request. All skill levels are welcome.</p>
+              <p>
+                <li>Fork this repository to your own GitHub account.</li> 
+         <li> Add your unique and creative web components or improvements.</li>
+          <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
+         <li>Submit a Pull Request with a short description of your changes.</li> 
+          <li>Need ideas? Check out our Templates page for inspiration!</li> 
+              </p>
             </div>
           </div>
 
@@ -95,7 +115,10 @@
               <div class="faq-icon-static"><i class="fas fa-users"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Open source accelerates learning, sharing and building great software together.</p>
+              <p>Open source is more than just code — it's collaboration, learning, and community. 
+                It breaks down barriers, allowing developers from all backgrounds to contribute,
+                 grow, and build real-world solutions together. By sharing our work openly, 
+                 we encourage innovation, transparency, and continuous improvement.</p>
             </div>
           </div>
 
@@ -150,7 +173,19 @@
               <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Join our friendly community and collaborate on exciting web-dev projects.</p>
+              <p>Join our welcoming community and collaborate on fun, creative, and impactful web development projects. 
+                Whether you're just starting out or an experienced dev, there's a place for you here!</p>
+            </div>
+          </div>
+
+          <!-- 9 -->
+           <div class="faq-item glow-wrap">
+            <div class="faq-question-header">
+              <h3>Is AnimateItNow responsive on all devices?</h3>
+              <div class="faq-icon-static"><i class="fa-solid fa-mobile-screen"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Absolutely! All components are designed with responsiveness in mind. Feel free to report issues if any component breaks on smaller screens.</p>
             </div>
           </div>
         </div><!-- /faq-list -->
