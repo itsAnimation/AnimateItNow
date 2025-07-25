@@ -20,6 +20,10 @@
       gap: 1.5rem;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     /* 🌒 DARK MODE GLOBAL TEXT FIXES */
     body.dark-theme {
       background-color: #121212;
@@ -240,25 +244,40 @@
       transform: scale(1.1);
     }
 
-    /* CSS OF PRICE PLAN TEMPLATE PREVIEW */
-    .template-preview.price-preview {
+    /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
       gap: 8px;
       height: 90px;
-      padding: 10px 15px;
-      background: #4f8cff;
       border-radius: 10px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 6px rgb(0, 0, 0 / 0.1);
     }
 
-    .price-box {
+    body.dark-theme .navbar-preview {
+      background-color: #2a2a2a;
+    }
+
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
       background-color: white;
-      flex: 1;
-      height: 40px;
-      border-radius: 6px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-line.logo {
+      width: 40%;
+    }
+
+    .navbar-line.link {
+      width: 70%;
+    }
+
+    .navbar-line.link.short {
+      width: 50%;
     }
   </style>
 </head>
@@ -274,149 +293,188 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
         <li><a href="templates.html" class="active">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank" 
+             rel="noopener noreferrer" 
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+        </li>
+        <li><button id="theme-toggle" aria-label="Toggle Theme">
+              <i data-lucide="moon"></i>
+            </button>
+        </li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </div>
-  </nav>
+      </div>
+    </nav>
+
 
   <main class="templates-main">
     <h1>Templates Gallery</h1>
     <section class="templates-grid">
-      <article class="template-card">
+      <a class="template-card" href="templates/login.html">
         <h2>Login Page UI</h2>
         <div class="template-preview login-preview"></div>
-        <a class="template-btn" href="templates/login.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/button.html">
         <h2>Hover Button Effects</h2>
         <div class="template-preview button-preview"></div>
-        <a class="template-btn" href="templates/button.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/loader.html">
         <h2>Loaders</h2>
         <div class="template-preview loader-preview"></div>
-        <a class="template-btn" href="templates/loader.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/modal.html">
         <h2>Popup Templates</h2>
         <div class="template-preview modal-preview"></div>
-        <a class="template-btn" href="templates/modal.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/glassmorphism.html">
         <h2>Glassmorphism profile card</h2>
         <div class="template-preview modal-preview"></div>
-        <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/feature.html">
         <h2>Feature Cards UI</h2>
         <div class="template-preview feature-preview">
           <div class="mini-card">Card1</div>
           <div class="mini-card">Card2</div>
           <div class="mini-card">Card3</div>
         </div>
-        <a class="template-btn" href="templates/feature.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/hero.html">
         <h2>Hero Section Template</h2>
         <div class="template-preview hero-preview">
           <div class="hero-image"></div>
           <div class="hero-text-line"></div>
           <div class="hero-text-line short"></div>
         </div>
-        <a class="template-btn" href="templates/hero.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
       <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
-      <article class="template-card">
+      <a class="template-card" href="templates/social-share-buttons.html">
         <h2>Animated Social Share Buttons</h2>
         <div class="template-preview social-share-preview">
           <i class="fab fa-facebook-f social-icon-preview"></i>
           <i class="fab fa-twitter social-icon-preview"></i>
           <i class="fab fa-instagram social-icon-preview"></i>
         </div>
-        <a class="template-btn" href="templates/social-share-buttons.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <!-- NEWLY ADDED PRICE PLAN TEMPLATE -->
-      <article class="template-card">
-        <h2>Price Plan Template</h2>
-        <div class="template-preview price-preview">
-          <div class="price-box basic"></div>
-          <div class="price-box pro"></div>
-          <div class="price-box enterprise"></div>
+      <a class="template-card" href="templates/neumorphic.html">
+        <h2>Neumorphic Button Effects</h2>
+        <div class="template-preview neumorphic-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <!--NAVBAR--->
+      <a class="template-card" href="templates/navbar.html">
+        <h2>Navbar Variants</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line logo"></div>
+          <div class="navbar-line link"></div>
+          <div class="navbar-line link short"></div>
         </div>
-        <a class="template-btn" href="templates/price_plan.html">View Template</a>
-      </article>
-
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
+        <a class="template-btn" href="templates/navbar.html">View Template</a>
+      </article> 
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                >🌐 GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >💼 LinkedIn</a
+              >
+            </li>
+            <li>
+              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"
+                >📧 Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li>
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
-          </li>
-          <li>
-            <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a>
-          </li>
-        </ul>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>
-        © 2025 AnimateItNow. Made with ❤️ by
-        <span class="highlight">Anuj</span> and Contributors.
-      </p>
-    </div>
-  </footer>
-  <div id="cursor-snake"></div>
-  <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById("theme-toggle");
-    const prefersDarkScheme = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    );
+    </footer>
+    <div id="cursor-snake"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
 
-    // Check for saved theme or preferred scheme
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "dark") {
-      document.body.classList.add("dark-theme");
-      themeToggle.textContent = "☀️";
-    } else if (currentTheme === "light") {
-      document.body.classList.remove("dark-theme");
-      themeToggle.textContent = "🌙";
-    } else if (prefersDarkScheme.matches) {
-      document.body.classList.add("dark-theme");
-      themeToggle.textContent = "☀️";
+  function setTheme(dark) {
+    const newIcon = dark ? 'sun' : 'moon';
+    body.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+
+    // Replace icon completely
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+      lucide.createIcons();
     }
+  }
 
-    themeToggle.addEventListener("click", () => {
-      if (document.body.classList.contains("dark-theme")) {
-        document.body.classList.remove("dark-theme");
-        localStorage.setItem("theme", "light");
-        themeToggle.textContent = "🌙";
-      } else {
-        document.body.classList.add("dark-theme");
-        localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "☀️";
-      }
-    });
+  const savedTheme = localStorage.getItem('theme');
+  setTheme(savedTheme === 'dark');
+
+  themeToggle?.addEventListener('click', () => {
+    const isDark = body.classList.contains('dark');
+    setTheme(!isDark);
+  });
+
+  lucide.createIcons();
+
 
     // Scroll animation for cards
     const observer = new IntersectionObserver(

@@ -4,14 +4,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
   function setTheme(dark) {
-    if (dark) {
-      body.classList.add('dark');
-      themeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+    const newIcon = dark ? 'sun' : 'moon';
+    body.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+
+    // Replace icon completely
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+      lucide.createIcons();
     }
   }
 
@@ -19,8 +19,12 @@ window.addEventListener('DOMContentLoaded', () => {
   setTheme(savedTheme === 'dark');
 
   themeToggle?.addEventListener('click', () => {
-    setTheme(!body.classList.contains('dark'));
+    const isDark = body.classList.contains('dark');
+    setTheme(!isDark);
   });
+
+  lucide.createIcons();
+
 
   // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver((entries) => {
