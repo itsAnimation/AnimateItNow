@@ -153,7 +153,7 @@
   }
 
   form.login-form button {
-    background: var(--accent);
+    background: #01924e;
     color: #fff;
     padding: 0.8em 1em;
     border: none;
@@ -164,16 +164,25 @@
     transition: background-color 0.3s ease;
   }
   form.login-form button:hover {
-    background: #3a6fcc;
+    background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
   }
 
   /* Variant 2 - Elevated Card */
+  .variant-1 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
   .variant-2 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
     box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
   }
   /* Variant 3 - Dark Theme */
   .variant-3 {
-    background: var(--accent);
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
     color: white;
     padding: 2rem 2rem 3rem;
   }
@@ -194,6 +203,12 @@
   }
   .variant-3 button:hover {
     background: #dbe9ff;
+  }
+  .variant-4{
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
   }
 
   /* Variant 4 - Minimal Underline */
@@ -227,6 +242,10 @@
     background: #0056b3;
   }
 
+  .subtitle{
+    color : #ffffff;
+  }
+
   /* Expand code */
   .expand-btn {
     display: inline-block;
@@ -256,6 +275,29 @@
     text-align: left;
   }
 
+  .copy-btn {
+        display: inline-block;
+        margin: 0.5rem 0 1rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+      .copy-btn:hover {
+        background-color: #0056b3;
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+
   /* Responsive */
   @media (max-width: 480px) {
     section {
@@ -273,7 +315,7 @@
 <nav class="navbar" id="navbar">
   <div class="nav-left">
      <img src="../images/logo.png" alt="Logo" class="logo" />
-    <span class="site-name">Animate It Now</span>
+    <span class="site-name">AnimateItNow</span>
   </div>
   <ul class="nav-links">
     <li><a href="../index.html">Home</a></li>
@@ -284,7 +326,7 @@
   <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
 </nav>
 
-<section>
+<section class="variant-1">
   <h2>Login Variant 1 - Classic</h2>
   <p class="subtitle">Simple white card login form</p>
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
@@ -329,6 +371,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
 </section>
 
 <section class="variant-2">
@@ -380,6 +423,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
 </section>
 
 <section class="variant-3">
@@ -424,6 +468,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
 </section>
 
 <section class="variant-4">
@@ -469,6 +514,297 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  </section>
+
+  <section class="variant-5">
+    <h2>Login Variant 5 - Glassmorphism</h2>
+    <p class="subtitle">Translucent glass effect with backdrop blur</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 5 submitted!');">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;section class="variant-5"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="email" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-5 {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+.variant-5::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+.variant-5 input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+.variant-5 button {
+  background: rgba(79, 140, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.variant-5 button:hover {
+  background: rgba(79, 140, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
+}
+&lt;/style&gt;
+  </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
+
+  <section class="variant-6">
+    <h2>Login Variant 6 - Black</h2>
+    <p class="subtitle">Pure black theme with white accents</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 6 submitted!');">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">LOGIN</button>
+    </form>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;section class="variant-6"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="email" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;LOGIN&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-6 {
+  background: #000;
+  color: #fff;
+  border: 2px solid #333;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+.variant-6 h2 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.variant-6 input {
+  background: #1a1a1a;
+  border: 2px solid #333;
+  color: #fff;
+}
+.variant-6 input:focus {
+  border-color: #666;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+.variant-6 button {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.variant-6 button:hover {
+  background: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+&lt;/style&gt;
+  </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
+
+  <section class="variant-7">
+    <h2>Login Variant 7 - Gradient</h2>
+    <p class="subtitle">Beautiful gradient background with layered effects</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 7 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">SIGN IN</button>
+    </form>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;section class="variant-7"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;SIGN IN&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-7 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.variant-7::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+}
+.variant-7 input {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #333;
+  position: relative;
+  z-index: 2;
+}
+.variant-7 input:focus {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.variant-7 button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.variant-7 button:hover {
+  background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
+}
+&lt;/style&gt;
+  </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
+
+  <section class="variant-8">
+    <h2>Login Variant 8 - Premium</h2>
+    <p class="subtitle">Luxury neumorphism design with gold accents</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 8 submitted!');">
+      <input type="email" placeholder="Email Address" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">ACCESS</button>
+    </form>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;section class="variant-8"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="email" placeholder="Email Address" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;ACCESS&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-8 {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  border: none;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+.variant-8 h2 {
+  background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-align: center;
+}
+.variant-8 input {
+  background: linear-gradient(145deg, #e0e0e0, #ffffff);
+  border: none;
+  box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
+}
+.variant-8 input:focus {
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+.variant-8 button {
+  background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
+  border: none;
+  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.variant-8 button:hover {
+  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  transform: translateY(-2px);
+}
+&lt;/style&gt;
+  </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
+
+  <section class="variant-9">
+    <h2>Login Variant 9 - Cut Based</h2>
+    <p class="subtitle">Angular cuts and geometric design elements</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 9 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">ENTER</button>
+    </form>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;section class="variant-9"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;ENTER&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-9 {
+  background: #fff;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  border: 3px solid #333;
+}
+.variant-9::before {
+  content: '';
+  position: absolute;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  z-index: -1;
+}
+.variant-9 input {
+  border: 2px solid #333;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  background: #f9f9f9;
+}
+.variant-9 input:focus {
+  border-color: #4ecdc4;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+}
+.variant-9 button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.variant-9 button:hover {
+  transform: translateX(3px);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+&lt;/style&gt;
+  </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
 </section>
 
 <script>
@@ -479,6 +815,23 @@ form.login-form button:hover {
     codeBlock.style.display = isVisible ? "none" : "block";
     button.textContent = isVisible ? "Show Code" : "Hide Code";
   }
+
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const codeBlock = btn.previousElementSibling;
+          try {
+            await navigator.clipboard.writeText(codeBlock.innerText);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+      });
 
   // Dark mode toggle
   const themeToggleBtn = document.getElementById('theme-toggle');
@@ -497,4 +850,6 @@ form.login-form button:hover {
 </script>
 
 </body>
+</html>
+
 </html>
