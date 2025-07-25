@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stylish Search Bars with Custom Navbar and Dark Mode</title>
+    <style>
+        /* CSS Variables for Light and Dark mode */
+        :root {
+            --nav-text: #222;
+            --accent: #007BFF;
+            --background: #f5f5f5;
+            --text-color: #222;
+            --transition: 0.3s ease;
+        }
+
+        body.dark {
+            --nav-text: #ddd;
+            --accent: #55aaff;
+            --background: #121212;
+            --text-color: #ddd;
+        }
+
+        /* Reset & base */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            color: var(--text-color);
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Navbar CSS with variables */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--nav-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            margin-right: 0.75rem;
+            object-fit: contain;
+            background: var(--accent);
+            border-radius: 6px;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 1.5rem;
+            color: var(--nav-text);
+            transition: color var(--transition);
+        }
+
+        /* Section wrapper */
+        section {
+            max-width: 600px;
+            margin: 100px auto 50px;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        body.dark section {
+            background: #1e1e1e;
+            color: var(--text-color);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        body.dark .subtitle {
+            color: #aaa;
+        }
+
+        /* Search Bar Base Styles */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+            padding: 20px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        /* Search Bar 1 - Classic */
+        .search-1 .search-input {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            color: #333;
+        }
+
+        .search-1 .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-1 .search-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        .search-1 .search-btn:hover {
+            background: #0056b3;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Search Bar 2 - Animated */
+        .search-2 .search-wrapper {
+            overflow: hidden;
+        }
+
+        .search-2 .search-input {
+            background: transparent;
+            border: 2px solid #ddd;
+            color: var(--text-color);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .search-2 .search-input:focus {
+            border-color: #ff6b6b;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .search-2 .search-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-2 .search-btn:hover {
+            background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+            transform: translateY(-50%) rotate(360deg);
+        }
+
+        /* Search Bar 3 - Glassmorphism */
+        .search-3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .search-3 .search-input {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .search-3 .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-3 .search-input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .search-3 .search-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-3 .search-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Search Bar 4 - Dark Theme */
+        .search-4 {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .search-4 .search-input {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            color: #e0e0e0;
+        }
+
+        .search-4 .search-input::placeholder {
+            color: #777;
+        }
+
+        .search-4 .search-input:focus {
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+        }
+
+        .search-4 .search-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .search-4 .search-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Search Bar 5 - Minimalistic */
+        .search-5 .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            border-radius: 0;
+            padding: 15px 5px;
+            color: var(--text-color);
+        }
+
+        .search-5 .search-input:focus {
+            border-bottom-color: #333;
+        }
+
+        .search-5 .search-btn {
+            background: transparent;
+            color: #333;
+            right: 0;
+        }
+
+        .search-5 .search-btn:hover {
+            color: var(--accent);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        /* Search Bar 6 - Gradient */
+        .search-6 .search-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 25px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .search-6 .search-input {
+            background: white;
+            border: none;
+            color: #333;
+            position: relative;
+            z-index: 1;
+        }
+
+        body.dark .search-6 .search-input {
+            background: #1e1e1e;
+            color: #ddd;
+        }
+
+        .search-6 .search-input:focus {
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .search-6 .search-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            z-index: 2;
+        }
+
+        .search-6 .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Search Bar 7 - Neumorphism */
+        .search-7 {
+            background: #e0e0e0;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        body.dark .search-7 {
+            background: #2a2a2a;
+        }
+
+        .search-7 .search-input {
+            background: #e0e0e0;
+            border: none;
+            box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
+            color: #333;
+        }
+
+        body.dark .search-7 .search-input {
+            background: #2a2a2a;
+            box-shadow: inset 8px 8px 16px #1a1a1a, inset -8px -8px 16px #3a3a3a;
+            color: #ddd;
+        }
+
+        .search-7 .search-input:focus {
+            box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+        }
+
+        body.dark .search-7 .search-input:focus {
+            box-shadow: inset 4px 4px 8px #1a1a1a, inset -4px -4px 8px #3a3a3a;
+        }
+
+        .search-7 .search-btn {
+            background: #e0e0e0;
+            color: #333;
+            box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+        }
+
+        body.dark .search-7 .search-btn {
+            background: #2a2a2a;
+            color: #ddd;
+            box-shadow: 8px 8px 16px #1a1a1a, -8px -8px 16px #3a3a3a;
+        }
+
+        .search-7 .search-btn:hover {
+            box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        body.dark .search-7 .search-btn:hover {
+            box-shadow: 4px 4px 8px #1a1a1a, -4px -4px 8px #3a3a3a;
+        }
+
+        /* Search Bar 8 - Modern with Icons */
+        .search-8 .search-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 50px;
+            padding: 5px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .search-8 .search-wrapper {
+            background: #333;
+        }
+
+        .search-8 .search-wrapper:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-8 .search-icon {
+            padding: 10px 15px;
+            color: #666;
+        }
+
+        body.dark .search-8 .search-icon {
+            color: #aaa;
+        }
+
+        .search-8 .search-input {
+            background: transparent;
+            border: none;
+            flex: 1;
+            padding: 10px 5px;
+            color: var(--text-color);
+        }
+
+        .search-8 .search-btn {
+            background: var(--accent);
+            color: white;
+            margin: 0;
+            position: static;
+            transform: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
+        .search-8 .search-btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Expand code */
+        .expand-btn {
+            display: inline-block;
+            margin: 20px auto 10px;
+            padding: 8px 18px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .expand-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .code-block {
+            display: none;
+            background: #222;
+            color: #ddd;
+            padding: 20px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            text-align: left;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            section {
+                width: 95%;
+                padding: 20px 15px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .search-wrapper {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="Logo" class="logo" />
+            <span class="site-name">Animate It Now</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../templates.html" class="active">Templates</a></li>
+            <li><a href="../contributors.html">Contributors</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+
+    <section>
+        <h2>Search Bar 1 - Classic</h2>
+        <p class="subtitle">Traditional search bar with clean styling and focus states</p>
+        <div class="search-container search-1">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Search..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-wrapper"&gt;
+  &lt;input type="text" class="search-input" placeholder="Search..." /&gt;
+  &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 25px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+  transform: translateY(-50%) scale(1.1);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 2 - Animated</h2>
+        <p class="subtitle">Dynamic search bar with smooth animations and hover effects</p>
+        <div class="search-container search-2">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Type to search..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-wrapper"&gt;
+  &lt;input type="text" class="search-input" placeholder="Type to search..." /&gt;
+  &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: transparent;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.search-input:focus {
+  border-color: #ff6b6b;
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+  transform: translateY(-50%) rotate(360deg);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 3 - Glassmorphism</h2>
+        <p class="subtitle">Modern glass effect with backdrop blur and transparency</p>
+        <div class="search-container search-3">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Search with style..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-container"&gt;
+  &lt;div class="search-wrapper"&gt;
+    &lt;input type="text" class="search-input" placeholder="Search with style..." /&gt;
+    &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 4 - Dark Theme</h2>
+        <p class="subtitle">Sleek dark design with neon accents and glowing effects</p>
+        <div class="search-container search-4">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Search in the dark..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-container"&gt;
+  &lt;div class="search-wrapper"&gt;
+    &lt;input type="text" class="search-input" placeholder="Search in the dark..." /&gt;
+    &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-container {
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 25px;
+  color: #e0e0e0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #777;
+}
+
+.search-input:focus {
+  border-color: #4ecdc4;
+  box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 5 - Minimalistic</h2>
+        <p class="subtitle">Clean and simple design with underline focus effect</p>
+        <div class="search-container search-5">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Minimal search..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-wrapper"&gt;
+  &lt;input type="text" class="search-input" placeholder="Minimal search..." /&gt;
+  &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 5px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-bottom-color: #333;
+}
+
+.search-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  color: #007BFF;
+  transform: translateY(-50%) scale(1.2);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 6 - Gradient Border</h2>
+        <p class="subtitle">Colorful gradient border with smooth transitions</p>
+        <div class="search-container search-6">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Gradient search..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-wrapper"&gt;
+  &lt;input type="text" class="search-input" placeholder="Gradient search..." /&gt;
+  &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  border-radius: 25px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: white;
+  border: none;
+  border-radius: 25px;
+  color: #333;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 7 - Neumorphism</h2>
+        <p class="subtitle">Soft UI design with inset shadows and 3D effect</p>
+        <div class="search-container search-7">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Soft UI search..." />
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-container"&gt;
+  &lt;div class="search-wrapper"&gt;
+    &lt;input type="text" class="search-input" placeholder="Soft UI search..." /&gt;
+    &lt;button class="search-btn"&gt;🔍&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-container {
+  background: #e0e0e0;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 25px;
+  box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  transform: translateY(-50%) scale(0.95);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Search Bar 8 - Modern with Icons</h2>
+        <p class="subtitle">Contemporary design with integrated icons and pill-shaped button</p>
+        <div class="search-container search-8">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search anything..." />
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">&lt;div class="search-wrapper"&gt;
+  &lt;span class="search-icon"&gt;🔍&lt;/span&gt;
+  &lt;input type="text" class="search-input" placeholder="Search anything..." /&gt;
+  &lt;button class="search-btn"&gt;Search&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 50px;
+  padding: 5px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-wrapper:focus-within {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search-icon {
+  padding: 10px 15px;
+  color: #666;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  flex: 1;
+  padding: 10px 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-btn {
+  background: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+&lt;/style&gt;</pre>
+    </section>
+
+    <script>
+        // Toggle code block visibility
+        function toggleCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const isVisible = codeBlock.style.display === "block";
+            codeBlock.style.display = isVisible ? "none" : "block";
+            button.textContent = isVisible ? "Show Code" : "Hide Code";
+        }
+
+        // Dark mode toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const navbar = document.getElementById('navbar');
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            navbar.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                themeToggleBtn.textContent = '☀️';
+            } else {
+                themeToggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+
+</html>
