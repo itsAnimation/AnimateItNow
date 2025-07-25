@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AnimateItNow Web UI</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+  <canvas id="bgParticles"></canvas>
+  <div class="centerer">
+    <div class="card glass">
+      <div class="card-header">
+        <i class="fa-solid fa-film fa-lg"></i>
+        <span class="app-title">AnimateItNow <span class="beta-badge">BETA</span></span>
+        <button id="toggle-theme" title="Toggle Dark/Light" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <form id="animate-form" autocomplete="off">
+        <div class="form-group">
+          <input type="text" id="prompt" name="prompt" required/>
+          <label for="prompt">Animation Prompt</label>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input type="number" id="frames" name="frames" min="1" max="1000" value="30" required/>
+            <label for="frames">Frames</label>
+          </div>
+          <div class="form-group">
+            <select id="style" name="style">
+              <option value="cartoon">Cartoon</option>
+              <option value="realistic">Realistic</option>
+              <option value="sketch">Sketch</option>
+              <option value="pixel">Pixel Art</option>
+              <option value="anime">Anime</option>
+            </select>
+            <label for="style">Style</label>
+          </div>
+        </div>
+        <button type="submit" class="animate-btn"><i class="fa-solid fa-bolt"></i> Generate Animation</button>
+      </form>
+      <div class="log-label"><i class="fa-solid fa-terminal"></i> Output / Logs</div>
+      <div id="log" class="log-area">
+        <span class="log-icon"><i class="fa-solid fa-sparkles"></i></span>
+        Ready to bring your ideas to life!
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
