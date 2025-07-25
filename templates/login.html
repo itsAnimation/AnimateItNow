@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8" />
@@ -246,6 +245,7 @@
     background-color: #0056b3;
   }
   .code-block {
+
       max-height: 0;
       overflow: hidden;
       background: #222;
@@ -558,429 +558,81 @@
       0%,
       100% {
         transform: translateX(-100%) translateY(-100%) rotate(45deg);
+
+    display: none;
+    background: #222;
+    color: #ddd;
+    padding: 20px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    text-align: left;
+  }
+
+  .copy-btn {
+        display: inline-block;
+        margin: 0.5rem 0 1rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+
+      }
+      .copy-btn:hover {
+        background-color: #0056b3;
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
       }
 
-      50% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-      }
+  /* Responsive */
+  @media (max-width: 480px) {
+    section {
+      width: 90%;
+      padding: 20px 15px;
     }
-
-    .variant-5 input[type="text"],
-    .variant-5 input[type="email"],
-    .variant-5 input[type="password"] {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-      color: var(--text-color);
+    .nav-links {
+      gap: 10px;
     }
-
-    body.dark .variant-5 input {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ddd;
-    }
-
-    .variant-5 button {
-      background: rgba(79, 140, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .variant-5 button:hover {
-      background: rgba(79, 140, 255, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
-    }
-
-    /* Variant 6 - Black */
-    .variant-6 {
-      background: #000;
-      color: #fff;
-      border: 2px solid #333;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .variant-6 h2 {
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    .variant-6 .subtitle {
-      color: #ccc;
-    }
-
-    .variant-6 input[type="text"],
-    .variant-6 input[type="email"],
-    .variant-6 input[type="password"] {
-      background: #1a1a1a;
-      border: 2px solid #333;
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-
-    .variant-6 input:focus {
-      border-color: #666;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-      outline: none;
-    }
-
-    .variant-6 input::placeholder {
-      color: #777;
-    }
-
-    .variant-6 button {
-      background: #fff;
-      color: #000;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .variant-6 button:hover {
-      background: #f0f0f0;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
-    }
-
-    /* Variant 7 - Gradient */
-    .variant-7 {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .variant-7::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
-      pointer-events: none;
-    }
-
-    .variant-7 h2,
-    .variant-7 .subtitle {
-      position: relative;
-      z-index: 2;
-    }
-
-    .variant-7 .subtitle {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .variant-7 input[type="text"],
-    .variant-7 input[type="email"],
-    .variant-7 input[type="password"] {
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      color: #333;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s ease;
-    }
-
-    .variant-7 input:focus {
-      background: rgba(255, 255, 255, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      outline: none;
-    }
-
-    .variant-7 input::placeholder {
-      color: #666;
-    }
-
-    .variant-7 button {
-      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-      border: none;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .variant-7 button:hover {
-      background: linear-gradient(45deg, #ee5a52, #ff6b6b);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
-    }
-
-    /* Variant 8 - Premium */
-    .variant-8 {
-      background: linear-gradient(145deg, #f0f0f0, #cacaca);
-      border: none;
-      box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-      position: relative;
-    }
-
-    body.dark .variant-8 {
-      background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-      box-shadow: 20px 20px 60px #161616, -20px -20px 60px #323232;
-    }
-
-    .variant-8 h2 {
-      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      text-align: center;
-      position: relative;
-    }
-
-    .variant-8 h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(45deg, #c9b037, #ffdd44);
-      border-radius: 2px;
-    }
-
-    .variant-8 input[type="text"],
-    .variant-8 input[type="email"],
-    .variant-8 input[type="password"] {
-      background: linear-gradient(145deg, #e0e0e0, #ffffff);
-      border: none;
-      box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
-      transition: all 0.3s ease;
-    }
-
-    body.dark .variant-8 input {
-      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-      box-shadow: inset 8px 8px 16px #111111, inset -8px -8px 16px #333333;
-      color: #ddd;
-    }
-
-    .variant-8 input:focus {
-      box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
-      outline: none;
-    }
-
-    body.dark .variant-8 input:focus {
-      box-shadow: inset 4px 4px 8px #111111, inset -4px -4px 8px #333333;
-    }
-
-    .variant-8 button {
-      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
-      border: none;
-      box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.dark .variant-8 button {
-      box-shadow: 8px 8px 16px #161616, -8px -8px 16px #323232;
-    }
-
-    .variant-8 button:hover {
-      box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-      transform: translateY(-2px);
-    }
-
-    body.dark .variant-8 button:hover {
-      box-shadow: 4px 4px 8px #161616, -4px -4px 8px #323232;
-    }
-
-    .variant-8 button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .variant-8 button:hover::before {
-      left: 100%;
-    }
-
-    /* Variant 9 - Cut Based */
-    .variant-9 {
-      background: #fff;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-      border: 3px solid #333;
-    }
-
-    body.dark .variant-9 {
-      background: #1e1e1e;
-      border-color: #555;
-    }
-
-    .variant-9::before {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-      z-index: -1;
-    }
-
-    .variant-9 h2 {
-      font-family: 'Arial Black', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-    }
-
-    .variant-9 h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
-    }
-
-    .variant-9 input[type="text"],
-    .variant-9 input[type="email"],
-    .variant-9 input[type="password"] {
-      border: 2px solid #333;
-      border-radius: 0;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-      background: #f9f9f9;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    body.dark .variant-9 input {
-      background: #2a2a2a;
-      border-color: #555;
-      color: #ddd;
-    }
-
-    .variant-9 input:focus {
-      border-color: #4ecdc4;
-      box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
-      outline: none;
-    }
-
-    .variant-9 button {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: none;
-      border-radius: 0;
-      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .variant-9 button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s;
-    }
-
-    .variant-9 button:hover {
-      transform: translateX(3px);
-      box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .variant-9 button:hover::before {
-      left: 100%;
-    }
-
-    /* Expand code */
-    .expand-btn {
-      display: inline-block;
-      margin: 20px auto 10px;
-      padding: 8px 18px;
-      background-color: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s;
-    }
-
-    .expand-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .code-block {
-      display: none;
-      background: #222;
-      color: #ddd;
-      padding: 20px;
-      font-size: 0.85rem;
-      border-radius: 8px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      text-align: left;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      section {
-        width: 90%;
-        padding: 20px 15px;
-      }
-
-      .nav-links {
-        gap: 10px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
-
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+     <img src="../images/logo.png" alt="Logo" class="logo" />
+    <span class="site-name">AnimateItNow</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../templates.html" class="active">Templates</a></li>
+    <li><a href="../contributors.html">Contributors</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+</nav>
 
-  <section>
-    <h2>Login Variant 1 - Classic</h2>
-    <p class="subtitle">Simple white card login form</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section>
+  <h2>Login Variant 1 - Classic</h2>
+  <p class="subtitle">Simple white card login form</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;form class="login-form"&gt;
   &lt;input type="text" placeholder="Username" required /&gt;
   &lt;input type="password" placeholder="Password" required /&gt;
@@ -1016,18 +668,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-2">
-    <h2>Login Variant 2 - Elevated Card</h2>
-    <p class="subtitle">White card with shadow and smooth edges</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-2">
+  <h2>Login Variant 2 - Elevated Card</h2>
+  <p class="subtitle">White card with shadow and smooth edges</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-2"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -1067,18 +720,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-3">
-    <h2>Login Variant 3 - Dark Themed</h2>
-    <p class="subtitle">Colored background with white form inputs</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-3">
+  <h2>Login Variant 3 - Dark Themed</h2>
+  <p class="subtitle">Colored background with white form inputs</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-3"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -1111,18 +765,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-4">
-    <h2>Login Variant 4 - Minimal Underline</h2>
-    <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
-      <input type="text" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-4">
+  <h2>Login Variant 4 - Minimal Underline</h2>
+  <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
+    <input type="text" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-4"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Email" required /&gt;
@@ -1240,6 +895,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-6">
@@ -1294,6 +950,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-7">
@@ -1353,6 +1010,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-8">
@@ -1409,6 +1067,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-9">
@@ -1469,34 +1128,53 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <script>
-    // Toggle code block visibility
-    function toggleCode(button) {
-      const codeBlock = button.nextElementSibling;
-      const isVisible = codeBlock.style.display === "block";
-      codeBlock.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
+<script>
+  // Toggle code block visibility
+  function toggleCode(button) {
+    const codeBlock = button.nextElementSibling;
+    const isVisible = codeBlock.style.display === "block";
+    codeBlock.style.display = isVisible ? "none" : "block";
+    button.textContent = isVisible ? "Show Code" : "Hide Code";
+  }
+
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const codeBlock = btn.previousElementSibling;
+          try {
+            await navigator.clipboard.writeText(codeBlock.innerText);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+      });
+
+  // Dark mode toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  const navbar = document.getElementById('navbar');
+
+  themeToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    navbar.classList.toggle('dark');
+    if(body.classList.contains('dark')) {
+      themeToggleBtn.textContent = '☀️';
+    } else {
+      themeToggleBtn.textContent = '🌙';
     }
-
-    // Dark mode toggle
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    const navbar = document.getElementById('navbar');
-
-    themeToggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      navbar.classList.toggle('dark');
-      if (body.classList.contains('dark')) {
-        themeToggleBtn.textContent = '☀️';
-      } else {
-        themeToggleBtn.textContent = '🌙';
-      }
-    });
-  </script>
+  });
+</script>
 
 
 </body>
+</html>
 
 </html>
