@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Theme toggle
+  // 🌙 Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
 
@@ -7,10 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
     if (dark) {
       body.classList.add('dark');
       themeToggle.textContent = '☀️';
+      themeToggle.setAttribute('aria-pressed', 'true');
       localStorage.setItem('theme', 'dark');
     } else {
       body.classList.remove('dark');
       themeToggle.textContent = '🌙';
+      themeToggle.setAttribute('aria-pressed', 'false');
       localStorage.setItem('theme', 'light');
     }
   }
@@ -27,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // observer.unobserve(entry.target); // uncomment to animate only once
+        // observer.unobserve(entry.target); // Uncomment to animate only once
       }
     });
   }, { threshold: 0.2 });
@@ -36,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // 🧪 Testimonial slider
+  // 🧪 Testimonial Slider
   const slider = document.getElementById('slider');
   if (slider) {
     const slides = document.querySelectorAll('.card');
@@ -59,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
-  // 📨 Contact form validation
+  // 📨 Contact Form Validation
   const contactForm = document.querySelector('.contact-form');
   const submitBtn = document.querySelector('.submit-btn');
 
@@ -79,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🧑‍💻 Contributors fetch
+  // 🧑‍💻 Contributors Fetch
   const contributorsGrid = document.getElementById('contributors-grid');
   if (contributorsGrid) {
     fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
@@ -105,75 +107,75 @@ window.addEventListener('DOMContentLoaded', () => {
         contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
       });
   }
-  
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
-const cursorToggle = document.getElementById('cursorToggle');
 
-function enableSnakeCursor() {
-  // Avoid duplicate containers if the toggle is flipped on again
-  if (document.getElementById('cursor-snake')) return;
+  // 🐍 Snake Cursor Feature
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const cursorToggle = document.getElementById('cursorToggle');
 
-  const snakeContainer = document.createElement('div');
-  snakeContainer.id = 'cursor-snake';
-  document.body.appendChild(snakeContainer);
+  function enableSnakeCursor() {
+    if (document.getElementById('cursor-snake')) return;
 
-  const dots = [];
-  const dotCount = 20;
-  for (let i = 0; i < dotCount; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'snake-dot';
-    snakeContainer.appendChild(dot);
-    dots.push({ el: dot, x: 0, y: 0 });
-  }
+    const snakeContainer = document.createElement('div');
+    snakeContainer.id = 'cursor-snake';
+    document.body.appendChild(snakeContainer);
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
+    const dots = [];
+    const dotCount = 20;
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'snake-dot';
+      snakeContainer.appendChild(dot);
+      dots.push({ el: dot, x: 0, y: 0 });
+    }
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
 
-  function animateSnake() {
-    let x = mouseX, y = mouseY;
-    dots.forEach((dot, i) => {
-      dot.x += (x - dot.x) * 0.2;
-      dot.y += (y - dot.y) * 0.2;
-      dot.el.style.left = dot.x + 'px';
-      dot.el.style.top = dot.y + 'px';
-      dot.el.style.transform = `scale(${1 - i / dotCount})`;
-      x = dot.x;
-      y = dot.y;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
 
-    // Save the animation ID to stop later
-    snakeContainer.animationId = requestAnimationFrame(animateSnake);
-  }
-
-  animateSnake();
-}
-
-function disableSnakeCursor() {
-  const snake = document.getElementById('cursor-snake');
-  if (snake) {
-    cancelAnimationFrame(snake.animationId); // Stop the animation
-    snake.remove(); // Remove all dots
-  }
-}
-
-// Add toggle functionality
-if (!isMobile && cursorToggle) {
-  cursorToggle.addEventListener('change', function () {
-    if (this.checked) {
-      enableSnakeCursor();
-    } else {
-      disableSnakeCursor();
+    function animateSnake() {
+      let x = mouseX, y = mouseY;
+      dots.forEach((dot, i) => {
+        dot.x += (x - dot.x) * 0.2;
+        dot.y += (y - dot.y) * 0.2;
+        dot.el.style.left = dot.x + 'px';
+        dot.el.style.top = dot.y + 'px';
+        dot.el.style.transform = `scale(${1 - i / dotCount})`;
+        x = dot.x;
+        y = dot.y;
+      });
+      snakeContainer.animationId = requestAnimationFrame(animateSnake);
     }
-  });
-}
 
+    animateSnake();
+  }
 
-  // 🚦 ProgressBar Functionality
+  function disableSnakeCursor() {
+    const snake = document.getElementById('cursor-snake');
+    if (snake) {
+      cancelAnimationFrame(snake.animationId);
+      snake.remove();
+    }
+  }
+
+  if (!isMobile && cursorToggle) {
+    cursorToggle.addEventListener('change', function () {
+      if (this.checked) {
+        enableSnakeCursor();
+      } else {
+        disableSnakeCursor();
+      }
+    });
+
+    if (cursorToggle.checked) {
+      enableSnakeCursor();
+    }
+  }
+
+  // 🚦 Scroll Progress Bar
   function updateProgressBar() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -183,9 +185,7 @@ if (!isMobile && cursorToggle) {
       progressBar.style.width = scrollPercent + '%';
     }
   }
+
   window.addEventListener('scroll', updateProgressBar);
-  // Initialize on load
-  updateProgressBar();
-
-
+  updateProgressBar(); // Initial call
 });
