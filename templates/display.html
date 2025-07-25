@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Display: Inline vs Block</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+
+  <section>
+    <h2>Display Property Demos: <code>inline</code> vs <code>block</code></h2>
+    <div class="demo-container">
+
+      <div class="demo-card">
+        <h3>Display: Inline</h3>
+        <div class="demo-preview">
+          <p>This is <span style="display:inline; background:#fde2e4; padding:4px; border-radius:4px;">an inline span</span> within a paragraph.</p>
+<p style="opacity:0.7;">Inline elements stay on the same line and don't break flow.</p>
+
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+&lt;p&gt;This is &lt;span style="display:inline; background:#ffeb3b; padding:4px;"&gt;an inline span&lt;/span&gt; within a paragraph.&lt;/p&gt;
+&lt;p&gt;Inline elements stay on the same line and don't break flow.&lt;/p&gt;
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Display: Block</h3>
+        <div class="demo-preview">
+          <div style="display:block; background:#cdeffd; color:#333; padding:10px; margin-bottom:6px; border-radius:6px;">Block Element 1</div>
+<div style="display:block; background:#d0f4de; color:#333; padding:10px; border-radius:6px;">Block Element 2</div>
+<p style="opacity:0.7;">Block elements take full width and start on a new line.</p>
+
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+&lt;div style="display:block; background:#03a9f4; color:white; padding:10px;"&gt;Block Element 1&lt;/div&gt;
+&lt;div style="display:block; background:#4caf50; color:white; padding:10px;"&gt;Block Element 2&lt;/div&gt;
+&lt;p&gt;Block elements take full width and start on a new line.&lt;/p&gt;
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Display: Inline-Block</h3>
+        <div class="demo-preview">
+          <div style="display:inline-block; background:#fcd5ce; color:#333; padding:10px; margin-right:10px; border-radius:6px;">Inline-Block 1</div>
+<div style="display:inline-block; background:#e0bbf6; color:#333; padding:10px; border-radius:6px;">Inline-Block 2</div>
+<p style="opacity:0.7;">Inline-block allows setting width/height while keeping elements on same line.</p>
+
+        </div>
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <div class="code-block">
+&lt;div style="display:inline-block; background:#e91e63; color:white; padding:10px;"&gt;Inline-Block 1&lt;/div&gt;
+&lt;div style="display:inline-block; background:#9c27b0; color:white; padding:10px;"&gt;Inline-Block 2&lt;/div&gt;
+&lt;p&gt;Inline-block allows setting width/height while keeping elements on same line.&lt;/p&gt;
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function toggleCode(button) {
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    function updateThemeIcon() {
+      if (document.body.classList.contains('dark-theme')) {
+        themeToggleBtn.textContent = '☀';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+      } else {
+        themeToggleBtn.textContent = '🌙';
+        themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      updateThemeIcon();
+    });
+
+    window.addEventListener('DOMContentLoaded', updateThemeIcon);
+  </script>
+
+  <style>
+    :root {
+      --nav-text: #222;
+      --bg-light: #f5f5f5;
+      --bg-dark: #121212;
+      --text-dark: #fff;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 64px;
+      background: var(--bg-light);
+      color: var(--nav-text);
+      transition: background-color var(--transition), color var(--transition);
+    }
+    .dark-theme {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 20px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+    section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .dark-theme section {
+      background: #1e1e1e;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .demo-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .demo-card {
+      width: 320px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      padding: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .demo-card:hover {
+      transform: translateY(-4px);
+    }
+    .demo-preview {
+      background: white;
+      height: 200px;
+      overflow-y: auto;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .demo-preview::-webkit-scrollbar {
+      width: 8px;
+    }
+    .demo-preview::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+    .expand-btn {
+      display: block;
+      margin: 14px auto 6px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .expand-btn:active {
+      opacity: 0.6;
+    }
+    .code-block {
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 16px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</body>
+</html>
