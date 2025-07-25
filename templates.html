@@ -33,12 +33,19 @@
         color: #f5f5f5;
       }
 
+
       /* ✅ Heading fix */
       body.dark-theme .templates-main h1 {
         color: #ffffff;
         font-weight: bold;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
+
+    a {
+      text-decoration: none;
+    }
+
+  
 
       /* ✅ Template card titles */
       body.dark-theme .template-card h2 {
@@ -261,12 +268,41 @@
       }
 
 
-    .price-box {
+    /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+      height: 90px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgb(0, 0, 0 / 0.1);
+    }
+
+    body.dark-theme .navbar-preview {
+      background-color: #2a2a2a;
+    }
+
+
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
       background-color: white;
-      flex: 1;
-      height: 40px;
-      border-radius: 6px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-line.logo {
+      width: 40%;
+    }
+
+    .navbar-line.link {
+      width: 70%;
+    }
+
+    .navbar-line.link.short {
+      width: 50%;
     }
   </style>
 </head>
@@ -282,7 +318,6 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
         <li><a href="templates.html" class="active">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -294,75 +329,83 @@
   <main class="templates-main">
     <h1>Templates Gallery</h1>
     <section class="templates-grid">
-      <article class="template-card">
+      <a class="template-card" href="templates/login.html">
         <h2>Login Page UI</h2>
         <div class="template-preview login-preview"></div>
-        <a class="template-btn" href="templates/login.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/button.html">
         <h2>Hover Button Effects</h2>
         <div class="template-preview button-preview"></div>
-        <a class="template-btn" href="templates/button.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/loader.html">
         <h2>Loaders</h2>
         <div class="template-preview loader-preview"></div>
-        <a class="template-btn" href="templates/loader.html">View Template</a>
-      </article>
-      <article class="template-card">
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <a class="template-card" href="templates/modal.html">
         <h2>Popup Templates</h2>
         <div class="template-preview modal-preview"></div>
-        <a class="template-btn" href="templates/modal.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/glassmorphism.html">
         <h2>Glassmorphism profile card</h2>
         <div class="template-preview modal-preview"></div>
-        <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/feature.html">
         <h2>Feature Cards UI</h2>
         <div class="template-preview feature-preview">
           <div class="mini-card">Card1</div>
           <div class="mini-card">Card2</div>
           <div class="mini-card">Card3</div>
         </div>
-        <a class="template-btn" href="templates/feature.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <article class="template-card">
+      <a class="template-card" href="templates/hero.html">
         <h2>Hero Section Template</h2>
         <div class="template-preview hero-preview">
           <div class="hero-image"></div>
           <div class="hero-text-line"></div>
           <div class="hero-text-line short"></div>
         </div>
-        <a class="template-btn" href="templates/hero.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
       <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
-      <article class="template-card">
+      <a class="template-card" href="templates/social-share-buttons.html">
         <h2>Animated Social Share Buttons</h2>
         <div class="template-preview social-share-preview">
           <i class="fab fa-facebook-f social-icon-preview"></i>
           <i class="fab fa-twitter social-icon-preview"></i>
           <i class="fab fa-instagram social-icon-preview"></i>
         </div>
-        <a class="template-btn" href="templates/social-share-buttons.html">View Template</a>
-      </article>
+        <button class="template-btn">View Template</button>
+      </a>
 
-      <!-- NEWLY ADDED PRICE PLAN TEMPLATE -->
-      <article class="template-card">
-        <h2>Price Plan Template</h2>
-        <div class="template-preview price-preview">
-          <div class="price-box basic"></div>
-          <div class="price-box pro"></div>
-          <div class="price-box enterprise"></div>
+      <a class="template-card" href="templates/neumorphic.html">
+        <h2>Neumorphic Button Effects</h2>
+        <div class="template-preview neumorphic-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <!--NAVBAR--->
+      <a class="template-card" href="templates/navbar.html">
+        <h2>Navbar Variants</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line logo"></div>
+          <div class="navbar-line link"></div>
+          <div class="navbar-line link short"></div>
         </div>
-        <a class="template-btn" href="templates/price_plan.html">View Template</a>
-      </article>
-
+        <button class="template-btn">View Template</button>
+      </a>
     </section>
   </main>
   <footer class="footer">
