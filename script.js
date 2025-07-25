@@ -1,16 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Theme toggle
-  const themeToggle = document.getElementById('theme-toggle');
+  // Theme toggle - updated to handle multiple buttons
+  const themeToggles = document.querySelectorAll('#theme-toggle'); // Get all theme toggle buttons
   const body = document.body;
 
   function setTheme(dark) {
     if (dark) {
       body.classList.add('dark');
-      themeToggle.textContent = '☀️';
+      themeToggles.forEach(btn => btn.textContent = '☀️');
       localStorage.setItem('theme', 'dark');
     } else {
       body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
+      themeToggles.forEach(btn => btn.textContent = '🌙');
       localStorage.setItem('theme', 'light');
     }
   }
@@ -18,9 +18,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   setTheme(savedTheme === 'dark');
 
-  themeToggle?.addEventListener('click', () => {
-    setTheme(!body.classList.contains('dark'));
+  // Add event listeners to all theme toggle buttons
+  themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      setTheme(!body.classList.contains('dark'));
+    });
   });
+
 
   // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver((entries) => {
