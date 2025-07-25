@@ -189,3 +189,57 @@ if (!isMobile && cursorToggle) {
 
 
 });
+
+// Fade-in on scroll for elements
+const fadeEls = document.querySelectorAll(".fade-in-on-scroll");
+
+const isInViewport = (el) => {
+  const rect = el.getBoundingClientRect();
+  return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+};
+
+const revealOnScroll = () => {
+  fadeEls.forEach(el => {
+    if (isInViewport(el)) el.classList.add("visible");
+  });
+};
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+// ─── Scroll to Top Button ───
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollToTopBtn.style.display = "block";
+  } else {
+    scrollToTopBtn.style.display = "none";
+  }
+});
+
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+// Scroll to Top button logic
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.style.display = "block";
+    } else {
+      scrollToTopBtn.style.display = "none";
+    }
+  });
+
+  scrollToTopBtn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+});
