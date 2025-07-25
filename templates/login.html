@@ -153,7 +153,7 @@
   }
 
   form.login-form button {
-    background: var(--accent);
+    background: #01924e;
     color: #fff;
     padding: 0.8em 1em;
     border: none;
@@ -164,16 +164,25 @@
     transition: background-color 0.3s ease;
   }
   form.login-form button:hover {
-    background: #3a6fcc;
+    background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
   }
 
   /* Variant 2 - Elevated Card */
+  .variant-1 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
   .variant-2 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
     box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
   }
   /* Variant 3 - Dark Theme */
   .variant-3 {
-    background: var(--accent);
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
     color: white;
     padding: 2rem 2rem 3rem;
   }
@@ -194,6 +203,12 @@
   }
   .variant-3 button:hover {
     background: #dbe9ff;
+  }
+  .variant-4{
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
   }
 
   /* Variant 4 - Minimal Underline */
@@ -225,6 +240,10 @@
   }
   .variant-4 button:hover {
     background: #0056b3;
+  }
+
+  .subtitle{
+    color : #ffffff;
   }
 
   /* Expand code */
@@ -307,7 +326,7 @@
   <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
 </nav>
 
-<section>
+<section class="variant-1">
   <h2>Login Variant 1 - Classic</h2>
   <p class="subtitle">Simple white card login form</p>
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
