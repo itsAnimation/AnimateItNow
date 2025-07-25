@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Theme toggle
+  // 🌙 Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
 
@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   const savedTheme = localStorage.getItem('theme');
   setTheme(savedTheme === 'dark');
 
@@ -30,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // observer.unobserve(entry.target); // uncomment to animate only once
+        // observer.unobserve(entry.target); // Uncomment to animate only once
       }
     });
   }, { threshold: 0.2 });
@@ -39,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // 🧪 Testimonial slider
+  // 🧪 Testimonial Slider
   const slider = document.getElementById('slider');
   if (slider) {
     const slides = document.querySelectorAll('.card');
@@ -62,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
-  // 📨 Contact form validation
+  // 📨 Contact Form Validation
   const contactForm = document.querySelector('.contact-form');
   const submitBtn = document.querySelector('.submit-btn');
 
@@ -82,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🧑‍💻 Contributors fetch
+  // 🧑‍💻 Contributors Fetch
   const contributorsGrid = document.getElementById('contributors-grid');
   if (contributorsGrid) {
     fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
@@ -109,9 +108,12 @@ window.addEventListener('DOMContentLoaded', () => {
       });
   }
 
+  // 🐍 Snake Cursor Feature
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const cursorToggle = document.getElementById('cursorToggle');
 
-  if (!isMobile) {
+  function enableSnakeCursor() {
+    if (document.getElementById('cursor-snake')) return;
 
     const snakeContainer = document.createElement('div');
     snakeContainer.id = 'cursor-snake';
@@ -145,10 +147,45 @@ window.addEventListener('DOMContentLoaded', () => {
         x = dot.x;
         y = dot.y;
       });
-      requestAnimationFrame(animateSnake);
+      snakeContainer.animationId = requestAnimationFrame(animateSnake);
     }
+
     animateSnake();
   }
 
+  function disableSnakeCursor() {
+    const snake = document.getElementById('cursor-snake');
+    if (snake) {
+      cancelAnimationFrame(snake.animationId);
+      snake.remove();
+    }
+  }
 
+  if (!isMobile && cursorToggle) {
+    cursorToggle.addEventListener('change', function () {
+      if (this.checked) {
+        enableSnakeCursor();
+      } else {
+        disableSnakeCursor();
+      }
+    });
+
+    if (cursorToggle.checked) {
+      enableSnakeCursor();
+    }
+  }
+
+  // 🚦 Scroll Progress Bar
+  function updateProgressBar() {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (windowScroll / documentHeight) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      progressBar.style.width = scrollPercent + '%';
+    }
+  }
+
+  window.addEventListener('scroll', updateProgressBar);
+  updateProgressBar(); // Initial call
 });

@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
+
   <title>Glassmorphism Profile Card</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #2c3e50, #4ca1af);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
+    }
+
+    .outer {
+      margin-top: 4rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
     }
 
     .glass-card {
@@ -75,15 +84,24 @@
 </head>
 
 <body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
   <!-- Glassmorphism Profile Card Component added by AkshitBhandariCodes -->
-  <div>
+  <div class="outer">
     <h2>Glassmorphism Profile Card</h2>
     <div class="glass-card">
-      <img
-        src="https://randomuser.me/api/portraits/men/75.jpg"
-        alt="Profile Picture"
-        class="glass-avatar"
-      />
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Picture" class="glass-avatar" />
       <h3 class="glass-name">Akshit Bhandari</h3>
       <p class="glass-role">Frontend Developer</p>
       <div class="glass-socials">
@@ -105,4 +123,5 @@
     });
   </script>
 </body>
+
 </html>

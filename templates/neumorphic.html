@@ -4,13 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
   <title>Neuromorphic Button Gallery</title>
   <style>
+
+    .navbar{
+      width: 100%;
+    }
     body {
       background: #e0e0e0;
       font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
       display: flex;
       flex-direction: column;
       gap: 3rem;
@@ -129,27 +133,38 @@
     }
 
     .toggle-btn {
-  margin-top: 1rem;
-  font-size: 14px;
-  padding: 10px 20px;
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
-}
+      margin-top: 1rem;
+      font-size: 14px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
 
-.toggle-btn:hover {
-  background: #0069d9;
-}
-
+    .toggle-btn:hover {
+      background: #0069d9;
+    }
   </style>
 </head>
 
 <body>
-
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
   <div class="level level1">
     <h2>Level 1 - Basic Neumorphism</h2>
     <button class="neu-btn">Level 1</button>
