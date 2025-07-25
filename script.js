@@ -105,10 +105,13 @@ window.addEventListener('DOMContentLoaded', () => {
         contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
       });
   }
-
+  
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
+const cursorToggle = document.getElementById('cursorToggle');
 
-if (!isMobile) {
+function enableSnakeCursor() {
+  // Avoid duplicate containers if the toggle is flipped on again
+  if (document.getElementById('cursor-snake')) return;
 
   const snakeContainer = document.createElement('div');
   snakeContainer.id = 'cursor-snake';
@@ -142,10 +145,47 @@ if (!isMobile) {
       x = dot.x;
       y = dot.y;
     });
-    requestAnimationFrame(animateSnake);
+
+    // Save the animation ID to stop later
+    snakeContainer.animationId = requestAnimationFrame(animateSnake);
   }
+
   animateSnake();
 }
+
+function disableSnakeCursor() {
+  const snake = document.getElementById('cursor-snake');
+  if (snake) {
+    cancelAnimationFrame(snake.animationId); // Stop the animation
+    snake.remove(); // Remove all dots
+  }
+}
+
+// Add toggle functionality
+if (!isMobile && cursorToggle) {
+  cursorToggle.addEventListener('change', function () {
+    if (this.checked) {
+      enableSnakeCursor();
+    } else {
+      disableSnakeCursor();
+    }
+  });
+}
+
+
+  // 🚦 ProgressBar Functionality
+  function updateProgressBar() {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (windowScroll / documentHeight) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      progressBar.style.width = scrollPercent + '%';
+    }
+  }
+  window.addEventListener('scroll', updateProgressBar);
+  // Initialize on load
+  updateProgressBar();
 
 
 });
