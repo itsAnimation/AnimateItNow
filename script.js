@@ -65,23 +65,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 📨 Contact form validation
   const contactForm = document.querySelector('.contact-form');
-  const submitBtn = document.querySelector('.submit-btn');
-
-  if (contactForm && submitBtn) {
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    submitBtn.disabled = true;
-
+  const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+  if (contactForm) {
     function checkFormValidity() {
-      let allFieldsFilled = [...formInputs].every(input => input.value.trim() !== '');
-      submitBtn.disabled = !allFieldsFilled;
-      submitBtn.classList.toggle('disabled', !allFieldsFilled);
+      return [...formInputs].every(input => input.value.trim() !== '');
     }
-
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const allValid = checkFormValidity();
+      if (allValid) {
+        alert('Message sent successfully!');
+        contactForm.reset();
+      } else {
+        alert('Please fill in all fields correctly. Fields cannot be empty or contain only spaces.');
+      }
+    });
     formInputs.forEach(input => {
-      input.addEventListener('input', checkFormValidity);
-      input.addEventListener('blur', checkFormValidity);
+      input.addEventListener('input', () => {
+        const allFieldsFilled = checkFormValidity();
+        input.classList.toggle('invalid', !allFieldsFilled);
+      });
     });
   }
+  
 
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById('contributors-grid');

@@ -545,6 +545,30 @@ main {
 }
 
 /* Responsive adjustments */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(138, 180, 248, 0.2),
+                0 0 20px rgba(138, 180, 248, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(138, 180, 248, 0.35),
+                0 0 30px rgba(138, 180, 248, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(138, 180, 248, 0.2),
+                0 0 20px rgba(138, 180, 248, 0.15);
+  }
+}
+
+body.dark .contact-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 2rem;
+  animation: neonPulse 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .footer-content {
     display: flex;
@@ -1104,13 +1128,26 @@ body.dark .contributor-card:hover {
   padding: 0.85rem 2rem;
   background: #2563eb;
   border-radius: 10px;
+  transition: all 0.2s;
+ }
+ #submit:active{
+  background-color: #163bb1;
  }
 
 /* Dark theme support */
 body.dark .form-group input,
 body.dark .form-group textarea {
-  border-color: #374151;
-  background: var(--card-bg);
+  background-color: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+  color: #bbbbbb;
 }
 
 body.dark .nav-links a {
@@ -1119,8 +1156,13 @@ body.dark .nav-links a {
 }
 
 body.dark .contact-main h1 {
-  color: #8aadf4;
-  text-shadow:0 0 4px rgba(66, 150, 255, 0.05); 
+  /* color: #8aadf4; */
+  color: #a4c8ff;
+  text-shadow:
+  0 0 4px rgba(138, 180, 248, 0.4),  
+  0 0 10px rgba(138, 180, 248, 0.2),  
+  0 0 20px rgba(138, 180, 248, 0.1);  
+
 }
 
 body.dark .navbar {
@@ -1129,7 +1171,12 @@ body.dark .navbar {
 }
 
 body.dark .contact-container {
-  box-shadow: 0.3rem 0.3rem 0.3rem rgba(255, 255, 255, 0.365);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 2rem;
+  animation: neonPulse 3s ease-in-out infinite alternate;
+  transition: all 0.3s ease;
 }
 
 body.contact.dark {
@@ -1141,6 +1188,7 @@ body.contact.dark {
 body.dark .form-group input:focus,
 body.dark .form-group textarea:focus {
   border-color: var(--accent);
+  outline: none;
 }
 
 

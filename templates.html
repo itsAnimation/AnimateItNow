@@ -329,6 +329,16 @@
 
   <main class="templates-main">
     <h1>Templates Gallery</h1>
+      <!-- 🔍 Search Bar & Category Filter Start -->
+  <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+  <input
+    type="text"
+    id="search-bar"
+    placeholder="Search templates..."
+    style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
+    aria-label="Search templates"
+  />
+</div>
     <section class="templates-grid">
       <a class="template-card" href="templates/login.html">
         <h2>Login Page UI</h2>
@@ -491,6 +501,33 @@
     document.querySelectorAll(".template-card").forEach((card) => {
       observer.observe(card);
     });
+
+    
+         // 🔍 Search & Category Filter Functionality
+   const searchBar = document.getElementById('search-bar');
+  const templateCards = document.querySelectorAll('.template-card');
+  const noResultsMsg = document.getElementById('no-results');
+
+  function filterTemplates() {
+    const query = searchBar.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    templateCards.forEach(card => {
+      const title = card.querySelector('h2').textContent.trim().toLowerCase();
+      const matchesTitle = title.startsWith(query);
+      if (matchesTitle) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  searchBar.addEventListener('input', filterTemplates);
+
   </script>
 </body>
 
