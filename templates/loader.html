@@ -1,241 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loaders | AnimateItNow</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <style>
-    /* Animations */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes l1 { to { transform: rotate(0.5turn); } }
-    @keyframes l2 { to { transform: rotate(1turn); } }
-    @keyframes l3 { 100% { transform: rotate(1turn); } }
-    @keyframes l4 { to { transform: rotate(1turn); } }
-    @keyframes l26 { 100% { transform: rotate(1turn); } }
-
-    body{
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /*  Loader Container */
-    .loader-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 50px 0;
-    }
-
-    /*Individual Loaders */
-    .loader-spin {
-      width: 80px;
-      height: 80px;
-      border: 8px solid #e0e7ff;
-      border-top: 6px solid #00b4d8;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    .loader-l1 {
-      width: 80px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 8px solid;
-      border-color: #ffc300 #0000;
-      animation: l1 1s infinite;
-    }
-
-    .loader-l2 {
-      width: 80px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 8px solid #cfbaf0;
-      border-right-color: #8338ec;
-      animation: l2 1s infinite linear;
-    }
-
-    .loader-l3 {
-      width: 80px;
-      aspect-ratio: 1;
-      display: grid;
-      border-radius: 50%;
-      background:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.5) 30%, #0000 0 70%, rgba(0, 0, 0, 1) 0) 50% / 8% 100%,
-        linear-gradient(90deg, rgba(0, 0, 0, 0.25) 30%, #0000 0 70%, rgba(0, 0, 0, 0.75) 0) 50% / 100% 8%;
-      background-repeat: no-repeat;
-      animation: l3 1s infinite steps(12);
-    }
-
-    .loader-l3::before,
-    .loader-l3::after {
-      content: "";
-      grid-area: 1/1;
-      border-radius: 50%;
-      background: inherit;
-      opacity: 0.915;
-      transform: rotate(30deg);
-    }
-
-    .loader-l3::after {
-      opacity: 0.83;
-      transform: rotate(60deg);
-    }
-
-    .loader-l4 {
-      width: 80px;
-      padding: 10px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: #e85d04;
-      --_m:
-        conic-gradient(#0000 10%, #000),
-        linear-gradient(#000 0 0) content-box;
-      -webkit-mask: var(--_m);
-              mask: var(--_m);
-      -webkit-mask-composite: source-out;
-              mask-composite: subtract;
-      animation: l4 1s infinite linear;
-    }
-
-    .loader-l5 {
-      width: 80px;
-      aspect-ratio: 1;
-      display: grid;
-      -webkit-mask: conic-gradient(from 15deg, #0000, #000);
-              mask: conic-gradient(from 15deg, #0000, #000);
-      animation: l26 1s infinite steps(12);
-    }
-
-    .loader-l5,
-    .loader-l5::before,
-    .loader-l5::after {
-      background:
-        radial-gradient(closest-side at 50% 12.5%, #f03355 96%, #0000) 50% 0 / 20% 80% repeat-y,
-        radial-gradient(closest-side at 12.5% 50%, #f03355 96%, #0000) 0 50% / 80% 20% repeat-x;
-    }
-
-    .loader-l5::before,
-    .loader-l5::after {
-      content: "";
-      grid-area: 1/1;
-      transform: rotate(30deg);
-    }
-
-    .loader-l5::after {
-      transform: rotate(60deg);
-    }
-
-    .loader-l6 {
-      text-align: center;
-    }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: #333;
-      animation: bounce 1.2s infinite ease-in-out;
-    }
-
-    .dot:nth-child(1) {
-      background-color: #ff6b6b; /* Red */
-      animation-delay: 0s;
-    }
-
-    .dot:nth-child(2) {
-      background-color: #feca57; /* Yellow */
-      animation-delay: 0.15s;
-    }
-
-    .dot:nth-child(3) {
-      background-color: #1dd1a1; /* Green */
-      animation-delay: 0.3s;
-    }
-
-    .dot:nth-child(4) {
-      background-color: #2e86de; /* Blue */
-      animation-delay: 0.45s;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loaders | AnimateItNow</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      /* Animations */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
-      50% {
-        transform: translateY(-12px);
+
+      @keyframes l1 {
+        to {
+          transform: rotate(0.5turn);
+        }
       }
-    }
+      @keyframes l2 {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes l3 {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes l4 {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes l26 {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
 
-    .loading-text {
-      font-size: 18px;
-      letter-spacing: 4px;
-      color: #333;
-      font-weight: 600;
-      margin-left: 30px;
-    }
-    footer{
-      margin: auto;
-      width: fit-content;
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <h1 class="site-name">Animate It Now</h1>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-  <!-- Main Section -->
-  <main class="templates-main">
-    <h1>Loaders</h1>
-    <div class="loader-container">
-      <div class="loader-spin"></div>
-      <div class="loader-l1"></div>
-      <div class="loader-l2"></div>
-      <div class="loader-l3"></div>
-      <div class="loader-l4"></div>
-      <div class="loader-l5"></div>
-      <div class="loader-l6">
-    <div class="dots">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="loading-text">LOADING...</div>
-  </div>
-    </div>
-  </main>
+      /*  Loader Container */
+      .loader-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 50px 0;
+      }
 
-  <!-- Footer -->
-  <footer>
-    <p>Made with ❤️ by Anuj and Contributors</p>
-  </footer>
+      /*Individual Loaders */
+      .loader-spin {
+        width: 80px;
+        height: 80px;
+        border: 8px solid #e0e7ff;
+        border-top: 6px solid #00b4d8;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
 
-  <script src="../script.js"></script>
-</body>
+      .loader-l1 {
+        width: 80px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 8px solid;
+        border-color: #ffc300 #0000;
+        animation: l1 1s infinite;
+      }
+
+      .loader-l2 {
+        width: 80px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 8px solid #cfbaf0;
+        border-right-color: #8338ec;
+        animation: l2 1s infinite linear;
+      }
+
+      .loader-l3 {
+        width: 80px;
+        aspect-ratio: 1;
+        display: grid;
+        border-radius: 50%;
+        background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.5) 30%,
+              #0000 0 70%,
+              rgba(0, 0, 0, 1) 0
+            )
+            50% / 8% 100%,
+          linear-gradient(
+              90deg,
+              rgba(0, 0, 0, 0.25) 30%,
+              #0000 0 70%,
+              rgba(0, 0, 0, 0.75) 0
+            )
+            50% / 100% 8%;
+        background-repeat: no-repeat;
+        animation: l3 1s infinite steps(12);
+      }
+
+      .loader-l3::before,
+      .loader-l3::after {
+        content: "";
+        grid-area: 1/1;
+        border-radius: 50%;
+        background: inherit;
+        opacity: 0.915;
+        transform: rotate(30deg);
+      }
+
+      .loader-l3::after {
+        opacity: 0.83;
+        transform: rotate(60deg);
+      }
+
+      .loader-l4 {
+        width: 80px;
+        padding: 10px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #e85d04;
+        --_m: conic-gradient(#0000 10%, #000),
+          linear-gradient(#000 0 0) content-box;
+        -webkit-mask: var(--_m);
+        mask: var(--_m);
+        -webkit-mask-composite: source-out;
+        mask-composite: subtract;
+        animation: l4 1s infinite linear;
+      }
+
+      .loader-l5 {
+        width: 80px;
+        aspect-ratio: 1;
+        display: grid;
+        -webkit-mask: conic-gradient(from 15deg, #0000, #000);
+        mask: conic-gradient(from 15deg, #0000, #000);
+        animation: l26 1s infinite steps(12);
+      }
+
+      .loader-l5,
+      .loader-l5::before,
+      .loader-l5::after {
+        background: radial-gradient(
+              closest-side at 50% 12.5%,
+              #f03355 96%,
+              #0000
+            )
+            50% 0 / 20% 80% repeat-y,
+          radial-gradient(closest-side at 12.5% 50%, #f03355 96%, #0000) 0 50% /
+            80% 20% repeat-x;
+      }
+
+      .loader-l5::before,
+      .loader-l5::after {
+        content: "";
+        grid-area: 1/1;
+        transform: rotate(30deg);
+      }
+
+      .loader-l5::after {
+        transform: rotate(60deg);
+      }
+
+      .loader-l6 {
+        text-align: center;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #333;
+        animation: bounce 1.2s infinite ease-in-out;
+      }
+
+      .dot:nth-child(1) {
+        background-color: #ff6b6b; /* Red */
+        animation-delay: 0s;
+      }
+
+      .dot:nth-child(2) {
+        background-color: #feca57; /* Yellow */
+        animation-delay: 0.15s;
+      }
+
+      .dot:nth-child(3) {
+        background-color: #1dd1a1; /* Green */
+        animation-delay: 0.3s;
+      }
+
+      .dot:nth-child(4) {
+        background-color: #2e86de; /* Blue */
+        animation-delay: 0.45s;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .loading-text {
+        font-size: 18px;
+        letter-spacing: 4px;
+        color: #333;
+        font-weight: 600;
+        margin-left: 30px;
+      }
+
+      .loader-l7 {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+
+      .circle {
+        width: 100%;
+        height: 100%;
+        border: 8px solid rgba(0, 0, 0, 0.2);
+        border-top: 8px solid #000000;
+        border-radius: 50%;
+        animation: spin 2s linear infinite;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+
+      .plane {
+        transform: rotate(45deg) translate(15px, -2px);
+        font-size: 24px;
+        color: rgb(141, 134, 134);
+      }
+      footer {
+        margin: auto;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <h1 class="site-name">Animate It Now</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="templates-main">
+      <h1>Loaders</h1>
+      <div class="loader-container">
+        <div class="loader-spin"></div>
+        <div class="loader-l1"></div>
+        <div class="loader-l2"></div>
+        <div class="loader-l3"></div>
+        <div class="loader-l4"></div>
+        <div class="loader-l5"></div>
+        <div class="loader-l6">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="loading-text">LOADING...</div>
+        </div>
+        <div class="loader-l7">
+          <div class="circle">
+            <i class="fas fa-plane plane"></i>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Made with ❤️ by Anuj and Contributors</p>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
 </html>
