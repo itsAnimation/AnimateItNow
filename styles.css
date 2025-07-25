@@ -537,8 +537,7 @@ main {
   cursor: help;
 }
 
-.footer-bottom .highlight:hover::after {
-  content: "Contributor";
+.footer-bottom .highlight .tooltip-link {
   position: absolute;
   bottom: 125%;
   left: 50%;
@@ -550,8 +549,16 @@ main {
   border-radius: 6px;
   white-space: nowrap;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none; /* Prevent clicks when hidden */
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-bottom .highlight:hover .tooltip-link {
   opacity: 1;
-  z-index: 10;
+  pointer-events: auto; /* Make clickable on hover */
+  transform: translate(-50%, -5px);
 }
 
 /* Responsive adjustments */
