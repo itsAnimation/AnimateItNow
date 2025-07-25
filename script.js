@@ -1,45 +1,48 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   // Theme toggle
-  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
 
   function setTheme(dark) {
     if (dark) {
-      body.classList.add('dark');
-      themeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
+      body.classList.add("dark");
+      themeToggle.textContent = "☀️";
+      localStorage.setItem("theme", "dark");
     } else {
-      body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+      body.classList.remove("dark");
+      themeToggle.textContent = "🌙";
+      localStorage.setItem("theme", "light");
     }
   }
 
-  const savedTheme = localStorage.getItem('theme');
-  setTheme(savedTheme === 'dark');
+  const savedTheme = localStorage.getItem("theme");
+  setTheme(savedTheme === "dark");
 
-  themeToggle?.addEventListener('click', () => {
-    setTheme(!body.classList.contains('dark'));
+  themeToggle?.addEventListener("click", () => {
+    setTheme(!body.classList.contains("dark"));
   });
 
   // 🔽 Scroll Reveal Animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // observer.unobserve(entry.target); // uncomment to animate only once
-      }
-    });
-  }, { threshold: 0.2 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          // observer.unobserve(entry.target); // uncomment to animate only once
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-  document.querySelectorAll('.scroll-fade').forEach(el => {
+  document.querySelectorAll(".scroll-fade").forEach((el) => {
     observer.observe(el);
   });
 
   // 🧪 Testimonial slider
-  const slider = document.getElementById('slider');
+  const slider = document.getElementById("slider");
   if (slider) {
-    const slides = document.querySelectorAll('.card');
+    const slides = document.querySelectorAll(".card");
     let current = 0;
 
     function showSlide(index) {
@@ -60,38 +63,42 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // 📨 Contact form validation
-  const contactForm = document.querySelector('.contact-form');
-  const submitBtn = document.querySelector('.submit-btn');
+  const contactForm = document.querySelector(".contact-form");
+  const submitBtn = document.querySelector(".submit-btn");
 
   if (contactForm && submitBtn) {
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+    const formInputs = contactForm.querySelectorAll(
+      "input[required], textarea[required]"
+    );
     submitBtn.disabled = true;
 
     function checkFormValidity() {
-      let allFieldsFilled = [...formInputs].every(input => input.value.trim() !== '');
+      let allFieldsFilled = [...formInputs].every(
+        (input) => input.value.trim() !== ""
+      );
       submitBtn.disabled = !allFieldsFilled;
-      submitBtn.classList.toggle('disabled', !allFieldsFilled);
+      submitBtn.classList.toggle("disabled", !allFieldsFilled);
     }
 
-    formInputs.forEach(input => {
-      input.addEventListener('input', checkFormValidity);
-      input.addEventListener('blur', checkFormValidity);
+    formInputs.forEach((input) => {
+      input.addEventListener("input", checkFormValidity);
+      input.addEventListener("blur", checkFormValidity);
     });
   }
 
   // 🧑‍💻 Contributors fetch
-  const contributorsGrid = document.getElementById('contributors-grid');
+  const contributorsGrid = document.getElementById("contributors-grid");
   if (contributorsGrid) {
-    fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
-      .then(res => res.json())
-      .then(contributors => {
-        contributorsGrid.innerHTML = '';
-        contributors.forEach(contributor => {
-          const card = document.createElement('a');
+    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+      .then((res) => res.json())
+      .then((contributors) => {
+        contributorsGrid.innerHTML = "";
+        contributors.forEach((contributor) => {
+          const card = document.createElement("a");
           card.href = contributor.html_url;
-          card.className = 'contributor-card';
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
+          card.className = "contributor-card";
+          card.target = "_blank";
+          card.rel = "noopener noreferrer";
           card.innerHTML = `
             <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
             <h3>${contributor.login}</h3>
@@ -100,92 +107,94 @@ window.addEventListener('DOMContentLoaded', () => {
           contributorsGrid.appendChild(card);
         });
       })
-      .catch(err => {
-        console.error('Error fetching contributors:', err);
-        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+      .catch((err) => {
+        console.error("Error fetching contributors:", err);
+        contributorsGrid.innerHTML =
+          "<p>Could not load contributors at this time.</p>";
       });
   }
-  
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
-const cursorToggle = document.getElementById('cursorToggle');
 
-function enableSnakeCursor() {
-  // Avoid duplicate containers if the toggle is flipped on again
-  if (document.getElementById('cursor-snake')) return;
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const cursorToggle = document.getElementById("cursorToggle");
 
-  const snakeContainer = document.createElement('div');
-  snakeContainer.id = 'cursor-snake';
-  document.body.appendChild(snakeContainer);
+  function enableSnakeCursor() {
+    // Avoid duplicate containers if the toggle is flipped on again
+    if (document.getElementById("cursor-snake")) return;
 
-  const dots = [];
-  const dotCount = 20;
-  for (let i = 0; i < dotCount; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'snake-dot';
-    snakeContainer.appendChild(dot);
-    dots.push({ el: dot, x: 0, y: 0 });
-  }
+    const snakeContainer = document.createElement("div");
+    snakeContainer.id = "cursor-snake";
+    document.body.appendChild(snakeContainer);
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
+    const dots = [];
+    const dotCount = 20;
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.className = "snake-dot";
+      snakeContainer.appendChild(dot);
+      dots.push({ el: dot, x: 0, y: 0 });
+    }
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
 
-  function animateSnake() {
-    let x = mouseX, y = mouseY;
-    dots.forEach((dot, i) => {
-      dot.x += (x - dot.x) * 0.2;
-      dot.y += (y - dot.y) * 0.2;
-      dot.el.style.left = dot.x + 'px';
-      dot.el.style.top = dot.y + 'px';
-      dot.el.style.transform = `scale(${1 - i / dotCount})`;
-      x = dot.x;
-      y = dot.y;
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
 
-    // Save the animation ID to stop later
-    snakeContainer.animationId = requestAnimationFrame(animateSnake);
-  }
+    function animateSnake() {
+      let x = mouseX,
+        y = mouseY;
+      dots.forEach((dot, i) => {
+        dot.x += (x - dot.x) * 0.2;
+        dot.y += (y - dot.y) * 0.2;
+        dot.el.style.left = dot.x + "px";
+        dot.el.style.top = dot.y + "px";
+        dot.el.style.transform = `scale(${1 - i / dotCount})`;
+        x = dot.x;
+        y = dot.y;
+      });
 
-  animateSnake();
-}
-
-function disableSnakeCursor() {
-  const snake = document.getElementById('cursor-snake');
-  if (snake) {
-    cancelAnimationFrame(snake.animationId); // Stop the animation
-    snake.remove(); // Remove all dots
-  }
-}
-
-// Add toggle functionality
-if (!isMobile && cursorToggle) {
-  cursorToggle.addEventListener('change', function () {
-    if (this.checked) {
-      enableSnakeCursor();
-    } else {
-      disableSnakeCursor();
+      // Save the animation ID to stop later
+      snakeContainer.animationId = requestAnimationFrame(animateSnake);
     }
-  });
-}
 
+    animateSnake();
+  }
+
+  function disableSnakeCursor() {
+    const snake = document.getElementById("cursor-snake");
+    if (snake) {
+      cancelAnimationFrame(snake.animationId); // Stop the animation
+      snake.remove(); // Remove all dots
+    }
+  }
+
+  // Add toggle functionality
+  if (!isMobile && cursorToggle) {
+    cursorToggle.addEventListener("change", function () {
+      if (this.checked) {
+        enableSnakeCursor();
+      } else {
+        disableSnakeCursor();
+      }
+    });
+  }
 
   // 🚦 ProgressBar Functionality
   function updateProgressBar() {
-    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const windowScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const documentHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const scrollPercent = (windowScroll / documentHeight) * 100;
-    const progressBar = document.getElementById('progress-bar');
+    const progressBar = document.getElementById("progress-bar");
     if (progressBar) {
-      progressBar.style.width = scrollPercent + '%';
+      progressBar.style.width = scrollPercent + "%";
     }
   }
-  window.addEventListener('scroll', updateProgressBar);
+  window.addEventListener("scroll", updateProgressBar);
   // Initialize on load
   updateProgressBar();
-
-
 });
