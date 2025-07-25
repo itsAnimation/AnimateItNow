@@ -4,14 +4,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
   function setTheme(dark) {
-    if (dark) {
-      body.classList.add('dark');
-      themeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+    const newIcon = dark ? 'sun' : 'moon';
+    body.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+
+    // Replace icon completely
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+      lucide.createIcons();
     }
   }
 
@@ -19,8 +19,12 @@ window.addEventListener('DOMContentLoaded', () => {
   setTheme(savedTheme === 'dark');
 
   themeToggle?.addEventListener('click', () => {
-    setTheme(!body.classList.contains('dark'));
+    const isDark = body.classList.contains('dark');
+    setTheme(!isDark);
   });
+
+  lucide.createIcons();
+
 
   // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver((entries) => {
@@ -61,23 +65,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 📨 Contact form validation
   const contactForm = document.querySelector('.contact-form');
-  const submitBtn = document.querySelector('.submit-btn');
-
-  if (contactForm && submitBtn) {
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    submitBtn.disabled = true;
-
+  const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+  if (contactForm) {
     function checkFormValidity() {
-      let allFieldsFilled = [...formInputs].every(input => input.value.trim() !== '');
-      submitBtn.disabled = !allFieldsFilled;
-      submitBtn.classList.toggle('disabled', !allFieldsFilled);
+      return [...formInputs].every(input => input.value.trim() !== '');
     }
-
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const allValid = checkFormValidity();
+      if (allValid) {
+        alert('Message sent successfully!');
+        contactForm.reset();
+      } else {
+        alert('Please fill in all fields correctly. Fields cannot be empty or contain only spaces.');
+      }
+    });
     formInputs.forEach(input => {
-      input.addEventListener('input', checkFormValidity);
-      input.addEventListener('blur', checkFormValidity);
+      input.addEventListener('input', () => {
+        const allFieldsFilled = checkFormValidity();
+        input.classList.toggle('invalid', !allFieldsFilled);
+      });
     });
   }
+  
 
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById('contributors-grid');

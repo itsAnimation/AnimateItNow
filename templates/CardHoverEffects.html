@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Card Hover Effect | AnimateItNow</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .header-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .header-section p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .effect-section {
+            text-align: center;
+        }
+
+        .effect-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .effect-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* Base Card Styles */
+        .card-container {
+            perspective: 1000px;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Effect 1: Tilt and Glow */
+        .tilt-glow:hover {
+            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Effect 2: Flip Card */
+        .flip-card {
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card .card-front,
+        .flip-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+        }
+
+        .flip-card .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Effect 3: Floating and Rotate */
+        .float-rotate {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-rotate:hover {
+            transform: rotateZ(5deg) scale(1.08);
+            animation: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotateZ(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotateZ(2deg);
+            }
+        }
+
+        /* Effect 4: Morphing Card */
+        .morph-card:hover {
+            border-radius: 50px;
+            transform: scale(0.95) rotateX(10deg);
+            box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Effect 5: Slice Effect */
+        .slice-card {
+            overflow: hidden;
+        }
+
+        .slice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+            z-index: 1;
+        }
+
+        .slice-card:hover::before {
+            left: 100%;
+        }
+
+        .slice-card:hover {
+            transform: skewY(2deg) scale(1.02);
+        }
+
+        /* Effect 6: Layered Depth */
+        .layered-depth::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            border-radius: 20px;
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+
+        .layered-depth:hover::after {
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+        }
+
+        .layered-depth:hover {
+            transform: translateZ(30px) rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Code Section */
+        .code-showcase {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .code-showcase h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #90cdf4;
+        }
+
+        .code-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .code-tab.active,
+        .code-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .code-block {
+            background: #1a202c;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #3182ce;
+            transform: scale(1.05);
+        }
+
+        /* Features Grid */
+        .features-section {
+            margin: 4rem 0;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .effects-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .card-container {
+                width: 280px;
+                height: 380px;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>✨ 3D Card Hover Effects</h1>
+            <p>Stunning 3D card animations that bring your content to life. Perfect for portfolios, product showcases,
+                and interactive galleries with smooth transitions and eye-catching effects.</p>
+        </div>
+
+        <div class="effects-grid">
+            <!-- Effect 1: Tilt and Glow -->
+            <div class="effect-section">
+                <h3 class="effect-title">🎯 Tilt & Glow</h3>
+                <p class="effect-description">Card tilts in 3D space with a beautiful glow effect on hover</p>
+                <div class="card-container">
+                    <div class="card tilt-glow">
+                        <div class="card-content">
+                            <i class="fas fa-rocket card-icon"></i>
+                            <h3 class="card-title">Innovation</h3>
+                            <p class="card-text">Pushing boundaries with cutting-edge technology and creative solutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Effect 2: Flip Card -->
+            <div class="effect-section">
+                <h3 class="effect-title">🔄 Flip Card</h3>
+                <p class="effect-description">Card flips to reveal hidden content on the back side</p>
+                <div class="card-container">
+                    <div class="card flip-card">
+                        <div class="card-front">
+                            <div class="card-content">
+                                <i class="fas fa-palette card-icon"></i>
+                                <h3 class="card-title">Design</h3>
+                                <p class="card-text">Beautiful aesthetics meet functional design principles.</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-content">
+                                <i class="fas fa-lightbulb card-icon"></i>
+                                <h3 class="card-title">Creativity</h3>
+                                <p class="card-text">Where imagination transforms into digital reality through
+                                    innovative design.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Effect 3: Float and Rotate -->
+            <div class="effect-section">
+                <h3 class="effect-title">🌊 Float & Rotate</h3>
+                <p class="effect-description">Gentle floating animation with rotation on hover</p>
+                <div class="card-container">
+                    <div class="card float-rotate">
+                        <div class="card-content">
+                            <i class="fas fa-code card-icon"></i>
+                            <h3 class="card-title">Development</h3>
+                            <p class="card-text">Clean code architecture with modern development practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Effect 4: Morphing Card -->
+            <div class="effect-section">
+                <h3 class="effect-title">🔮 Morphing Shape</h3>
+                <p class="effect-description">Card morphs its shape and adds inner glow on hover</p>
+                <div class="card-container">
+                    <div class="card morph-card">
+                        <div class="card-content">
+                            <i class="fas fa-star card-icon"></i>
+                            <h3 class="card-title">Excellence</h3>
+                            <p class="card-text">Striving for perfection in every detail and interaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Effect 5: Slice Effect -->
+            <div class="effect-section">
+                <h3 class="effect-title">⚡ Slice Effect</h3>
+                <p class="effect-description">Light beam sweeps across with subtle skew transformation</p>
+                <div class="card-container">
+                    <div class="card slice-card">
+                        <div class="card-content">
+                            <i class="fas fa-bolt card-icon"></i>
+                            <h3 class="card-title">Performance</h3>
+                            <p class="card-text">Lightning-fast loading with optimized user experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Effect 6: Layered Depth -->
+            <div class="effect-section">
+                <h3 class="effect-title">📚 Layered Depth</h3>
+                <p class="effect-description">Multiple layers create depth with 3D transformation</p>
+                <div class="card-container">
+                    <div class="card layered-depth">
+                        <div class="card-content">
+                            <i class="fas fa-gem card-icon"></i>
+                            <h3 class="card-title">Premium</h3>
+                            <p class="card-text">High-quality components with attention to every detail.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Code Showcase -->
+        <div class="code-showcase">
+            <h2>💻 Implementation Code</h2>
+            <div class="code-tabs">
+                <button class="code-tab active" data-tab="html">HTML</button>
+                <button class="code-tab" data-tab="css">CSS</button>
+            </div>
+
+            <div class="code-block" id="html-tab">
+                <button class="copy-btn" onclick="copyCode('html-code')">Copy</button>
+                <pre id="html-code">&lt;div class="card-container"&gt;
+    &lt;div class="card tilt-glow"&gt;
+        &lt;div class="card-content"&gt;
+            &lt;i class="fas fa-rocket card-icon"&gt;&lt;/i&gt;
+            &lt;h3 class="card-title"&gt;Innovation&lt;/h3&gt;
+            &lt;p class="card-text"&gt;Your amazing content here&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+
+            <div class="code-block" id="css-tab" style="display: none;">
+                <button class="copy-btn" onclick="copyCode('css-code')">Copy</button>
+                <pre id="css-code">.card-container {
+    perspective: 1000px;
+    width: 300px;
+    height: 400px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    transform-style: preserve-3d;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.tilt-glow:hover {
+    transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+    box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Code tabs functionality
+        const codeTabs = document.querySelectorAll('.code-tab');
+        const codeBlocks = document.querySelectorAll('.code-block');
+
+        codeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active from all tabs
+                codeTabs.forEach(t => t.classList.remove('active'));
+                codeBlocks.forEach(block => block.style.display = 'none');
+
+                // Add active to clicked tab
+                tab.classList.add('active');
+                const tabName = tab.getAttribute('data-tab');
+                document.getElementById(`${tabName}-tab`).style.display = 'block';
+            });
+        });
+
+        // Copy code functionality
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const text = codeElement.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = codeElement.parentElement.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#48bb78';
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#4299e1';
+                }, 2000);
+            });
+        }
+
+        // Add click effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = card.style.transform + ' scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = card.style.transform.replace(' scale(0.98)', '');
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>

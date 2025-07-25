@@ -126,6 +126,182 @@
     .loader-l5::after {
       transform: rotate(60deg);
     }
+
+    .loader-cards {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      justify-content: center;
+    }
+    .loader-card {
+      flex: 1 1 100px;
+      padding: 0.75rem 1rem;
+      background: #e0e7ff;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border: 2px solid transparent;
+      min-width: 90px;
+      box-shadow: 0 1px 4px #0001;
+    }
+    .loader-card.active,
+    .loader-card:hover {
+      background: #4f8cff;
+      color: #ffffff;
+      border-color: #4f8cff;
+      box-shadow: 0 4px 16px #4f8cff22;
+      transform: scale(1.06);
+    }
+
+    .loader-playground {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+    .controls-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #fafafa;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      min-width: 0;
+    }
+    .controls-pane label {
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .preview-pane {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      min-width: 120px;
+    }
+    #loader-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      min-height: 48px;
+      width: 80px;
+      height: 80px;
+      transition: width 0.2s, height 0.2s;
+    }
+    /* Loader hover animation */
+    #loader-preview .loader-spinner,
+    #loader-preview .loader-dots,
+    #loader-preview .loader-bars {
+      transition: box-shadow 0.2s, transform 0.2s, border-top-color 0.2s, animation-duration 0.2s;
+      cursor: pointer;
+    }
+    #loader-preview .loader-spinner:hover,
+    #loader-preview .loader-dots:hover,
+    #loader-preview .loader-bars:hover {
+      box-shadow: 0 0 0 4px #4f8cff33, 0 2px 16px #4f8cff22;
+      transform: scale(1.08) rotate(8deg);
+      border-top-color: #2563eb !important;
+      animation-duration: 0.7s !important;
+    }
+
+    /* Copy Code button */
+    #copy-code {
+      padding: 0.5rem;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      align-self: flex-end;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #0001;
+    }
+    #copy-code:hover {
+      background: #367ed1;
+    }
+
+  #code-block {
+  background: #282c34;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 320px;
+  min-height: 120px;
+  min-width: 220px;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 0.75rem;
+}
+    /* Animations */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes dots {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    @keyframes bars {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+
+    /* Loader base styles */
+    .loader-spinner {
+      border-style: solid;
+      border-radius: 50%;
+      animation: spin linear infinite;
+    }
+    .loader-dots,
+    .loader-bars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-dots div,
+    .loader-bars div {
+      background: currentColor;
+      display: inline-block;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .loader-dots div { animation-name: dots; }
+    .loader-bars div { animation-name: bars; }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .loader-playground { grid-template-columns: 1fr; }
+      .preview-pane { height: 160px; }
+    }
+    @media (max-width: 600px) {
+      .loader-cards {
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .loader-card { min-width: 0; }
+      .loader-playground { gap: 1rem; }
+      .preview-pane { height: 120px; }
+      #loader-preview { width: 48px; height: 48px; }
+      .controls-pane { padding: 0; }
+      .controls-pane label { flex-direction: column; align-items: flex-start; }
+    }
+
   </style>
 </head>
 <body>
@@ -147,6 +323,40 @@
   <!-- Main Section -->
   <main class="templates-main">
     <h1>Loaders</h1>
+
+        <!-- Loader Selection Cards -->
+    <section class="loader-cards">
+      <div class="loader-card active" data-type="spinner">Spinner</div>
+      <div class="loader-card"        data-type="dots">Dots</div>
+      <div class="loader-card"        data-type="bars">Bars</div>
+    </section>
+
+       <!-- Controls & Preview Playground -->
+    <div class="loader-playground">
+      <!-- Controls Panel -->
+      <div class="controls-pane">
+        <label>
+          <span>Size:</span>
+          <input type="range" id="ctrl-size" min="16" max="128" value="48" />
+        </label>
+        <label>
+          <span>Speed (s):</span>
+          <input type="number" id="ctrl-speed" min="0.2" max="5" step="0.1" value="1" />
+        </label>
+        <label>
+          <span>Color:</span>
+          <input type="color" id="ctrl-color" value="#4f8cff" />
+        </label>
+        <pre id="code-block"></pre>
+        <button id="copy-code">Copy Code</button>
+      </div>
+
+      <!-- Preview Pane -->
+      <div class="preview-pane">
+        <div id="loader-preview"></div>
+      </div>
+    </div>
+
     <div class="loader-container">
       <div class="loader-spin"></div>
       <div class="loader-l1"></div>
@@ -162,6 +372,147 @@
     <p>Made with ❤️ by Anuj and Contributors</p>
   </footer>
 
-  <script src="../script.js"></script>
+  <!-- Loader Playground -->
+    <script>
+    const cards     = document.querySelectorAll('.loader-card');
+    const preview   = document.getElementById('loader-preview');
+    const sizeCtrl  = document.getElementById('ctrl-size');
+    const speedCtrl = document.getElementById('ctrl-speed');
+    const colorCtrl = document.getElementById('ctrl-color');
+    const codeBlock = document.getElementById('code-block');
+    const copyBtn   = document.getElementById('copy-code');
+    let currentType = 'spinner';
+
+    const loaders = {
+      spinner: () => '<div class="loader-spinner"></div>',
+      dots:    () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
+      bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
+    };
+
+    function renderLoader() {
+      preview.innerHTML = loaders[currentType]();
+      const el = preview.firstElementChild;
+      const size = +sizeCtrl.value;
+      const speed = speedCtrl.value + 's';
+      const color = colorCtrl.value;
+
+      el.style.color = color;
+
+      if (currentType === 'spinner') {
+        el.style.width        = size + 'px';
+        el.style.height       = size + 'px';
+        el.style.borderWidth  = size / 8 + 'px';
+        el.style.borderColor  = color + '33';
+        el.style.borderTopColor = color;
+        el.style.animationDuration = speed;
+      } else if (currentType === 'dots') {
+        el.querySelectorAll('div').forEach(dot => {
+          dot.style.width            = size / 4 + 'px';
+          dot.style.height           = size / 4 + 'px';
+          dot.style.margin           = '0 ' + size / 8 + 'px';
+          dot.style.animationDuration = speed;
+          dot.style.background = color;
+        });
+      } else {
+        el.querySelectorAll('div').forEach(bar => {
+          bar.style.width            = size / 8 + 'px';
+          bar.style.height           = size + 'px';
+          bar.style.margin           = '0 ' + size / 16 + 'px';
+          bar.style.animationDuration = speed;
+          bar.style.background = color;
+        });
+      }
+
+      updateCodeSnippet();
+    }
+
+    function updateCodeSnippet() {
+      const size = sizeCtrl.value + 'px';
+      const speed = speedCtrl.value + 's';
+      const color = colorCtrl.value;
+      let css = '';
+
+      if (currentType === 'spinner') {
+        css = `
+.loader-spinner {
+  width: ${size};
+  height: ${size};
+  border: calc(${size}/8) solid ${color}33;
+  border-top: calc(${size}/8) solid ${color};
+  border-radius: 50%;
+  animation: spin ${speed} linear infinite;
+}`.trim();
+      } else if (currentType === 'dots') {
+        css = `
+.loader-dots {
+  color: ${color};
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.loader-dots div {
+  width: calc(${size}/4);
+  height: calc(${size}/4);
+  margin: 0 calc(${size}/8);
+  background: ${color};
+  border-radius: 50%;
+  animation: dots ${speed} infinite ease-in-out both;
+}
+.loader-dots div:nth-child(2) { animation-delay: 0.2s; }
+.loader-dots div:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dots {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}`.trim();
+      } else {
+        css = `
+.loader-bars {
+  color: ${color};
+  display: flex; align-items: flex-end; justify-content: center; gap: 4px;
+}
+.loader-bars div {
+  width: calc(${size}/8);
+  height: ${size};
+  margin: 0 calc(${size}/16);
+  background: ${color};
+  border-radius: 3px;
+  animation: bars ${speed} infinite ease-in-out both;
+}
+.loader-bars div:nth-child(2) { animation-delay: 0.15s; }
+.loader-bars div:nth-child(3) { animation-delay: 0.3s; }
+.loader-bars div:nth-child(4) { animation-delay: 0.45s; }
+@keyframes bars {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}`.trim();
+      }
+
+      codeBlock.textContent = `<!-- HTML -->\n${loaders[currentType]().trim()}\n\n<!-- CSS -->\n${css}`;
+    }
+
+    cards.forEach(c => {
+      c.addEventListener('click', () => {
+        cards.forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+        currentType = c.dataset.type;
+        renderLoader();
+      });
+    });
+
+    [sizeCtrl, speedCtrl, colorCtrl].forEach(ctrl =>
+      ctrl.addEventListener('input', renderLoader)
+    );
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeBlock.textContent);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => copyBtn.textContent = 'Copy Code', 1200);
+    });
+
+    // Initialize
+    renderLoader();
+  </script>
+  
+  <script src="../script.js"></script>  
+   <!-- there is no logic imports from script.js in this file, so it is no need to import it here -->
 </body>
 </html>
