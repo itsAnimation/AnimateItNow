@@ -83,8 +83,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 📨 Contact form validation
   const contactForm = document.querySelector('.contact-form');
-  const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
   if (contactForm) {
+    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
     function checkFormValidity() {
       return [...formInputs].every(input => input.value.trim() !== '');
     }
@@ -109,30 +109,38 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById('contributors-grid');
-  if (contributorsGrid) {
-    fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
-      .then(res => res.json())
-      .then(contributors => {
-        contributorsGrid.innerHTML = '';
-        contributors.forEach(contributor => {
-          const card = document.createElement('a');
-          card.href = contributor.html_url;
-          card.className = 'contributor-card';
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
-          card.innerHTML = `
-            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
-            <h3>${contributor.login}</h3>
-            <p>Contributions: ${contributor.contributions}</p>
-          `;
-          contributorsGrid.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error('Error fetching contributors:', err);
-        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+if (contributorsGrid) {
+  fetch('https://api.github.com/repos/itsAnimation/AnimateItNow/contributors')
+    .then(res => {
+      if (!res.ok) throw new Error('GitHub API failed');
+      return res.json();
+    })
+    .then(contributors => {
+      if (!contributors.length) {
+        contributorsGrid.innerHTML = '<p>No contributors found.</p>';
+        return;
+      }
+
+      contributorsGrid.innerHTML = '';
+      contributors.forEach(contributor => {
+        const card = document.createElement('a');
+        card.href = contributor.html_url;
+        card.className = 'contributor-card';
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+        card.innerHTML = `
+          <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+          <h3>${contributor.login}</h3>
+          <p>Contributions: ${contributor.contributions}</p>
+        `;
+        contributorsGrid.appendChild(card);
       });
-  }
+    })
+    .catch(err => {
+      console.error('Error fetching contributors:', err);
+      contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+    });
+}
   
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
 const cursorToggle = document.getElementById('cursorToggle');
