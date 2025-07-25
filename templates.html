@@ -35,11 +35,14 @@
       body.dark-theme {
         background-color: #121212;
         color: #f5f5f5;
+        background: url(images/bgdark.png) no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
       }
 
       /* ✅ Heading fix */
       body.dark-theme .templates-main h1 {
-        color: #ffffff;
+        color: #333;
         font-weight: bold;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
@@ -343,17 +346,27 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
+    <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="images/logo.png" alt="Logo" class="logo" />
-        <h1 class="site-name">Animate It Now</h1>
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
       </div>
+
       <div class="nav-right">
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="templates.html" class="active">Templates</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="templates.html">Templates</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <!-- cursor toggle switch -->
+          <li>
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+          </li>
+          <!-- github icon -->
           <li>
             <a
               href="https://github.com/itsAnimation/AnimateItNow"
@@ -371,17 +384,17 @@
               >
                 <path
                   d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                         7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                         -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                         -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                         .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                         -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                         -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                         .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                         1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                         .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                         .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                         0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
                 />
               </svg>
             </a>
@@ -394,7 +407,6 @@
         </ul>
       </div>
     </nav>
-
     <main class="templates-main">
       <h1>Templates Gallery</h1>
       <div
@@ -464,6 +476,13 @@
           <button class="template-btn">View Template</button>
         </a>
 
+        <article class="template-card">
+          <h2>Animated Button</h2>
+          <div class="template-preview button-preview"></div>
+          <a class="template-btn" href="templates/animated-btn.html"
+            >View Template</a
+          >
+        </article>
         <a class="template-card" href="templates/social-share-buttons.html">
           <h2>Animated Social Share Buttons</h2>
           <div class="template-preview social-share-preview">

@@ -60,7 +60,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 18px 50px;
-  background: rgba(50, 100, 245, 0.7);
+  background: rgba(2, 13, 47);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -77,6 +77,7 @@ body {
   width: 25ch;
   position: relative;
   gap: 12px;
+  color:#00d1ff
 }
 
 .logo {
@@ -149,7 +150,11 @@ body {
 
 .nav-links a:hover {
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-  color: white;
+  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 .nav-links a::after {
   content: '';
@@ -432,7 +437,7 @@ main {
 
 /* FOOTER */
 .footer {
-  background: linear-gradient(to right, #3b5fff, #3e87ff);
+ background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: #ffffff;
   padding: 50px 20px 30px;
   margin-top: 80px;
@@ -1064,6 +1069,7 @@ body.dark .contributor-card:hover {
 }
 
 /* Main headings on all pages */
+
 .contributors-main h1,
 .contact-main h1 {
   text-align: center;
@@ -1110,7 +1116,12 @@ body.dark .contributor-card:hover {
 }
 
 .contact-container {
-  background: rgba(30, 60, 120, 0.25);
+  background-color: rgba(255, 255, 255, 0.15); /* Translucent background */
+  backdrop-filter: blur(10px); /* Apply blur to content behind */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
+  border-radius: 16px; /* Rounded corners for the glass effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(138, 180, 248, 0.4);
   border-radius: 20px;
   padding: 2.5rem;
@@ -1141,7 +1152,7 @@ body.dark .contributor-card:hover {
 .form-group textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(14, 5, 5, 0.15);
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
@@ -1182,6 +1193,28 @@ body.dark .contributor-card:hover {
   background-color: #163bb1;
  }
 
+.show-btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #121212;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid #121212;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #121212;
+}
+
+.show-btn:hover {
+  color: #fff;
+  box-shadow: inset 0 -100px 0 0 #121212;
+}
+
 /* Dark theme support */
 body.dark .form-group input,
 body.dark .form-group textarea {
@@ -1211,6 +1244,36 @@ body.dark .contact-main h1 {
   0 0 10px rgba(138, 180, 248, 0.2),  
   0 0 20px rgba(138, 180, 248, 0.1);  
 
+}
+
+body.dark .animated-btn-section h1 {
+  color: #ffffff;
+}
+
+body.dark .animated-btn-section .show-btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 #fff;
+}
+
+body.dark .show-btn:hover{
+  color: #121212;
+  box-shadow: inset 0 -100px 0 0 #fff;
+}
+
+body.dark .animated-btn-section .show-code {
+  border: 1px solid #fff;
 }
 
 body.dark .navbar {
@@ -1534,6 +1597,12 @@ body.dark .template-card h2 {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.15); /* Translucent background */
+  backdrop-filter: blur(10px); /* Apply blur to content behind */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
+  border-radius: 16px; /* Rounded corners for the glass effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 .faq-container {
   max-width: 900px;
@@ -1747,4 +1816,24 @@ body.dark .glow-wrap::before {
   }
 }
 
+.faq-question-header {
+  cursor: pointer; 
+}
+
+.faq-answer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 2rem; /* Remove top/bottom padding initially */
+}
+
+.faq-item.active .faq-answer-content {
+  max-height: 500px; 
+  padding: 2rem; /* Restore to full padding when active */
+}
+
+/* Added a subtle rotation to the existing icon when active */
+.faq-item.active .faq-icon-static {
+  transform: rotate(5deg) scale(1.1);
+}
 

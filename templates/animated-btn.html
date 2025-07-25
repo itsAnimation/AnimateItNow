@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Button | AnimateItNow</title>
+    <style>
+        .btn-1 {
+        display: inline-block;
+        margin: 15px;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #4169e1;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #4169e1;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #4169e1;
+        }
+
+        .btn-1:hover {
+        color: white;
+        box-shadow: inset 0 -100px 0 0 #4169e1;
+        }
+
+        .btn-2 {
+        display: inline-block;
+        margin: 15px;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #ffbf00;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #ffbf00;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #ffbf00;
+        }
+
+        .btn-2:hover {
+        color: white;
+        box-shadow: inset 0 -100px 0 0 #ffbf00;
+        }
+
+        .btn-3 {
+        display: inline-block;
+        margin: 15px;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #008000;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #008000;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #008000;
+        }
+
+        .btn-3:hover {
+        color: white;
+        box-shadow: inset 0 -100px 0 0 #008000;
+        }
+        
+        button:active {
+        transform: scale(0.9);
+        }
+        .show-code {
+            display: none;
+            position: absolute;
+            border: 1px solid black;
+            padding: 2rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            margin-top: 25rem;
+        }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+    <section class="animated-btn-section">
+        <main class="templates-main">
+            <h1>Animated Hover Button</h1>
+            <div class="btn-container"
+            style="display: flex;
+            justify-content: center;
+            align-items: center;"
+            > 
+                <button class="btn-1"> Button</button>
+                <button class="btn-2"> Button</button>
+                <button class="btn-3"> Button</button>
+            </div>
+            <div class="show-btn-container">
+                <button class="show-btn">Show Code</button>
+            </div>
+            <div class="show-code">
+                <p>
+                    &lt;button&gt;
+                        Button
+                    &lt;/button&gt;
+                    <br>
+                    &lt;style&gt;<br>
+                        button {<br>
+                        display: inline-block;<br>
+                        margin: 15px;<br>
+                        padding: 15px 30px;<br>
+                        text-align: center;<br>
+                        font-size: 18px;<br>
+                        letter-spacing: 1px;<br>
+                        text-decoration: none;<br>
+                        color: #725AC1;<br>
+                        background: transparent;<br>
+                        cursor: pointer;<br>
+                        transition: ease-out 0.5s;<br>
+                        border: 2px solid #725AC1;<br>
+                        border-radius: 10px;<br>
+                        box-shadow: inset 0 0 0 0 #725AC1;<br>
+                        }<br>
+
+                        button:hover {<br>
+                        color: white;<br>
+                        box-shadow: inset 0 -100px 0 0 #725AC1;<br>
+                        }<br>
+
+                        button:active {<br>
+                        transform: scale(0.9);<br>
+                        }<br>
+                    &lt;/style&gt;
+                </p>
+            </div>
+        </main>
+    </section>
+</body>
+
+<script>
+    let showCode = false;
+    const showCodeBtn = document.querySelector('.show-btn')
+    const codeBlock = document.querySelector('.show-code')
+    const themeBtn = document.getElementById('theme-toggle')
+    showCodeBtn.addEventListener('click', () => {
+        showCode = !showCode
+        if(showCode){
+            codeBlock.style.display = 'block'
+        } else {
+            codeBlock.style.display = 'none'
+        }
+    })
+</script>
+<script src="../script.js"></script>
+</html>

@@ -351,6 +351,28 @@
       text-align: left;
       font-family: "Fira Code", "Courier New", monospace;
       font-size: 0.85rem;
+      position: relative; /* For copy button positioning */
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.85;
+      transition: background 0.2s, opacity 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #007bff;
+      opacity: 1;
     }
 
     @media (max-width: 768px) {
@@ -371,6 +393,31 @@
         margin: 20px auto;
       }
     }
+    /* Variant 7: Flip on Hover  */
+    .v7 {
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .v7 i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--original-color);
+      color: #fff;
+      border-radius: 50%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    .v7:hover i {
+      transform: rotateY(180deg);
+    }
+
   </style>
 </head>
 
@@ -406,11 +453,13 @@
           class="tooltip">Instagram</span></a>
     </div>
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">&lt;!-- HTML --&gt;
+    <div class="code-wrapper" style="position:relative;">
+      <pre class="code-block">&lt;!-- HTML --&gt;
 &lt;a href="#" class="social-btn v1" style="--original-color:#3b5998;"&gt;
   &lt;i class="fab fa-facebook-f"&gt;&lt;/i&gt;
   &lt;span class="tooltip"&gt;Facebook&lt;/span&gt;
 &lt;/a&gt;</pre>
+    </div>
   </section>
 
   <section>
@@ -498,12 +547,73 @@
 &lt;/a&gt;</pre>
   </section>
 
+  <!-- 7. Flip on Hover -->
+<section>
+  <h2>7. Flip on Hover</h2>
+  <p class="subtitle">The icon flips with a 3D animation when hovered.</p>
+  <div class="social-share-container">
+    <a href="#" class="social-btn v7" style="--original-color:#3b5998;"><i class="fab fa-facebook-f front"></i></a>
+    <a href="#" class="social-btn v7" style="--original-color:#00acee;"><i class="fab fa-twitter front"></i></a>
+    <a href="#" class="social-btn v7" style="--original-color:#0e76a8;"><i class="fab fa-linkedin-in front"></i></a>
+    <a href="#" class="social-btn v7" style="--original-color:#25d366;"><i class="fab fa-whatsapp front"></i></a>
+    <a href="#" class="social-btn v7" style="--original-color:#E1306C;"><i class="fab fa-instagram front"></i></a>
+  </div>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">&lt;!-- HTML --&gt;
+&lt;a href="#" class="social-btn v7" style="--original-color:#3b5998;"&gt;
+  &lt;i class="fab fa-facebook-f"&gt;&lt;/i&gt;
+&lt;/a&gt;</pre>
+</section>
+
+
   <script>
     function toggleCode(button) {
-      const codeBlock = button.nextElementSibling;
+      let wrapper = button.nextElementSibling;
+      let codeBlock;
+      if (wrapper.classList && wrapper.classList.contains('code-wrapper')) {
+        codeBlock = wrapper.querySelector('.code-block');
+      } else if (wrapper.classList && wrapper.classList.contains('code-block')) {
+        codeBlock = wrapper;
+        // If not wrapped, wrap it now
+        const newWrapper = document.createElement('div');
+        newWrapper.className = 'code-wrapper';
+        newWrapper.style.position = 'relative';
+        wrapper.parentNode.insertBefore(newWrapper, wrapper);
+        newWrapper.appendChild(wrapper);
+        wrapper = newWrapper;
+      } else {
+        return;
+      }
       const isVisible = codeBlock.style.display === "block";
       codeBlock.style.display = isVisible ? "none" : "block";
       button.textContent = isVisible ? "Show Code" : "Hide Code";
+
+      if (!isVisible) {
+        if (!wrapper.querySelector('.copy-btn')) {
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'copy-btn';
+          copyBtn.textContent = 'Copy';
+          copyBtn.type = 'button';
+          copyBtn.onclick = function(e) {
+            e.stopPropagation();
+            copyCode(codeBlock, copyBtn);
+          };
+          wrapper.appendChild(copyBtn);
+        }
+      } else {
+        const btn = wrapper.querySelector('.copy-btn');
+        if (btn) btn.remove();
+      }
+    }
+
+    function copyCode(codeBlock, btn) {
+      btn.style.display = 'none';
+      const code = codeBlock.innerText;
+      btn.style.display = '';
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
+      });
     }
 
     const themeToggleBtn = document.getElementById("theme-toggle");
@@ -529,6 +639,6 @@
 
     applyTheme();
   </script>
-</body>
 
-</html>
+
+</body></html>
