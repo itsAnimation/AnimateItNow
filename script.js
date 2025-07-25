@@ -18,6 +18,22 @@ function toggleFAQ(element) {
 // Make toggleFAQ globally accessible
 window.toggleFAQ = toggleFAQ;
 window.addEventListener('DOMContentLoaded', () => {
+  function typeWriter(){
+  const el=document.getElementById("modify");
+  if(!el)return;
+  const text=el.textContent;
+  el.textContent='';
+  let index=0;
+  let interval=setInterval(function(){
+    if(index<text.length){
+el.textContent+=text.charAt(index);
+index++;    }
+else{
+  clearInterval(interval);}
+  },100);
+}
+typeWriter();
+
   // Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
