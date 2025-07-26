@@ -33,14 +33,17 @@
       background-position: center;
     }
     /* ✅ Heading fix */
-    body.dark .templates-main h1 {
-      color: #ffffff;
-      font-weight: bold;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    body.dark-theme .templates-main h1 {
+       background: linear-gradient(to right, #67e8f9, #3b82f6); /* bright neon cyan-blue */
+       background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
     }
     /* ✅ Template card titles */
-    body.dark .template-card h2 {
-      color: #ffffff;
+    body.dark-theme .template-card h2 {
+      color: #e0f2fe;
+      text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
     }
     /* ✅ Button text */
     body.dark .template-btn {
@@ -94,10 +97,15 @@
       color: #ffffff;
     }
     /* 🔧 Template card container */
-    body.dark .template-card {
-      background-color: #1e1e1e;
+    body.dark-theme .template-card {
+      background: rgba(30, 41, 59, 0.6); 
+     border: 1px solid rgba(59, 130, 246, 0.15);
+        box-shadow:
+    0 0 6px rgba(59, 130, 246, 0.25),
+    0 0 12px rgba(56, 189, 248, 0.3);
       color: #ffffff;
-      border: 1px solid #444;
+      animation: darkNeonPulse 4s ease-in-out infinite;
+      
     }
     /* 🖋 Titles inside cards */
     body.dark .template-card h2 {
@@ -346,7 +354,15 @@
         type="text"
         id="search-bar"
         placeholder="Search templates..."
-        style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
+        style="color: #1f2937;; 
+         padding: 0.6rem 1.2rem; 
+       background: linear-gradient(to right, #67e8f9, #60a5fa);
+  box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
+         border-radius: 18px; 
+         border: none; 
+         min-width: 420px;   
+         font-size: 1rem; 
+         outline: none";
         aria-label="Search templates"
       />
     </div>
@@ -464,6 +480,13 @@
       </a>
       <a class="template-card" href="templates/CardHoverEffects.html">
         <h2>3D Card Hover Effects</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line link"></div>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/cloudfeature.html">
+        <h2>3D Cloud Feature</h2>
         <div class="template-preview navbar-preview">
           <div class="navbar-line link"></div>
         </div>
