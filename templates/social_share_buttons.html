@@ -1,0 +1,93 @@
+<!-- Animated Social Share Buttons Template -->
+<div class="social-share-buttons">
+  <a href="#" class="social-btn facebook" aria-label="Share on Facebook">
+    <span class="icon">&#xf09a;</span>
+    <span class="label">Facebook</span>
+  </a>
+  <a href="#" class="social-btn twitter" aria-label="Share on Twitter">
+    <span class="icon">&#xf099;</span>
+    <span class="label">Twitter</span>
+  </a>
+  <a href="#" class="social-btn linkedin" aria-label="Share on LinkedIn">
+    <span class="icon">&#xf0e1;</span>
+    <span class="label">LinkedIn</span>
+  </a>
+  <a href="#" class="social-btn instagram" aria-label="Share on Instagram">
+    <span class="icon">&#xf16d;</span>
+    <span class="label">Instagram</span>
+  </a>
+</div>
+
+<!-- Font Awesome CDN for icons (if not already included in your project) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+.social-share-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 2rem;
+  padding: 0.5rem 1.2rem;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.social-btn .icon {
+  font-family: FontAwesome;
+  font-size: 1.3rem;
+  margin-right: 0.7rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.social-btn .label {
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+  transition: opacity 0.3s, max-width 0.3s, margin-left 0.3s;
+  white-space: nowrap;
+  color: inherit;
+}
+.social-btn:hover {
+  transform: scale(1.08);
+  color: #fff;
+}
+.social-btn:hover .label {
+  opacity: 1;
+  max-width: 120px;
+  margin-left: 0.3rem;
+}
+.social-btn.facebook {
+  background: #3b5998;
+}
+.social-btn.facebook:hover {
+  background: #2d4373;
+}
+.social-btn.twitter {
+  background: #1da1f2;
+}
+.social-btn.twitter:hover {
+  background: #0d95e8;
+}
+.social-btn.linkedin {
+  background: #0077b5;
+}
+.social-btn.linkedin:hover {
+  background: #005983;
+}
+.social-btn.instagram {
+  background: linear-gradient(45deg, #fd5949, #d6249f, #285AEB);
+}
+.social-btn.instagram:hover {
+  background: linear-gradient(45deg, #c13584, #e1306c, #405de6);
+}
+</style> 
