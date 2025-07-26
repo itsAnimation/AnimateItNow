@@ -1,719 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login Variants with Custom Navbar and Dark Mode</title>
-  <style>
-    /* CSS Variables for Light and Dark mode */
-    :root {
-      --nav-text: #222;
-      --accent: #007BFF;
-      --background: #f5f5f5;
-      --text-color: #222;
-      --transition: 0.3s ease;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login Variants with Custom Navbar and Dark Mode</title>
+<style>
+  /* CSS Variables for Light and Dark mode */
+  :root {
+    --nav-text: #222;
+    --accent: #007BFF;
+    --background: #f5f5f5;
+    --text-color: #222;
+    --transition: 0.3s ease;
+  }
+  body.dark {
+    --nav-text: #ddd;
+    --accent: #55aaff;
+    --background: #121212;
+    --text-color: #ddd;
+  }
 
-    body.dark {
-      --nav-text: #ddd;
-      --accent: #55aaff;
-      --background: #121212;
-      --text-color: #ddd;
-    }
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: var(--background);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
+  }
 
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
+  /* Your navbar CSS with variables */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    transition: background var(--transition), color var(--transition);
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.75rem;
+    object-fit: contain;
+    background: var(--accent);
+    border-radius: 6px;
+  }
+  .site-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--nav-text);
+    font-weight: 500;
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+  #theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1.5rem;
+    color: var(--nav-text);
+    transition: color var(--transition);
+  }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--background);
-      color: var(--text-color);
-      transition: background-color var(--transition), color var(--transition);
-    }
+  /* Section wrapper */
+  section {
+    max-width: 400px;
+    margin: 100px auto 50px; /* add top margin for fixed navbar */
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: background-color var(--transition), color var(--transition);
+  }
+  body.dark section {
+    background: #1e1e1e;
+    color: var(--text-color);
+  }
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    margin-bottom: 25px;
+    color: #666;
+  }
+  body.dark .subtitle {
+    color: #aaa;
+  }
 
-    /* Your navbar CSS with variables */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--nav-text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      transition: background var(--transition), color var(--transition);
-    }
+  /* Login Form Base */
+  form.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  form.login-form input[type="text"],
+  form.login-form input[type="email"],
+  form.login-form input[type="password"] {
+    padding: 0.8em 1em;
+    border-radius: 0.5em;
+    border: 1px solid #e0e7ff;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  }
+  body.dark form.login-form input[type="text"],
+  body.dark form.login-form input[type="email"],
+  body.dark form.login-form input[type="password"] {
+    background: #333;
+    border-color: #555;
+    color: #ddd;
+  }
+  form.login-form input::placeholder {
+    color: #999;
+  }
+  body.dark form.login-form input::placeholder {
+    color: #bbb;
+  }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
+  form.login-form button {
+    background: #01924e;
+    color: #fff;
+    padding: 0.8em 1em;
+    border: none;
+    border-radius: 0.5em;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  form.login-form button:hover {
+    background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+  }
 
-    .logo {
-      width: 36px;
-      height: 36px;
-      margin-right: 0.75rem;
-      object-fit: contain;
-      background: var(--accent);
-      border-radius: 6px;
-    }
+  /* Variant 2 - Elevated Card */
+  .variant-1 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
+  .variant-2 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
+  /* Variant 3 - Dark Theme */
+  .variant-3 {
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+  }
+  .variant-3 input[type="text"],
+  .variant-3 input[type="email"],
+  .variant-3 input[type="password"] {
+    background: white;
+    color: #222;
+    border: none;
+  }
+  .variant-3 input::placeholder {
+    color: #444;
+  }
+  .variant-3 button {
+    background: white;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .variant-3 button:hover {
+    background: #dbe9ff;
+  }
+  .variant-4{
+    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
+    color: white;
+    padding: 2rem 2rem 3rem;
+    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+  }
 
-    .site-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 0.5px;
-    }
+  /* Variant 4 - Minimal Underline */
+  .variant-4 input[type="text"],
+  .variant-4 input[type="email"],
+  .variant-4 input[type="password"] {
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+    background: transparent;
+    padding-left: 0;
+    font-size: 1rem;
+    color: inherit;
+  }
+  body.dark .variant-4 input {
+    border-bottom-color: #55aaff;
+    color: #ddd;
+  }
+  .variant-4 button {
+    background: var(--accent);
+    border-radius: 9999px;
+    padding: 0.7em 2em;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    color: white;
+  }
+  .variant-4 button:hover {
+    background: #0056b3;
+  }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
+  .subtitle{
+    color : #ffffff;
+  }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--nav-text);
-      font-weight: 500;
-      transition: color var(--transition);
-      position: relative;
-    }
+  /* Expand code */
+  .expand-btn {
+    display: inline-block;
+    margin: 20px auto 10px;
+    padding: 8px 18px;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .expand-btn:hover {
+    background-color: #0056b3;
+  }
+  .code-block {
+    display: none;
+    background: #222;
+    color: #ddd;
+    padding: 20px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    text-align: left;
+  }
 
-    .nav-links a.active,
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+  .copy-btn {
+        display: inline-block;
+        margin: 0.5rem 0 1rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+      .copy-btn:hover {
+        background-color: #0056b3;
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
 
-    #theme-toggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      margin-left: 1.5rem;
-      color: var(--nav-text);
-      transition: color var(--transition);
-    }
-
-    /* Section wrapper */
+  /* Responsive */
+  @media (max-width: 480px) {
     section {
-      max-width: 400px;
-      margin: 100px auto 50px;
-      /* add top margin for fixed navbar */
-      padding: 30px 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      transition: background-color var(--transition), color var(--transition);
+      width: 90%;
+      padding: 20px 15px;
     }
-
-    body.dark section {
-      background: #1e1e1e;
-      color: var(--text-color);
+    .nav-links {
+      gap: 10px;
     }
-
-    h2 {
-      margin-bottom: 10px;
-      font-size: 1.8rem;
-    }
-
-    .subtitle {
-      margin-bottom: 25px;
-      color: #666;
-    }
-
-    body.dark .subtitle {
-      color: #aaa;
-    }
-
-    /* Login Form Base */
-    form.login-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    form.login-form input[type="text"],
-    form.login-form input[type="email"],
-    form.login-form input[type="password"] {
-      padding: 0.8em 1em;
-      border-radius: 0.5em;
-      border: 1px solid #e0e7ff;
-      font-size: 1rem;
-      transition: border-color 0.3s, background-color 0.3s, color 0.3s;
-    }
-
-    body.dark form.login-form input[type="text"],
-    body.dark form.login-form input[type="email"],
-    body.dark form.login-form input[type="password"] {
-      background: #333;
-      border-color: #555;
-      color: #ddd;
-    }
-
-    form.login-form input::placeholder {
-      color: #999;
-    }
-
-    body.dark form.login-form input::placeholder {
-      color: #bbb;
-    }
-
-    form.login-form button {
-      background: var(--accent);
-      color: #fff;
-      padding: 0.8em 1em;
-      border: none;
-      border-radius: 0.5em;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-
-    form.login-form button:hover {
-      background: #3a6fcc;
-    }
-
-    /* Variant 2 - Elevated Card */
-    .variant-2 {
-      box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
-    }
-
-    /* Variant 3 - Dark Theme */
-    .variant-3 {
-      background: var(--accent);
-      color: white;
-      padding: 2rem 2rem 3rem;
-    }
-
-    .variant-3 input[type="text"],
-    .variant-3 input[type="email"],
-    .variant-3 input[type="password"] {
-      background: white;
-      color: #222;
-      border: none;
-    }
-
-    .variant-3 input::placeholder {
-      color: #444;
-    }
-
-    .variant-3 button {
-      background: white;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .variant-3 button:hover {
-      background: #dbe9ff;
-    }
-
-    /* Variant 4 - Minimal Underline */
-    .variant-4 input[type="text"],
-    .variant-4 input[type="email"],
-    .variant-4 input[type="password"] {
-      border: none;
-      border-bottom: 2px solid var(--accent);
-      border-radius: 0;
-      background: transparent;
-      padding-left: 0;
-      font-size: 1rem;
-      color: inherit;
-    }
-
-    body.dark .variant-4 input {
-      border-bottom-color: #55aaff;
-      color: #ddd;
-    }
-
-    .variant-4 button {
-      background: var(--accent);
-      border-radius: 9999px;
-      padding: 0.7em 2em;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      color: white;
-    }
-
-    .variant-4 button:hover {
-      background: #0056b3;
-    }
-
-    /* NEW VARIANTS */
-
-    /* Variant 5 - Glassmorphism */
-    .variant-5 {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.dark .variant-5 {
-      background: rgba(30, 30, 30, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .variant-5::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
-      animation: shimmer 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes shimmer {
-
-      0%,
-      100% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-      }
-
-      50% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-      }
-    }
-
-    .variant-5 input[type="text"],
-    .variant-5 input[type="email"],
-    .variant-5 input[type="password"] {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-      color: var(--text-color);
-    }
-
-    body.dark .variant-5 input {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ddd;
-    }
-
-    .variant-5 button {
-      background: rgba(79, 140, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .variant-5 button:hover {
-      background: rgba(79, 140, 255, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
-    }
-
-    /* Variant 6 - Black */
-    .variant-6 {
-      background: #000;
-      color: #fff;
-      border: 2px solid #333;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .variant-6 h2 {
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-
-    .variant-6 .subtitle {
-      color: #ccc;
-    }
-
-    .variant-6 input[type="text"],
-    .variant-6 input[type="email"],
-    .variant-6 input[type="password"] {
-      background: #1a1a1a;
-      border: 2px solid #333;
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-
-    .variant-6 input:focus {
-      border-color: #666;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-      outline: none;
-    }
-
-    .variant-6 input::placeholder {
-      color: #777;
-    }
-
-    .variant-6 button {
-      background: #fff;
-      color: #000;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .variant-6 button:hover {
-      background: #f0f0f0;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
-    }
-
-    /* Variant 7 - Gradient */
-    .variant-7 {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .variant-7::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
-      pointer-events: none;
-    }
-
-    .variant-7 h2,
-    .variant-7 .subtitle {
-      position: relative;
-      z-index: 2;
-    }
-
-    .variant-7 .subtitle {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .variant-7 input[type="text"],
-    .variant-7 input[type="email"],
-    .variant-7 input[type="password"] {
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      color: #333;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s ease;
-    }
-
-    .variant-7 input:focus {
-      background: rgba(255, 255, 255, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      outline: none;
-    }
-
-    .variant-7 input::placeholder {
-      color: #666;
-    }
-
-    .variant-7 button {
-      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-      border: none;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .variant-7 button:hover {
-      background: linear-gradient(45deg, #ee5a52, #ff6b6b);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
-    }
-
-    /* Variant 8 - Premium */
-    .variant-8 {
-      background: linear-gradient(145deg, #f0f0f0, #cacaca);
-      border: none;
-      box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-      position: relative;
-    }
-
-    body.dark .variant-8 {
-      background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-      box-shadow: 20px 20px 60px #161616, -20px -20px 60px #323232;
-    }
-
-    .variant-8 h2 {
-      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      text-align: center;
-      position: relative;
-    }
-
-    .variant-8 h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(45deg, #c9b037, #ffdd44);
-      border-radius: 2px;
-    }
-
-    .variant-8 input[type="text"],
-    .variant-8 input[type="email"],
-    .variant-8 input[type="password"] {
-      background: linear-gradient(145deg, #e0e0e0, #ffffff);
-      border: none;
-      box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
-      transition: all 0.3s ease;
-    }
-
-    body.dark .variant-8 input {
-      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-      box-shadow: inset 8px 8px 16px #111111, inset -8px -8px 16px #333333;
-      color: #ddd;
-    }
-
-    .variant-8 input:focus {
-      box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
-      outline: none;
-    }
-
-    body.dark .variant-8 input:focus {
-      box-shadow: inset 4px 4px 8px #111111, inset -4px -4px 8px #333333;
-    }
-
-    .variant-8 button {
-      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
-      border: none;
-      box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.dark .variant-8 button {
-      box-shadow: 8px 8px 16px #161616, -8px -8px 16px #323232;
-    }
-
-    .variant-8 button:hover {
-      box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-      transform: translateY(-2px);
-    }
-
-    body.dark .variant-8 button:hover {
-      box-shadow: 4px 4px 8px #161616, -4px -4px 8px #323232;
-    }
-
-    .variant-8 button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .variant-8 button:hover::before {
-      left: 100%;
-    }
-
-    /* Variant 9 - Cut Based */
-    .variant-9 {
-      background: #fff;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-      border: 3px solid #333;
-    }
-
-    body.dark .variant-9 {
-      background: #1e1e1e;
-      border-color: #555;
-    }
-
-    .variant-9::before {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-      z-index: -1;
-    }
-
-    .variant-9 h2 {
-      font-family: 'Arial Black', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-    }
-
-    .variant-9 h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
-    }
-
-    .variant-9 input[type="text"],
-    .variant-9 input[type="email"],
-    .variant-9 input[type="password"] {
-      border: 2px solid #333;
-      border-radius: 0;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-      background: #f9f9f9;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    body.dark .variant-9 input {
-      background: #2a2a2a;
-      border-color: #555;
-      color: #ddd;
-    }
-
-    .variant-9 input:focus {
-      border-color: #4ecdc4;
-      box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
-      outline: none;
-    }
-
-    .variant-9 button {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: none;
-      border-radius: 0;
-      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .variant-9 button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s;
-    }
-
-    .variant-9 button:hover {
-      transform: translateX(3px);
-      box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .variant-9 button:hover::before {
-      left: 100%;
-    }
-
-    /* Expand code */
-    .expand-btn {
-      display: inline-block;
-      margin: 20px auto 10px;
-      padding: 8px 18px;
-      background-color: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s;
-    }
-
-    .expand-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .code-block {
-      display: none;
-      background: #222;
-      color: #ddd;
-      padding: 20px;
-      font-size: 0.85rem;
-      border-radius: 8px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      text-align: left;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      section {
-        width: 90%;
-        padding: 20px 15px;
-      }
-
-      .nav-links {
-        gap: 10px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
-
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+     <img src="../images/logo.png" alt="Logo" class="logo" />
+    <span class="site-name">AnimateItNow</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../templates.html" class="active">Templates</a></li>
+    <li><a href="../contributors.html">Contributors</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+</nav>
 
-  <section>
-    <h2>Login Variant 1 - Classic</h2>
-    <p class="subtitle">Simple white card login form</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-1">
+  <h2>Login Variant 1 - Classic</h2>
+  <p class="subtitle">Simple white card login form</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;form class="login-form"&gt;
   &lt;input type="text" placeholder="Username" required /&gt;
   &lt;input type="password" placeholder="Password" required /&gt;
@@ -749,18 +371,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-2">
-    <h2>Login Variant 2 - Elevated Card</h2>
-    <p class="subtitle">White card with shadow and smooth edges</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-2">
+  <h2>Login Variant 2 - Elevated Card</h2>
+  <p class="subtitle">White card with shadow and smooth edges</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-2"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -800,18 +423,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-3">
-    <h2>Login Variant 3 - Dark Themed</h2>
-    <p class="subtitle">Colored background with white form inputs</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-3">
+  <h2>Login Variant 3 - Dark Themed</h2>
+  <p class="subtitle">Colored background with white form inputs</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-3"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -844,18 +468,19 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <section class="variant-4">
-    <h2>Login Variant 4 - Minimal Underline</h2>
-    <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
-      <input type="text" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+<section class="variant-4">
+  <h2>Login Variant 4 - Minimal Underline</h2>
+  <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
+    <input type="text" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <pre class="code-block">
 &lt;section class="variant-4"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Email" required /&gt;
@@ -946,6 +571,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-6">
@@ -1000,6 +626,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-7">
@@ -1059,6 +686,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-8">
@@ -1115,6 +743,7 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
   </section>
 
   <section class="variant-9">
@@ -1175,33 +804,52 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  </section>
+  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+</section>
 
-  <script>
-    // Toggle code block visibility
-    function toggleCode(button) {
-      const codeBlock = button.nextElementSibling;
-      const isVisible = codeBlock.style.display === "block";
-      codeBlock.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
+<script>
+  // Toggle code block visibility
+  function toggleCode(button) {
+    const codeBlock = button.nextElementSibling;
+    const isVisible = codeBlock.style.display === "block";
+    codeBlock.style.display = isVisible ? "none" : "block";
+    button.textContent = isVisible ? "Show Code" : "Hide Code";
+  }
+
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const codeBlock = btn.previousElementSibling;
+          try {
+            await navigator.clipboard.writeText(codeBlock.innerText);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+      });
+
+  // Dark mode toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  const navbar = document.getElementById('navbar');
+
+  themeToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    navbar.classList.toggle('dark');
+    if(body.classList.contains('dark')) {
+      themeToggleBtn.textContent = '☀️';
+    } else {
+      themeToggleBtn.textContent = '🌙';
     }
-
-    // Dark mode toggle
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    const navbar = document.getElementById('navbar');
-
-    themeToggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      navbar.classList.toggle('dark');
-      if (body.classList.contains('dark')) {
-        themeToggleBtn.textContent = '☀️';
-      } else {
-        themeToggleBtn.textContent = '🌙';
-      }
-    });
-  </script>
+  });
+</script>
 
 </body>
+</html>
 
 </html>

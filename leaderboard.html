@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contributor Points - AnimateItnow</title>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <style>
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #18192b;
+      padding: 0 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 64px;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(24,25,43,0.13);
+      margin: 0;
+      border-radius: 0;
+      animation: navFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      padding-left: 40px;
+      transition: height 0.2s, padding 0.2s;
+      color: #f7f7fa;
+    }
+    .navbar .brand {
+      color: #f7f7fa;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: slideBrand 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      transition: font-size 0.2s;
+    }
+    .navbar .brand img {
+      height: 40px;
+      width: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      background: #fff;
+      object-fit: cover;
+      transition: height 0.2s, width 0.2s;
+    }
+    .navbar .toggle-btn {
+      margin-right: 40px;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+      z-index: 101;
+    }
+    .navbar .toggle-btn .bar {
+      display: block;
+      width: 28px;
+      height: 3.5px;
+      margin: 3.5px 0;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .navbar .toggle-btn.active .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .navbar .toggle-btn.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .navbar .toggle-btn.active .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .navbar .nav-btn {
+      margin-right: 40px;
+      background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 28px;
+      font-size: 1.08rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(238,9,121,0.10);
+      transition: background 0.2s, transform 0.2s;
+      outline: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar .nav-btn:hover {
+      background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .glass-heading {
+      color: #222;
+      text-align: center;
+      margin-top: 90px;
+      margin-bottom: 0;
+      max-width: 700px;
+      padding: 22px 38px 18px 32px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.25);
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255,255,255,0.18);
+      font-size: 1.45rem;
+      font-weight: 600;
+      animation: fadeIn 1s ease;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: font-size 0.2s, padding 0.2s, max-width 0.2s;
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(30,30,47,0.10);
+      background: transparent;
+      animation: slideUp 1s ease;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      min-width: 500px;
+      transition: box-shadow 0.3s;
+    }
+    table:hover {
+      box-shadow: 0 0 32px rgba(30,30,47,0.18);
+    }
+
+    th, td {
+      padding: 12px 8px;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+      vertical-align: top;
+      transition: background 0.2s;
+      word-break: break-word;
+    }
+
+    th {
+      background: #1e1e2f;
+      color: white;
+      font-weight: bold;
+      font-size: 1.08rem;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child {
+      width: 40px;
+      min-width: 30px;
+      max-width: 50px;
+      text-align: center;
+    }
+    th:nth-child(2), td:nth-child(2) {
+      width: 120px;
+      min-width: 80px;
+      max-width: 160px;
+    }
+    th:nth-child(3), td:nth-child(3) {
+      width: 60%;
+      min-width: 180px;
+      max-width: 600px;
+    }
+    th:last-child, td:last-child {
+      width: 90px;
+      min-width: 70px;
+      max-width: 110px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+      vertical-align: middle;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 1px 4px rgba(30,30,47,0.10);
+      background: #fff;
+      transition: width 0.2s, height 0.2s;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #0056b3;
+    }
+
+    button {
+      background: linear-gradient(90deg, #28a745 60%, #218838 100%);
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      margin-top: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px rgba(40,167,69,0.10);
+      transition: background 0.2s, transform 0.2s;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 1.2s 0.2s backwards;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #218838 60%, #28a745 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    details {
+      margin-top: 5px;
+      padding-left: 0;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #444;
+      outline: none;
+      transition: color 0.2s;
+    }
+    details[open] summary {
+      color: #007bff;
+    }
+    details ul {
+      margin: 8px 0 0 0;
+      padding-left: 18px;
+      animation: fadeIn 0.5s;
+    }
+    details li {
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0 }
+      to { transform: translateY(0); opacity: 1 }
+    }
+    @keyframes navFadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideBrand {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 700px) {
+      body {
+        padding: 8px;
+      }
+      .navbar {
+        height: 48px;
+        padding-left: 0;
+        justify-content: center;
+      }
+      .navbar .brand {
+        font-size: 1.2rem;
+      }
+      .navbar .brand img {
+        height: 28px;
+        width: 28px;
+        border-radius: 6px;
+      }
+      .glass-heading {
+        font-size: 1rem;
+        margin-top: 60px;
+        padding: 10px 8px 8px 8px;
+        max-width: 98vw;
+      }
+      .table-responsive {
+        margin-top: 16px;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(30,30,47,0.10);
+      }
+      table {
+        min-width: 350px;
+        font-size: 0.95rem;
+      }
+      th, td {
+        padding: 7px 3px;
+      }
+      .avatar {
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+      }
+    }
+
+    /* Enhanced mobile responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 4px;
+      }
+      .navbar {
+        height: 44px;
+        padding-left: 0;
+        justify-content: center;
+      }
+      .navbar .brand {
+        font-size: 1rem;
+        gap: 8px;
+      }
+      .navbar .brand img {
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+      }
+      .glass-heading {
+        font-size: 0.9rem;
+        margin-top: 50px;
+        padding: 8px 6px 6px 6px;
+        max-width: 99vw;
+        border-radius: 12px;
+      }
+      .table-responsive {
+        margin-top: 12px;
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgba(30,30,47,0.08);
+      }
+      table {
+        min-width: 300px;
+        font-size: 0.85rem;
+      }
+      th, td {
+        padding: 5px 2px;
+      }
+      th {
+        font-size: 0.9rem;
+      }
+      .avatar {
+        width: 18px;
+        height: 18px;
+        margin-right: 3px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin-top: 20px;
+      }
+      details li {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 2px;
+      }
+      .navbar {
+        height: 40px;
+      }
+      .navbar .brand {
+        font-size: 0.9rem;
+        gap: 6px;
+      }
+      .navbar .brand img {
+        height: 20px;
+        width: 20px;
+      }
+      .glass-heading {
+        font-size: 0.8rem;
+        margin-top: 45px;
+        padding: 6px 4px 4px 4px;
+        border-radius: 10px;
+      }
+      table {
+        min-width: 280px;
+        font-size: 0.8rem;
+      }
+      th, td {
+        padding: 4px 1px;
+      }
+      th {
+        font-size: 0.8rem;
+      }
+      .avatar {
+        width: 16px;
+        height: 16px;
+        margin-right: 2px;
+      }
+      button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+      }
+      details li {
+        font-size: 0.8rem;
+      }
+      
+      /* Mobile search section */
+      #searchUser {
+        min-width: 200px !important;
+        max-width: 250px !important;
+        padding: 10px 14px !important;
+        font-size: 0.9rem !important;
+      }
+      
+      #searchBtn {
+        padding: 10px 18px !important;
+        font-size: 0.9rem !important;
+      }
+    }
+
+    @media (max-width: 400px) {
+      #searchUser {
+        min-width: 180px !important;
+        max-width: 220px !important;
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+      }
+      
+      #searchBtn {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+      }
+      
+      .glass-heading {
+        font-size: 0.75rem;
+        margin-top: 40px;
+        padding: 5px 3px 3px 3px;
+      }
+      
+      /* Mobile pagination */
+      #pagination {
+        gap: 8px !important;
+        margin: 12px 0 0 0 !important;
+      }
+      
+      #pagination button {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+        margin: 0 !important;
+      }
+      
+      #pagination span {
+        font-size: 0.8rem !important;
+      }
+      
+      /* Mobile footer */
+      footer {
+        margin-top: 20px !important;
+        padding: 20px 0 10px 0 !important;
+      }
+      
+      footer img {
+        width: 95% !important;
+        height: 200px !important;
+        margin-bottom: 12px !important;
+      }
+      
+      footer .social-links {
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <img src="images/logo.png" alt="AnimateItNow Logo">
+      AnimateItNow
+    </div>
+    <button class="toggle-btn" id="navbar-toggle" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
+  <script>
+    // Hamburger animation toggle (visual only)
+    document.getElementById('navbar-toggle').addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  </script>
+  <div class="glass-heading">🚀 Contributor Points Dashboard – <i>AnimateItnow</i></div>
+  
+  <div style="display:flex;justify-content:center;align-items:center;margin-top:30px;margin-bottom:30px;gap:0;flex-wrap:wrap;">
+    <input type="text" id="searchUser" placeholder="Search by username..." style="padding:12px 18px;font-size:1.08rem;border-radius:8px 0 0 8px;border:1.5px solid #e0e0e0;min-width:250px;max-width:300px;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:border-color 0.2s,box-shadow 0.2s;border-right:none;margin-right:-4px;">
+    <button id="searchBtn" style="padding:12px 24px;font-size:1.08rem;border-radius:0 8px 8px 0;background:linear-gradient(90deg,#007bff 0%,#0056b3 100%);color:#fff;border:none;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(0,123,255,0.15);transition:background 0.2s,transform 0.2s;border:1.5px solid #e0e0e0;border-left:none;margin-left:5px;margin-bottom: 30px;">🔍 Search</button>
+  </div>
+  <div class="table-responsive">
+    <table id="pointsTable">
+      <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Contributor</th>
+            <th>Merged PRs</th>
+            <th>Total Points</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="pagination" style="display:flex;justify-content:center;align-items:center;gap:16px;margin:18px 0 0 0;flex-wrap:wrap;"></div>
+
+  <button onclick="downloadExcel()">📥 Download as Excel</button>
+
+  <script>
+    const owner = "itsAnimation";
+    const repo = "AnimateItnow";
+    const token = ""; // Optional: GitHub token to avoid rate-limits
+
+    const pointsPerLevel = {
+      "level1": 3,
+      "level2": 7,
+      "level3": 10
+    };
+
+    let contributorsData = [];
+    let currentPage = 1;
+    const perPage = 20;
+
+    async function fetchMergedPRs(page = 1, allPRs = []) {
+      const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}`;
+      const headers = token ? { Authorization: `token ${token}` } : {};
+
+      const res = await fetch(url, { headers });
+      const prs = await res.json();
+
+      if (!Array.isArray(prs)) return allPRs;
+
+      const merged = prs.filter(pr => pr.merged_at);
+      allPRs = allPRs.concat(merged);
+
+      if (prs.length === 100) {
+        return fetchMergedPRs(page + 1, allPRs);
+      } else {
+        return allPRs;
+      }
+    }
+
+    function calculateContributorData(prs) {
+      const data = {};
+
+      prs.forEach(pr => {
+        const user = pr.user.login;
+        const avatar = pr.user.avatar_url;
+        const prUrl = pr.html_url;
+        const title = pr.title;
+        const labels = pr.labels.map(label => label.name.toLowerCase());
+        const level = labels.find(l => l.startsWith("level")) || "none";
+        const points = pointsPerLevel[level] || 0;
+
+        if (!data[user]) {
+          data[user] = { prs: [], total: 0, avatar };
+        }
+
+        data[user].prs.push({ title, url: prUrl, level });
+        data[user].total += points;
+      });
+
+      return data;
+    }
+
+    let filteredData = null;
+    function renderTablePage(page) {
+      const tbody = document.querySelector("#pointsTable tbody");
+      tbody.innerHTML = "";
+      const dataToShow = filteredData || contributorsData;
+      const startIdx = (page - 1) * perPage;
+      const endIdx = startIdx + perPage;
+      let pageData = dataToShow.slice(startIdx, endIdx);
+      // If searching, show S.No. as per main leaderboard
+      if (filteredData) {
+        // Map filteredData to their original index in contributorsData
+        pageData = pageData.map(([user, userData]) => {
+          const originalIdx = contributorsData.findIndex(([u]) => u === user);
+          return { user, userData, originalIdx };
+        });
+        pageData.forEach(({ user, userData, originalIdx }) => {
+          const row = document.createElement("tr");
+          const prList = userData.prs.map(pr => {
+            return `<li>
+              <a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level}</strong>
+            </li>`;
+          }).join("");
+          const collapsible = `<details>
+              <summary>Show PRs (${userData.prs.length})</summary>
+              <ul>${prList}</ul>
+            </details>`;
+          row.innerHTML = `
+            <td>${originalIdx + 1}</td>
+            <td><a href="https://github.com/${user}" target="_blank"><img class="avatar" src="${userData.avatar}" alt="${user}'s avatar">${user}</a></td>
+            <td>${collapsible}</td>
+            <td>${userData.total}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      } else {
+        pageData.forEach(([user, userData], idx) => {
+          const row = document.createElement("tr");
+          const prList = userData.prs.map(pr => {
+            return `<li>
+              <a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level}</strong>
+            </li>`;
+          }).join("");
+          const collapsible = `<details>
+              <summary>Show PRs (${userData.prs.length})</summary>
+              <ul>${prList}</ul>
+            </details>`;
+          row.innerHTML = `
+            <td>${startIdx + idx + 1}</td>
+            <td><a href="https://github.com/${user}" target="_blank"><img class="avatar" src="${userData.avatar}" alt="${user}'s avatar">${user}</a></td>
+            <td>${collapsible}</td>
+            <td>${userData.total}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const dataToShow = filteredData || contributorsData;
+      const totalPages = Math.ceil(dataToShow.length / perPage);
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+      if (totalPages <= 1) return;
+      const prevBtn = document.createElement("button");
+      prevBtn.textContent = "Prev";
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderTablePage(currentPage);
+        }
+      };
+      const nextBtn = document.createElement("button");
+      nextBtn.textContent = "Next";
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderTablePage(currentPage);
+        }
+      };
+      const pageInfo = document.createElement("span");
+      pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+      pagination.appendChild(prevBtn);
+      pagination.appendChild(pageInfo);
+      pagination.appendChild(nextBtn);
+    }
+    // Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchBtn = document.getElementById('searchBtn');
+      const searchInput = document.getElementById('searchUser');
+      searchBtn.addEventListener('click', function() {
+        const val = searchInput.value.trim().toLowerCase();
+        if (!val) {
+          filteredData = null;
+        } else {
+          filteredData = contributorsData.filter(([user]) => user.toLowerCase().includes(val));
+        }
+        currentPage = 1;
+        renderTablePage(currentPage);
+      });
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          searchBtn.click();
+        }
+      });
+    });
+
+    function downloadExcel() {
+      // Create a table with all users' data
+      const table = document.createElement("table");
+      table.innerHTML = `<thead><tr>
+        <th>S.No</th>
+        <th>Contributor</th>
+        <th>Merged PRs</th>
+        <th>Total Points</th>
+      </tr></thead><tbody></tbody>`;
+      const tbody = table.querySelector("tbody");
+      contributorsData.forEach(([user, userData], idx) => {
+        const prList = userData.prs.map(pr => {
+          return `<li><a href='${pr.url}' target='_blank'>${pr.title}</a> - <strong>${pr.level}</strong></li>`;
+        }).join("");
+        const collapsible = `<details><summary>Show PRs (${userData.prs.length})</summary><ul>${prList}</ul></details>`;
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${idx + 1}</td>
+          <td><a href='https://github.com/${user}' target='_blank'>${user}</a></td>
+          <td>${collapsible}</td>
+          <td>${userData.total}</td>
+        `;
+        tbody.appendChild(row);
+      });
+      const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
+      XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
+    }
+
+    async function init() {
+      const prs = await fetchMergedPRs();
+      const data = calculateContributorData(prs);
+      // Sort users by total points descending
+      contributorsData = Object.entries(data).sort((a, b) => b[1].total - a[1].total);
+      currentPage = 1;
+      renderTablePage(currentPage);
+    }
+
+    init();
+  </script>
+
+  <footer style="margin-top:40px;padding:32px 0 18px 0;text-align:center;background:rgba(30,30,47,0.08);border-top:1.5px solid #e0e0e0;font-size:1.08rem;color:#222;backdrop-filter:blur(4px);position:relative;z-index:1;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;max-width:900px;margin:0 auto;">
+      <img src="images/pa.png" alt="Project Admin" style="width:90%;max-width:700px;height:340px;border-radius:18px;box-shadow:0 2px 18px rgba(30,30,47,0.13);border:3px solid #fff;background:#fff;margin-bottom:18px;object-fit:cover;object-position:center 80%;">
+      <div style="font-weight:600;font-size:1.15rem;">Project Admin</div>
+      <div class="social-links" style="display:flex;gap:18px;margin:12px 0 8px 0;justify-content:center;">
+        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" style="display:flex;align-items:center;gap:7px;padding:8px 18px;border-radius:6px;background:#0077b5;color:#fff;text-decoration:none;font-weight:500;font-size:1.08rem;box-shadow:0 2px 8px rgba(0,119,181,0.10);transition:background 0.2s;">
+          <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' viewBox='0 0 24 24'><path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2 3.6 4.59v5.606z'/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/AnujShrivastava01" target="_blank" style="display:flex;align-items:center;gap:7px;padding:8px 18px;border-radius:6px;background:#24292f;color:#fff;text-decoration:none;font-weight:500;font-size:1.08rem;box-shadow:0 2px 8px rgba(36,41,47,0.10);transition:background 0.2s;">
+          <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' viewBox='0 0 24 24'><path d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.415-4.042-1.415-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.466-1.334-5.466-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.119 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576 4.765-1.588 8.199-6.084 8.199-11.386 0-6.627-5.373-12-12-12z'/></svg>
+          GitHub
+        </a>
+      </div>
+      <div style="font-size:0.98rem;opacity:0.7;">&copy; AnimateItNow Contributors Dashboard</div>
+    </div>
+  </footer>
+</body>
+</html>
