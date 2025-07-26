@@ -320,8 +320,22 @@ if (!isMobile && cursorToggle) {
   window.addEventListener('scroll', updateProgressBar);
   // Initialize on load
   updateProgressBar();
-
-
-
-
 });
+ 
+
+//  highlights the active navigation tab based on the current page URL.
+document.addEventListener("DOMContentLoaded", function () {
+  // Get current page name
+  let current = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active"); // Add active class
+    } else {
+      link.classList.remove("active"); // Remove from others
+    }
+  });
+});
+
+
+
+
