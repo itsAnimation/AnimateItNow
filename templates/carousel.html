@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel Component Demo</title>
+    <!-- All necessary styles are included in this file for a complete template -->
+    <style>
+        /* --- Basic Page & Theme Setup (Synced with tooltip.html) --- */
+        :root {
+            --accent-color: #1976d2;
+            --bg-color: #f9fafb;
+            --text-color: #1a202c;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #e5e7eb;
+            --sidebar-bg: #f9fafb;
+            --code-bg: #2d3748;
+            --code-text: #e2e8f0;
+            --btn-secondary-bg: #f3f4f6;
+            --btn-secondary-text: #374151;
+            --btn-secondary-border: #d1d5db;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        /* --- Navbar Styles --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 20;
+            box-shadow: var(--nav-shadow);
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo {
+            height: 32px;
+            width: 32px;
+        }
+        .site-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* --- Page Layout --- */
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            padding: 2rem 0;
+            z-index: 10;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            padding: 0 1.5rem;
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+        .sidebar-nav { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav a { display: block; padding: 0.75rem 1.5rem; color: var(--text-color); text-decoration: none; font-size: 0.95rem; transition: background-color 0.2s; border-left: 3px solid transparent; }
+        .sidebar-nav a:hover { background-color: rgba(0,0,0,0.05); }
+        .sidebar-nav a:focus { font-weight: 600; color: var(--accent-color); border-left-color: var(--accent-color); }
+
+        .main-content { margin-left: 240px; padding: 2rem 3rem; width: calc(100% - 240px); }
+        .content-section { padding-top: 2rem; margin-bottom: 3rem; border-top: 1px solid var(--border-color); }
+        .content-section:first-child { padding-top: 0; border-top: none; }
+
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        p { margin-top: 0; margin-bottom: 1.5rem; color: #6b7280; }
+
+        .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; }
+        
+        @media (max-width: 768px) {
+            body { padding-top: 0; }
+            .navbar { position: relative; }
+            .container { display: block; }
+            .sidebar { position: relative; top: 0; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .main-content { margin-left: 0; width: 100%; padding: 1.5rem; }
+        }
+
+        /* --- Code Snippet Styles --- */
+        .demo-actions { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.5rem; background-color: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; box-shadow: var(--card-shadow); margin-bottom: 1rem; }
+        .action-label { font-size: 0.8rem; padding: 6px 12px; background-color: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 1px solid var(--btn-secondary-border); border-radius: 6px; cursor: pointer; user-select: none; }
+        .code-block { display: none; background-color: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 8px; margin-top: -1rem; margin-bottom: 1rem; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; font-size: 0.85rem; }
+        .code-toggle { display: none; }
+        .code-toggle:checked ~ .code-block { display: block; }
+        .code-toggle:checked ~ .demo-actions .show-code-label::after { content: 'Hide Code'; }
+        .code-toggle:not(:checked) ~ .demo-actions .show-code-label::after { content: 'Show Code'; }
+
+        /* --- CAROUSEL DEMO STYLES --- */
+        .demo-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+        .demo-card h4 { margin: 0 0 0.5rem; }
+        .demo-card p { margin: 0; font-size: 0.9rem; color: #6b7280; }
+
+        /* 1. Slides Only (Scroll Snap) */
+        .scroll-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .scroll-carousel::-webkit-scrollbar { display: none; }
+        .scroll-carousel .slide {
+            flex: 0 0 80%;
+            padding: 1rem;
+            scroll-snap-align: center;
+        }
+        @media (min-width: 768px) { .scroll-carousel .slide { flex-basis: 50%; } }
+        @media (min-width: 1024px) { .scroll-carousel .slide { flex-basis: 33.33%; } }
+
+        /* 2. Carousel with Controls & Indicators (Radio Hack) */
+        .radio-carousel { position: relative; }
+        .radio-carousel-viewport { position: relative; overflow: hidden; border-radius: 12px; min-height: 180px; }
+        .radio-carousel-input { display: none; }
+        .radio-carousel .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; visibility: hidden; transition: opacity 0.5s ease;
+        }
+        .radio-carousel .slide-content { padding: 1rem; }
+        .carousel-control {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.3); border-radius: 50%;
+            width: 40px; height: 40px; cursor: pointer; z-index: 10;
+            display: none;
+        }
+        .carousel-control.prev { left: 15px; }
+        .carousel-control.next { right: 15px; }
+        .carousel-indicators {
+            position: absolute; bottom: 15px; left: 50%;
+            transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;
+        }
+        .indicator-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background-color: #ccc; cursor: pointer;
+        }
+
+        /* --- CORRECTED CSS LOGIC --- */
+
+        /* Logic for "With Controls" Carousel */
+        #slide1-ctrl:checked ~ .radio-carousel-viewport .slide:nth-child(1),
+        #slide2-ctrl:checked ~ .radio-carousel-viewport .slide:nth-child(2),
+        #slide3-ctrl:checked ~ .radio-carousel-viewport .slide:nth-child(3) {
+            opacity: 1; visibility: visible; position: relative;
+        }
+        #slide1-ctrl:checked ~ #next-1-ctrl,
+        #slide2-ctrl:checked ~ #prev-2-ctrl, #slide2-ctrl:checked ~ #next-2-ctrl,
+        #slide3-ctrl:checked ~ #prev-3-ctrl {
+            display: block;
+        }
+
+        /* Logic for "With Indicators" Carousel */
+        #slide1-ind:checked ~ .radio-carousel-viewport .slide:nth-child(1),
+        #slide2-ind:checked ~ .radio-carousel-viewport .slide:nth-child(2),
+        #slide3-ind:checked ~ .radio-carousel-viewport .slide:nth-child(3) {
+            opacity: 1; visibility: visible; position: relative;
+        }
+        #slide1-ind:checked ~ .carousel-indicators label[for="slide1-ind"],
+        #slide2-ind:checked ~ .carousel-indicators label[for="slide2-ind"],
+        #slide3-ind:checked ~ .carousel-indicators label[for="slide3-ind"] {
+            background-color: #333;
+        }
+        #slide1-ind:checked ~ #next-1-ind,
+        #slide2-ind:checked ~ #prev-2-ind, #slide2-ind:checked ~ #next-2-ind,
+        #slide3-ind:checked ~ #prev-3-ind {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <!-- LOGO PATH CORRECTED HERE -->
+            <img src="../images/logo.png" alt="Animate It Now Logo" class="logo" />
+            <h1 class="site-name">Animate It Now</h1>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../templates.html" class="active">Templates</a></li>
+                <li><a href="../contributors.html">Contributors</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Carousel Demos</h2>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="#slides-only" class="active">Slides Only</a></li>
+                    <li><a href="#with-controls">With Controls</a></li>
+                    <li><a href="#with-indicators">With Indicators</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Carousel Component</h1>
+                <p></p>
+            </header>
+
+            <section id="slides-only" class="content-section">
+                <h3>Slides Only (Scrollable)</h3>
+                <p>This carousel uses CSS Scroll Snap for a smooth, swipeable experience on touch devices and trackpads. No controls are needed.</p>
+                <div class="demo-box">
+                    <div class="scroll-carousel">
+                        <div class="slide"><div class="demo-card"><h4>Card 1</h4><p>Scroll horizontally</p></div></div>
+                        <div class="slide"><div class="demo-card"><h4>Card 2</h4><p>to see the next card</p></div></div>
+                        <div class="slide"><div class="demo-card"><h4>Card 3</h4><p>snap into place.</p></div></div>
+                        <div class="slide"><div class="demo-card"><h4>Card 4</h4><p>This is card four.</p></div></div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-slides-only">
+                <div class="demo-actions">
+                    <label for="toggle-slides-only" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="scroll-carousel"&gt;
+    &lt;div class="slide"&gt;&lt;div class="demo-card"&gt;...&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="slide"&gt;&lt;div class="demo-card"&gt;...&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="slide"&gt;&lt;div class="demo-card"&gt;...&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+            <section id="with-controls" class="content-section">
+                <h3>With Controls</h3>
+                <p>This version uses hidden radio buttons and labels to create previous/next arrows. It is not scrollable.</p>
+                <div class="demo-box">
+                    <div class="radio-carousel">
+                        <input type="radio" name="carousel-controls" id="slide1-ctrl" class="radio-carousel-input" checked>
+                        <input type="radio" name="carousel-controls" id="slide2-ctrl" class="radio-carousel-input">
+                        <input type="radio" name="carousel-controls" id="slide3-ctrl" class="radio-carousel-input">
+                        
+                        <div class="radio-carousel-viewport">
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the arrows to navigate.</p></div></div></div>
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 2</h4><p>This is the second slide.</p></div></div></div>
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 3</h4><p>This is the final slide.</p></div></div></div>
+                        </div>
+
+                        <label for="slide2-ctrl" class="carousel-control next" id="next-1-ctrl"></label>
+                        <label for="slide1-ctrl" class="carousel-control prev" id="prev-2-ctrl"></label>
+                        <label for="slide3-ctrl" class="carousel-control next" id="next-2-ctrl"></label>
+                        <label for="slide2-ctrl" class="carousel-control prev" id="prev-3-ctrl"></label>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-with-controls">
+                <div class="demo-actions">
+                    <label for="toggle-with-controls" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;!-- Radio inputs to manage state --&gt;
+&lt;input type="radio" name="carousel-controls" id="slide1-ctrl" checked&gt;
+&lt;input type="radio" name="carousel-controls" id="slide2-ctrl"&gt;
+...
+&lt;div class="radio-carousel-viewport"&gt;
+    &lt;div class="slide"&gt;...&lt;/div&gt;
+    &lt;div class="slide"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Labels act as next/prev buttons --&gt;
+&lt;label for="slide2-ctrl" class="carousel-control next"&gt;&lt;/label&gt;
+&lt;label for="slide1-ctrl" class="carousel-control prev"&gt;&lt;/label&gt;
+...</pre>
+            </section>
+
+            <section id="with-indicators" class="content-section">
+                <h3>With Indicators</h3>
+                <p>This version adds indicator dots to the bottom, which also function as navigation controls.</p>
+                <div class="demo-box">
+                    <div class="radio-carousel">
+                        <input type="radio" name="carousel-indicators" id="slide1-ind" class="radio-carousel-input" checked>
+                        <input type="radio" name="carousel-indicators" id="slide2-ind" class="radio-carousel-input">
+                        <input type="radio" name="carousel-indicators" id="slide3-ind" class="radio-carousel-input">
+                        
+                        <div class="radio-carousel-viewport">
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the dots to jump to a slide.</p></div></div></div>
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 2</h4><p>The active dot is highlighted.</p></div></div></div>
+                            <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 3</h4><p>This combines all features.</p></div></div></div>
+                        </div>
+
+                        <label for="slide2-ind" class="carousel-control next" id="next-1-ind"></label>
+                        <label for="slide1-ind" class="carousel-control prev" id="prev-2-ind"></label>
+                        <label for="slide3-ind" class="carousel-control next" id="next-2-ind"></label>
+                        <label for="slide2-ind" class="carousel-control prev" id="prev-3-ind"></label>
+
+                        <div class="carousel-indicators">
+                            <label for="slide1-ind" class="indicator-dot"></label>
+                            <label for="slide2-ind" class="indicator-dot"></label>
+                            <label for="slide3-ind" class="indicator-dot"></label>
+                        </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-with-indicators">
+                <div class="demo-actions">
+                    <label for="toggle-with-indicators" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;!-- Add a container for the indicator labels --&gt;
+&lt;div class="carousel-indicators"&gt;
+    &lt;label for="slide1-ind" class="indicator-dot"&gt;&lt;/label&gt;
+    &lt;label for="slide2-ind" class="indicator-dot"&gt;&lt;/label&gt;
+    &lt;label for="slide3-ind" class="indicator-dot"&gt;&lt;/label&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
