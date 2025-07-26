@@ -12,6 +12,8 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      width: 100%;
     }
 
     .nav-right {
@@ -539,6 +541,7 @@ body.dark-theme .display-preview {
       </a>
     </section>
   </main>
+  <div id="container">
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-left">
@@ -560,7 +563,7 @@ body.dark-theme .display-preview {
         <span class="highlight">Anuj</span> and Contributors.
       </p>
     </div>
-  </footer>
+  </footer></div>
   <div id="cursor-snake"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
@@ -570,6 +573,7 @@ body.dark-theme .display-preview {
 
     function setTheme(isDark) {
       const newIcon = isDark ? 'sun' : 'moon';
+      document.getElementById('container').classList.toggle('dark', isDark);
       body.classList.toggle('dark-theme', isDark);
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
 

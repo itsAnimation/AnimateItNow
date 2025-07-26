@@ -1269,8 +1269,10 @@ body.dark .contributor-card:hover {
 .contact-main h1 {
   font-size: 3rem;
   font-weight: 800;
-  color: #3b5aaf;
   text-align: center;
+  background: linear-gradient(to right, red,blue);
+  color: transparent;
+  -webkit-background-clip: text;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                0 4px 8px rgba(79, 140, 255, 0.25);
   margin-bottom: 1.5rem;
@@ -1278,9 +1280,15 @@ body.dark .contributor-card:hover {
 }
 
 .contact-container {
-  background-color: rgba(255, 255, 255, 0.15); /* Translucent background */
-  backdrop-filter: blur(10px); /* Apply blur to content behind */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
+ background: conic-gradient(from -90deg,
+  rgba(85, 131, 181, 0.5),  /* gentle blue */
+  rgba(76, 165, 150, 0.5),   /* jade mint */
+  rgba(212, 178, 219, 0.5),  /* soft moss */
+  rgba(255, 255, 255, 0.5),  /* whitewash */
+  rgba(85, 131, 181, 0.5)   /* soft moss again */
+);
+
+ /* Translucent background */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
   border-radius: 16px; /* Rounded corners for the glass effect */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -1348,7 +1356,7 @@ body.dark .contributor-card:hover {
   background: linear-gradient(135deg, #4e927f, #a8d5c4);
   font-weight:600px;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 95px  8px;
   transition: all 0.2s;
  }
  #submit:active{
@@ -1400,7 +1408,9 @@ body.dark .nav-links a {
 
 body.dark .contact-main h1 {
   /* color: #8aadf4; */
-  color: #a4c8ff;
+  background: linear-gradient(to right, rgb(80, 12, 80),rgb(143, 220, 160));
+  color: transparent;
+  -webkit-background-clip: text;
   text-shadow:
   0 0 4px rgba(138, 180, 248, 0.4),  
   0 0 10px rgba(138, 180, 248, 0.2),  
@@ -1895,6 +1905,7 @@ body.dark .template-card h2 {
   margin: 0;
   line-height: 1.7;
   color: var(--primary-text);
+  font-size: 1.2rem;
 }
 
 /* moving neon-style glow */
@@ -2010,7 +2021,6 @@ body.dark .glow-wrap::before {
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 /* This targets the button inside the preview */
 .tooltip-preview .tooltip {
     padding: 8px 16px;
@@ -2021,7 +2031,6 @@ body.dark .glow-wrap::before {
     font-size: 1rem;
     cursor: pointer;
 }
-=======
 .faq-question-header {
   cursor: pointer; 
 }
@@ -2042,5 +2051,3 @@ body.dark .glow-wrap::before {
 .faq-item.active .faq-icon-static {
   transform: rotate(5deg) scale(1.1);
 }
-
->>>>>>> 9bdc90f8029993cfc70064e448b7ac08426eec9b
