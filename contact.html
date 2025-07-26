@@ -56,34 +56,35 @@
     <div class="contact-main">
       <h1 class="fade-in mob-res">Get in Touch</h1>
       <div class="contact-container scroll-fade">
-        <form class="contact-form">
+        <form class="contact-form" id="contactForm">
           <div class="form-group scroll-fade">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder = "Enter your name" required>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
           </div>
 
           <div class="form-group scroll-fade">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email"placeholder = "Enter your email id (e.g. john@gmail.com)" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email id (e.g. john@gmail.com)" required>
           </div>
 
           <div class="form-group scroll-fade">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject"placeholder = "Enter the subject" required>
+            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
           </div>
 
           <div class="form-group scroll-fade">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5"placeholder = "Enter the message you want to convey" required></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Enter the message you want to convey" required></textarea>
           </div>
 
-        
           <div class="contact-button scroll-fade">
-            <button type="submit"  class="template-btn" id="submit">Send Message</button>
+            <button type="submit" class="template-btn" id="submit">Send Message</button>
           </div>
-
         </form>
+
+        <!-- Display saved messages -->
       </div>
+      <div id="savedMessages" style="margin-top: 2rem;"></div>
     </div>
   </main>
 
@@ -106,9 +107,60 @@
       <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
     </div>
   </footer>
-  <div id="cursor-snake"></div>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="script.js"></script>
-</body>
 
+  <div id="cursor-snake"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- JavaScript to Save + Show in localStorage -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const savedMessages = document.getElementById("savedMessages");
+
+    function loadMessages() {
+      const messages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+      if (messages.length === 0) {
+        savedMessages.innerHTML = "<p><strong>No past messages yet.</strong></p>";
+        return;
+      }
+
+      savedMessages.innerHTML = `
+        <h3>Past Submissions</h3>
+        <ul>
+          ${messages.map((msg, i) => `
+            <li style="margin-bottom: 1rem;">
+              <strong>#${i + 1}</strong><br>
+              <strong>Name:</strong> ${msg.name}<br>
+              <strong>Email:</strong> ${msg.email}<br>
+              <strong>Subject:</strong> ${msg.subject}<br>
+              <strong>Message:</strong> ${msg.message}<br>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const newEntry = { name, email, subject, message, time: new Date().toISOString() };
+
+      const stored = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+      stored.push(newEntry);
+      localStorage.setItem("contactMessages", JSON.stringify(stored));
+
+      alert("Your message has been saved locally!");
+      form.reset();
+      loadMessages(); // Refresh list
+    });
+
+    // Load previous messages on page load
+    window.addEventListener("DOMContentLoaded", loadMessages);
+  </script>
+</body>
 </html>
