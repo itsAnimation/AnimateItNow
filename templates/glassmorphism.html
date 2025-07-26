@@ -2,118 +2,369 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="../glassmorphismstyle.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../glassmorphismstyle.css" />
 
-  <title>Glassmorphism Profile Card</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #2c3e50, #4ca1af);
-      height: 100vh;
-    }
+    <title>Glassmorphism Profile Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            height: auto;
+        }
 
-    .outer {
-      margin-top: 4rem;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
+        .outer {
+            margin-top: 4rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
 
-    .glass-card {
-      width: 320px;
-      padding: 25px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      text-align: center;
-      color: white;
-      transition: transform 0.3s ease;
-    }
+        .glass-card {
+            width: 320px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
 
-    .glass-card:hover {
-      transform: scale(1.03);
-    }
+        .glass-card:hover {
+            transform: scale(1.03);
+        }
 
-    .glass-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-    }
+        .glass-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
 
-    .glass-name {
-      margin: 10px 0 5px;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
+        .glass-name {
+            margin: 10px 0 5px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
 
-    .glass-role {
-      font-size: 1rem;
-      color: #e0dede;
-      margin-bottom: 20px;
-    }
+        .glass-role {
+            font-size: 1rem;
+            color: #e0dede;
+            margin-bottom: 20px;
+        }
 
-    .glass-socials a img {
-      width: 28px;
-      margin: 0 10px;
-      transition: transform 0.2s ease;
-      filter: brightness(0) invert(1);
-    }
+        .glass-socials a img {
+            width: 28px;
+            margin: 0 10px;
+            transition: transform 0.2s ease;
+            filter: brightness(0) invert(1);
+        }
 
-    .glass-socials a:hover img {
-      transform: scale(1.2);
-    }
+        .glass-socials a:hover img {
+            transform: scale(1.2);
+        }
 
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: #444;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 5px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
-      z-index: 2;
-      opacity: 0.85;
-      transition: background 0.2s, opacity 0.2s;
-    }
-    .copy-btn:hover {
-      background: #007bff;
-      opacity: 1;
-    }
-    
-  </style>
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0.85;
+            transition: background 0.2s, opacity 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #007bff;
+            opacity: 1;
+        }
+
+        .card1 {
+            color: white;
+            width: 320px;
+            height: 380px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-top: 60px;
+        }
+
+        .card1 img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card1-name {
+            margin: 10px 0 5px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card1:hover {
+            transform: scale(1.03);
+        }
+
+        .location {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .profession {
+            margin: 15px 0;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-buttons {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .card2 {
+            width: 300px;
+            height: 380px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            box-sizing: border-box;
+            padding: 15px 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 60px;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card2:hover {
+            transform: scale(1.03);
+        }
+
+        .card2::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0) 50%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-title {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .view-profile-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(5px);
+        }
+
+        .view-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container-nine {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .card-nine {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+            width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img-nine {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .name-nine {
+            margin: 0.5rem 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .description-nine {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 1.2rem;
+        }
+
+        .socials-nine a {
+            margin: 0 8px;
+            display: inline-block;
+        }
+
+        .socials-nine img {
+            width: 26px;
+            height: 26px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .socials-nine img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <span class="site-name">AnimateItNow</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
-  <!-- Glassmorphism Profile Cards Section -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="Logo" class="logo" />
+            <span class="site-name">AnimateItNow</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../templates.html" class="active">Templates</a></li>
+            <li><a href="../contributors.html">Contributors</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+    <!-- Glassmorphism Profile Cards Section -->
     <div class="container">
         <h1>Glassmorphism Profile Cards</h1>
 
@@ -267,27 +518,95 @@
                 <button class="show-code-btn" onclick="showCode('design6')">Show Code</button>
             </div>
 
-        </div>
-    </div>
-
-    <!-- Code Modal -->
-    <div id="codeModal" class="code-modal">
-        <div class="code-modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="code-tabs">
-                <button class="code-tab active" onclick="switchTab('html')">HTML</button>
-                <button class="code-tab" onclick="switchTab('css')">CSS</button>
+            <!-- Design 7 -->
+            <div class="card-wrapper">
+                <div class="card1">
+                    <div class="card-top">
+                        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="random-user-img">
+                        <h3 class="card1-name">Teresa Rodgers</h3>
+                        <p class="location">Los Angeles, CA, USA</p>
+                        <p class="profession">Artist, Designer, Educator,<br>Subject Matter Expert Writer</p>
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn">Message</button>
+                        <button class="btn">Follow</button>
+                    </div>
+                </div>
+                <button class="show-code-btn" onclick="showCode('design7')">Show Code</button>
             </div>
-            <div class="code-content" style="position:relative;">
-                <pre id="codeDisplay"></pre>
+
+
+            <!-- Design 8 -->
+            <div class="card-wrapper">
+                <div class="card2">
+                    <div class="profile-header">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="random-user-img2">
+                        <h2 class="profile-name">Mayur Devle</h2>
+                        <p class="profile-title">UI/UX DESIGNER</p>
+                    </div>
+
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">85%</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">92%</span>
+                            <span class="stat-label">Activity</span>
+                        </div>
+                    </div>
+                    <button class="view-profile-btn">View Profile</button>
+                </div>
+                <button class="show-code-btn" onclick="showCode('design8')">Show Code</button>
+            </div>
+
+            <!-- Design 9 -->
+
+            <div class="card-wrapper">
+                <div class="container-nine">
+                    <div class="card-nine">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Image"
+                            class="profile-img-nine">
+                        <h2 class="name-nine">Addi Walson</h2>
+                        <p class="description-nine">
+                            A paragraph is a series of related sentences developing a central idea, called the topic.
+                            This
+                            is only a sample text. Lorem Ipsum Dolor Sit Amet.
+                        </p>
+                        <div class="socials-nine">
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                                    alt="Facebook"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                                    alt="Twitter"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                                    alt="Instagram"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png"
+                                    alt="LinkedIn"></a>
+                        </div>
+                    </div>
+                </div>
+                <button class="show-code-btn" onclick="showCode('design9')">Show Code</button>
             </div>
         </div>
-    </div>
 
-    <script>
-        const codeSnippets = {
-            design1: {
-                html: `<div class="card-wrapper">
+        <!-- Code Modal -->
+        <div id="codeModal" class="code-modal">
+            <div class="code-modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div class="code-tabs">
+                    <button class="code-tab active" onclick="switchTab('html')">HTML</button>
+                    <button class="code-tab" onclick="switchTab('css')">CSS</button>
+                </div>
+                <div class="code-content" style="position:relative;">
+                    <pre id="codeDisplay"></pre>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const codeSnippets = {
+                design1: {
+                    html: `<div class="card-wrapper">
     <div class="card-design-1">
         <img src="cover.jpg" alt="Cover" class="landscape-img">
         <img src="profile.jpg" alt="Profile" class="profile-img">
@@ -300,7 +619,7 @@
         </div>
     </div>
 </div>`,
-                css: `.card-design-1 {
+                    css: `.card-design-1 {
     width: 350px;
     height: 450px;
     background: rgba(255, 255, 255, 0.1);
@@ -386,9 +705,9 @@
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
 }`
-            },
-            design2: {
-html: `<div class="card-wrapper">
+                },
+                design2: {
+                    html: `<div class="card-wrapper">
     <div class="card-design-2">
         <div class="content">
             <img src="profile.jpg" alt="Profile" class="profile-img">
@@ -412,7 +731,7 @@ html: `<div class="card-wrapper">
         <button class="btn glass-heavy glow-btn">Work With Me</button>
     </div>
 </div>`,
-                css: `.gradient-border-card {
+                    css: `.gradient-border-card {
     width: 320px;
     height: 400px;
     background: rgba(255, 255, 255, 0.05);
@@ -516,9 +835,9 @@ html: `<div class="card-wrapper">
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
 }`
-            },
-            design3: {
-                html: `<div class="horizontal-card">
+                },
+                design3: {
+                    html: `<div class="horizontal-card">
     <img src="profile.jpg" alt="Profile" class="profile-img">
     <div class="info">
         <h2>Alex Chen</h2>
@@ -530,7 +849,7 @@ html: `<div class="card-wrapper">
         </div>
     </div>
 </div>`,
-                css: `.horizontal-card {
+                    css: `.horizontal-card {
     width: 380px;
     height: 200px;
     background: rgba(255, 255, 255, 0.15);
@@ -602,9 +921,9 @@ html: `<div class="card-wrapper">
     transform: translateY(-5px);
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
 }`
-            },
-            design4: {
-html: `<div class="outer">
+                },
+                design4: {
+                    html: `<div class="outer">
 <div class="glass-card">
     <img src="profile.jpg" alt="Profile Picture"
         class="glass-avatar" />
@@ -620,7 +939,7 @@ html: `<div class="outer">
     </div>
 </div>
 </div>`,
-        css: `.outer {
+                    css: `.outer {
     margin-top: 4rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -679,9 +998,9 @@ html: `<div class="outer">
 .glass-socials a:hover img {
     transform: scale(1.2);
 }`
-            },
-            design5: {
-                html: `<div class="dark-theme-card">
+                },
+                design5: {
+                    html: `<div class="dark-theme-card">
     <div class="header">
         <span>Profile</span>
         <div class="status"></div>
@@ -701,7 +1020,7 @@ html: `<div class="outer">
         <button class="connect-btn">Connect</button>
     </div>
 </div>`,
-                css: `.dark-theme-card {
+                    css: `.dark-theme-card {
     width: 340px;
     height: 420px;
     background: rgba(0, 0, 0, 0.3);
@@ -778,9 +1097,9 @@ html: `<div class="outer">
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }`
-            },
-            design6: {
-                html: `<div class="card-wrapper">
+                },
+                design6: {
+                    html: `<div class="card-wrapper">
     <div class="glass card-sidebar">
         <div class="sidebar">
             <div class="profile-img">
@@ -819,7 +1138,7 @@ html: `<div class="outer">
         </div>
     </div>
 </div>`,
-                css: `.card-sidebar {
+                    css: `.card-sidebar {
     width: 420px;
     height: 320px;
     background: rgba(255, 255, 255, 0.1);
@@ -973,70 +1292,377 @@ html: `<div class="outer">
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }`
-            }
-        };
+                },
+                design7: {
+                    html: `<div class="card1">
+      <div class="card-top">
+        <img src="https://randomuser.me/api/portraits/women/77.jpg" alt="random-user-img">
+        <h3 class="card1-name">Teresa Rodgers</h3>
+        <p class="location">Los Angeles, CA, USA</p>
+        <p class="profession">Artist, Designer, Educator,<br>Subject Matter Expert Writer</p>
+      </div>
+      <div class="card-buttons">
+        <button class="btn">Message</button>
+        <button class="btn">Follow</button>
+      </div>
+    </div>`,
+                    css: `.card1 {
+      color: white;
+      width: 320px;
+      height: 380px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+      margin-top: 60px;
+    }
 
-        let currentDesign = '';
-        let currentTab = 'html';
+    .card1 img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+    }
 
-        // Add Copy button to code modal
-        function addCopyBtnToModal() {
-            const codeContent = document.querySelector('.code-content');
-            if (!codeContent.querySelector('.copy-btn')) {
-                const copyBtn = document.createElement('button');
-                copyBtn.className = 'copy-btn';
-                copyBtn.textContent = 'Copy';
-                copyBtn.type = 'button';
-                copyBtn.style.position = 'absolute';
-                copyBtn.style.top = '12px';
-                copyBtn.style.right = '16px';
-                copyBtn.onclick = function(e) {
-                    e.stopPropagation();
-                    const code = document.getElementById('codeDisplay').innerText;
-                    copyBtn.textContent = 'Copied!';
-                    navigator.clipboard.writeText(code).then(() => {
-                        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
-                    });
-                };
-                codeContent.appendChild(copyBtn);
-            }
+    .card1-name {
+      margin: 10px 0 5px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .card1:hover {
+      transform: scale(1.03);
+    }
+
+    .location {
+      margin: 5px 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .profession {
+      margin: 15px 0;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card-buttons {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }`
+                }, design8: {
+                    html: `<div class="card2">
+      <div class="profile-header">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="random-user-img2">
+        <h2 class="profile-name">Mayur Devle</h2>
+        <p class="profile-title">UI/UX DESIGNER</p>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat-item">
+          <span class="stat-value">85%</span>
+          <span class="stat-label">Rating</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">92%</span>
+          <span class="stat-label">Activity</span>
+        </div>
+      </div>
+
+      <button class="view-profile-btn">View Profile</button>
+    </div>`,
+                    css: `.card2 {
+      width: 300px;
+      height: 380px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      box-sizing: border-box;
+      padding: 15px 25px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 60px;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card2:hover {
+      transform: scale(1.03);
+    }
+
+    .card2::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to bottom right,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 50%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 5px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-title {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .profile-stats {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 30px 0;
+      padding: 0 20px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 1px;
+    }
+
+    .view-profile-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 12px 0;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(5px);
+    }
+
+    .view-profile-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }`
+                },
+                design9: {
+                    html: `<div class="container-nine">
+                    <div class="card-nine">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile Image"
+                            class="profile-img-nine">
+                        <h2 class="name-nine">Addi Walson</h2>
+                        <p class="description-nine">
+                            A paragraph is a series of related sentences developing a central idea, called the topic.
+                            This
+                            is only a sample text. Lorem Ipsum Dolor Sit Amet.
+                        </p>
+                        <div class="socials-nine">
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                                    alt="Facebook"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                                    alt="Twitter"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                                    alt="Instagram"></a>
+                            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png"
+                                    alt="LinkedIn"></a>
+                        </div>
+                    </div>
+                </div>`,
+                    css: `        .container-nine {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
-        function showCode(design) {
-            currentDesign = design;
-            document.getElementById('codeModal').style.display = 'block';
-            switchTab('html');
-            addCopyBtnToModal();
+        .card-nine {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+            width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        function closeModal() {
-            document.getElementById('codeModal').style.display = 'none';
+        .profile-img-nine {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
         }
 
-        function switchTab(tab) {
-            currentTab = tab;
-            const tabs = document.querySelectorAll('.code-tab');
-            tabs.forEach(t => {
-                t.classList.remove('active');
-                if (t.textContent.toLowerCase() === tab) {
-                    t.classList.add('active');
+        .name-nine {
+            margin: 0.5rem 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .description-nine {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 1.2rem;
+        }
+
+        .socials-nine a {
+            margin: 0 8px;
+            display: inline-block;
+        }
+
+        .socials-nine img {
+            width: 26px;
+            height: 26px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .socials-nine img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }`
                 }
-            });
+            };
 
-            const codeDisplay = document.getElementById('codeDisplay');
-            if (codeSnippets[currentDesign] && codeSnippets[currentDesign][tab]) {
-                codeDisplay.textContent = codeSnippets[currentDesign][tab];
-            }
-            addCopyBtnToModal();
-        }
+            let currentDesign = '';
+            let currentTab = 'html';
 
-        window.onclick = function (event) {
-            const modal = document.getElementById('codeModal');
-            if (event.target == modal) {
-                closeModal();
+            // Add Copy button to code modal
+            function addCopyBtnToModal() {
+                const codeContent = document.querySelector('.code-content');
+                if (!codeContent.querySelector('.copy-btn')) {
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.type = 'button';
+                    copyBtn.style.position = 'absolute';
+                    copyBtn.style.top = '12px';
+                    copyBtn.style.right = '16px';
+                    copyBtn.onclick = function (e) {
+                        e.stopPropagation();
+                        const code = document.getElementById('codeDisplay').innerText;
+                        copyBtn.textContent = 'Copied!';
+                        navigator.clipboard.writeText(code).then(() => {
+                            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
+                        });
+                    };
+                    codeContent.appendChild(copyBtn);
+                }
             }
-        }
-    </script>
+
+            function showCode(design) {
+                currentDesign = design;
+                document.getElementById('codeModal').style.display = 'block';
+                switchTab('html');
+                addCopyBtnToModal();
+            }
+
+            function closeModal() {
+                document.getElementById('codeModal').style.display = 'none';
+            }
+
+            function switchTab(tab) {
+                currentTab = tab;
+                const tabs = document.querySelectorAll('.code-tab');
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    if (t.textContent.toLowerCase() === tab) {
+                        t.classList.add('active');
+                    }
+                });
+
+                const codeDisplay = document.getElementById('codeDisplay');
+                if (codeSnippets[currentDesign] && codeSnippets[currentDesign][tab]) {
+                    codeDisplay.textContent = codeSnippets[currentDesign][tab];
+                }
+                addCopyBtnToModal();
+            }
+
+            window.onclick = function (event) {
+                const modal = document.getElementById('codeModal');
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        </script>
 </body>
 
 </html>
