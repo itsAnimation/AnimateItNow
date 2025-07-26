@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smoky Typing Hero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 40% 40%, #1c2b5a 0%, #141e30 100%);
+      overflow: hidden;
+      color: #ffffff;
+    }
+
+    canvas#bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      padding: 0 20px;
+    }
+
+    .typing-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 600px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 30px rgba(66, 133, 244, 0.15), 0 0 80px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 8px #9fcfff;
+      margin-bottom: 15px;
+    }
+
+    .typed-text {
+      color: #ffffff;
+      font-weight: 600;
+      text-shadow: 0 0 10px #b3d9ff;
+    }
+
+    .cursor {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 2rem;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .sparkle-button {
+      margin-top: 25px;
+      background: linear-gradient(145deg, #ffffff, #e3eeff);
+      color: #4285F4;
+      border: none;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .sparkle-button::after {
+      content: "✨";
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      font-size: 1.2rem;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: rotate(20deg) scale(1.2); opacity: 0.7; }
+    }
+
+    .sparkle-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+    }
+
+    .code-container {
+      margin-top: 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 0 20px;
+    }
+
+    .code-container pre {
+      color: #ffffff;
+      font-family: monospace;
+      text-align: left;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .sparkle-button { font-size: 0.9rem; padding: 8px 18px; }
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Base variables and body */
+    :root {
+      --nav-text: #222;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+   <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    
+  </nav>
+
+<canvas id="bg"></canvas>
+
+<div class="hero-container">
+  <div class="typing-box">
+    <h1>I am a <span class="typed-text"></span><span class="cursor">|</span></h1>
+    <button class="sparkle-button" onclick="toggleCode()">💻 View Code</button>
+
+    <div class="code-container" id="codeBlock">
+      <pre>
+&lt;h1&gt;I am a &lt;span class="typed-text"&gt;&lt;/span&gt;&lt;span class="cursor"&gt;|&lt;/span&gt;&lt;/h1&gt;
+
+&lt;script&gt;
+const words = ["Developer", "Designer"];
+let i = 0, j = 0, isDeleting = false;
+s
+function type() {
+  const el = document.querySelector(".typed-text");
+  if (!el) return;
+  if (!isDeleting &amp;&amp; j &lt;= words[i].length) {
+    el.textContent = words[i].substring(0, j++);
+  } else if (isDeleting &amp;&amp; j &gt;= 0) {
+    el.textContent = words[i].substring(0, j--);
+  }
+
+  if (!isDeleting &amp;&amp; j === words[i].length) {
+    isDeleting = true; setTimeout(type, 1500);
+  } else if (isDeleting &amp;&amp; j === 0) {
+    isDeleting = false; i = (i + 1) % words.length; setTimeout(type, 400);
+  } else {
+    setTimeout(type, isDeleting ? 50 : 100);
+  }
+}
+document.addEventListener("DOMContentLoaded", type);
+&lt;/script&gt;
+      </pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Typing Animation
+  const words = ["Frontend Developer", "UI/UX Designer", "Dream Coder", "Visual Thinker"];
+  let i = 0, j = 0, currentWord = '', isDeleting = false;
+  const speed = 100, pause = 1500;
+
+  function type() {
+    const typedTextSpan = document.querySelector(".typed-text");
+    if (!typedTextSpan) return;
+
+    if (i < words.length) {
+      if (!isDeleting && j <= words[i].length) {
+        currentWord = words[i].substring(0, j++);
+      } else if (isDeleting && j >= 0) {
+        currentWord = words[i].substring(0, j--);
+      }
+
+      typedTextSpan.textContent = currentWord;
+
+      if (!isDeleting && j === words[i].length) {
+        isDeleting = true;
+        setTimeout(type, pause);
+      } else if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % words.length;
+        setTimeout(type, 400);
+      } else {
+        setTimeout(type, isDeleting ? speed / 2 : speed);
+      }
+    }
+  }
+  document.addEventListener("DOMContentLoaded", type);
+
+  // Toggle Code View
+  function toggleCode() {
+    const codeBlock = document.getElementById("codeBlock");
+    if (codeBlock.style.maxHeight && codeBlock.style.maxHeight !== "0px") {
+      codeBlock.style.maxHeight = "0px";
+    } else {
+      codeBlock.style.maxHeight = "500px";
+    }
+  }
+
+  // Smoky Particles
+  const canvas = document.getElementById("bg");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 3 + 1;
+      this.vx = Math.random() * 0.2 - 0.1;
+      this.vy = Math.random() * 0.2 - 0.1;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "#9ec9ff";
+      ctx.fill();
+    }
+  }
+
+  function initParticles(count = 70) {
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+</script>
+
+</body>
+</html>
