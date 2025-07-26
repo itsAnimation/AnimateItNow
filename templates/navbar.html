@@ -156,6 +156,26 @@
       margin-top: 10px;
       white-space: pre-wrap;
       overflow-x: auto;
+      position: relative; /* For copy button positioning */
+    }
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.85;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .copy-btn:hover {
+      background: #007bff;
+      opacity: 1;
     }
     .hamburger-btn {
       display: block;
@@ -212,9 +232,11 @@
           </div>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-block">
+        <div class="code-wrapper" style="position:relative;">
+          <pre class="code-block">
 &lt;div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
 &lt;div style="height:400px;"&gt;...&lt;/div&gt;
+          </pre>
         </div>
       </div>
 
@@ -229,7 +251,8 @@
           </div>
         </div>
         <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-block">
+        <div class="code-wrapper" style="position:relative;">
+          <pre class="code-block">
 &lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;☰&lt;/div&gt;
 &lt;div class="demo-nav-links"&gt;
   &lt;a href="#"&gt;Link One&lt;/a&gt;
@@ -241,6 +264,7 @@
 .hamburger-btn { cursor: pointer; }
 .demo-nav-links { display: none; }
 &lt;/style&gt;
+          </pre>
         </div>
       </div>
 
@@ -249,10 +273,54 @@
 
   <script>
     function toggleCode(button) {
-      const code = button.nextElementSibling;
-      const isVisible = code.style.display === "block";
-      code.style.display = isVisible ? "none" : "block";
+      // Always expect wrapper to be .code-wrapper, else wrap it
+      let wrapper = button.nextElementSibling;
+      let codeBlock;
+      if (wrapper.classList && wrapper.classList.contains('code-wrapper')) {
+        codeBlock = wrapper.querySelector('.code-block');
+      } else if (wrapper.classList && wrapper.classList.contains('code-block')) {
+        codeBlock = wrapper;
+        // If not wrapped, wrap it now
+        const newWrapper = document.createElement('div');
+        newWrapper.className = 'code-wrapper';
+        newWrapper.style.position = 'relative';
+        wrapper.parentNode.insertBefore(newWrapper, wrapper);
+        newWrapper.appendChild(wrapper);
+        wrapper = newWrapper;
+      } else {
+        return;
+      }
+      const isVisible = codeBlock.style.display === "block";
+      codeBlock.style.display = isVisible ? "none" : "block";
       button.textContent = isVisible ? "Show Code" : "Hide Code";
+
+      // Add/remove copy button
+      if (!isVisible) {
+        if (!wrapper.querySelector('.copy-btn')) {
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'copy-btn';
+          copyBtn.textContent = 'Copy';
+          copyBtn.type = 'button';
+          copyBtn.onclick = function(e) {
+            e.stopPropagation();
+            copyCode(codeBlock, copyBtn);
+          };
+          wrapper.appendChild(copyBtn);
+        }
+      } else {
+        const btn = wrapper.querySelector('.copy-btn');
+        if (btn) btn.remove();
+      }
+    }
+
+    function copyCode(codeBlock, btn) {
+      btn.style.display = 'none';
+      const code = codeBlock.innerText;
+      btn.style.display = '';
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
+      });
     }
 
     function toggleHamburger(btn) {

@@ -4,13 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
   <title>Neuromorphic Button Gallery</title>
   <style>
+
+    .navbar{
+      width: 100%;
+    }
     body {
       background: #e0e0e0;
       font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
       display: flex;
       flex-direction: column;
       gap: 3rem;
@@ -126,30 +130,62 @@
       font-size: 0.9rem;
       border-radius: 8px;
       overflow-x: auto;
+      position: relative; /* For copy button positioning */
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.85;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .copy-btn:hover {
+      background: #007bff;
+      opacity: 1;
     }
 
     .toggle-btn {
-  margin-top: 1rem;
-  font-size: 14px;
-  padding: 10px 20px;
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
-}
+      margin-top: 1rem;
+      font-size: 14px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
 
-.toggle-btn:hover {
-  background: #0069d9;
-}
-
+    .toggle-btn:hover {
+      background: #0069d9;
+    }
   </style>
 </head>
 
 <body>
-
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
   <div class="level level1">
     <h2>Level 1 - Basic Neumorphism</h2>
     <button class="neu-btn">Level 1</button>
@@ -283,7 +319,49 @@ body {
   <script>
     function toggleCode(level) {
       const block = document.getElementById("code" + level);
-      block.style.display = block.style.display === "block" ? "none" : "block";
+      // Ensure the code block is wrapped for absolute positioning of the copy button
+      let wrapper = block.parentElement;
+      if (!wrapper.classList.contains('code-wrapper')) {
+        const newWrapper = document.createElement('div');
+        newWrapper.className = 'code-wrapper';
+        newWrapper.style.position = 'relative';
+        block.parentNode.insertBefore(newWrapper, block);
+        newWrapper.appendChild(block);
+        wrapper = newWrapper;
+      }
+      const isVisible = block.style.display === "block";
+      block.style.display = isVisible ? "none" : "block";
+
+      // Add/remove copy button (does not affect Show button UI)
+      if (!isVisible) {
+        if (!wrapper.querySelector('.copy-btn')) {
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'copy-btn';
+          copyBtn.textContent = 'Copy';
+          copyBtn.type = 'button';
+          copyBtn.style.position = 'absolute';
+          copyBtn.style.top = '12px';
+          copyBtn.style.right = '16px';
+          copyBtn.onclick = function(e) {
+            e.stopPropagation();
+            copyCode(block, copyBtn);
+          };
+          wrapper.appendChild(copyBtn);
+        }
+      } else {
+        const btn = wrapper.querySelector('.copy-btn');
+        if (btn) btn.remove();
+      }
+    }
+
+    function copyCode(codeBlock, btn) {
+      btn.style.display = 'none';
+      const code = codeBlock.innerText;
+      btn.style.display = '';
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
+      });
     }
   </script>
 </body>

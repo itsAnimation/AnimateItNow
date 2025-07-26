@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Plan Template</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --nav-text: #222;
+            --accent: #007BFF;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-top: 64px;
+            /* offset for fixed navbar */
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            margin-right: 0.75rem;
+            object-fit: contain;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* AnimateItNow CSS for Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--nav-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            /* reset default */
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 1.5rem;
+            color: var(--nav-text);
+            transition: color var(--transition);
+        }
+
+        section {
+            font-family: Poppins, sans-serif;
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h2 {
+            font-family: Poppins, sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: Poppins, sans-serif;
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+
+        /* Dark mode variables */
+        body.dark-theme {
+            --nav-text: #eee;
+            --accent: #90caf9;
+            background-color: #121212;
+            color: #eee;
+        }
+
+        body.dark-theme .navbar {
+            background: rgba(40, 40, 40, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        body.dark-theme .nav-links a {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme .nav-links a.active,
+        body.dark-theme .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        body.dark-theme #theme-toggle {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme section {
+            background-color: #1f1f1f;
+            box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+        }
+
+        body.dark-theme .subtitle {
+            color: #bbb;
+        }
+
+        .expand-btn {
+            display: block;
+            margin: 25px auto 10px;
+            padding: 8px 18px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .code-block {
+            display: none;
+            background: #222;
+            color: #ddd;
+            padding: 20px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* CSS for Newly added price features */
+        .pricing-plans {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .plan-card {
+            width: 280px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            background: #fff;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-card h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .plan-card .price {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .plan-card .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .plan-card .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            color: #444;
+        }
+
+        .plan-card .features li {
+            margin-bottom: 10px;
+        }
+
+        /* Color Variants */
+        .plan-card.basic {
+            background: #e6f0ff;
+        }
+
+        .plan-card.basic .choose-btn {
+            background-color: #007BFF;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        .plan-card.basic .choose-btn:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+        }
+
+        .plan-card.pro {
+            background: #fff2e6;
+        }
+
+        .plan-card.pro .choose-btn {
+            background-color: #FF7F50;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        .plan-card.pro .choose-btn:hover {
+            background-color: #e66336;
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+        }
+
+        .plan-card.enterprise {
+            background: #e6ffe6;
+        }
+
+        .plan-card.enterprise .choose-btn {
+            background-color: #28a745;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        .plan-card.enterprise .choose-btn:hover {
+            background-color: #1e7e34;
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Dark Mode */
+        body.dark-theme .plan-card {
+            background: #2a2a2a;
+            color: #eee;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-theme .plan-card .price span {
+            color: #bbb;
+        }
+
+        body.dark-theme .plan-card .features {
+            color: #ccc;
+        }
+
+        /* CSS for the icons above the price plans */
+        .plan-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .plan-card.pro .plan-icon {
+            color: #FF7F50;
+        }
+
+        .plan-card.enterprise .plan-icon {
+            color: #28a745;
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-theme .plan-icon {
+            color: #90caf9;
+        }
+
+        body.dark-theme .plan-card.pro .plan-icon {
+            color: #ff9966;
+        }
+
+        body.dark-theme .plan-card.enterprise .plan-icon {
+            color: #66ff99;
+        }
+
+        .choose-btn {
+            font-family: Poppins, sans-serif;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .choose-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-theme .choose-btn {
+            background: #90caf9;
+            color: #121212;
+            box-shadow: 0 4px 12px rgba(144, 202, 249, 0.2);
+        }
+
+        body.dark-theme .choose-btn:hover {
+            background: #64b5f6;
+            box-shadow: 0 6px 16px rgba(144, 202, 249, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AnimateItNow Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="Logo" class="logo" />
+            <span class="site-name">AnimateItNow</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../templates.html" class="active">Templates</a></li>
+            <li><a href="../contributors.html">Contributors</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <section>
+        <h2>Price Plan Feature</h2>
+        <p class="subtitle">This template shows different pricing options for a product or service</p>
+
+        <div>
+            <div class="pricing-plans">
+                <!-- Basic Plan -->
+                <div class="plan-card basic">
+                    <i class="fas fa-leaf plan-icon"></i>
+                    <h3>Basic</h3>
+                    <p class="price">$9<span>/mo</span></p>
+                    <ul class="features">
+                        <li>Access to 10 Templates</li>
+                        <li>2 GB Cloud Storage</li>
+                        <li>Standard Export Options</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <button class="choose-btn">Choose Plan</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="plan-card pro">
+                    <i class="fas fa-rocket plan-icon"></i>
+                    <h3>Pro</h3>
+                    <p class="price">$29<span>/mo</span></p>
+                    <ul class="features">
+                        <li>Access to 100+ Pro Templates</li>
+                        <li>50 GB Cloud Storage</li>
+                        <li>High-Quality Exports (HD/4K)</li>
+                        <li>Priority Email & Chat Support</li>
+                    </ul>
+                    <button class="choose-btn">Choose Plan</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="plan-card enterprise">
+                    <i class="fas fa-building plan-icon"></i>
+                    <h3>Enterprise</h3>
+                    <p class="price">$99<span>/mo</span></p>
+                    <ul class="features">
+                        <li>Unlimited Template Access</li>
+                        <li>1 TB Cloud Storage</li>
+                        <li>Team Collaboration Features</li>
+                        <li>24/7 Priority Support</li>
+                    </ul>
+                    <button class="choose-btn">Choose Plan</button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <button class="expand-btn" onclick="toggleCode(this)"">Show Code</button>
+
+        <div id="code-block" style="display: none; margin-top: 20px;">
+            <pre><code>&lt;div&gt;
+    &lt;div class="pricing-plans"&gt;
+        &lt;!-- Basic Plan --&gt;
+        &lt;div class="plan-card basic"&gt;
+            &lt;i class="fas fa-leaf plan-icon"&gt;&lt;/i&gt;
+            &lt;h3&gt;Basic&lt;/h3&gt;
+            &lt;p class="price"&gt;$9&lt;span&gt;/mo&lt;/span&gt;&lt;/p&gt;
+            &lt;ul class="features"&gt;
+                &lt;li&gt;Access to 10 Templates&lt;/li&gt;
+                &lt;li&gt;2 GB Cloud Storage&lt;/li&gt;
+                &lt;li&gt;Standard Export Options&lt;/li&gt;
+                &lt;li&gt;Email Support&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;button class="choose-btn"&gt;Choose Plan&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Pro Plan --&gt;
+        &lt;div class="plan-card pro"&gt;
+            &lt;i class="fas fa-rocket plan-icon"&gt;&lt;/i&gt;
+            &lt;h3&gt;Pro&lt;/h3&gt;
+            &lt;p class="price"&gt;$29&lt;span&gt;/mo&lt;/span&gt;&lt;/p&gt;
+            &lt;ul class="features"&gt;
+                &lt;li&gt;Access to 100+ Pro Templates&lt;/li&gt;
+                &lt;li&gt;50 GB Cloud Storage&lt;/li&gt;
+                &lt;li&gt;High-Quality Exports (HD/4K)&lt;/li&gt;
+                &lt;li&gt;Priority Email &amp; Chat Support&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;button class="choose-btn"&gt;Choose Plan&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Enterprise Plan --&gt;
+        &lt;div class="plan-card enterprise"&gt;
+            &lt;i class="fas fa-building plan-icon"&gt;&lt;/i&gt;
+            &lt;h3&gt;Enterprise&lt;/h3&gt;
+            &lt;p class="price"&gt;$99&lt;span&gt;/mo&lt;/span&gt;&lt;/p&gt;
+            &lt;ul class="features"&gt;
+                &lt;li&gt;Unlimited Template Access&lt;/li&gt;
+                &lt;li&gt;1 TB Cloud Storage&lt;/li&gt;
+                &lt;li&gt;Team Collaboration Features&lt;/li&gt;
+                &lt;li&gt;24/7 Priority Support&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;button class="choose-btn"&gt;Choose Plan&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.pricing-plans {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.plan-card {
+    width: 280px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    background: #fff;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+}
+
+.plan-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.plan-card .price {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.plan-card .price span {
+    font-size: 1rem;
+    color: #666;
+}
+
+.plan-card .features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    color: #444;
+}
+
+.plan-card .features li {
+    margin-bottom: 10px;
+}
+
+/* Color Variants */
+.plan-card.basic {
+    background: #e6f0ff;
+}
+
+.plan-card.basic .choose-btn {
+    background-color: #007BFF;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.plan-card.basic .choose-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+}
+
+.plan-card.pro {
+    background: #fff2e6;
+}
+
+.plan-card.pro .choose-btn {
+    background-color: #FF7F50;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.plan-card.pro .choose-btn:hover {
+    background-color: #e66336;
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+}
+
+.plan-card.enterprise {
+    background: #e6ffe6;
+}
+
+.plan-card.enterprise .choose-btn {
+    background-color: #28a745;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.plan-card.enterprise .choose-btn:hover {
+    background-color: #1e7e34;
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+}
+
+/* Dark Mode */
+body.dark-theme .plan-card {
+    background: #2a2a2a;
+    color: #eee;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .plan-card .price span {
+    color: #bbb;
+}
+
+body.dark-theme .plan-card .features {
+    color: #ccc;
+}
+
+/* CSS for the icons above the price plans */
+.plan-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+.plan-card.pro .plan-icon {
+    color: #FF7F50;
+}
+
+.plan-card.enterprise .plan-icon {
+    color: #28a745;
+}
+
+/* Dark Mode Adjustments */
+body.dark-theme .plan-icon {
+    color: #90caf9;
+}
+
+body.dark-theme .plan-card.pro .plan-icon {
+    color: #ff9966;
+}
+
+body.dark-theme .plan-card.enterprise .plan-icon {
+    color: #66ff99;
+}
+
+.choose-btn {
+    font-family: Poppins, sans-serif;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.choose-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+}
+
+/* Dark Mode Adjustments */
+body.dark-theme .choose-btn {
+    background: #90caf9;
+    color: #121212;
+    box-shadow: 0 4px 12px rgba(144, 202, 249, 0.2);
+}
+
+body.dark-theme .choose-btn:hover {
+    background: #64b5f6;
+    box-shadow: 0 6px 16px rgba(144, 202, 249, 0.3);
+}
+&lt;/style&gt;
+</code></pre>
+        </div>
+
+    </section>
+
+
+    <script>
+        // Toggle code block visibility
+        function toggleCode(button) {
+            const code = button.nextElementSibling;
+            const isVisible = code.style.display === "block";
+            code.style.display = isVisible ? "none" : "block";
+            button.textContent = isVisible ? "Show Code" : "Hide Code";
+        }
+
+        // Dark mode toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggleBtn.textContent = '☀️';
+                themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+            } else {
+                themeToggleBtn.textContent = '🌙';
+                themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+            }
+        });
+    </script>
+</body>
+
+</html>
