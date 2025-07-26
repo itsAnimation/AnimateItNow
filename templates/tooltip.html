@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tooltip Component Demo</title>
+
+
+    <!-- All necessary CSS is included here -->
+
+    <style>
+        /* --- Reset and Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --accent-color: #1976d2;
+            --bg-color: #f9fafb;
+            --text-color: #1a202c;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #e5e7eb;
+            --sidebar-bg: #f9fafb;
+            --tooltip-bg: #616161;
+            --tooltip-text-color: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --code-bg: #2d3748;
+            --code-text: #e2e8f0;
+            --btn-secondary-bg: #f3f4f6;
+            --btn-secondary-text: #374151;
+            --btn-secondary-border: #d1d5db;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding-top: 60px; /* Space for fixed navbar */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* --- Navbar Styles --- */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background-color: var(--nav-bg); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color); display: flex;
+            align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 20;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+        .logo { height: 32px; width: 32px; }
+        .site-name { font-size: 1.25rem; font-weight: 600; margin: 0; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+        .nav-links a { color: var(--text-color); text-decoration: none; font-weight: 500; }
+        .nav-links a.active, .nav-links a:hover { color: var(--accent-color); }
+        #theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+
+        /* --- Page Layout --- */
+        .container { display: flex; }
+        .sidebar {
+            width: 240px; flex-shrink: 0; background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color); height: calc(100vh - 60px);
+            position: fixed; top: 60px; left: 0; padding: 2rem 0; z-index: 10;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .sidebar h2 { padding: 0 1.5rem; margin: 0 0 1rem 0; font-size: 1.2rem; }
+        .sidebar-nav a { display: block; padding: 0.75rem 1.5rem; color: var(--text-color); text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; }
+        .sidebar-nav a.active { font-weight: 600; color: var(--accent-color); border-left-color: var(--accent-color); }
+        .main-content { margin-left: 240px; padding: 2rem 3rem; width: calc(100% - 240px); }
+        .content-section { padding-top: 2rem; margin-bottom: 3rem; border-top: 1px solid var(--border-color); }
+        .content-section:first-child { padding-top: 0; border-top: none; }
+        .main-content h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .main-content h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .main-content p { margin-top: 0; margin-bottom: 1.5rem; color: #6b7280; }
+        .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 100px; }
+        .btn { padding: 10px 20px; border-radius: 6px; border: none; background-color: var(--accent-color); color: white; cursor: pointer; font-size: 1rem; }
+        
+        /* --- PURE CSS TOOLTIP STYLES --- */
+        .tooltip-wrapper { position: relative; display: inline-block; }
+        .tooltip {
+            position: absolute; z-index: 1000; background-color: var(--tooltip-bg);
+            color: var(--tooltip-text-color); padding: 8px 12px; border-radius: 6px; font-size: 0.9rem;
+            width: max-content; max-width: 250px; visibility: hidden; opacity: 0; transform: scale(0.9);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        }
+        .tooltip::after { content: ""; position: absolute; border-width: 6px; border-style: solid; }
+        .tooltip-wrapper:hover .tooltip { visibility: visible; opacity: 1; transform: scale(1); }
+        .tooltip.delayed { transition-delay: 0.5s; }
+        .tooltip-wrapper:hover .tooltip.delayed { transition-delay: 0s; }
+        .tooltip-wrapper[data-position="top"] .tooltip { bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9); }
+        .tooltip-wrapper[data-position="top"]:hover .tooltip { transform: translateX(-50%) scale(1); }
+        .tooltip-wrapper[data-position="top"] .tooltip::after { top: 100%; left: 50%; margin-left: -6px; border-color: var(--tooltip-bg) transparent transparent transparent; }
+        .tooltip-wrapper[data-position="bottom"] .tooltip { top: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9); }
+        .tooltip-wrapper[data-position="bottom"]:hover .tooltip { transform: translateX(-50%) scale(1); }
+        .tooltip-wrapper[data-position="bottom"] .tooltip::after { bottom: 100%; left: 50%; margin-left: -6px; border-color: transparent transparent var(--tooltip-bg) transparent; }
+        .tooltip-wrapper[data-position="left"] .tooltip { right: calc(100% + 8px); top: 50%; transform: translateY(-50%) scale(0.9); }
+        .tooltip-wrapper[data-position="left"]:hover .tooltip { transform: translateY(-50%) scale(1); }
+        .tooltip-wrapper[data-position="left"] .tooltip::after { left: 100%; top: 50%; margin-top: -6px; border-color: transparent transparent transparent var(--tooltip-bg); }
+        .tooltip-wrapper[data-position="right"] .tooltip { left: calc(100% + 8px); top: 50%; transform: translateY(-50%) scale(0.9); }
+        .tooltip-wrapper[data-position="right"]:hover .tooltip { transform: translateY(-50%) scale(1); }
+        .tooltip-wrapper[data-position="right"] .tooltip::after { right: 100%; top: 50%; margin-top: -6px; border-color: transparent var(--tooltip-bg) transparent transparent; }
+
+        /* --- Code Snippet Toggle --- */
+        .demo-actions { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.5rem; background-color: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; box-shadow: var(--card-shadow); margin-bottom: 1rem; }
+        .action-label { font-size: 0.8rem; padding: 6px 12px; background-color: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 1px solid var(--btn-secondary-border); border-radius: 6px; cursor: pointer; user-select: none; }
+        .code-block { display: none; background-color: var(--code-bg); color: var(--code-text); padding: 1rem; border-radius: 8px; margin-top: -1rem; margin-bottom: 1rem; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap; font-size: 0.85rem; }
+        .code-toggle { display: none; }
+        .code-toggle:checked ~ .code-block { display: block; }
+        .code-toggle:checked ~ .demo-actions .show-code-label::after { content: 'Hide Code'; }
+        .code-toggle:not(:checked) ~ .demo-actions .show-code-label::after { content: 'Show Code'; }
+
+        /* --- DARK THEME STYLES --- */
+        body.dark-theme {
+            --bg-color: #121212;
+            --text-color: #e5e7eb;
+            --card-bg: #1e1e1e;
+            --border-color: #374151;
+            --sidebar-bg: #121212;
+            --nav-bg: rgba(20, 20, 20, 0.8);
+            --tooltip-bg: #e5e7eb;
+            --tooltip-text-color: #1e1e1e;
+        }
+        body.dark-theme .tooltip-wrapper[data-position="top"] .tooltip::after { border-top-color: var(--tooltip-bg); }
+        body.dark-theme .tooltip-wrapper[data-position="bottom"] .tooltip::after { border-bottom-color: var(--tooltip-bg); }
+        body.dark-theme .tooltip-wrapper[data-position="left"] .tooltip::after { border-left-color: var(--tooltip-bg); }
+        body.dark-theme .tooltip-wrapper[data-position="right"] .tooltip::after { border-right-color: var(--tooltip-bg); }
+        body.dark-theme p { color: #9ca3af; }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+
+           
+
+            <img src="../images/logo.png" alt="Animate It Now Logo" class="logo" />
+            <h1 class="site-name">Animate It Now</h1>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <!-- CORRECTED NAVIGATION LINKS -->
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../templates.html" class="active">Templates</a></li>
+                <li><a href="../contributors.html">Contributors</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Tooltip Demos</h2>
+            <nav class="sidebar-nav">
+                <a href="#basic" class="active">Basic Tooltip</a>
+                <a href="#positions">Positioned Tooltips</a>
+                <a href="#interactive">Interactive</a>
+                <a href="#delayed">Delayed Tooltip</a>
+                <a href="#custom-html">Custom HTML</a>
+                <a href="#disabled">Disabled Elements</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Tooltip</h1>
+                <p>A simple tooltip component that appears when a user hovers over an element.</p>
+            </header>
+            
+            <section id="basic" class="content-section">
+                <h3>Basic Example</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="bottom">
+                        <button class="btn">Hover Me</button>
+                        <div class="tooltip">This is a basic tooltip.</div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-basic">
+                <div class="demo-actions">
+                    <label for="toggle-basic" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper" data-position="bottom"&gt;
+    &lt;button class="btn"&gt;Hover Me&lt;/button&gt;
+    &lt;div class="tooltip"&gt;This is a basic tooltip.&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+            <section id="positions" class="content-section">
+                <h3>Positioned Tooltips</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="top"> <button class="btn">Top</button> <div class="tooltip">Top</div> </div>
+                    <div class="tooltip-wrapper" data-position="right"> <button class="btn">Right</button> <div class="tooltip">Right</div> </div>
+                    <div class="tooltip-wrapper" data-position="bottom"> <button class="btn">Bottom</button> <div class="tooltip">Bottom</div> </div>
+                    <div class="tooltip-wrapper" data-position="left"> <button class="btn">Left</button> <div class="tooltip">Left</div> </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-positions">
+                <div class="demo-actions">
+                    <label for="toggle-positions" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper" data-position="top"&gt;...&lt;/div&gt;</pre>
+            </section>
+
+            <section id="interactive" class="content-section">
+                <h3>Interactive Tooltip</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="bottom">
+                        <button class="btn">Interactive</button>
+                        <div class="tooltip">You can <a href="#" style="color: var(--accent-color);">click this link</a>.</div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-interactive">
+                <div class="demo-actions">
+                    <label for="toggle-interactive" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+    &lt;button class="btn"&gt;Interactive&lt;/button&gt;
+    &lt;div class="tooltip"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+            <section id="delayed" class="content-section">
+                <h3>Delayed Tooltip</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="bottom">
+                        <button class="btn">Delayed</button>
+                        <div class="tooltip delayed">Appears after 0.5s</div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-delayed">
+                <div class="demo-actions">
+                    <label for="toggle-delayed" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+    &lt;button class="btn"&gt;Delayed&lt;/button&gt;
+    &lt;div class="tooltip delayed"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+            <section id="custom-html" class="content-section">
+                <h3>Custom HTML</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="bottom">
+                        <button class="btn">HTML Tooltip</button>
+                        <div class="tooltip"> <b>Rich Content</b><br> <em>Styled text</em>. </div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-custom-html">
+                <div class="demo-actions">
+                    <label for="toggle-custom-html" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+    &lt;button class="btn"&gt;HTML Tooltip&lt;/button&gt;
+    &lt;div class="tooltip"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+
+            <section id="disabled" class="content-section">
+                <h3>Disabled Elements</h3>
+                <div class="demo-box">
+                    <div class="tooltip-wrapper" data-position="top">
+                        <button class="btn" disabled>Disabled Button</button>
+                        <div class="tooltip">This button is disabled!</div>
+                    </div>
+                </div>
+                <input type="checkbox" class="code-toggle" id="toggle-disabled">
+                <div class="demo-actions">
+                    <label for="toggle-disabled" class="action-label show-code-label"></label>
+                </div>
+                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+    &lt;button class="btn" disabled&gt;...&lt;/button&gt;
+    &lt;div class="tooltip"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </section>
+        </main>
+    </div>
+
+    <!-- All necessary JavaScript is included here -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function setTheme(isDark) {
+            body.classList.toggle('dark-theme', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            if (themeToggle) {
+                themeToggle.innerHTML = isDark ? '☀️' : '🌙';
+            }
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+
+        // Button click event
+        themeToggle?.addEventListener('click', () => {
+            setTheme(!body.classList.contains('dark-theme'));
+        });
+    </script>
+</body>
+</html>
