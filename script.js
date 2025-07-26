@@ -17,6 +17,72 @@ function toggleFAQ(element) {
 
 // Make toggleFAQ globally accessible
 window.toggleFAQ = toggleFAQ;
+
+// Micro-interaction functions
+function addRippleEffect(element) {
+  element.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple-effect');
+    
+    this.appendChild(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+}
+
+function addButtonPressFeedback(element) {
+  element.addEventListener('mousedown', function() {
+    this.classList.add('btn-press');
+  });
+  
+  element.addEventListener('mouseup', function() {
+    this.classList.remove('btn-press');
+  });
+  
+  element.addEventListener('mouseleave', function() {
+    this.classList.remove('btn-press');
+  });
+}
+
+function addCardLiftEffect(element) {
+  element.classList.add('card-lift');
+}
+
+function showFeedback(element, type = 'success') {
+  element.classList.add(`feedback-${type}`);
+  setTimeout(() => {
+    element.classList.remove(`feedback-${type}`);
+  }, 600);
+}
+
+function addCopyCodeFeedback() {
+  const copyButtons = document.querySelectorAll('.copy-btn');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      showFeedback(this, 'success');
+      // Add visual feedback for copy action
+      const originalText = this.textContent;
+      this.textContent = 'Copied!';
+      this.style.background = 'var(--feedback-success)';
+      
+      setTimeout(() => {
+        this.textContent = originalText;
+        this.style.background = '';
+      }, 2000);
+    });
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   // Theme toggle
   const themeToggle = document.getElementById('theme-toggle');
@@ -32,6 +98,9 @@ window.addEventListener('DOMContentLoaded', () => {
       themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
       lucide.createIcons();
     }
+    
+    // Add feedback animation
+    showFeedback(themeToggle, 'success');
   }
 
   const savedTheme = localStorage.getItem('theme');
@@ -44,6 +113,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
   lucide.createIcons();
 
+  // Add micro-interactions to interactive elements
+  const interactiveElements = document.querySelectorAll('.cta-btn, .template-btn, #theme-toggle, .nav-links a, .footer-right a');
+  interactiveElements.forEach(element => {
+    addRippleEffect(element);
+    addButtonPressFeedback(element);
+    element.classList.add('interactive');
+  });
+
+  // Add card lift effects to template cards
+  const templateCards = document.querySelectorAll('.template-card');
+  templateCards.forEach(card => {
+    addCardLiftEffect(card);
+  });
+
+  // Add copy code feedback
+  addCopyCodeFeedback();
 
   // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver((entries) => {
@@ -98,6 +183,11 @@ if (contributorsGrid) {
         card.className = 'contributor-card';
         card.target = '_blank';
         card.rel = 'noopener noreferrer';
+        
+        // Add micro-interactions to contributor cards
+        addCardLiftEffect(card);
+        addRippleEffect(card);
+        
         card.innerHTML = `
           <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
           <h3>${contributor.login}</h3>
@@ -106,37 +196,49 @@ if (contributorsGrid) {
         contributorsGrid.appendChild(card);
       });
     })
-    .catch(err => {
-      console.error('Error fetching contributors:', err);
-      contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
+    .catch(error => {
+      console.error('Error fetching contributors:', error);
+      contributorsGrid.innerHTML = '<p>Unable to load contributors at this time.</p>';
     });
 }
 
- // 📨 Contact form validation
-  const contactForm = document.querySelector('.contact-form');
-    if (!contactForm) return;
-    const formInputs = contactForm ? contactForm.querySelectorAll('input[required], textarea[required]') : [];
-  if (contactForm) {
-    function checkFormValidity() {
-      return [...formInputs].every(input => input.value.trim() !== '');
-    }
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const allValid = checkFormValidity();
-      if (allValid) {
-        alert('Message sent successfully!');
-        contactForm.reset();
-      } else {
-        alert('Please fill in all fields correctly. Fields cannot be empty or contain only spaces.');
+// Contact form validation and feedback
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  const formInputs = contactForm.querySelectorAll('input, textarea');
+  const submitBtn = contactForm.querySelector('#submit');
+
+  function checkFormValidity() {
+    let allValid = true;
+    formInputs.forEach(input => {
+      const value = input.value.trim();
+      if (!value) {
+        allValid = false;
       }
     });
-    formInputs.forEach(input => {
-      input.addEventListener('input', () => {
-        const allFieldsFilled = checkFormValidity();
-        input.classList.toggle('invalid', !allFieldsFilled);
-      });
-    });
+    return allValid;
   }
+
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (checkFormValidity()) {
+      showFeedback(submitBtn, 'success');
+      alert('Message sent successfully!');
+      contactForm.reset();
+    } else {
+      showFeedback(submitBtn, 'error');
+      alert('Please fill in all fields correctly. Fields cannot be empty or contain only spaces.');
+    }
+  });
+  
+  formInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      const allFieldsFilled = checkFormValidity();
+      input.classList.toggle('invalid', !allFieldsFilled);
+    });
+  });
+}
   
 const isMobile = window.matchMedia('(max-width: 768px)').matches;
 const cursorToggle = document.getElementById('cursorToggle');

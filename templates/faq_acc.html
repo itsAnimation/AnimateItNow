@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion / FAQ Template</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nav-text: #222;
+            --accent: #007BFF;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-top: 64px;
+            /* offset for fixed navbar */
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            margin-right: 0.75rem;
+            object-fit: contain;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* AnimateItNow CSS for Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--nav-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            /* reset default */
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 1.5rem;
+            color: var(--nav-text);
+            transition: color var(--transition);
+        }
+
+        section {
+            font-family: Poppins, sans-serif;
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h2 {
+            font-family: Poppins, sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: Poppins, sans-serif;
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+
+        /* Dark mode variables */
+        body.dark-theme {
+            --nav-text: #eee;
+            --accent: #90caf9;
+            background-color: #121212;
+            color: #eee;
+        }
+
+        body.dark-theme .navbar {
+            background: rgba(40, 40, 40, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        body.dark-theme .nav-links a {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme .nav-links a.active,
+        body.dark-theme .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        body.dark-theme #theme-toggle {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme section {
+            background-color: #1f1f1f;
+            box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+        }
+
+        body.dark-theme .subtitle {
+            color: #bbb;
+        }
+
+        .expand-btn {
+            display: block;
+            margin: 25px auto 10px;
+            padding: 8px 18px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .code-block {
+            display: none;
+            background: #222;
+            color: #ddd;
+            padding: 20px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* CSS of newly added FAQs section */
+        .accordion {
+            font-family: Poppins, sans-serif;
+            border-top: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            font-family: Poppins, sans-serif;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header {
+            font-family: Poppins, sans-serif;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            outline: none;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            font-size: 0.95rem;
+            color: #444;
+            background-color: #fafafa;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-body {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        body.dark-theme .accordion-item {
+            background-color: #2a2a2a;
+            border-color: #444;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-theme .accordion-body {
+            background-color: #2c2c2c;
+            color: #ddd;
+        }
+
+        body.dark-theme .accordion-header {
+            color: #e0e0e0;
+            background: linear-gradient(90deg, #2a2a2a 0%, #333 100%);
+            border-radius: 8px;
+        }
+
+        body.dark-theme .accordion-body {
+            background-color: #1c1c1c;
+            color: #ccc;
+            border-radius: 0 0 8px 8px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-theme .accordion-header:hover {
+            background: linear-gradient(90deg, rgba(144, 202, 249, 0.15) 0%, rgba(144, 202, 249, 0.05) 100%);
+            color: #90caf9;
+        }
+
+        body.dark-theme .accordion-item.active .accordion-header {
+            background: linear-gradient(90deg, rgba(144, 202, 249, 0.2) 0%, rgba(144, 202, 249, 0.1) 100%);
+            color: #90caf9;
+            box-shadow: 0 0 10px rgba(144, 202, 249, 0.2);
+        }
+
+        body.dark-theme .accordion-header::after {
+            color: #90caf9;
+        }
+
+        /* CSS of Tabbed FAQs section */
+        .faq-search {
+            position: relative;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .faq-search input {
+            width: 60%;
+            padding: 10px 40px 10px 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 21%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+            pointer-events: none;
+        }
+
+        .faq-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            font-family: Poppins, sans-serif;
+            padding: 10px 20px;
+            border: none;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .faq-contents {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item h4 {
+            margin: 0 0 10px;
+        }
+
+        .faq-item p {
+            margin: 0;
+        }
+
+        .faq-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Dark Mode for Search Bar */
+        body.dark-theme .faq-search input {
+            background-color: #2c2c2c;
+            color: #eee;
+            border: 1px solid #555;
+        }
+
+        body.dark-theme .search-icon {
+            color: #bbb;
+        }
+
+        /* Dark Mode for Tabs */
+        body.dark-theme .tab {
+            background-color: #333;
+            color: #ccc;
+        }
+
+        body.dark-theme .tab.active {
+            background-color: #90caf9;
+            color: #000;
+        }
+
+        /* Dark Mode for FAQ Items */
+        body.dark-theme .faq-item {
+            background-color: #1f1f1f;
+            color: #ddd;
+        }
+
+        body.dark-theme .faq-item:hover {
+            background-color: #2a2a2a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AnimateItNow Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="Logo" class="logo" />
+            <span class="site-name">AnimateItNow</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../templates.html" class="active">Templates</a></li>
+            <li><a href="../contributors.html">Contributors</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <!-- Code for FAQs -->
+
+    <!-- Accordion Style FAQs -->
+    <section>
+        <h2>Accordion Style FAQs</h2>
+        <p class="subtitle">Click to expand/collapse each question.</p>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-header">What is AnimateItNow?</button>
+                <div class="accordion-body">
+                    AnimateItNow is a platform that provides interactive UI components, templates, and resources for
+                    developers and designers.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">Is AnimateItNow free to use?</button>
+                <div class="accordion-body">
+                    Yes, AnimateItNow is free for personal and educational use. For commercial projects, please check
+                    licensing terms.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">How can I contribute?</button>
+                <div class="accordion-body">
+                    You can contribute by submitting your templates, fixing bugs, or enhancing existing components via
+                    our GitHub repository.
+                </div>
+            </div>
+
+            <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+            <pre class="code-block">
+&lt;!-- HTML --&gt;
+&lt;section&gt;
+    &lt;h2&gt;Accordion Style FAQs&lt;/h2&gt;
+    &lt;p class="subtitle"&gt;Click to expand/collapse each question.&lt;/p&gt;
+
+    &lt;div class="accordion"&gt;
+        &lt;div class="accordion-item"&gt;
+            &lt;button class="accordion-header"&gt;What is AnimateItNow?&lt;/button&gt;
+            &lt;div class="accordion-body"&gt;
+                AnimateItNow is a platform that provides interactive UI components, templates, and resources for developers and designers.
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="accordion-item"&gt;
+            &lt;button class="accordion-header"&gt;Is AnimateItNow free to use?&lt;/button&gt;
+            &lt;div class="accordion-body"&gt;
+                Yes, AnimateItNow is free for personal and educational use. For commercial projects, please check licensing terms.
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="accordion-item"&gt;
+            &lt;button class="accordion-header"&gt;How can I contribute?&lt;/button&gt;
+            &lt;div class="accordion-body"&gt;
+                You can contribute by submitting your templates, fixing bugs, or enhancing existing components via our GitHub repository.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- CSS --&gt;
+.accordion {
+    font-family: Poppins, sans-serif;
+    border-top: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.accordion-item {
+    font-family: Poppins, sans-serif;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+.accordion-header::after {
+    content: '+';
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+.accordion-item.active .accordion-header::after {
+    transform: rotate(45deg);
+}
+.accordion-header:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    font-size: 0.95rem;
+    color: #444;
+    background-color: #fafafa;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.accordion-item.active .accordion-body {
+    padding: 15px 20px;
+    max-height: 200px;
+}
+body.dark-theme .accordion-item {
+    background-color: #2a2a2a;
+    border-color: #444;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+body.dark-theme .accordion-body {
+    background-color: #2c2c2c;
+    color: #ddd;
+}
+body.dark-theme .accordion-header {
+    color: #e0e0e0;
+    background: linear-gradient(90deg, #2a2a2a 0%, #333 100%);
+    border-radius: 8px;
+}
+body.dark-theme .accordion-body {
+    background-color: #1c1c1c;
+    color: #ccc;
+    border-radius: 0 0 8px 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+body.dark-theme .accordion-header:hover {
+    background: linear-gradient(90deg, rgba(144, 202, 249, 0.15) 0%, rgba(144, 202, 249, 0.05) 100%);
+    color: #90caf9;
+}
+body.dark-theme .accordion-item.active .accordion-header {
+    background: linear-gradient(90deg, rgba(144, 202, 249, 0.2) 0%, rgba(144, 202, 249, 0.1) 100%);
+    color: #90caf9;
+    box-shadow: 0 0 10px rgba(144, 202, 249, 0.2);
+}
+body.dark-theme .accordion-header::after {
+    color: #90caf9;
+}
+
+&lt;!-- JS --&gt;
+document.querySelectorAll('.accordion-header').forEach(header =&gt; {
+    header.addEventListener('click', () =&gt; {
+        const item = header.parentElement;
+        item.classList.toggle('active');
+    });
+});
+</pre>
+        </div>
+
+    </section>
+
+    <!-- Tabbed FAQs -->
+    <section>
+        <h2>Tabbed FAQs</h2>
+        <p class="subtitle">Find answers quickly by searching or browsing categories.</p>
+
+        <!-- Search Bar -->
+        <div class="faq-search">
+            <input type="text" id="faqSearch" placeholder="Search FAQs...">
+            <span class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="faq-tabs">
+            <button class="tab active" data-tab="general">General</button>
+            <button class="tab" data-tab="pricing">Pricing</button>
+            <button class="tab" data-tab="support">Support</button>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="faq-contents">
+            <div class="faq-category" data-category="general">
+                <div class="faq-item">
+                    <h4>What is AnimateItNow?</h4>
+                    <p>AnimateItNow provides interactive UI components and resources for developers and designers.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I use it for free?</h4>
+                    <p>Yes, it is free for personal and educational use.</p>
+                </div>
+            </div>
+
+            <div class="faq-category" data-category="pricing" style="display: none;">
+                <div class="faq-item">
+                    <h4>Are there premium plans?</h4>
+                    <p>Currently, AnimateItNow is entirely free.</p>
+                </div>
+            </div>
+
+            <div class="faq-category" data-category="support" style="display: none;">
+                <div class="faq-item">
+                    <h4>How do I report a bug?</h4>
+                    <p>You can report bugs via our GitHub issues section.</p>
+                </div>
+            </div>
+
+            <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+            <pre class="code-block">
+&lt;section&gt;
+    &lt;h2&gt;Frequently Asked Questions&lt;/h2&gt;
+    &lt;p class="subtitle"&gt;Find answers quickly by searching or browsing categories.&lt;/p&gt;
+
+    &lt;div class="faq-search"&gt;
+        &lt;input type="text" id="faqSearch" placeholder="Search FAQs..."&gt;
+        &lt;span class="search-icon"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"&gt;
+                &lt;path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/&gt;
+            &lt;/svg&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-tabs"&gt;
+        &lt;button class="tab active" data-tab="general"&gt;General&lt;/button&gt;
+        &lt;button class="tab" data-tab="pricing"&gt;Pricing&lt;/button&gt;
+        &lt;button class="tab" data-tab="support"&gt;Support&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-contents"&gt;
+        &lt;div class="faq-category" data-category="general"&gt;
+            &lt;div class="faq-item"&gt;
+                &lt;h4&gt;What is AnimateItNow?&lt;/h4&gt;
+                &lt;p&gt;AnimateItNow provides interactive UI components and resources for developers and designers.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Add More FAQ Items Here --&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+// Tabs Switching
+document.querySelectorAll('.tab').forEach(tab =&gt; {
+    tab.addEventListener('click', () =&gt; {
+        document.querySelector('.tab.active').classList.remove('active');
+        tab.classList.add('active');
+
+        const selectedCategory = tab.getAttribute('data-tab');
+        document.querySelectorAll('.faq-category').forEach(cat =&gt; {
+            cat.style.display = (cat.getAttribute('data-category') === selectedCategory) ? 'block' : 'none';
+        });
+    });
+});
+
+// FAQ Search Filtering
+document.getElementById('faqSearch').addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item =&gt; {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+    });
+});
+&lt;/script&gt;
+</pre>
+
+        </div>
+    </section>
+
+    <script>
+        // Toggle code block visibility
+        function toggleCode(button) {
+            const code = button.nextElementSibling;
+            const isVisible = code.style.display === "block";
+            code.style.display = isVisible ? "none" : "block";
+            button.textContent = isVisible ? "Show Code" : "Hide Code";
+        }
+
+        // Dark mode toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggleBtn.textContent = '☀️';
+                themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+            } else {
+                themeToggleBtn.textContent = '🌙';
+                themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+            }
+        });
+
+        // Accordion Toggle
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Tabs Switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelector('.tab.active').classList.remove('active');
+                tab.classList.add('active');
+
+                const selectedCategory = tab.getAttribute('data-tab');
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    cat.style.display = (cat.getAttribute('data-category') === selectedCategory) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // FAQ Search Filtering
+        document.getElementById('faqSearch').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+
+    </script>
+</body>
+
+</html>
