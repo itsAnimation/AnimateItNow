@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +27,9 @@
     body.dark-theme {
       background-color: #121212;
       color: #f5f5f5;
+      background: url(images/bgdark.png) no-repeat center center fixed;
+      background-size: cover;
+      background-position: center;
     }
 
     /* ✅ Heading fix */
@@ -139,10 +141,8 @@
       transition: color 0.3s ease, background-color 0.3s ease;
     }
 
-    /* Keep consistent size and shape */
     /* Base preview style */
-    .feature-preview,
-    .hero-preview {
+    .template-preview {
       height: 90px;
       border-radius: 10px;
       margin-bottom: 12px;
@@ -157,13 +157,12 @@
     }
 
     /* Dark mode support */
-    body.dark-theme .feature-preview,
-    body.dark-theme .hero-preview {
+    body.dark-theme .template-preview {
       background-color: #2a2a2a;
       box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
     }
 
-    /* Feature Cards Preview: 3 mini cards */
+    /* Feature Cards Preview */
     .feature-preview {
       background-color: #4f8cff;
       padding: 12px;
@@ -184,7 +183,7 @@
       font-weight: 600;
     }
 
-    /* Hero Section Preview: big rectangle + text lines */
+    /* Hero Section Preview */
     .hero-preview {
       background-color: #4f8cff;
       flex-direction: column;
@@ -212,30 +211,14 @@
       width: 50%;
     }
 
-    /* ADDED: Social Share Preview CSS */
+    /* Social Share Preview */
     .social-share-preview {
       background-color: #4f8cff;
-      /* A unifying blue */
-      display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 15px;
       font-size: 28px;
       color: white;
-      /* Icons color */
-      height: 90px;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
     }
 
-    body.dark-theme .social-share-preview {
-      background-color: #2a2a2a;
-      /* Dark background */
-      box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-    }
-
-    /* Optional: Slight scaling on hover for the preview icons */
     .social-share-preview .social-icon-preview {
       transition: transform 0.2s ease-in-out;
     }
@@ -247,18 +230,10 @@
     /* Navbar Preview */
     .navbar-preview {
       background-color: #4f8cff;
-      display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 12px;
       gap: 8px;
-      height: 90px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgb(0, 0, 0 / 0.1);
-    }
-
-    body.dark-theme .navbar-preview {
-      background-color: #2a2a2a;
     }
 
     .navbar-line {
@@ -279,23 +254,109 @@
     .navbar-line.link.short {
       width: 50%;
     }
+    
+    /* ADDED: Animated Toggles Preview CSS */
+    .toggles-preview {
+        background-color: #4f8cff;
+        gap: 20px;
+    }
+
+    .mini-toggle {
+        width: 50px;
+        height: 25px;
+        background-color: #ccc;
+        border-radius: 25px;
+        position: relative;
+        padding: 3px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .mini-handle {
+        width: 19px;
+        height: 19px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        transition: transform 0.3s ease;
+    }
+
+    .mini-toggle.off .mini-handle {
+        transform: translateX(0);
+    }
+    
+    .mini-toggle.on {
+        background-color: #25d366; /* A nice 'on' color */
+    }
+
+    .mini-toggle.on .mini-handle {
+        transform: translateX(25px);
+    }
+/*Display Properties Preview */
+.display-preview {
+  background-color: #4f8cff;
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.display-box {
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.display-box.box1 {
+  width: 24px;
+  height: 24px;
+  background-color: #bbdefb;
+}
+
+.display-box.box2 {
+  width: 24px;
+  height: 32px;
+  background-color: #90caf9;
+}
+
+.display-box.box3 {
+  width: 24px;
+  height: 28px;
+  background-color: #64b5f6;
+}
+
+/* 🌙 Dark Theme Support */
+body.dark-theme .display-preview {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
   </style>
 </head>
-
 <body>
-  <nav class="navbar">
+   <nav class="navbar scroll-fade">
     <div class="nav-left">
-      <img src="images/logo.png" alt="Logo" class="logo" />
-      <h1 class="site-name">
-        Animate It Now
-      </h1>
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
     </div>
+
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
              target="_blank" 
@@ -323,22 +384,19 @@
             </button>
         </li>
       </ul>
-      </div>
-    </nav>
-
-
+    </div>
+  </nav>
   <main class="templates-main">
     <h1>Templates Gallery</h1>
-      <!-- 🔍 Search Bar & Category Filter Start -->
-  <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-  <input
-    type="text"
-    id="search-bar"
-    placeholder="Search templates..."
-    style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
-    aria-label="Search templates"
-  />
-</div>
+    <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search templates..."
+        style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
+        aria-label="Search templates"
+      />
+    </div>
     <section class="templates-grid">
       <a class="template-card" href="templates/login.html">
         <h2>Login Page UI</h2>
@@ -390,13 +448,51 @@
         <button class="template-btn">View Template</button>
       </a>
 
-      <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
+      <article class="template-card">
+  <h2>Animated Button</h2>
+  <div class="template-preview button-preview"></div>
+  <a class="template-btn" href="templates/animated-btn.html">View Template</a>
+</article> 
       <a class="template-card" href="templates/social-share-buttons.html">
         <h2>Animated Social Share Buttons</h2>
         <div class="template-preview social-share-preview">
           <i class="fab fa-facebook-f social-icon-preview"></i>
           <i class="fab fa-twitter social-icon-preview"></i>
           <i class="fab fa-instagram social-icon-preview"></i>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      
+     <!-- CORRECTED TOOLTIP COMPONENT -->
+<a class="template-card" href="templates/tooltip.html">
+    <h2>Tooltip UI Component</h2>
+    <div class="template-preview">
+        <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+    </div>
+    <span class="template-btn">View Template</span>
+</a>
+<!-- Responsive Card Carousel -->
+            <a class="template-card" href="templates/carousel.html">
+                <h2>Responsive Card Carousel</h2>
+                <div class="template-preview carousel-preview">
+                    <div class="mini-card"></div>
+                    <div class="mini-card"></div>
+                    <div class="mini-card"></div>
+                </div>
+                <span class="template-btn">View Template</span>
+            </a>
+
+
+      <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
+      <a class="template-card" href="templates/toggles-and-checkboxes.html">
+        <h2>Animated Toggles</h2>
+        <div class="template-preview toggles-preview">
+            <div class="mini-toggle off">
+                <div class="mini-handle"></div>
+            </div>
+            <div class="mini-toggle on">
+                <div class="mini-handle"></div>
+            </div>
         </div>
         <button class="template-btn">View Template</button>
       </a>
@@ -407,7 +503,6 @@
         <button class="template-btn">View Template</button>
       </a>
 
-      <!--NAVBAR--->
       <a class="template-card" href="templates/navbar.html">
         <h2>Navbar Variants</h2>
         <div class="template-preview navbar-preview">
@@ -415,76 +510,84 @@
           <div class="navbar-line link"></div>
           <div class="navbar-line link short"></div>
         </div>
-        <a class="template-btn" href="templates/navbar.html">View Template</a>
-      </article> 
-      </section>
-    </main>
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/display.html">
+        <h2>Display Properties</h2>
+        <div class="template-preview display-preview">
+          <div class="display-box box1"></div>
+          <div class="display-box box2"></div>
+          <div class="display-box box3"></div>
         </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li>
-              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
-                >🌐 GitHub</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >💼 LinkedIn</a
-              >
-            </li>
-            <li>
-              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"
-                >📧 Email Us</a
-              >
-            </li>
-          </ul>
+        <button class="template-btn">View Template</button>
+      </a>
+
+
+      <a class="template-card" href="templates/CardHoverEffects.html">
+        <h2>3D Card Hover Effects</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line link"></div>
         </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/page_not_found_template.html">
+        <h2>404 Page not found</h2>
+        <div class="template-preview 404-preview">
+          <div class="page link"></div>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
       </div>
-      <div class="footer-bottom">
-        <p>
-          © 2025 AnimateItNow. Made with ❤️ by
-          <span class="highlight">Anuj</span> and Contributors.
-        </p>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a></li>
+          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a></li>
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a></li>
+        </ul>
       </div>
-    </footer>
-    <div id="cursor-snake"></div>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById('theme-toggle');
-  const body = document.body;
+    </div>
+    <div class="footer-bottom">
+      <p>
+        © 2025 AnimateItNow. Made with ❤️ by
+        <span class="highlight">Anuj</span> and Contributors.
+      </p>
+    </div>
+  </footer>
+  <div id="cursor-snake"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
 
-  function setTheme(dark) {
-    const newIcon = dark ? 'sun' : 'moon';
-    body.classList.toggle('dark', dark);
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    function setTheme(isDark) {
+      const newIcon = isDark ? 'sun' : 'moon';
+      body.classList.toggle('dark-theme', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-    // Replace icon completely
-    if (themeToggle) {
-      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
-      lucide.createIcons();
+      if (themeToggle) {
+        themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+        lucide.createIcons();
+      }
     }
-  }
 
-  const savedTheme = localStorage.getItem('theme');
-  setTheme(savedTheme === 'dark');
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
 
-  themeToggle?.addEventListener('click', () => {
-    const isDark = body.classList.contains('dark');
-    setTheme(!isDark);
-  });
+    themeToggle?.addEventListener('click', () => {
+      setTheme(!body.classList.contains('dark-theme'));
+    });
 
-  lucide.createIcons();
-
+    lucide.createIcons();
 
     // Scroll animation for cards
     const observer = new IntersectionObserver(
@@ -502,33 +605,33 @@
       observer.observe(card);
     });
 
-    
-         // 🔍 Search & Category Filter Functionality
-   const searchBar = document.getElementById('search-bar');
-  const templateCards = document.querySelectorAll('.template-card');
-  const noResultsMsg = document.getElementById('no-results');
+    // Search & Category Filter Functionality
+    const searchBar = document.getElementById('search-bar');
+    const templateCards = document.querySelectorAll('.template-card');
+    // const noResultsMsg = document.getElementById('no-results'); // Optional: Add a "no results" div to your HTML
 
-  function filterTemplates() {
-    const query = searchBar.value.trim().toLowerCase();
-    let visibleCount = 0;
+    function filterTemplates() {
+      const query = searchBar.value.trim().toLowerCase();
+      let visibleCount = 0;
 
-    templateCards.forEach(card => {
-      const title = card.querySelector('h2').textContent.trim().toLowerCase();
-      const matchesTitle = title.startsWith(query);
-      if (matchesTitle) {
-        card.style.display = '';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
+      templateCards.forEach(card => {
+        const title = card.querySelector('h2').textContent.trim().toLowerCase();
+        const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
+        if (matchesTitle) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      /*
+      if (noResultsMsg) {
+          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
       }
-    });
+      */
+    }
 
-    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
-  }
-
-  searchBar.addEventListener('input', filterTemplates);
-
+    searchBar.addEventListener('input', filterTemplates);
   </script>
 </body>
-
 </html>
