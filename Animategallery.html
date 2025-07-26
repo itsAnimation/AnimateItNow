@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animate Gallery</title>
+  <link rel="stylesheet" href="animategallery.css">
+</head>
+<body>
+
+  <header>
+    <h1>🎨 Animate Gallery</h1>
+    <div class="filter-buttons">
+      <button onclick="filterGallery('all')">All</button>
+      <button onclick="filterGallery('sketch')">Sketches</button>
+      <button onclick="filterGallery('painting')">Paintings</button>
+      <button onclick="filterGallery('other')">Other</button>
+    </div>
+  </header>
+
+  <section class="upload-section">
+    <h2>Upload Your Artwork</h2>
+    <input type="file" id="upload" accept="image/*"><br>
+    <select id="category">
+      <option value="sketch">Sketch</option>
+      <option value="painting">Painting</option>
+      <option value="other">Other</option>
+    </select>
+    <input type="text" id="description" placeholder="Short description..."><br>
+    <button onclick="uploadArtwork()">Upload</button>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <!-- Artwork cards will appear here -->
+  </section>
+
+  <script src="animategallery.js"></script>
+</body>
+</html>
+
+
