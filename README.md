@@ -113,7 +113,7 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 4. Update the gallery page to showcase your work
 5. **Submit a Pull Request** with a short description and preview
 
-All skill levels are welcome! Check out the [Templates Gallery](./templates.html) for inspiration.
+All skill levels are welcome! Check out the [Templates Gallery](https://animate-it-now.netlify.app/templates) for inspiration.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="1000">

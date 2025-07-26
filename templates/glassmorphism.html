@@ -75,6 +75,27 @@
     .glass-socials a:hover img {
       transform: scale(1.2);
     }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-size: 0.9em;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.85;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .copy-btn:hover {
+      background: #007bff;
+      opacity: 1;
+    }
+    
   </style>
 </head>
 
@@ -257,13 +278,13 @@
                 <button class="code-tab active" onclick="switchTab('html')">HTML</button>
                 <button class="code-tab" onclick="switchTab('css')">CSS</button>
             </div>
-            <div class="code-content">
+            <div class="code-content" style="position:relative;">
                 <pre id="codeDisplay"></pre>
             </div>
         </div>
     </div>
 
-  <script>
+    <script>
         const codeSnippets = {
             design1: {
                 html: `<div class="card-wrapper">
@@ -958,10 +979,34 @@ html: `<div class="outer">
         let currentDesign = '';
         let currentTab = 'html';
 
+        // Add Copy button to code modal
+        function addCopyBtnToModal() {
+            const codeContent = document.querySelector('.code-content');
+            if (!codeContent.querySelector('.copy-btn')) {
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.textContent = 'Copy';
+                copyBtn.type = 'button';
+                copyBtn.style.position = 'absolute';
+                copyBtn.style.top = '12px';
+                copyBtn.style.right = '16px';
+                copyBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    const code = document.getElementById('codeDisplay').innerText;
+                    copyBtn.textContent = 'Copied!';
+                    navigator.clipboard.writeText(code).then(() => {
+                        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
+                    });
+                };
+                codeContent.appendChild(copyBtn);
+            }
+        }
+
         function showCode(design) {
             currentDesign = design;
             document.getElementById('codeModal').style.display = 'block';
             switchTab('html');
+            addCopyBtnToModal();
         }
 
         function closeModal() {
@@ -982,6 +1027,7 @@ html: `<div class="outer">
             if (codeSnippets[currentDesign] && codeSnippets[currentDesign][tab]) {
                 codeDisplay.textContent = codeSnippets[currentDesign][tab];
             }
+            addCopyBtnToModal();
         }
 
         window.onclick = function (event) {

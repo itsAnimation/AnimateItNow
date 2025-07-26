@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 - Page Not Found</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f5ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Container */
+    .container {
+      background: #ffffff;
+      max-width: 400px;
+      width: 100%;
+      padding: 40px 30px 50px;
+      border-radius: 15px;
+      box-shadow:
+        0 10px 20px rgba(33, 140, 250, 0.15),
+        0 6px 6px rgba(33, 140, 250, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Big 404 text */
+    .error-code {
+      font-weight: 700;
+      font-size: 7rem;
+      color: #218cfa;
+      position: relative;
+      line-height: 1;
+      margin-bottom: 15px;
+      user-select: text;
+    }
+
+    /* Subheading */
+    .error-msg {
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #555;
+      user-select: text;
+    }
+
+    /* Description */
+    .error-desc {
+      color: #7a7a7a;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      user-select: text;
+    }
+
+    /* Interactive Go Back button */
+    .btn-go-back {
+      background: linear-gradient(45deg, #218cfa, #1e6cd9);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 38px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(33, 140, 250, 0.45);
+      transition: all 0.25s ease-in-out;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-go-back:hover {
+      filter: brightness(1.15);
+      transform: scale(1.08);
+      box-shadow: 0 12px 20px rgba(33, 140, 250, 0.55);
+    }
+    .btn-go-back:active {
+      transform: scale(0.95);
+      box-shadow: 0 6px 15px rgba(33, 140, 250, 0.35);
+    }
+
+    /* Subtle animated background circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(33, 140, 250, 0.15);
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      pointer-events: none;
+    }
+    .circle.one {
+      width: 150px;
+      height: 150px;
+      top: -40px;
+      right: -50px;
+      animation-name: float1;
+      animation-duration: 4.5s;
+    }
+    .circle.two {
+      width: 90px;
+      height: 90px;
+      bottom: -30px;
+      left: -20px;
+      animation-name: float2;
+      animation-duration: 6s;
+    }
+
+    @keyframes float1 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-10px, 15px); }
+    }
+    @keyframes float2 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(15px, -10px); }
+    }
+
+    /* SVG icon styling */
+    .icon-robot {
+      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      stroke: #218cfa;
+      stroke-width: 2;
+      fill: none;
+      animation: pulseStroke 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseStroke {
+      0%, 100% { stroke-opacity: 1; }
+      50% { stroke-opacity: 0.4; }
+    }
+
+    /* Small footer note */
+    .footer-note {
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 22px;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      .error-code {
+        font-size: 5rem;
+      }
+      .container {
+        padding: 30px 24px 40px;
+      }
+      .btn-go-back {
+        padding: 12px 28px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="error-title">
+    <!-- Minimal robot head SVG for a friendly vibe -->
+    <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Friendly robot head icon" >
+      <circle cx="32" cy="32" r="30" stroke="#218cfa" stroke-width="4" fill="#d6eaff"/>
+      <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa"/>
+      <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa"/>
+      <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#218cfa"/>
+      <line x1="32" y1="28" x2="32" y2="44" stroke="#218cfa" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+
+    <h1 id="error-title" class="error-code">404</h1>
+    <p class="error-msg">Uh oh — seems like you’ve hit a dead end!</p>
+    <p class="error-desc">The page you’re looking for can’t be found. But don’t worry, let’s get you back on track.</p>
+    <button type="button" class="btn-go-back" onclick="window.history.back()" aria-label="Go back to previous page">
+      👈 Go Back
+    </button>
+
+    <div class="footer-note" aria-live="polite">
+      Or <a href="/" style="color:#218cfa; text-decoration:underline;">head home</a> and start fresh.
+    </div>
+
+    <!-- Background circles -->
+    <div class="circle one"></div>
+    <div class="circle two"></div>
+  </main>
+</body>
+</html>
