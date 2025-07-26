@@ -184,6 +184,8 @@ function enableSnakeCursor() {
 
   animateSnake();
 }
+});
+
 
 function disableSnakeCursor() {
   const snake = document.getElementById('cursor-snake');
@@ -219,7 +221,7 @@ if (!isMobile && cursorToggle) {
   // Initialize on load
   updateProgressBar();
 
-
-
-
+ code-block
 });
+
+
