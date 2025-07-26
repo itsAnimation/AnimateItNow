@@ -150,22 +150,21 @@
     </div>
   </footer>
   <div id="cursor-snake"></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <script>
-    // Dark mode toggle functionality for about.html
+<script>
+    // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
     function setTheme(isDark) {
       const newIcon = isDark ? 'sun' : 'moon';
-      body.classList.toggle('dark', isDark);
+      body.classList.toggle('dark-theme', isDark);
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
+      
       if (themeToggle) {
         themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
-        if (window.lucide) {
-          lucide.createIcons();
-        }
+        lucide.createIcons();
       }
     }
 
@@ -174,7 +173,8 @@
     setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
 
     themeToggle?.addEventListener('click', () => {
-      setTheme(!body.classList.contains('dark'));
+      setTheme(!body.classList.contains('dark-theme'));
+      
     });
 
     // Load lucide icons after DOM is ready
