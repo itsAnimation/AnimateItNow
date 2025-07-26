@@ -482,7 +482,11 @@ main {
 .footer-right {
   flex: 1;
   min-width: 220px;
-  padding-left: 50px;
+  
+  /* Corrects alignment of icons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-right h4 {
@@ -507,6 +511,11 @@ main {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease, transform 0.2s ease;
+
+  /* Corrects alignment of icons */
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .footer-right a:hover {
