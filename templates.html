@@ -246,13 +246,13 @@
       width: 40px;
       height: 40px;
       background-color: #4f8cff;
-<<<<<<< HEAD
+
 
 
       display: flex;
 
 
-=======
+
       border-radius: 6px;
     }
 
@@ -280,13 +280,13 @@
       border-radius: 8px;
       padding: 15px;
       display: flex;
->>>>>>> upstream/main
+
       flex-direction: column;
       gap: 10px;
       align-items: flex-start;
       height: 120px;
       justify-content: center;
-<<<<<<< HEAD
+
       padding: 12px;
       gap: 8px;
 
@@ -307,7 +307,7 @@
       border-radius: 5px;
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-=======
+
     }
 
     .faq-line {
@@ -316,7 +316,7 @@
       /* medium blue for FAQ lines */
       border-radius: 6px;
       opacity: 0.8;
->>>>>>> upstream/main
+
     }
 
     .faq-line.long {
@@ -573,10 +573,6 @@ body.dark-theme .display-preview {
         </div>
         <button class="template-btn">View Template</button>
       </a>
-
-
-    
-
     <!-- Tooltip Component Card -->
 <a class="template-card" href="templates/tooltip.html">
     <h2>Tooltip UI Component</h2>
@@ -688,8 +684,7 @@ body.dark-theme .display-preview {
       themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
       lucide.createIcons();
 =======
-
-      
+    
      <!-- CORRECTED TOOLTIP COMPONENT -->
 <a class="template-card" href="templates/tooltip.html">
     <h2>Tooltip UI Component</h2>
@@ -840,12 +835,7 @@ body.dark-theme .display-preview {
         themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
         lucide.createIcons();
       }
-
-
-
     }
-
-
   const savedTheme = localStorage.getItem('theme');
   setTheme(savedTheme === 'dark');
 
@@ -853,10 +843,7 @@ body.dark-theme .display-preview {
     const isDark = body.classList.contains('dark');
     setTheme(!isDark);
   });
-
   lucide.createIcons();
-
-
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
@@ -864,10 +851,7 @@ body.dark-theme .display-preview {
     themeToggle?.addEventListener('click', () => {
       setTheme(!body.classList.contains('dark-theme'));
     });
-
-
     lucide.createIcons();
-
     // Scroll animation for cards
     const observer = new IntersectionObserver(
       (entries) => {
@@ -883,10 +867,6 @@ body.dark-theme .display-preview {
     document.querySelectorAll(".template-card").forEach((card) => {
       observer.observe(card);
     });
-
-
-
-    
          // 🔍 Search & Category Filter Functionality
    const searchBar = document.getElementById('search-bar');
   const templateCards = document.querySelectorAll('.template-card');
@@ -911,8 +891,6 @@ body.dark-theme .display-preview {
   }
 
   searchBar.addEventListener('input', filterTemplates);
-
-
 
     // Search & Category Filter Functionality
     const searchBar = document.getElementById('search-bar');
@@ -939,10 +917,7 @@ body.dark-theme .display-preview {
       }
       */
     }
-
     searchBar.addEventListener('input', filterTemplates);
-
-
   </script>
 </body>
 </html>
