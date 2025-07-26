@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Icon Cloud</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .cloud {
+      width: 350px;
+      height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      cursor: grab;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      margin: -20px;
+    }
+
+    .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+      transition: transform 0.3s;
+    }
+
+    .icon img:hover {
+      transform: scale(1.2);
+    }
+
+    .show-code-btn {
+      margin-top: 20px;
+      padding: 10px 16px;
+      background-color: #1e1e1e;
+      border: 1px solid #444;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .show-code-btn:hover {
+      background-color: #333;
+    }
+
+    .code-container {
+      margin-top: 20px;
+      max-height: 50vh;
+      overflow: auto;
+      width: 90%;
+      background: #1e1e1e;
+      border-radius: 8px;
+      padding: 15px;
+      display: none;
+      white-space: pre-wrap;
+    }
+
+    .code-container code {
+      color: #eee;
+      font-family: monospace;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cloud" id="iconCloud"></div>
+
+  <button class="show-code-btn" onclick="toggleCode()">Show Code</button>
+  <div class="code-container" id="codeContainer">
+    <code id="codeBlock"></code>
+  </div>
+
+  <script>
+    const slugs = [
+      "typescript", "javascript", "java", "react", "flutter",
+      "android", "html5", "css3", "nodejs", "express",
+      "postgresql", "firebase", "nginx", "docker",
+      "git", "github", "gitlab", "figma", "vscode"
+    ];
+
+    const icons = slugs.map(slug => ({
+      slug,
+      url: `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-original.svg`
+    }));
+
+    const container = document.getElementById("iconCloud");
+    const radius = 140;
+    const total = icons.length;
+    const iconElements = [];
+
+    icons.forEach((icon, index) => {
+      const angle = Math.acos(-1 + (2 * index + 1) / total);
+      const phi = Math.sqrt(total * Math.PI) * angle;
+
+      const x = radius * Math.cos(phi) * Math.sin(angle);
+      const y = radius * Math.sin(phi) * Math.sin(angle);
+      const z = radius * Math.cos(angle);
+
+      const div = document.createElement("div");
+      div.className = "icon";
+      div.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+
+      const img = document.createElement("img");
+      img.src = icon.url;
+      img.alt = icon.slug;
+      img.onerror = () => div.remove();
+
+      div.appendChild(img);
+      container.appendChild(div);
+      iconElements.push({ div, x, y, z });
+    });
+
+    let rotX = 0;
+    let rotY = 0;
+    let isDragging = false;
+    let isHovered = false;
+    let lastX, lastY;
+
+    function render() {
+      const sinX = Math.sin(rotX * Math.PI / 180);
+      const cosX = Math.cos(rotX * Math.PI / 180);
+      const sinY = Math.sin(rotY * Math.PI / 180);
+      const cosY = Math.cos(rotY * Math.PI / 180);
+
+      iconElements.forEach(({ div, x, y, z }) => {
+        let ry = x * cosY - z * sinY;
+        let rz = x * sinY + z * cosY;
+        let rx = y * cosX - rz * sinX;
+        rz = y * sinX + rz * cosX;
+
+        div.style.transform = `translate3d(${ry}px, ${rx}px, ${rz}px)`;
+      });
+    }
+
+    function animate() {
+      const speed = isHovered ? 0.6 : 0.3;
+      if (!isDragging) {
+        rotY += speed;
+        rotX += speed * 0.5;
+        rotX = Math.max(Math.min(rotX, 90), -90);
+      }
+      render();
+      requestAnimationFrame(animate);
+    }
+
+    container.addEventListener("mouseenter", () => isHovered = true);
+    container.addEventListener("mouseleave", () => isHovered = false);
+    container.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    container.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - lastX;
+      const deltaY = e.clientY - lastY;
+      rotY += deltaX * 0.3;
+      rotX -= deltaY * 0.3;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    container.addEventListener("mouseup", () => isDragging = false);
+    container.addEventListener("mouseleave", () => isDragging = false);
+
+    container.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+    });
+    container.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const deltaX = e.touches[0].clientX - lastX;
+      const deltaY = e.touches[0].clientY - lastY;
+      rotY += deltaX * 0.3;
+      rotX -= deltaY * 0.3;
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+    });
+    container.addEventListener("touchend", () => isDragging = false);
+
+    render();
+    animate();
+
+    // Code Show/Hide Logic
+    function toggleCode() {
+      const codeContainer = document.getElementById("codeContainer");
+      const codeBlock = document.getElementById("codeBlock");
+      const isVisible = codeContainer.style.display === "block";
+
+      if (isVisible) {
+        codeContainer.style.display = "none";
+      } else {
+        fetch(window.location.href)
+          .then(res => res.text())
+          .then(html => {
+            codeBlock.textContent = html;
+            codeContainer.style.display = "block";
+          });
+      }
+    }
+  </script>
+</body>
+</html>
