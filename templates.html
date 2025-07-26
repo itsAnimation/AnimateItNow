@@ -246,6 +246,13 @@
       width: 40px;
       height: 40px;
       background-color: #4f8cff;
+
+
+
+      display: flex;
+
+
+
       border-radius: 6px;
     }
 
@@ -273,11 +280,34 @@
       border-radius: 8px;
       padding: 15px;
       display: flex;
+
       flex-direction: column;
       gap: 10px;
       align-items: flex-start;
       height: 120px;
       justify-content: center;
+
+      padding: 12px;
+      gap: 8px;
+
+
+      height: 90px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgb(0, 0, 0 / 0.1);
+    }
+
+    body.dark-theme .navbar-preview {
+      background-color: #2a2a2a;
+    }
+
+
+  
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
     }
 
     .faq-line {
@@ -286,6 +316,7 @@
       /* medium blue for FAQ lines */
       border-radius: 6px;
       opacity: 0.8;
+
     }
 
     .faq-line.long {
@@ -332,6 +363,8 @@
       width: 80px;
       height: 60px;
     }
+
+
     
     /* ADDED: Animated Toggles Preview CSS */
     .toggles-preview {
@@ -422,6 +455,13 @@ body.dark-theme .display-preview {
 
     <div class="nav-right">
       <ul class="nav-links">
+
+
+        <li><a href="index.html">Home</a></li>
+        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="templates.html">Templates</a></li>
@@ -435,6 +475,8 @@ body.dark-theme .display-preview {
           </label>
         </li>
         <!-- github icon -->
+
+
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
              target="_blank" 
@@ -462,19 +504,25 @@ body.dark-theme .display-preview {
             </button>
         </li>
       </ul>
-    </div>
-  </nav>
+
+
+      </div>
+    </nav>
+
+
   <main class="templates-main">
     <h1>Templates Gallery</h1>
-    <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-      <input
-        type="text"
-        id="search-bar"
-        placeholder="Search templates..."
-        style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
-        aria-label="Search templates"
-      />
-    </div>
+      <!-- 🔍 Search Bar & Category Filter Start -->
+  <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+  <input
+    type="text"
+    id="search-bar"
+    placeholder="Search templates..."
+    style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
+    aria-label="Search templates"
+  />
+</div>
+
     <section class="templates-grid">
       <a class="template-card card-lift ripple" href="templates/login.html">
         <h2>Login Page UI</h2>
@@ -525,13 +573,39 @@ body.dark-theme .display-preview {
         </div>
         <button class="template-btn ripple btn-press">View Template</button>
       </a>
+    <!-- Tooltip Component Card -->
+<a class="template-card" href="templates/tooltip.html">
+    <h2>Tooltip UI Component</h2>
+    <div class="template-preview tooltip-preview">
+        <div class="tooltip-btn-preview">Hover</div>
+    </div>
+    <span class="template-btn">View Template</span>
+</a>
+    <!-- Find this card in templates.html -->
+<a class="template-card" href="templates/carousel.html"> 
+    <h2>Responsive Card Carousel</h2>
+    <div class="template-preview carousel-preview">
+        <div class="mini-card"></div>
+        <div class="mini-card"></div>
+        <div class="mini-card"></div>
+    </div>
+    <span class="template-btn">View Template</span>
+</a>
+      <!-- NEWLY ADDED SOCIAL SHARE BUTTONS CARD -->
+
 
       <article class="template-card card-lift ripple">
   <h2>Animated Button</h2>
   <div class="template-preview button-preview"></div>
   <a class="template-btn ripple btn-press" href="templates/animated-btn.html">View Template</a>
 </article> 
+<<<<<<< HEAD
+
+
+      <a class="template-card" href="templates/social-share-buttons.html">
+=======
       <a class="template-card card-lift ripple" href="templates/social-share-buttons.html">
+>>>>>>> upstream/main
         <h2>Animated Social Share Buttons</h2>
         <div class="template-preview social-share-preview">
           <i class="fab fa-facebook-f social-icon-preview"></i>
@@ -540,7 +614,81 @@ body.dark-theme .display-preview {
         </div>
         <button class="template-btn ripple btn-press">View Template</button>
       </a>
-      
+
+
+      <a class="template-card" href="templates/neumorphic.html">
+        <h2>Neumorphic Button Effects</h2>
+        <div class="template-preview neumorphic-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+
+      <!--NAVBAR--->
+      <a class="template-card" href="templates/navbar.html">
+        <h2>Navbar Variants</h2>
+        <div class="template-preview navbar-preview">
+          <div class="navbar-line logo"></div>
+          <div class="navbar-line link"></div>
+          <div class="navbar-line link short"></div>
+        </div>
+        <a class="template-btn" href="templates/navbar.html">View Template</a>
+      </article> 
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                >🌐 GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >💼 LinkedIn</a
+              >
+            </li>
+            <li>
+              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"
+                >📧 Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
+      </div>
+    </footer>
+    <div id="cursor-snake"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  function setTheme(dark) {
+    const newIcon = dark ? 'sun' : 'moon';
+    body.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+
+    // Replace icon completely
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+      lucide.createIcons();
+=======
+  
      <!-- CORRECTED TOOLTIP COMPONENT -->
 <a class="template-card" href="templates/tooltip.html">
     <h2>Tooltip UI Component</h2>
@@ -550,17 +698,15 @@ body.dark-theme .display-preview {
     <span class="template-btn">View Template</span>
 </a>
 <!-- Responsive Card Carousel -->
-            <a class="template-card" href="templates/carousel.html">
-                <h2>Responsive Card Carousel</h2>
-                <div class="template-preview carousel-preview">
-                    <div class="mini-card"></div>
-                    <div class="mini-card"></div>
-                    <div class="mini-card"></div>
-                </div>
-                <span class="template-btn">View Template</span>
-            </a>
-
-
+        <a class="template-card" href="templates/carousel.html">
+              <h2>Responsive Card Carousel</h2>
+            <div class="template-preview carousel-preview">
+                <div class="mini-card"></div>
+                <div class="mini-card"></div>
+                <div class="mini-card"></div>
+            </div>
+          <span class="template-btn">View Template</span>
+       </a>
       <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
       <a class="template-card card-lift ripple" href="templates/toggles-and-checkboxes.html">
         <h2>Animated Toggles</h2>
@@ -692,7 +838,14 @@ body.dark-theme .display-preview {
         lucide.createIcons();
       }
     }
+  const savedTheme = localStorage.getItem('theme');
+  setTheme(savedTheme === 'dark');
 
+  themeToggle?.addEventListener('click', () => {
+    const isDark = body.classList.contains('dark');
+    setTheme(!isDark);
+  });
+  lucide.createIcons();
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
@@ -700,9 +853,7 @@ body.dark-theme .display-preview {
     themeToggle?.addEventListener('click', () => {
       setTheme(!body.classList.contains('dark-theme'));
     });
-
     lucide.createIcons();
-
     // Scroll animation for cards
     const observer = new IntersectionObserver(
       (entries) => {
@@ -718,6 +869,30 @@ body.dark-theme .display-preview {
     document.querySelectorAll(".template-card").forEach((card) => {
       observer.observe(card);
     });
+         // 🔍 Search & Category Filter Functionality
+   const searchBar = document.getElementById('search-bar');
+  const templateCards = document.querySelectorAll('.template-card');
+  const noResultsMsg = document.getElementById('no-results');
+
+  function filterTemplates() {
+    const query = searchBar.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    templateCards.forEach(card => {
+      const title = card.querySelector('h2').textContent.trim().toLowerCase();
+      const matchesTitle = title.startsWith(query);
+      if (matchesTitle) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  searchBar.addEventListener('input', filterTemplates);
 
     // Search & Category Filter Functionality
     const searchBar = document.getElementById('search-bar');
@@ -744,8 +919,7 @@ body.dark-theme .display-preview {
       }
       */
     }
-
     searchBar.addEventListener('input', filterTemplates);
   </script>
 </body>
-</html>
+</html> 

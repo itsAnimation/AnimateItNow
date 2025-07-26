@@ -24,9 +24,12 @@
             --nav-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+
+
         html {
             scroll-behavior: smooth;
         }
+
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -35,6 +38,9 @@
             margin: 0;
             padding-top: 60px; /* Space for fixed navbar */
         }
+
+
+
 
         /* --- Navbar Styles --- */
         .navbar {
@@ -98,6 +104,8 @@
             color: var(--text-color);
         }
 
+
+
         /* --- Page Layout --- */
         .container {
             display: flex;
@@ -125,16 +133,25 @@
         .sidebar-nav a:hover { background-color: rgba(0,0,0,0.05); }
         .sidebar-nav a:focus { font-weight: 600; color: var(--accent-color); border-left-color: var(--accent-color); }
 
+
         .main-content { margin-left: 240px; padding: 2rem 3rem; width: calc(100% - 240px); }
         .content-section { padding-top: 2rem; margin-bottom: 3rem; border-top: 1px solid var(--border-color); }
         .content-section:first-child { padding-top: 0; border-top: none; }
+
+
 
         h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
         p { margin-top: 0; margin-bottom: 1.5rem; color: #6b7280; }
 
+
+
+        .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; }
+       
+
         .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; }
         
+
         @media (max-width: 768px) {
             body { padding-top: 0; }
             .navbar { position: relative; }
@@ -142,6 +159,7 @@
             .sidebar { position: relative; top: 0; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
             .main-content { margin-left: 0; width: 100%; padding: 1.5rem; }
         }
+
 
         /* --- Code Snippet Styles --- */
         .demo-actions { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.5rem; background-color: var(--card-bg); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; box-shadow: var(--card-shadow); margin-bottom: 1rem; }
@@ -151,6 +169,7 @@
         .code-toggle:checked ~ .code-block { display: block; }
         .code-toggle:checked ~ .demo-actions .show-code-label::after { content: 'Hide Code'; }
         .code-toggle:not(:checked) ~ .demo-actions .show-code-label::after { content: 'Show Code'; }
+
 
         /* --- CAROUSEL DEMO STYLES --- */
         .demo-card {
@@ -162,6 +181,8 @@
         }
         .demo-card h4 { margin: 0 0 0.5rem; }
         .demo-card p { margin: 0; font-size: 0.9rem; color: #6b7280; }
+
+
 
         /* 1. Slides Only (Scroll Snap) */
         .scroll-carousel {
@@ -178,6 +199,8 @@
         }
         @media (min-width: 768px) { .scroll-carousel .slide { flex-basis: 50%; } }
         @media (min-width: 1024px) { .scroll-carousel .slide { flex-basis: 33.33%; } }
+
+
 
         /* 2. Carousel with Controls & Indicators (Radio Hack) */
         .radio-carousel { position: relative; }
@@ -205,7 +228,7 @@
             background-color: #ccc; cursor: pointer;
         }
 
-        /* --- CORRECTED CSS LOGIC --- */
+        
 
         /* Logic for "With Controls" Carousel */
         #slide1-ctrl:checked ~ .radio-carousel-viewport .slide:nth-child(1),
@@ -218,6 +241,7 @@
         #slide3-ctrl:checked ~ #prev-3-ctrl {
             display: block;
         }
+
 
         /* Logic for "With Indicators" Carousel */
         #slide1-ind:checked ~ .radio-carousel-viewport .slide:nth-child(1),
@@ -273,6 +297,7 @@
                 <p></p>
             </header>
 
+
             <section id="slides-only" class="content-section">
                 <h3>Slides Only (Scrollable)</h3>
                 <p>This carousel uses CSS Scroll Snap for a smooth, swipeable experience on touch devices and trackpads. No controls are needed.</p>
@@ -295,6 +320,7 @@
 &lt;/div&gt;</pre>
             </section>
 
+
             <section id="with-controls" class="content-section">
                 <h3>With Controls</h3>
                 <p>This version uses hidden radio buttons and labels to create previous/next arrows. It is not scrollable.</p>
@@ -303,12 +329,15 @@
                         <input type="radio" name="carousel-controls" id="slide1-ctrl" class="radio-carousel-input" checked>
                         <input type="radio" name="carousel-controls" id="slide2-ctrl" class="radio-carousel-input">
                         <input type="radio" name="carousel-controls" id="slide3-ctrl" class="radio-carousel-input">
-                        
+
+                       
                         <div class="radio-carousel-viewport">
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the arrows to navigate.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 2</h4><p>This is the second slide.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 3</h4><p>This is the final slide.</p></div></div></div>
                         </div>
+
+
 
                         <label for="slide2-ctrl" class="carousel-control next" id="next-1-ctrl"></label>
                         <label for="slide1-ctrl" class="carousel-control prev" id="prev-2-ctrl"></label>
@@ -334,6 +363,8 @@
 ...</pre>
             </section>
 
+
+
             <section id="with-indicators" class="content-section">
                 <h3>With Indicators</h3>
                 <p>This version adds indicator dots to the bottom, which also function as navigation controls.</p>
@@ -342,17 +373,20 @@
                         <input type="radio" name="carousel-indicators" id="slide1-ind" class="radio-carousel-input" checked>
                         <input type="radio" name="carousel-indicators" id="slide2-ind" class="radio-carousel-input">
                         <input type="radio" name="carousel-indicators" id="slide3-ind" class="radio-carousel-input">
-                        
+
+                       
                         <div class="radio-carousel-viewport">
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the dots to jump to a slide.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 2</h4><p>The active dot is highlighted.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 3</h4><p>This combines all features.</p></div></div></div>
                         </div>
 
+
                         <label for="slide2-ind" class="carousel-control next" id="next-1-ind"></label>
                         <label for="slide1-ind" class="carousel-control prev" id="prev-2-ind"></label>
                         <label for="slide3-ind" class="carousel-control next" id="next-2-ind"></label>
                         <label for="slide2-ind" class="carousel-control prev" id="prev-3-ind"></label>
+
 
                         <div class="carousel-indicators">
                             <label for="slide1-ind" class="indicator-dot"></label>
@@ -373,7 +407,11 @@
 &lt;/div&gt;</pre>
             </section>
 
+
+
+
         </main>
     </div>
 </body>
 </html>
+
