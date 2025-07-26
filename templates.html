@@ -231,6 +231,7 @@
     .navbar-preview {
       background-color: #4f8cff;
 
+
       display: flex;
 
 
@@ -238,6 +239,7 @@
       justify-content: center;
       padding: 12px;
       gap: 8px;
+
 
       height: 90px;
       border-radius: 10px;
@@ -249,9 +251,7 @@
     }
 
 
-    
-
-
+  
     .navbar-line {
       height: 10px;
       border-radius: 5px;
@@ -351,7 +351,6 @@ body.dark-theme .display-preview {
   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
 }
 
-
   </style>
 </head>
 <body>
@@ -363,6 +362,7 @@ body.dark-theme .display-preview {
 
     <div class="nav-right">
       <ul class="nav-links">
+
 
         <li><a href="index.html">Home</a></li>
         <li><a href="templates.html" class="active">Templates</a></li>
@@ -382,6 +382,7 @@ body.dark-theme .display-preview {
           </label>
         </li>
         <!-- github icon -->
+
 
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
@@ -411,6 +412,7 @@ body.dark-theme .display-preview {
         </li>
       </ul>
 
+
       </div>
     </nav>
 
@@ -427,20 +429,6 @@ body.dark-theme .display-preview {
     aria-label="Search templates"
   />
 </div>
-
-    </div>
-  </nav>
-  <main class="templates-main">
-    <h1>Templates Gallery</h1>
-    <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-      <input
-        type="text"
-        id="search-bar"
-        placeholder="Search templates..."
-        style="padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #ccc; min-width: 420px;"
-        aria-label="Search templates"
-      />
-    </div>
 
     <section class="templates-grid">
       <a class="template-card" href="templates/login.html">
@@ -493,6 +481,7 @@ body.dark-theme .display-preview {
         <button class="template-btn">View Template</button>
       </a>
 
+
     
 
     <!-- Tooltip Component Card -->
@@ -521,6 +510,7 @@ body.dark-theme .display-preview {
   <div class="template-preview button-preview"></div>
   <a class="template-btn" href="templates/animated-btn.html">View Template</a>
 </article> 
+
 
       <a class="template-card" href="templates/social-share-buttons.html">
         <h2>Animated Social Share Buttons</h2>
@@ -605,7 +595,28 @@ body.dark-theme .display-preview {
       themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
       lucide.createIcons();
 =======
+
       
+     <!-- CORRECTED TOOLTIP COMPONENT -->
+<a class="template-card" href="templates/tooltip.html">
+    <h2>Tooltip UI Component</h2>
+    <div class="template-preview">
+        <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+    </div>
+    <span class="template-btn">View Template</span>
+</a>
+<!-- Responsive Card Carousel -->
+            <a class="template-card" href="templates/carousel.html">
+                <h2>Responsive Card Carousel</h2>
+                <div class="template-preview carousel-preview">
+                    <div class="mini-card"></div>
+                    <div class="mini-card"></div>
+                    <div class="mini-card"></div>
+                </div>
+                <span class="template-btn">View Template</span>
+            </a>
+
+
       <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
       <a class="template-card" href="templates/toggles-and-checkboxes.html">
         <h2>Animated Toggles</h2>
@@ -701,8 +712,10 @@ body.dark-theme .display-preview {
         lucide.createIcons();
       }
 
+
+
     }
-  }
+
 
   const savedTheme = localStorage.getItem('theme');
   setTheme(savedTheme === 'dark');
@@ -713,7 +726,6 @@ body.dark-theme .display-preview {
   });
 
   lucide.createIcons();
-
 
 
     const savedTheme = localStorage.getItem('theme');
@@ -744,6 +756,7 @@ body.dark-theme .display-preview {
     });
 
 
+
     
          // 🔍 Search & Category Filter Functionality
    const searchBar = document.getElementById('search-bar');
@@ -769,6 +782,7 @@ body.dark-theme .display-preview {
   }
 
   searchBar.addEventListener('input', filterTemplates);
+
 
 
     // Search & Category Filter Functionality
@@ -798,6 +812,7 @@ body.dark-theme .display-preview {
     }
 
     searchBar.addEventListener('input', filterTemplates);
+
 
   </script>
 </body>

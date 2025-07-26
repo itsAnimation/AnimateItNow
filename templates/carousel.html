@@ -25,6 +25,7 @@
         }
 
 
+
         html {
             scroll-behavior: smooth;
         }
@@ -37,6 +38,8 @@
             margin: 0;
             padding-top: 60px; /* Space for fixed navbar */
         }
+
+
 
 
         /* --- Navbar Styles --- */
@@ -102,6 +105,7 @@
         }
 
 
+
         /* --- Page Layout --- */
         .container {
             display: flex;
@@ -135,13 +139,19 @@
         .content-section:first-child { padding-top: 0; border-top: none; }
 
 
+
         h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
         p { margin-top: 0; margin-bottom: 1.5rem; color: #6b7280; }
 
 
+
         .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; }
        
+
+        .demo-box { background: var(--card-bg); padding: 2rem; border-radius: 8px 8px 0 0; box-shadow: var(--card-shadow); border: 1px solid var(--border-color); border-bottom: none; }
+        
+
         @media (max-width: 768px) {
             body { padding-top: 0; }
             .navbar { position: relative; }
@@ -173,6 +183,7 @@
         .demo-card p { margin: 0; font-size: 0.9rem; color: #6b7280; }
 
 
+
         /* 1. Slides Only (Scroll Snap) */
         .scroll-carousel {
             display: flex;
@@ -188,6 +199,7 @@
         }
         @media (min-width: 768px) { .scroll-carousel .slide { flex-basis: 50%; } }
         @media (min-width: 1024px) { .scroll-carousel .slide { flex-basis: 33.33%; } }
+
 
 
         /* 2. Carousel with Controls & Indicators (Radio Hack) */
@@ -216,9 +228,7 @@
             background-color: #ccc; cursor: pointer;
         }
 
-
-        /* --- CORRECTED CSS LOGIC --- */
-
+        
 
         /* Logic for "With Controls" Carousel */
         #slide1-ctrl:checked ~ .radio-carousel-viewport .slide:nth-child(1),
@@ -269,7 +279,6 @@
         </div>
     </nav>
 
-
     <div class="container">
         <aside class="sidebar">
             <h2>Carousel Demos</h2>
@@ -281,7 +290,6 @@
                 </ul>
             </nav>
         </aside>
-
 
         <main class="main-content">
             <header>
@@ -321,12 +329,14 @@
                         <input type="radio" name="carousel-controls" id="slide1-ctrl" class="radio-carousel-input" checked>
                         <input type="radio" name="carousel-controls" id="slide2-ctrl" class="radio-carousel-input">
                         <input type="radio" name="carousel-controls" id="slide3-ctrl" class="radio-carousel-input">
+
                        
                         <div class="radio-carousel-viewport">
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the arrows to navigate.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 2</h4><p>This is the second slide.</p></div></div></div>
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 3</h4><p>This is the final slide.</p></div></div></div>
                         </div>
+
 
 
                         <label for="slide2-ctrl" class="carousel-control next" id="next-1-ctrl"></label>
@@ -354,6 +364,7 @@
             </section>
 
 
+
             <section id="with-indicators" class="content-section">
                 <h3>With Indicators</h3>
                 <p>This version adds indicator dots to the bottom, which also function as navigation controls.</p>
@@ -362,6 +373,7 @@
                         <input type="radio" name="carousel-indicators" id="slide1-ind" class="radio-carousel-input" checked>
                         <input type="radio" name="carousel-indicators" id="slide2-ind" class="radio-carousel-input">
                         <input type="radio" name="carousel-indicators" id="slide3-ind" class="radio-carousel-input">
+
                        
                         <div class="radio-carousel-viewport">
                             <div class="slide"><div class="slide-content"><div class="demo-card"><h4>Card 1</h4><p>Click the dots to jump to a slide.</p></div></div></div>
@@ -394,6 +406,8 @@
     &lt;label for="slide3-ind" class="indicator-dot"&gt;&lt;/label&gt;
 &lt;/div&gt;</pre>
             </section>
+
+
 
 
         </main>
