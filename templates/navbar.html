@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Navbar Features Showcase</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar with Expandable Code</title>
   <style>
     :root {
       --nav-text: #222;
-      --bg-light: #f5f5f5;
-      --bg-dark: #121212;
-      --text-dark: #fff;
       --accent: #007BFF;
       --transition: 0.3s ease;
     }
+
     body {
       font-family: Arial, sans-serif;
+      background: #f5f5f5;
       margin: 0;
+      padding: 0;
+      color: #222;
+      transition: background-color 0.3s ease, color 0.3s ease;
       padding-top: 64px;
-      background: var(--bg-light);
-      color: var(--nav-text);
-      transition: background-color var(--transition), color var(--transition);
+      /* offset for fixed navbar */
     }
-    .dark-theme {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
+
+    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -33,6 +31,7 @@
       right: 0;
       height: 64px;
       background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -40,29 +39,34 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       z-index: 1000;
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
     }
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
+
     .logo {
       width: 36px;
       height: 36px;
       margin-right: 0.75rem;
       object-fit: contain;
     }
+
     .site-name {
       font-weight: 700;
       font-size: 1.2rem;
+      letter-spacing: 0.5px;
     }
+
     .nav-links {
       list-style: none;
       display: flex;
       gap: 1.5rem;
       margin: 0;
+      /* reset default */
       padding: 0;
     }
+
     .nav-links a {
       text-decoration: none;
       color: var(--nav-text);
@@ -70,282 +74,915 @@
       transition: color var(--transition);
       position: relative;
     }
+
     .nav-links a.active,
     .nav-links a:hover {
       color: var(--accent);
     }
+
     #theme-toggle {
-      cursor: pointer;
       background: none;
       border: none;
-      font-size: 20px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: 0.3s ease;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
     }
+
     section {
       max-width: 1100px;
-      margin: 50px auto;
+      margin: 2rem auto 3rem;
       padding: 20px;
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    .dark-theme section {
-      background: #1e1e1e;
-    }
+
     h2 {
       text-align: center;
       font-size: 2rem;
       margin-bottom: 10px;
     }
-    .demo-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      transition: color 0.3s ease;
     }
-    .demo-card {
-      width: 320px;
-      background: #f0f0f0;
-      border-radius: 12px;
-      padding: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: 0.3s;
+
+    /* Dark mode variables */
+    body.dark-theme {
+      --nav-text: #eee;
+      --accent: #90caf9;
+      background-color: #121212;
+      color: #eee;
     }
-    .demo-card:hover {
-      transform: translateY(-4px);
+
+    body.dark-theme .navbar {
+      background: rgba(40, 40, 40, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: none;
     }
-   .demo-preview {
-      background: white;
-      height: 200px;
-      overflow-y: auto;
-      border-radius: 8px;
-      padding: 10px;
-      border: 1px solid #ccc;
+
+    body.dark-theme .nav-links a {
+      color: var(--nav-text);
     }
-    .demo-preview::-webkit-scrollbar {
-      width: 8px;
+
+    body.dark-theme .nav-links a.active,
+    body.dark-theme .nav-links a:hover {
+      color: var(--accent);
     }
-    .demo-preview::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
+
+    body.dark-theme #theme-toggle {
+      color: var(--nav-text);
     }
+
+    body.dark-theme section {
+      background-color: #1f1f1f;
+      box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+    }
+
+    body.dark-theme .subtitle {
+      color: #bbb;
+    }
+
     .expand-btn {
       display: block;
-      margin: 14px auto 6px;
+      margin: 25px auto 10px;
       padding: 8px 18px;
       background-color: var(--accent);
       color: #fff;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      transition: background-color 0.3s ease;
     }
-    .expand-btn:active {
-      opacity: 0.6;
+
+    .expand-btn:hover {
+      background-color: #0056b3;
     }
+
     .code-block {
       display: none;
       background: #222;
       color: #ddd;
-      padding: 16px;
+      padding: 20px;
       font-size: 0.85rem;
       border-radius: 8px;
       margin-top: 10px;
       white-space: pre-wrap;
       overflow-x: auto;
-      position: relative; /* For copy button positioning */
-    }
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: #444;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 5px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
-      z-index: 2;
-      opacity: 0.85;
-      transition: background 0.2s, opacity 0.2s;
-    }
-    .copy-btn:hover {
-      background: #007bff;
-      opacity: 1;
-    }
-    .hamburger-btn {
-      display: block;
-      font-size: 24px;
-      background: #eee;
-      padding: 8px;
-      width: 40px;
-      text-align: center;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 10px;
-    }
-    .demo-nav-links {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .demo-nav-links a {
-      text-decoration: none;
-      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
   </style>
 </head>
+
 <body>
   <nav class="navbar">
     <div class="nav-left">
       <img src="../images/logo.png" alt="Logo" class="logo" />
       <span class="site-name">AnimateItNow</span>
     </div>
-
     <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../templates.html" class="active">Templates</a></li>
       <li><a href="../contributors.html">Contributors</a></li>
       <li><a href="../contact.html">Contact</a></li>
     </ul>
-    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
   </nav>
 
   <section>
-    <h2>Navbar Feature Demos</h2>
-    <div class="demo-container">
+    <h2>1. Sticky Navigation Bar </h2>
+    <p class="subtitle">This Navbar remains fixed on the page as users scroll</p>
 
-      <div class="demo-card">
-        <h3>Sticky Header</h3>
-        <div class="demo-preview">
-          <div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;">I'm stuck to the top!</div>
-          <div style="height:400px;">
-            <p>Scroll below me...</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Vivamus sodales lacinia odio.</p>
-            <p>Aliquam erat volutpat.</p>
-            <p>Phasellus interdum sapien et justo.</p>
-          </div>
-        </div>
-        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-wrapper" style="position:relative;">
-          <pre class="code-block">
-&lt;div style="position:sticky; top:0; background:#007BFF; color:white; padding:8px 10px;"&gt;I'm stuck to the top!&lt;/div&gt;
-&lt;div style="height:400px;"&gt;...&lt;/div&gt;
-          </pre>
-        </div>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <div class="sticky-demo-navbar">
+      <div class="navbar-logo">
+        <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" />
+        <span>Website</span>
       </div>
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">Services</a>
+      <a href="#">Our Work</a>
+    </div>
 
-      <div class="demo-card">
-        <h3>Hamburger Menu</h3>
-        <div class="demo-preview">
-          <div class="hamburger-btn" onclick="toggleHamburger(this)">☰</div>
-          <div class="demo-nav-links">
-            <a href="#">Link One</a>
-            <a href="#">Link Two</a>
-            <a href="#">Link Three</a>
-          </div>
-        </div>
-        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-        <div class="code-wrapper" style="position:relative;">
-          <pre class="code-block">
-&lt;div class="hamburger-btn" onclick="toggleHamburger(this)"&gt;☰&lt;/div&gt;
-&lt;div class="demo-nav-links"&gt;
-  &lt;a href="#"&gt;Link One&lt;/a&gt;
-  &lt;a href="#"&gt;Link Two&lt;/a&gt;
-  &lt;a href="#"&gt;Link Three&lt;/a&gt;
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet" /&gt;
+
+&lt;div class="sticky-demo-navbar"&gt;
+  &lt;div class="navbar-logo"&gt;
+    &lt;img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" /&gt;
+    &lt;span&gt;Website&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;a href="#"&gt;Home&lt;/a&gt;
+  &lt;a href="#"&gt;Features&lt;/a&gt;
+  &lt;a href="#"&gt;Services&lt;/a&gt;
+  &lt;a href="#"&gt;Our Work&lt;/a&gt;
 &lt;/div&gt;
 
 &lt;style&gt;
-.hamburger-btn { cursor: pointer; }
-.demo-nav-links { display: none; }
-&lt;/style&gt;
-          </pre>
-        </div>
-      </div>
+  .sticky-demo-navbar {
+    position: sticky;
+    top: 10px;
+    background: #fff;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    </div>
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .navbar-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  .sticky-demo-navbar a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .sticky-demo-navbar a:hover {
+    color: #ffbb00;
+    transform: translateY(-2px);
+  }
+
+  body.dark-theme .sticky-demo-navbar {
+    background-color: #222;
+    border-color: #444;
+  }
+
+  body.dark-theme .sticky-demo-navbar a {
+    color: #90caf9;
+  }
+
+  body.dark-theme .sticky-demo-navbar a:hover {
+    color: #ffbb00;
+  }
+
+  body.dark-theme .navbar-logo span {
+    color: white;
+  }
+&lt;/style&gt;
+</pre>
+
+    <style>
+      .sticky-demo-navbar {
+        position: sticky;
+        top: 10px;
+        background: #fff;
+        padding: 10px 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        z-index: 10;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .navbar-logo img {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+      }
+
+      .sticky-demo-navbar a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+        margin-left: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .sticky-demo-navbar a:hover {
+        color: #ffbb00;
+        transform: translateY(-2px);
+      }
+
+      body.dark-theme .sticky-demo-navbar {
+        background-color: #222;
+        border-color: #444;
+      }
+
+      body.dark-theme .sticky-demo-navbar a {
+        color: #90caf9;
+      }
+
+      body.dark-theme .sticky-demo-navbar a:hover {
+        color: #ffbb00;
+      }
+
+      body.dark-theme .navbar-logo span {
+        color: white;
+      }
+    </style>
   </section>
 
+  <section>
+    <h2>2. Hamburger Menu</h2>
+    <p class="subtitle">A compact icon which reveals a dropdown of links on clicking. Suitable for mobile</p>
+
+    <div class="hamburger-navbar">
+      <div class="hamburger-top">
+        <div class="hamburger-left">
+          <span class="site-name">MyWebsite</span>
+          <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="hamburger-logo">
+        </div>
+        <div class="hamburger-icon" onclick="toggleHamburger()">☰</div>
+      </div>
+      <div class="hamburger-links" id="hamburgerLinks">
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">Services</a>
+        <a href="#">Our Work</a>
+      </div>
+    </div>
+
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;div class="hamburger-navbar"&gt;
+  &lt;div class="hamburger-top"&gt;
+    &lt;div class="hamburger-left"&gt;
+      &lt;span class="site-name"&gt;MyWebsite&lt;/span&gt;
+      &lt;img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="hamburger-logo"&gt;
+    &lt;/div&gt;
+    &lt;div class="hamburger-icon" onclick="toggleHamburger()"&gt;☰&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="hamburger-links" id="hamburgerLinks"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;Features&lt;/a&gt;
+    &lt;a href="#"&gt;Services&lt;/a&gt;
+    &lt;a href="#"&gt;Our Work&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  .hamburger-navbar {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+  }
+
+  .hamburger-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hamburger-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hamburger-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .hamburger-icon {
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .hamburger-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
+
+  .hamburger-links a {
+    text-decoration: none;
+    color: #000;
+    padding: 6px 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .hamburger-links a:hover {
+    color: #ffbb00;
+    transform: translateX(5px);
+  }
+
+  body.dark-theme .hamburger-navbar {
+    background-color: #222;
+    border-color: #444;
+  }
+
+  body.dark-theme .hamburger-links a {
+    color: #90caf9;
+  }
+
+  body.dark-theme .hamburger-links a:hover {
+    color: #ffbb00;
+  }
+
+  body.dark-theme .site-name {
+    color: white;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  function toggleHamburger() {
+    const links = document.getElementById("hamburgerLinks");
+    links.style.display = links.style.display === "flex" ? "none" : "flex";
+  }
+&lt;/script&gt;
+</pre>
+
+
+    <style>
+      .hamburger-navbar {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 20px;
+        margin-top: 2rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        font-family: 'Poppins', sans-serif;
+        background-color: #fff;
+      }
+
+      .hamburger-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hamburger-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hamburger-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+      }
+
+      .hamburger-icon {
+        font-size: 26px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .hamburger-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-top: 10px;
+      }
+
+      .hamburger-links a {
+        text-decoration: none;
+        color: #000;
+        padding: 6px 0;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .hamburger-links a:hover {
+        color: #ffbb00;
+        transform: translateX(5px);
+      }
+
+      body.dark-theme .hamburger-navbar {
+        background-color: #222;
+        border-color: #444;
+      }
+
+      body.dark-theme .hamburger-links a {
+        color: #90caf9;
+      }
+
+      body.dark-theme .hamburger-links a:hover {
+        color: #ffbb00;
+      }
+
+      body.dark-theme .site-name {
+        color: white;
+      }
+    </style>
+
+    <script>
+      function toggleHamburger() {
+        const links = document.getElementById("hamburgerLinks");
+        links.style.display = links.style.display === "flex" ? "none" : "flex";
+      }
+    </script>
+  </section>
+
+  <section>
+    <h2>3. Tab Navigation Bar</h2>
+    <p class="subtitle">Tabs like in a browser, with an underline on the active one.</p>
+
+    <div class="tab-navbar">
+      <div class="tab-logo-section">
+        <span class="site-name">MyWebsite</span>
+        <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="tab-logo">
+      </div>
+      <div class="tab-links">
+        <a href="#" class="tab-link active" onclick="setActiveTab(event)">Home</a>
+        <a href="#" class="tab-link" onclick="setActiveTab(event)">Features</a>
+        <a href="#" class="tab-link" onclick="setActiveTab(event)">Services</a>
+        <a href="#" class="tab-link" onclick="setActiveTab(event)">Our Work</a>
+      </div>
+    </div>
+
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;div class="tab-navbar"&gt;
+  &lt;div class="tab-logo-section"&gt;
+    &lt;span class="site-name"&gt;MyWebsite&lt;/span&gt;
+    &lt;img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="tab-logo"&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-links"&gt;
+    &lt;a href="#" class="tab-link active" onclick="setActiveTab(event)"&gt;Home&lt;/a&gt;
+    &lt;a href="#" class="tab-link" onclick="setActiveTab(event)"&gt;Features&lt;/a&gt;
+    &lt;a href="#" class="tab-link" onclick="setActiveTab(event)"&gt;Services&lt;/a&gt;
+    &lt;a href="#" class="tab-link" onclick="setActiveTab(event)"&gt;Our Work&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  .tab-navbar {
+    border-bottom: 2px solid #ddd;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+  }
+
+  .tab-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tab-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .site-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .tab-links {
+    display: flex;
+    gap: 25px;
+  }
+
+  .tab-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    position: relative;
+    padding: 6px 0;
+  }
+
+  .tab-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffbb00;
+    left: 0;
+    bottom: -2px;
+    transition: width 0.3s;
+  }
+
+  .tab-link:hover::after,
+  .tab-link.active::after {
+    width: 100%;
+  }
+
+  .tab-link:hover {
+    color: #000;
+  }
+
+  .tab-link.active {
+    color: #000;
+  }
+
+  body.dark-theme .tab-navbar {
+    background-color: #222;
+    border-color: #444;
+  }
+
+  body.dark-theme .tab-link {
+    color: #90caf9;
+  }
+
+  body.dark-theme .tab-link.active {
+    color: #fff;
+  }
+
+  body.dark-theme .site-name {
+    color: white;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  function setActiveTab(event) {
+    event.preventDefault()
+    const tabs = document.querySelectorAll('.tab-link');
+    tabs.forEach(tab =&gt; tab.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+&lt;/script&gt;
+</pre>
+
+
+    <style>
+      .tab-navbar {
+        border-bottom: 2px solid #ddd;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      .tab-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tab-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+      }
+
+      .site-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .tab-links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .tab-link {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        position: relative;
+        padding: 6px 0;
+      }
+
+      .tab-link::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background-color: #ffbb00;
+        left: 0;
+        bottom: -2px;
+        transition: width 0.3s;
+      }
+
+      .tab-link:hover::after,
+      .tab-link.active::after {
+        width: 100%;
+      }
+
+      .tab-link:hover {
+        color: #000;
+      }
+
+      .tab-link.active {
+        color: #000;
+      }
+
+      body.dark-theme .tab-navbar {
+        background-color: #222;
+        border-color: #444;
+      }
+
+      body.dark-theme .tab-link {
+        color: #90caf9;
+      }
+
+      body.dark-theme .tab-link.active {
+        color: #fff;
+      }
+
+      body.dark-theme .site-name {
+        color: white;
+      }
+    </style>
+
+    <script>
+      function setActiveTab(event) {
+        event.preventDefault()
+        const tabs = document.querySelectorAll('.tab-link');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+    </script>
+  </section>
+
+  <section>
+    <h2>4. Pill Navigation Bar</h2>
+    <p class="subtitle">Rounded pill-like links with active highlighting.</p>
+
+    <div class="pill-navbar">
+      <div class="pill-logo-section">
+        <span class="site-name">MyWebsite</span>
+        <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="pill-logo">
+      </div>
+      <div class="pill-links">
+        <a href="#" class="pill-link active" onclick="setActivePill(event)">Home</a>
+        <a href="#" class="pill-link" onclick="setActivePill(event)">Features</a>
+        <a href="#" class="pill-link" onclick="setActivePill(event)">Services</a>
+        <a href="#" class="pill-link" onclick="setActivePill(event)">Our Work</a>
+      </div>
+    </div>
+
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
+&lt;div class="pill-navbar"&gt;
+  &lt;div class="pill-logo-section"&gt;
+    &lt;span class="site-name"&gt;MyWebsite&lt;/span&gt;
+    &lt;img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" class="pill-logo" /&gt;
+  &lt;/div&gt;
+  &lt;div class="pill-links"&gt;
+    &lt;a href="#" class="pill-link active"&gt;Home&lt;/a&gt;
+    &lt;a href="#" class="pill-link"&gt;Features&lt;/a&gt;
+    &lt;a href="#" class="pill-link"&gt;Services&lt;/a&gt;
+    &lt;a href="#" class="pill-link"&gt;Our Work&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.pill-navbar {
+  background-color: #fdfdfd;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  border-bottom: 2px solid #ddd;
+  }
+
+  .pill-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+.pill-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.site-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.pill-links {
+  display: flex;
+  gap: 18px;
+}
+
+.pill-link {
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.pill-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.pill-link.active {
+  background-color: #ffbb00;
+  color: #fff;
+}
+
+body.dark-theme .pill-navbar {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-theme .pill-link {
+  color: #aaa;
+}
+
+body.dark-theme .pill-link.active {
+  background-color: #90caf9;
+  color: black;
+}
+
+body.dark-theme .site-name {
+  color: white;
+}
+&lt;/style&gt;
+  </pre>
+
+    <style>
+      .pill-navbar {
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      .pill-logo-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pill-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+      }
+
+      .site-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .pill-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .pill-link {
+        padding: 8px 18px;
+        text-decoration: none;
+        color: #333;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .pill-link:hover {
+        background-color: #ffbb00;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .pill-link.active {
+        background-color: #ffbb00;
+        color: #fff;
+      }
+
+      body.dark-theme .pill-navbar {
+        background-color: #222;
+      }
+
+      body.dark-theme .pill-link {
+        color: #90caf9;
+      }
+
+      body.dark-theme .pill-link.active {
+        color: white;
+        background-color: #ffbb00;
+      }
+
+      body.dark-theme .site-name {
+        color: white;
+      }
+    </style>
+
+    <script>
+      function setActivePill(event) {
+        event.preventDefault();
+        const links = document.querySelectorAll('.pill-link');
+        links.forEach(link => link.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+    </script>
+  </section>
+
+
   <script>
+    // Toggle code block visibility
     function toggleCode(button) {
-      // Always expect wrapper to be .code-wrapper, else wrap it
-      let wrapper = button.nextElementSibling;
-      let codeBlock;
-      if (wrapper.classList && wrapper.classList.contains('code-wrapper')) {
-        codeBlock = wrapper.querySelector('.code-block');
-      } else if (wrapper.classList && wrapper.classList.contains('code-block')) {
-        codeBlock = wrapper;
-        // If not wrapped, wrap it now
-        const newWrapper = document.createElement('div');
-        newWrapper.className = 'code-wrapper';
-        newWrapper.style.position = 'relative';
-        wrapper.parentNode.insertBefore(newWrapper, wrapper);
-        newWrapper.appendChild(wrapper);
-        wrapper = newWrapper;
-      } else {
-        return;
-      }
-      const isVisible = codeBlock.style.display === "block";
-      codeBlock.style.display = isVisible ? "none" : "block";
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
       button.textContent = isVisible ? "Show Code" : "Hide Code";
-
-      // Add/remove copy button
-      if (!isVisible) {
-        if (!wrapper.querySelector('.copy-btn')) {
-          const copyBtn = document.createElement('button');
-          copyBtn.className = 'copy-btn';
-          copyBtn.textContent = 'Copy';
-          copyBtn.type = 'button';
-          copyBtn.onclick = function(e) {
-            e.stopPropagation();
-            copyCode(codeBlock, copyBtn);
-          };
-          wrapper.appendChild(copyBtn);
-        }
-      } else {
-        const btn = wrapper.querySelector('.copy-btn');
-        if (btn) btn.remove();
-      }
     }
 
-    function copyCode(codeBlock, btn) {
-      btn.style.display = 'none';
-      const code = codeBlock.innerText;
-      btn.style.display = '';
-      navigator.clipboard.writeText(code).then(() => {
-        btn.textContent = 'Copied!';
-        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
-      });
-    }
-
-    function toggleHamburger(btn) {
-      const links = btn.nextElementSibling;
-      links.style.display = links.style.display === "flex" ? "none" : "flex";
-    }
-
+    // Dark mode toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
-
-    function updateThemeIcon() {
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
       if (document.body.classList.contains('dark-theme')) {
-        themeToggleBtn.textContent = '☀';
+        themeToggleBtn.textContent = '☀️';
         themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
       } else {
         themeToggleBtn.textContent = '🌙';
         themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
       }
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
-      updateThemeIcon();
     });
-
-    window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </script>
 </body>
+
 </html>
