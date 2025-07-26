@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Effects Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      max-width: 800px;
+      margin: 50px auto;
+    }
+
+    .left-box {
+      flex: 1;
+      font-size: 1.8rem;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 5s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .right-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .code-btn {
+      background: #0ff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .code-btn:hover {
+      background: #00cccc;
+    }
+
+    .code-para {
+      display: none;
+      background-color: #1e1e1e;
+      color: #00ff90;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      animation: slideFade 0.5s ease forwards;
+    }
+
+    @keyframes slideFade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .h1para {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .neon-text {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+
+    .floating-text {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<!-- temporary edit to trigger git -->
+
+    
+  
+  <h1 class="h1para">✨ Text Effects Gallery ✨</h1>
+  <p class="h1para">Cool animated text examples!</p>
+
+  <!-- Fade-in Section -->
+  <div class="container">
+    <div class="left-box fade-in">
+      🌟 This is a fade-in text.
+    </div>
+    <div class="right-box">
+      <button class="code-btn" onclick="toggleCode('codePara1')">Code</button>
+      <pre class="code-para" id="codePara1">
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- Neon Text Section -->
+  <div class="container">
+    <div class="left-box neon-text">
+      💡 This is neon glowing text!
+    </div>
+    <div class="right-box">
+      <button class="code-btn" onclick="toggleCode('codePara2')">Code</button>
+      <pre class="code-para" id="codePara2">
+.neon-text {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff,
+               0 0 10px #0ff,
+               0 0 20px #0ff;
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- Floating Text Section -->
+  <div class="container">
+    <div class="left-box floating-text">
+      ☁️ This text is floating up and down!
+    </div>
+    <div class="right-box">
+      <button class="code-btn" onclick="toggleCode('codePara3')">Code</button>
+      <pre class="code-para" id="codePara3">
+.floating-text {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    function toggleCode(id) {
+      const para = document.getElementById(id);
+      para.style.display = para.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
