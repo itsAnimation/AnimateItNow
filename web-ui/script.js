@@ -1,85 +1,145 @@
-const form = document.getElementById('animate-form');
-const logArea = document.getElementById('log');
-const toggleThemeBtn = document.getElementById('toggle-theme');
-const body = document.body;
+// Typewriter effect for navbar title/logo text only
+const typewriterEl = document.getElementById('typewriter');
+const typeText = "Animate It Now";
+let typeIdx = 0, typing = true;
+function typeWriterLoop() {
+  if (typing) {
+    if (typeIdx <= typeText.length) {
+      typewriterEl.textContent = typeText.slice(0, typeIdx);
+      typeIdx++;
+      setTimeout(typeWriterLoop, 80);
+    } else {
+      typing = false;
+      setTimeout(typeWriterLoop, 700);
+    }
+  } else {
+    if (typeIdx > 0) {
+      typeIdx--;
+      typewriterEl.textContent = typeText.slice(0, typeIdx);
+      setTimeout(typeWriterLoop, 40);
+    } else {
+      typing = true;
+      setTimeout(typeWriterLoop, 400);
+    }
+  }
+}
+typeWriterLoop();
 
-// Floating label support for input
-document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
-  el.addEventListener('blur', function() {
-    if (el.value) el.classList.add('has-value');
-    else el.classList.remove('has-value');
+// Navbar link active state (STATIC, NO animation, only style change)
+document.querySelectorAll('.navbar-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    document.querySelectorAll('.navbar-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
   });
 });
 
-// Handle form submission
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const prompt = document.getElementById('prompt').value.trim();
-  const frames = document.getElementById('frames').value;
-  const style = document.getElementById('style').value;
+// Theme toggle button (light/dark)
+const themeBtn = document.getElementById('theme-btn');
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
 
-  if (!prompt) {
-    logArea.innerHTML = `<span class="log-icon"><i class="fa-solid fa-circle-exclamation"></i></span>
-      <span style="color:var(--error);font-weight:600;">Please enter a valid animation prompt.</span>`;
-    logArea.classList.remove('success');
-    logArea.classList.add('error');
-    return;
-  }
+function setLightMode(isLight) {
+  document.body.classList.toggle('light-mode', isLight);
+  themeBtn.innerHTML = isLight
+    ? '<i class="fa-regular fa-moon"></i>'
+    : '<i class="fa-regular fa-sun"></i>';
+  themeToggle.checked = isLight;
+}
 
-  logArea.innerHTML = `
-    <span class="log-icon"><i class="fa-solid fa-sparkles"></i></span>
-    <span style="color:var(--success);font-weight:600;">Animation Request Submitted!</span>
-    <br><br>
-    <b>Prompt:</b> ${prompt}<br>
-    <b>Frames:</b> ${frames}<br>
-    <b>Style:</b> ${style}<br><br>
-    <span style="color:var(--primary);">Status:</span> <span style="color:var(--success);">Success (demo)</span><br>
-    <hr style="margin:0.7em 0; border-color:var(--primary);">
-    <span style="color:var(--label);">Connect AnimateItNow backend to generate actual output here.</span>
-  `;
-  logArea.classList.remove('error');
-  logArea.classList.add('success');
-});
+themeToggle.addEventListener('change', () => setLightMode(themeToggle.checked));
+themeBtn.addEventListener('click', () => setLightMode(!body.classList.contains('light-mode')));
 
-// Theme toggle
-toggleThemeBtn.addEventListener("click", () => {
-  body.classList.toggle("light-mode");
-  toggleThemeBtn.innerHTML = body.classList.contains("light-mode")
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
-});
-
-// Optional: Simple particles background effect (for extra polish)
-const canvas = document.getElementById('bgParticles');
+// ----- Animated Network Lines Background -----
+const canvas = document.getElementById('bgNetwork');
 const ctx = canvas.getContext('2d');
 let W = window.innerWidth, H = window.innerHeight;
 canvas.width = W; canvas.height = H;
-let particles = [];
-for (let i = 0; i < 40; i++) {
-  particles.push({
-    x: Math.random()*W,
-    y: Math.random()*H,
-    r: Math.random()*2+1,
-    dx: (Math.random()-0.5)*0.8,
-    dy: (Math.random()-0.5)*0.8,
-    c: `rgba(${100+Math.random()*100|0},${180+Math.random()*60|0},255,0.15)`
-  });
-}
-function drawParticles() {
-  ctx.clearRect(0,0,W,H);
-  for (let p of particles) {
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
-    ctx.fillStyle = p.c;
-    ctx.fill();
-    p.x += p.dx; p.y += p.dy;
-    if (p.x<0||p.x>W) p.dx*=-1;
-    if (p.y<0||p.y>H) p.dy*=-1;
+
+let points = [];
+let N = 22;
+function genPoints() {
+  points = [];
+  for (let i = 0; i < N; i++) {
+    let r = Math.random();
+    points.push({
+      x: Math.random()*W*0.96 + W*0.01,
+      y: Math.random()*H*0.96 + H*0.01,
+      vx: 0.16 + Math.random()*0.09,
+      vy: (Math.random()-0.5)*0.09,
+      c: r>0.93 ? 'dot2' : 'dot'
+    });
   }
-  requestAnimationFrame(drawParticles);
 }
-drawParticles();
+genPoints();
+
+function drawNetwork() {
+  ctx.clearRect(0,0,W,H);
+  let dotColor = body.classList.contains('light-mode') ? "#ffe9ae" : "#44d6ff";
+  let lineColor = body.classList.contains('light-mode') ? "#dbe7fa" : "#19d4ff";
+  let dot2Color = body.classList.contains('light-mode') ? "#dbe7fa" : "#7c3aed";
+  for (let i=0;i<N;i++) {
+    for (let j=i+1;j<N;j++) {
+      let d = Math.hypot(points[i].x-points[j].x,points[i].y-points[j].y);
+      if (d < 260) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(points[j].x, points[j].y);
+        ctx.strokeStyle = lineColor;
+        ctx.shadowColor = lineColor;
+        ctx.shadowBlur = 5;
+        ctx.globalAlpha = 0.17-(d/350);
+        ctx.lineWidth = 1.15;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      }
+    }
+  }
+  for (let p of points) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.c==='dot2'?7:5, 0, 2*Math.PI);
+    ctx.fillStyle = p.c==='dot2'?dot2Color:dotColor;
+    ctx.shadowColor = p.c==='dot2' ? dot2Color : dotColor;
+    ctx.shadowBlur = p.c==='dot2'?16:10;
+    ctx.globalAlpha = p.c==='dot2'?0.39:0.32;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+}
+function animateNetwork() {
+  for (let p of points) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x > W+50) p.x = -30;
+    if (p.y<0||p.y>H) p.vy*=-1;
+  }
+  drawNetwork();
+  requestAnimationFrame(animateNetwork);
+}
+drawNetwork();
+animateNetwork();
 window.addEventListener('resize',()=>{
   W = window.innerWidth; H = window.innerHeight;
   canvas.width = W; canvas.height = H;
+  genPoints();
+  drawNetwork();
+});
+
+// Log output when prompt is submitted
+const animateForm = document.getElementById('animate-form');
+const promptInput = document.getElementById('prompt');
+const logArea = document.querySelector('.log-area-normal');
+
+animateForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const promptText = promptInput.value.trim();
+  if (promptText) {
+    logArea.innerHTML = `<div class="log-entry">Prompt received: <strong>${promptText}</strong></div>`;
+    promptInput.value = "";
+  } else {
+    logArea.innerHTML = `<div class="log-entry">Please enter an animation prompt.</div>`;
+  }
 });
