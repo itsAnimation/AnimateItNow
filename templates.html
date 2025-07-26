@@ -735,6 +735,119 @@ body.dark-theme .display-preview {
               <button class="template-btn">View Template</button>
             </a>
           </li>
+          <li>
+            <a class="template-card card-lift ripple" href="templates/page_not_found_template.html">
+        <h2>404 Page not found</h2>
+        <div class="template-preview 404-preview">
+          <div class="page link"></div>
+        </div>
+        <button class="template-btn ripple btn-press">View Template</button>
+      </a>
+          </li>
+          <li>
+            <article class="template-card" >
+  <h2 style="color: #000000; font-family: sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">Wavy Background / Blob Animation</h2>
+
+  <div class="wave-preview-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 1rem 0;">
+    <div class="wave-preview-box" style="width: 100%; max-width: 480px; height: 100px; overflow: hidden; border-radius: 12px; background: #0f172a; box-shadow: inset 0 0 20px rgba(66,133,244,0.2); position: relative;">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 120px;">
+  <path fill="#60a5fa" fill-opacity="1">
+    <animate attributeName="d" dur="6s" repeatCount="indefinite"
+      values="
+        M0,160L60,180C120,200,240,180,360,165C480,150,600,140,720,160C840,180,960,200,1080,190C1200,180,1320,160,1440,150L1440,320L0,320Z;
+        M0,180L60,160C120,140,240,160,360,170C480,180,600,190,720,180C840,170,960,150,1080,145C1200,140,1320,160,1440,180L1440,320L0,320Z;
+        M0,160L60,180C120,200,240,180,360,165C480,150,600,140,720,160C840,180,960,200,1080,190C1200,180,1320,160,1440,150L1440,320L0,320Z" />
+  </path>
+</svg>
+
+    </div>
+  </div>
+
+   <a class="template-btn" href="templates/Wave.html">View Template</a>
+   </article>
+          </li>
+          <li>
+            <article class="template-card">
+          <h2>Flip Card Effect</h2>
+          <div class="card-container">
+            <div class="flip-card">
+              <div class="card-front">
+                front
+              </div>
+              <div class="card-back">
+                back
+              </div>
+            </div>
+          </div>
+          <a class="template-btn" href="templates/Flip.html">View Template</a>
+        </article>
+          </li>
+          <li>
+            <article class="template-card">
+          <h2>Typing Text Animation</h2>
+          
+          <BR><BR>
+
+  <h3>I am a <span class="typed-text"></span><span class="cursor">|</span></h3>
+
+  <script>
+    const words = ["Developer", "Designer", "Contributor"];
+    let i = 0;
+    let j = 0;
+    let currentWord = "";
+    let isDeleting = false;
+    const speed = 120;
+    const pause = 1500;
+
+    function type() {
+      const typedTextSpan = document.querySelector(".typed-text");
+
+      if (i < words.length) {
+        if (!isDeleting && j <= words[i].length) {
+          currentWord = words[i].substring(0, j++);
+        } else if (isDeleting && j >= 0) {
+          currentWord = words[i].substring(0, j--);
+        }
+
+        typedTextSpan.textContent = currentWord;
+
+        if (!isDeleting && j === words[i].length) {
+          isDeleting = true;
+          setTimeout(type, pause);
+        } else if (isDeleting && j === 0) {
+          isDeleting = false;
+          i = (i + 1) % words.length;
+          setTimeout(type, 300);
+        } else {
+          setTimeout(type, isDeleting ? speed / 2 : speed);
+        }
+      }
+    }
+    
+
+    document.addEventListener("DOMContentLoaded", type);
+  </script>
+<BR>
+
+
+          <a class="template-btn" href="templates/Type-animation.html">View Template</a>
+        </article>
+          </li>
+          <li>
+            <article>
+        <div class="template-card">
+  <h2>Animated Sidebar Menu</h2>
+  <br>
+  <div style="width: 30px; height: 25px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer;">
+  <div style="width: 100%; height: 4px; background-color: #333;"></div>
+  <div style="width: 100%; height: 4px; background-color: #333;"></div>
+  <div style="width: 100%; height: 4px; background-color: #333;"></div>
+</div>
+<br><br><br>
+   <a class="template-btn" href="templates/Side.html">View Template</a>
+</div>
+</article>
+          </li>
         </ul>
         <div style="width: 100%; margin-top: 1rem; margin-bottom: 3rem; text-align: center">
           <button
@@ -774,9 +887,6 @@ body.dark-theme .display-preview {
             &#8594;
           </button>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
-      </a>
-    </section>
   </main>
       <script src="script.js"></script>
 
