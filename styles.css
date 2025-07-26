@@ -15,12 +15,17 @@
   --footer-bg: #222;
   --footer-text: #fff;
   --card-bg: #fff;
-  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --light: #f9f9f9;
   --secondary: #2563eb;
   --primary: #4f8cff;
   --white: #ffffff;
+  --border-radius: 12px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
 }
 
 body {
@@ -32,6 +37,8 @@ body {
   transition: background var(--transition), color var(--transition);
   min-height: 100vh;
   transition: background 0.5s ease 0.2s;
+  line-height: 1.6;
+  font-size: 16px;
 }
 
 .list-group {
@@ -59,15 +66,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 50px;
+  padding: 1.25rem 3rem;
   background: rgba(2, 13, 47);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
 }
 
 /* Left Logo Section */
@@ -323,8 +331,9 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
   color: var(--text-color); /* if you're using CSS variables */
+  position: relative;
 }
 
 .landing-section::after {
@@ -337,38 +346,46 @@ body {
 }
 
 .landing-section h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 .landing-section h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   color: #4f8cff;
+  line-height: 1.4;
+  max-width: 600px;
 }
 .landing-section p {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1.15rem;
   color: #444;
+  line-height: 1.6;
 }
 .cta-btn {
   display: inline-block;
   background: var(--accent);
   color: #fff;
   font-weight: 600;
-  padding: 0.9em 2.2em;
-  border-radius: 2em;
+  padding: 1rem 2.5rem;
+  border-radius: 2.5rem;
   font-size: 1.1rem;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.25);
+  transition: all 0.3s ease;
   animation: bounce 1.2s infinite alternate;
+  border: 2px solid transparent;
 }
 .cta-btn:hover {
   background: #2563eb;
-  transform: scale(1.05);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(79, 140, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Animations */
@@ -405,20 +422,21 @@ body {
 main {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem 2rem 1rem;
-  max-width: 900px;
+  padding: 3rem 2rem 2rem 2rem;
+  max-width: 1000px;
   padding-bottom: 8.5rem; /* Space for footer */
   display: flex; /* Main content area used flex */
   flex-direction: column;
-  gap: 3rem; /* Space between sections */
+  gap: 4rem; /* Space between sections */
 }
 .info-section {
   /* margin: 3rem 0; */
 
-  padding: 2rem 1.5rem;
-  background: rgba(255, 255, 255, 0.85); /* Light semi-transparent */
-  border-radius: 1.2rem;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent */
+  border-radius: 1.5rem;
   box-shadow: var(--card-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
@@ -428,20 +446,24 @@ main {
   transform: translateY(0);
 }
 .info-section h2 {
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
   color: var(--accent);
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 .info-section p {
   color: #444;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 /* FOOTER */
 .footer {
  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: #ffffff;
-  padding: 50px 20px 30px;
-  margin-top: 80px;
-  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12);
+  padding: 4rem 2rem 2rem 2rem;
+  margin-top: 6rem;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
   font-family: "Segoe UI", sans-serif;
   position: relative;
   width: 100%;
@@ -454,42 +476,45 @@ main {
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 800px; /* 🔹 Decreased width */
+  max-width: 1000px; /* 🔹 Increased width */
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
+  gap: 2rem;
 }
 
 /* Left content block */
 .footer-left {
   flex: 1;
-  min-width: 260px;
-  padding-right: 50px;
+  min-width: 280px;
+  padding-right: 2rem;
 }
 
 .footer-left h2 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   color: #ffffff;
+  font-weight: 700;
 }
 
 .footer-left p {
-  font-size: 1rem;
-  line-height: 1.6;
-  opacity: 0.85;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.9;
 }
 
 /* Right content block */
 .footer-right {
   flex: 1;
-  min-width: 220px;
-  padding-left: 50px;
+  min-width: 240px;
+  padding-left: 2rem;
 }
 
 .footer-right h4 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
   color: #ffffff;
-  padding: 5px;
+  padding: 0.5rem 0;
+  font-weight: 600;
 }
 
 .footer-right ul {
@@ -505,13 +530,16 @@ main {
 .footer-right a {
   color: #e0eaff;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0;
+  display: inline-block;
 }
 
 .footer-right a:hover {
-  color: #e4f2fc;
-  transform: translateX(5px);
+  color: #ffffff;
+  transform: translateX(8px);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 /* for mobile version */
 @media (max-width: 768px) {
@@ -530,12 +558,12 @@ main {
 /* Bottom section with copyright */
 .footer-bottom {
   text-align: center;
-  font-size: 0.9rem;
-  opacity: 0.85;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  padding-top: 15px;
-  margin-top: 20px;
-  max-width: 800px; /* 🔹 Match with content width */
+  font-size: 1rem;
+  opacity: 0.9;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  max-width: 1000px; /* 🔹 Match with content width */
   margin-left: auto;
   margin-right: auto;
 }
@@ -968,10 +996,46 @@ body.dark .landing-section p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .nav-links {
+    gap: 1.5rem;
+  }
+  
+  .landing-section h1 {
+    font-size: 2.2rem;
+  }
+  
+  .landing-section h2 {
+    font-size: 1.2rem;
+  }
+  
+  .landing-section p {
+    font-size: 1rem;
+  }
+  
+  .cta-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+  
   .footer-left {
     align-items: center;
     justify-content: center;
     text-align: center;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .footer-left, .footer-right {
+    padding: 0;
+    min-width: auto;
   }
 }
 
@@ -1004,11 +1068,11 @@ body.dark .landing-section p {
   .navbar {
     flex-direction: column;
     height: auto;
-    padding: 0.5rem 0.5rem;
+    padding: 1rem;
   }
 
   .nav-left {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .nav-links {
@@ -1016,11 +1080,27 @@ body.dark .landing-section p {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 1rem;
   }
 
   .site-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .landing-section {
+    padding: 2rem 1rem;
+  }
+  
+  .landing-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .landing-section h2 {
+    font-size: 1.1rem;
+  }
+  
+  .main {
+    padding: 2rem 1rem;
   }
 }
 
