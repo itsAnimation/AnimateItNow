@@ -189,3 +189,23 @@ if (!isMobile && cursorToggle) {
 
 
 });
+
+//Contact Form Label Animation
+
+const input=document.querySelector(".form-group textarea");
+const container=document.querySelector(".form-group");
+const floatingLabel=document.createElement('span');
+floatingLabel.className='form-label';
+floatingLabel.textContent=input.getAttribute('placeholder');
+container.appendChild(floatingLabel);
+input.addEventListener('focus',()=>{
+  container.classList.add('focused');
+});
+document.querySelectorAll('.form-group input','.form-group textarea').forEach((field)=>{
+  const updatefilled=()=>{
+    if(field.value.trim !=='') field.classList.add('filled');
+    else field.classList.remove('filled');
+  };
+  field.addEventListener('input',updatefilled);
+  field.addEventListener('blur',updatefilled);
+})

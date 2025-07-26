@@ -1068,18 +1068,32 @@ body.dark .contributor-card:hover {
 
 .form-group {
   margin-bottom: 1.8rem;
+  position: relative;
 }
 
-.form-group label {
-  display: block;
+.form-group label{
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  color: #777;
+  font-size: 15px;
+  pointer-events: none;
+  transition: 0.3s ease all;
   margin-bottom: 0.6rem;
   font-weight: 500;
-  color: var(--primary-text);
-  font-size: 0.95rem;
 }
 
-.form-group input,
-.form-group textarea {
+.form-group input:focus+label,
+.form-group input.filled +label,
+.form-group textarea:focus+label,
+.form-group textarea.filled+label{
+  top: -8px;
+  font-size: 14px;
+  color: #1a73e8;
+  background: var(--card-bg);
+}
+
+.form-group input{
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #e5e7eb;
@@ -1091,22 +1105,28 @@ body.dark .contributor-card:hover {
   transition: border-color 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  transition: border-color 0.2s ease;
+  resize: vertical;
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
+.form-group input:focus{
+  outline: none;
+  border-color: var(--accent);
 }
 
 .contact-button {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
  #submit{
