@@ -938,6 +938,19 @@ main {
                 0 0 20px rgba(138, 180, 248, 0.15);
   }
 }
+@keyframes complementGlow {
+  0% {
+    box-shadow: 0 0 6px rgba(143, 245, 255, 0.6), 0 0 12px rgba(155, 255, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(100, 220, 255, 0.8), 0 0 22px rgba(177, 255, 248, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(143, 245, 255, 0.6), 0 0 12px rgba(155, 255, 248, 0.4);
+  }
+}
+
+
 
   @keyframes flowingNeonLite {
   0% {
@@ -980,8 +993,20 @@ main {
       0 0 20px rgba(242, 247, 248, 0.3);
   }
 }
-
-
+@keyframes deepPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.15),
+                0 0 15px rgba(0, 255, 255, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25),
+                0 0 25px rgba(0, 255, 255, 0.15);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.15),
+                0 0 15px rgba(0, 255, 255, 0.12);
+  }
+}
 
 
 
@@ -1433,14 +1458,21 @@ body:not(.dark) .template-card {
 
 /* Contributors Page */
 .contributor-card {
-  background: var(--card-bg);
-  border-radius: 1.1rem;
-  box-shadow: var(--card-shadow);
-  padding: 1.5rem;
+ background: linear-gradient(135deg, #e0f7fa 0%, #d0e6ff 40%, #c5cae9 100%);
+ border-radius: 1.5rem;
+ box-shadow: 0 8px 24px rgba(174, 198, 255, 0.5), 0 0 10px rgba(197, 204, 255, 0.4);
+ padding: 1.5rem;
   text-align: center;
-  text-decoration: none; /* Removes underline from the link */
-  color: var(--primary-text);
+  text-decoration: none; 
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  animation:complementGlow 4s ease infinite;
+  z-index: 2;
+}
+
+.contributor-card img {
+  border: 3px solid #5087e8; /* Neon aqua */
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); /* Soft glow */
 }
 
 .contributor-card:hover {
@@ -1458,8 +1490,18 @@ body:not(.dark) .template-card {
 
 .contributor-card h3 {
   margin-bottom: 0.5rem;
-  color: var(--accent);
+  background: linear-gradient(90deg, #0099F7, #F11712); /* Blue to orange flame */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
   font-size: 1.2rem;
+}
+
+.contributors-main h1{
+  background: linear-gradient(90deg, #3ed8ff, #7f6bff, #fca5f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(126, 211, 247, 0.3);
 }
 
 .contributor-card p {
@@ -1482,7 +1524,7 @@ body.dark .contributor-card:hover {
   text-align: center;
   margin-top: 7rem;
   margin-bottom: 2.5rem;
-  font-size: 2.1rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 @media (max-width: 700px) {
@@ -1632,6 +1674,14 @@ body.dark .contributor-card:hover {
 }
 
 /* Dark theme support */
+body.dark .contributor-card {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  border: 1px solid rgba(0, 255, 255, 0.08);
+  animation: deepPulse 4s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
 body.dark .form-group input,
 body.dark .form-group textarea {
   background-color: rgba(255, 255, 255, 0.03); 
