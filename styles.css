@@ -315,8 +315,13 @@ body {
   transform: translateX(18px);
 }
 .fade-in span{
-  color: #00d1ff;
+color: #d4fcff;
+  text-shadow: 0 0 6px #d4fcff, 0 0 8px #00f0ff;
+
+  font-weight: 700;
+  letter-spacing: 0.6px;
 }
+
 
 /* Landing Section */
 .landing-section {
@@ -1278,11 +1283,16 @@ body.dark .contributor-card:hover {
 }
 
 .contact-container {
-  background-color: rgba(255, 255, 255, 0.15); /* Translucent background */
-  backdrop-filter: blur(10px); /* Apply blur to content behind */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
-  border-radius: 16px; /* Rounded corners for the glass effect */
+background: linear-gradient(
+  135deg,
+  rgba(0, 255, 234, 0.12),     
+  rgba(188, 132, 255, 0.15),   
+  rgba(255, 255, 255, 0.05)   
+);
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 16px; 
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(138, 180, 248, 0.4);
   border-radius: 20px;
@@ -1318,7 +1328,7 @@ body.dark .contributor-card:hover {
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
-  background: rgba(255, 255, 255, 0.30);
+  background: rgba(255, 255, 255, 0.50);
   color: var(--primary-text);
   transition: border 0.2s ease;
   box-shadow: 0 0 3px rgba(255, 255, 255, 0.06);
@@ -2010,7 +2020,6 @@ body.dark .glow-wrap::before {
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 /* This targets the button inside the preview */
 .tooltip-preview .tooltip {
     padding: 8px 16px;
@@ -2021,26 +2030,3 @@ body.dark .glow-wrap::before {
     font-size: 1rem;
     cursor: pointer;
 }
-=======
-.faq-question-header {
-  cursor: pointer; 
-}
-
-.faq-answer-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 2rem; /* Remove top/bottom padding initially */
-}
-
-.faq-item.active .faq-answer-content {
-  max-height: 500px; 
-  padding: 2rem; /* Restore to full padding when active */
-}
-
-/* Added a subtle rotation to the existing icon when active */
-.faq-item.active .faq-icon-static {
-  transform: rotate(5deg) scale(1.1);
-}
-
->>>>>>> 9bdc90f8029993cfc70064e448b7ac08426eec9b
