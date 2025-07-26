@@ -764,7 +764,6 @@ main {
   }
 }
 
-
 body.dark .contact-container {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -1828,6 +1827,139 @@ body.dark .template-card h2 {
   gap: 2rem;
 }
 
+.faq-icon-static .info-icon{
+  display: block;
+  transition: transform 1.9s linear;
+}
+
+.faq-icon-static .user-faq{
+  display: block;
+  transition: transform 1s ease-in-out;
+}
+
+.faq-icon-static .branch{
+  display: block;
+  transition: transform 1.4s ease-in-out;
+}
+
+.faq-icon-static .micro{
+  display: block;
+  transition: transform 2.5s ease-in-out;
+}
+
+.faq-item.active .faq-icon-static .info-icon{
+    transform: rotateY(-360deg);
+}
+
+.faq-item.active .faq-icon-static .user-faq{
+  animation: bounceAccordion 1.3s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.faq-item.active .faq-icon-static .brush{
+  animation: pulseAccordion 2s linear infinite;
+}
+
+.faq-item.active .faq-icon-static .branch{
+  transform: rotate(-180deg);
+}
+
+.faq-item.active .faq-icon-static .code{
+  transform: scale(1.15);
+}
+
+.faq-item.active .faq-icon-static .micro{
+  transform: matrix(0,1,1,0,0,0);
+}
+
+.faq-item.active .faq-icon-static .crosshairs{
+  animation: moveIt 1.5s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.faq-item.active .faq-icon-static .heart{
+  animation: heartbeat 0.7s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes pulseAccordion {
+  0% {
+    box-shadow: 0 0 10px rgba(138, 180, 248, 0.2),
+                0 0 20px rgba(138, 180, 248, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(138, 180, 248, 0.6),
+                0 0 30px rgba(138, 180, 248, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(138, 180, 248, 0.2),
+                0 0 20px rgba(138, 180, 248, 0.15);
+  }
+}
+
+@keyframes bounceAccordion {
+  0% {
+    transform: translateY(1px);
+  }
+
+  44% {
+    transform: translateY(-3px);
+  }
+
+  88%{
+    transform: translateY(1px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes moveIt{
+  0% {
+    transform: translate(-2px, -2px);
+  }
+
+  33% {
+    transform: translate(2px, 2px);
+  }
+
+  66% {
+    transform: translate(0px, 2px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/* a little exxagerated heartbeat */
+@keyframes heartbeat{
+  0% {
+    transform: scale(0);
+  }
+
+  20% {
+    transform: scale(1.25);
+  }
+
+  40% {
+    transform: translate(0);
+  }
+  
+  60%{
+    transform: scale(1.1);
+  }
+
+  80%{
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* card shell */
 .faq-item {
   position: relative;
@@ -1879,6 +2011,7 @@ body.dark .template-card h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  cursor: pointer;
 }
 
 /* icon circle */
