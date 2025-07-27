@@ -5,10 +5,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AnimateItNow</title>
-
-  <!-- styles & icons -->
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
+
+  <!-- styles & external resources -->
+  <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -33,15 +61,18 @@
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
         <!-- cursor toggle switch -->
-        <li>
+        <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
             <span class="slider round"></span>
           </label>
+          <span class="snakeLabel">Snake Cursor</span>
         </li>
         <!-- github icon -->
         <li>
+
           <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
             aria-label="GitHub Repo" class="github-icon">
             <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
@@ -55,9 +86,9 @@
             </svg>
           </a>
         </li>
-        <li><button id="theme-toggle" aria-label="Toggle Theme">
-            <i data-lucide="moon"></i>
-          </button>
+        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+              <i data-lucide="moon"></i>
+            </button>
         </li>
       </ul>
     </div>
@@ -74,14 +105,41 @@
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-    <a href="#faq" class="cta-btn bounce"
-      onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
-      Get Started
-    </a>
+    <a href="#faq" class="cta-btn bounce ripple btn-press"
+   onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
+   Get Started
+</a>
 
   </header>
 
+
+  <!-- Animated Social Share Buttons Start -->
+  <div class="social-share-buttons">
+    <a href="#" class="social-btn facebook" aria-label="Share on Facebook">
+      <span class="icon">&#xf09a;</span>
+      <span class="label">Facebook</span>
+    </a>
+    <a href="#" class="social-btn twitter" aria-label="Share on Twitter">
+      <span class="icon">&#xf099;</span>
+      <span class="label">Twitter</span>
+    </a>
+    <a href="#" class="social-btn linkedin" aria-label="Share on LinkedIn">
+      <span class="icon">&#xf0e1;</span>
+      <span class="label">LinkedIn</span>
+    </a>
+    <a href="#" class="social-btn instagram" aria-label="Share on Instagram">
+      <span class="icon">&#xf16d;</span>
+      <span class="label">Instagram</span>
+    </a>
+  </div>
+  <!-- Animated Social Share Buttons End -->
+
+  <!-- Font Awesome CDN for icons (if not already included in your project) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
   <!-- ───────── MAIN ───────── -->
+
   <main>
     <!-- ─────── OUR SINGLE STATIC FAQ ─────── -->
     <section id="faq" class="faq-section info-section scroll-fade">
@@ -92,21 +150,18 @@
         <div class="faq-list">
           <!-- 01 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>What is this project?</h3>
               <div class="faq-icon-static"><i class="fas fa-question"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>AnimateItNow is an open-source platform that helps beginners learn web development by building and
-                exploring simple animations using HTML, CSS, and JavaScript. It offers a collaborative space for
-                contributors to create, improve, and share animation templates while gaining hands-on coding experience.
-              </p>
+              <p>AnimateItNow is an open-source platform that helps beginners learn web development by building and exploring simple animations using HTML, CSS, and JavaScript. It offers a collaborative space for contributors to create, improve, and share animation templates while gaining hands-on coding experience.</p>
             </div>
           </div>
 
           <!-- 02 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
               <h3>How to contribute?</h3>
               <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
             </div>
@@ -123,65 +178,63 @@
 
           <!-- 03 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
               <h3>Why open source?</h3>
               <div class="faq-icon-static"><i class="fas fa-users"></i></div>
             </div>
             <div class="faq-answer-content">
               <p>Open source is more than just code — it's about collaboration, learning, and community.
-                It empowers developers from all backgrounds to contribute, share knowledge, and grow together. By
-                working openly, we drive innovation, improve transparency, and build real-world solutions that benefit
-                everyone.</p>
+              It empowers developers from all backgrounds to contribute, share knowledge, and grow together. By working openly, we drive innovation, improve transparency, and build real-world solutions that benefit everyone.</p>
             </div>
           </div>
 
           <!-- 04 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
               <h3>HTML Basics</h3>
               <div class="faq-icon-static"><i class="fas fa-code"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Master semantic HTML to create accessible, well-structured web pages.</p>
+              <p>Learning HTML, especially semantic HTML, is the foundation of web development. It helps you create structured and meaningful web pages that are not only easier to maintain but also accessible to all users, including those using screen readers. Semantic tags improve readability, and ensure that your websites follow modern best practices.</p>
             </div>
           </div>
 
           <!-- 05 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>CSS Styling</h3>
               <div class="faq-icon-static"><i class="fas fa-paint-brush"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Use modern CSS to craft responsive layouts and beautiful visual effects.</p>
+              <p>CSS is what brings your web pages to life. While HTML gives your site structure, CSS adds the design — colors, layouts, animations, responsiveness, and overall look and feel. It allows developers to create visually appealing and user-friendly websites that work well across different devices and screen sizes.</p>
             </div>
           </div>
 
           <!-- 06 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>JavaScript Logic</h3>
               <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Add interactivity with efficient, modern JavaScript.</p>
+              <p>JavaScript is the programming language of the web. It adds interactivity and dynamic behavior to your web pages — like sliders, buttons that respond to clicks, form validation, animations, and real-time updates. Without JavaScript, a website would be static and unresponsive. It's essential for building modern, interactive user experiences..</p>
             </div>
           </div>
 
           <!-- 07 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>Animations</h3>
               <div class="faq-icon-static"><i class="fas fa-wave-square"></i></div>
             </div>
             <div class="faq-answer-content">
-              <p>Create smooth, engaging animations that delight users.</p>
+              <p>Create smooth, engaging animations that not only delight users but also enhance usability and guide user interaction. Well-designed animations can make interfaces feel more responsive, intuitive, and modern.</p>
             </div>
           </div>
 
           <!-- 08 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>Open Source Contributors</h3>
               <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
             </div>
@@ -193,7 +246,7 @@
 
           <!-- 9 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>Is AnimateItNow responsive on all devices?</h3>
               <div class="faq-icon-static"><i class="fa-solid fa-mobile-screen"></i></div>
             </div>
@@ -202,11 +255,13 @@
                 component breaks on smaller screens.</p>
             </div>
           </div>
+        
 
+          
 
           <!-- 10 -->
           <div class="faq-item glow-wrap">
-            <div class="faq-question-header">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
               <h3>How do I preview my changes locally?</h3>
               <div class="faq-icon-static"><i class="fas fa-desktop"></i></div>
             </div>
@@ -218,8 +273,128 @@
         </div><!-- /faq-list -->
       </div><!-- /faq-container -->
     </section>
-  </main>
+    <div id="page" class="site">
+      <div class="container">
+        <div class="testi">
+          <div class="head">
+            <h3>Testmonials</h3>
+            <p>See What People are saying...</p>
+          </div>
+          <div class="body swiper">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img1.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
+                    <div class="name">
+                      <h4>Priya Verma</h4>
+                      <p>UI/UX Designer at PixelCraft</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img2.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
+                    <div class="name">
+                      <h4>Rohan Malhotra</h4>
+                      <p>Freelance Web Developer</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img3.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
+                    <div class="name">
+                      <h4>Alisha Singh</h4>
+                      <p>Frontend Engineer at DevNest</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img4.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
+                    <div class="name">
+                      <h4>David Kim</h4>
+                      <p>Product Engineer at Innovix</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img5.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
+                    <div class="name">
+                      <h4>Zoya Khan</h4>
+                      <p>Creative Director at StudioZ</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img6.png" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
+                    <div class="name">
+                      <h4>Anuj Mehta</h4>
+                      <p>Full Stack Developer</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="swiper-pagination"></div>
 
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.swiper', {
+        autoHeight: true,
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    </script>
+  </main>
   <!-- ───────── FOOTER ───────── -->
   <footer class="footer scroll-fade">
     <div class="footer-content">
@@ -231,11 +406,10 @@
       <div class="footer-right">
         <h4>Connect With Us</h4>
         <ul>
-          <li class="github"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank"><i
-                class="fab fa-github fa-beat"></i> GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank"><i
-                class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-          <li><a href="mailto:contact@animateitnow.com"><i class="fas fa-envelope"></i> Email Us</a></li>
+          <li class="github"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li> 
+          <!-- fa-beat class added in email for animation -->
+          <li><a href="mailto:contact@animateitnow.com"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li> 
         </ul>
       </div>
     </div>
@@ -249,6 +423,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script src="script.js"></script>
+  <!-- PWA Support -->
+  <script src="pwa.js"></script>
 </body>
 
 </html>

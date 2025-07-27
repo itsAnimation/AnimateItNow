@@ -23,20 +23,63 @@
   <b>Welcome to AnimateItNow — a creative, open-source hub for beautiful web UI components and animations!</b>
 </p>
 
+**📊 Project Insights**
+
+<table align="center">
+    <thead align="center">
+        <tr>
+            <td><b>🌟 Stars</b></td>
+            <td><b>🍴 Forks</b></td>
+            <td><b>🐛 Issues</b></td>
+            <td><b>🔔 Open PRs</b></td>
+            <td><b>🔕 Closed PRs</b></td>
+            <td><b>🛠️ Languages</b></td>
+            <td><b>👥 Contributors</b></td>
+        </tr>
+     </thead>
+    <tbody>
+         <tr>
+            <td><img alt="Stars" src="https://img.shields.io/github/stars/itsAnimation/AnimateItNow?style=flat&logo=github"/></td>
+            <td><img alt="Forks" src="https://img.shields.io/github/forks/itsAnimation/AnimateItNow?style=flat&logo=github"/></td>
+            <td><img alt="Issues" src="https://img.shields.io/github/issues/itsAnimation/AnimateItNow?style=flat&logo=github"/></td>
+            <td><img alt="Open PRs" src="https://img.shields.io/github/issues-pr/itsAnimation/AnimateItNow?style=flat&logo=github"/></td>
+            <td><img alt="Closed PRs" src="https://img.shields.io/github/issues-pr-closed/itsAnimation/AnimateItNow?style=flat&color=critical&logo=github"/></td>
+            <td><img alt="Languages Count" src="https://img.shields.io/github/languages/count/itsAnimation/AnimateItNow?style=flat&color=green&logo=github"></td>
+            <td><img alt="Contributors Count" src="https://img.shields.io/github/contributors/itsAnimation/AnimateItNow?style=flat&color=blue&logo=github"/></td>
+        </tr>
+    </tbody>
+</table>
+
+---
+
+<h2 align="center">🎯 Open Source Programmes ⭐</h2>
+
 <p align="center">
-  <img src="https://img.shields.io/github/issues/itsAnimation/AnimateItNow?style=for-the-badge" alt="Open Issues"/>
-  <img src="https://img.shields.io/github/issues-pr/itsAnimation/AnimateItNow?style=for-the-badge" alt="Open PRs"/>
-  <img src="https://img.shields.io/github/contributors/itsAnimation/AnimateItNow?style=for-the-badge" alt="Contributors"/>
-  <img src="https://img.shields.io/github/stars/itsAnimation/AnimateItNow?style=for-the-badge" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/itsAnimation/AnimateItNow?style=for-the-badge" alt="Forks"/>
-  <img src="https://img.shields.io/github/last-commit/itsAnimation/AnimateItNow?style=for-the-badge" alt="Last Commit"/>
-  <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=for-the-badge" alt="Contributions Welcome"/>
-  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge" alt="Version"/>
+  <b>This project is now OFFICIALLY accepted for:</b>
 </p>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="1000">
+  <img src="https://github.com/apu52/METAVERSE/assets/114172928/e79eb6de-81b1-4ffb-b6ed-f018bb977e88" alt="GSSOC" width="80%">
 </div>
+
+🌟 **Exciting News...**
+
+🚀 This project is now an official part of GirlScript Summer of Code – GSSoC 2025! 💃🎉💻 We’re thrilled to welcome contributors from all over India and beyond to collaborate, build, and grow with DevElevate. Let’s make learning and career development smarter – together! 🌟👨‍💻👩‍💻
+
+👩‍💻 GSSoC is one of India’s **largest 3-month-long open-source programs** that encourages developers of all levels to contribute to real-world projects 🌍 while learning, collaborating, and growing together. 🌱
+
+🌈 With **mentorship, community support**, and **collaborative coding**, it's the perfect platform for developers to:
+
+✨ Improve their skills
+🤝 Contribute to impactful projects
+🏆 Get recognized for their work
+📜 Receive certificates and swag!
+
+🎉 **I can’t wait to welcome new contributors** from GSSoC 2025 to this AnimateItNow project family!
+Let’s build, learn, and grow together — one commit at a time. 🔥👨‍💻👩‍💻
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
 
 ## 🌈 What is AnimateItNow?
 
@@ -70,7 +113,7 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 4. Update the gallery page to showcase your work
 5. **Submit a Pull Request** with a short description and preview
 
-All skill levels are welcome! Check out the [Templates Gallery](./templates.html) for inspiration.
+All skill levels are welcome! Check out the [Templates Gallery](https://animate-it-now.netlify.app/templates) for inspiration.
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="1000">
@@ -117,10 +160,21 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 
+### 🙌 **Thank You, Contributors!**
+
+> Thank you once again to all our contributors! Your efforts are truly appreciated. 💖👏
+
+<p align="center">
+  <a href="https://github.com/itsAnimation/AnimateItnow/graphs/contributors">
+    <img src="https://api.vaunt.dev/v1/github/entities/itsAnimation/repositories/AnimateItnow/contributors?format=svg&limit=54" width="700" height="250" />
+  </a>
+</p>
+
+
 ## 🌟 Project Admin
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/pa.png" width="400px;" alt="Project Admin"/><br />
+  <img src="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/pa.png" width="600px;" alt="Project Admin"/><br />
 
   <br/>
   <a href="https://github.com/AnujShrivastava01">
