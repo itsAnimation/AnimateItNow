@@ -404,10 +404,13 @@ body {
 
 /* Theme Toggle */
 #theme-toggle {
+  display: flex;
+  align-items: center;
+
   margin-top: 6px;
   background: transparent;
   border: none;
-  color: #fff;
+  color: yellow;
   font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -2289,4 +2292,36 @@ body.dark .glow-wrap::before {
    color: rgba(31, 41, 55, 0.8);
 }
 
+/* Bug #525 fixes */
+/* My CSS Changes for the nav bar 😊 */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
 
+.nav-links a.active {
+  color: rgba(255, 255, 0, 0.9); /* Yellow with 60% opacity */
+}
+
+.nav-links a:hover {
+  color: #ffeb3b; /* Bright yellow on hover */
+  text-shadow: 0 0 5px rgba(255, 235, 59, 0.7);
+}
+
+
+/* shuffle card effect  */
+
+/* Initial hidden state */
+body {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Fade-in + slide-up when loaded */
+body.page-enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 

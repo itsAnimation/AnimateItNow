@@ -96,6 +96,7 @@
 
   <!-- ───────── HERO ───────── -->
   <header class="landing-section">
+  
     <h1 class="fade-in">Welcome to <span>AnimateItNow</span></h1>
     <h2 class="fade-in delay-1">
       A creative space where contributors build beautiful web components.
@@ -398,6 +399,36 @@
   <script src="script.js"></script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
+  
+
+
+ <!-- added my work -->
+  <script>
+  // Page load animation
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("page-enter");
+  });
+
+  // Smooth exit animation before navigating away
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault(); // Stop default navigation
+      const target = this.getAttribute("href");
+
+      // Animate exit
+      document.body.classList.remove("page-enter");
+      document.body.style.opacity = 0;
+      document.body.style.transform = "translateY(20px)";
+
+      // Navigate after short delay
+      setTimeout(() => {
+        window.location.href = target;
+      }, 300);
+    });
+  });
+</script>
+
 </body>
 
 </html>

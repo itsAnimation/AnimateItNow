@@ -125,5 +125,33 @@
   <script src="script.js"></script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
+
+
+  <script>
+  // Page load animation
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("page-enter");
+  });
+
+  // Smooth exit animation before navigating away
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault(); // Stop default navigation
+      const target = this.getAttribute("href");
+
+      // Animate exit
+      document.body.classList.remove("page-enter");
+      document.body.style.opacity = 0;
+      document.body.style.transform = "translateY(20px)";
+
+      // Navigate after short delay
+      setTimeout(() => {
+        window.location.href = target;
+      }, 300);
+    });
+  });
+</script>
+
 </body>
 </html>
