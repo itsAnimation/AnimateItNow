@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clean Wave Animation Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f0f4ff, #e3edf9);
+      color: #1e293b;
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    h1.page-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #1e40af;
+      text-shadow: 0 0 5px rgba(100,149,237,0.2);
+    }
+
+    .wave-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .wave-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .wave-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #1d4ed8;
+    }
+
+    .wave-preview {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    svg {
+      width: 100%;
+      height: 150px;
+      display: block;
+    }
+
+    .code-button {
+      background: #3b82f6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .code-block {
+      max-height: 0;
+      overflow: hidden;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 0 1rem;
+      margin-top: 1rem;
+      border-radius: 10px;
+      font-family: monospace;
+      transition: max-height 0.4s ease;
+      text-align: left;
+    }
+
+    .code-block.open {
+      max-height: 500px;
+      padding: 1rem;
+    }
+
+    pre {
+      white-space: pre-wrap;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Base variables and body */
+    :root {
+      --nav-text: #222;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    
+  </nav>
+  <BR><BR><BR><BR>
+    
+  <div class="wrapper">
+    <h1 class="page-title">🌊 Wave Animation Gallery</h1>
+
+    <!-- Card 1: CSS Blobs -->
+    <div class="wave-card">
+      <div class="wave-title">1. CSS Blob Wavy Background</div>
+      <div class="wave-preview" style="position: relative; height: 200px;">
+        <div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #93c5fd, #2563eb); border-radius: 45% 55% 60% 40% / 50% 40% 60% 50%; animation: blobMove 12s ease-in-out infinite; opacity: 0.5;"></div>
+        <div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #60a5fa, #1d4ed8); border-radius: 50% 50% 60% 40% / 45% 55% 45% 55%; animation: blobMove 15s ease-in-out infinite; opacity: 0.4;"></div>
+        <div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #3b82f6, #1e40af); border-radius: 55% 45% 60% 40% / 60% 40% 60% 40%; animation: blobMove 18s ease-in-out infinite; opacity: 0.3;"></div>
+      </div>
+      <button class="code-button" onclick="toggleCode(0)">💻 View Code</button>
+      <div class="code-block"><pre>&lt;div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #93c5fd, #2563eb); border-radius: 45% 55% 60% 40% / 50% 40% 60% 50%; animation: blobMove 12s ease-in-out infinite; opacity: 0.5;"&gt;&lt;/div&gt;
+&lt;div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #60a5fa, #1d4ed8); border-radius: 50% 50% 60% 40% / 45% 55% 45% 55%; animation: blobMove 15s ease-in-out infinite; opacity: 0.4;"&gt;&lt;/div&gt;
+&lt;div style="position:absolute; width:200%; height:100%; background: radial-gradient(circle, #3b82f6, #1e40af); border-radius: 55% 45% 60% 40% / 60% 40% 60% 40%; animation: blobMove 18s ease-in-out infinite; opacity: 0.3;"&gt;&lt;/div&gt;
+</pre></div>
+    </div>
+
+    <!-- Card 2: Static SVG -->
+    <div class="wave-card">
+      <div class="wave-title">2. Static Bottom Wave SVG</div>
+      <div class="wave-preview">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path fill="#3b82f6" d="M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,202.7C672,224,768,256,864,240C960,224,1056,160,1152,133.3C1248,107,1344,117,1392,122.7L1440,128L1440,320L0,320Z" />
+        </svg>
+      </div>
+      <button class="code-button" onclick="toggleCode(1)">💻 View Code</button>
+      <div class="code-block"><pre>&lt;svg viewBox="0 0 1440 320" preserveAspectRatio="none"&gt;
+  &lt;path fill="#3b82f6" d="M0,224L48,213.3C96,203,192,181,288,176C384,171,480,181,576,202.7C672,224,768,256,864,240C960,224,1056,160,1152,133.3C1248,107,1344,117,1392,122.7L1440,128L1440,320L0,320Z" /&gt;
+&lt;/svg&gt;
+</pre></div>
+    </div>
+
+    <!-- Card 3: Morphing Wave -->
+    <div class="wave-card">
+      <div class="wave-title">3. Morphing Animated Wave</div>
+      <div class="wave-preview">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path fill="#3b82f6">
+            <animate attributeName="d" dur="8s" repeatCount="indefinite"
+              values="
+                M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z;
+                M0,160L80,140C160,120,320,140,480,150C640,160,800,180,960,175C1120,170,1280,150,1440,160L1440,320L0,320Z;
+                M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z" />
+          </path>
+        </svg>
+      </div>
+      <button class="code-button" onclick="toggleCode(2)">💻 View Code</button>
+      <div class="code-block"><pre>&lt;svg viewBox="0 0 1440 320" preserveAspectRatio="none"&gt;
+  &lt;path fill="#3b82f6"&gt;
+    &lt;animate attributeName="d" dur="8s" repeatCount="indefinite"
+      values="
+        M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z;
+        M0,160L80,140C160,120,320,140,480,150C640,160,800,180,960,175C1120,170,1280,150,1440,160L1440,320L0,320Z;
+        M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z" /&gt;
+  &lt;/path&gt;
+&lt;/svg&gt;
+</pre></div>
+    </div>
+
+    <!-- Card 4: Vanta Canvas (Just Simulated Here) -->
+    <div class="wave-card">
+      <div class="wave-title">4. Canvas Flowing Waves (Vanta.js)</div>
+      <div class="wave-preview">
+        <iframe srcdoc='
+          &lt;div id="vanta-bg" style="width:100%; height:100vh;"&gt;&lt;/div&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/three@0.124.0/build/three.min.js"&gt;&lt;/script&gt;
+          &lt;script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"&gt;&lt;/script&gt;
+          &lt;script&gt;
+            VANTA.WAVES({ el: "#vanta-bg", color: 0x4285f4, shininess: 50, waveHeight: 20, waveSpeed: 0.5, zoom: 1.1 });
+          &lt;/script&gt;'></iframe>
+      </div>
+      <button class="code-button" onclick="toggleCode(3)">💻 View Code</button>
+      <div class="code-block"><pre>&lt;div id="vanta-bg" style="width:100%; height:100vh;"&gt;&lt;/div&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/three@0.124.0/build/three.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  VANTA.WAVES({
+    el: "#vanta-bg",
+    color: 0x4285f4,
+    shininess: 50,
+    waveHeight: 20,
+    waveSpeed: 0.5,
+    zoom: 1.1
+  });
+&lt;/script&gt;
+</pre></div>
+    </div>
+
+    <!-- Card 5: Layered Multi-Wave -->
+    <div class="wave-card">
+      <div class="wave-title">5. Layered Multi-Waves</div>
+      <div class="wave-preview">
+        <svg viewBox="0 0 1440 320"><path fill="#3b82f6" fill-opacity="0.4" d="M0,160L80,170C160,180,320,200,480,197C640,194,800,160,960,144C1120,128,1280,128,1440,128L1440,320L0,320Z" /></svg>
+        <svg viewBox="0 0 1440 320"><path fill="#60a5fa" fill-opacity="0.3" d="M0,160L80,150C160,140,320,140,480,160C640,180,800,220,960,224C1120,228,1280,196,1440,160L1440,320L0,320Z" /></svg>
+        <svg viewBox="0 0 1440 320"><path fill="#93c5fd" fill-opacity="0.2" d="M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z" /></svg>
+      </div>
+      <button class="code-button" onclick="toggleCode(4)">💻 View Code</button>
+      <div class="code-block"><pre>&lt;svg viewBox="0 0 1440 320"&gt;
+  &lt;path fill="#3b82f6" fill-opacity="0.4" d="M0,160L80,170C160,180,320,200,480,197C640,194,800,160,960,144C1120,128,1280,128,1440,128L1440,320L0,320Z" /&gt;
+&lt;/svg&gt;
+
+&lt;svg viewBox="0 0 1440 320"&gt;
+  &lt;path fill="#60a5fa" fill-opacity="0.3" d="M0,160L80,150C160,140,320,140,480,160C640,180,800,220,960,224C1120,228,1280,196,1440,160L1440,320L0,320Z" /&gt;
+&lt;/svg&gt;
+
+&lt;svg viewBox="0 0 1440 320"&gt;
+  &lt;path fill="#93c5fd" fill-opacity="0.2" d="M0,160L80,180C160,200,320,240,480,245C640,250,800,220,960,200C1120,180,1280,160,1440,165L1440,320L0,320Z" /&gt;
+&lt;/svg&gt;
+</pre></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleCode(index) {
+      const allBlocks = document.querySelectorAll('.code-block');
+      allBlocks.forEach((block, i) => {
+        block.classList.toggle('open', i === index ? !block.classList.contains('open') : false);
+      });
+    }
+
+    // Keyframe animation for CSS blobs
+    const style = document.createElement("style");
+    style.innerHTML = `@keyframes blobMove {
+      0%, 100% { transform: translate(-25%, 0%) scale(1); }
+      50% { transform: translate(0%, 10%) scale(1.1); }
+    }`;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
