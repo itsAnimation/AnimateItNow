@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
+
 function setTheme(dark) {
   if (dark) {
     body.classList.add('dark');
@@ -120,3 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 });
+function zkfunction(){
+  alert("upload your Template");
+
+}
