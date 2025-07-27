@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /*  Removed conflicting navbar CSS, relying on styles.css */
     .navbar {
       display: flex;
       flex-direction: row;
@@ -15,61 +16,52 @@
       position: fixed;
       width: 100%;
     }
-
     .nav-right {
       display: flex;
       gap: 1.5rem;
     }
-
     a {
       text-decoration: none;
     }
-
     /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-    body.dark-theme {
+    /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+    body.dark {
       background-color: #121212;
       color: #f5f5f5;
       background: url(images/bgdark.png) no-repeat center center fixed;
       background-size: cover;
       background-position: center;
     }
-
     /* ✅ Heading fix */
-    body.dark-theme .templates-main h1 {
+    body.dark .templates-main h1 {
       color: #ffffff;
       font-weight: bold;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
-
     /* ✅ Template card titles */
-    body.dark-theme .template-card h2 {
+    body.dark .template-card h2 {
       color: #ffffff;
     }
-
     /* ✅ Button text */
-    body.dark-theme .template-btn {
+    body.dark .template-btn {
       color: #ffffff;
       background-color: #333;
       border: 1px solid #555;
     }
-
-    body.dark-theme .template-btn:hover {
+    body.dark .template-btn:hover {
       background-color: #444;
       color: #fff;
     }
-
     /* ✅ Navbar items */
-    body.dark-theme .navbar,
-    body.dark-theme .nav-links a,
-    body.dark-theme .site-name {
+    body.dark .navbar,
+    body.dark .nav-links a,
+    body.dark .site-name {
       background-color: #1a1a1a;
       color: #ffffff;
     }
-
-    body.dark-theme .nav-links a:hover {
+    body.dark .nav-links a:hover {
       color: #90caf9;
     }
-
     /* 🧼 Remove margins to prevent light-space bleed */
     body,
     html {
@@ -78,7 +70,6 @@
       width: 100%;
       overflow-x: hidden;
     }
-
     /* 💡 Smooth transitions */
     .templates-main h1,
     .template-card h2,
@@ -87,62 +78,47 @@
     .nav-links a {
       transition: color 0.3s ease, background-color 0.3s ease;
     }
-
     /* ✨ Make text inside template cards fully visible */
-    body.dark-theme .template-card h2,
-    body.dark-theme .template-btn,
-    body.dark-theme .template-card {
+    body.dark .template-card h2,
+    body.dark .template-btn,
+    body.dark .template-card {
       color: #ffffff;
     }
-
     /* 🎯 Bonus: ensure buttons look clickable and clean */
-    body.dark-theme .template-btn {
+    body.dark .template-btn {
       background-color: #333;
       border: 1px solid #555;
     }
-
-    body.dark-theme .template-btn:hover {
+    body.dark .template-btn:hover {
       background-color: #444;
       color: #ffffff;
     }
-
-    /* 🌟 Optional: animate the visibility for style */
-    .template-card h2,
-    .template-btn {
-      transition: color 0.3s ease, background-color 0.3s ease;
-    }
-
     /* 🔧 Template card container */
-    body.dark-theme .template-card {
+    body.dark .template-card {
       background-color: #1e1e1e;
       color: #ffffff;
       border: 1px solid #444;
     }
-
     /* 🖋 Titles inside cards */
-    body.dark-theme .template-card h2 {
+    body.dark .template-card h2 {
       color: #ffffff;
     }
-
     /* 🔘 Buttons */
-    body.dark-theme .template-btn {
+    body.dark .template-btn {
       color: #ffffff;
       background-color: #333;
       border: 1px solid #555;
     }
-
     /* 🖱 Hover effect for buttons */
-    body.dark-theme .template-btn:hover {
+    body.dark .template-btn:hover {
       background-color: #444;
       color: #ffffff;
     }
-
     /* 🪄 Smooth transitions */
     .template-card h2,
     .template-btn {
       transition: color 0.3s ease, background-color 0.3s ease;
     }
-
     /* Base preview style */
     .template-preview {
       height: 90px;
@@ -157,20 +133,18 @@
       padding: 10px;
       box-sizing: border-box;
     }
-
     /* Dark mode support */
-    body.dark-theme .template-preview {
+    /*  Changed 'dark-theme' to 'dark' */
+    body.dark .template-preview {
       background-color: #2a2a2a;
       box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
     }
-
     /* Feature Cards Preview */
     .feature-preview {
       background-color: #4f8cff;
       padding: 12px;
       gap: 10px;
     }
-
     .feature-preview .mini-card {
       background-color: white;
       flex: 1;
@@ -184,7 +158,6 @@
       color: #555;
       font-weight: 600;
     }
-
     /* Hero Section Preview */
     .hero-preview {
       background-color: #4f8cff;
@@ -192,7 +165,6 @@
       padding: 14px;
       gap: 8px;
     }
-
     .hero-preview .hero-image {
       background-color: white;
       border-radius: 8px;
@@ -200,7 +172,6 @@
       height: 50px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
-
     .hero-preview .hero-text-line {
       background-color: white;
       border-radius: 5px;
@@ -208,11 +179,9 @@
       width: 80%;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
-
     .hero-preview .hero-text-line.short {
       width: 50%;
     }
-
     /* Social Share Preview */
     .social-share-preview {
       background-color: #4f8cff;
@@ -220,206 +189,111 @@
       font-size: 28px;
       color: white;
     }
-
     .social-share-preview .social-icon-preview {
       transition: transform 0.2s ease-in-out;
     }
-
     .social-share-preview:hover .social-icon-preview {
       transform: scale(1.1);
     }
-
     /* Navbar Preview */
-    .template-preview.navbar-preview {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      height: 50px;
-      padding: 8px 12px;
-      background: #e6f0ff;
-      /* light blue background */
-      border-radius: 8px;
-    }
-
-    /* Logo block */
-    .navbar-logo {
-      width: 40px;
-      height: 40px;
+    .navbar-preview {
       background-color: #4f8cff;
-      border-radius: 6px;
-    }
-
-    /* Link blocks */
-    .navbar-link {
-      width: 60px;
-      height: 12px;
-      background-color: #4f8cff;
-      border-radius: 4px;
-      opacity: 0.8;
-    }
-
-    .navbar-link.short {
-      width: 40px;
-    }
-
-    .navbar-link.shorter {
-      width: 30px;
-    }
-
-    /* Accordion style FAQs CSS */
-    .template-preview.faq-preview {
-      background: #e6f0ff;
-      /* same light blue as navbar preview */
-      border-radius: 8px;
-      padding: 15px;
-      display: flex;
       flex-direction: column;
-      gap: 10px;
-      align-items: flex-start;
-      height: 120px;
       justify-content: center;
+      padding: 12px;
+      gap: 8px;
     }
-
-    .faq-line {
-      height: 12px;
-      background: #4d90fe;
-      /* medium blue for FAQ lines */
-      border-radius: 6px;
-      opacity: 0.8;
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
-
-    .faq-line.long {
-      width: 80%;
-    }
-
-    .faq-line.medium {
-      width: 65%;
-    }
-
-    .faq-line.short {
-      width: 50%;
-    }
-
-    .faq-line.shorter {
+    .navbar-line.logo {
       width: 40%;
     }
-    
-    /* CSS of newly added PRICE PLANS */
-    .template-preview.price-preview {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      /* Increased gap for more spacing */
-      height: 120px;
-      padding: 10px 15px;
-      background: #4f8cff;
-      ;
-      /* Light blue background */
-      border-radius: 8px;
+    .navbar-line.link {
+      width: 70%;
     }
-
-    /* Price Plan lines */
-    .price-line {
-      height: 12px;
-      background-color: white;
-      /* Darker blue */
-      border-radius: 6px;
-      opacity: 0.8;
+    .navbar-line.link.short {
+      width: 50%;
     }
-
-    /* Width variations */
-    .price-line.long {
-      width: 80px;
-      height: 60px;
-    }
-    
     /* ADDED: Animated Toggles Preview CSS */
     .toggles-preview {
-        background-color: #4f8cff;
-        gap: 20px;
+      background-color: #4f8cff;
+      gap: 20px;
     }
-
     .mini-toggle {
-        width: 50px;
-        height: 25px;
-        background-color: #ccc;
-        border-radius: 25px;
-        position: relative;
-        padding: 3px;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      position: relative;
+      padding: 3px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
     }
-
     .mini-handle {
-        width: 19px;
-        height: 19px;
-        background-color: white;
-        border-radius: 50%;
-        position: absolute;
-        transition: transform 0.3s ease;
+      width: 19px;
+      height: 19px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      transition: transform 0.3s ease;
     }
-
     .mini-toggle.off .mini-handle {
-        transform: translateX(0);
+      transform: translateX(0);
     }
-    
     .mini-toggle.on {
-        background-color: #25d366; /* A nice 'on' color */
+      background-color: #25d366; /* A nice 'on' color */
     }
-
     .mini-toggle.on .mini-handle {
-        transform: translateX(25px);
+      transform: translateX(25px);
     }
-/*Display Properties Preview */
-.display-preview {
-  background-color: #4f8cff;
-  height: 90px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.display-box {
-  border-radius: 4px;
-  display: inline-block;
-}
-
-.display-box.box1 {
-  width: 24px;
-  height: 24px;
-  background-color: #bbdefb;
-}
-
-.display-box.box2 {
-  width: 24px;
-  height: 32px;
-  background-color: #90caf9;
-}
-
-.display-box.box3 {
-  width: 24px;
-  height: 28px;
-  background-color: #64b5f6;
-}
-
-/* 🌙 Dark Theme Support */
-body.dark-theme .display-preview {
-  background-color: #2a2a2a;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
-}
-
+    /*Display Properties Preview */
+    .display-preview {
+      background-color: #4f8cff;
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .display-box {
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .display-box.box1 {
+      width: 24px;
+      height: 24px;
+      background-color: #bbdefb;
+    }
+    .display-box.box2 {
+      width: 24px;
+      height: 32px;
+      background-color: #90caf9;
+    }
+    .display-box.box3 {
+      width: 24px;
+      height: 28px;
+      background-color: #64b5f6;
+    }
+    /* 🌙 Dark Theme Support */
+    /*  Changed 'dark-theme' to 'dark' */
+    body.dark .display-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
   </style>
 </head>
 <body>
-   <nav class="navbar scroll-fade">
+  <nav class="navbar scroll-fade">
     <div class="nav-left">
       <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
       <span class="site-name">Animate It Now</span>
     </div>
-
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
@@ -427,6 +301,7 @@ body.dark-theme .display-preview {
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
         <!-- cursor toggle switch -->
         <li>
           <label class="switch" title="Toggle Snake Cursor">
@@ -437,13 +312,13 @@ body.dark-theme .display-preview {
         <!-- github icon -->
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
-             target="_blank" 
-             rel="noopener noreferrer" 
+             target="_blank"
+             rel="noopener noreferrer"
              aria-label="GitHub Repo"
              class="github-icon">
             <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
+                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                 -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
                .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
@@ -457,7 +332,7 @@ body.dark-theme .display-preview {
             </svg>
           </a>
         </li>
-        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+        <li><button id="theme-toggle" aria-label="Toggle Theme">
               <i data-lucide="moon"></i>
             </button>
         </li>
@@ -476,233 +351,166 @@ body.dark-theme .display-preview {
       />
     </div>
     <section class="templates-grid">
-      <a class="template-card card-lift ripple" href="templates/login.html">
+      <a class="template-card" href="templates/login.html">
         <h2>Login Page UI</h2>
         <div class="template-preview login-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/button.html">
+      <a class="template-card" href="templates/button.html">
         <h2>Hover Button Effects</h2>
         <div class="template-preview button-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/loader.html">
+      <a class="template-card" href="templates/loader.html">
         <h2>Loaders</h2>
         <div class="template-preview loader-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/modal.html">
+      <a class="template-card" href="templates/modal.html">
         <h2>Popup Templates</h2>
         <div class="template-preview modal-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/glassmorphism.html">
+      <a class="template-card" href="templates/glassmorphism.html">
         <h2>Glassmorphism profile card</h2>
         <div class="template-preview modal-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/feature.html">
+      <a class="template-card" href="templates/feature.html">
         <h2>Feature Cards UI</h2>
         <div class="template-preview feature-preview">
           <div class="mini-card">Card1</div>
           <div class="mini-card">Card2</div>
           <div class="mini-card">Card3</div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/hero.html">
+      <a class="template-card" href="templates/hero.html">
         <h2>Hero Section Template</h2>
         <div class="template-preview hero-preview">
           <div class="hero-image"></div>
           <div class="hero-text-line"></div>
           <div class="hero-text-line short"></div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <article class="template-card card-lift ripple">
-  <h2>Animated Button</h2>
-  <div class="template-preview button-preview"></div>
-  <a class="template-btn ripple btn-press" href="templates/animated-btn.html">View Template</a>
-</article> 
-      <a class="template-card card-lift ripple" href="templates/social-share-buttons.html">
+      <article class="template-card">
+        <h2>Animated Button</h2>
+        <div class="template-preview button-preview"></div>
+        <a class="template-btn" href="templates/animated-btn.html">View Template</a>
+      </article>
+      <a class="template-card" href="templates/social-share-buttons.html">
         <h2>Animated Social Share Buttons</h2>
         <div class="template-preview social-share-preview">
           <i class="fab fa-facebook-f social-icon-preview"></i>
           <i class="fab fa-twitter social-icon-preview"></i>
           <i class="fab fa-instagram social-icon-preview"></i>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-      
-     <!-- CORRECTED TOOLTIP COMPONENT -->
-<a class="template-card" href="templates/tooltip.html">
-    <h2>Tooltip UI Component</h2>
-    <div class="template-preview">
-        <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
-    </div>
-    <span class="template-btn">View Template</span>
-</a>
-<!-- Responsive Card Carousel -->
-            <a class="template-card" href="templates/carousel.html">
-                <h2>Responsive Card Carousel</h2>
-                <div class="template-preview carousel-preview">
-                    <div class="mini-card"></div>
-                    <div class="mini-card"></div>
-                    <div class="mini-card"></div>
-                </div>
-                <span class="template-btn">View Template</span>
-            </a>
-
-
+      <!-- CORRECTED TOOLTIP COMPONENT -->
+      <a class="template-card" href="templates/tooltip.html">
+        <h2>Tooltip UI Component</h2>
+        <div class="template-preview">
+          <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+        </div>
+        <span class="template-btn">View Template</span>
+      </a>
+      <!-- Responsive Card Carousel -->
+      <a class="template-card" href="templates/carousel.html">
+        <h2>Responsive Card Carousel</h2>
+        <div class="template-preview carousel-preview">
+          <div class="mini-card"></div>
+          <div class="mini-card"></div>
+          <div class="mini-card"></div>
+        </div>
+        <span class="template-btn">View Template</span>
+      </a>
       <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
-      <a class="template-card card-lift ripple" href="templates/toggles-and-checkboxes.html">
+      <a class="template-card" href="templates/toggles-and-checkboxes.html">
         <h2>Animated Toggles</h2>
         <div class="template-preview toggles-preview">
-            <div class="mini-toggle off">
-                <div class="mini-handle"></div>
-            </div>
-            <div class="mini-toggle on">
-                <div class="mini-handle"></div>
-            </div>
+          <div class="mini-toggle off">
+            <div class="mini-handle"></div>
+          </div>
+          <div class="mini-toggle on">
+            <div class="mini-handle"></div>
+          </div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/neumorphic.html">
+      <a class="template-card" href="templates/neumorphic.html">
         <h2>Neumorphic Button Effects</h2>
         <div class="template-preview neumorphic-preview"></div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-
-      <a class="template-card card-lift ripple" href="templates/navbar.html">
+      <a class="template-card" href="templates/navbar.html">
         <h2>Navbar Variants</h2>
         <div class="template-preview navbar-preview">
           <div class="navbar-line logo"></div>
           <div class="navbar-line link"></div>
           <div class="navbar-line link short"></div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-      <a class="template-card card-lift ripple" href="templates/display.html">
+      <a class="template-card" href="templates/display.html">
         <h2>Display Properties</h2>
         <div class="template-preview display-preview">
           <div class="display-box box1"></div>
           <div class="display-box box2"></div>
           <div class="display-box box3"></div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-      
-      <!-- Added Navbar Card -->
-      <article class="template-card">
-        <h2>Navbar Template</h2>
-        <div class="template-preview navbar-preview">
-          <div class="navbar-logo"></div>
-          <div class="navbar-link"></div>
-          <div class="navbar-link"></div>
-          <div class="navbar-link short"></div>
-          <div class="navbar-link shorter"></div>
-        </div>
-        <a class="template-btn" href="templates/navbar.html">View Template</a>
-      </article>
-      
-      <!-- Added FAQs Card -->
-      <article class="template-card">
-        <h2>Accordion Style FAQs Section</h2>
-        <div class="template-preview faq-preview">
-          <div class="faq-line long"></div>
-          <div class="faq-line medium"></div>
-          <div class="faq-line short"></div>
-          <div class="faq-line shorter"></div>
-        </div>
-        <a class="template-btn" href="templates/faq_acc.html">View Template</a>
-      </article>
-
-      <article class="template-card">
-        <h2>Price Plan Template</h2>
-        <div class="template-preview price-preview">
-          <div class="price-line long"></div>
-          <div class="price-line long"></div>
-          <div class="price-line long"></div>
-        </div>
-        <a class="template-btn" href="templates/price_plan.html">View Template</a>
-      </article>
-
-      <a class="template-card card-lift ripple" href="templates/CardHoverEffects.html">
+      <a class="template-card" href="templates/CardHoverEffects.html">
         <h2>3D Card Hover Effects</h2>
         <div class="template-preview navbar-preview">
           <div class="navbar-line link"></div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
-      <a class="template-card card-lift ripple" href="templates/page_not_found_template.html">
+      <a class="template-card" href="templates/page_not_found_template.html">
         <h2>404 Page not found</h2>
         <div class="template-preview 404-preview">
           <div class="page link"></div>
         </div>
-        <button class="template-btn ripple btn-press">View Template</button>
+        <button class="template-btn">View Template</button>
       </a>
     </section>
   </main>
   <div id="container">
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a></li>
+            <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a></li>
+            <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a></li>
-          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a></li>
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>
-        © 2025 AnimateItNow. Made with ❤️ by
-        <span class="highlight">Anuj</span> and Contributors.
-      </p>
-    </div>
-  </footer></div>
-  <div id="cursor-snake"></div>
+    </footer>
+  </div>
+  <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
+  <!-- <div id="cursor-snake"></div> -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!--  Added link to your shared script.js -->
+  <script src="script.js"></script>
   <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    function setTheme(isDark) {
-      const newIcon = isDark ? 'sun' : 'moon';
-      document.getElementById('container').classList.toggle('dark', isDark);
-      body.classList.toggle('dark-theme', isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-      if (themeToggle) {
-        themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
-        lucide.createIcons();
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
-
-    themeToggle?.addEventListener('click', () => {
-      setTheme(!body.classList.contains('dark-theme'));
-    });
-
-    lucide.createIcons();
-
+    //  This script now ONLY contains functionality specific to templates.html
+    // Theme toggle and cursor logic are handled by script.js
+    
     // Scroll animation for cards
     const observer = new IntersectionObserver(
       (entries) => {
@@ -714,7 +522,6 @@ body.dark-theme .display-preview {
       },
       { threshold: 0.1 }
     );
-
     document.querySelectorAll(".template-card").forEach((card) => {
       observer.observe(card);
     });
@@ -722,15 +529,12 @@ body.dark-theme .display-preview {
     // Search & Category Filter Functionality
     const searchBar = document.getElementById('search-bar');
     const templateCards = document.querySelectorAll('.template-card');
-    // const noResultsMsg = document.getElementById('no-results'); // Optional: Add a "no results" div to your HTML
-
     function filterTemplates() {
       const query = searchBar.value.trim().toLowerCase();
       let visibleCount = 0;
-
       templateCards.forEach(card => {
         const title = card.querySelector('h2').textContent.trim().toLowerCase();
-        const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
+        const matchesTitle = title.includes(query);
         if (matchesTitle) {
           card.style.display = '';
           visibleCount++;
@@ -738,13 +542,7 @@ body.dark-theme .display-preview {
           card.style.display = 'none';
         }
       });
-      /*
-      if (noResultsMsg) {
-          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
-      }
-      */
     }
-
     searchBar.addEventListener('input', filterTemplates);
   </script>
     <script src="script.js"></script>
