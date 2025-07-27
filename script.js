@@ -1,11 +1,54 @@
-// Function to make the FAQ collapsible
+// Fixed and cleaned version of your full JS script
+
+// Scroll Progress Bar
+window.addEventListener("scroll", () => {
+  const progressBar = document.querySelector(".progress-bar")
+  const totalHeight = document.body.scrollHeight - window.innerHeight
+  const progress = (window.scrollY / totalHeight) * 100
+  progressBar.style.width = `${progress}%`
+})
+
+// Theme Toggle
+const themeToggle = document.getElementById("theme-toggle")
+const root = document.documentElement
+
+function setTheme(dark) {
+  root.setAttribute("data-theme", dark ? "dark" : "light")
+  localStorage.setItem("theme", dark ? "dark" : "light")
+  themeToggle.innerHTML = dark ? "light_mode" : "dark_mode"
+}
+
+// Load Theme
+const storedTheme = localStorage.getItem("theme")
+const isDark = storedTheme === "dark"
+setTheme(isDark)
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    setTheme(root.getAttribute("data-theme") === "light")
+  })
+}
+
+// Contributors Section Reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show")
+    }
+  })
+})
+
+document.querySelectorAll(".hidden").forEach(el => observer.observe(el))
+
+// FAQ Toggle
 function toggleFAQ(element) {
+
   if (!document.querySelector(".faq-item")) return;
   const faqItem = element.closest(".faq-item"); // to make sure we can click anywhere
   const isActive = faqItem.classList.contains("active");
 
-  // Close all other FAQ items
-  document.querySelectorAll(".faq-item.active").forEach((item) => {
+
+  document.querySelectorAll(".faq-item.active").forEach(item => {
     if (item !== faqItem) {
       item.classList.remove("active");
     }
@@ -238,9 +281,11 @@ if (desktopToggle) {
     } else {
       disableSnakeCursor();
       localStorage.setItem("cursorEnabled", false);
+
     }
   });
 }
+
 
 // Mobile toggle works independently (no localStorage sync)
 if (mobileToggle) {
