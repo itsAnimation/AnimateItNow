@@ -64,6 +64,70 @@
       width: fit-content;
     }
 
+    /* Rounded Cards for Loaders */
+    .loader-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px auto;
+      padding: 0 20px;
+      max-width: 1200px;
+    }
+
+    .loader-card-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-card-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+      border-color: rgba(79, 140, 255, 0.3);
+    }
+
+    .loader-card-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4f8cff, #00b4d8, #ffc300);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .loader-card-item h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.3rem;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .loader-card-item .usage-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .loader-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 120px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
     /*Individual Loaders */
     .loader-spin {
       width: 80px;
@@ -324,6 +388,7 @@
     @media (max-width: 800px) {
       .loader-playground { grid-template-columns: 1fr; }
       .preview-pane { height: 160px; }
+      .loader-showcase { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .loader-cards {
@@ -336,6 +401,14 @@
       #loader-preview { width: 48px; height: 48px; }
       .controls-pane { padding: 0; }
       .controls-pane label { flex-direction: column; align-items: flex-start; }
+      .loader-showcase { 
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 20px auto;
+      }
+      .loader-card-item {
+        padding: 24px 16px;
+      }
     }
 
   </style>
@@ -393,14 +466,58 @@
       </div>
     </div>
 
-    <div class="loader-container">
-      <div class="loader-spin"></div>
-      <div class="loader-l1"></div>
-      <div class="loader-l2"></div>
-      <div class="loader-l3"></div>
-      <div class="loader-l4"></div>
-      <div class="loader-l5"></div>
-    </div>
+    <!-- Loader Showcase with Rounded Cards -->
+    <section class="loader-showcase">
+      <div class="loader-card-item">
+        <h3>Classic Spinner</h3>
+        <p class="usage-text">Perfect for form submissions and API calls</p>
+        <div class="loader-display">
+          <div class="loader-spin"></div>
+        </div>
+      </div>
+
+      <div class="loader-card-item">
+        <h3>Half Circle</h3>
+        <p class="usage-text">Great for page transitions and content loading</p>
+        <div class="loader-display">
+          <div class="loader-l1"></div>
+        </div>
+      </div>
+
+      <div class="loader-card-item">
+        <h3>Ring Spinner</h3>
+        <p class="usage-text">Ideal for button loading states and inline progress</p>
+        <div class="loader-display">
+          <div class="loader-l2"></div>
+        </div>
+      </div>
+
+      <div class="loader-card-item">
+        <h3>Clock Loader</h3>
+        <p class="usage-text">Best for time-sensitive operations and uploads</p>
+        <div class="loader-display">
+          <div class="loader-l3"></div>
+        </div>
+      </div>
+
+      <div class="loader-card-item">
+        <h3>Arc Progress</h3>
+        <p class="usage-text">Excellent for file downloads and processing tasks</p>
+        <div class="loader-display">
+          <div class="loader-l4"></div>
+        </div>
+      </div>
+
+      <div class="loader-card-item">
+        <h3>Radial Pulse</h3>
+        <p class="usage-text">Perfect for search operations and data fetching</p>
+        <div class="loader-display">
+          <div class="loader-l5"></div>
+        </div>
+      </div>
+    </section>
+
+   
   </main>
 
   <!-- Footer -->
