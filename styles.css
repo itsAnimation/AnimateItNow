@@ -1085,7 +1085,13 @@ background-clip: text;
   width: 100%;
 }
 
-.template-card {
+body:not(.dark) .template-card {
+  background: linear-gradient(to bottom right, #e0f2fe, #d1fae5);
+  animation: neonGlow 4s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+}
+
+ .template-card {
   border-radius: 1.2rem;
   padding: 2rem 1.2rem 1.5rem 1.2rem;
   display: flex;
@@ -1096,9 +1102,6 @@ background-clip: text;
   position: relative;
   overflow: hidden;
   transition: opacity 0.7s, transform 0.7s;
- background: linear-gradient(to bottom right, #e0f2fe, #d1fae5);
-  animation: neonGlow 4s ease-in-out infinite;
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
 }
 
 .template-card.visible {
@@ -2300,3 +2303,5 @@ body.dark .glow-wrap::before {
 #search-bar::placeholder {
    color: rgba(31, 41, 55, 0.8);
 }
+
+
