@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Card Hover Effect | AnimateItNow</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -378,6 +379,32 @@
                 padding: 1rem;
             }
         }
+
+        /* DARK MODE STYLING */
+        body.dark {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        body.dark h1,
+        body.dark h2,
+        body.dark h3,
+        body.dark p,
+        body.dark .template-card h2,
+        body.dark .template-card h3,
+        body.dark .effect-title,
+        body.dark a {
+            color: #ffffff;
+        }
+
+        body.dark .card {
+            background-color: #1f1f1f;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark .card:hover {
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
@@ -395,7 +422,9 @@
             <li><a href="../contributors.html">Contributors</a></li>
             <li><a href="../contact.html">Contact</a></li>
         </ul>
-        <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+        </button>
     </nav>
 
     <div class="container">
@@ -600,6 +629,35 @@
                     card.style.transform = card.style.transform.replace(' scale(0.98)', '');
                 }, 150);
             });
+        });
+        
+        //for dark mode (CardHoverEffect.html)
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function setTheme(isDark) {
+            const newIcon = isDark ? 'sun' : 'moon';
+            body.classList.toggle('dark', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            if (themeToggle) {
+                themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+                if (window.lucide) lucide.createIcons();
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+
+        themeToggle?.addEventListener('click', () => {
+            setTheme(!body.classList.contains('dark'));
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         });
     </script>
 </body>
