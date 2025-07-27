@@ -95,6 +95,11 @@
     .cbx-glitch { cursor: pointer; } .cbx-glitch-box { width: 30px; height: 30px; border: 2px solid #aaa; position: relative; } .cbx-glitch-check { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; opacity: 0; transition: opacity 0.1s; } .cbx-glitch-box::before, .cbx-glitch-box::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); clip-path: inset(50% 0 50% 0); opacity: 0; } #cbx-glitch:checked ~ .cbx-glitch-box { animation: glitch-box-anim 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box .cbx-glitch-check { opacity: 1; animation: glitch-check-anim 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box::before { animation: glitch-skew-1 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box::after { animation: glitch-skew-2 0.4s steps(2, end); } @keyframes glitch-box-anim { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0); } } @keyframes glitch-check-anim { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } } @keyframes glitch-skew-1 { 0% { transform: translate(-2px, 2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } } @keyframes glitch-skew-2 { 0% { transform: translate(2px, -2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } }
 
     .code-actions { display: flex; justify-content: center; gap: 10px; margin-top: 25px; } .action-btn { display: inline-block; padding: 8px 18px; background-color: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s; } .action-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); } .copy-btn { background-color: #6c757d; } .copy-btn:hover { background-color: #5a6268; } .code-block { display: none; background: #2d2d2d; color: #ccc; padding: 20px; border-radius: 8px; margin-top: 15px; white-space: pre-wrap; overflow-x: auto; text-align: left; font-family: "Fira Code", "Courier New", monospace; font-size: 0.85rem; position: relative; } .code-block.visible { display: block; }
+    /* 12. Glitch Checkbox */
+   #orbitFlipToggle.orbit-flip-toggle-container { position: relative; width: 120px; height: 120px; border-radius: 50%; background: #333; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+  #orbitFlipToggle .orbit-flip-toggle-inner-circle { position: absolute; width: 80px; height: 80px; border-radius: 50%; background: #222; display: flex; justify-content: center; align-items: center; }
+  #orbitFlipToggle .orbit-flip-toggle-handle { position: absolute; width: 40px; height: 40px; background: #fff; border-radius: 50%; transition: transform 0.6s ease-in-out; transform: rotate(0deg) translateY(-50px); }
+  #orbitFlipToggle.active .orbit-flip-toggle-handle { transform: rotate(180deg) translateY(-50px); background: #4ade80; }
   </style>
 </head>
 <body>
@@ -127,7 +132,7 @@
     <section><h2>6. Stretchy Elastic Checkbox</h2><p class="subtitle">A playful checkbox that stretches and snaps back with a fun, elastic animation.</p><div class="component-container"><label class="cbx-elastic"><input type="checkbox" id="cbx-elastic" class="hidden-input"><div class="cbx-elastic-box"><i class="fas fa-check cbx-elastic-check"></i></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
     <section><h2>7. 3D "Flip-Flop" Switch</h2><p class="subtitle">A realistic switch that flips on its X-axis to reveal ON/OFF states.</p><div class="component-container"><label class="tgl-flip-flop"><input type="checkbox" id="tgl-flip-flop" class="hidden-input"><div class="tgl-flip-flop-inner"><div class="tgl-flip-flop-face tgl-flip-flop-front">OFF</div><div class="tgl-flip-flop-face tgl-flip-flop-back">ON</div></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
     <section><h2>8. Comet Burst Toggle</h2><p class="subtitle">The handle dissolves into a burst of comet-like particles and reforms.</p><div class="component-container"><input type="checkbox" id="tgl-particle" class="hidden-input"><div class="tgl-particle-container"><label for="tgl-particle" class="tgl-particle-label"></label><div class="tgl-particle-handle"></div></div></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
-
+     
     <section>
       <h2>9. Shutter Toggle</h2>
       <p class="subtitle">A camera-inspired toggle where animated blades reveal the ON state.</p>
@@ -200,6 +205,8 @@
   &lt;div class="cbx-glitch-box"&gt;...&lt;/div&gt;
 &lt;/label&gt;</code></pre>
     </section>
+    <section><h2>8. Orbit Flip Toggle</h2><p class="subtitle">A circular toggle where the handle orbits halfway around like a Newton's Cradle motion.</p><div class="component-container"><div id="orbitFlipToggle" class="orbit-flip-toggle-container"><div class="orbit-flip-toggle-inner-circle"></div><div class="orbit-flip-toggle-handle"></div></div></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>&lt;div id="orbitFlipToggle" class="orbit-flip-toggle-container"&gt;&lt;div class="orbit-flip-toggle-inner-circle"&gt;&lt;/div&gt;&lt;div class="orbit-flip-toggle-handle"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;#orbitFlipToggle.orbit-flip-toggle-container{position:relative;width:120px;height:120px;border-radius:50%;background:#333;display:flex;justify-content:center;align-items:center;cursor:pointer;}#orbitFlipToggle .orbit-flip-toggle-inner-circle{position:absolute;width:80px;height:80px;border-radius:50%;background:#222;display:flex;justify-content:center;align-items:center;}#orbitFlipToggle .orbit-flip-toggle-handle{position:absolute;width:40px;height:40px;background:#fff;border-radius:50%;transition:transform 0.6s ease-in-out;transform:rotate(0deg) translateY(-50px);}#orbitFlipToggle.active .orbit-flip-toggle-handle{transform:rotate(180deg) translateY(-50px);background:#4ade80;}&lt;/style&gt;&lt;script&gt;const orbitFlipToggle=document.getElementById('orbitFlipToggle');orbitFlipToggle.addEventListener('click',()=>{orbitFlipToggle.classList.toggle('active');});&lt;/script&gt;</code></pre></section>
+
   </main>
 
   <script>
@@ -213,7 +220,9 @@
     // --- Code Block Toggle & Copy ---
     document.querySelectorAll('.view-code-btn').forEach(button => { button.addEventListener('click', () => { const codeBlock = button.closest('section').querySelector('.code-block'); codeBlock.classList.toggle('visible'); button.textContent = codeBlock.classList.contains('visible') ? 'Hide Code' : 'View Code'; }); });
     document.querySelectorAll('.copy-btn').forEach(button => { button.addEventListener('click', async () => { const codeBlock = button.closest('section').querySelector('.code-block'); const codeToCopy = codeBlock.querySelector('code').innerText; try { await navigator.clipboard.writeText(codeToCopy); button.textContent = 'Copied!'; } catch (err) { button.textContent = 'Failed!'; } setTimeout(() => { button.textContent = 'Copy HTML'; }, 2000); }); });
-
+    // --- Orbit Flip Toggle ---
+    const orbitFlipToggle = document.getElementById('orbitFlipToggle');
+  orbitFlipToggle.addEventListener('click', () => { orbitFlipToggle.classList.toggle('active'); });
     // --- Specific Component Logic ---
     const morphToggle = document.getElementById('tgl-morph');
     if (morphToggle) {
