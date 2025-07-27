@@ -36,95 +36,25 @@
     });
   }
 
-
-// Function to make the FAQ collapasble
+// Function to make the FAQ collapsible
 function toggleFAQ(element) {
-  if (!document.querySelector(".faq-item")) return;
-  const faqItem = element.closest(".faq-item"); //to make sure we can click anywhere
-  const isActive = faqItem.classList.contains("active");
-
+  if (!document.querySelector(".faq-item")) return
+  const faqItem = element.closest(".faq-item") //to make sure we can click anywhere
+  const isActive = faqItem.classList.contains("active")
 
   // Close all other FAQ items
   document.querySelectorAll(".faq-item.active").forEach((item) => {
     if (item !== faqItem) {
-      item.classList.remove("active");
+      item.classList.remove("active")
     }
-  });
-
+  })
 
   // Toggle current item
-  faqItem.classList.toggle("active", !isActive);
-
+  faqItem.classList.toggle("active", !isActive)
 }
 
 // Make toggleFAQ globally accessible
 window.toggleFAQ = toggleFAQ
-
-// Micro-interaction functions
-function addRippleEffect(element) {
-  element.addEventListener("click", function (e) {
-    const ripple = document.createElement("span");
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-
-    ripple.style.width = ripple.style.height = size + "px";
-    ripple.style.left = x + "px";
-    ripple.style.top = y + "px";
-    ripple.classList.add("ripple-effect");
-
-    this.appendChild(ripple);
-
-    setTimeout(() => {
-      ripple.remove();
-    }, 600);
-  });
-}
-
-function addButtonPressFeedback(element) {
-  element.addEventListener("mousedown", function () {
-    this.classList.add("btn-press");
-  });
-
-  element.addEventListener("mouseup", function () {
-    this.classList.remove("btn-press");
-  });
-
-  element.addEventListener("mouseleave", function () {
-    this.classList.remove("btn-press");
-  });
-}
-
-function addCardLiftEffect(element) {
-  element.classList.add("card-lift");
-}
-
-function showFeedback(element, type = "success") {
-  element.classList.add(`feedback-${type}`);
-  setTimeout(() => {
-    element.classList.remove(`feedback-${type}`);
-  }, 600);
-}
-
-function addCopyCodeFeedback() {
-  const copyButtons = document.querySelectorAll(".copy-btn");
-  copyButtons.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      showFeedback(this, "success");
-      // Add visual feedback for copy action
-      const originalText = this.textContent;
-      this.textContent = "Copied!";
-      this.style.background = "var(--feedback-success)";
-
-      setTimeout(() => {
-        this.textContent = originalText;
-        this.style.background = "";
-      }, 2000);
-    });
-  });
-}
-
 
 // Global (or module-level) variables to store animation and listener references for snake cursor
 let currentAnimationId = null
@@ -205,17 +135,14 @@ window.addEventListener("pagehide", () => {
   disableSnakeCursor()
 })
 
-
 window.addEventListener("DOMContentLoaded", () => {
   // Theme toggle
   const themeToggle = document.getElementById("theme-toggle")
   const body = document.body
   function setTheme(dark) {
-
     const newIcon = dark ? "sun" : "moon"
     body.classList.toggle("dark", dark) // Use 'dark' class for consistency
     localStorage.setItem("theme", dark ? "dark" : "light")
-
     // Replace icon completely
     if (themeToggle) {
       themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
@@ -224,51 +151,24 @@ window.addEventListener("DOMContentLoaded", () => {
         window.lucide.createIcons()
       }
     }
-
-    // Add feedback animation
-    showFeedback(themeToggle, "success");
   }
-
-  const savedTheme = localStorage.getItem("theme");
-  setTheme(savedTheme === "dark");
-
+  const savedTheme = localStorage.getItem("theme")
+  setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
-    const isDark = body.classList.contains("dark");
-    setTheme(!isDark);
-  });
-
+    const isDark = body.classList.contains("dark") // Check for 'dark' class
+    setTheme(!isDark)
+  })
   // Only call lucide.createIcons() if the lucide object is actually available
   // This ensures icons are created on initial load if the library is ready.
   if (window.lucide) {
     window.lucide.createIcons()
   }
-  
-  // Add micro-interactions to interactive elements
-  const interactiveElements = document.querySelectorAll(
-    ".cta-btn, .template-btn, #theme-toggle, .nav-links a, .footer-right a"
-  );
-  interactiveElements.forEach((element) => {
-    addRippleEffect(element);
-    addButtonPressFeedback(element);
-    element.classList.add("interactive");
-  });
-
-  // Add card lift effects to template cards
-  const templateCards = document.querySelectorAll(".template-card");
-  templateCards.forEach((card) => {
-    addCardLiftEffect(card);
-  });
-
-  // Add copy code feedback
-  addCopyCodeFeedback();
-
 
   // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-
           entry.target.classList.add("visible")
           // observer.unobserve(entry.target); // uncomment to animate only once
         }
@@ -285,7 +185,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (slider) {
     const slides = document.querySelectorAll(".card")
     let current = 0
-
     function showSlide(index) {
       const total = slides.length
       if (index >= total) current = 0
@@ -302,14 +201,11 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // 🧑‍💻 Contributors fetch
-
-  const contributorsGrid = document.getElementById("contributors-grid");
-
+  const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
     fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
-
         contributorsGrid.innerHTML = ""
         contributors.forEach((contributor) => {
           const card = document.createElement("a")
@@ -391,7 +287,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 🚦 ProgressBar Functionality
   function updateProgressBar() {
-
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop
     const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
     const scrollPercent = (windowScroll / documentHeight) * 100
@@ -404,4 +299,3 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize on load
   updateProgressBar()
 })
-
