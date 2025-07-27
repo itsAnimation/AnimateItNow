@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Hover Template | AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      body.dark-theme {
+        --card-bg: #2c2c2c;
+        --card-shadow: rgba(255, 255, 255, 0.05);
+        --card-shadow-hover: rgba(255, 255, 255, 0.1);
+        --text-primary: #f1f1f1;
+        --text-secondary: #aaaaaa;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        background: var(--card-bg);
+        border-radius: 20px;
+        box-shadow: 0 8px 24px var(--card-shadow);
+        margin-bottom: 60px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 32px var(--card-shadow-hover);
+      }
+
+      .card:nth-of-type(2) {
+        animation-delay: 0.2s;
+      }
+
+      .card-vertical .template-preview {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .card-vertical {
+        flex-direction: column;
+        width: 300px;
+        justify-content: center;
+        height: 400px;
+        max-width: 100%;
+      }
+      .card-vertical .template-preview img {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .templates-main {
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 6rem 1rem 2rem 1rem;
+      }
+      .template-card {
+        align-items: stretch;
+      }
+
+      .template-preview {
+        flex: 1.2;
+        min-width: 300px;
+      }
+
+      .template-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .card:hover .template-preview img {
+        transform: scale(1.05);
+      }
+
+      .template-info {
+        flex: 1;
+        min-width: 300px;
+        padding: 10px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+
+      }
+
+      .template-info h2 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+        color: var(--text-primary);
+      }
+
+      .template-info p {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--accent);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        align-self: flex-start;
+      }
+      .btn:hover {
+        background-color: #2f75f7;
+      }
+
+      
+
+      
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .card {
+          flex-direction: column !important;
+        }
+        .template-card .template-info,
+        .template-card .template-preview {
+          order: unset !important;
+        }
+        .template-info {
+          text-align: left !important;
+        }
+        .template-info .btn {
+          align-self: flex-start !important;
+        }
+      }
+
+      .links{
+        display: flex;
+        
+      }
+      .button{
+       display: flex;
+       
+        background-color: var(--accent);
+        color: #fff;
+        padding: 10px 8px;
+        border-radius: 8px;
+        margin: 3px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        
+      }
+
+      .button:hover {
+        background-color: #2f75f7;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <main class="templates-main" >
+      
+        <article class="card card-vertical">
+          <div class="template-preview">
+            <img
+              src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg"
+              alt="Vertical Card Preview"
+            />
+          </div>
+          <div class="template-info">
+            <h2>Card Title</h2>
+            <p>
+              This is some quick example text to build on the card title and
+              make up the bulk of the card's content.
+            </p>
+            <a href="#" class="btn">Go Somewhere</a>
+          </div>
+        </article>
+
+        <article class="card card-vertical">
+          <div style="width: 300px; height: 100px; "></div>
+          <div class="template-info">
+            <h2 style="margin-bottom: 0; padding-bottom: 0;">Card Title</h2>
+            <h4 style="color:var(--text-secondary);">Sub Title</h4>
+            <p>
+              This is some quick example text to build on the card title and
+              make up the bulk of the card's content.
+            </p>
+            <div class="links">
+                <a href="#" class="button">Card Link</a>
+                <a href="#" class="button">Another Link</a>
+            </div>
+            
+          </div>
+        </article>
+
+
+
+      
+    </main>
+
+    <footer>
+      <p>Made with ❤️ by Anuj and Contributors</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <!-- PWA Support -->
+  <script src="../pwa.js"></script>
+</body>
+</html>

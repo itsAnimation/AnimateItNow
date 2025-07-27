@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer | AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="Logo" class="logo" />
+        <span class="site-name">AnimateItNow</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
+
+    <main class="templates-main">
+      <h1>Countdown Timer</h1>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <label for="dateInput" style="font-weight: 600;">Choose a target date (dd-mm-yyyy):</label><br />
+        <input type="date" id="dateInput" placeholder="dd-mm-yyyy" />
+        <button id="startBtn" onclick="startCountdownFromInput()">Start Countdown</button>
+      </div>
+
+      <div id="countdown" style="display: flex; justify-content: center; gap: 20px; margin-top: 40px;">
+        <div><span id="days">00</span><label>Days</label></div>
+        <div><span id="hours">00</span><label>Hours</label></div>
+        <div><span id="minutes">00</span><label>Minutes</label></div>
+        <div><span id="seconds">00</span><label>Seconds</label></div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Made with ❤ by Anuj and Contributors</p>
+    </footer>
+
+    <style>
+      #countdown div {
+        text-align: center;
+        background: #e0e7ff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100px;
+      }
+
+      #countdown span {
+        display: block;
+        font-size: 40px;
+        color: #4f8cff;
+        font-weight: bold;
+      }
+
+      #countdown label {
+        margin-top: 5px;
+        display: block;
+        font-size: 14px;
+        color: #333;
+      }
+
+      input[type="date"] {
+        padding: 10px 14px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        outline: none;
+        margin-top: 10px;
+        background: #f9f9f9;
+        color: #333;
+      }
+
+      input[type="date"]:focus {
+        border-color: #4f8cff;
+        background: #fff;
+      }
+
+      button#startBtn {
+        padding: 10px 20px;
+        margin-left: 10px;
+        background-color: #4f8cff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      button#startBtn:hover {
+        background-color: #3a65c9;
+        transform: translateY(-2px);
+      }
+    </style>
+
+    <script>
+      let countdownInterval;
+
+      function startCountdownFromInput() {
+        clearInterval(countdownInterval);
+
+        const input = document.getElementById("dateInput").value;
+        if (!input) return alert("Please select a date!");
+
+        const targetDate = new Date(input);
+        if (isNaN(targetDate)) return alert("Invalid date format!");
+
+        countdownInterval = setInterval(() => {
+          const now = new Date().getTime();
+          const distance = targetDate.getTime() - now;
+
+          if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown").innerHTML =
+              "<p style='font-size: 20px;'>🎉 Countdown Ended!</p>";
+            return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = String(days).padStart(2, '0');
+          document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+          document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        }, 1000);
+      }
+    </script>
+
+    <script src="../script.js"></script>
+    <!-- PWA Support -->
+  <script src="../pwa.js"></script>
+</body>
+</html>

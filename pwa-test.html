@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Test - AnimateItNow</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      min-height: 100vh;
+    }
+    .test-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .pass { background: #4CAF50; }
+    .fail { background: #f44336; }
+    .warning { background: #FF9800; }
+    .test-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+    }
+    .test-button {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      font-weight: bold;
+    }
+    .test-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .results {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: white;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to AnimateItNow</a>
+  
+  <h1>🔧 PWA Implementation Test</h1>
+  <p>This page helps test the Progressive Web App features of AnimateItNow.</p>
+
+  <div class="test-section">
+    <h2>📋 PWA Features Checklist</h2>
+    <div class="test-item">
+      <strong>Service Worker:</strong>
+      <span id="sw-status" class="status">Checking...</span>
+      <div id="sw-details" class="results"></div>
+    </div>
+    <div class="test-item">
+      <strong>Web App Manifest:</strong>
+      <span id="manifest-status" class="status">Checking...</span>
+      <div id="manifest-details" class="results"></div>
+    </div>
+    <div class="test-item">
+      <strong>HTTPS/Localhost:</strong>
+      <span id="https-status" class="status">Checking...</span>
+      <div id="https-details" class="results"></div>
+    </div>
+    <div class="test-item">
+      <strong>Installability:</strong>
+      <span id="install-status" class="status">Checking...</span>
+      <div id="install-details" class="results"></div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>🧪 Interactive Tests</h2>
+    <div class="test-item">
+      <h3>Cache Test</h3>
+      <p>Test if resources are being cached by the service worker:</p>
+      <button class="test-button" onclick="testCache()">Test Cache</button>
+      <button class="test-button" onclick="clearCache()">Clear Cache</button>
+      <div id="cache-results" class="results"></div>
+    </div>
+    
+    <div class="test-item">
+      <h3>Offline Test</h3>
+      <p>Test offline functionality:</p>
+      <button class="test-button" onclick="testOffline()">Simulate Offline</button>
+      <button class="test-button" onclick="testOnline()">Back Online</button>
+      <div id="offline-results" class="results"></div>
+    </div>
+    
+    <div class="test-item">
+      <h3>Install Test</h3>
+      <p>Test PWA installation:</p>
+      <button class="test-button" onclick="triggerInstall()">Trigger Install</button>
+      <button class="test-button" onclick="checkInstallStatus()">Check Install Status</button>
+      <div id="install-test-results" class="results"></div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>📊 Performance Metrics</h2>
+    <div class="test-item">
+      <button class="test-button" onclick="runPerformanceTest()">Run Performance Test</button>
+      <div id="performance-results" class="results"></div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>🎯 Lighthouse Audit</h2>
+    <div class="test-item">
+      <p>To run a complete PWA audit:</p>
+      <ol>
+        <li>Open Chrome DevTools (F12)</li>
+        <li>Go to the "Lighthouse" tab</li>
+        <li>Select "Progressive Web App"</li>
+        <li>Click "Generate report"</li>
+      </ol>
+      <p>Expected PWA score: 90+ for full compliance</p>
+    </div>
+  </div>
+
+  <script>
+    // PWA Feature Detection and Testing
+    class PWATester {
+      constructor() {
+        this.init();
+      }
+
+      async init() {
+        this.checkServiceWorker();
+        this.checkManifest();
+        this.checkHTTPS();
+        this.checkInstallability();
+      }
+
+      updateStatus(elementId, status, message, details = '') {
+        const statusEl = document.getElementById(elementId);
+        const detailsEl = document.getElementById(elementId.replace('-status', '-details'));
+        
+        statusEl.className = `status ${status}`;
+        statusEl.textContent = message;
+        
+        if (details && detailsEl) {
+          detailsEl.textContent = details;
+          detailsEl.style.display = 'block';
+        }
+      }
+
+      async checkServiceWorker() {
+        try {
+          if ('serviceWorker' in navigator) {
+            const registration = await navigator.serviceWorker.getRegistration();
+            if (registration) {
+              this.updateStatus('sw-status', 'pass', '✅ Active', 
+                `Service Worker registered at: ${registration.scope}\nScript: ${registration.active?.scriptURL || 'Loading...'}`);
+            } else {
+              this.updateStatus('sw-status', 'fail', '❌ Not Registered', 
+                'Service Worker not found. Check sw.js file and registration.');
+            }
+          } else {
+            this.updateStatus('sw-status', 'fail', '❌ Not Supported', 
+              'Service Workers not supported in this browser.');
+          }
+        } catch (error) {
+          this.updateStatus('sw-status', 'fail', '❌ Error', error.message);
+        }
+      }
+
+      async checkManifest() {
+        try {
+          const manifestLink = document.querySelector('link[rel="manifest"]');
+          if (manifestLink) {
+            const response = await fetch(manifestLink.href);
+            const manifest = await response.json();
+            this.updateStatus('manifest-status', 'pass', '✅ Found', 
+              `Name: ${manifest.name}\nShort Name: ${manifest.short_name}\nIcons: ${manifest.icons?.length || 0}`);
+          } else {
+            this.updateStatus('manifest-status', 'fail', '❌ Missing', 
+              'No manifest link found in HTML head.');
+          }
+        } catch (error) {
+          this.updateStatus('manifest-status', 'fail', '❌ Error', error.message);
+        }
+      }
+
+      checkHTTPS() {
+        const isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        if (isSecure) {
+          this.updateStatus('https-status', 'pass', '✅ Secure', 
+            `Protocol: ${location.protocol}\nHost: ${location.host}`);
+        } else {
+          this.updateStatus('https-status', 'warning', '⚠️ Insecure', 
+            'PWA requires HTTPS or localhost for full functionality.');
+        }
+      }
+
+      checkInstallability() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+          this.updateStatus('install-status', 'pass', '✅ Installable', 
+            'App meets PWA criteria and can be installed.');
+        });
+
+        // Check if already installed
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+          this.updateStatus('install-status', 'pass', '✅ Installed', 
+            'App is currently running in standalone mode.');
+        } else {
+          setTimeout(() => {
+            if (document.getElementById('install-status').textContent === 'Checking...') {
+              this.updateStatus('install-status', 'warning', '⚠️ Not Ready', 
+                'App may not meet all PWA criteria yet.');
+            }
+          }, 3000);
+        }
+      }
+    }
+
+    // Test Functions
+    async function testCache() {
+      try {
+        const cache = await caches.open('animateitnow-static-v1');
+        const keys = await cache.keys();
+        document.getElementById('cache-results').textContent = 
+          `Cache contains ${keys.length} resources:\n${keys.map(req => req.url).join('\n')}`;
+      } catch (error) {
+        document.getElementById('cache-results').textContent = `Cache error: ${error.message}`;
+      }
+    }
+
+    async function clearCache() {
+      try {
+        const cacheNames = await caches.keys();
+        await Promise.all(cacheNames.map(name => caches.delete(name)));
+        document.getElementById('cache-results').textContent = 'All caches cleared successfully!';
+      } catch (error) {
+        document.getElementById('cache-results').textContent = `Clear cache error: ${error.message}`;
+      }
+    }
+
+    function testOffline() {
+      document.getElementById('offline-results').textContent = 
+        'To test offline: Open DevTools → Network → Check "Offline" → Try navigating the site.';
+    }
+
+    function testOnline() {
+      document.getElementById('offline-results').textContent = 
+        'Online mode restored. Service worker should serve cached content when offline.';
+    }
+
+    function triggerInstall() {
+      const installBtn = document.querySelector('#pwa-install-btn');
+      if (installBtn) {
+        installBtn.click();
+        document.getElementById('install-test-results').textContent = 'Install button clicked!';
+      } else {
+        document.getElementById('install-test-results').textContent = 
+          'Install button not visible. App may already be installed or not meet PWA criteria.';
+      }
+    }
+
+    function checkInstallStatus() {
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+      const isIOS = window.navigator.standalone;
+      const hasInstallPrompt = window.deferredPrompt !== null;
+      
+      document.getElementById('install-test-results').textContent = 
+        `Standalone mode: ${isStandalone}\nIOS standalone: ${isIOS}\nInstall prompt available: ${hasInstallPrompt}`;
+    }
+
+    async function runPerformanceTest() {
+      if ('performance' in window) {
+        const navigation = performance.getEntriesByType('navigation')[0];
+        const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+        const domContentLoaded = navigation.domContentLoadedEventEnd - navigation.fetchStart;
+        
+        document.getElementById('performance-results').textContent = 
+          `Page Load Time: ${loadTime.toFixed(2)}ms\nDOM Content Loaded: ${domContentLoaded.toFixed(2)}ms\nNavigation Type: ${navigation.type}`;
+      } else {
+        document.getElementById('performance-results').textContent = 'Performance API not available.';
+      }
+    }
+
+    // Initialize tester
+    new PWATester();
+  </script>
+</body>
+</html>

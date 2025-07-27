@@ -1,127 +1,155 @@
-window.addEventListener('DOMContentLoaded', () => {
-// Theme toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
+// Fixed and cleaned version of your full JS script
+
+// Scroll Progress Bar
+window.addEventListener("scroll", () => {
+  const progressBar = document.querySelector(".progress-bar")
+  const totalHeight = document.body.scrollHeight - window.innerHeight
+  const progress = (window.scrollY / totalHeight) * 100
+  progressBar.style.width = `${progress}%`
+})
+
+// Theme Toggle
+const themeToggle = document.getElementById("theme-toggle")
+const root = document.documentElement
 
 
 function setTheme(dark) {
-  if (dark) {
-    body.classList.add('dark');
-    themeToggle.textContent = '☀️';
-    localStorage.setItem('theme', 'dark');
-  } else {
-    body.classList.remove('dark');
-    themeToggle.textContent = '🌙';
-    localStorage.setItem('theme', 'light');
-  }
+  root.setAttribute("data-theme", dark ? "dark" : "light")
+  localStorage.setItem("theme", dark ? "dark" : "light")
+  themeToggle.innerHTML = dark ? "light_mode" : "dark_mode"
 }
 
-// Load theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') setTheme(true);
-else setTheme(false);
+// Load Theme
+const storedTheme = localStorage.getItem("theme")
+const isDark = storedTheme === "dark"
+setTheme(isDark)
 
-themeToggle.addEventListener('click', () => {
-  setTheme(!body.classList.contains('dark'));
-});
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    setTheme(root.getAttribute("data-theme") === "light")
+  })
+}
 
-// Fade-in and scroll animations
-window.addEventListener('DOMContentLoaded', () => {
-  // Animate landing section
-  document.querySelectorAll('.fade-in').forEach(el => {
-    el.style.opacity = 1;
-  });
-
-  // Scroll-triggered fade for info sections
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.scroll-fade').forEach(section => {
-    observer.observe(section);
-  });
-}); 
-
-// Contact form validation
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('.contact-form');
-    const submitBtn = document.querySelector('.submit-btn');
-    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-    
-    // Initially disable the submit button
-    submitBtn.disabled = true;
-    
-    // Function to check if all required fields are filled
-    function checkFormValidity() {
-        let allFieldsFilled = true;
-        
-        formInputs.forEach(input => {
-            if (input.value.trim() === '') {
-                allFieldsFilled = false;
-            }
-        });
-        
-        // Enable/disable button based on form validity
-        if (allFieldsFilled) {
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('disabled');
-        } else {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('disabled');
-        }
+// Contributors Section Reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show")
     }
-    
-    // Add event listeners to all form inputs
-    formInputs.forEach(input => {
-        input.addEventListener('input', checkFormValidity);
-        input.addEventListener('blur', checkFormValidity);
-    });
-});
+  })
+})
 
-  const contributorsGrid = document.getElementById('contributors-grid');
+document.querySelectorAll(".hidden").forEach(el => observer.observe(el))
 
-  if (contributorsGrid) {
-    
-    const apiUrl = 'https://api.github.com/repos/AnujShrivastava01/AnimateItNow/contributors';
+// FAQ Toggle
+function toggleFAQ(element) {
+  const faqItem = element.parentElement
+  const isActive = faqItem.classList.contains("active")
 
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(contributors => {
-        contributorsGrid.innerHTML = ''; // Clear any loading text/placeholders
+  document.querySelectorAll(".faq-item.active").forEach(item => {
+    if (item !== faqItem) {
+      item.classList.remove("active")
+    }
+  })
 
-        contributors.forEach(contributor => {
-          // Create the card as a link to the contributor's profile
-          const card = document.createElement('a');
-          card.href = contributor.html_url;
-          card.className = 'contributor-card'; // Use a new class for specific styling
-          card.target = '_blank'; // Open link in a new tab
-          card.rel = 'noopener noreferrer';
+  faqItem.classList.toggle("active", !isActive)
+}
 
-          card.innerHTML = `
-            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
-            <h3>${contributor.login}</h3>
-            <p>Contributions: ${contributor.contributions}</p>
-          `;
+document.querySelectorAll(".faq-toggle").forEach(button => {
+  button.addEventListener("click", () => toggleFAQ(button))
+})
 
-          contributorsGrid.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching contributors:', error);
-        contributorsGrid.innerHTML = '<p>Could not load contributors at this time.</p>';
-      });
+// Cursor Follower Snake Effect
+const isMobile = window.matchMedia("(max-width: 768px)").matches
+
+function enableSnakeCursor() {
+  if (isMobile) return
+
+  const snakeContainer = document.createElement("div")
+  snakeContainer.id = "snake-container"
+  document.body.appendChild(snakeContainer)
+
+  const numDots = 30
+  const dots = []
+
+  for (let i = 0; i < numDots; i++) {
+    const dot = document.createElement("div")
+    dot.classList.add("snake-dot")
+    snakeContainer.appendChild(dot)
+    dots.push({ element: dot, x: 0, y: 0 })
   }
+<<<<<<< HEAD
 });
 function zkfunction(){
   alert("upload your Template");
 
 }
+=======
+
+  let mouseX = 0
+  let mouseY = 0
+
+  document.addEventListener("mousemove", e => {
+    mouseX = e.clientX
+    mouseY = e.clientY
+  })
+
+  function animateSnake() {
+    dots.forEach((dot, index) => {
+      const next = dots[index - 1] || { x: mouseX, y: mouseY }
+      dot.x += (next.x - dot.x) * 0.3
+      dot.y += (next.y - dot.y) * 0.3
+      dot.element.style.transform = `translate(${dot.x}px, ${dot.y}px)`
+    })
+    requestAnimationFrame(animateSnake)
+  }
+
+  animateSnake()
+}
+
+document.addEventListener("DOMContentLoaded", enableSnakeCursor)
+
+// Contact Form Validation
+const contactForm = document.querySelector(".contact-form")
+if (contactForm) {
+  contactForm.addEventListener("submit", e => {
+    e.preventDefault()
+
+    const name = contactForm.querySelector("input[name='name']")
+    const email = contactForm.querySelector("input[name='email']")
+    const message = contactForm.querySelector("textarea[name='message']")
+
+    let valid = true
+
+    if (!name.value.trim()) {
+      name.classList.add("error")
+      valid = false
+    } else {
+      name.classList.remove("error")
+    }
+
+    if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add("error")
+      valid = false
+    } else {
+      email.classList.remove("error")
+    }
+
+    if (!message.value.trim()) {
+      message.classList.add("error")
+      valid = false
+    } else {
+      message.classList.remove("error")
+    }
+
+    if (valid) {
+      alert("Message sent successfully!")
+      contactForm.reset()
+    }
+  })
+}
+
+// You can test a food-related effect visually with this:
+// document.body.style.backgroundImage = 'url("https://www.transparenttextures.com/patterns/food.png")'
+// document.body.style.backgroundRepeat = 'repeat';
+>>>>>>> upstream/main
