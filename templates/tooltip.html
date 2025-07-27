@@ -159,6 +159,36 @@
         body.dark-theme .tooltip-wrapper[data-position="right"] .tooltip::after { border-right-color: var(--tooltip-bg); }
         body.dark-theme p { color: #9ca3af; }
 
+        /* Fade Animation Tooltip Styles */
+       .fade-tooltip-demo {
+           position: relative;
+           display: inline-block;
+           cursor: pointer;
+           font-size: 1.1rem;
+            padding: 8px 16px;
+           border-bottom: 1px dotted var(--accent-color);}
+
+        .fade-tooltip-text {
+            visibility: hidden;
+           width: 120px;
+           background-color: var(--tooltip-bg);
+           color: var(--tooltip-text-color);
+           text-align: center;
+           border-radius: 6px;
+           padding: 5px 0;
+           position: absolute;
+            z-index: 1;
+           bottom: 100%;
+           left: 50%;
+           margin-left: -60px;
+           opacity: 0;
+           transition: opacity 1s;
+           font-size: 0.95rem;}
+
+        .fade-tooltip-demo:hover .fade-tooltip-text {
+           visibility: visible;
+           opacity: 1;}
+
     </style>
 </head>
 <body>
@@ -188,11 +218,13 @@
             <h2>Tooltip Demos</h2>
             <nav class="sidebar-nav">
                 <a href="#basic" class="active">Basic Tooltip</a>
-                <a href="#positions">Positioned Tooltips</a>
+                <a href="#positions" >Positioned Tooltips</a>
                 <a href="#interactive">Interactive</a>
                 <a href="#delayed">Delayed Tooltip</a>
                 <a href="#custom-html">Custom HTML</a>
                 <a href="#disabled">Disabled Elements</a>
+                <a href="#fade">Fade Animation</a>
+                <a href="#conclusion">Conslusion</a>
             </nav>
         </aside>
 
@@ -306,6 +338,31 @@
     &lt;div class="tooltip"&gt;...&lt;/div&gt;
 &lt;/div&gt;</pre>
             </section>
+            
+            <section id="fade" class="content-section">
+    <h3>Fade Animation Tooltip</h3>
+    <div class="demo-box">
+        <div class="fade-tooltip-demo">
+            <button class="btn">Hover me</button>
+            <span class="fade-tooltip-text">Tooltip text</span>
+        </div>
+    </div>
+    <input type="checkbox" class="code-toggle" id="toggle-fade">
+    <div class="demo-actions">
+        <label for="toggle-fade" class="action-label show-code-label"></label>
+    </div>
+    <pre class="code-block">&lt;div class="fade-tooltip-demo"&gt;
+    &lt;button class="btn"&gt;Hover me&lt;/button&gt;
+    &lt;span class="fade-tooltip-text"&gt;Tooltip text&lt;/span&gt;
+&lt;/div&gt;</pre>
+</section>
+            <section id="conclusion" class="content-section">
+                <h3>Conclusion</h3>
+                <p>Tooltips are a great way to provide additional information without cluttering the UI. Use them wisely to enhance user experience.</p>
+            </section>
+        </main>
+    </div>
+<!-- ...existing code... -->
         </main>
     </div>
 
@@ -332,6 +389,111 @@
         themeToggle?.addEventListener('click', () => {
             setTheme(!body.classList.contains('dark-theme'));
         });
+         // --- NEW JAVASCRIPT FOR SIDEBAR ACTIVE STATE ---
+
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const contentSections = document.querySelectorAll('.main-content .content-section');
+
+        function updateSidebarActiveState(hash) {
+            // Remove 'active' from all sidebar links
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add 'active' to the link matching the current hash
+            const activeLink = document.querySelector(`.sidebar-nav a[href="${hash}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Event listener for clicks on sidebar links
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                // Prevent default anchor jump, as we want to handle active class
+                // event.preventDefault(); // Uncomment if you want smoother scroll handling via JS
+
+                const targetId = this.getAttribute('href'); // Get the #id from href
+                updateSidebarActiveState(targetId);
+
+                // Optional: Smooth scroll to section if you prevented default
+                // const targetElement = document.querySelector(targetId);
+                // if (targetElement) {
+                //     window.scrollTo({
+                //         top: targetElement.offsetTop - 70, // Adjust for fixed navbar
+                //         behavior: 'smooth'
+                //     });
+                // }
+            });
+        });
+
+        // Optional: Update active state on scroll (more robust for single-page apps)
+        window.addEventListener('scroll', () => {
+            let currentHash = '#basic'; // Default to basic if at top
+
+            contentSections.forEach(section => {
+                const sectionTop = section.offsetTop - 70; // Adjust for fixed navbar
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentHash = '#' + section.id;
+                }
+            });
+            updateSidebarActiveState(currentHash);
+             // --- NEW JAVASCRIPT FOR SIDEBAR ACTIVE STATE ---
+
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const contentSections = document.querySelectorAll('.main-content .content-section');
+
+        function updateSidebarActiveState(hash) {
+            // Remove 'active' from all sidebar links
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add 'active' to the link matching the current hash
+            const activeLink = document.querySelector(`.sidebar-nav a[href="${hash}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Event listener for clicks on sidebar links
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                // Prevent default anchor jump, as we want to handle active class
+                // event.preventDefault(); // Uncomment if you want smoother scroll handling via JS
+
+                const targetId = this.getAttribute('href'); // Get the #id from href
+                updateSidebarActiveState(targetId);
+
+                // Optional: Smooth scroll to section if you prevented default
+                // const targetElement = document.querySelector(targetId);
+                // if (targetElement) {
+                //     window.scrollTo({
+                //         top: targetElement.offsetTop - 70, // Adjust for fixed navbar
+                //         behavior: 'smooth'
+                //     });
+                // }
+            });
+        });
+
+        // Optional: Update active state on scroll (more robust for single-page apps)
+        window.addEventListener('scroll', () => {
+            let currentHash = '#basic'; // Default to basic if at top
+
+            contentSections.forEach(section => {
+                const sectionTop = section.offsetTop - 70; // Adjust for fixed navbar
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentHash = '#' + section.id;
+                }
+            });
+            updateSidebarActiveState(currentHash);
+          });
+        });
+
     </script>
   <!-- PWA Support -->
   <script src="../pwa.js"></script>
