@@ -7,6 +7,11 @@
   <title>AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
+  <!-- Preload critical resources to prevent layout shifts -->
+  <link rel="preload" href="images/logo.png" as="image" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" as="style" />
+  
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#ff6b6b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,6 +41,55 @@
   <link rel="icon" type="image/png" href="images/logo.png" />
 
   <!-- styles & external resources -->
+  <!-- Critical CSS inline to prevent layout shifts -->
+  <style>
+    /* Critical styles to prevent layout shifts during loading */
+    body { 
+      margin: 0; 
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+    .navbar { 
+      min-height: 80px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 1000;
+      background: rgba(2, 13, 47, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .landing-section { 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center;
+    }
+    .fade-in { 
+      opacity: 0.01; 
+      min-height: 1em;
+    }
+    .nav-left { 
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    .mobile-menu-toggle {
+      display: none;
+    }
+    @media (max-width: 640px) {
+      .navbar { min-height: 70px; padding: 0.75rem 1rem; }
+      .mobile-menu-toggle { display: flex; }
+      .nav-right { display: none; }
+      .nav-right.active { display: block; }
+    }
+    @media (max-width: 480px) {
+      .navbar { min-height: 60px; padding: 0.5rem 0.75rem; }
+    }
+  </style>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -54,6 +108,13 @@
       <span class="site-name">Animate It Now</span>
     </div>
 
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
@@ -61,20 +122,22 @@
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
-        <!-- cursor toggle switch -->
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <!-- github icon -->
-        <li>
-
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        
+        <!-- Action items group -->
+        <li class="nav-actions">
+          <!-- cursor toggle switch -->
+          <div class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle">
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </div>
+          
+          <!-- github icon -->
           <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
-            aria-label="GitHub Repo" class="github-icon">
+            aria-label="GitHub Repo" class="github-icon nav-icon">
             <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
@@ -85,10 +148,10 @@
                2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
             </svg>
           </a>
-        </li>
-        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
-              <i data-lucide="moon"></i>
-            </button>
+          
+          <button id="theme-toggle" class="ripple btn-press nav-icon" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
         </li>
       </ul>
     </div>
@@ -393,11 +456,12 @@
   </footer>
 
   <div id="cursor-snake"></div>
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script src="script.js"></script>
+  
+  <!-- Load scripts with proper loading strategies to prevent layout shifts -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="script.js" defer></script>
   <!-- PWA Support -->
-  <script src="pwa.js"></script>
+  <script src="pwa.js" defer></script>
 </body>
 
 </html>

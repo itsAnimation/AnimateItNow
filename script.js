@@ -98,6 +98,63 @@ window.addEventListener("pagehide", () => {
 })
 
 window.addEventListener("DOMContentLoaded", () => {
+  // Mobile Menu Toggle
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const navRight = document.querySelector('.nav-right');
+  const navbar = document.querySelector('.navbar');
+  
+  if (mobileMenuToggle && navRight) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isActive = mobileMenuToggle.classList.contains('active');
+      
+      mobileMenuToggle.classList.toggle('active');
+      navRight.classList.toggle('active');
+      mobileMenuToggle.setAttribute('aria-expanded', !isActive);
+      
+      // Prevent body scroll when menu is open on mobile
+      if (window.innerWidth <= 640) {
+        document.body.style.overflow = isActive ? 'auto' : 'hidden';
+      }
+    });
+    
+    // Close mobile menu when clicking on nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 640) {
+          mobileMenuToggle.classList.remove('active');
+          navRight.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+    
+    // Close mobile menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 640) {
+        mobileMenuToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  }
+  
+  // Enhanced Navbar Scroll Effect
+  let lastScrollTop = 0;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    
+    lastScrollTop = scrollTop;
+  });
+
   // Theme toggle
   const themeToggle = document.getElementById("theme-toggle")
   const body = document.body
