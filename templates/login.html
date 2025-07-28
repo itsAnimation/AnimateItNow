@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -337,6 +338,57 @@
       gap: 10px;
     }
   }
+
+    .code-block {
+    display: none;
+  }
+
+  .code-block.active {
+    display: block;
+  }
+.code-tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.code-tab {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  color: #333;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.code-tab:hover {
+  background-color: #e0e0e0;
+}
+
+.code-tab.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Optional: Dark Mode Support (if body has .dark class) */
+body.dark .code-tab {
+  background-color: #333;
+  color: #ccc;
+  border-color: #555;
+}
+
+body.dark .code-tab:hover {
+  background-color: #444;
+}
+
+body.dark .code-tab.active {
+  background-color: #ffb700;
+  color: black;
+  border-color: #ffb700;
+}
 </style>
 </head>
 <body>
@@ -358,13 +410,23 @@
 <section class="variant-1">
   <h2>Login Variant 1 - Classic</h2>
   <p class="subtitle">Simple white card login form</p>
+
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
     <input type="text" placeholder="Username" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <pre class="code-block">
+
+  <!-- Code Area -->
+  <div class="code-container" style="display: none;">
+    <!-- Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code -->
+    <pre class="code-block html-code active">
 &lt;form class="login-form"&gt;
   &lt;input type="text" placeholder="Username" required /&gt;
   &lt;input type="password" placeholder="Password" required /&gt;
@@ -399,20 +461,59 @@ form.login-form button:hover {
   background: #3a6fcc;
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+    </pre>
+
+    <!-- React Code -->
+  <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5"&gt;
+  &lt;input
+    type="text"
+    placeholder="Username"
+    required
+    className="px-4 py-3 rounded-md border border-blue-100 text-base"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="px-4 py-3 rounded-md border border-blue-100 text-base"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-blue-500 text-white px-4 py-3 rounded-md font-semibold text-base hover:bg-blue-700 transition-colors duration-300"
+  &gt;
+    Login
+  &lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
 </section>
 
 <section class="variant-2">
   <h2>Login Variant 2 - Elevated Card</h2>
   <p class="subtitle">White card with shadow and smooth edges</p>
+
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
     <input type="email" placeholder="Email" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Sign In</button>
   </form>
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <pre class="code-block">
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-2"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -451,20 +552,60 @@ form.login-form button:hover {
   background: #3a6fcc;
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+    </pre>
+
+    <!-- React Code -->
+  <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5 shadow-[0_8px_30px_rgba(79,140,255,0.3)]"&gt;
+  &lt;input
+    type="email"
+    placeholder="Email"
+    required
+    className="px-4 py-3 rounded-md border border-blue-100 text-base"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="px-4 py-3 rounded-md border border-blue-100 text-base"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-blue-500 text-white px-4 py-3 border-none rounded-md font-semibold cursor-pointer text-base transition-colors duration-300 hover:bg-blue-700"
+  &gt;
+    Sign In
+  &lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
 </section>
+
 
 <section class="variant-3">
   <h2>Login Variant 3 - Dark Themed</h2>
   <p class="subtitle">Colored background with white form inputs</p>
+
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
     <input type="text" placeholder="Username" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <pre class="code-block">
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-3"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -496,20 +637,60 @@ form.login-form button:hover {
   background: #dbe9ff;
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+    </pre>
+
+    <!-- React Code Block -->
+    <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5 bg-[#4f8cff] text-white px-8 py-12"&gt;
+  &lt;input
+    type="text"
+    placeholder="Username"
+    required
+    className="bg-white text-[#222] border-none px-4 py-3 rounded-md placeholder:text-[#444]"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-white text-[#222] border-none px-4 py-3 rounded-md placeholder:text-[#444]"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-white text-[#4f8cff] font-bold px-4 py-3 rounded-md transition-colors duration-300 hover:bg-[#dbe9ff]"
+  &gt;
+    Login
+  &lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
 </section>
+
 
 <section class="variant-4">
   <h2>Login Variant 4 - Minimal Underline</h2>
   <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
+
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
     <input type="text" placeholder="Email" required />
     <input type="password" placeholder="Password" required />
     <button type="submit">Sign In</button>
   </form>
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <pre class="code-block">
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-4"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Email" required /&gt;
@@ -542,19 +723,58 @@ form.login-form button:hover {
   background: #0056b3;
 }
 &lt;/style&gt;
-  </pre>
-  </section>
+    </pre>
 
-  <section class="variant-5">
-    <h2>Login Variant 5 - Glassmorphism</h2>
-    <p class="subtitle">Translucent glass effect with backdrop blur</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 5 submitted!');">
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Sign In</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+    <!-- React Code Block -->
+   &lt;form className="flex flex-col gap-5"&gt;
+  &lt;input
+    type="text"
+    placeholder="Email"
+    required
+    className="border-b-2 border-[#4f8cff] bg-transparent rounded-none px-0 py-2 text-base text-inherit focus:outline-none"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="border-b-2 border-[#4f8cff] bg-transparent rounded-none px-0 py-2 text-base text-inherit focus:outline-none"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-[#4f8cff] text-white font-bold text-base px-8 py-3 rounded-full transition-colors duration-300 hover:bg-[#0056b3]"
+  &gt;
+    Sign In
+  &lt;/button&gt;
+&lt;/form&gt;
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+</section>
+
+
+<section class="variant-5">
+  <h2>Login Variant 5 - Glassmorphism</h2>
+  <p class="subtitle">Translucent glass effect with backdrop blur</p>
+
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 5 submitted!');">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign In</button>
+  </form>
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-5"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -599,20 +819,58 @@ form.login-form button:hover {
   box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-  </section>
+    </pre>
 
-  <section class="variant-6">
-    <h2>Login Variant 6 - Black</h2>
-    <p class="subtitle">Pure black theme with white accents</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 6 submitted!');">
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">LOGIN</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+    <!-- React Code Block -->
+ &lt;form className="flex flex-col gap-5"&gt;
+  &lt;input
+    type="email"
+    placeholder="Email"
+    required
+    className="bg-white/20 border border-white/30 backdrop-blur-md px-4 py-2 rounded text-white placeholder-white focus:outline-none"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-white/20 border border-white/30 backdrop-blur-md px-4 py-2 rounded text-white placeholder-white focus:outline-none"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-[#4f8cff]/80 border border-white/30 backdrop-blur-md text-white px-4 py-2 rounded font-semibold transition-all hover:bg-[#4f8cff] hover:-translate-y-0.5 hover:shadow-xl"
+  &gt;
+    Sign In
+  &lt;/button&gt;
+&lt;/form&gt;
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+</section>
+
+
+<section class="variant-6">
+  <h2>Login Variant 6 - Black</h2>
+  <p class="subtitle">Pure black theme with white accents</p>
+
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 6 submitted!');">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">LOGIN</button>
+  </form>
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-6"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -654,20 +912,57 @@ form.login-form button:hover {
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-  </section>
+    </pre>
 
-  <section class="variant-7">
-    <h2>Login Variant 7 - Gradient</h2>
-    <p class="subtitle">Beautiful gradient background with layered effects</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 7 submitted!');">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">SIGN IN</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+    <!-- React Code Block -->
+&lt;form className="flex flex-col gap-5 text-white"&gt;
+  &lt;input
+    type="email"
+    placeholder="Email"
+    required
+    className="bg-[#1a1a1a] border-2 border-[#333] px-4 py-2 rounded focus:outline-none focus:border-[#666] focus:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-[#1a1a1a] border-2 border-[#333] px-4 py-2 rounded text-white placeholder-white focus:outline-none focus:border-[#666] focus:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-white text-black font-bold uppercase tracking-wider px-4 py-2 rounded transition-all hover:bg-[#f0f0f0] hover:-translate-y-[3px] hover:shadow-[0_10px_25px_rgba(255,255,255,0.3)]"
+  &gt;
+    Login
+  &lt;/button&gt;
+&lt;/form&gt;
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+</section>
+
+<section class="variant-7">
+  <h2>Login Variant 7 - Gradient</h2>
+  <p class="subtitle">Beautiful gradient background with layered effects</p>
+
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 7 submitted!');">
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">SIGN IN</button>
+  </form>
+
+  <!-- Code Container -->
+  <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-7"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -714,20 +1009,58 @@ form.login-form button:hover {
   box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-  </section>
+    </pre>
 
-  <section class="variant-8">
-    <h2>Login Variant 8 - Premium</h2>
-    <p class="subtitle">Luxury neumorphism design with gold accents</p>
-    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 8 submitted!');">
-      <input type="email" placeholder="Email Address" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">ACCESS</button>
-    </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+    <!-- React Code Block -->
+   &lt;form className="flex flex-col gap-5 text-white relative z-10"&gt;
+  &lt;input
+    type="text"
+    placeholder="Username"
+    required
+    className="bg-white/90 border-none px-4 py-2 rounded text-[#333] z-20 focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-white/90 border-none px-4 py-2 rounded text-[#333] z-20 focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-gradient-to-r from-[#ff6b6b] to-[#ee5a52] text-white font-bold uppercase tracking-wider px-4 py-2 rounded transition-all hover:from-[#ee5a52] hover:to-[#ff6b6b] hover:translate-y-[-3px] hover:shadow-[0_10px_20px_rgba(238,90,82,0.4)]"
+  &gt;
+    Sign In
+  &lt;/button&gt;
+&lt;/form&gt;
+
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+</section>
+
+
+<section class="variant-8">
+  <h2>Login Variant 8 - Premium</h2>
+  <p class="subtitle">Luxury neumorphism design with gold accents</p>
+
+  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 8 submitted!');">
+    <input type="email" placeholder="Email Address" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">ACCESS</button>
+  </form>
+
+  <!-- Code Container (Tabs + Code Blocks inside this) -->
+  <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+    <pre class="code-block html-code active">
 &lt;section class="variant-8"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email Address" required /&gt;
@@ -771,9 +1104,40 @@ form.login-form button:hover {
   transform: translateY(-2px);
 }
 &lt;/style&gt;
-  </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-  </section>
+
+    </pre> 
+
+    <!-- React Code Block -->
+    <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5 text-black"&gt;
+  &lt;input
+    type="email"
+    placeholder="Email Address"
+    required
+    className="bg-gradient-to-br from-[#e0e0e0] to-[#ffffff] border-none px-4 py-2 rounded shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-gradient-to-br from-[#e0e0e0] to-[#ffffff] border-none px-4 py-2 rounded shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-gradient-to-r from-[#c9b037] via-[#ffdd44] to-[#c9b037] text-white font-bold uppercase tracking-wider px-4 py-2 rounded shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] hover:shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:translate-y-[-2px] transition-all"
+  &gt;
+    Access
+  &lt;/button&gt;
+&lt;/form&gt;
+
+    </pre>
+  </div>
+
+  <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+</section>
+
 
   <section class="variant-9">
     <h2>Login Variant 9 - Cut Based</h2>
@@ -783,8 +1147,15 @@ form.login-form button:hover {
       <input type="password" placeholder="Password" required />
       <button type="submit">ENTER</button>
     </form>
-    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-    <pre class="code-block">
+     <div class="code-container" style="display: none;">
+    <!-- Language Tabs -->
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+    </div>
+
+    <!-- HTML Code Block -->
+  <pre class="code-block html-code active">
 &lt;section class="variant-9"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -833,48 +1204,105 @@ form.login-form button:hover {
 }
 &lt;/style&gt;
   </pre>
-  <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
+    <!-- React Code Block -->
+    <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5 text-black [&_input]:!clip-path-[polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))] [&_button]:!clip-path-[polygon(8px_0,100%_0,calc(100%_-_8px)_100%,0_100%)]"&gt;
+  &lt;input
+    type="text"
+    placeholder="Username"
+    required
+    className="bg-[#f9f9f9] border-2 border-[#333] px-4 py-2 focus:border-[#4ecdc4] focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all"
+  /&gt;
+  &lt;input
+    type="password"
+    placeholder="Password"
+    required
+    className="bg-[#f9f9f9] border-2 border-[#333] px-4 py-2 focus:border-[#4ecdc4] focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all"
+  /&gt;
+  &lt;button
+    type="submit"
+    className="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white font-bold uppercase tracking-wider px-4 py-2 shadow-md hover:translate-x-1 hover:shadow-[ -5px_5px_15px_rgba(0,0,0,0.3) ] transition-all"
+  &gt;
+    Enter
+  &lt;/button&gt;
+&lt;/form&gt;
+
+    </pre>
+  </div>
+    <!-- Buttons -->
+  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
 </section>
 
 <script>
-  // Toggle code block visibility
   function toggleCode(button) {
-    const codeBlock = button.nextElementSibling;
-    const isVisible = codeBlock.style.display === "block";
-    codeBlock.style.display = isVisible ? "none" : "block";
+    const section = button.closest("section");
+    const container = section.querySelector(".code-container");
+    const isVisible = container.style.display === "block";
+
+    container.style.display = isVisible ? "none" : "block";
     button.textContent = isVisible ? "Show Code" : "Hide Code";
+
+    section.querySelectorAll(".code-block").forEach((block) => {
+      block.style.display = "none";
+    });
+
+    if (!isVisible) {
+      const activeBlock = section.querySelector(".code-block.active");
+      if (activeBlock) {
+        activeBlock.style.display = "block";
+      }
+    }
   }
 
-  document.querySelectorAll(".copy-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const codeBlock = btn.previousElementSibling;
-          try {
-            await navigator.clipboard.writeText(codeBlock.innerText);
-            btn.textContent = "Copied!";
-            btn.disabled = true;
-            setTimeout(() => {
-              btn.textContent = "Copy Code";
-              btn.disabled = false;
-            }, 1500);
-          } catch (err) {
-            console.error("Copy failed:", err);
-          }
-        });
-      });
+  function switchLang(button, lang) {
+    const section = button.closest("section");
 
-  // Dark mode toggle
+    section.querySelectorAll(".code-tab").forEach(tab => tab.classList.remove("active"));
+    section.querySelectorAll(".code-block").forEach(block => {
+      block.classList.remove("active");
+      block.style.display = "none";
+    });
+
+    button.classList.add("active");
+
+    const targetBlock = section.querySelector(`.${lang}-code`);
+    if (targetBlock) {
+      targetBlock.classList.add("active");
+      targetBlock.style.display = "block";
+    }
+  }
+
+  function copyCurrentCode(btn) {
+    const section = btn.closest("section");
+    const codeBlock = section.querySelector(".code-block.active");
+
+    if (!codeBlock) return;
+
+    navigator.clipboard.writeText(codeBlock.innerText.trim())
+      .then(() => {
+        btn.textContent = "Copied!";
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = "Copy Code";
+          btn.disabled = false;
+        }, 1500);
+      })
+      .catch((err) => {
+        console.error("Copy failed:", err);
+      });
+  }
+
+  // Optional: Dark mode toggle logic
   const themeToggleBtn = document.getElementById('theme-toggle');
   const body = document.body;
   const navbar = document.getElementById('navbar');
 
-  themeToggleBtn.addEventListener('click', () => {
+  themeToggleBtn?.addEventListener('click', () => {
     body.classList.toggle('dark');
-    navbar.classList.toggle('dark');
-    if(body.classList.contains('dark')) {
-      themeToggleBtn.textContent = '☀️';
-    } else {
-      themeToggleBtn.textContent = '🌙';
-    }
+    navbar?.classList.toggle('dark');
+    themeToggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
   });
 </script>
 
