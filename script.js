@@ -1,60 +1,22 @@
-// Fixed and cleaned version of your full JS script
-
-// Scroll Progress Bar
-window.addEventListener("scroll", () => {
-  const progressBar = document.querySelector(".progress-bar")
-  const totalHeight = document.body.scrollHeight - window.innerHeight
-  const progress = (window.scrollY / totalHeight) * 100
-  progressBar.style.width = `${progress}%`
-})
-
-// Theme Toggle
-const themeToggle = document.getElementById("theme-toggle")
-const root = document.documentElement
-
-function setTheme(dark) {
-  root.setAttribute("data-theme", dark ? "dark" : "light")
-  localStorage.setItem("theme", dark ? "dark" : "light")
-  themeToggle.innerHTML = dark ? "light_mode" : "dark_mode"
-}
-
-// Load Theme
-const storedTheme = localStorage.getItem("theme")
-const isDark = storedTheme === "dark"
-setTheme(isDark)
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    setTheme(root.getAttribute("data-theme") === "light")
-  })
-}
-
-// Contributors Section Reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show")
-    }
-  })
-})
-
-document.querySelectorAll(".hidden").forEach(el => observer.observe(el))
-
-// FAQ Toggle
+// Function to make the FAQ collapsible
 function toggleFAQ(element) {
+
 
   if (!document.querySelector(".faq-item")) return;
   const faqItem = element.closest(".faq-item"); // to make sure we can click anywhere
   const isActive = faqItem.classList.contains("active");
 
 
-  document.querySelectorAll(".faq-item.active").forEach(item => {
+
+  // Close all other FAQ items
+  document.querySelectorAll(".faq-item.active").forEach((item) => {
     if (item !== faqItem) {
       item.classList.remove("active");
     }
   });
 
   // Toggle current item
+
   faqItem.classList.toggle("active", !isActive);
 }
 
@@ -69,6 +31,8 @@ let snakeContainerElement = null;
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
 function enableSnakeCursor() {
+  // Always ensure a clean slate before enabling.
+  // This is crucial for persistence across page navigations (especially with bfcache).
   disableSnakeCursor();
 
   snakeContainerElement = document.createElement("div");
@@ -199,6 +163,32 @@ window.addEventListener("DOMContentLoaded", () => {
       else current = index;
       slider.style.transform = `translateX(-${current * 100}%)`;
     }
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+      const allValid = checkFormValidity()
+      if (allValid) {
+        alert("Message sent successfully!")
+        contactForm.reset()
+      } else {
+        alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
+      }
+    })
+    formInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        const allFieldsFilled = checkFormValidity()
+        input.classList.toggle("invalid", !allFieldsFilled)
+      })
+    })
+  }
+
+  // Snake cursor initialization and state management
+  const cursorToggle = document.getElementById("cursorToggle")
+  if (!isMobile && cursorToggle) {
+    // Read saved state from localStorage for initial setup
+    const savedCursorState = localStorage.getItem("cursorEnabled")
+    // Default to false if no state is saved, or use the saved state
+    const initialCursorEnabled = savedCursorState !== null ? JSON.parse(savedCursorState) : false
+
 
     function nextSlide() {
       showSlide(current + 1);
@@ -282,9 +272,11 @@ if (desktopToggle) {
       disableSnakeCursor();
       localStorage.setItem("cursorEnabled", false);
 
+
     }
   });
 }
+
 
 
 // Mobile toggle works independently (no localStorage sync)
@@ -325,4 +317,5 @@ openSideBar.addEventListener("click",()=>{
 })
 closeSideBar.addEventListener("click",()=>{
   sideBar.style.display = "none";
+
 })
