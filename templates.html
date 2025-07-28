@@ -1,328 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Templates | AnimateItNow</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      body.dark-theme {
-        background-color: #121212;
-        color: #f5f5f5;
-      }
 
-      /* ✅ Heading fix */
-      body.dark-theme .templates-main h1 {
-        color: #ffffff;
-        font-weight: bold;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates | AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* 🌒 DARK MODE GLOBAL TEXT FIXES */
+    body.dark-theme {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
 
-      /* ✅ Template card titles */
-      body.dark-theme .template-card h2 {
-        color: #ffffff;
-      }
+    /* ✅ Heading fix */
+    body.dark-theme .templates-main h1 {
+      color: #ffffff;
+      font-weight: bold;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
 
-      /* ✅ Button text */
-      body.dark-theme .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    /* ✅ Template card titles */
+    body.dark-theme .template-card h2 {
+      color: #ffffff;
+    }
 
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #fff;
-      }
+    /* ✅ Button text */
+    body.dark-theme .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
 
-      /* ✅ Navbar items */
-      body.dark-theme .navbar,
-      body.dark-theme .nav-links a,
-      body.dark-theme .site-name {
-        background-color: #1a1a1a;
-        color: #ffffff;
-      }
+    body.dark-theme .template-btn:hover {
+      background-color: #444;
+      color: #fff;
+    }
 
-      body.dark-theme .nav-links a:hover {
-        color: #90caf9;
-      }
+    /* ✅ Navbar items */
+    body.dark-theme .navbar,
+    body.dark-theme .nav-links a,
+    body.dark-theme .site-name {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
 
-      /* 🧼 Remove margins to prevent light-space bleed */
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        overflow-x: hidden;
-      }
+    body.dark-theme .nav-links a:hover {
+      color: #90caf9;
+    }
 
-      /* 💡 Smooth transitions */
-      .templates-main h1,
-      .template-card h2,
-      .template-btn,
-      .navbar,
-      .nav-links a {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* ✨ Make text inside template cards fully visible */
-      body.dark-theme .template-card h2,
-      body.dark-theme .template-btn,
-      body.dark-theme .template-card {
-        color: #ffffff;
-      }
+    /* 🧼 Remove margins to prevent light-space bleed */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
 
-      /* 🎯 Bonus: ensure buttons look clickable and clean */
-      body.dark-theme .template-btn {
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    /* 💡 Smooth transitions */
+    .templates-main h1,
+    .template-card h2,
+    .template-btn,
+    .navbar,
+    .nav-links a {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
 
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
+    /* ✨ Make text inside template cards fully visible */
+    body.dark-theme .template-card h2,
+    body.dark-theme .template-btn,
+    body.dark-theme .template-card {
+      color: #ffffff;
+    }
 
-      /* 🌟 Optional: animate the visibility for style */
-      .template-card h2,
-      .template-btn {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* 🔧 Template card container */
-      body.dark-theme .template-card {
-        background-color: #1e1e1e;
-        color: #ffffff;
-        border: 1px solid #444;
-      }
+    /* 🎯 Bonus: ensure buttons look clickable and clean */
+    body.dark-theme .template-btn {
+      background-color: #333;
+      border: 1px solid #555;
+    }
 
-      /* 🖋 Titles inside cards */
-      body.dark-theme .template-card h2 {
-        color: #ffffff;
-      }
+    body.dark-theme .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
 
-      /* 🔘 Buttons */
-      body.dark-theme .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
-      }
+    /* 🌟 Optional: animate the visibility for style */
+    .template-card h2,
+    .template-btn {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
 
-      /* 🖱 Hover effect for buttons */
-      body.dark-theme .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
+    /* 🔧 Template card container */
+    body.dark-theme .template-card {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      border: 1px solid #444;
+    }
 
-      /* 🪄 Smooth transitions */
-      .template-card h2,
-      .template-btn {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
-      /* Keep consistent size and shape */
-/* Base preview style */
-.feature-preview,
-.hero-preview {
-  height: 90px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  background-color: #f0f0f0;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px;
-  box-sizing: border-box;
-}
+    /* 🖋 Titles inside cards */
+    body.dark-theme .template-card h2 {
+      color: #ffffff;
+    }
 
-/* Dark mode support */
-body.dark-theme .feature-preview,
-body.dark-theme .hero-preview {
-  background-color: #2a2a2a;
-  box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
-}
+    /* 🔘 Buttons */
+    body.dark-theme .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
 
-/* Feature Cards Preview: 3 mini cards */
-.feature-preview {
-  background-color: #4f8cff;
-  padding: 12px;
-  gap: 10px;
-}
+    /* 🖱 Hover effect for buttons */
+    body.dark-theme .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
 
-.feature-preview .mini-card {
-  background-color: white;
-  flex: 1;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #555;
-  font-weight: 600;
-  user-select: none;
-}
+    /* 🪄 Smooth transitions */
+    .template-card h2,
+    .template-btn {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
 
-/* Hero Section Preview: big rectangle + text lines */
-.hero-preview {
-  background-color: #4f8cff;
-  flex-direction: column;
-  padding: 14px;
-  gap: 8px;
-}
+    /* Keep consistent size and shape */
+    /* Base preview style */
+    .feature-preview,
+    .hero-preview {
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
 
-.hero-preview .hero-image {
-  background-color: white;
-  border-radius: 8px;
-  width: 100%;
-  height: 50px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
+    /* Dark mode support */
+    body.dark-theme .feature-preview,
+    body.dark-theme .hero-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+    }
 
-.hero-preview .hero-text-line {
-  background-color: white;
-  border-radius: 5px;
-  height: 8px;
-  width: 80%;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
+    /* Feature Cards Preview: 3 mini cards */
+    .feature-preview {
+      background-color: #4f8cff;
+      padding: 12px;
+      gap: 10px;
+    }
 
-.hero-preview .hero-text-line.short {
-  width: 50%;
-}
+    .feature-preview .mini-card {
+      background-color: white;
+      flex: 1;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #555;
+      font-weight: 600;
+      user-select: none;
+    }
 
+    /* Hero Section Preview: big rectangle + text lines */
+    .hero-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      padding: 14px;
+      gap: 8px;
+    }
 
-     
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
+    .hero-preview .hero-image {
+      background-color: white;
+      border-radius: 8px;
+      width: 100%;
+      height: 50px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
 
-    <main class="templates-main">
-      <h1>Templates Gallery</h1>
-      <section class="templates-grid">
-        <article class="template-card">
-          <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
-          <a class="template-btn" href="templates/login.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Hover Button Effects</h2>
-          <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/button.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Loaders</h2>
-          <div class="template-preview loader-preview"></div>
-          <a class="template-btn" href="templates/loader.html">View Template</a>
-        </article>
-        <article class="template-card">
-          <h2>Popup Templates</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/modal.html">View Template</a>
-        </article>
+    .hero-preview .hero-text-line {
+      background-color: white;
+      border-radius: 5px;
+      height: 8px;
+      width: 80%;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        <article class="template-card">
-          <h2>Glassmorphism profile card</h2>
-          <div class="template-preview modal-preview"></div>
-          <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
-        </article>
+    .hero-preview .hero-text-line.short {
+      width: 50%;
+    }
+  </style>
+</head>
 
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="templates.html">Templates</a></li>
+      <li><a href="contributors.html">Contributors</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
 
-   <article class="template-card">
-  <h2>Feature Cards UI</h2>
-  <div class="template-preview feature-preview">
-    <div class="mini-card">Card1</div>
-    <div class="mini-card">Card2</div>
-    <div class="mini-card">Card3</div>
-  </div>
-  <a class="template-btn" href="templates/feature.html">View Template</a>
-</article>
+  <main class="templates-main">
+    <h1>Templates Gallery</h1>
+    <section class="templates-grid">
+      <article class="template-card">
+        <h2>Login Page UI</h2>
+        <div class="template-preview login-preview"></div>
+        <a class="template-btn" href="templates/login.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Hover Button Effects</h2>
+        <div class="template-preview button-preview"></div>
+        <a class="template-btn" href="templates/button.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Loaders</h2>
+        <div class="template-preview loader-preview"></div>
+        <a class="template-btn" href="templates/loader.html">View Template</a>
+      </article>
+      <article class="template-card">
+        <h2>Popup Templates</h2>
+        <div class="template-preview modal-preview"></div>
+        <a class="template-btn" href="templates/modal.html">View Template</a>
+      </article>
 
-<article class="template-card">
-  <h2>Hero Section Template</h2>
-  <div class="template-preview hero-preview">
-    <div class="hero-image"></div>
-    <div class="hero-text-line"></div>
-    <div class="hero-text-line short"></div>
-  </div>
-  <a class="template-btn" href="templates/hero.html">View Template</a>
-</article>
+      <article class="template-card">
+        <h2>Glassmorphism profile card</h2>
+        <div class="template-preview modal-preview"></div>
+        <a class="template-btn" href="templates/glassmorphism.html">View Template</a>
+      </article>
 
 
+      <article class="template-card">
+        <h2>Feature Cards UI</h2>
+        <div class="template-preview feature-preview">
+          <div class="mini-card">Card1</div>
+          <div class="mini-card">Card2</div>
+          <div class="mini-card">Card3</div>
+        </div>
+        <a class="template-btn" href="templates/feature.html">View Template</a>
+      </article>
+
+      <article class="template-card">
+        <h2>Hero Section Template</h2>
+        <div class="template-preview hero-preview">
+          <div class="hero-image"></div>
+          <div class="hero-text-line"></div>
+          <div class="hero-text-line short"></div>
+        </div>
+        <a class="template-btn" href="templates/hero.html">View Template</a>
+      </article>
+
+      <article class="template-card">
+        <h2>Animated Toast Notification</h2>
+        <div class="template-preview toast-preview">
+          <div class="toast-box"></div>
+          <div class="toast-text-line"></div>
+          <div class="toast-text-line short"></div>
+        </div>
+        <a class="template-btn" href="templates/animated-toast.html">View Template</a>
+      </article>
 
 
-      </section>
-    </main>
 
-    <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer>
 
-    <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const prefersDarkScheme = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
+    </section>
+  </main>
 
-      // Check for saved theme or preferred scheme
-      const currentTheme = localStorage.getItem("theme");
-      if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
-        themeToggle.textContent = "☀️";
-      } else if (currentTheme === "light") {
+  <footer>
+    <p>Made with ❤️ by Anuj and Contributors</p>
+  </footer>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById("theme-toggle");
+    const prefersDarkScheme = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+
+    // Check for saved theme or preferred scheme
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    } else if (currentTheme === "light") {
+      document.body.classList.remove("dark-theme");
+      themeToggle.textContent = "🌙";
+    } else if (prefersDarkScheme.matches) {
+      document.body.classList.add("dark-theme");
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (document.body.classList.contains("dark-theme")) {
         document.body.classList.remove("dark-theme");
+        localStorage.setItem("theme", "light");
         themeToggle.textContent = "🌙";
-      } else if (prefersDarkScheme.matches) {
+      } else {
         document.body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
         themeToggle.textContent = "☀️";
       }
+    });
 
-      themeToggle.addEventListener("click", () => {
-        if (document.body.classList.contains("dark-theme")) {
-          document.body.classList.remove("dark-theme");
-          localStorage.setItem("theme", "light");
-          themeToggle.textContent = "🌙";
-        } else {
-          document.body.classList.add("dark-theme");
-          localStorage.setItem("theme", "dark");
-          themeToggle.textContent = "☀️";
-        }
-      });
+    // Scroll animation for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      // Scroll animation for cards
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+    document.querySelectorAll(".template-card").forEach((card) => {
+      observer.observe(card);
+    });
+  </script>
+</body>
 
-      document.querySelectorAll(".template-card").forEach((card) => {
-        observer.observe(card);
-      });
-    </script>
-  </body>
 </html>

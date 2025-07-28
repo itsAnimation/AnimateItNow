@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Toast Notification</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #2c2c3e, #1f1f2e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .show-toast-btn {
+            padding: 12px 24px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 115, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .show-toast-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 115, 255, 0.6);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, rgba(0, 115, 255, 0.15), rgba(0, 255, 240, 0.12));
+            backdrop-filter: blur(12px);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 155, 255, 0.5);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 250px;
+            max-width: 350px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .toast {
+                right: 10px;
+                left: 10px;
+                bottom: 20px;
+                max-width: 90%;
+            }
+        }
+
+        .toast .close-btn {
+            background: none;
+            border: none;
+            color: #ffffffcc;
+            font-size: 18px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .toast .close-btn:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #00f2fe;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button class="show-toast-btn" onclick="showToast()">Show Toast</button>
+
+    <div class="toast" id="toast">
+        <span>🔔 This is a toast notification!</span>
+        <button class="close-btn" onclick="hideToast()">&times;</button>
+    </div>
+
+    <script>
+        const toast = document.getElementById('toast');
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => {
+                hideToast();
+            }, 3000);
+        }
+
+        function hideToast() {
+            toast.classList.remove('show');
+        }
+    </script>
+
+</body>
+
+</html>
