@@ -368,6 +368,29 @@
       });
     </script>
   </main>
+  <!-- Back to Top Button -->
+<button id="backToTopBtn" title="Back to Top">⬆</button>
+
+<script>
+  const backToTopBtn = document.getElementById('backToTopBtn');
+
+  window.onscroll = function () {
+    // Show button after scrolling 300px
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  };
+
+  backToTopBtn.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
   <!-- ───────── FOOTER ───────── -->
   <footer class="footer scroll-fade">
     <div class="footer-content">
