@@ -1030,6 +1030,28 @@ body.dark .contact-container {
   }
 }
 
+.heart-burst {
+  position: fixed;
+  font-size: 24px;
+  color: #ff4d6d;
+  animation: burst 1.2s ease-out forwards;
+  pointer-events: none;
+  user-select: none;
+  z-index: 9999;
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+  }
+}
+
+
 /* Dark Theme */
 body.dark {
   --primary-bg: #181a20;
@@ -2323,5 +2345,4 @@ body.dark .glow-wrap::before {
 #scrollBtn:hover {
   background-color: #555; /* Darker on hover */
 }
-
 

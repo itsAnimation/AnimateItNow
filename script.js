@@ -278,4 +278,30 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// heart burst effect in footer
+document.getElementById("footerHeart").addEventListener("click", function (e) {
+  const numHearts = 40;
+  for (let i = 0; i < numHearts; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart-burst";
+    heart.innerText = "❤️";
 
+    const angle = Math.random() * 2 * Math.PI;
+    const radius = Math.random() * 500 + 100;
+
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+
+    heart.style.left = `${e.clientX}px`;
+    heart.style.top = `${e.clientY}px`;
+    heart.style.setProperty("--x", `${x}px`);
+    heart.style.setProperty("--y", `${y}px`);
+
+    heart.style.fontSize = `${Math.random() * 20 + 20}px`;
+    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 1500);
+  }
+});
