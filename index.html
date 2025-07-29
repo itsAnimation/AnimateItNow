@@ -246,127 +246,278 @@
         </div><!-- /faq-list -->
       </div><!-- /faq-container -->
     </section>
-    <div id="page" class="site">
-      <div class="container">
-        <div class="testi">
-          <div class="head">
-            <h3>Testmonials</h3>
-            <p>See What People are saying...</p>
-          </div>
-          <div class="body swiper">
-            <ul class="swiper-wrapper">
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img1.jpg" alt="img not found">
-                  </div>
-                  <div class="aside">
-                    <p>AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
-                    <div class="name">
-                      <h4>Priya Verma</h4>
-                      <p>UI/UX Designer at PixelCraft</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img2.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
-                    <div class="name">
-                      <h4>Rohan Malhotra</h4>
-                      <p>Freelance Web Developer</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img3.png" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
-                    <div class="name">
-                      <h4>Alisha Singh</h4>
-                      <p>Frontend Engineer at DevNest</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img4.png" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
-                    <div class="name">
-                      <h4>David Kim</h4>
-                      <p>Product Engineer at Innovix</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img5.png" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
-                    <div class="name">
-                      <h4>Zoya Khan</h4>
-                      <p>Creative Director at StudioZ</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img6.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
-                    <div class="name">
-                      <h4>Anuj Mehta</h4>
-                      <p>Full Stack Developer</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="swiper-pagination"></div>
+      <!-- TESTIMONIALS SECTION STARTS HERE -->
+  <div id="page" class="site">
+   
 
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
+
+    <div class="container">
+      <div class="testi">
+  
+
+       <div class="head">
+        <script>document.addEventListener("DOMContentLoaded", init);
+
+let ww = 0;
+let wh = 0;
+let snowflakes = ["\u2744", "\u2745", "\u2746"]; // Snowflake characters
+let flakeCount = 0;
+const maxFlakes = 200;
+
+function init() {
+    updateViewportSize();
+
+    window.addEventListener("resize", updateViewportSize);
+
+    // Add initial snowflakes
+    for (let i = 0; i < 50; i++) {
+        createSnowflake(true);
+    }
+
+    // Move snowflakes at regular intervals
+    setInterval(moveSnowflakes, 50);
+}
+
+function updateViewportSize() {
+    ww = window.innerWidth;
+    wh = window.innerHeight;
+}
+
+function createSnowflake(initial) {
+    if (flakeCount >= maxFlakes) return;
+
+    const snowflake = document.createElement("span");
+    snowflake.className = "snowflake";
+    snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+
+    // Set random properties for each snowflake
+    const size = Math.random() * 20 + 10; // Random size between 10px and 30px
+    const startX = Math.random() * ww; // Random horizontal position
+    const startY = initial ? Math.random() * wh : -size; // Start at top or random position if initial
+    const speed = Math.random() * 3 + 2; // Random fall speed
+    const sway = Math.random() * 2 - 1; // Random horizontal movement
+
+    Object.assign(snowflake.style, {
+        position: "absolute",
+        top: `${startY}px`,
+        left: `${startX}px`,
+        fontSize: `${size}px`,
+        color: "#fff",
+        pointerEvents: "none",
+        zIndex: 9999,
+        opacity: Math.random() * 0.8 + 0.2, // Slight transparency
+    });
+
+    // Attach data attributes for movement
+    snowflake.dataset.speed = speed;
+    snowflake.dataset.sway = sway;
+    snowflake.dataset.x = startX;
+    snowflake.dataset.y = startY;
+
+    document.body.appendChild(snowflake);
+    flakeCount++;
+}
+
+function moveSnowflakes() {
+    const snowflakes = document.querySelectorAll(".snowflake");
+
+    snowflakes.forEach((flake) => {
+        let x = parseFloat(flake.dataset.x);
+        let y = parseFloat(flake.dataset.y);
+        const speed = parseFloat(flake.dataset.speed);
+        const sway = parseFloat(flake.dataset.sway);
+
+        // Update position
+        y += speed; // Move down
+        x += sway * 2; // Slight sway
+
+        // Reappear at the top if the snowflake moves off the bottom
+        if (y > wh) {
+            y = -20;
+            x = Math.random() * ww; // Randomize horizontal position
+        }
+
+        // Update flake position
+        flake.dataset.x = x;
+        flake.dataset.y = y;
+        flake.style.top = `${y}px`;
+        flake.style.left = `${x}px`;
+    });
+
+    // Add new snowflakes if under the max count
+    if (flakeCount < maxFlakes) {
+        createSnowflake(false);
+    }
+}
+
+// Optional: Add basic CSS for smoother animation
+const style = document.createElement("style");
+style.textContent = `
+  @keyframes sway {
+    0% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    100% { transform: translateX(-2px); }
+  }
+  .snowflake {
+    animation: sway 2s infinite ease-in-out;
+  }
+`;
+document.head.appendChild(style);
+</script>
+       
+
+
+          <h3>Testimonials</h3>
+          <p>See What People are saying...</p>
+        </div>
+         
+        <div class="body swiper">
+          
+          <ul class="swiper-wrapper">
+            <li class="swiper-slide">
+              <div class="wrapper">
+         
+                <div class="thumbnail">
+
+                  <img src="images/img1.jpg" alt="Priya Verma">
+                </div>
+                <div class="aside">
+                  <p class = "line1">AnimateItNow turned our static UI into something delightful. <br>
+            
+                  The ease of integration is mind-blowing</p>
+                  <div class="name">
+                    <h4>Priya Verma</h4>
+                    <p>UI/UX Designer at PixelCraft</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="swiper-slide">
+              <div class="wrapper">
+                <div class="thumbnail">
+                  <img src="images/img2.jpg" alt="Rohan Malhotra">
+                </div>
+                <div class="aside">
+                  <p class = "line1">It's the fastest way I've ever added beautiful animations to a site. <br>
+                    My clients love the results!</p>
+                  <div class="name">
+                    <h4>Rohan Malhotra</h4>
+                    <p>Freelance Web Developer</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="swiper-slide">
+              <div class="wrapper">
+                <div class="thumbnail">
+                  <img src="images/img3.png" alt="Alisha Singh">
+                </div>
+                <div class="aside">
+                  <p >Animations were once a pain. Now with<br> AnimateItNow, 
+                    it feels like magic with every scroll!</p>
+                  <div class="name">
+                    <h4>Alisha Singh</h4>
+                    <p>Frontend Engineer at DevNest</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="swiper-slide">
+              <div class="wrapper">
+                <div class="thumbnail">
+                  <img src="images/img4.png" alt="David Kim">
+                </div>
+                <div class="aside">
+                  <p >The lightweight design and modularity of <br>AnimateItNow makes 
+                    it perfect for modern frontend teams.</p>
+                  <div class="name">
+                    <h4>David Kim</h4>
+                    <p>Product Engineer at Innovix</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="swiper-slide">
+              <div class="wrapper">
+                <div class="thumbnail">
+                  <img src="images/img5.png" alt="Zoya Khan">
+                </div>
+                <div class="aside">
+                  <p >I use AnimateItNow in every prototype I deliver. <br>
+                 It brings life to design without slowing things down.</p>
+                  <div class="name">
+                    <h4>Zoya Khan</h4>
+                    <p>Creative Director at StudioZ</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="swiper-slide">
+              <div class="wrapper">
+                <div class="thumbnail">
+                  <img src="images/img6.jpg" alt="Anuj Mehta">
+                </div>
+                <div class="aside">
+                  <p >It blends so seamlessly with Tailwind and modern<br> frameworks.
+                    A must-have for every frontend dev!</p>
+                  <div class="name">
+                    <h4>Anuj Mehta</h4>
+                    <p>Full Stack Developer</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      const swiper = new Swiper('.swiper', {
-        autoHeight: true,
-        loop: true,
+  </div>
 
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper', {
+      autoHeight: true,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
 
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+    // Add typing animation to testimonial paragraphs when they become active
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const p = entry.target.querySelector('.aside > p');
+          if (p) {
+            p.style.animation = 'none';
+            p.offsetHeight; // Trigger reflow
+            p.style.animation = 'typewriter 3s steps(50) forwards, blink-caret 1s step-end infinite';
+          }
+        }
       });
-    </script>
+    });
+
+    document.querySelectorAll('.swiper-slide').forEach(slide => {
+      observer.observe(slide);
+    });
+    
+  </script>
+  
+
+   
   </main>
   <!-- ───────── FOOTER ───────── -->
   <footer class="footer scroll-fade">
@@ -398,6 +549,9 @@
   <script src="script.js"></script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
+  
+
+    
 </body>
 
 </html>
