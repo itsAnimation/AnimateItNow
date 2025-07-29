@@ -36,6 +36,7 @@
   --feedback-warning: #f59e0b;
 }
 
+
 /* Ripple effect for buttons and interactive elements */
 .ripple {
   position: relative;
@@ -322,6 +323,8 @@ body {
   background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
@@ -388,8 +391,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   gap: 5px;
 }
 
@@ -1093,7 +1096,7 @@ body.dark .landing-section p {
   letter-spacing: 1px;
   animation: fadeIn 1s ease-in-out;
 background: linear-gradient(to right, #34d399, #3b82f6);
-  -webkit-background-clip: text;
+
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 5px rgba(59, 130, 246, 0.15);
 }
@@ -1525,7 +1528,7 @@ body.dark .contributor-card:hover {
   text-align: center;
   background: linear-gradient(to right, red,blue);
   color: transparent;
-  -webkit-background-clip: text;
+
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                0 4px 8px rgba(79, 140, 255, 0.25);
   margin-bottom: 1.5rem;
@@ -1663,7 +1666,7 @@ body.dark .contact-main h1 {
   /* color: #8aadf4; */
   background: linear-gradient(to right, rgb(80, 12, 80),rgb(143, 220, 160));
   color: transparent;
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   text-shadow:
   0 0 4px rgba(138, 180, 248, 0.4),  
   0 0 10px rgba(138, 180, 248, 0.2),  
@@ -1822,6 +1825,76 @@ body.dark .submit-btn.disabled:hover {
   will-change: transform, left, top;
 }
 
+
+/* Animated Social Share Buttons Styles */
+.social-share-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 2rem;
+  padding: 0.5rem 1.2rem;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.social-btn .icon {
+  font-family: FontAwesome;
+  font-size: 1.3rem;
+  margin-right: 0.7rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.social-btn .label {
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+  transition: opacity 0.3s, max-width 0.3s, margin-left 0.3s;
+  white-space: nowrap;
+  color: inherit;
+}
+.social-btn:hover {
+  transform: scale(1.08);
+  color: #fff;
+}
+.social-btn:hover .label {
+  opacity: 1;
+  max-width: 120px;
+  margin-left: 0.3rem;
+}
+.social-btn.facebook {
+  background: #3b5998;
+}
+.social-btn.facebook:hover {
+  background: #2d4373;
+}
+.social-btn.twitter {
+  background: #1da1f2;
+}
+.social-btn.twitter:hover {
+  background: #0d95e8;
+}
+.social-btn.linkedin {
+  background: #0077b5;
+}
+.social-btn.linkedin:hover {
+  background: #005983;
+}
+.social-btn.instagram {
+  background: linear-gradient(45deg, #fd5949, #d6249f, #285AEB);
+}
+.social-btn.instagram:hover {
+  background: linear-gradient(45deg, #c13584, #e1306c, #405de6);
+}
 
 
 /* About Page Styles */
@@ -2305,6 +2378,7 @@ body.dark .glow-wrap::before {
   transform: rotate(5deg) scale(1.1);
 }
 
+
 #sidebar {
   display: none;
   position: fixed;
@@ -2405,9 +2479,95 @@ main {
 
 
 
-#search-bar::placeholder {
-   color: rgba(31, 41, 55, 0.8);
+/* styling for scroll to top button */
+#scrollBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+
+
+@media only screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left h1 {
+        font-size: 2rem;
+    }
+
+    .left p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .right img {
+        max-width: 85%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .left h1 {
+        font-size: 1.5rem;
+    }
+
+    .left p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    .right img {
+        max-width: 100%;
+    }
 }
 
 
 
+/* #search-bar::placeholder {
+   color: rgba(31, 41, 55, 0.8);
+}
+*/

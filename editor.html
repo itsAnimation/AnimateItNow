@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnimateItNow - Live Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="editor.css" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 min-h-screen">
+    <header class="bg-white shadow p-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
+      <div class="flex gap-2">
+        <button
+          id="resetBtn"
+          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
+          title="Reset"
+        >
+          &#x21bb;
+        </button>
+        <button
+          id="runBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
+        >
+          Run
+        </button>
+      </div>
+    </header>
+
+    <main class="p-6 space-y-6">
+      <div class="flex flex-row gap-4">
+        <!-- HTML Editor -->
+        <div class="flex-1">
+          <div class="editor-label html-label">HTML</div>
+          <textarea
+            id="htmlCode"
+            class="editor-area html-area"
+            placeholder="Write HTML here..."
+          ></textarea>
+        </div>
+
+        <!-- CSS Editor -->
+        <div class="flex-1">
+          <div class="editor-label css-label">CSS</div>
+          <textarea
+            id="cssCode"
+            class="editor-area css-area"
+            placeholder="Write CSS here..."
+          ></textarea>
+        </div>
+
+        <!-- JS Editor -->
+        <div class="flex-1">
+          <div class="editor-label js-label">JavaScript</div>
+          <textarea
+            id="jsCode"
+            class="editor-area js-area"
+            placeholder="Write JavaScript here..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div>
+        <h2 class="text-lg font-semibold mb-2">Output</h2>
+        <iframe
+          id="output"
+          class="w-full h-[300px] border border-gray-300 rounded bg-white"
+        ></iframe>
+      </div>
+    </main>
+
+    <script src="editor.js"></script>
+  </body>
+</html>
+
