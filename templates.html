@@ -35,6 +35,8 @@
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  
   <style>
     /*  Removed conflicting navbar CSS, relying on styles.css */
     .navbar {
@@ -63,10 +65,10 @@
     }
     /* ✅ Heading fix */
     body.dark .templates-main h1 {
-       background: linear-gradient(to right, #67e8f9, #3b82f6); /* bright neon cyan-blue */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+      background: linear-gradient(to right, #67e8f9, #3b82f6); /*bright neon cyan-blue */
+       /* -webkit-background-clip: text; */
+       -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
     }
     /* ✅ Template card titles */
     body.dark .template-card h2 {
@@ -132,7 +134,7 @@
     0 0 6px rgba(59, 130, 246, 0.25),
     0 0 12px rgba(56, 189, 248, 0.3);
       color: #ffffff;
-      animation: darkNeonPulse 4s ease-in-out infinite;
+      animation: darkNeonPulse 4s ease-in-out infinite; 
     }
     /* 🖋 Titles inside cards */
     body.dark .template-card h2 {
@@ -320,6 +322,122 @@
       background-color: #2a2a2a;
       box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
     }
+
+    /*  start for game animation */
+    
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .nav button {
+        padding: 0.75rem 1.5rem;
+        margin: 0 0.5rem;
+        border: none;
+        background: #0b5ed7;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+      }
+      .nav button:hover {
+        background: #084bb3;
+      }
+      .section {
+        display: none;
+      }
+      .section.active {
+        display: block;
+      }
+      .container {
+        max-width: 1000px;
+        margin: auto;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: coral;
+        margin: 2rem auto;
+      }
+      .snippets {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+      .snippet {
+        background: #fff;
+        border: 2px dashed #ccc;
+        padding: 1rem;
+        width: 250px;
+        cursor: grab;
+        user-select: none;
+      }
+      .dropzone {
+        border: 2px solid #0b5ed7;
+        min-height: 60px;
+        padding: 1rem;
+        background: #e7f1ff;
+        margin-top: 1rem;
+      }
+      .button {
+        display: inline-block;
+        margin: 1rem;
+        padding: 0.75rem 2rem;
+        background: #0b5ed7;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      .button:hover {
+        background: #084bb3;
+      }
+      .code-block {
+        background: #f8f8f8;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.9rem;
+      }
+
+      /* Speed Fix styles */
+      .fix-container {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .code-area,
+      .fix-input {
+        background: #eef;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .fix-input {
+        height: 200px;
+        border: 1px solid #ccc;
+      }
+      .timer {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: red;
+        margin-bottom: 1rem;
+      }
+      .result {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+
+      /* end for game animation */
+
   </style>
 </head>
 <body class="dark">
@@ -330,18 +448,20 @@
     </div>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
+        <!-- template class must be active when we click on it -->
+        <li><a href="templates.html" class="active">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
         <!-- cursor toggle switch -->
-        <li>
+        <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
             <span class="slider round"></span>
           </label>
+          <span class="snakeLabel">Snake Cursor</span>
         </li>
         <!-- github icon -->
         <li>
@@ -520,29 +640,86 @@
       </a>
     </section>
   </main>
-  <div id="container">
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
-        </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">🌐 GitHub</a></li>
-            <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a></li>
-            <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">📧 Email Us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
+
+  <!-- start game animation -->
+
+  <h1>🎮 Animation Game Center</h1>
+
+    <div class="nav">
+      <button onclick="showSection('puzzle')">🧩 Puzzle Game</button>
+      <button onclick="showSection('speed')">🎯 Speed Fix Challenge</button>
+    </div>
+
+    <!-- 🧩 Puzzle Game -->
+    <div class="section active" id="puzzle">
+      <div class="container">
         <p>
-          © 2025 AnimateItNow. Made with ❤️ by
-          <span class="highlight">Anuj</span> and Contributors.
+          Choose a challenge, drag and drop the correct code snippets to fix the
+          animation, and click "Run Animation".
         </p>
+        <div class="snippets" id="snippets"></div>
+        <div class="dropzone" id="dropzone">
+          <strong>Drop code here:</strong>
+        </div>
+        <div style="text-align: center">
+          <button class="button" onclick="runCode()">Run Animation</button>
+          <button class="button" onclick="stopCode()">Stop Animation</button>
+        </div>
+        <div class="box" id="animateBox"></div>
+        <div id="game-list"></div>
       </div>
-    </footer>
+    </div>
+
+    <!-- 🎯 Speed Fix Challenge -->
+    <!-- 🎯 Speed Fix Challenge -->
+    <div class="section" id="speed">
+      <div class="container fix-container">
+        <h2>🎯 Speed Fix Challenge</h2>
+        <div class="timer" id="timer">60</div>
+        <div class="code-area" id="brokenCode">
+          .box { animation: move infinite 2s; } @keyframes move { 100% {
+          transform: translateX(100px); } 0% { transform: translateX(0); } }
+        </div>
+        <textarea
+          class="fix-input"
+          id="userFix"
+          placeholder="Fix the CSS code here..."
+        ></textarea>
+        <button class="button" onclick="startChallenge()">
+          ▶️ Start Challenge
+        </button>
+        <button class="button" onclick="stopChallenge()">⏹️ Stop</button>
+        <button class="button" onclick="checkFix()" id="submitBtn" disabled>
+          Submit Fix
+        </button>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
+
+    <!-- end game animation -->
+
+  <div id="container">
+    <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </div>
+  </footer>
   </div>
   <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
   <!-- <div id="cursor-snake"></div> -->
@@ -586,8 +763,219 @@
       });
     }
     searchBar.addEventListener('input', filterTemplates);
+
+    // start game animation
+
+     // Section Switching
+      function showSection(id) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+      }
+
+      // Puzzle Game Data
+      const gameList = [
+        {
+          title: "💫 Shake on Hover",
+          desc: "Apply a shake animation only when the box is hovered.",
+          snippets: [
+            ".box:hover { animation: shake 0.5s; }",
+            "@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }",
+          ],
+        },
+        {
+          title: "🔔 Wobble Loop",
+          desc: "Create a continuous wobble effect using rotation.",
+          snippets: [
+            ".box { animation: wobble 1s infinite; transform-origin: center; }",
+            "@keyframes wobble { 0% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } 100% { transform: rotate(0); } }",
+          ],
+        },
+        {
+          title: "🎯 Slide Up and Fade",
+          desc: "Slide and fade in the box from the bottom.",
+          snippets: [
+            ".box { animation: slideFade 1.5s forwards; opacity: 0; }",
+            "@keyframes slideFade { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }",
+          ],
+        },
+        {
+          title: "💥 Bounce In Once",
+          desc: "Bounce the box in one time on load.",
+          snippets: [
+            ".box { animation: bounceIn 0.8s ease-out forwards; }",
+            "@keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }",
+          ],
+        },
+        {
+          title: "🚨 Border Flash",
+          desc: "Animate the border color to flash between red and transparent.",
+          snippets: [
+            ".box { animation: borderFlash 1s infinite; border: 4px solid red; }",
+            "@keyframes borderFlash { 0% { border-color: red; } 50% { border-color: transparent; } 100% { border-color: red; } }",
+          ],
+        },
+        {
+          title: "🧭 Skew Wiggle",
+          desc: "Make the box wiggle using skew transforms.",
+          snippets: [
+            ".box { animation: skewWiggle 1s infinite; }",
+            "@keyframes skewWiggle { 0% { transform: skewX(0); } 50% { transform: skewX(10deg); } 100% { transform: skewX(0); } }",
+          ],
+        },
+        {
+          title: "🔍 Zoom Out",
+          desc: "Zoom out the box slowly on load.",
+          snippets: [
+            ".box { animation: zoomOut 2s ease-out forwards; }",
+            "@keyframes zoomOut { 0% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }",
+          ],
+        },
+        {
+          title: "🌊 Wave Movement",
+          desc: "Move the box in a sine-wave-like path.",
+          snippets: [
+            ".box { animation: waveMove 2s infinite; position: relative; }",
+            "@keyframes waveMove { 0% { left: 0; top: 0; } 25% { left: 25px; top: -10px; } 50% { left: 50px; top: 0; } 75% { left: 25px; top: 10px; } 100% { left: 0; top: 0; } }",
+          ],
+        },
+      ];
+
+      let styleElement;
+
+      function renderGames() {
+        const list = document.getElementById("game-list");
+        list.innerHTML = "";
+        gameList.forEach((game, index) => {
+          const gameEl = document.createElement("div");
+          gameEl.className = "game-section";
+          gameEl.innerHTML = `<h3>${game.title}</h3><p>${game.desc}</p><button class="button" onclick="selectGame(${index})">Select</button>`;
+          list.appendChild(gameEl);
+        });
+      }
+
+      function selectGame(index) {
+        const snippetsContainer = document.getElementById("snippets");
+        snippetsContainer.innerHTML = "";
+        gameList[index].snippets.forEach((code) => {
+          const snippetDiv = document.createElement("div");
+          snippetDiv.className = "snippet";
+          snippetDiv.setAttribute("draggable", "true");
+          snippetDiv.textContent = code;
+          snippetDiv.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", code);
+          });
+          snippetsContainer.appendChild(snippetDiv);
+        });
+
+        document.getElementById("dropzone").innerHTML =
+          "<strong>Drop code here:</strong>";
+      }
+
+      function runCode() {
+        const allCode = Array.from(document.querySelectorAll(".dropzone pre"))
+          .map((el) => el.textContent)
+          .join("\n");
+        if (styleElement) document.head.removeChild(styleElement);
+        styleElement = document.createElement("style");
+        styleElement.innerHTML = allCode;
+        document.head.appendChild(styleElement);
+      }
+
+      function stopCode() {
+        if (styleElement) {
+          document.head.removeChild(styleElement);
+          styleElement = null;
+        }
+      }
+
+      // Drag and drop handlers
+      document.getElementById("dropzone").addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.currentTarget.style.border = "2px dashed #084bb3";
+      });
+
+      document.getElementById("dropzone").addEventListener("dragleave", (e) => {
+        e.currentTarget.style.border = "2px solid #0b5ed7";
+      });
+
+      document.getElementById("dropzone").addEventListener("drop", (e) => {
+        e.preventDefault();
+        const code = e.dataTransfer.getData("text/plain");
+        const pre = document.createElement("pre");
+        pre.textContent = code;
+        pre.className = "code-block";
+        e.currentTarget.appendChild(pre);
+        e.currentTarget.style.border = "2px solid #0b5ed7";
+      });
+
+      renderGames();
+
+      // Speed Fix Timer and Logic
+      let timeLeft = 60;
+      let timerDisplay = document.getElementById("timer");
+      let submitBtn = document.getElementById("submitBtn");
+      let interval = null;
+
+      function startChallenge() {
+        if (interval) clearInterval(interval); // Prevent multiple intervals
+
+        timeLeft = 60;
+        timerDisplay.textContent = timeLeft;
+        document.getElementById("result").textContent = "";
+        submitBtn.disabled = false;
+
+        interval = setInterval(() => {
+          timeLeft--;
+          timerDisplay.textContent = timeLeft;
+
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            submitBtn.disabled = true;
+            document.getElementById("result").textContent =
+              "⏰ Time's up! Try again!";
+          }
+        }, 1000);
+      }
+
+      function stopChallenge() {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+          document.getElementById("result").textContent =
+            "⛔ Challenge stopped.";
+          submitBtn.disabled = true;
+        }
+      }
+
+      function checkFix() {
+        const userCode = document.getElementById("userFix").value.trim();
+        const correct = `.box {
+  animation: move 2s infinite;
+}
+
+@keyframes move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100px); }
+}`.trim();
+
+        if (userCode === correct) {
+          if (interval) clearInterval(interval);
+          document.getElementById("result").textContent =
+            "✅ Correct! You fixed the animation.";
+          submitBtn.disabled = true;
+        } else {
+          document.getElementById("result").textContent =
+            "❌ Incorrect fix. Keep trying!";
+        }
+      }
+
+      // end game animation
+
   </script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
 </body>
+
 </html>
