@@ -36,6 +36,7 @@
   --feedback-warning: #f59e0b;
 }
 
+
 /* Ripple effect for buttons and interactive elements */
 .ripple {
   position: relative;
@@ -302,6 +303,8 @@ body {
   background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
@@ -367,8 +370,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   gap: 5px;
 }
 
@@ -1072,7 +1075,7 @@ body.dark .landing-section p {
   letter-spacing: 1px;
   animation: fadeIn 1s ease-in-out;
 background: linear-gradient(to right, #34d399, #3b82f6);
-  /* -webkit-background-clip: text; */
+
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 5px rgba(59, 130, 246, 0.15);
 }
@@ -1504,7 +1507,7 @@ body.dark .contributor-card:hover {
   text-align: center;
   background: linear-gradient(to right, red,blue);
   color: transparent;
-  /* -webkit-background-clip: text; */
+
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                0 4px 8px rgba(79, 140, 255, 0.25);
   margin-bottom: 1.5rem;
@@ -2354,9 +2357,92 @@ body.dark .glow-wrap::before {
   transform: rotate(5deg) scale(1.1);
 }
 
+/* styling for scroll to top button */
+#scrollBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
-#search-bar::placeholder {
-   color: rgba(31, 41, 55, 0.8);
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+
+@media only screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left h1 {
+        font-size: 2rem;
+    }
+
+    .left p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .right img {
+        max-width: 85%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .left h1 {
+        font-size: 1.5rem;
+    }
+
+    .left p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    .right img {
+        max-width: 100%;
+    }
 }
 
 
+/* #search-bar::placeholder {
+   color: rgba(31, 41, 55, 0.8);
+}
