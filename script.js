@@ -1,3 +1,45 @@
+// Register and auto-reload on service worker update
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('Service Worker registered:', registration);
+
+      registration.onupdatefound = () => {
+        const newWorker = registration.installing;
+        newWorker.onstatechange = () => {
+          if (
+            newWorker.state === 'installed' &&
+            navigator.serviceWorker.controller
+          ) {
+            console.log('New version available. Reloading...');
+            window.location.reload();
+          }
+        };
+      };
+    }).catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+  });
+}
+
+function typewriter() {
+  const el = document.getElementById("modify");
+  if (!el) return;
+  const text = el.textContent;
+  el.textContent = '';
+  let index = 0;
+  let interval = setInterval(() => {
+    if (index < text.length) {
+      el.textContent += text.charAt(index);
+      index++;
+    }
+    else {
+      clearInterval(interval);
+    }
+  }, 100);
+}
+typewriter();
+
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return
@@ -281,3 +323,4 @@ document.querySelectorAll('a[href$=".html"]').forEach(link => {
     }, 500); // Match the CSS animation duration
   });
 });
+
