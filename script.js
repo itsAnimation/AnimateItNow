@@ -36,6 +36,24 @@
     });
   }
 
+function typewriter(){
+  const el=document.getElementById("modify");
+  if(!el)return;
+  const text=el.textContent;
+  el.textContent='';
+  let index=0;
+  let interval=setInterval(()=>{
+    if(index<text.length){
+      el.textContent+=text.charAt(index);
+      index++;
+    }
+    else{
+      clearInterval(interval);
+      }
+  },100);
+}
+typewriter();
+
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return
