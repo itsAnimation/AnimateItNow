@@ -1,24 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Login Variants with Custom Navbar and Dark Mode</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- PWA Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login Variants with Custom Navbar and Dark Mode</title>
+  <meta name="description"
+    content="A comprehensive collection of CSS animation templates and effects for web developers" />
+
   <meta name="theme-color" content="#ff6b6b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
   <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
   <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
+
   <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
+
   <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
   <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
@@ -27,406 +25,689 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
   <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
+
   <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
+
   <link rel="icon" type="image/png" href="../images/logo.png" />
-<style>
-  /* CSS Variables for Light and Dark mode */
-  :root {
-    --nav-text: #222;
-    --accent: #007BFF;
-    --background: #f5f5f5;
-    --text-color: #222;
-    --transition: 0.3s ease;
-  }
-  body.dark {
-    --nav-text: #ddd;
-    --accent: #55aaff;
-    --background: #121212;
-    --text-color: #ddd;
-  }
-
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0;
-    background: var(--background);
-    color: var(--text-color);
-    transition: background-color var(--transition), color var(--transition);
-  }
-
-  /* Your navbar CSS with variables */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--nav-text);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    z-index: 1000;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    transition: background var(--transition), color var(--transition);
-  }
-  .nav-left {
-    display: flex;
-    align-items: center;
-  }
-  .logo {
-    width: 36px;
-    height: 36px;
-    margin-right: 0.75rem;
-    object-fit: contain;
-    background: var(--accent);
-    border-radius: 6px;
-  }
-  .site-name {
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-  }
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--nav-text);
-    font-weight: 500;
-    transition: color var(--transition);
-    position: relative;
-  }
-  .nav-links a.active,
-  .nav-links a:hover {
-    color: var(--accent);
-  }
-  #theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-left: 1.5rem;
-    color: var(--nav-text);
-    transition: color var(--transition);
-  }
-
-  /* Section wrapper */
-  section {
-    max-width: 400px;
-    margin: 100px auto 50px; /* add top margin for fixed navbar */
-    padding: 30px 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    transition: background-color var(--transition), color var(--transition);
-  }
-  body.dark section {
-    background: #1e1e1e;
-    color: var(--text-color);
-  }
-  h2 {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
-  }
-  .subtitle {
-    margin-bottom: 25px;
-    color: #666;
-  }
-  body.dark .subtitle {
-    color: #aaa;
-  }
-
-  /* Login Form Base */
-  form.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-  form.login-form input[type="text"],
-  form.login-form input[type="email"],
-  form.login-form input[type="password"] {
-    padding: 0.8em 1em;
-    border-radius: 0.5em;
-    border: 1px solid #e0e7ff;
-    font-size: 1rem;
-    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
-  }
-  body.dark form.login-form input[type="text"],
-  body.dark form.login-form input[type="email"],
-  body.dark form.login-form input[type="password"] {
-    background: #333;
-    border-color: #555;
-    color: #ddd;
-  }
-  form.login-form input::placeholder {
-    color: #999;
-  }
-  body.dark form.login-form input::placeholder {
-    color: #bbb;
-  }
-
-  form.login-form button {
-    background: #01924e;
-    color: #fff;
-    padding: 0.8em 1em;
-    border: none;
-    border-radius: 0.5em;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  form.login-form button:hover {
-    background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-  }
-
-  /* Variant 2 - Elevated Card */
-  .variant-1 {
-    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
-    color: white;
-    padding: 2rem 2rem 3rem;
-    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
-  }
-  .variant-2 {
-    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
-    color: white;
-    padding: 2rem 2rem 3rem;
-    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
-  }
-  /* Variant 3 - Dark Theme */
-  .variant-3 {
-    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
-    color: white;
-    padding: 2rem 2rem 3rem;
-  }
-  .variant-3 input[type="text"],
-  .variant-3 input[type="email"],
-  .variant-3 input[type="password"] {
-    background: white;
-    color: #222;
-    border: none;
-  }
-  .variant-3 input::placeholder {
-    color: #444;
-  }
-  .variant-3 button {
-    background: white;
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .variant-3 button:hover {
-    background: #dbe9ff;
-  }
-  .variant-4{
-    background: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);;
-    color: white;
-    padding: 2rem 2rem 3rem;
-    box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
-  }
-
-  /* Variant 4 - Minimal Underline */
-  .variant-4 input[type="text"],
-  .variant-4 input[type="email"],
-  .variant-4 input[type="password"] {
-    border: none;
-    border-bottom: 2px solid var(--accent);
-    border-radius: 0;
-    background: transparent;
-    padding-left: 0;
-    font-size: 1rem;
-    color: inherit;
-  }
-  body.dark .variant-4 input {
-    border-bottom-color: #55aaff;
-    color: #ddd;
-  }
-  .variant-4 button {
-    background: var(--accent);
-    border-radius: 9999px;
-    padding: 0.7em 2em;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    color: white;
-  }
-  .variant-4 button:hover {
-    background: #0056b3;
-  }
-
-  .subtitle{
-    color : #ffffff;
-  }
-
-  /* Expand code */
-  .expand-btn {
-    display: inline-block;
-    margin: 20px auto 10px;
-    padding: 8px 18px;
-    background-color: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s;
-  }
-  .expand-btn:hover {
-    background-color: #0056b3;
-  }
-  .code-block {
-    display: none;
-    background: #222;
-    color: #ddd;
-    padding: 20px;
-    font-size: 0.85rem;
-    border-radius: 8px;
-    margin-top: 10px;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    text-align: left;
-  }
-
-  .copy-btn {
-        display: inline-block;
-        margin: 0.5rem 0 1rem;
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-        border: none;
-        border-radius: 4px;
-        background-color: var(--accent);
-        color: #fff;
-        cursor: pointer;
-        transition: transform 0.1s ease;
-      }
-      .copy-btn:hover {
-        background-color: #0056b3;
-      }
-      .copy-btn:active {
-        transform: scale(0.95);
-      }
-      .copy-btn:disabled {
-        opacity: 0.6;
-        cursor: default;
-      }
-
-  /* Responsive */
-  @media (max-width: 480px) {
-    section {
-      width: 90%;
-      padding: 20px 15px;
+  <style>
+    /* CSS Variables for Light and Dark mode */
+    :root {
+      --nav-text: #222;
+      --accent: #007bff;
+      --background: #f5f5f5;
+      --text-color: #222;
+      --transition: 0.3s ease;
     }
+
+    body.dark {
+      --nav-text: #ddd;
+      --accent: #55aaff;
+      --background: #121212;
+      --text-color: #ddd;
+    }
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--text-color);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    /* Your navbar CSS with variables */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+      background: var(--accent);
+      border-radius: 6px;
+    }
+
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
     .nav-links {
-      gap: 10px;
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
     }
-  }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Section wrapper */
+    section {
+      max-width: 400px;
+      margin: 100px auto 50px;
+      /* add top margin for fixed navbar */
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    body.dark section {
+      background: #1e1e1e;
+      color: var(--text-color);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      color: #666;
+    }
+
+    body.dark .subtitle {
+      color: #aaa;
+    }
+
+    /* Login Form Base */
+    form.login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    form.login-form input[type="text"],
+    form.login-form input[type="email"],
+    form.login-form input[type="password"] {
+      padding: 0.8em 1em;
+      border-radius: 0.5em;
+      border: 1px solid #e0e7ff;
+      font-size: 1rem;
+      transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    }
+
+    body.dark form.login-form input[type="text"],
+    body.dark form.login-form input[type="email"],
+    body.dark form.login-form input[type="password"] {
+      background: #333;
+      border-color: #555;
+      color: #ddd;
+    }
+
+    form.login-form input::placeholder {
+      color: #999;
+    }
+
+    body.dark form.login-form input::placeholder {
+      color: #bbb;
+    }
+
+    form.login-form button {
+      background: #01924e;
+      color: #fff;
+      padding: 0.8em 1em;
+      border: none;
+      border-radius: 0.5em;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    form.login-form button:hover {
+      background: radial-gradient(
+          circle,
+          rgba(52, 173, 128, 1) 0%,
+          /* Darker Mint Green */ rgba(34, 139, 84, 1) 100%
+          /* Forest Green */
+        );
+    }
+
+    /* variant 1 */
+    .variant-1 {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark .variant-1 {
+      background: #1e1e1e;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Variant 2 - Elevated Card */
+    .variant-2 {
+      box-shadow: 0 8px 30px rgba(79, 140, 255, 0.3);
+    }
+
+    /* Variant 3 - Dark Theme */
+
+    .variant-3 {
+      background: #4f8cff;
+      color: white;
+      padding: 2rem 2rem 3rem;
+    }
+
+    .variant-3 input {
+      background: white;
+      color: #222;
+      border: none;
+    }
+
+    .variant-3 input::placeholder {
+      color: #444;
+    }
+
+    .variant-3 button {
+      background: white;
+      color: #4f8cff;
+      font-weight: 700;
+    }
+
+    .variant-3 button:hover {
+      background: #dbe9ff;
+    }
+
+    /* Variant 4 - Minimal Underline */
+    .variant-4 input[type="text"],
+    .variant-4 input[type="email"],
+    .variant-4 input[type="password"] {
+      border: none;
+      border-bottom: 2px solid var(--accent);
+      border-radius: 0;
+      background: transparent;
+      padding-left: 0;
+      font-size: 1rem;
+      color: inherit;
+    }
+
+    body.dark .variant-4 input {
+      border-bottom-color: #55aaff;
+      color: #ddd;
+    }
+
+    .variant-4 button {
+      background: var(--accent);
+      border-radius: 9999px;
+      padding: 0.7em 2em;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    .variant-4 button:hover {
+      background: #0056b3;
+    }
+
+    /* Variant 5 -Glassmorphism */
+    .variant-5 {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    .variant-5::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1),
+          transparent,
+          rgba(255, 255, 255, 0.1)
+        );
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%,
+      100% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      50% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .variant-5 input {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .variant-5 button {
+      background: rgba(79, 140, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .variant-5 button:hover {
+      background: rgba(79, 140, 255, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
+    }
+
+    /* Variant 6 - Black*/
+    .variant-6 {
+      background: #000;
+      color: #fff;
+      border: 2px solid #333;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .variant-6 h2 {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .variant-6 input {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      color: #fff;
+    }
+
+    .variant-6 input:focus {
+      border-color: #666;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .variant-6 button {
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .variant-6 button:hover {
+      background: #f0f0f0;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Variant 7 - Gradient*/
+    .variant-7 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .variant-7::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1),
+          transparent,
+          rgba(255, 255, 255, 0.1)
+        );
+    }
+
+    .variant-7 input {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #333;
+      position: relative;
+      z-index: 2;
+    }
+
+    .variant-7 input:focus {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .variant-7 button {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+      border: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .variant-7 button:hover {
+      background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
+    }
+
+    /* Variant 8 - Premium*/
+
+    .variant-8 {
+      background: linear-gradient(145deg, #f0f0f0, #cacaca);
+      border: none;
+      box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    }
+
+    .variant-8 h2 {
+      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .variant-8 input {
+      background: linear-gradient(145deg, #e0e0e0, #ffffff);
+      border: none;
+      box-shadow: inset 8px 8px 16px #bebebe, inset -8px -8px 16px #ffffff;
+    }
+
+    .variant-8 input:focus {
+      box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+    }
+
+    .variant-8 button {
+      background: linear-gradient(45deg, #c9b037, #ffdd44, #c9b037);
+      border: none;
+      box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .variant-8 button:hover {
+      box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Variant 9 - Cut Based*/
+    .variant-9 {
+      background: #fff;
+      position: relative;
+      clip-path: polygon(
+          0 0,
+          calc(100% - 20px) 0,
+          100% 20px,
+          100% 100%,
+          20px 100%,
+          0 calc(100% - 20px)
+        );
+      border: 3px solid #333;
+    }
+
+    .variant-9::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      clip-path: polygon(
+          0 0,
+          calc(100% - 20px) 0,
+          100% 20px,
+          100% 100%,
+          20px 100%,
+          0 calc(100% - 20px)
+        );
+      z-index: -1;
+    }
+
+    .variant-9 input {
+      border: 2px solid #333;
+      border-radius: 0;
+      clip-path: polygon(
+          0 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% 100%,
+          8px 100%,
+          0 calc(100% - 8px)
+        );
+      background: #f9f9f9;
+    }
+
+    .variant-9 input:focus {
+      border-color: #4ecdc4;
+      box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+    }
+
+    .variant-9 button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 0;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .variant-9 button:hover {
+      transform: translateX(3px);
+      box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      color: #ffffff;
+    }
+
+    /* Expand code */
+    .expand-btn {
+      display: inline-block;
+      margin: 20px auto 10px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+
+    .expand-btn:hover {
+      background-color: #0056b3;
+    }
 
     .code-block {
-    display: none;
-  }
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 20px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      text-align: left;
+    }
 
-  .code-block.active {
-    display: block;
-  }
-.code-tabs {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
+    .copy-btn {
+      display: inline-block;
+      margin: 0.5rem 0 1rem;
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
 
-.code-tab {
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  background-color: #f4f4f4;
-  color: #333;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
 
-.code-tab:hover {
-  background-color: #e0e0e0;
-}
+    .copy-btn:active {
+      transform: scale(0.95);
+    }
 
-.code-tab.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
-}
+    .copy-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
 
-/* Optional: Dark Mode Support (if body has .dark class) */
-body.dark .code-tab {
-  background-color: #333;
-  color: #ccc;
-  border-color: #555;
-}
+    /* Responsive */
+    @media (max-width: 480px) {
+      section {
+        width: 90%;
+        padding: 20px 15px;
+      }
 
-body.dark .code-tab:hover {
-  background-color: #444;
-}
+      .nav-links {
+        gap: 10px;
+      }
+    }
 
-body.dark .code-tab.active {
-  background-color: #ffb700;
-  color: black;
-  border-color: #ffb700;
-}
-</style>
+    .code-block {
+      display: none;
+    }
+
+    .code-block.active {
+      display: block;
+    }
+
+    .code-tabs {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .code-tab {
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      background-color: #f4f4f4;
+      color: #333;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .code-tab:hover {
+      background-color: #e0e0e0;
+    }
+
+    .code-tab.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    /* Optional: Dark Mode Support (if body has .dark class) */
+    body.dark .code-tab {
+      background-color: #333;
+      color: #ccc;
+      border-color: #555;
+    }
+
+    body.dark .code-tab:hover {
+      background-color: #444;
+    }
+
+    body.dark .code-tab.active {
+      background-color: #ffb700;
+      color: black;
+      border-color: #ffb700;
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-left">
-     <img src="../images/logo.png" alt="Logo" class="logo" />
-    <span class="site-name">AnimateItNow</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../templates.html" class="active">Templates</a></li>
-    <li><a href="../contributors.html">Contributors</a></li>
-    <li><a href="../contact.html">Contact</a></li>
-  </ul>
-  <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-</nav>
-
-<section class="variant-1">
-  <h2>Login Variant 1 - Classic</h2>
-  <p class="subtitle">Simple white card login form</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
-    <input type="text" placeholder="Username" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-
-  <!-- Code Area -->
-  <div class="code-container" style="display: none;">
-    <!-- Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+   <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
     </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
 
-    <!-- HTML Code -->
-    <pre class="code-block html-code active">
+  <section class="variant-1">
+    <h2>Login Variant 1 - Classic</h2>
+    <p class="subtitle">Simple white card login form</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;form class="login-form"&gt;
   &lt;input type="text" placeholder="Username" required /&gt;
   &lt;input type="password" placeholder="Password" required /&gt;
@@ -463,8 +744,7 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code -->
-  <pre class="code-block react-code">
+      <pre class="code-block react-code">
 &lt;form className="flex flex-col gap-5"&gt;
   &lt;input
     type="text"
@@ -487,33 +767,29 @@ form.login-form button:hover {
 &lt;/form&gt;
 </pre>
 
-  </div>
-
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
-
-<section class="variant-2">
-  <h2>Login Variant 2 - Elevated Card</h2>
-  <p class="subtitle">White card with shadow and smooth edges</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Sign In</button>
-  </form>
-
-  <!-- Code Container -->
-  <div class="code-container" style="display: none;">
-    <!-- Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code -->
-    <pre class="code-block html-code active">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
+
+  <section class="variant-2">
+    <h2>Login Variant 2 - Elevated Card</h2>
+    <p class="subtitle">White card with shadow and smooth edges</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 2 submitted!');">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-2"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -554,8 +830,7 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code -->
-  <pre class="code-block react-code">
+      <pre class="code-block react-code">
 &lt;form className="flex flex-col gap-5 shadow-[0_8px_30px_rgba(79,140,255,0.3)]"&gt;
   &lt;input
     type="email"
@@ -578,34 +853,30 @@ form.login-form button:hover {
 &lt;/form&gt;
 </pre>
 
-  </div>
-
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
-
-
-<section class="variant-3">
-  <h2>Login Variant 3 - Dark Themed</h2>
-  <p class="subtitle">Colored background with white form inputs</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
-    <input type="text" placeholder="Username" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-
-  <!-- Code Container -->
-  <div class="code-container" style="display: none;">
-    <!-- Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code Block -->
-    <pre class="code-block html-code active">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
+
+
+  <section class="variant-3">
+    <h2>Login Variant 3 - Dark Themed</h2>
+    <p class="subtitle">Colored background with white form inputs</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 3 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-3"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
@@ -639,8 +910,7 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code Block -->
-    <pre class="code-block react-code">
+      <pre class="code-block react-code">
 &lt;form className="flex flex-col gap-5 bg-[#4f8cff] text-white px-8 py-12"&gt;
   &lt;input
     type="text"
@@ -663,34 +933,30 @@ form.login-form button:hover {
 &lt;/form&gt;
 </pre>
 
-  </div>
-
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
-
-
-<section class="variant-4">
-  <h2>Login Variant 4 - Minimal Underline</h2>
-  <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
-    <input type="text" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Sign In</button>
-  </form>
-
-  <!-- Code Container -->
-  <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code Block -->
-    <pre class="code-block html-code active">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
+
+
+  <section class="variant-4">
+    <h2>Login Variant 4 - Minimal Underline</h2>
+    <p class="subtitle">Clean inputs with underline and pill-shaped button</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 4 submitted!');">
+      <input type="text" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-4"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Email" required /&gt;
@@ -725,8 +991,8 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code Block -->
-   &lt;form className="flex flex-col gap-5"&gt;
+      <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5"&gt;
   &lt;input
     type="text"
     placeholder="Email"
@@ -746,35 +1012,32 @@ form.login-form button:hover {
     Sign In
   &lt;/button&gt;
 &lt;/form&gt;
+</pre>
 
-  </div>
-
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
-
-
-<section class="variant-5">
-  <h2>Login Variant 5 - Glassmorphism</h2>
-  <p class="subtitle">Translucent glass effect with backdrop blur</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 5 submitted!');">
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Sign In</button>
-  </form>
-
-  <!-- Code Container -->
-  <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code Block -->
-    <pre class="code-block html-code active">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
+
+
+  <section class="variant-5">
+    <h2>Login Variant 5 - Glassmorphism</h2>
+    <p class="subtitle">Translucent glass effect with backdrop blur</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 5 submitted!');">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-5"&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="email" placeholder="Email" required /&gt;
@@ -790,28 +1053,48 @@ form.login-form button:hover {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  position: relative; /* Needed for the shimmer effect */
+  overflow: hidden; /* To contain the shimmer effect */
 }
 .variant-5::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    transparent,
+    rgba(255, 255, 255, 0.1)
+  );
   animation: shimmer 3s ease-in-out infinite;
 }
 @keyframes shimmer {
-  0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  0%, 100% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
 }
 .variant-5 input {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+  color: inherit; /* Ensure text color is inherited for dark mode */
+}
+.variant-5 input::placeholder {
+  color: #ccc;
 }
 .variant-5 button {
   background: rgba(79, 140, 255, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .variant-5 button:hover {
   background: rgba(79, 140, 255, 1);
@@ -821,61 +1104,71 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code Block -->
- &lt;form className="flex flex-col gap-5"&gt;
+      <pre class="code-block react-code">
+&lt;form className="flex flex-col gap-5 bg-white bg-opacity-25 backdrop-blur-xl border border-white border-opacity-18 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] relative overflow-hidden"&gt;
+  &lt;div className="absolute inset-0 bg-gradient-to-br from-white from-10% via-transparent to-white to-90% rotate-45 animate-shimmer"&gt;&lt;/div&gt;
   &lt;input
     type="email"
     placeholder="Email"
     required
-    className="bg-white/20 border border-white/30 backdrop-blur-md px-4 py-2 rounded text-white placeholder-white focus:outline-none"
+    className="bg-white bg-opacity-20 border border-white border-opacity-30 backdrop-blur-lg px-4 py-3 rounded-md text-inherit placeholder:text-gray-300 relative z-10"
   /&gt;
   &lt;input
     type="password"
     placeholder="Password"
     required
-    className="bg-white/20 border border-white/30 backdrop-blur-md px-4 py-2 rounded text-white placeholder-white focus:outline-none"
+    className="bg-white bg-opacity-20 border border-white border-opacity-30 backdrop-blur-lg px-4 py-3 rounded-md text-inherit placeholder:text-gray-300 relative z-10"
   /&gt;
   &lt;button
     type="submit"
-    className="bg-[#4f8cff]/80 border border-white/30 backdrop-blur-md text-white px-4 py-2 rounded font-semibold transition-all hover:bg-[#4f8cff] hover:-translate-y-0.5 hover:shadow-xl"
+    className="bg-blue-500 bg-opacity-80 backdrop-blur-lg border border-white border-opacity-30 text-white font-semibold px-4 py-3 rounded-md transition-all duration-300 hover:bg-blue-500 hover:translate-y-[-2px] hover:shadow-[0_10px_20px_rgba(79,140,255,0.4)] relative z-10"
   &gt;
     Sign In
   &lt;/button&gt;
 &lt;/form&gt;
 
-  </div>
+&lt;style&gt;
+  @keyframes shimmer {
+    0%, 100% {
+      transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    50% {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+  }
+&lt;/style&gt;
+</pre>
 
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
-
-
-<section class="variant-6">
-  <h2>Login Variant 6 - Black</h2>
-  <p class="subtitle">Pure black theme with white accents</p>
-
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 6 submitted!');">
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">LOGIN</button>
-  </form>
-
-  <!-- Code Container -->
-  <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code Block -->
-    <pre class="code-block html-code active">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
+
+  <section class="variant-6">
+    <h2>Login Variant 6 - Dark Modern</h2>
+    <p class="subtitle">Sleek black interface with glowing accents</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 6 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-6"&gt;
+  &lt;h2&gt;Login Variant 6 - Dark Modern&lt;/h2&gt;
+  &lt;p class="subtitle"&gt;Sleek black interface with glowing accents&lt;/p&gt;
   &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email" required /&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
     &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;LOGIN&lt;/button&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
   &lt;/form&gt;
 &lt;/section&gt;
 
@@ -914,60 +1207,62 @@ form.login-form button:hover {
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code Block -->
-&lt;form className="flex flex-col gap-5 text-white"&gt;
-  &lt;input
-    type="email"
-    placeholder="Email"
-    required
-    className="bg-[#1a1a1a] border-2 border-[#333] px-4 py-2 rounded focus:outline-none focus:border-[#666] focus:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-  /&gt;
-  &lt;input
-    type="password"
-    placeholder="Password"
-    required
-    className="bg-[#1a1a1a] border-2 border-[#333] px-4 py-2 rounded text-white placeholder-white focus:outline-none focus:border-[#666] focus:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-  /&gt;
-  &lt;button
-    type="submit"
-    className="bg-white text-black font-bold uppercase tracking-wider px-4 py-2 rounded transition-all hover:bg-[#f0f0f0] hover:-translate-y-[3px] hover:shadow-[0_10px_25px_rgba(255,255,255,0.3)]"
-  &gt;
-    Login
-  &lt;/button&gt;
-&lt;/form&gt;
+      <pre class="code-block react-code">
+&lt;div className="bg-black text-white border-2 border-gray-700 shadow-[0_0_30px_rgba(255,255,255,0.1)] p-8 rounded-xl"&gt;
+  &lt;h2 className="text-white text-3xl font-bold mb-2 text-shadow-md"&gt;Login Variant 6 - Dark Modern&lt;/h2&gt;
+  &lt;p className="text-gray-400 mb-6"&gt;Sleek black interface with glowing accents&lt;/p&gt;
+  &lt;form className="flex flex-col gap-5"&gt;
+    &lt;input
+      type="text"
+      placeholder="Username"
+      required
+      className="bg-gray-800 border-2 border-gray-700 text-white px-4 py-3 rounded-md focus:border-gray-500 focus:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300"
+    /&gt;
+    &lt;input
+      type="password"
+      placeholder="Password"
+      required
+      className="bg-gray-800 border-2 border-gray-700 text-white px-4 py-3 rounded-md focus:border-gray-500 focus:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300"
+    /&gt;
+    &lt;button
+      type="submit"
+      className="bg-white text-black font-bold uppercase tracking-wider px-4 py-3 rounded-md transition-all duration-300 hover:bg-gray-200 hover:translate-y-[-3px] hover:shadow-[0_10px_25px_rgba(255,255,255,0.3)]"
+    &gt;
+      Login
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+    </div>
 
-  </div>
-
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
 
 <section class="variant-7">
-  <h2>Login Variant 7 - Gradient</h2>
-  <p class="subtitle">Beautiful gradient background with layered effects</p>
+  <h2>Login Variant 7 - Gradient Aura</h2>
+  <p class="subtitle" style="color:white;">Vibrant gradient background with subtle shimmer</p>
 
   <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 7 submitted!');">
     <input type="text" placeholder="Username" required />
     <input type="password" placeholder="Password" required />
-    <button type="submit">SIGN IN</button>
+    <button type="submit">Login</button>
   </form>
 
-  <!-- Code Container -->
   <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
     <div class="code-tabs">
       <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
       <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
     </div>
 
-    <!-- HTML Code Block -->
     <pre class="code-block html-code active">
 &lt;section class="variant-7"&gt;
+  &lt;h2&gt;Login Variant 7 - Gradient Aura&lt;/h2&gt;
+  &lt;p class="subtitle"&gt;Vibrant gradient background with subtle shimmer&lt;/p&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
     &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;SIGN IN&lt;/button&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
   &lt;/form&gt;
 &lt;/section&gt;
 
@@ -979,10 +1274,18 @@ form.login-form button:hover {
   overflow: hidden;
 }
 .variant-7::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    transparent,
+    rgba(255, 255, 255, 0.1)
+  );
 }
 .variant-7 input {
   background: rgba(255, 255, 255, 0.9);
@@ -1002,70 +1305,77 @@ form.login-form button:hover {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
 }
 .variant-7 button:hover {
   background: linear-gradient(45deg, #ee5a52, #ff6b6b);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
 }
+.variant-7 .subtitle {
+  color: #ffffff; /* Ensure subtitle is visible on gradient */
+}
 &lt;/style&gt;
     </pre>
 
-    <!-- React Code Block -->
-   &lt;form className="flex flex-col gap-5 text-white relative z-10"&gt;
-  &lt;input
-    type="text"
-    placeholder="Username"
-    required
-    className="bg-white/90 border-none px-4 py-2 rounded text-[#333] z-20 focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all"
-  /&gt;
-  &lt;input
-    type="password"
-    placeholder="Password"
-    required
-    className="bg-white/90 border-none px-4 py-2 rounded text-[#333] z-20 focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all"
-  /&gt;
-  &lt;button
-    type="submit"
-    className="bg-gradient-to-r from-[#ff6b6b] to-[#ee5a52] text-white font-bold uppercase tracking-wider px-4 py-2 rounded transition-all hover:from-[#ee5a52] hover:to-[#ff6b6b] hover:translate-y-[-3px] hover:shadow-[0_10px_20px_rgba(238,90,82,0.4)]"
-  &gt;
-    Sign In
-  &lt;/button&gt;
-&lt;/form&gt;
-
+    <pre class="code-block react-code">
+&lt;div className="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white relative overflow-hidden p-8 rounded-xl"&gt;
+  &lt;div className="absolute inset-0 bg-gradient-to-br from-white from-10% via-transparent to-white to-90% rotate-45"&gt;&lt;/div&gt;
+  &lt;h2 className="text-white text-3xl font-bold mb-2 relative z-10"&gt;Login Variant 7 - Gradient Aura&lt;/h2&gt;
+  &lt;p className="text-white text-opacity-80 mb-6 relative z-10"&gt;Vibrant gradient background with subtle shimmer&lt;/p&gt;
+  &lt;form className="flex flex-col gap-5 relative z-10"&gt;
+    &lt;input
+      type="text"
+      placeholder="Username"
+      required
+      className="bg-white bg-opacity-90 border-none text-gray-800 px-4 py-3 rounded-md focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all duration-300"
+    /&gt;
+    &lt;input
+      type="password"
+      placeholder="Password"
+      required
+      className="bg-white bg-opacity-90 border-none text-gray-800 px-4 py-3 rounded-md focus:bg-white focus:translate-y-[-2px] focus:shadow-[0_5px_15px_rgba(0,0,0,0.3)] transition-all duration-300"
+    /&gt;
+    &lt;button
+      type="submit"
+      className="bg-gradient-to-br from-[#ff6b6b] to-[#ee5a52] border-none text-white uppercase font-bold tracking-wider px-4 py-3 rounded-md transition-all duration-300 hover:from-[#ee5a52] hover:to-[#ff6b6b] hover:translate-y-[-3px] hover:shadow-[0_10px_20px_rgba(238,90,82,0.4)]"
+    &gt;
+      Login
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</pre>
   </div>
 
-  <!-- Buttons -->
   <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
   <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
 </section>
 
+  <section class="variant-8">
+    <h2>Login Variant 8 - Premium Gold</h2>
+    <p class="subtitle">Luxurious neumorphic design with golden accents</p>
 
-<section class="variant-8">
-  <h2>Login Variant 8 - Premium</h2>
-  <p class="subtitle">Luxury neumorphism design with gold accents</p>
+    <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 8 submitted!');">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
 
-  <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 8 submitted!');">
-    <input type="email" placeholder="Email Address" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">ACCESS</button>
-  </form>
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
 
-  <!-- Code Container (Tabs + Code Blocks inside this) -->
-  <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
-    </div>
-
-    <!-- HTML Code Block -->
-    <pre class="code-block html-code active">
+      <pre class="code-block html-code active">
 &lt;section class="variant-8"&gt;
+  &lt;h2&gt;Login Variant 8 - Premium Gold&lt;/h2&gt;
+  &lt;p class="subtitle"&gt;Luxurious neumorphic design with golden accents&lt;/p&gt;
   &lt;form class="login-form"&gt;
-    &lt;input type="email" placeholder="Email Address" required /&gt;
+    &lt;input type="text" placeholder="Username" required /&gt;
     &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;ACCESS&lt;/button&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
   &lt;/form&gt;
 &lt;/section&gt;
 
@@ -1104,63 +1414,66 @@ form.login-form button:hover {
   transform: translateY(-2px);
 }
 &lt;/style&gt;
-
-    </pre> 
-
-    <!-- React Code Block -->
-    <pre class="code-block react-code">
-&lt;form className="flex flex-col gap-5 text-black"&gt;
-  &lt;input
-    type="email"
-    placeholder="Email Address"
-    required
-    className="bg-gradient-to-br from-[#e0e0e0] to-[#ffffff] border-none px-4 py-2 rounded shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
-  /&gt;
-  &lt;input
-    type="password"
-    placeholder="Password"
-    required
-    className="bg-gradient-to-br from-[#e0e0e0] to-[#ffffff] border-none px-4 py-2 rounded shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
-  /&gt;
-  &lt;button
-    type="submit"
-    className="bg-gradient-to-r from-[#c9b037] via-[#ffdd44] to-[#c9b037] text-white font-bold uppercase tracking-wider px-4 py-2 rounded shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] hover:shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:translate-y-[-2px] transition-all"
-  &gt;
-    Access
-  &lt;/button&gt;
-&lt;/form&gt;
-
     </pre>
-  </div>
 
-  <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
+      <pre class="code-block react-code">
+&lt;div className="bg-gradient-to-br from-gray-100 to-gray-300 border-none shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] p-8 rounded-xl"&gt;
+  &lt;h2 className="bg-gradient-to-r from-[#c9b037] via-[#ffdd44] to-[#c9b037] bg-clip-text text-transparent font-extrabold text-center text-3xl mb-2"&gt;
+    Login Variant 8 - Premium Gold
+  &lt;/h2&gt;
+  &lt;p className="text-gray-600 mb-6"&gt;Luxurious neumorphic design with golden accents&lt;/p&gt;
+  &lt;form className="flex flex-col gap-5"&gt;
+    &lt;input
+      type="text"
+      placeholder="Username"
+      required
+      className="bg-gradient-to-br from-gray-200 to-white border-none shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] px-4 py-3 rounded-md focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-shadow duration-300"
+    /&gt;
+    &lt;input
+      type="password"
+      placeholder="Password"
+      required
+      className="bg-gradient-to-br from-gray-200 to-white border-none shadow-[inset_8px_8px_16px_#bebebe,inset_-8px_-8px_16px_#ffffff] px-4 py-3 rounded-md focus:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-shadow duration-300"
+    /&gt;
+    &lt;button
+      type="submit"
+      className="bg-gradient-to-r from-[#c9b037] via-[#ffdd44] to-[#c9b037] border-none shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] font-bold uppercase tracking-wider px-4 py-3 rounded-md transition-all duration-300 hover:shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:translate-y-[-2px]"
+    &gt;
+      Login
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+    </div>
 
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
 
   <section class="variant-9">
-    <h2>Login Variant 9 - Cut Based</h2>
-    <p class="subtitle">Angular cuts and geometric design elements</p>
+    <h2>Login Variant 9 - Cut Edge</h2>
+    <p class="subtitle">Bold geometric design with angled cuts</p>
+
     <form class="login-form" onsubmit="event.preventDefault(); alert('Login Variant 9 submitted!');">
       <input type="text" placeholder="Username" required />
       <input type="password" placeholder="Password" required />
-      <button type="submit">ENTER</button>
+      <button type="submit">Login</button>
     </form>
-     <div class="code-container" style="display: none;">
-    <!-- Language Tabs -->
-    <div class="code-tabs">
-      <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
-      <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
-    </div>
 
-    <!-- HTML Code Block -->
-  <pre class="code-block html-code active">
+    <div class="code-container" style="display: none;">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchLang(this, 'html')">HTML/CSS</button>
+        <button class="code-tab" onclick="switchLang(this, 'react')">React</button>
+      </div>
+
+      <pre class="code-block html-code active">
 &lt;section class="variant-9"&gt;
+  &lt;h2&gt;Login Variant 9 - Cut Edge&lt;/h2&gt;
+  &lt;p class="subtitle"&gt;Bold geometric design with angled cuts&lt;/p&gt;
   &lt;form class="login-form"&gt;
     &lt;input type="text" placeholder="Username" required /&gt;
     &lt;input type="password" placeholder="Password" required /&gt;
-    &lt;button type="submit"&gt;ENTER&lt;/button&gt;
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
   &lt;/form&gt;
 &lt;/section&gt;
 
@@ -1168,21 +1481,45 @@ form.login-form button:hover {
 .variant-9 {
   background: #fff;
   position: relative;
-  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
   border: 3px solid #333;
 }
 .variant-9::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
   z-index: -1;
 }
 .variant-9 input {
   border: 2px solid #333;
   border-radius: 0;
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
   background: #f9f9f9;
 }
 .variant-9 input:focus {
@@ -1202,113 +1539,132 @@ form.login-form button:hover {
   transform: translateX(3px);
   box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
 }
+.variant-9 .subtitle {
+  color: #666; /* Ensure subtitle is visible on white background */
+}
 &lt;/style&gt;
-  </pre>
-
-    <!-- React Code Block -->
-    <pre class="code-block react-code">
-&lt;form className="flex flex-col gap-5 text-black [&_input]:!clip-path-[polygon(0_0,calc(100%_-_8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%_-_8px))] [&_button]:!clip-path-[polygon(8px_0,100%_0,calc(100%_-_8px)_100%,0_100%)]"&gt;
-  &lt;input
-    type="text"
-    placeholder="Username"
-    required
-    className="bg-[#f9f9f9] border-2 border-[#333] px-4 py-2 focus:border-[#4ecdc4] focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all"
-  /&gt;
-  &lt;input
-    type="password"
-    placeholder="Password"
-    required
-    className="bg-[#f9f9f9] border-2 border-[#333] px-4 py-2 focus:border-[#4ecdc4] focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all"
-  /&gt;
-  &lt;button
-    type="submit"
-    className="bg-gradient-to-br from-[#667eea] to-[#764ba2] text-white font-bold uppercase tracking-wider px-4 py-2 shadow-md hover:translate-x-1 hover:shadow-[ -5px_5px_15px_rgba(0,0,0,0.3) ] transition-all"
-  &gt;
-    Enter
-  &lt;/button&gt;
-&lt;/form&gt;
-
     </pre>
-  </div>
-    <!-- Buttons -->
-  <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-  <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
-</section>
 
-<script>
-  function toggleCode(button) {
-    const section = button.closest("section");
-    const container = section.querySelector(".code-container");
-    const isVisible = container.style.display === "block";
+      <pre class="code-block react-code">
+&lt;div className="bg-white relative border-3 border-gray-800 [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))] p-8 rounded-xl"&gt;
+  &lt;div className="absolute inset-[-3px] bg-gradient-to-br from-red-400 via-teal-400 to-cyan-400 [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))] -z-10"&gt;&lt;/div&gt;
+  &lt;h2 className="text-gray-800 text-3xl font-bold mb-2"&gt;Login Variant 9 - Cut Edge&lt;/h2&gt;
+  &lt;p className="text-gray-600 mb-6"&gt;Bold geometric design with angled cuts&lt;/p&gt;
+  &lt;form className="flex flex-col gap-5"&gt;
+    &lt;input
+      type="text"
+      placeholder="Username"
+      required
+      className="border-2 border-gray-800 rounded-none [clip-path:polygon(0_0,calc(100%-8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%-8px))] bg-gray-50 px-4 py-3 focus:border-teal-400 focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all duration-300"
+    /&gt;
+    &lt;input
+      type="password"
+      placeholder="Password"
+      required
+      className="border-2 border-gray-800 rounded-none [clip-path:polygon(0_0,calc(100%-8px)_0,100%_8px,100%_100%,8px_100%,0_calc(100%-8px))] bg-gray-50 px-4 py-3 focus:border-teal-400 focus:shadow-[0_0_10px_rgba(78,205,196,0.3)] transition-all duration-300"
+    /&gt;
+    &lt;button
+      type="submit"
+      className="bg-gradient-to-br from-[#667eea] to-[#764ba2] border-none rounded-none [clip-path:polygon(8px_0,100%_0,calc(100%-8px)_100%,0_100%)] text-white font-bold uppercase tracking-wider px-4 py-3 transition-all duration-300 hover:translate-x-1 hover:shadow-[-5px_5px_15px_rgba(0,0,0,0.3)]"
+    &gt;
+      Login
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+    </div>
 
-    container.style.display = isVisible ? "none" : "block";
-    button.textContent = isVisible ? "Show Code" : "Hide Code";
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <button class="expand-btn copy-btn" onclick="copyCurrentCode(this)">Copy Code</button>
+  </section>
 
-    section.querySelectorAll(".code-block").forEach((block) => {
-      block.style.display = "none";
-    });
 
-    if (!isVisible) {
-      const activeBlock = section.querySelector(".code-block.active");
-      if (activeBlock) {
-        activeBlock.style.display = "block";
+  <script>
+    // Theme Toggle
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark');
+      // Store user preference
+      if (document.body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        this.textContent = '☀️'; // Sun icon for light mode
+      } else {
+        localStorage.setItem('theme', 'light');
+        this.textContent = '🌙'; // Moon icon for dark mode
       }
-    }
-  }
-
-  function switchLang(button, lang) {
-    const section = button.closest("section");
-
-    section.querySelectorAll(".code-tab").forEach(tab => tab.classList.remove("active"));
-    section.querySelectorAll(".code-block").forEach(block => {
-      block.classList.remove("active");
-      block.style.display = "none";
     });
 
-    button.classList.add("active");
-
-    const targetBlock = section.querySelector(`.${lang}-code`);
-    if (targetBlock) {
-      targetBlock.classList.add("active");
-      targetBlock.style.display = "block";
+    // Apply saved theme on load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      document.getElementById('theme-toggle').textContent = '☀️';
+    } else {
+      document.getElementById('theme-toggle').textContent = '🌙';
     }
-  }
 
-  function copyCurrentCode(btn) {
-    const section = btn.closest("section");
-    const codeBlock = section.querySelector(".code-block.active");
+    // Function to toggle code block visibility
+    window.toggleCode = (button) => {
+      const section = button.closest('section');
+      const codeContainer = section.querySelector('.code-container'); // Get the code container within the current section
 
-    if (!codeBlock) return;
+      if (codeContainer) {
+        if (codeContainer.style.display === 'none' || codeContainer.style.display === '') {
+          codeContainer.style.display = 'block';
+          button.textContent = 'Hide Code';
+        } else {
+          codeContainer.style.display = 'none';
+          button.textContent = 'Show Code';
+        }
+      }
+    };
 
-    navigator.clipboard.writeText(codeBlock.innerText.trim())
-      .then(() => {
-        btn.textContent = "Copied!";
-        btn.disabled = true;
+    // Function to switch between HTML/CSS and React code
+    window.switchLang = (tabButton, lang) => {
+      const codeTabs = tabButton.closest('.code-tabs');
+      const codeContainer = codeTabs.parentElement; // The .code-container is the parent of .code-tabs
+
+      // Deactivate all tabs
+      codeTabs.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
+      // Activate the clicked tab
+      tabButton.classList.add('active');
+
+      // Hide all code blocks within this container
+      codeContainer.querySelectorAll('.code-block').forEach(block => block.classList.remove('active'));
+
+      // Show the relevant code block
+      codeContainer.querySelector(`.${lang}-code`).classList.add('active');
+    };
+
+    // Function to copy code
+    window.copyCurrentCode = async (button) => {
+      const section = button.closest('section');
+      const codeContainer = section.querySelector('.code-container');
+      let codeToCopy = '';
+
+      // Find the currently active code block within the code-container
+      const activeCodeBlock = codeContainer.querySelector('.code-block.active');
+
+      if (activeCodeBlock) {
+        codeToCopy = activeCodeBlock.textContent;
+      } else {
+        console.error('No active code block found to copy.');
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(codeToCopy.trim());
+        button.textContent = 'Copied!';
         setTimeout(() => {
-          btn.textContent = "Copy Code";
-          btn.disabled = false;
-        }, 1500);
-      })
-      .catch((err) => {
-        console.error("Copy failed:", err);
-      });
-  }
-
-  // Optional: Dark mode toggle logic
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const body = document.body;
-  const navbar = document.getElementById('navbar');
-
-  themeToggleBtn?.addEventListener('click', () => {
-    body.classList.toggle('dark');
-    navbar?.classList.toggle('dark');
-    themeToggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-  });
-</script>
-
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
+          button.textContent = 'Copy Code';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+        button.textContent = 'Error!';
+        setTimeout(() => {
+          button.textContent = 'Copy Code';
+        }, 2000);
+      }
+    };
+  </script>
 </body>
-</html>
 
 </html>
