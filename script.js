@@ -261,3 +261,23 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize on load
   updateProgressBar()
 })
+// Add fade-in on page load
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("fade-in");
+});
+
+// Intercept all internal <a> links
+document.querySelectorAll('a[href$=".html"]').forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const targetURL = this.getAttribute("href");
+    document.body.classList.remove("fade-in");
+    document.body.classList.add("fade-out");
+
+    // Delay navigation to let animation finish
+    setTimeout(() => {
+      window.location.href = targetURL;
+    }, 500); // Match the CSS animation duration
+  });
+});
