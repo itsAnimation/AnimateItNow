@@ -338,6 +338,48 @@
       .controls-pane label { flex-direction: column; align-items: flex-start; }
     }
 
+    .lang-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0.75rem;
+}
+.lang-tab {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.lang-tab.active {
+  background: #4f8cff;
+  color: white;
+  border-color: #4f8cff;
+}
+
+.code-block {
+  background: #282c34;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-height: 320px;
+  min-height: 120px;
+  min-width: 220px;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 0.75rem;
+  display: none;
+}
+.active-block {
+  display: block !important;
+}
+
+
   </style>
 </head>
 <body>
@@ -383,7 +425,16 @@
           <span>Color:</span>
           <input type="color" id="ctrl-color" value="#4f8cff" />
         </label>
-        <pre id="code-block"></pre>
+        <div class="lang-tabs">
+  <button class="lang-tab active" data-lang="html">HTML/CSS</button>
+  <button class="lang-tab" data-lang="react">React</button>
+   <button class="lang-tab"       data-lang="tailwind">Tailwind</button>
+</div>
+
+<pre id="code-block-html"     class="code-block active-block"></pre>
+<pre id="code-block-react"    class="code-block"></pre>
+<pre id="code-block-tailwind" class="code-block"></pre>
+
         <button id="copy-code">Copy Code</button>
       </div>
 
@@ -409,67 +460,75 @@
   </footer>
 
   <!-- Loader Playground -->
-    <script>
-    const cards     = document.querySelectorAll('.loader-card');
-    const preview   = document.getElementById('loader-preview');
-    const sizeCtrl  = document.getElementById('ctrl-size');
-    const speedCtrl = document.getElementById('ctrl-speed');
-    const colorCtrl = document.getElementById('ctrl-color');
-    const codeBlock = document.getElementById('code-block');
-    const copyBtn   = document.getElementById('copy-code');
-    let currentType = 'spinner';
+<script>
+  const cards     = document.querySelectorAll('.loader-card');
+  const preview   = document.getElementById('loader-preview');
+  const sizeCtrl  = document.getElementById('ctrl-size');
+  const speedCtrl = document.getElementById('ctrl-speed');
+  const colorCtrl = document.getElementById('ctrl-color');
+  const copyBtn   = document.getElementById('copy-code');
+  const langTabs  = document.querySelectorAll('.lang-tab');
 
-    const loaders = {
-      spinner: () => '<div class="loader-spinner"></div>',
-      dots:    () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
-      bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
-    };
+  // NEW: map for our three code blocks
+  const codeBlocks = {
+    html:     document.getElementById('code-block-html'),
+    react:    document.getElementById('code-block-react'),
+    tailwind: document.getElementById('code-block-tailwind')
+  };
 
-    function renderLoader() {
-      preview.innerHTML = loaders[currentType]();
-      const el = preview.firstElementChild;
-      const size = +sizeCtrl.value;
-      const speed = speedCtrl.value + 's';
-      const color = colorCtrl.value;
+  let currentType = 'spinner';
+  let currentLang = 'html';
 
-      el.style.color = color;
+  const loaders = {
+    spinner: () => '<div class="loader-spinner"></div>',
+    dots:    () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
+    bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
+  };
 
-      if (currentType === 'spinner') {
-        el.style.width        = size + 'px';
-        el.style.height       = size + 'px';
-        el.style.borderWidth  = size / 8 + 'px';
-        el.style.borderColor  = color + '33';
-        el.style.borderTopColor = color;
-        el.style.animationDuration = speed;
-      } else if (currentType === 'dots') {
-        el.querySelectorAll('div').forEach(dot => {
-          dot.style.width            = size / 4 + 'px';
-          dot.style.height           = size / 4 + 'px';
-          dot.style.margin           = '0 ' + size / 8 + 'px';
-          dot.style.animationDuration = speed;
-          dot.style.background = color;
-        });
-      } else {
-        el.querySelectorAll('div').forEach(bar => {
-          bar.style.width            = size / 8 + 'px';
-          bar.style.height           = size + 'px';
-          bar.style.margin           = '0 ' + size / 16 + 'px';
-          bar.style.animationDuration = speed;
-          bar.style.background = color;
-        });
-      }
+  function renderLoader() {
+    preview.innerHTML = loaders[currentType]();
+    const el    = preview.firstElementChild;
+    const size  = +sizeCtrl.value;
+    const speed = speedCtrl.value + 's';
+    const color = colorCtrl.value;
 
-      updateCodeSnippet();
+    el.style.color = color;
+    if (currentType === 'spinner') {
+      el.style.width             = size + 'px';
+      el.style.height            = size + 'px';
+      el.style.borderWidth       = size/8 + 'px';
+      el.style.borderColor       = color + '33';
+      el.style.borderTopColor    = color;
+      el.style.animationDuration = speed;
+    } else if (currentType === 'dots') {
+      el.querySelectorAll('div').forEach(d => {
+        d.style.width            = size/4 + 'px';
+        d.style.height           = size/4 + 'px';
+        d.style.margin           = '0 ' + size/8 + 'px';
+        d.style.animationDuration = speed;
+        d.style.background       = color;
+      });
+    } else {
+      el.querySelectorAll('div').forEach(b => {
+        b.style.width            = size/8 + 'px';
+        b.style.height           = size + 'px';
+        b.style.margin           = '0 ' + size/16 + 'px';
+        b.style.animationDuration = speed;
+        b.style.background       = color;
+      });
     }
+    updateCodeSnippet();
+  }
 
-    function updateCodeSnippet() {
-      const size = sizeCtrl.value + 'px';
-      const speed = speedCtrl.value + 's';
-      const color = colorCtrl.value;
-      let css = '';
+  function updateCodeSnippet() {
+    const size  = sizeCtrl.value + 'px';
+    const speed = speedCtrl.value + 's';
+    const color = colorCtrl.value;
 
-      if (currentType === 'spinner') {
-        css = `
+    // Build CSS fragment
+    let cssFrag = '';
+    if (currentType === 'spinner') {
+      cssFrag = `
 .loader-spinner {
   width: ${size};
   height: ${size};
@@ -478,10 +537,9 @@
   border-radius: 50%;
   animation: spin ${speed} linear infinite;
 }`.trim();
-      } else if (currentType === 'dots') {
-        css = `
+    } else if (currentType === 'dots') {
+      cssFrag = `
 .loader-dots {
-  color: ${color};
   display: flex; align-items: center; justify-content: center; gap: 6px;
 }
 .loader-dots div {
@@ -496,12 +554,11 @@
 .loader-dots div:nth-child(3) { animation-delay: 0.4s; }
 @keyframes dots {
   0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1.0); }
+  40% { transform: scale(1); }
 }`.trim();
-      } else {
-        css = `
+    } else {
+      cssFrag = `
 .loader-bars {
-  color: ${color};
   display: flex; align-items: flex-end; justify-content: center; gap: 4px;
 }
 .loader-bars div {
@@ -520,34 +577,50 @@
   50% { transform: scaleY(0.3); }
   100% { transform: scaleY(1); }
 }`.trim();
-      }
-
-      codeBlock.textContent = `<!-- HTML -->\n${loaders[currentType]().trim()}\n\n<!-- CSS -->\n${css}`;
     }
 
-    cards.forEach(c => {
-      c.addEventListener('click', () => {
-        cards.forEach(x => x.classList.remove('active'));
-        c.classList.add('active');
-        currentType = c.dataset.type;
-        renderLoader();
-      });
-    });
+    // HTML, React, Tailwind fragments
+    const htmlFrag = loaders[currentType]().trim();
+    const reactFrag = `<div className="w-[${size}] h-[${size}] border-[${parseInt(size)/8}px] border-[${color}33] border-t-[${parseInt(size)/8}px] border-t-[${color}] rounded-full animate-spin"></div>`;
+    const tailFrag  = `<div class="w-[${size}] h-[${size}] border-[${parseInt(size)/8}px] border-[${color}33] border-t-[${parseInt(size)/8}px] border-t-[${color}] rounded-full animate-spin"></div>`;
 
-    [sizeCtrl, speedCtrl, colorCtrl].forEach(ctrl =>
-      ctrl.addEventListener('input', renderLoader)
-    );
+    // Inject into each block
+    codeBlocks.html.textContent     = `<!-- HTML -->\n${htmlFrag}\n\n<!-- CSS -->\n${cssFrag}`;
+    codeBlocks.react.textContent    = reactFrag;
+    codeBlocks.tailwind.textContent = tailFrag;
+  }
 
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(codeBlock.textContent);
-      copyBtn.textContent = 'Copied!';
-      setTimeout(() => copyBtn.textContent = 'Copy Code', 1200);
-    });
-
-    // Initialize
+  // Event listeners
+  cards.forEach(c => c.addEventListener('click', () => {
+    cards.forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    currentType = c.dataset.type;
     renderLoader();
-  </script>
-  
+  }));
+
+  [sizeCtrl, speedCtrl, colorCtrl].forEach(ctrl =>
+    ctrl.addEventListener('input', renderLoader)
+  );
+
+  langTabs.forEach(tab => tab.addEventListener('click', () => {
+    langTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentLang = tab.dataset.lang;
+    document.querySelectorAll('.code-block').forEach(cb => cb.classList.remove('active-block'));
+    codeBlocks[currentLang].classList.add('active-block');
+  }));
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(codeBlocks[currentLang].textContent);
+    copyBtn.textContent = 'Copied!';
+    setTimeout(() => copyBtn.textContent = 'Copy Code', 1200);
+  });
+
+  // Initialize on load
+  renderLoader();
+</script>
+
+
   <script src="../script.js"></script>  
    <!-- there is no logic imports from script.js in this file, so it is no need to import it here -->
   <!-- PWA Support -->
