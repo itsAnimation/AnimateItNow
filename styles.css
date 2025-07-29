@@ -26,11 +26,26 @@
   --dark-color: #2f3542;
   --box-shadow: rgb(0 0 2 / 35%) 0px 20px 30px -10px;
 
+  .footer-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .stat-item {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
 }
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: url("images/bg.jpg") no-repeat center center fixed;
+    align-items: center;
+    text-align: center;
   background-size: cover;
   background-color: var(--primary-bg);
   color: var(--primary-text);
@@ -41,6 +56,8 @@ body {
 
 .list-group {
   list-style: none; /* Removes bullets */
+    align-items: center;
+    text-align: center;
   padding: 0;
   margin: 0;
 }
@@ -49,6 +66,7 @@ body {
   background-color: #f9f9f9;
   margin: 8px 0;
   padding: 12px 16px;
+    justify-content: center;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 500;
@@ -61,6 +79,12 @@ body {
 
 /* NAVBAR */
 .navbar {
+  .footer-content, .footer-left, .footer-right, .footer-stats, .footer-bottom {
+    text-align: center !important;
+  }
+  .footer-right a i {
+    margin-right: 8px;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2290,6 +2314,41 @@ body.dark .glow-wrap::before {
     border-radius: 6px;
     background-color: #64b5f6; /* Correct blue button color */
     color: white;
+  body.dark .footer {
+    background: linear-gradient(135deg, #181c24 0%, #232a36 50%, #2d3748 100%) !important;
+    color: #f7fafc !important;
+  }
+  body.dark .footer-content {
+    background: rgba(30, 34, 44, 0.85) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+  }
+  body.dark .footer-left h2,
+  body.dark .footer-right h4 {
+    color: #f7fafc !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+  }
+  body.dark .footer-left p {
+    color: #cbd5e0 !important;
+    opacity: 0.95 !important;
+  }
+  body.dark .footer-right a {
+    color: #e2e8f0 !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+  }
+  body.dark .footer-right a:hover {
+    background: rgba(144,205,244,0.10) !important;
+    color: #90cdf4 !important;
+    text-shadow: 0 0 8px rgba(144,205,244,0.3) !important;
+  }
+  body.dark .footer-bottom {
+    color: #e2e8f0 !important;
+    border-top: 1px solid rgba(255,255,255,0.15) !important;
+  }
+  body.dark .footer-bottom .highlight {
+    color: #ffd700 !important;
+    text-shadow: 0 0 6px rgba(255,215,0,0.4) !important;
+  }
     font-size: 1rem;
     cursor: pointer;
 }
