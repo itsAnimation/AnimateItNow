@@ -261,3 +261,18 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize on load
   updateProgressBar()
 })
+document.addEventListener("DOMContentLoaded", function () {
+  // Try to find by id, class, or text
+  const btn = document.querySelector("#getStartedBtn");
+  console.log("Found button:", btn);
+
+  if (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log("Button clicked! Redirecting...");
+      window.location.href = "templates.html";
+    });
+  } else {
+    console.error("Get Started button not found. Check the selector or ID.");
+  }
+});
