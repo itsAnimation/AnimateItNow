@@ -36,6 +36,30 @@
     });
   }
 
+// Register and auto-reload on service worker update
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('Service Worker registered:', registration);
+
+      registration.onupdatefound = () => {
+        const newWorker = registration.installing;
+        newWorker.onstatechange = () => {
+          if (
+            newWorker.state === 'installed' &&
+            navigator.serviceWorker.controller
+          ) {
+            console.log('New version available. Reloading...');
+            window.location.reload();
+          }
+        };
+      };
+    }).catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+  });
+}
+
 function typewriter(){
   const el=document.getElementById("modify");
   if(!el)return;
