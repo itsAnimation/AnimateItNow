@@ -46,18 +46,22 @@
 
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
+        <!-- remove active from Home -->
+        <li><a href="index.html">Home</a></li>
+        <!-- make active to About as you are in about -->
+        <li><a href="about.html" class="active">About</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
         <!-- cursor toggle switch -->
-        <li>
+         
+        <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
             <span class="slider round"></span>
           </label>
+          <span class="snakeLabel">Snake Cursor</span>
         </li>
         <!-- github icon -->
         <li>
@@ -150,6 +154,27 @@
       </div>
     </section>
 
+    <section class="about-section scroll-fade">
+      <div class="about-icon">🚀</div>
+      <div class="about-content">
+        <h2>Why Choose <span>AnimateItNow?</span></h2>
+        <div class="about-audience">
+          <div class="about-audience-item">
+            <h3>Super Fast Templates</h3>
+            <p>Pre-built animations ready to use in seconds.</p>
+          </div>
+          <div class="about-audience-item">
+            <h3> Beginner Friendly</h3>
+            <p>Learn with simple, well-documented examples.</p>
+          </div>
+          <div class="about-audience-item">
+            <h3>Modern UI Components</h3>
+            <p>Designed to inspire and speed up your workflow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="about-cta scale-in">
       <h2>Ready to contribute?</h2>
       <p>Join our open-source community!</p>
@@ -217,4 +242,5 @@
   <!-- PWA Support -->
   <script src="pwa.js"></script>
 </body>
+
 </html>

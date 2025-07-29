@@ -1,8 +1,6 @@
-const CACHE_NAME = 'animateitnow-v1';
-const STATIC_CACHE = 'animateitnow-static-v1';
-const DYNAMIC_CACHE = 'animateitnow-dynamic-v1';
+const STATIC_CACHE = 'animateitnow-static-v2';
+const DYNAMIC_CACHE = 'animateitnow-dynamic-v2';
 
-// Files to cache immediately
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -36,27 +34,24 @@ const STATIC_ASSETS = [
   '/templates/tilt-card.html',
   '/templates/timer.html',
   '/templates/tooltip.html',
-  // External CDN resources (cache these for offline use)
+  // External CDN
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css',
   'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
 ];
 
-// Install event - cache static assets
+// Install event
 self.addEventListener('install', (event) => {
   console.log('Service Worker: Installing...');
+  self.skipWaiting(); // Immediately activate new service worker
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then((cache) => {
-        console.log('Service Worker: Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .catch((error) => {
-        console.error('Service Worker: Error caching static assets', error);
-      })
+    caches.open(STATIC_CACHE).then((cache) => {
+      console.log('Service Worker: Caching static assets');
+      return cache.addAll(STATIC_ASSETS);
+    })
   );
 });
 
-// Activate event - clean up old caches
+// Activate event
 self.addEventListener('activate', (event) => {
   console.log('Service Worker: Activating...');
   event.waitUntil(
@@ -71,101 +66,51 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim(); // Claim control immediately
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-  
-  // Skip non-GET requests
-  if (request.method !== 'GET') {
-    return;
-  }
+
+  if (request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(request)
-      .then((cachedResponse) => {
-        if (cachedResponse) {
-          return cachedResponse;
+    caches.match(request).then((cachedResponse) => {
+      if (cachedResponse) return cachedResponse;
+
+      return fetch(request.clone()).then((response) => {
+        if (
+          !response ||
+          response.status !== 200 ||
+          response.type !== 'basic'
+        ) {
+          return response;
         }
 
-        // Clone the request because it's a stream
-        const fetchRequest = request.clone();
+        const responseToCache = response.clone();
+        const url = new URL(request.url);
 
-        return fetch(fetchRequest)
-          .then((response) => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response because it's a stream
-            const responseToCache = response.clone();
-            const url = new URL(request.url);
-
-            // Cache HTML, CSS, JS, and image files
-            if (
-              request.destination === 'document' ||
-              request.destination === 'style' ||
-              request.destination === 'script' ||
-              request.destination === 'image' ||
-              url.pathname.endsWith('.html') ||
-              url.pathname.endsWith('.css') ||
-              url.pathname.endsWith('.js') ||
-              url.pathname.endsWith('.png') ||
-              url.pathname.endsWith('.jpg') ||
-              url.pathname.endsWith('.jpeg') ||
-              url.pathname.endsWith('.gif') ||
-              url.pathname.endsWith('.svg')
-            ) {
-              caches.open(DYNAMIC_CACHE)
-                .then((cache) => {
-                  cache.put(request, responseToCache);
-                });
-            }
-
-            return response;
-          })
-          .catch(() => {
-            // Return offline fallback for HTML pages
-            if (request.destination === 'document') {
-              return caches.match('/templates/404.html');
-            }
+        // Cache only HTML, CSS, JS, images
+        if (
+          request.destination === 'document' ||
+          request.destination === 'style' ||
+          request.destination === 'script' ||
+          request.destination === 'image' ||
+          url.pathname.match(/\.(html|css|js|png|jpg|jpeg|gif|svg)$/)
+        ) {
+          caches.open(DYNAMIC_CACHE).then((cache) => {
+            cache.put(request, responseToCache);
           });
-      })
+        }
+
+        return response;
+      }).catch(() => {
+        // Optional fallback page
+        if (request.destination === 'document') {
+          return caches.match('/templates/404.html');
+        }
+      });
+    })
   );
-});
-
-// Background sync for when connection is restored
-self.addEventListener('sync', (event) => {
-  console.log('Service Worker: Background sync', event.tag);
-  // Handle background sync tasks here if needed
-});
-
-// Push notification handling (for future enhancement)
-self.addEventListener('push', (event) => {
-  if (event.data) {
-    const data = event.data.json();
-    const options = {
-      body: data.body,
-      icon: '/images/icons/icon-192x192.png',
-      badge: '/images/icons/icon-72x72.png',
-      data: data.url
-    };
-
-    event.waitUntil(
-      self.registration.showNotification(data.title, options)
-    );
-  }
-});
-
-// Notification click handling
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  
-  if (event.notification.data) {
-    event.waitUntil(
-      clients.openWindow(event.notification.data)
-    );
-  }
 });

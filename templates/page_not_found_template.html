@@ -40,6 +40,79 @@
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
+    
+    /* Dark theme toggle */
+    .theme-toggle {
+      position: fixed !important;
+      top: 20px !important;
+      right: 20px !important;
+      background: #ffffff !important;
+      border: 2px solid #218cfa !important;
+      border-radius: 25px !important;
+      padding: 10px 18px !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #333 !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.2) !important;
+      backdrop-filter: blur(10px) !important;
+      z-index: 99999 !important;
+      user-select: none !important;
+      min-width: 80px !important;
+      justify-content: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      font-family: 'Poppins', sans-serif !important;
+    }
+    .theme-toggle:hover {
+      background: #f8f9ff !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.3) !important;
+    }
+    .theme-toggle:active {
+      transform: translateY(0px) !important;
+    }
+    
+    /* Dark theme styles */
+    [data-theme="dark"] {
+      background: #1a1a2e;
+      color: #eee;
+    }
+    [data-theme="dark"] .container {
+      background: #16213e;
+      box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 6px 6px rgba(0, 0, 0, 0.2);
+    }
+    [data-theme="dark"] .error-msg {
+      color: #ddd;
+    }
+    [data-theme="dark"] .error-desc {
+      color: #bbb;
+    }
+    [data-theme="dark"] .footer-note {
+      color: #888;
+    }
+    [data-theme="dark"] .theme-toggle {
+      background: #16213e !important;
+      border-color: #218cfa !important;
+      color: #eee !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    [data-theme="dark"] .theme-toggle:hover {
+      background: #1a2542 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    [data-theme="dark"] .circle {
+      background: rgba(33, 140, 250, 0.1);
+    }
+    [data-theme="dark"] .icon-robot circle {
+      fill: #1e3a5f;
+    }
     body, html {
       height: 100%;
       font-family: 'Poppins', sans-serif;
@@ -65,7 +138,43 @@
         0 10px 20px rgba(33, 140, 250, 0.15),
         0 6px 6px rgba(33, 140, 250, 0.1);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
+    }
+
+    /* Theme toggle button inside card */
+    .card-theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #218cfa;
+      border: 2px solid white;
+      border-radius: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.3);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .card-theme-toggle:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.4);
+    }
+
+    /* Dark theme styles for card button */
+    [data-theme="dark"] .card-theme-toggle {
+      background: #ff6b6b;
+      color: white;
+      border-color: white;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    [data-theme="dark"] .card-theme-toggle:hover {
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     }
 
     /* Big 404 text */
@@ -195,11 +304,26 @@
         padding: 12px 28px;
         font-size: 1rem;
       }
+      .theme-toggle {
+        top: 15px !important;
+        right: 15px !important;
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+        min-width: 70px !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <main class="container" role="main" aria-labelledby="error-title">
+    <!-- Theme Toggle Button inside card - Very visible -->
+    <div class="card-theme-toggle" onclick="toggleTheme()" id="card-theme-button">
+      🌙 Dark Mode
+    </div>
+    
     <!-- Minimal robot head SVG for a friendly vibe -->
     <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Friendly robot head icon" >
       <circle cx="32" cy="32" r="30" stroke="#218cfa" stroke-width="4" fill="#d6eaff"/>
@@ -210,7 +334,7 @@
     </svg>
 
     <h1 id="error-title" class="error-code">404</h1>
-    <p class="error-msg">Uh oh — seems like you’ve hit a dead end!</p>
+    <p class="error-msg">Uh oh — seems like you’ve hit a end!</p>
     <p class="error-desc">The page you’re looking for can’t be found. But don’t worry, let’s get you back on track.</p>
     <button type="button" class="btn-go-back" onclick="window.history.back()" aria-label="Go back to previous page">
       👈 Go Back
@@ -224,6 +348,43 @@
     <div class="circle one"></div>
     <div class="circle two"></div>
   </main>
+  
+  <!-- Dark Theme Toggle Script -->
+  <script>
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const cardButton = document.getElementById('card-theme-button');
+      
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      if (newTheme === 'dark') {
+        if (cardButton) {
+          cardButton.innerHTML = '☀️ Light Mode';
+        }
+      } else {
+        if (cardButton) {
+          cardButton.innerHTML = '🌙 Dark Mode';
+        }
+      }
+    }
+    
+    // Load saved theme on page load
+    window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const cardButton = document.getElementById('card-theme-button');
+      
+      document.body.setAttribute('data-theme', savedTheme);
+      
+      if (savedTheme === 'dark') {
+        if (cardButton) {
+          cardButton.innerHTML = '☀️ Light Mode';
+        }
+      }
+    });
+  </script>
+  
   <!-- PWA Support -->
   <script src="../pwa.js"></script>
 </body>
