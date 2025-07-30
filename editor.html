@@ -4,71 +4,112 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AnimateItNow - Live Editor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="editor.css" />
   </head>
 
-  <body class="bg-gray-50 text-gray-900 min-h-screen">
-    <header class="bg-white shadow p-4 flex items-center justify-between">
-      <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
-      <div class="flex gap-2">
-        <button
-          id="resetBtn"
-          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
-          title="Reset"
-        >
-          &#x21bb;
-        </button>
-        <button
-          id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
-        >
-          Run
-        </button>
+  <body>
+    <header class="header-main">
+      <div>
+        <h1>AnimateItNow</h1>
+      </div>
+      <div class="run">
+        <i class="fa-solid fa-rotate"></i>
+        <p>RUN</p>
       </div>
     </header>
 
     <main class="p-6 space-y-6">
-      <div class="flex flex-row gap-4">
-        <!-- HTML Editor -->
-        <div class="flex-1">
-          <div class="editor-label html-label">HTML</div>
-          <textarea
-            id="htmlCode"
-            class="editor-area html-area"
-            placeholder="Write HTML here..."
-          ></textarea>
-        </div>
-
-        <!-- CSS Editor -->
-        <div class="flex-1">
-          <div class="editor-label css-label">CSS</div>
-          <textarea
-            id="cssCode"
-            class="editor-area css-area"
-            placeholder="Write CSS here..."
-          ></textarea>
-        </div>
-
-        <!-- JS Editor -->
-        <div class="flex-1">
-          <div class="editor-label js-label">JavaScript</div>
-          <textarea
-            id="jsCode"
-            class="editor-area js-area"
-            placeholder="Write JavaScript here..."
-          ></textarea>
+       <div class="card-container">
+      <div class="card">
+        <div class="editor-card">
+          <div class="editor-header">
+            <div class="dot-main">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="html">HTML</div>
+          </div>
+          <div class="editor-toolbar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Selection</span>
+            <span>View</span>
+            <span>Go</span>
+            <span>Run</span>
+            <span>Terminal</span>
+            <span>Help</span>
+          </div>
+          <div class="editor">
+            <textarea placeholder="Write HTML here..."></textarea>
+          </div>
         </div>
       </div>
 
-      <!-- Output -->
-      <div>
-        <h2 class="text-lg font-semibold mb-2">Output</h2>
-        <iframe
-          id="output"
-          class="w-full h-[300px] border border-gray-300 rounded bg-white"
-        ></iframe>
+      <div class="card">
+        <div class="editor-card">
+          <div class="editor-header">
+            <div class="dot-main">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="html">CSS</div>
+          </div>
+          <div class="editor-toolbar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Selection</span>
+            <span>View</span>
+            <span>Go</span>
+            <span>Run</span>
+            <span>Terminal</span>
+            <span>Help</span>
+          </div>
+          <div class="editor">
+            <textarea placeholder="Write CSS here..."></textarea>
+          </div>
+        </div>
       </div>
+
+      <div class="card">
+        <div class="editor-card">
+          <div class="editor-header">
+            <div class="dot-main">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="html">JavaScript</div>
+          </div>
+          <div class="editor-toolbar">
+            <span>File</span>
+            <span>Edit</span>
+            <span>Selection</span>
+            <span>View</span>
+            <span>Go</span>
+            <span>Run</span>
+            <span>Terminal</span>
+            <span>Help</span>
+          </div>
+          <div class="editor">
+            <textarea placeholder="Write JS here..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output card -->
+    <div class="output-card-wrapper">
+      <div class="output-card">
+        <div class="output-header">Output Preview</div>
+        <div class="output-preview">
+          <!-- This is where the rendered output can appear in future -->
+          <p>Your output will appear here...</p>
+        </div>
+      </div>
+    </div>
     </main>
 
     <script src="editor.js"></script>
