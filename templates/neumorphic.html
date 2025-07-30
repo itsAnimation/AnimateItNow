@@ -1,94 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles.css" />
   <title>Neuromorphic Button Gallery</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="icon" href="../images/logo.png" />
   <style>
-
-    .navbar{
-      width: 100%;
+    * {
+      box-sizing: border-box;
     }
+
     body {
-      background: #e0e0e0;
-      font-family: sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eaeaea;
       display: flex;
       flex-direction: column;
-      gap: 3rem;
       align-items: center;
+      padding: 2rem 1rem;
     }
 
-    h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .level {
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 2.5rem;
+      color: #333;
       text-align: center;
-      border: 2px solid #ccc;
-      border-radius: 12px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+      max-width: 850px;
+    }
+
+    .card {
+      border-radius: 20px;
       padding: 2rem;
-      width: 90%;
-      max-width: 600px;
-      background: #f5f5f5;
-      box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+      box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.15), -12px -12px 24px rgba(255, 255, 255, 0.8);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: #222;
+    }
+
+    /* Colorful Backgrounds */
+    .level1 {
+      background: linear-gradient(145deg, #ffdee9, #b5fffc);
+    }
+
+    .level2 {
+      background: linear-gradient(145deg, #d4fc79, #96e6a1);
+    }
+
+    .level3 {
+      background: linear-gradient(145deg, #c2ffd8, #465efb);
     }
 
     .neu-btn {
-      padding: 16px 36px;
+      padding: 14px 32px;
       font-size: 16px;
       border-radius: 12px;
       border: none;
-      background: #e0e0e0;
-      box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1), -6px -6px 12px rgba(255, 255, 255, 0.7);
       cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
     }
 
-    .level2 .neu-btn {
+    .neu-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .toggle-btn {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .level2 .neu-btn:hover {
-      box-shadow: 4px 4px 10px #bebebe, -4px -4px 10px #ffffff;
-      transform: translateY(-2px);
+    .toggle-btn:hover {
+      background: #222;
     }
 
+    .code-block {
+      display: none;
+      margin-top: 1rem;
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    /* Rainbow Glow for Level 3 */
     .level3 .neu-btn {
       position: relative;
-      color: #555;
       z-index: 1;
       overflow: hidden;
+      color: #000;
     }
 
     .level3 .neu-btn::before {
@@ -101,7 +129,7 @@
       background: linear-gradient(60deg, #ff0000, #ff9900, #ccff00, #33ff00, #00ffff, #3300ff, #ff00cc, #ff0000);
       background-size: 400%;
       z-index: 0;
-      filter: blur(8px);
+      filter: blur(10px);
       opacity: 0;
       border-radius: 16px;
       animation: rainbowGlow 10s linear infinite;
@@ -119,7 +147,7 @@
       left: 2px;
       right: 2px;
       bottom: 2px;
-      background: #e0e0e0;
+      background: rgba(255, 255, 255, 0.6);
       border-radius: 10px;
       z-index: 1;
     }
@@ -131,270 +159,74 @@
 
     .level3 .neu-btn:active {
       transform: scale(0.95);
-      box-shadow: inset 8px 8px 15px #bebebe, inset -8px -8px 15px #ffffff;
+      box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.2), inset -8px -8px 15px rgba(255, 255, 255, 0.7);
     }
 
     @keyframes rainbowGlow {
-      0% {
-        background-position: 0% 50%;
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @media (max-width: 600px) {
+      .neu-btn, .toggle-btn {
+        width: 100%;
       }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .code-block {
-      display: none;
-      text-align: left;
-      margin-top: 1rem;
-      padding: 1rem;
-      background: #2d2d2d;
-      color: #f8f8f2;
-      font-family: monospace;
-      font-size: 0.9rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      position: relative; /* For copy button positioning */
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: #444;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 5px 12px;
-      font-size: 0.9em;
-      cursor: pointer;
-      z-index: 2;
-      opacity: 0.85;
-      transition: background 0.2s, opacity 0.2s;
-    }
-    .copy-btn:hover {
-      background: #007bff;
-      opacity: 1;
-    }
-
-    .toggle-btn {
-      margin-top: 1rem;
-      font-size: 14px;
-      padding: 10px 20px;
-      cursor: pointer;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease;
-    }
-
-    .toggle-btn:hover {
-      background: #0069d9;
     }
   </style>
 </head>
-
 <body>
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <span class="site-name">AnimateItNow</span>
+  <h1>Neuromorphic Button Gallery</h1>
+
+  <div class="container">
+    <!-- Level 1 Card -->
+    <div class="card level1">
+      <h2>Level 1 - Soft Pink & Aqua</h2>
+      <button class="neu-btn">Level 1</button><br />
+      <button class="toggle-btn" onclick="toggleCode(1)">Show Code</button>
+      <pre class="code-block" id="code1">
+.neu-btn {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.1),
+              -6px -6px 12px rgba(255,255,255,0.7);
+}
+      </pre>
     </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
-  <div class="level level1">
-    <h2>Level 1 - Basic Neumorphism</h2>
-    <button class="neu-btn">Level 1</button>
-    <br />
-    <button class="toggle-btn" onclick="toggleCode(1)">Show Code</button>
-    <pre class="code-block" id="code1">
-body {
-  background: #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  font-family: sans-serif;
-}
-.neu-btn {
-  padding: 16px 36px;
-  font-size: 16px;
-  background: #e0e0e0;
-  border-radius: 12px;
-  border: none;
-  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
-}
-    </pre>
-  </div>
 
-  <div class="level level2">
-    <h2>Level 2 - Interactive Neumorphism</h2>
-    <button class="neu-btn">Level 2</button>
-    <br />
-    <button class="toggle-btn" onclick="toggleCode(2)">Show Code</button>
-    <pre class="code-block" id="code2">
-.neu-btn {
-  padding: 16px 36px;
-  font-size: 16px;
-  background: #e0e0e0;
-  border-radius: 12px;
-  border: none;
-  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
-  transition: all 0.3s ease;
-}
+    <!-- Level 2 Card -->
+    <div class="card level2">
+      <h2>Level 2 - Lime & Mint</h2>
+      <button class="neu-btn">Level 2</button><br />
+      <button class="toggle-btn" onclick="toggleCode(2)">Show Code</button>
+      <pre class="code-block" id="code2">
 .neu-btn:hover {
-  box-shadow: 4px 4px 10px #bebebe, -4px -4px 10px #ffffff;
-  transform: translateY(-2px);
+  transform: scale(1.05);
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.2),
+              -4px -4px 8px rgba(255,255,255,0.6);
 }
-    </pre>
-  </div>
+      </pre>
+    </div>
 
-  <div class="level level3">
-    <h2>Level 3 - Rainbow Glow Neumorphism</h2>
-    <button class="neu-btn"><span>Level 3</span></button>
-    <br />
-    <button class="toggle-btn" onclick="toggleCode(3)">Show Code</button>
-    <pre class="code-block" id="code3">
-.neu-btn {
-  position: relative;
-  padding: 16px 36px;
-  font-size: 16px;
-  border-radius: 12px;
-  border: none;
-  background: #e0e0e0;
-  color: #555;
-  z-index: 1;
-  cursor: pointer;
-  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
+    <!-- Level 3 Card -->
+    <div class="card level3">
+      <h2>Level 3 - Rainbow Glow</h2>
+      <button class="neu-btn"><span>Level 3</span></button><br />
+      <button class="toggle-btn" onclick="toggleCode(3)">Show Code</button>
+      <pre class="code-block" id="code3">
 .neu-btn::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    60deg,
-    #ff0000,
-    #ff9900,
-    #ccff00,
-    #33ff00,
-    #00ffff,
-    #3300ff,
-    #ff00cc,
-    #ff0000
-  );
-  background-size: 400%;
-  z-index: 0;
-  filter: blur(8px);
-  opacity: 0;
-  border-radius: 16px;
+  background: linear-gradient(60deg, ...colors...);
+  filter: blur(10px);
   animation: rainbowGlow 10s linear infinite;
-  transition: opacity 0.3s ease;
 }
-.neu-btn:hover::before {
-  opacity: 1;
-}
-.neu-btn::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
-  background: #e0e0e0;
-  border-radius: 10px;
-  z-index: 1;
-}
-.neu-btn span {
-  position: relative;
-  z-index: 2;
-}
-.neu-btn:active {
-  transform: scale(0.95);
-  box-shadow: inset 8px 8px 15px #bebebe, inset -8px -8px 15px #ffffff;
-}
-@keyframes rainbowGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-    </pre>
+      </pre>
+    </div>
   </div>
 
   <script>
     function toggleCode(level) {
-      const block = document.getElementById("code" + level);
-      // Ensure the code block is wrapped for absolute positioning of the copy button
-      let wrapper = block.parentElement;
-      if (!wrapper.classList.contains('code-wrapper')) {
-        const newWrapper = document.createElement('div');
-        newWrapper.className = 'code-wrapper';
-        newWrapper.style.position = 'relative';
-        block.parentNode.insertBefore(newWrapper, block);
-        newWrapper.appendChild(block);
-        wrapper = newWrapper;
-      }
-      const isVisible = block.style.display === "block";
-      block.style.display = isVisible ? "none" : "block";
-
-      // Add/remove copy button (does not affect Show button UI)
-      if (!isVisible) {
-        if (!wrapper.querySelector('.copy-btn')) {
-          const copyBtn = document.createElement('button');
-          copyBtn.className = 'copy-btn';
-          copyBtn.textContent = 'Copy';
-          copyBtn.type = 'button';
-          copyBtn.style.position = 'absolute';
-          copyBtn.style.top = '12px';
-          copyBtn.style.right = '16px';
-          copyBtn.onclick = function(e) {
-            e.stopPropagation();
-            copyCode(block, copyBtn);
-          };
-          wrapper.appendChild(copyBtn);
-        }
-      } else {
-        const btn = wrapper.querySelector('.copy-btn');
-        if (btn) btn.remove();
-      }
-    }
-
-    function copyCode(codeBlock, btn) {
-      btn.style.display = 'none';
-      const code = codeBlock.innerText;
-      btn.style.display = '';
-      navigator.clipboard.writeText(code).then(() => {
-        btn.textContent = 'Copied!';
-        setTimeout(() => { btn.textContent = 'Copy'; }, 1200);
-      });
+      const code = document.getElementById("code" + level);
+      code.style.display = code.style.display === "block" ? "none" : "block";
     }
   </script>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
 </body>
-
 </html>

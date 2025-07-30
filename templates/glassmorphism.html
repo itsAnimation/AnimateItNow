@@ -10,34 +10,13 @@
   <title>Glassmorphism Profile Card</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <style>
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+          
     body {
       margin: 0;
       padding: 0;
@@ -124,6 +103,202 @@
       background: #007bff;
       opacity: 1;
     }
+
+      /* --- Styles for Design 7 (Flipping Glassmorphism Card) --- */
+
+      .card-wrapper.design7 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+        box-sizing: border-box;
+      }
+
+      .card-wrapper.design7 .flipping-card-section {
+        position: relative;
+        width: 26rem;
+        height: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        perspective: 1000px;
+        transition: background 0.4s ease, color 0.4s ease;
+        padding: 20px;
+        border-radius: 15px;
+        margin: 0 auto;
+      }
+
+      .card-wrapper.design7 .flip-card-container {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        border-radius: 25px;
+        background: transparent;
+        transition: transform 0.6s ease;
+        transform-style: preserve-3d;
+        transform-origin: center center;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .card-wrapper.design7 .flip-card-container:active {
+        transform: scale(0.98);
+      }
+
+      .card-wrapper.design7 .flip-card-container.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .card-wrapper.design7 .flip-card-container .card {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 25px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+          0 10px 20px rgba(0, 0, 0, 0.15), 0 15px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backface-visibility: hidden;
+        overflow: hidden;
+        isolation: isolate;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card-wrapper.design7 .flip-card-container .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        z-index: -1;
+      }
+
+      .card-wrapper.design7 .front-face,
+      .card-wrapper.design7 .back-face {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .card-wrapper.design7 .front-face {
+        z-index: 2;
+      }
+
+      .card-wrapper.design7 .profile-image img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 0 15px 3px #9b27b0d8, 0 0 30px 5px #f3f5f5;
+        border: 3px solid #9b27b09d;
+        margin-bottom: 10px;
+      }
+
+      .card-wrapper.design7 .profile-details h2 {
+        font-size: 18px;
+        margin-bottom: 3px;
+        color: #bba3dbd8;
+      }
+
+      .card-wrapper.design7 .role {
+        font-size: 12px;
+        color: #ccc;
+      }
+
+      .card-wrapper.design7 .location {
+        font-size: 10px;
+        color: #aaa;
+      }
+
+      .card-wrapper.design7 .bio {
+        font-size: 10px;
+        margin-top: 8px;
+        padding: 0 10px;
+      }
+
+      .card-wrapper.design7 .back-face {
+        transform: rotateY(180deg);
+      }
+
+      .card-wrapper.design7 .back-face h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #fff;
+      }
+
+      .card-wrapper.design7 .contact-info {
+        list-style: none;
+        padding: 0;
+        font-size: 10px;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .card-wrapper.design7 .contact-info li a {
+        color: inherit;
+        text-decoration: none;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+      }
+
+      .card-wrapper.design7 .contact-info li a:hover {
+        color: #bba3dbd8;
+        transform: translateX(3px);
+      }
+
+      .card-wrapper.design7 .contact-info i {
+        margin-right: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .card-wrapper.design7 .flipping-card-section {
+          height: 300px;
+        }
+        .card-wrapper.design7 .profile-image img {
+          width: 60px;
+          height: 60px;
+        }
+        .card-wrapper.design7 .profile-details h2 {
+          font-size: 16px;
+        }
+        .card-wrapper.design7 .bio,
+        .card-wrapper.design7 .contact-info {
+          font-size: 9px;
+        }
+        .card-wrapper.design7 .flipping-card-section::before,
+        .card-wrapper.design7 .flipping-card-section::after {
+          width: 120px;
+          height: 120px;
+          filter: blur(30px);
+        }
+      }
+    .flip-info {
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
     
   </style>
 </head>
@@ -295,9 +470,74 @@
                 </div>
                 <button class="show-code-btn" onclick="showCode('design6')">Show Code</button>
             </div>
-
         </div>
     </div>
+
+        <!-- Design 7 -->
+
+        <div class="card-wrapper design7">
+          <section class="flipping-card-section">
+            <div class="container flip-card-container">
+              <div class="card front-face">
+                <div class="profile-image">
+                  <img
+                    src="https://www.pfpgeeks.com/static/images/luffy-pfp/webp/luffy-pfp-26.webp"
+                    alt="Profile Picture"
+                  />
+                </div>
+                <div class="profile-details">
+                  <h2>Monkey D. Luffy</h2>
+                  <p class="role">Pirate Captain</p>
+                  <p class="location">
+                    <i class="fa fa-map-marker-alt"></i> East Blue
+                  </p>
+                  <p class="bio">
+                    Future Pirate King sailing toward the Grand Line.
+                  </p>
+                </div>
+              </div>
+
+              <div class="card back-face">
+                <h3>Connect with Me</h3>
+                <ul class="contact-info">
+                  <li>
+                    <a href="mailto:luffy@onepiece.com"
+                      ><i class="fas fa-envelope"></i> luffy@onepiece.com</a
+                    >
+                  </li>
+                  <li>
+                    <a href="tel:+911234567890"
+                      ><i class="fas fa-phone"></i> +91 12345 67890</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://github.com/luffy" target="_blank"
+                      ><i class="fab fa-github"></i> GitHub</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://linkedin.com/in/MonkeyLuffy"
+                      target="_blank"
+                      ><i class="fab fa-linkedin"></i> LinkedIn</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://instagram.com/kingluffy" target="_blank"
+                      ><i class="fab fa-instagram"></i> Instagram</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+          </section>
+7
+          <button class="show-code-btn" onclick="showCode('design7')">
+            Show Code
+          </button>
+        </div>
+
 
     <!-- Code Modal -->
     <div id="codeModal" class="code-modal">
@@ -1065,9 +1305,266 @@ html: `<div class="outer">
                 closeModal();
             }
         }
+
+        // design7 JS
+      document.addEventListener("DOMContentLoaded", () => {
+        const flipCard = document.querySelector(
+          ".card-wrapper.design7 .flip-card-container"
+        );
+
+        if (flipCard) {
+          flipCard.addEventListener("click", () => {
+            flipCard.classList.toggle("flipped");
+          });
+        }
+      });
+
+      codeSnippets.design7 = {
+        html: `
+<!-- Design 7 -->
+
+<div class="card-wrapper design7">
+  <section class="flipping-card-section">
+    <div class="container flip-card-container">
+      <div class="card front-face">
+        <div class="profile-image">
+          <img src="https://www.pfpgeeks.com/static/images/luffy-pfp/webp/luffy-pfp-26.webp" alt="Profile Picture" />
+        </div>
+        <div class="profile-details">
+          <h2>Monkey D. Luffy</h2>
+          <p class="role">Pirate Captain</p>
+          <p class="location"><i class="fa fa-map-marker-alt"></i> East Blue</p>
+          <p class="bio">Future Pirate King sailing toward the Grand Line.</p>
+        </div>
+      </div>
+      <div class="card back-face">
+        <h3>Connect with Me</h3>
+        <ul class="contact-info">
+          <li><a href="mailto:luffy@onepiece.com"><i class="fas fa-envelope"></i> luffy@onepiece.com</a></li>
+          <li><a href="tel:+911234567890"><i class="fas fa-phone"></i> +91 12345 67890</a></li>
+          <li><a href="https://github.com/luffy" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+          <li><a href="https://linkedin.com/in/MonkeyLuffy" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+          <li><a href="https://instagram.com/kingluffy" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <button class="show-code-btn" onclick="showCode('design7')">Show Code</button>
+</div>
+  `.trim(),
+
+        css: `
+/* --- Styles for Design 7 (Flipping Glassmorphism Card) --- */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.card-wrapper.design7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.card-wrapper.design7 .flipping-card-section {
+  position: relative;
+  width: 26rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  perspective: 1000px;
+  transition: background 0.4s ease, color 0.4s ease;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+.card-wrapper.design7 .flip-card-container {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  border-radius: 25px;
+  background: transparent;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card-wrapper.design7 .flip-card-container:active {
+  transform: scale(0.98);
+}
+
+.card-wrapper.design7 .flip-card-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper.design7 .flip-card-container .card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.15),
+    0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backface-visibility: hidden;
+  overflow: hidden;
+  isolation: isolate;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-wrapper.design7 .flip-card-container .card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: -1;
+}
+
+.card-wrapper.design7 .front-face,
+.card-wrapper.design7 .back-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-wrapper.design7 .front-face {
+  z-index: 2;
+}
+
+.card-wrapper.design7 .profile-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 3px #9b27b0d8, 0 0 30px 5px #f3f5f5;
+  border: 3px solid #9b27b09d;
+  margin-bottom: 10px;
+}
+
+.card-wrapper.design7 .profile-details h2 {
+  font-size: 18px;
+  margin-bottom: 3px;
+  color: #bba3dbd8;
+}
+
+.card-wrapper.design7 .role {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.card-wrapper.design7 .location {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.card-wrapper.design7 .bio {
+  font-size: 10px;
+  margin-top: 8px;
+  padding: 0 10px;
+}
+
+.card-wrapper.design7 .back-face {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper.design7 .back-face h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.card-wrapper.design7 .contact-info {
+  list-style: none;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.card-wrapper.design7 .contact-info li a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.card-wrapper.design7 .contact-info li a:hover {
+  color: #bba3dbd8;
+  transform: translateX(3px);
+}
+
+.card-wrapper.design7 .contact-info i {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .card-wrapper.design7 .flipping-card-section {
+    height: 300px;
+  }
+
+  .card-wrapper.design7 .profile-image img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-wrapper.design7 .profile-details h2 {
+    font-size: 16px;
+  }
+
+  .card-wrapper.design7 .bio,
+  .card-wrapper.design7 .contact-info {
+    font-size: 9px;
+  }
+
+  .card-wrapper.design7 .flipping-card-section::before,
+  .card-wrapper.design7 .flipping-card-section::after {
+    width: 120px;
+    height: 120px;
+    filter: blur(30px);
+  }
+}
+  `.trim(),
+
+        js: `
+document.addEventListener("DOMContentLoaded", () => {
+  const flipCard = document.querySelector('.card-wrapper.design7 .flip-card-container');
+
+  if (flipCard) {
+    flipCard.addEventListener('click', () => {
+      flipCard.classList.toggle('flipped');
+    });
+  }
+});
+  `.trim(),
+      };       
     </script>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body>
+  </body>
 
 </html>
