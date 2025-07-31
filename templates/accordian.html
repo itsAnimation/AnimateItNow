@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hover Button Effects | AnimateItNow</title>
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .cont {
+      border: 1px solid grey;
+      width: 700px;
+      margin: auto;
+    }
+    .accordion {
+      width: 600px;
+      margin: auto;
+    }
+    details {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      list-style: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    details p {
+      margin: 10px 0 0;
+      color: #333;
+    }
+    .btn {
+      padding: 1.5%;
+      margin: 2%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .code-block {
+      background: linear-gradient(135deg, #004d00, #006666, #0033cc);
+      color: #d4d4d4;
+      padding: 15px;
+      font-family: monospace;
+      font-size: 13px;
+      margin: 0 2%;
+      border-radius: 5px;
+      display: none;
+      position: relative;
+      overflow-x: auto;
+      margin-bottom: 2%;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* 2nd accordian  */
+    .accordion {
+  width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.accordion-item + .accordion-item {
+  border-top: 1px solid #ddd;
+}
+
+.accordion-header {
+  padding: 15px 20px;
+  background-color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-item.always-open .accordion-header {
+  background-color: #0056b3;
+  cursor: default;
+}
+
+.accordion-body {
+  display: none;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+}
+
+/* 3rd acc */
+   .accordion-body {
+      display: none;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .accordion-body.show {
+      display: block;
+    }
+
+    .accordion-item {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      background-color: #f2f2f2;
+      padding: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .accordion-item.active .accordion-header {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+
+    .accordion-item.active .accordion-body {
+      background-color: #f0f8ff;
+    }
+
+    .accordion-item + .accordion-item {
+      margin-top: 0.5rem;
+    }
+
+    /* 4th acc */
+    .animated-accordion {
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+}
+
+.animated-accordion-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid #ccc;
+}
+
+.animated-accordion-toggle:hover {
+  background: linear-gradient(to right, #2b5fa1, #00a6cc);
+}
+
+.animated-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #f8f8f8;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1rem;
+}
+
+.animated-accordion-item.active .animated-accordion-content {
+  max-height: 200px;
+  padding: 1rem;
+}
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <main class="templates-main">
+    <h1>Accordion Template</h1>
+
+    <div class="cont">
+      <h3 style="padding: 3%;">Default Accordion</h3>
+      <div class="accordion">
+        <details>
+          <summary>What is HTML?</summary>
+          <p>HTML stands for HyperText Markup Language and is used to structure content on the web.</p>
+        </details>
+        <details>
+          <summary>What is CSS?</summary>
+          <p>CSS stands for Cascading Style Sheets and is used to style HTML content.</p>
+        </details>
+        <details>
+          <summary>What is JavaScript?</summary>
+          <p>JavaScript is a programming language that adds interactivity to web pages.</p>
+        </details>
+      </div>
+
+      <button class="btn toggle-btn">See Code</button>
+
+      <div class="code-block" >
+        <button class="copy-btn">Copy</button>
+<pre><code>
+    &lt;!-- HTML --&gt;
+&lt;details&gt;
+  &lt;summary&gt;What is HTML?&lt;/summary&gt;
+  &lt;p&gt;HTML stands for HyperText Markup Language...&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;What is CSS?&lt;/summary&gt;
+  &lt;p&gt;CSS stands for Cascading Style Sheets...&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;What is JavaScript?&lt;/summary&gt;
+  &lt;p&gt;JavaScript adds interactivity to web pages.&lt;/p&gt;
+&lt;/details&gt;
+
+
+&lt;!-- CSS --&gt;
+details {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+&lt;!-- JS --&gt;
+function toggleCode() {
+  const code = document.getElementById("codeBlock");
+  const btn = document.querySelector(".toggle-btn");
+  if (code.style.display === "block") {
+    code.style.display = "none";
+    btn.innerText = "See Code";
+  } else {
+    code.style.display = "block";
+    btn.innerText = "Show Less";
+  }
+}
+</code></pre>
+      </div>
+    </div>
+
+
+    <!-- 2nd accordian  -->
+
+        <div class="cont">
+      <h3 style="padding: 3%;">Always Open Accordion</h3>
+   <div class="accordion">
+
+    <!-- Always Open Section -->
+    <div class="accordion-item always-open">
+      <div class="accordion-header">Section 1 (Always Open)</div>
+      <div class="accordion-body" style="display: block;">
+        <p>This section is always open and cannot be collapsed.</p>
+      </div>
+    </div>
+
+    <!-- Toggleable Section 2 -->
+    <div class="accordion-item">
+      <div class="accordion-header">Section 2</div>
+      <div class="accordion-body">
+        <p>This section can be opened or closed.</p>
+      </div>
+    </div>
+
+    <!-- Toggleable Section 3 -->
+    <div class="accordion-item">
+      <div class="accordion-header">Section 3</div>
+      <div class="accordion-body">
+        <p>This section can also be opened or closed.</p>
+      </div>
+    </div>
+
+  </div>
+      <button class="btn toggle-btn">See Code</button>
+
+       <div class="code-block" >
+        <button class="copy-btn" >Copy</button>
+          <pre><code class="language-html">
+            <!-- html  -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Accordion - First Always Open&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;div class="accordion"&gt;
+
+    &lt;!-- Always Open Section --&gt;
+    &lt;div class="accordion-item always-open"&gt;
+      &lt;div class="accordion-header"&gt;Section 1 (Always Open)&lt;/div&gt;
+      &lt;div class="accordion-body" style="display: block;"&gt;
+        &lt;p&gt;This section is always open and cannot be collapsed.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Toggleable Section 2 --&gt;
+    &lt;div class="accordion-item"&gt;
+      &lt;div class="accordion-header"&gt;Section 2&lt;/div&gt;
+      &lt;div class="accordion-body"&gt;
+        &lt;p&gt;This section can be opened or closed.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Toggleable Section 3 --&gt;
+    &lt;div class="accordion-item"&gt;
+      &lt;div class="accordion-header"&gt;Section 3&lt;/div&gt;
+      &lt;div class="accordion-body"&gt;
+        &lt;p&gt;This section can also be opened or closed.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+
+<!-- css  -->
+ body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  padding: 40px;
+}
+
+.accordion {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.accordion-item + .accordion-item {
+  border-top: 1px solid #ddd;
+}
+
+.accordion-header {
+  padding: 15px 20px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-item.always-open .accordion-header {
+  background-color: #0056b3;
+  cursor: default;
+}
+
+.accordion-body {
+  display: none;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+}
+
+
+<!-- js  -->
+const headers = document.querySelectorAll('.accordion-header');
+
+headers.forEach(header => {
+  const item = header.parentElement;
+
+  // Skip if it's the always-open section
+  if (item.classList.contains('always-open')) return;
+
+  header.addEventListener('click', () => {
+    const body = header.nextElementSibling;
+    body.style.display = body.style.display === 'block' ? 'none' : 'block';
+  });
+});
+</code></pre>
+
+  </div>
+</div>
+
+<!-- 3 acc  -->
+ <div class="cont">
+      <h3 style="padding: 3%;">1 At A Time Accordion</h3>
+       <div class="accordion" id="accordionFlush">
+    <div class="accordion-item">
+      <div class="accordion-header">Section 1</div>
+      <div class="accordion-body">This is the content of section 1.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Section 2</div>
+      <div class="accordion-body">This is the content of section 2.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Section 3</div>
+      <div class="accordion-body">This is the content of section 3.</div>
+    </div>
+  </div>
+
+      <button class="btn toggle-btn" >See Code</button>
+
+      <div class="code-block" >
+        <button class="copy-btn" >Copy</button>
+<pre><code>
+    &lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Single Open Accordion&lt;/title&gt;
+  &lt;style&gt;
+    details {
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      outline: none;
+    }
+
+    details[open] {
+      background-color: #e6f7ff;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;What is HTML?&lt;/summary&gt;
+    &lt;p&gt;HTML stands for HyperText Markup Language.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;What is CSS?&lt;/summary&gt;
+    &lt;p&gt;CSS stands for Cascading Style Sheets.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;What is JavaScript?&lt;/summary&gt;
+    &lt;p&gt;JavaScript is a scripting language for web pages.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;script&gt;
+    const allDetails = document.querySelectorAll("details");
+    allDetails.forEach((detail) =&gt; {
+      detail.addEventListener("click", () =&gt; {
+        allDetails.forEach((other) =&gt; {
+          if (other !== detail) {
+            other.removeAttribute("open");
+          }
+        });
+      });
+    });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+    </div>
+
+
+    <!-- 4th acc -->
+     <div class="cont">
+      <h3 style="padding: 3%;">Animated Accordion</h3>
+      <div class="animated-accordion">
+  <div class="animated-accordion-item">
+    <button class="animated-accordion-toggle">What is HTML?</button>
+    <div class="animated-accordion-content">
+      <p>HTML stands for HyperText Markup Language...</p>
+    </div>
+  </div>
+
+  <div class="animated-accordion-item">
+    <button class="animated-accordion-toggle">What is CSS?</button>
+    <div class="animated-accordion-content">
+      <p>CSS stands for Cascading Style Sheets...</p>
+    </div>
+  </div>
+
+  <div class="animated-accordion-item">
+    <button class="animated-accordion-toggle">What is JavaScript?</button>
+    <div class="animated-accordion-content">
+      <p>JavaScript adds interactivity to web pages.</p>
+    </div>
+  </div>
+</div>
+
+      <button class="btn toggle-btn">See Code</button>
+
+      <div class="code-block" >
+        <button class="copy-btn" >Copy</button>
+<pre><code>&lt;!-- ✅ HTML --&gt;
+&lt;div class="animated-accordion"&gt;
+  &lt;div class="animated-accordion-item"&gt;
+    &lt;button class="animated-accordion-toggle"&gt;What is HTML?&lt;/button&gt;
+    &lt;div class="animated-accordion-content"&gt;
+      &lt;p&gt;HTML stands for HyperText Markup Language...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="animated-accordion-item"&gt;
+    &lt;button class="animated-accordion-toggle"&gt;What is CSS?&lt;/button&gt;
+    &lt;div class="animated-accordion-content"&gt;
+      &lt;p&gt;CSS stands for Cascading Style Sheets...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="animated-accordion-item"&gt;
+    &lt;button class="animated-accordion-toggle"&gt;What is JavaScript?&lt;/button&gt;
+    &lt;div class="animated-accordion-content"&gt;
+      &lt;p&gt;JavaScript adds interactivity to web pages.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ✅ CSS --&gt;
+&lt;style&gt;
+  .animated-accordion {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: sans-serif;
+  }
+
+  .animated-accordion-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #3a7bd5, #00d2ff);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .animated-accordion-toggle:hover {
+    background: linear-gradient(to right, #2b5fa1, #00a6cc);
+  }
+
+  .animated-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: #f8f8f8;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1rem;
+  }
+
+  .animated-accordion-item.active .animated-accordion-content {
+    max-height: 200px;
+    padding: 1rem;
+  }
+&lt;/style&gt;
+
+&lt;!-- ✅ JavaScript --&gt;
+&lt;script&gt;
+  const animatedToggles = document.querySelectorAll(".animated-accordion-toggle");
+
+  animatedToggles.forEach(button =&gt; {
+    button.addEventListener("click", () =&gt; {
+      const parent = button.parentElement;
+      const isOpen = parent.classList.contains("active");
+
+      document.querySelectorAll(".animated-accordion-item").forEach(item =&gt; {
+        item.classList.remove("active");
+      });
+
+      if (!isOpen) {
+        parent.classList.add("active");
+      }
+    });
+  });
+&lt;/script&gt;
+</code></pre>
+
+      </div>
+    </div>
+
+  </main>
+  <script>
+  // Toggle corresponding code block
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  toggleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const codeBlock = btn.nextElementSibling;
+      const isVisible = codeBlock.style.display === "block";
+      codeBlock.style.display = isVisible ? "none" : "block";
+      btn.textContent = isVisible ? "See Code" : "Show Less";
+    });
+  });
+
+  // Copy correct code block text
+  const copyButtons = document.querySelectorAll('.copy-btn');
+  copyButtons.forEach(copyBtn => {
+    copyBtn.addEventListener('click', () => {
+      const code = copyBtn.parentElement.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Code copied to clipboard!");
+      });
+    });
+  });
+
+  // Accordion logic
+  const headers = document.querySelectorAll('.accordion-header');
+  headers.forEach(header => {
+    const item = header.parentElement;
+    if (item.classList.contains('always-open')) return;
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      body.style.display = body.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+
+
+  // 3rd acc
+   const flushHeaders = document.querySelectorAll('#accordionFlush .accordion-header');
+
+    flushHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const currentItem = header.parentElement;
+        const currentBody = header.nextElementSibling;
+
+        // Close all other items
+        document.querySelectorAll('#accordionFlush .accordion-item').forEach(item => {
+          if (item !== currentItem) {
+            item.classList.remove('active');
+            item.querySelector('.accordion-body').classList.remove('show');
+          }
+        });
+
+        // Toggle current item
+        currentItem.classList.toggle('active');
+        currentBody.classList.toggle('show');
+      });
+    });
+
+    //4th acc
+
+    const animatedToggles = document.querySelectorAll(".animated-accordion-toggle");
+
+animatedToggles.forEach(button => {
+  button.addEventListener("click", () => {
+    const parent = button.parentElement;
+    const isOpen = parent.classList.contains("active");
+
+    document.querySelectorAll(".animated-accordion-item").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    if (!isOpen) {
+      parent.classList.add("active");
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
