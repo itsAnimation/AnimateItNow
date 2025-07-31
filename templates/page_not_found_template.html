@@ -8,7 +8,10 @@
   
   <!-- Apple Touch Icons -->
   <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+
+</head>
+<body data-theme="light">
+    <link rel="icon" type="image/png" href="../images/logo.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
@@ -44,6 +47,11 @@
       opacity: 1 !important;
       font-family: 'Poppins', sans-serif !important;
     }
+    :root {
+  --accent: #218cfa;
+  --transition: 0.3s ease;
+}
+
     .theme-toggle:hover {
       background: #f8f9ff !important;
       transform: translateY(-2px) !important;
@@ -290,10 +298,45 @@
         visibility: visible !important;
         opacity: 1 !important;
       }
+      .copy-btn {
+        display: block;
+        margin: 25px auto 10px;
+        padding: 8px 18px;
+        background-color: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color var(--transition), transform 0.1s ease;
+      }
+      .copy-btn:hover {
+        background-color: #0056b3;
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .expand-btn {
+        display: block;
+        margin: 25px auto 10px;
+        padding: 8px 18px;
+        background-color: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .expand-btn:hover {
+        background-color: #0056b3;
+      }
     }
   </style>
-</head>
-<body data-theme="light">
+ <div>
   <main class="container" role="main" aria-labelledby="error-title">
     <!-- Theme Toggle Button inside card - Very visible -->
     <div class="card-theme-toggle" onclick="toggleTheme()" id="card-theme-button">
@@ -319,7 +362,44 @@
     <div class="footer-note" aria-live="polite">
       Or <a href="/" style="color:#218cfa; text-decoration:underline;">head home</a> and start fresh.
     </div>
-
+    <style>
+      .copy-btn {
+        display: block;
+        margin: 25px auto 10px;
+        padding: 8px 18px;
+        background-color: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color var(--transition), transform 0.1s ease;
+      }
+      .copy-btn:hover {
+        background-color: #0056b3;
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .copy-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .expand-btn {
+        display: block;
+        margin: 25px auto 10px;
+        padding: 8px 18px;
+        background-color: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .expand-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
     <!-- Background circles -->
     <div class="circle one"></div>
     <div class="circle two"></div>
@@ -360,6 +440,25 @@
       }
     });
   </script>
-  
+</div>  
   </body>
+      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+<script>
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const codeBlock = document.body.outerHTML;
+          try {
+            await navigator.clipboard.writeText(codeBlock);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        })
+      });
+</script>
 </html>

@@ -80,7 +80,20 @@
         opacity: 1;
         
     }
-
+.copy-btn{
+  border-radius: 10px;
+  background-color: #7a9ebd;
+  color: #fff;
+  box-shadow: #2563eb;
+  border-color: rgb(24, 57, 98);
+}
+#copy-css{
+  border-radius: 10px;
+  background-color: #11304b;
+  color: #fff;
+  box-shadow: #2563eb;
+  border-color: rgb(24, 57, 98); 
+}
     .btn:active:after{
         background: transparent;
 
@@ -109,6 +122,9 @@
   </nav>
   <main class="templates-main">
     <h1>Hover Button Effects</h1>
+    <button id="copy-css" style="width:200px; align-self: center;">copy css
+      <h3>common for all</h3>
+    </button>
     <div style="
           display: flex;
           gap: 2rem;
@@ -129,6 +145,8 @@
           ">
         Glow
       </button>
+      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="hover-btn outline" style="
             background: #fff;
             color: #4f8cff;
@@ -143,6 +161,8 @@
           ">
         Outline
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="hover-btn gradient" style="
             background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
             color: #fff;
@@ -157,6 +177,8 @@
           ">
         Gradient
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
     </div>
     <div style="
           display: flex;
@@ -179,6 +201,8 @@
           ">
         Glow
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="hover-btn outline" style="
             background: #fff;
             color: #4f8cff;
@@ -193,6 +217,8 @@
           ">
         Outline
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="hover-btn gradient" style="
             background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
             color: #fff;
@@ -207,6 +233,8 @@
           ">
         Gradient
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
     </div>
     <div style="
           display: flex;
@@ -230,6 +258,8 @@
         ">
         Glow
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="btn" style="
             padding: 1em 2em;
             border-radius: 2em;
@@ -243,6 +273,8 @@
         ">
         Outline
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
       <button class="btn" style="
             padding: 1em 2em;
             border: none;
@@ -256,6 +288,136 @@
         ">
         Gradient
       </button>
+            <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+
+    <script>
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const codeBlock = btn.previousElementSibling;
+          try {
+            await navigator.clipboard.writeText(codeBlock.outerHTML);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        })
+      });
+      const copy =  document.getElementById("copy-css");
+      copy.addEventListener("click", async () => {
+          const css =`const codeBlock = btn.previousElementSibling;
+          try {
+            await navigator.clipboard.writeText(codeBlock.outerHTML);
+            btn.textContent = "Copied!";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = "Copy Code";
+              btn.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        })
+      });
+      const copy =  document.getElementById("copy-css");
+      copy.addEventListener("click", async () => {
+          const codeBlock ="<style>
+    .hover-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
+    }
+
+    .hover-btn.glow:hover {
+      background: #2563eb;
+    }
+
+    .hover-btn.outline:hover {
+      background: #4f8cff;
+      color: #fff;
+    }
+
+    .hover-btn.gradient:hover {
+      background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
+    }
+    .btn::after{
+      content: "";
+      z-index: -1;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #333;
+      left: 0;
+      top: 0;
+      border-radius: 2em;
+    
+    }
+    /* glowing button */
+    .btn::before{
+        content: "";
+        background: linear-gradient(
+            45deg,
+            #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
+            rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
+            rgb(220, 19, 169),rgb(222, 18, 18)
+        );
+        position: absolute;
+        top:-2px;
+        left: -2px;
+        background-size:600%;
+        z-index: -1;
+        width: calc(100% + 0.3em);
+        height: calc(100% + 0.3em);
+        filter: blur(1em);
+        animation: glow 20s linear infinite;
+        border-radius: 2px;
+        opacity: 0;
+
+
+    }
+    @keyframes glow{
+        0%{
+            background-position: 0 0;
+        }
+        50%{
+            background-position: 400% 0;
+        }
+        100%{background-position: 0 0;}
+    }
+    .btn:hover{
+       transform: scale(1.08);
+    }
+    .btn:hover::before{
+        opacity: 1;
+        
+    }
+
+    .btn:active:after{
+        background: transparent;
+
+    }
+
+    .btn:active{
+        color: #000;
+        font-weight: bold;
+    }
+  </style>";`;
+          try {
+            await navigator.clipboard.writeText(css.substring(css.indexOf("<style>")));
+            copy.textContent = "Copied!";
+            copy.disabled = true;
+            setTimeout(() => {
+              copy.textContent = "Copy Common css for all";
+              copy.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+</script>
     </div>
   </main>
   <footer>

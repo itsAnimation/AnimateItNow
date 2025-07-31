@@ -97,6 +97,30 @@
         };
       </script>
     </main>
+    <button id="copy" style="border-radius: 10px;
+  background-color: #7a9ebd;
+  color: #fff;
+  box-shadow: #2563eb;
+  border-color: rgb(24, 57, 98);margin-left: 700px;
+  width: 100px;
+  height: 50px;">copy code</button>
+  <script>
+    const copy= document.getElementById("copy");
+      copy.addEventListener("click", async () => {
+        const el=document.querySelector(".templates-main");
+        try {
+            await navigator.clipboard.writeText(el.outerHTML);
+            copy.textContent = "Copied!";
+            copy.disabled = true;
+            setTimeout(() => {
+              copy.textContent = "Copy Common css for all";
+              copy.disabled = false;
+            }, 1500);
+          } catch (err) {
+            console.error("Copy failed:", err);
+          }
+        });
+  </script>
     <footer>
       <p>Made with ❤️ by Anuj and Contributors</p>
     </footer>
