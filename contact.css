@@ -1,0 +1,212 @@
+/* Make form container wider */
+.contact-container {
+  max-width: 700px;
+  width: 100%;
+background: linear-gradient(
+  135deg,
+   /* very light orange */
+  rgba(180, 220, 255, 0.15),
+  rgb(243, 150, 255,0.6)  /* very light blue */
+);
+
+  padding: 20px 30px;
+  margin: auto;
+  border-radius: 20px;
+  
+  box-shadow:
+  0 0 12px rgba(241, 7, 163, 0.2),   /* pink glow */
+  0 0 24px rgba(123, 47, 247, 0.3);    /* indigo-blue glow */
+
+  
+}
+@keyframes pulseShadow {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(236, 72, 153, 0.4),
+      0 0 24px rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(236, 72, 153),
+      0 0 32px rgba(47, 40, 180, 0.4);
+  }
+}
+
+.contact-container:hover {
+  box-shadow: 0 0 40px rgba(123, 47, 247,0.7), 0 0 30px rgba(241, 7, 163, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+
+/* Gradient heading */
+.contact-main h1 {
+    padding:30px;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(to right, #ff5ec9, #103670);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInHeading 1s ease-in-out forwards;
+}
+
+@keyframes fadeInHeading {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form layout: Single column */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Textarea height */
+#message {
+  min-height: 70px;
+  
+  
+
+}
+
+/* FORM INPUT BASE STYLES */
+input,
+textarea {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent; /* Remove default bottom border */
+  outline: none;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* LABELS */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* WRAPPER GROUP */
+.form-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* UNDERLINE STYLING */
+.underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #ccc; /* Default grey line */
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* ANIMATED GRADIENT INSIDE */
+.underline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  transition: width 0.4s ease;
+  z-index: 1;
+}
+
+/* FOCUS STATE - Animate gradient line */
+input:focus + .underline::before,
+textarea:focus + .underline::before {
+  width: 100%;
+}
+
+/* Labels */
+label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+  display: block;
+}
+
+.template-btn {
+  background: linear-gradient(135deg, #4f46e5, #ec4899); /* Indigo to Pink */
+  color: #fff;
+  border: 3px solid transparent;
+  padding: 16px 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+  width: 100%; /* Full width inside .contact-button */
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.3);
+  overflow: hidden;
+}
+
+/* Moving border animation using pseudo-element */
+.template-btn::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(270deg, #f107a3, #7b2ff7, #f107a3);
+  z-index: -1;
+  border-radius: 60px;
+  background-size: 400% 400%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: moveBorder 6s linear infinite;
+}
+
+@keyframes moveBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* On hover: show moving border */
+.template-btn:hover::before {
+  opacity: 1;
+}
+
+/* On hover: alternate gradient */
+.template-btn:hover {
+  background: linear-gradient(135deg, #ec4899, #4f46e5);
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.35);
+}
+
+/* On click: darker gradient */
+.template-btn:active {
+  background: linear-gradient(135deg, #3c30c5, #c22078); /* darker shades */
+  transform: scale(0.98);
+}

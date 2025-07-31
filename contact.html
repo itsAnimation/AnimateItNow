@@ -4,48 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  </head>
- 
- 
+    <meta
+      name="description"
+      content="A comprehensive collection of CSS animation templates and effects for web developers"
+    />
 
-<body class="contact">
-  <nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
-    </div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  
-                <!-- cursor toggle switch -->
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <li>
-          <a href="https://github.com/itsAnimation/AnimateItNow"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             aria-label="GitHub Repo"
-             class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+    <!-- Apple Touch Icons -->
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link rel="stylesheet" href="contact.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body class="contact">
+    <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contributors.html">Contributors</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
 
                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
@@ -76,87 +91,109 @@
         <h1 class="fade-in mob-res">Get in Touch</h1>
         <div class="contact-container scroll-fade">
           <form class="contact-form">
+            <!-- full name -->
+             <div class="contact-inner">
             <div class="form-group scroll-fade">
-              <label for="name">Name</label>
+              <label for="full-name">Full Name</label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your name"
+                id="full-name"
+                name="full-name"
                 required
               />
+              <span class="underline"></span>
             </div>
 
+            <!-- Email -->
             <div class="form-group scroll-fade">
               <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email id (e.g. john@gmail.com)"
-                required
-              />
+              <input type="email" id="email" name="email" required />
+              <span class="underline"></span>
             </div>
 
+            
+
+            <!-- Subject -->
             <div class="form-group scroll-fade">
               <label for="subject">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Enter the subject"
-                required
-              />
+              <input type="text" id="subject" name="subject" required />
+              <span class="underline"></span>
             </div>
 
+            <!-- Message -->
             <div class="form-group scroll-fade">
               <label for="message">Message</label>
               <textarea
                 id="message"
                 name="message"
                 rows="5"
-                placeholder="Enter the message you want to convey"
                 required
               ></textarea>
+              <span class="underline"></span>
             </div>
 
+            <!-- Submit Button -->
             <div class="contact-button scroll-fade">
               <button type="submit" class="template-btn" id="submit">
-                Send Message
+                Submit
               </button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </main>
 
     <footer class="footer scroll-fade">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
-      </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-github fa-beat"></i> GitHub</a
+              >
+            </li>
 
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-          
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-        </ul>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a
+              >
+            </li>
+
+            <li>
+              <a
+                href="mailto:contact@animateitnow.com"
+                rel="noopener noreferrer"
+                ><i class="fas fa-envelope fa-beat"></i> Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-    </div>
-  </footer>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
+      </div>
+    </footer>
     <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>
 
     <!-- PWA Support -->
-  <script src="pwa.js"></script>
-</body>
+    <script src="pwa.js"></script>
+  </body>
   <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 </html>
