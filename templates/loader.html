@@ -207,8 +207,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      /*
       min-width: 48px;
       min-height: 48px;
+      */
       width: 80px;
       height: 80px;
       transition: width 0.2s, height 0.2s;
@@ -309,7 +311,7 @@
       .loader-card { min-width: 0; }
       .loader-playground { gap: 1rem; }
       .preview-pane { height: 120px; }
-      #loader-preview { width: 48px; height: 48px; }
+      /*#loader-preview { width: 48px; height: 48px; }*/
       .controls-pane { padding: 0; }
       .controls-pane label { flex-direction: column; align-items: flex-start; }
     }
@@ -413,6 +415,10 @@
       if (currentType === 'spinner') {
         el.style.width        = size + 'px';
         el.style.height       = size + 'px';
+        el.style.minWidth     = size + 'px';
+        el.style.minHeight    = size + 'px';
+        el.style.maxWidth     = size + 'px';
+        el.style.maxHeight    = size + 'px';        
         el.style.borderWidth  = size / 8 + 'px';
         el.style.borderColor  = color + '33';
         el.style.borderTopColor = color;
@@ -446,7 +452,7 @@
 
       if (currentType === 'spinner') {
         css = `
-.loader-spinner {
+.loader-spinner{
   width: ${size};
   height: ${size};
   border: calc(${size}/8) solid ${color}33;
