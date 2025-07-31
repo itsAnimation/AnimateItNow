@@ -2587,8 +2587,7 @@ body.dark .glow-wrap::before {
   position: fixed;
   bottom: 65px;
   right: 30px;
-  z-index: 99;
-  font-size: 18px;
+  z-index: 99; 
   border: none;
   outline: none;
   background-color: #333;
@@ -2597,19 +2596,55 @@ body.dark .glow-wrap::before {
   padding: 10px 15px;
   border-radius: 50%;
   opacity: 0;
-  pointer-events: none;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none; 
+   transition: all 0.4s ease;
+   /* initially at bottom */
+  transform: translateY(65px);
 }
-
-#scrollBtn.show {
+#scrollBtn svg{ 
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s ease;
+  fill: white;  
+  position: relative;
+  top: 5px;
+} 
+#scrollBtn.show{
   opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
+  pointer-events: auto;  
+  /* show applied -> then come back to 0 */
+  transform: translateY(0); 
+}    
 
 #scrollBtn:hover {
-  background-color: #555; /* Darker on hover */
+  background-color: #4f8cff; /*Darker on hover*/
+  transform: translateY(0) scale(1.05); 
+  box-shadow: 0 0 10px rgba(14, 39, 182, 0.4);
+}
+#scrollBtn:hover svg{
+  transform: scale(1.1);
+  top: 0;
+}
+/* bounce animation added on back to top */
+@keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* applied when not hover */
+#scrollBtn.bounce:not(:hover) svg{
+    animation: bounce 2s infinite;
+}
+
+/* back to top on dark theme */
+body.dark #scrollBtn:not(:hover){
+  background-color: white;  
+}
+body.dark #scrollBtn svg:not(:hover){
+  fill:black;
+}
+body.dark #scrollBtn:hover svg{  
+  fill:white;
 }
 
 
