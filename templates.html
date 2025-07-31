@@ -610,6 +610,9 @@
           aria-label="Search templates"
         />
       </div>
+       <div class="no-results">
+  No Templates Found.
+</div>
       <section class="templates-grid">
         <a class="template-card" href="templates/LoginFormGlassMorphism.html">
           <h2>Login Form with Glassmorphism.</h2>
@@ -872,7 +875,7 @@
       // Search & Category Filter Functionality
       const searchBar = document.getElementById("search-bar");
       const templateCards = document.querySelectorAll(".template-card");
-      // const noResultsMsg = document.getElementById('no-results'); // Optional: Add a "no results" div to your HTML
+      const noResultsMsg = document.querySelector(".no-results"); // Added a "no results" div to your HTML
 
       function filterTemplates() {
         const query = searchBar.value.trim().toLowerCase();
@@ -891,11 +894,12 @@
             card.style.display = "none";
           }
         });
-        /*
+
         if (noResultsMsg) {
+
           noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
         }
-        */
+     
       }
       searchBar.addEventListener("input", filterTemplates);
 
