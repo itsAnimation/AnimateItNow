@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress bar Demo</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+ 
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+ 
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json" />
+ 
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+ 
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+ 
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="stylesheet" href="../styles.css" />
+
+
+
+
+    <!-- All necessary CSS is included here -->
+
+
+  <style>
+   
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-image: url("../images/bgdark.png");
+    }
+
+
+    main{
+      min-height: screen;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .democard{
+      width: 100%;
+      min-height: 100px;
+      background-color: black;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgb(55, 177, 207);
+   }
+
+    #codesnippet{
+      max-height: 300px;
+      min-width: 300px;
+      box-shadow: 0 0 10px white;
+      max-width: 700px;
+      background-color: rgb(51, 51, 53);
+      z-index: 23;
+      display: none;
+      overflow-y: auto;
+      overflow-x: auto;
+      color: white;
+      position: absolute;
+      top: 50px;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+
+    .text{
+      color:white;
+    }
+    .visual-box{
+      min-height: 100px;
+      width: 60%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .square2 {
+      min-width: 90px;
+      min-height: 95px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end; /* progress will grow upward */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .circle2 {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #aaa;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background-color: white;
+    }
+
+    .progress2 {
+      width: 100%;
+      height: 0;
+      background-color: rgb(75, 188, 216);
+      animation: fillup 4s infinite alternate;
+      display: flex;
+      justify-content: center;
+    }
+
+    .progressbar1{
+      width:100%;
+      background-color: white;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 15px;
+    }
+
+    .progress1{
+      width:0;
+      min-height: 30px;
+      animation: progress1happen 4s infinite alternate;
+      background-color: #ff00d4;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .progress1 .tooltip-text1 {
+      position: absolute;
+      top: -30px; /* above the bar */
+      right: 0;
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      transform: translateX(50%);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    
+    @keyframes progress1happen {
+      0% {
+        width: 0%;
+      }
+      10% {
+        width: 10%;
+      }
+      20% {
+        width: 20%;
+      }
+      30% {
+        width: 30%;
+      }
+      40% {
+        width: 40%;
+      }
+      50% {
+        width: 50%;
+      }
+      60% {
+        width: 60%;
+      }
+      70% {
+        width: 70%;
+      }
+      80% {
+        width: 80%;
+      }
+      90% {
+        width: 90%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+
+    .tooltip-text2 {
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      height: 20px;
+    }
+
+    .chain{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .circle{
+      min-height:50px;
+      min-width: 50px;
+      border-radius: 50%;
+      background-color: #ff00d4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: black;
+      font-weight: bolder;
+      box-shadow: 0 0 5px white;
+    }
+
+    @keyframes fillup {
+      0% {
+        height: 0%;
+      }
+      10% {
+        height: 10%;
+      }
+      20% {
+        height: 20%;
+      }
+      30% {
+        height: 30%;
+      }
+      40% {
+        height: 40%;
+      }
+      50% {
+        height: 50%;
+      }
+      60% {
+        height: 60%;
+      }
+      70% {
+        height: 70%;
+      }
+      80% {
+        height: 80%;
+      }
+      90% {
+        height: 91%;
+      }
+      100% {
+        height: 106%;
+      }
+    }
+
+    .glow-button {
+      height: 50px;
+      padding: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background-color: #1f1f1f;
+      border: 2px solid #00f0ff;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease,
+      background-color 0.2s ease;
+    }
+
+
+    .glow-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00d4;
+    }
+    .glow-button:active{
+      background-color: white;
+      color:black;
+    }
+  </style>
+</head>
+<body>
+  <!--code for navbar-->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <h1 class="site-name">Animate It Now</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <!--code for main section with different progress bar examples-->
+  <main style="position: relative;">
+    <div class="democard">
+      <h2 class="text">Basic progress bar</h2>
+      <div class="visual-box">
+        <div class="progressbar1">
+          <div class="progress1">
+            <div class="tooltip-text1">0%</div>
+          </div>
+        </div>
+      </div>
+      <button class="glow-button" id="btn1">View Code</button>
+    </div>
+
+    <div class="democard">
+      <h2 class="text">Circular progress </h2>
+      <div class="visual-box">
+        <div class="square2">
+          <div class="circle2">
+            <div class="progress2"><div class="tooltip-text2">0%</div></div>
+          </div>
+        </div>
+      </div>
+      <button class="glow-button" id="btn2">View Code</button>
+    </div>
+
+    <div class="democard">
+      <h2 class="text">Discrete progress </h2>
+      <div class="visual-box">
+        <div class="chain">
+          <div class="circle" id="cir1">20%</div>
+          <div class="circle" id="cir2">40%</div>
+          <div class="circle" id="cir3">60%</div>
+          <div class="circle" id="cir4">80%</div>
+          <div class="circle" id="cir5">100%</div>
+        </div>
+      </div>
+      <button class="glow-button" id="btn3">View Code</button>
+    </div>
+    <div id="codesnippet" class="codesnippet">
+    </div>
+  </main>
+
+  <!--footer-->
+  <footer>
+    <p>Made with ❤️ by Anuj and Contributors</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+    const progressBar=document.querySelector(".progress1");
+    const tooltip=document.querySelector(".tooltip-text1");
+    const verticalBar = document.querySelector(".progress2");
+    const verticalTooltip = document.querySelector(".tooltip-text2");
+    const c1=document.getElementById("cir1");
+    const c2=document.getElementById("cir2");
+    const c3=document.getElementById("cir3");
+    const c4=document.getElementById("cir4");
+    const c5=document.getElementById("cir5");
+    const cir=document.getElementsByClassName("circle");
+    const codesnippet=document.getElementById("codesnippet")
+    const numberofbuttons=3;
+    let arrayofbuttons=[];
+    let arrayofcodes=[];
+    //arrayofbuttons contains DOM buttons
+    for (let i=0;i<numberofbuttons;i++){
+      arrayofbuttons.push(document.getElementById(`btn${i+1}`));
+    }
+    //pushing corresponding code snippets in arrayofcodes
+    arrayofcodes.push(`
+      .progressbar1{
+      width:100%;
+      background-color: white;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 15px;
+    }
+
+    .progress1{
+      width:0;
+      min-height: 30px;
+      animation: progress1happen 4s infinite alternate;
+      background-color: #ff00d4;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .progress1 .tooltip-text1 {
+      position: absolute;
+      top: -30px; /* above the bar */
+      right: 0;
+      background: #333;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      transform: translateX(50%);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    
+    @keyframes progress1happen {
+      0% {
+        width: 0%;
+      }
+      10% {
+        width: 10%;
+      }
+      20% {
+        width: 20%;
+      }
+      30% {
+        width: 30%;
+      }
+      40% {
+        width: 40%;
+      }
+      ...
+    }`)
+
+    arrayofcodes.push(`.square2 {
+    min-width: 90px;
+    
+    min-height: 95px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* progress will grow upward */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circle2 {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #aaa;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: white;
+  }
+
+  .progress2 {
+    width: 100%;
+    height: 0;
+    background-color: rgb(75, 188, 216);
+    animation: fillup 4s infinite alternate;
+    display: flex;
+    justify-content: center;
+  }
+    
+  @keyframes fillup {
+        0% {
+          height: 0%;
+        }
+        10% {
+          height: 10%;
+        }
+        20% {
+          height: 20%;
+        }
+        30% {
+          height: 30%;
+        }...`)
+
+  arrayofcodes.push(`
+      .chain{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .circle{
+      min-height:50px;
+      min-width: 50px;
+      border-radius: 50%;
+      background-color: #ff00d4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: black;
+      font-weight: bolder;
+      box-shadow: 0 0 5px white;
+    }
+  `)
+
+function updateTooltip3() {
+  //  Animate the sequence
+  setTimeout(() => { c1.style.backgroundColor = "#9BA7A1"; }, 200);
+  setTimeout(() => { c2.style.backgroundColor = "#5F7A6B"; }, 400);
+  setTimeout(() => { c3.style.backgroundColor = "#365544"; }, 600);
+  setTimeout(() => { c4.style.backgroundColor = "#1B332D"; }, 800);
+  setTimeout(() => { c5.style.backgroundColor = "#051F20"; }, 1000);
+
+  //  After all are filled, flash white
+  setTimeout(() => {
+    c1.style.backgroundColor = "white";
+    c2.style.backgroundColor = "white";
+    c3.style.backgroundColor = "white";
+    c4.style.backgroundColor = "white";
+    c5.style.backgroundColor = "white";
+  }, 1300); // brief delay after last color
+
+  //  Call again after total cycle ends
+  setTimeout(() => {
+    requestAnimationFrame(updateTooltip3);
+  }, 2000);//complete loop every 2 sec
+}
+
+updateTooltip3();
+
+
+function updateTooltip2() {
+  const computedStyle = getComputedStyle(verticalBar);
+  const height = parseFloat(computedStyle.height);
+  const parentHeight = parseFloat(getComputedStyle(verticalBar.parentElement).height);
+  const percentage = Math.round((height / parentHeight) * 100);
+  verticalTooltip.textContent = percentage + "%";
+  requestAnimationFrame(updateTooltip2);
+}
+updateTooltip2();
+
+function updateTooltip1(){
+  const computedStyle = getComputedStyle(progressBar);
+  const width = parseFloat(computedStyle.width);
+  const parentWidth = parseFloat(getComputedStyle(progressBar.parentElement).width);
+  const percentage = Math.round((width / parentWidth) * 100);
+  if (percentage>=100) tooltip.textContent = "100%";
+  else tooltip.textContent = percentage + "%";
+  requestAnimationFrame(updateTooltip1);
+}
+updateTooltip1();
+
+for (let i = 0; i < arrayofbuttons.length; i++) {
+  arrayofbuttons[i].addEventListener("click", () => {
+    if (codesnippet) {
+      codesnippet.style.display = "block";
+      codesnippet.innerHTML = ""; 
+      
+      const removebtn = document.createElement("button");
+      removebtn.innerText = "❌";
+      removebtn.style.position = "absolute";
+      removebtn.style.top = "5px";
+      removebtn.style.right = "5px";
+      removebtn.style.background = "transparent";
+      removebtn.style.border = "none";
+      removebtn.style.color = "white";
+      removebtn.style.fontSize = "18px";
+      removebtn.style.cursor = "pointer";
+
+      // Close logic
+      removebtn.addEventListener("click", () => {
+        codesnippet.style.display = "none";
+      });
+
+      const codeBlock = document.createElement("pre");
+      codeBlock.innerText = arrayofcodes[i];
+      codeBlock.style.marginTop = "30px"; // prevent overlap
+
+      codesnippet.appendChild(removebtn);
+      codesnippet.appendChild(codeBlock);
+    }
+  });
+}
+
+    
+    })
+  </script>
+</body>
+</html>
