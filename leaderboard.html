@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contributor Points - AnimateItnow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- Apple Touch Icons -->
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <!--Using your existing styles.css exactly like other pages -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <!--Added Font Awesome for consistent icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <style>
+    /*NO navbar CSS - only leaderboard content styles with proper dark mode support */
+    
+    /*Main content container - NO background to let page background show through */
+=======
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contributor Points - AnimateItnow</title>
@@ -381,6 +401,7 @@
   }
   /*Mobile responsive design - NO background overrides */
   @media (max-width: 768px) {
+>>>>>>> 445cba631defe336c51de623675701ae370411f7
     .leaderboard-container {
       padding: 0 15px;
     }
@@ -620,6 +641,124 @@
         <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
       </ul>
     </div>
+<<<<<<< HEAD
+  </nav>
+
+
+  
+
+  <!--Main leaderboard container with NO background to let page background show -->
+  <div class="leaderboard-container">
+    <div class="glass-heading">
+      🚀 Contributor Points Dashboard – <i>AnimateItnow</i>
+    </div>
+      
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="searchUser" 
+        class="search-input"
+        placeholder="Search by username..." 
+      />
+      <button id="searchBtn" class="search-btn">
+        🔍 Search
+      </button>
+    </div>
+
+    <!--Table container - always visible, no loading effect -->
+    <div class="table-container">
+      <table id="pointsTable" class="leaderboard-table">
+        <thead>
+          <tr>
+              <th>Rank</th>
+              <th>Contributor</th>
+              <th>Merged PRs</th>
+              <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--Initial message for immediate feedback -->
+          <tr><td colspan="4" style="text-align: center; padding: 40px;">Loading data... Please wait.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="pagination" class="pagination-container"></div>
+
+    <button class="download-button" onclick="downloadExcel()">
+      📥 Download as Excel
+    </button>
+  </div>
+
+  <!--Footer exactly like other pages -->
+  <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </div>
+  </footer>
+
+  <!--Cursor snake div for consistency -->
+  <div id="cursor-snake"></div>
+
+  <script>
+ 
+
+    //Enhanced leaderboard JavaScript
+    const owner = "itsAnimation";
+    const repo = "AnimateItnow";
+    const token = ""; 
+    const pointsPerLevel = {
+      "level1": 3,
+      "level2": 7,
+      "level3": 10
+    };
+
+    let contributorsData = [];
+    let currentPage = 1;
+    const perPage = 20;
+
+    //Fetch merged PRs with error handling
+    async function fetchMergedPRs(page = 1, allPRs = []) {
+      try {
+        const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}`;
+        const headers = token ? { Authorization: `token ${token}` } : {};
+        const res = await fetch(url, { headers });
+        
+        if (!res.ok) {
+          //Provide more specific error for API issues
+          const errorText = await res.text();
+          throw new Error(`GitHub API error! Status: ${res.status}. Message: ${errorText}`);
+        }
+        
+        const prs = await res.json();
+        if (!Array.isArray(prs)) return allPRs;
+        
+        const merged = prs.filter(pr => pr.merged_at);
+        allPRs = allPRs.concat(merged);
+        
+        if (prs.length === 100) {
+          return fetchMergedPRs(page + 1, allPRs);
+        } else {
+          return allPRs;
+        }
+      } catch (error) {
+        console.error('Error fetching PRs:', error);
+        throw error; // Re-throw to be caught by init()
+=======
   </div>
   <div class="footer-bottom">
     <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
@@ -652,6 +791,7 @@
         //Provide more specific error for API issues
         const errorText = await res.text();
         throw new Error(`GitHub API error! Status: ${res.status}. Message: ${errorText}`);
+>>>>>>> 445cba631defe336c51de623675701ae370411f7
       }
               
       const prs = await res.json();
@@ -700,6 +840,26 @@
     const endIdx = startIdx + perPage;
     let pageData = dataToShow.slice(startIdx, endIdx);
 
+<<<<<<< HEAD
+    //Download Excel functionality
+    function downloadExcel() {
+      if (typeof XLSX === 'undefined' || !XLSX.utils || !XLSX.utils.table_to_book) {
+        alert("⚠️ Excel download is temporarily unavailable. Please check your internet connection or try again later.");
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.innerHTML = `<thead><tr>
+        <th>Rank</th>
+        <th>Contributor</th>
+        <th>Merged PRs</th>
+        <th>Total Points</th>
+      </tr></thead><tbody></tbody>`;
+
+      const tbody = table.querySelector("tbody");
+      contributorsData.forEach(([user, userData], idx) => {
+        const prList = userData.prs.map(pr => `${pr.title} (${pr.level})`).join('; ');
+=======
     const createPrsCell = (userData) => {
       const prsTd = document.createElement("td");
       const prListHtml = userData.prs.map(pr => {
@@ -742,6 +902,7 @@
       });
               
       pageData.forEach(({ user, userData, originalIdx }) => {
+>>>>>>> 445cba631defe336c51de623675701ae370411f7
         const row = document.createElement("tr");
         
         const rankTd = document.createElement("td");
@@ -770,9 +931,15 @@
       pageData.forEach(([user, userData], idx) => {
         const row = document.createElement("tr");
 
+<<<<<<< HEAD
+  const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
+  XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
+}
+=======
         const rankTd = document.createElement("td");
         rankTd.textContent = startIdx + idx + 1;
         row.appendChild(rankTd);
+>>>>>>> 445cba631defe336c51de623675701ae370411f7
 
         const contributorTd = document.createElement("td");
         contributorTd.innerHTML = `
@@ -792,6 +959,34 @@
         tbody.appendChild(row);
       });
     }
+<<<<<<< HEAD
+
+    //Start initialization
+    init();
+  </script>
+
+  <!--Required scripts for icons and functionality -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+
+  <!-- PWA Support -->
+
+
+// Confetti effect on page load
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    window.onload = function () {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+    };
+  </script>
+  
+</body>
+=======
     renderPagination();
   }
   //Render pagination controls
@@ -930,5 +1125,6 @@
 </script>
 </body>
 <!-- Moved scrollBtn to inside the body for valid HTML structure. -->
+>>>>>>> 445cba631defe336c51de623675701ae370411f7
 <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 </html>
