@@ -910,6 +910,11 @@
 
     //Download Excel functionality
     function downloadExcel() {
+      if (typeof XLSX === 'undefined' || !XLSX.utils || !XLSX.utils.table_to_book) {
+        alert("⚠️ Excel download is temporarily unavailable. Please check your internet connection or try again later.");
+        return;
+      }
+
       const table = document.createElement("table");
       table.innerHTML = `<thead><tr>
         <th>Rank</th>
@@ -917,13 +922,10 @@
         <th>Merged PRs</th>
         <th>Total Points</th>
       </tr></thead><tbody></tbody>`;
-      
+
       const tbody = table.querySelector("tbody");
       contributorsData.forEach(([user, userData], idx) => {
-        const prList = userData.prs.map(pr => {
-          return `${pr.title} (${pr.level})`;
-        }).join('; ');
-        
+        const prList = userData.prs.map(pr => `${pr.title} (${pr.level})`).join('; ');
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${idx + 1}</td>
@@ -934,9 +936,9 @@
         tbody.appendChild(row);
       });
 
-      const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
-      XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
-    }
+  const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
+  XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
+}
 
     //Initialize leaderboard with error handling and dummy data fallback
     async function init() {
