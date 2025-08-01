@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>Flip Cards with Side-by-Side Code</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" /> <!-- updated favicon -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,17 +12,17 @@
       margin: 0;
       padding: 40px;
       animation: glow 3s ease-in-out infinite alternate;
-      
     }
+
     @keyframes glow {
-       from{
+      from {
         filter: brightness(1);
-       }
-       to {
+      }
+      to {
         filter: brightness(1.2);
-       }
+      }
     }
-    
+
     .section {
       display: flex;
       gap: 200px;
@@ -46,6 +43,11 @@
       transform-style: preserve-3d;
       transition: transform 0.8s;
       cursor: pointer;
+    }
+
+    .flip-card:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* hover effect added */
+      transform: scale(1.05);
     }
 
     .flip-card.flipped {
@@ -74,15 +76,24 @@
       color: white;
       text-align: center;
       padding: 10px;
+      transition: background 0.3s ease; /* smooth color transition */
     }
 
     .card-front {
       background: linear-gradient(135deg, #2980b9cc, rgba(255, 255, 255, 0.8));
     }
 
+    .card-front:hover {
+      background: linear-gradient(135deg, #1abc9c, #ecf0f1); /* hover color */
+    }
+
     .card-back {
       background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(41,128,185,0.8));
       color: #2980b9;
+    }
+
+    .card-back:hover {
+      background: linear-gradient(135deg, #f39c12, #f1c40f); /* hover color */
     }
 
     .card-back.rotateY {
@@ -120,13 +131,14 @@
         width: 100%;
       }
     }
+
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.3); /* updated opacity */
       color: var(--nav-text);
       display: flex;
       align-items: center;
@@ -136,7 +148,6 @@
       z-index: 1000;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       transition: background var(--transition), color var(--transition);
     }
@@ -144,18 +155,35 @@
     .nav-left {
       display: flex;
       align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
     }
+
+    .nav-left:hover {
+      transform: scale(1.05); /* hover zoom */
+    }
+
     .logo {
       width: 36px;
       height: 36px;
       margin-right: 0.75rem;
       object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid #2980b9; /* added border */
+      transition: border-color 0.3s ease;
     }
+
+    .logo:hover {
+      border-color: #f39c12; /* logo hover border */
+    }
+
     .site-name {
       font-weight: 700;
       font-size: 1.2rem;
       letter-spacing: 0.5px;
+      color: #2980b9;
     }
+
     .nav-links {
       list-style: none;
       display: flex;
@@ -163,6 +191,7 @@
       margin: 0;
       padding: 0;
     }
+
     .nav-links a {
       text-decoration: none;
       color: var(--nav-text);
@@ -170,21 +199,12 @@
       transition: color var(--transition);
       position: relative;
     }
+
     .nav-links a.active,
     .nav-links a:hover {
       color: var(--accent);
     }
-    #theme-toggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      margin-left: 1.5rem;
-      color: var(--nav-text);
-      transition: color var(--transition);
-    }
 
-    /* Base variables and body */
     :root {
       --nav-text: #222;
       --accent: #007BFF;
@@ -195,7 +215,7 @@
 <body>
   <nav class="navbar">
     <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <img src="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" alt="Logo" class="logo" /> <!-- updated logo src -->
       <span class="site-name">AnimateItNow</span>
     </div>
     <ul class="nav-links">
@@ -204,12 +224,13 @@
       <li><a href="../contributors.html">Contributors</a></li>
       <li><a href="../contact.html">Contact</a></li>
     </ul>
-    
   </nav>
-  <BR><BR>
+
+  <br><br><br><br>
   <h1 style="text-align: center; font-family: Arial, sans-serif;">Flip Card Effects</h1>
   <br><br>
   <h2 style="text-align: center;">CODE</h2>
+
 <div class="ready">
 <!-- === CARD 1: Horizontal Flip === -->
 <div class="section">
@@ -269,7 +290,7 @@
     <h2>Diagonal Flip</h2>
     <div class="flip-card flip-card-diagonal" onclick="this.classList.toggle('flipped')">
       <div class="card-front" style="background:#4CAF50;">Diagonal FRONT</div>
-      <div class="card-back" style="background:#FFC107;">Diagonal BACK</div>
+      <div class="card-back" style="background:#FFC107; color:#333;">Diagonal BACK</div>
     </div>
   </div>
   <div class="code-box">
@@ -286,5 +307,5 @@
   </div>
 </div>
 </div>
-  </body>
+</body>
 </html>
