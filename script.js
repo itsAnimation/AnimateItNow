@@ -155,15 +155,15 @@ window.addEventListener("pagehide", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
   // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle")
+  const themeToggle2 = document.getElementById("theme-toggle2")
   const body = document.body
   function setTheme(dark) {
     const newIcon = dark ? "sun" : "moon"
     body.classList.toggle("dark", dark) // Use 'dark' class for consistency
     localStorage.setItem("theme", dark ? "dark" : "light")
     // Replace icon completely
-    if (themeToggle) {
-      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
+    if (themeToggle2) {
+      themeToggle2.innerHTML = `<i data-lucide="${newIcon}"></i>`
       // Only call lucide.createIcons() if the lucide object is actually available
       if (window.lucide) {
         window.lucide.createIcons()
@@ -172,7 +172,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
-  themeToggle?.addEventListener("click", () => {
+  themeToggle2?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
   })
@@ -274,6 +274,35 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Snake cursor initialization and state management
+  const cursorToggle2 = document.getElementById("cursorToggle2")
+  if (!isMobile && cursorToggle2) {
+    // Read saved state from localStorage for initial setup
+    const savedCursorState = localStorage.getItem("cursorEnabled")
+    // Default to false if no state is saved, or use the saved state
+    const initialCursorEnabled = savedCursorState !== null ? JSON.parse(savedCursorState) : false
+
+    // Set initial state of the toggle checkbox
+    cursorToggle2.checked = initialCursorEnabled
+
+    // Apply initial cursor state immediately
+    if (initialCursorEnabled) {
+      enableSnakeCursor()
+    } else {
+      disableSnakeCursor()
+    }
+
+    // Add event listener for changes to toggle cursor and save state
+    cursorToggle2.addEventListener("change", function () {
+      if (this.checked) {
+        enableSnakeCursor()
+        localStorage.setItem("cursorEnabled", "true")
+      } else {
+        disableSnakeCursor()
+        localStorage.setItem("cursorEnabled", "false")
+      }
+    })
+  }
+  // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
   if (!isMobile && cursorToggle) {
     // Read saved state from localStorage for initial setup
@@ -336,5 +365,11 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// hamburger menu
+function toggleMenu() {
+    const menu = document.querySelector(".off-screen-menu");
+    const hamburgerIcon = document.querySelector(".hamburger-menu");
 
-
+    menu.classList.toggle("active");
+    hamburgerIcon.classList.toggle("active");
+  }
