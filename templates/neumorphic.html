@@ -168,14 +168,252 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Dark Theme Toggle Button */
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid #333;
+      border-radius: 50px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    #theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Dark Theme Styles */
+    [data-theme="dark"] {
+      background: #1a1a2e;
+      color: #eee;
+    }
+
+    [data-theme="dark"] body {
+      background: #1a1a2e;
+      color: #eee;
+    }
+
+    [data-theme="dark"] #theme-toggle {
+      background: #16213e;
+      color: white;
+      border-color: #4a5568;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="dark"] h1 {
+      color: #eee;
+    }
+
+    [data-theme="dark"] .card {
+      background: #2d3748;
+      box-shadow: 10px 10px 20px #0f1419, -10px -10px 20px #374151;
+    }
+
+    [data-theme="dark"] .card:hover {
+      box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.4), -12px -12px 24px rgba(55, 65, 81, 0.8);
+    }
+
+    [data-theme="dark"] .card h2 {
+      color: #222;
+    }
+
+    [data-theme="dark"] .level1 {
+      background: linear-gradient(145deg, #ffdee9, #b5fffc);
+    }
+
+    [data-theme="dark"] .level2 {
+      background: linear-gradient(145deg, #d4fc79, #96e6a1);
+    }
+
+    [data-theme="dark"] .level3 {
+      background: linear-gradient(145deg, #c2ffd8, #465efb);
+    }
+
+    [data-theme="dark"] .neu-btn {
+      background: rgba(45, 55, 72, 0.8);
+      color: #e2e8f0;
+      box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3), -6px -6px 12px rgba(55, 65, 81, 0.7);
+    }
+
+    [data-theme="dark"] .neu-btn:hover {
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(55, 65, 81, 0.6);
+    }
+
+    [data-theme="dark"] .toggle-btn {
+      background: #4a5568;
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .toggle-btn:hover {
+      background: #2d3748;
+    }
+
+    [data-theme="dark"] .code-block {
+      background: #1a202c;
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .level3 .neu-btn::after {
+      background: rgba(45, 55, 72, 0.8);
+    }
+
+    /* Level 4: Pressed/Inset Style */
+    .level4 {
+      background: linear-gradient(145deg, #667eea, #764ba2);
+    }
+
+    .level4 .neu-btn {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3), inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .level4 .neu-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2), -2px -2px 6px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Level 5: Gradient Glow */
+    .level5 {
+      background: linear-gradient(145deg, #ff9a9e, #fecfef);
+    }
+
+    .level5 .neu-btn {
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+      color: #333;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 8px 8px 16px rgba(255, 154, 158, 0.4), -8px -8px 16px rgba(254, 207, 239, 0.6);
+    }
+
+    .level5 .neu-btn:hover {
+      box-shadow: 12px 12px 24px rgba(255, 154, 158, 0.6), -12px -12px 24px rgba(254, 207, 239, 0.8);
+      transform: translateY(-3px);
+    }
+
+    /* Level 6: Glass Morphism */
+    .level6 {
+      background: linear-gradient(145deg, #89f7fe, #66a6ff);
+    }
+
+    .level6 .neu-btn {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      color: #333;
+    }
+
+    .level6 .neu-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+    }
+
+    /* Level 7: Metallic Style */
+    .level7 {
+      background: linear-gradient(145deg, #e3e3e3, #f7f7f7);
+    }
+
+    .level7 .neu-btn {
+      background: linear-gradient(145deg, #f0f0f0, #cacaca);
+      border: 1px solid #d0d0d0;
+      box-shadow: 9px 9px 16px #bebebe, -9px -9px 16px #ffffff;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .level7 .neu-btn:hover {
+      background: linear-gradient(145deg, #cacaca, #f0f0f0);
+      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    }
+
+    .level7 .neu-btn:active {
+      box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+    }
+
+    /* Level 8: Neon Outline */
+    .level8 {
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+    }
+
+    .level8 .neu-btn {
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .level8 .neu-btn:hover {
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), inset 0 0 30px rgba(0, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Dark theme variants for new levels */
+    [data-theme="dark"] .level4 {
+      background: linear-gradient(145deg, #667eea, #764ba2);
+    }
+
+    [data-theme="dark"] .level5 {
+      background: linear-gradient(145deg, #ff9a9e, #fecfef);
+    }
+
+    [data-theme="dark"] .level6 {
+      background: linear-gradient(145deg, #89f7fe, #66a6ff);
+    }
+
+    [data-theme="dark"] .level7 {
+      background: linear-gradient(145deg, #4a5568, #2d3748);
+    }
+
+    [data-theme="dark"] .level7 .neu-btn {
+      background: linear-gradient(145deg, #4a5568, #2d3748);
+      border-color: #4a5568;
+      color: #e2e8f0;
+      box-shadow: 9px 9px 16px #1a202c, -9px -9px 16px #4a5568;
+    }
+
+    [data-theme="dark"] .level7 .neu-btn:hover {
+      background: linear-gradient(145deg, #2d3748, #4a5568);
+      box-shadow: 6px 6px 12px #1a202c, -6px -6px 12px #4a5568;
+    }
+
+    [data-theme="dark"] .level8 {
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+    }
+
     @media (max-width: 600px) {
       .neu-btn, .toggle-btn {
         width: 100%;
+      }
+      
+      #theme-toggle {
+        font-size: 14px;
+        padding: 10px 14px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Dark Theme Toggle Button -->
+  <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    🌙 Dark Mode
+  </button>
+
   <h1>Neuromorphic Button Gallery</h1>
 
   <div class="container">
@@ -220,6 +458,76 @@
 }
       </pre>
     </div>
+
+    <!-- Level 4 Card -->
+    <div class="card level4">
+      <h2>Level 4 - Pressed/Inset Style</h2>
+      <button class="neu-btn">Level 4</button><br />
+      <button class="toggle-btn" onclick="toggleCode(4)">Show Code</button>
+      <pre class="code-block" id="code4">
+.neu-btn {
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,0.3),
+              inset -4px -4px 8px rgba(255,255,255,0.1);
+}
+      </pre>
+    </div>
+
+    <!-- Level 5 Card -->
+    <div class="card level5">
+      <h2>Level 5 - Gradient Glow</h2>
+      <button class="neu-btn">Level 5</button><br />
+      <button class="toggle-btn" onclick="toggleCode(5)">Show Code</button>
+      <pre class="code-block" id="code5">
+.neu-btn {
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
+  box-shadow: 8px 8px 16px rgba(255,154,158,0.4),
+              -8px -8px 16px rgba(254,207,239,0.6);
+}
+      </pre>
+    </div>
+
+    <!-- Level 6 Card -->
+    <div class="card level6">
+      <h2>Level 6 - Glass Morphism</h2>
+      <button class="neu-btn">Level 6</button><br />
+      <button class="toggle-btn" onclick="toggleCode(6)">Show Code</button>
+      <pre class="code-block" id="code6">
+.neu-btn {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+      </pre>
+    </div>
+
+    <!-- Level 7 Card -->
+    <div class="card level7">
+      <h2>Level 7 - Metallic Style</h2>
+      <button class="neu-btn">Level 7</button><br />
+      <button class="toggle-btn" onclick="toggleCode(7)">Show Code</button>
+      <pre class="code-block" id="code7">
+.neu-btn {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 9px 9px 16px #bebebe,
+              -9px -9px 16px #ffffff;
+}
+      </pre>
+    </div>
+
+    <!-- Level 8 Card -->
+    <div class="card level8">
+      <h2>Level 8 - Neon Outline</h2>
+      <button class="neu-btn">Level 8</button><br />
+      <button class="toggle-btn" onclick="toggleCode(8)">Show Code</button>
+      <pre class="code-block" id="code8">
+.neu-btn {
+  background: transparent;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3),
+              inset 0 0 20px rgba(0,255,255,0.1);
+}
+      </pre>
+    </div>
   </div>
 
   <script>
@@ -227,6 +535,33 @@
       const code = document.getElementById("code" + level);
       code.style.display = code.style.display === "block" ? "none" : "block";
     }
+
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const button = document.getElementById('theme-toggle');
+      
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      if (newTheme === 'dark') {
+        button.innerHTML = '☀️ Light Mode';
+      } else {
+        button.innerHTML = '🌙 Dark Mode';
+      }
+    }
+    
+    // Load saved theme on page load
+    window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const button = document.getElementById('theme-toggle');
+      
+      document.body.setAttribute('data-theme', savedTheme);
+      
+      if (savedTheme === 'dark') {
+        button.innerHTML = '☀️ Light Mode';
+      }
+    });
   </script>
 </body>
 </html>
