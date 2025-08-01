@@ -6,31 +6,7 @@
   <title>Definitive Animated Toggles | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -80,7 +56,35 @@
     .tgl-morph { width: 70px; height: 35px; background: #ddd; border-radius: 35px; cursor: pointer; position: relative; display: grid; place-items: center; } .tgl-morph-svg { transition: transform 0.4s ease; } .tgl-morph-svg path { transition: d 0.4s cubic-bezier(0.65, 0, 0.35, 1); } #tgl-morph:checked + .tgl-morph { background: var(--accent); } #tgl-morph:checked + .tgl-morph .tgl-morph-svg { transform: rotate(45deg); }
     .cbx-elastic { width: 30px; height: 30px; cursor: pointer; } .cbx-elastic-box { width: 100%; height: 100%; border: 2px solid #aaa; border-radius: 8px; position: relative; transition: all 0.2s ease; } .cbx-elastic-check { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); color: white; font-size: 18px; transition: transform 0.2s ease 0.1s; } #cbx-elastic:checked ~ .cbx-elastic-box { border-color: transparent; animation: stretch-bounce 0.4s ease; background-color: var(--accent); } #cbx-elastic:checked ~ .cbx-elastic-box .cbx-elastic-check { transform: translate(-50%, -50%) scale(1); } @keyframes stretch-bounce { 0% { transform: scale(1); } 25% { transform: scale(1.2, 0.8); } 50% { transform: scale(0.9, 1.1); } 75% { transform: scale(1.05, 0.95); } 100% { transform: scale(1); } }
     .tgl-flip-flop { perspective: 1000px; } .tgl-flip-flop-inner { width: 80px; height: 40px; cursor: pointer; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.5, 0, 0.5, 1); } .tgl-flip-flop-face { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; border-radius: 20px; backface-visibility: hidden; -webkit-backface-visibility: hidden; } .tgl-flip-flop-front { background: #ddd; color: #555; } .tgl-flip-flop-back { background: var(--accent); color: white; transform: rotateX(180deg); } #tgl-flip-flop:checked + .tgl-flip-flop-inner { transform: rotateX(180deg); }
-    .tgl-particle-container { position: relative; width: 70px; height: 35px; } .tgl-particle-label { width: 100%; height: 100%; background: #ddd; border-radius: 35px; cursor: pointer; position: absolute; transition: background-color 0.2s ease; } .tgl-particle-handle { width: 29px; height: 29px; background: white; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.4s ease, opacity 0.4s ease; } .particle-comet { position: absolute; background: var(--accent); width: 8px; height: 8px; top: 13px; left: 13px; opacity: 0; border-radius: 50%; transform: scale(0.5); } .particle-comet::after { content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 0 50% 50% 0; } #tgl-particle:checked + .tgl-particle-container .tgl-particle-label { background: var(--accent); } #tgl-particle:checked + .tgl-particle-container .tgl-particle-handle { transform: translateX(35px); } #tgl-particle:checked + .tgl-particle-container .particle-comet { animation: particle-comet-burst 0.7s ease-out forwards; } @keyframes particle-comet-burst { 0% { transform: translate(0, 0) scale(0.5) rotate(calc(var(--angle) * 1deg)); opacity: 1; } 20% { width: 15px; } 100% { transform: translate(var(--x), var(--y)) scale(0) rotate(calc(var(--angle) * 1deg)); opacity: 0; width: 8px; } }
+    .tgl-particle-container {position: relative; width: 70px; height: 35px; display: flex; align-items: center; justify-content: center;} .tgl-particle-label {width: 100%; height: 100%; background: #ddd; border-radius: 35px; cursor: pointer; position: absolute; top: 0; left: 0; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease;} .tgl-particle-handle {width: 29px; height: 29px; background: white; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.4s ease, opacity 0.4s ease; display: flex; align-items: center; justify-content: center; } .particle-comet {position: absolute; top: 50%; left: 50%; background: var(--accent); width: 8px; height: 8px; opacity: 0; border-radius: 50%; transform: translate(-50%, -50%) scale(0.5); } .particle-comet::after {content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 0 50% 50% 0; } #tgl-particle:checked + .tgl-particle-container .tgl-particle-label {background: var(--accent); } #tgl-particle:checked + .tgl-particle-container .tgl-particle-handle {transform: translateX(35px); } #tgl-particle:checked + .tgl-particle-container .particle-comet {animation: particle-comet-burst 0.7s ease-out forwards; } @keyframes particle-comet-burst {0% {transform: translate(-50%, -50%) scale(0.5) rotate(calc(var(--angle) * 1deg)); opacity: 1; } 20% {width: 15px; } 100% {transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0) rotate(calc(var(--angle) * 1deg)); opacity: 0; width: 8px; } }
+    .tgl-particle-container {position: relative; width: 70px; height: 35px; display: flex; align-items: center; justify-content: center;}
+    .tgl-particle-label {width: 100%; height: 100%; background: #ddd; border-radius: 35px; cursor: pointer; position: absolute; top: 0; left: 0; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease;}
+    .tgl-particle-handle {width: 29px; height: 29px; background: white; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.4s ease, opacity 0.4s ease; display: flex; align-items: center; justify-content: center; }
+    .particle-comet {position: absolute; top: 50%; left: 50%; background: var(--accent); width: 8px; height: 8px; opacity: 0; border-radius: 50%; transform: translate(-50%, -50%) scale(0.5); }
+    .particle-comet::after {content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 0 50% 50% 0; }
+    #tgl-particle:checked + .tgl-particle-container .tgl-particle-label {
+      background: var(--accent);
+    }
+    #tgl-particle:checked + .tgl-particle-container .tgl-particle-handle {
+      transform: translateX(35px);
+    }
+    #tgl-particle:checked + .tgl-particle-container .particle-comet {
+      animation: particle-comet-burst 0.7s ease-out forwards;
+    }
+    @keyframes particle-comet-burst {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(calc(var(--angle) * 1deg));
+        opacity: 1;
+      }
+      20% {
+        width: 15px;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0) rotate(calc(var(--angle) * 1deg));
+        opacity: 0;
+        width: 8px;
+      }
+    }
 
     /* 9. Shutter Toggle */
     .tgl-shutter { width: 70px; height: 35px; border-radius: 35px; background-color: #ddd; cursor: pointer; position: relative; overflow: hidden; } .tgl-shutter-handle { width: 27px; height: 27px; background: #fff; border-radius: 50%; position: absolute; top: 4px; left: 4px; z-index: 2; transition: transform 0.4s ease; } .shutter-blade { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); transform-origin: top left; transition: transform 0.4s ease; } .shutter-blade:nth-child(2) { transform-origin: top right; } .shutter-blade:nth-child(3) { transform-origin: bottom left; } .shutter-blade:nth-child(4) { transform-origin: bottom right; } #tgl-shutter:checked + .tgl-shutter .tgl-shutter-handle { transform: translateX(35px); } #tgl-shutter:checked + .tgl-shutter .shutter-blade { transform: rotate(90deg) scale(0); }
@@ -89,10 +93,13 @@
     .cbx-scribble { cursor: pointer; } .cbx-scribble-box { width: 30px; height: 30px; border: 3px solid #aaa; border-radius: 8px; position: relative; } .cbx-scribble-svg path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 48; stroke-dashoffset: 48; transition: stroke-dashoffset 0.4s ease; } #cbx-scribble:checked ~ .cbx-scribble-box .cbx-scribble-svg path { stroke-dashoffset: 0; }
 
     /* 11. Newton's Cradle Toggle */
-    .tgl-newton { width: 80px; height: 40px; } .tgl-newton-track { width: 100%; height: 100%; background: #ddd; border-radius: 40px; position: relative; } .tgl-newton-handle { width: 32px; height: 32px; background: white; border-radius: 50%; position: absolute; top: 4px; left: 4px; transition: transform 0.3s ease 0.3s; } .tgl-newton-ball { width: 20px; height: 20px; background: var(--accent); border-radius: 50%; position: absolute; top: 10px; left: -25px; animation: newton-swing-out 0.6s ease-in-out forwards; transform-origin: 55px 0; } #tgl-newton:checked + .tgl-newton-track .tgl-newton-handle { transform: translateX(40px); } #tgl-newton:checked + .tgl-newton-track .tgl-newton-ball { animation: newton-swing-in 0.6s ease-in-out forwards; } @keyframes newton-swing-in { 0% { transform: rotate(0deg); } 50% { transform: rotate(-60deg); } 100% { transform: rotate(0deg); } } @keyframes newton-swing-out { 0% { transform: rotate(0deg); } 50% { transform: rotate(60deg); left: 25px; } 100% { transform: rotate(0deg); left: -25px; } }
+    .tgl-newton { width: 80px; height: 40px; } .tgl-newton-track { width: 100%; height: 100%; background: #ddd; border-radius: 40px; position: relative; transition: background 0.4s cubic-bezier(0.45,0,0.55,1) 0.2s; } .tgl-newton-handle { width: 32px; height: 32px; background: white; border-radius: 50%; position: absolute; top: 4px; left: 4px; transition: transform 0.3s ease 0.3s; } .tgl-newton-ball { width: 20px; height: 20px; background: var(--accent); border-radius: 50%; position: absolute; top: 10px; left: -25px; animation: newton-swing-out 0.6s ease-in-out forwards; transform-origin: 55px 0; } #tgl-newton:checked + .tgl-newton-track .tgl-newton-handle { transform: translateX(40px); } #tgl-newton:checked + .tgl-newton-track .tgl-newton-ball { animation: newton-swing-in 0.6s ease-in-out forwards; } @keyframes newton-swing-in { 0% { transform: rotate(0deg); } 50% { transform: rotate(-60deg); } 100% { transform: rotate(0deg); } } @keyframes newton-swing-out { 0% { transform: rotate(0deg); } 50% { transform: rotate(60deg); left: 25px; } 100% { transform: rotate(0deg); left: -25px; } }
+    #tgl-newton:checked + .tgl-newton-track {
+      background: var(--accent);
+    }
 
     /* 12. Glitch Checkbox */
-    .cbx-glitch { cursor: pointer; } .cbx-glitch-box { width: 30px; height: 30px; border: 2px solid #aaa; position: relative; } .cbx-glitch-check { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; opacity: 0; transition: opacity 0.1s; } .cbx-glitch-box::before, .cbx-glitch-box::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); clip-path: inset(50% 0 50% 0); opacity: 0; } #cbx-glitch:checked ~ .cbx-glitch-box { animation: glitch-box-anim 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box .cbx-glitch-check { opacity: 1; animation: glitch-check-anim 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box::before { animation: glitch-skew-1 0.4s steps(2, end); } #cbx-glitch:checked ~ .cbx-glitch-box::after { animation: glitch-skew-2 0.4s steps(2, end); } @keyframes glitch-box-anim { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0); } } @keyframes glitch-check-anim { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } } @keyframes glitch-skew-1 { 0% { transform: translate(-2px, 2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } } @keyframes glitch-skew-2 { 0% { transform: translate(2px, -2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } }
+    .cbx-glitch { cursor: pointer; } .cbx-glitch-box { width: 30px; height: 30px; border: 2px solid #aaa; position: relative; } .cbx-glitch-check { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; opacity: 0; transition: opacity 0.1s; } .cbx-glitch-box::before, .cbx-glitch-box::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); clip-path: inset(50% 0 50% 0); opacity: 0; } .cbx-glitch input:checked ~ .cbx-glitch-box { animation: glitch-box-anim 0.4s steps(2, end); } .cbx-glitch input:checked ~ .cbx-glitch-box .cbx-glitch-check { opacity: 1; animation: glitch-check-anim 0.4s steps(2, end); } .cbx-glitch input:checked ~ .cbx-glitch-box::before { animation: glitch-skew-1 0.4s steps(2, end); } .cbx-glitch input:checked ~ .cbx-glitch-box::after { animation: glitch-skew-2 0.4s steps(2, end); } @keyframes glitch-box-anim { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0); } } @keyframes glitch-check-anim { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } } @keyframes glitch-skew-1 { 0% { transform: translate(-2px, 2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } } @keyframes glitch-skew-2 { 0% { transform: translate(2px, -2px); opacity: 1; } 100% { transform: translate(0); opacity: 1; } }
 
     .code-actions { display: flex; justify-content: center; gap: 10px; margin-top: 25px; } .action-btn { display: inline-block; padding: 8px 18px; background-color: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s; } .action-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); } .copy-btn { background-color: #6c757d; } .copy-btn:hover { background-color: #5a6268; } .code-block { display: none; background: #2d2d2d; color: #ccc; padding: 20px; border-radius: 8px; margin-top: 15px; white-space: pre-wrap; overflow-x: auto; text-align: left; font-family: "Fira Code", "Courier New", monospace; font-size: 0.85rem; position: relative; } .code-block.visible { display: block; }
   </style>
@@ -241,7 +248,5 @@
         }
     }
   </script>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body>
+  </body>
 </html>
