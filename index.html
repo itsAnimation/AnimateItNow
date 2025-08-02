@@ -214,6 +214,7 @@
 
     <!-- ───────── NAVBAR ───────── -->
     <nav class="navbar scroll-fade">
+      <div class="navbar-inner">
       <div class="nav-left">
         <a href="/" class="logo-link">
           <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
@@ -222,7 +223,8 @@
       </div>      
 
       <div class="nav-right">
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">&#9776;</button>
+        <ul class="nav-links" id="nav-menu">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
@@ -279,6 +281,7 @@
           </li>
         </ul>
       </div>
+    </div>
     </nav>
     <!-- ───────── HERO ───────── -->
     <header class="landing-section">
@@ -649,6 +652,7 @@
     <!-- <script src="pwa.js"></script> Removed: file not found -->
 
   <script src="script.js"></script>
+
   <script>
     function applyAnimation() {
       const speed = Math.min(parseFloat(document.getElementById("speedInput").value) || 1, 10);
@@ -669,7 +673,7 @@
       object.style.animation = `${animationType} ${speed}s ease-in-out ${delay}s ${repeat}`;
     }
   </script>
-
+    
 </body>
         <div class="animation-card">
             <img src="animations/animation1.gif" alt="Animation 1" />
