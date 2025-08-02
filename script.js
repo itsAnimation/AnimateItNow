@@ -1,3 +1,59 @@
+
+// Function for displaying FAQ categories
+function displaycategory(category){
+  const general=document.getElementById('general-faq');
+  const technical=document.getElementById('technical-faq');
+  if(category==='general'){
+    general.style.display='block';
+    technical.style.display='none';
+  }
+  else if(category==='technical'){
+    general.style.display='none';
+    technical.style.display='block';
+  }
+}
+// Service worker registration removed to fix 404 error
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js').then((registration) => {
+//       console.log('Service Worker registered:', registration);
+//
+//       registration.onupdatefound = () => {
+//         const newWorker = registration.installing;
+//         newWorker.onstatechange = () => {
+//           if (
+//             newWorker.state === 'installed' &&
+//             navigator.serviceWorker.controller
+//           ) {
+//             console.log('New version available. Reloading...');
+//             window.location.reload();
+//           }
+//         };
+//       };
+//     }).catch((error) => {
+//       console.error('Service Worker registration failed:', error);
+//     });
+//   });
+// }
+
+function typewriter(){
+  const el=document.getElementById("modify");
+  if(!el)return;
+  const text=el.textContent;
+  el.textContent='';
+  let index=0;
+  let interval=setInterval(()=>{
+    if(index<text.length){
+      el.textContent+=text.charAt(index);
+      index++;
+    }
+    else{
+      clearInterval(interval);
+      }
+  },100);
+}
+typewriter();
+
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return
@@ -203,7 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-        alert("Message sent successfully!")
+       showToast("Message sent successfully!");
         contactForm.reset()
       } else {
         alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
@@ -216,6 +272,25 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     })
   }
+
+
+ function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Trigger fade-in
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  // Fade out and remove
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300); // Wait for transition to finish
+  }, 3000);
+}
+
+
 
   // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
@@ -261,3 +336,24 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize on load
   updateProgressBar()
 })
+
+
+
+// Scroll to top button functionality
+  // Show button when scrolled down
+window.onscroll = function () {
+  const btn = document.getElementById("scrollBtn");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+};
+
+// Scroll to top on click
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+

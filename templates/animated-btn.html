@@ -4,200 +4,2377 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Button | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+    <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+    <!-- Apple Touch Icons -->
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
+
     <style>
-        .btn-1 {
-        display: inline-block;
-        margin: 15px;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 18px;
-        letter-spacing: 1px;
-        text-decoration: none;
-        color: #4169e1;
-        background: transparent;
-        cursor: pointer;
-        transition: ease-out 0.5s;
-        border: 2px solid #4169e1;
-        border-radius: 10px;
-        box-shadow: inset 0 0 0 0 #4169e1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .btn-1:hover {
-        color: white;
-        box-shadow: inset 0 -100px 0 0 #4169e1;
-        }
-
-        .btn-2 {
-        display: inline-block;
-        margin: 15px;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 18px;
-        letter-spacing: 1px;
-        text-decoration: none;
-        color: #ffbf00;
-        background: transparent;
-        cursor: pointer;
-        transition: ease-out 0.5s;
-        border: 2px solid #ffbf00;
-        border-radius: 10px;
-        box-shadow: inset 0 0 0 0 #ffbf00;
-        }
-
-        .btn-2:hover {
-        color: white;
-        box-shadow: inset 0 -100px 0 0 #ffbf00;
-        }
-
-        .btn-3 {
-        display: inline-block;
-        margin: 15px;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 18px;
-        letter-spacing: 1px;
-        text-decoration: none;
-        color: #008000;
-        background: transparent;
-        cursor: pointer;
-        transition: ease-out 0.5s;
-        border: 2px solid #008000;
-        border-radius: 10px;
-        box-shadow: inset 0 0 0 0 #008000;
-        }
-
-        .btn-3:hover {
-        color: white;
-        box-shadow: inset 0 -100px 0 0 #008000;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
-        button:active {
-        transform: scale(0.9);
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            position: relative;
+            z-index: 1;
         }
-        .show-code {
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: brightness(1);
+            }
+
+            to {
+                filter: brightness(1.2);
+            }
+        }
+
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+
+        /* Button Grid */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Button Card */
+        .button-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .button-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-card h3 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .button-wrapper {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* Show Code Button */
+        .show-code-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .show-code-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .show-code-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Code Display */
+        .code-display {
             display: none;
+            margin-top: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .code-display.active {
+            display: block;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .code-tab {
+            background: none;
+            border: none;
+            color: #666;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .code-tab.active {
+            color: #fff;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .code-content {
+            display: none;
+        }
+
+        .code-content.active {
+            display: block;
+        }
+
+        .code-content pre {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* BUTTON STYLES */
+
+        /* 1. Liquid Fill Button */
+        .liquid-fill-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #00d4ff;
+            background: transparent;
+            color: #00d4ff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color 0.3s;
+            border-radius: 30px;
+        }
+
+        .liquid-fill-btn::before {
+            content: '';
             position: absolute;
-            border: 1px solid black;
-            padding: 2rem;
-            border-radius: 2rem;
-            font-weight: 500;
-            margin-top: 25rem;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00d4ff;
+            transition: top 0.5s;
+            border-radius: 30px;
+        }
+
+        .liquid-fill-btn:hover::before {
+            top: 0;
+        }
+
+        .liquid-fill-btn:hover {
+            color: #000;
+        }
+
+        .liquid-fill-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 2. Glitch Button */
+        .glitch-btn {
+            padding: 15px 40px;
+            border: none;
+            background: #ff0080;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .glitch-btn:hover {
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
+                    0.025em 0.05em 0 #fffc00;
+            }
+
+            15% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
+                    0.025em 0.05em 0 #fffc00;
+            }
+
+            16% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+
+            50% {
+                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
+                    0 -0.05em 0 #fffc00;
+            }
+
+            99% {
+                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
+                    0 -0.05em 0 #fffc00;
+            }
+
+            100% {
+                text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff,
+                    -0.025em -0.05em 0 #fffc00;
+            }
+        }
+
+        /* 3. Morphing Button */
+        .morph-btn {
+            padding: 15px 40px;
+            border: none;
+            background: #667eea;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .morph-btn:hover {
+            border-radius: 50px;
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+
+        /* 4. 3D Rotate Button */
+        .rotate-3d-btn {
+            padding: 15px 40px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .rotate-3d-btn:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* 5. Particle Button */
+        .particle-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .particle-btn:hover {
+            color: #000;
+            background: #fff;
+        }
+
+        .particle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .particle {
+            position: absolute;
+            background: #fff;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: particleAnimation 1s ease-out forwards;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 6. Elastic Button */
+        .elastic-btn {
+            padding: 15px 40px;
+            border: none;
+            background: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .elastic-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .elastic-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* 7. Neon Button */
+        .neon-btn {
+            padding: 15px 40px;
+            border: 2px solid #0ff;
+            background: transparent;
+            color: #0ff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .neon-btn:hover {
+            color: #000;
+            background: #0ff;
+            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff,
+                inset 0 0 10px #0ff;
+        }
+
+        /* 8. Split Button */
+        .split-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: #ef6e6e;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .split-btn span {
+            position: relative;
+            z-index: 3;
+        }
+
+        .split-btn::before,
+        .split-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: #e5324d;
+            transition: transform 0.3s;
+            z-index: 2;
+        }
+
+        .split-btn::before {
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        .split-btn::after {
+            right: 0;
+            transform: translateX(100%);
+        }
+
+        .split-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .split-btn:hover::after {
+            transform: translateX(0);
+        }
+
+        /* 9. Border Animation Button */
+        .border-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .border-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
+            border-image-slice: 1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                border-image-source: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
+            }
+
+            100% {
+                border-image-source: linear-gradient(405deg, #ff0080, #00d4ff, #ff0080);
+            }
+        }
+
+        /* 10. Magnetic Button */
+        .magnetic-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        /* 11. Wave Button */
+        .wave-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: #3498db;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 12. Slide Text Button */
+        .slide-text-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #e74c3c;
+            background: transparent;
+            color: #e74c3c;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color 0.3s;
+        }
+
+        .slide-text-btn span {
+            display: inline-block;
+            transition: transform 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-text-btn::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 150%);
+            color: #fff;
+            transition: transform 0.3s;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .slide-text-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e74c3c;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            z-index: 1;
+        }
+
+        .slide-text-btn:hover {
+            color: #fff;
+        }
+
+        .slide-text-btn:hover span {
+            transform: translateY(-200%);
+        }
+
+        .slide-text-btn:hover::before {
+            transform: translate(-50%, -50%);
+        }
+
+        .slide-text-btn:hover::after {
+            transform: translateY(0);
+        }
+
+        /* 13. Gradient Border Button */
+        .gradient-border-btn {
+            position: relative;
+            padding: 15px 40px;
+            background: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            z-index: 1;
+        }
+
+        .gradient-border-btn::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #ff0080);
+            background-size: 400%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* 14. Icon Morph Button */
+        .icon-morph-btn {
+            position: relative;
+            padding: 15px 20px;
+            border: none;
+            background: #9b59b6;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .icon-morph-btn .icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .icon-morph-btn:hover {
+            background: #8e44ad;
+            padding-right: 30px;
+        }
+
+        .icon-morph-btn:hover .icon {
+            transform: translateX(10px);
+        }
+
+        /* 15. Ripple Effect Button */
+        .ripple-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: #2ecc71;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 16. Shiny Button */
+        .shiny-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: linear-gradient(45deg, #f39c12, #f1c40f);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .shiny-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .shiny-btn:hover::before {
+            left: 100%;
+        }
+
+        /* 17. Pulse Shadow Button */
+        .pulse-shadow-btn {
+            padding: 15px 40px;
+            border: none;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            animation: pulseShadow 2s infinite;
+        }
+
+        @keyframes pulseShadow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+            }
+        }
+
+        /* 18. Fold Button */
+        .fold-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #34495e;
+            background: transparent;
+            color: #34495e;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color 0.3s;
+        }
+
+        .fold-btn::before,
+        .fold-btn::after {
+            content: '';
+            position: absolute;
+            background: #34495e;
+            transition: transform 0.3s;
+        }
+
+        .fold-btn::before {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+
+        .fold-btn::after {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+
+        .fold-btn:hover {
+            color: #fff;
+        }
+
+        .fold-btn:hover::before,
+        .fold-btn:hover::after {
+            transform: scaleY(1);
+        }
+
+        /* 19. Typewriter Button */
+        .typewriter-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: 2px solid #16a085;
+            background: transparent;
+            color: #16a085;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .typewriter-btn span {
+            display: inline-block;
+        }
+
+        .typewriter-btn:hover span {
+            animation: typewriter 0.5s steps(10);
+        }
+
+        @keyframes typewriter {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 20. Bubble Button */
+        .bubble-btn {
+            position: relative;
+            padding: 15px 40px;
+            border: none;
+            background: #3498db;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: bubbleFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
         }
     </style>
-    <link rel="stylesheet" href="../styles.css" />
 </head>
+
 <body>
-    <nav class="navbar">
+   <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
       </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html" class="active">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <!-- <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li> -->
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <!-- <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li> -->
+        </ul>
+      </div>
     </nav>
-    <section class="animated-btn-section">
-        <main class="templates-main">
-            <h1>Animated Hover Button</h1>
-            <div class="btn-container"
-            style="display: flex;
-            justify-content: center;
-            align-items: center;"
-            > 
-                <button class="btn-1"> Button</button>
-                <button class="btn-2"> Button</button>
-                <button class="btn-3"> Button</button>
-            </div>
-            <div class="show-btn-container">
-                <button class="show-btn">Show Code</button>
-            </div>
-            <div class="show-code">
-                <p>
-                    &lt;button&gt;
-                        Button
-                    &lt;/button&gt;
-                    <br>
-                    &lt;style&gt;<br>
-                        button {<br>
-                        display: inline-block;<br>
-                        margin: 15px;<br>
-                        padding: 15px 30px;<br>
-                        text-align: center;<br>
-                        font-size: 18px;<br>
-                        letter-spacing: 1px;<br>
-                        text-decoration: none;<br>
-                        color: #725AC1;<br>
-                        background: transparent;<br>
-                        cursor: pointer;<br>
-                        transition: ease-out 0.5s;<br>
-                        border: 2px solid #725AC1;<br>
-                        border-radius: 10px;<br>
-                        box-shadow: inset 0 0 0 0 #725AC1;<br>
-                        }<br>
 
-                        button:hover {<br>
-                        color: white;<br>
-                        box-shadow: inset 0 -100px 0 0 #725AC1;<br>
-                        }<br>
+    <!-- Animated Button Section -->
+    <div class="bg-animation"></div>
 
-                        button:active {<br>
-                        transform: scale(0.9);<br>
-                        }<br>
-                    &lt;/style&gt;
-                </p>
+    <div class="header">
+        <h1>Animated Buttons Collection</h1>
+        <p>A comprehensive collection of modern animated buttons</p>
+    </div>
+
+    <div class="container">
+        <div class="button-grid">
+            <!-- Button 1: Liquid Fill -->
+            <div class="button-card">
+                <h3>Liquid Fill Effect</h3>
+                <div class="button-wrapper">
+                    <button class="liquid-fill-btn">
+                        <span>Hover Me</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="liquid-fill-btn"&gt;
+    &lt;span&gt;Hover Me&lt;/span&gt;
+&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.liquid-fill-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #00d4ff;
+    background: transparent;
+    color: #00d4ff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s;
+    border-radius: 30px;
+}
+
+.liquid-fill-btn::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00d4ff;
+    transition: top 0.5s;
+    border-radius: 30px;
+}
+
+.liquid-fill-btn:hover::before {
+    top: 0;
+}
+
+.liquid-fill-btn:hover {
+    color: #000;
+}
+
+.liquid-fill-btn span {
+    position: relative;
+    z-index: 1;
+}</pre>
+                    </div>
+                </div>
             </div>
-        </main>
-    </section>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body>
 
-<script>
-    let showCode = false;
-    const showCodeBtn = document.querySelector('.show-btn')
-    const codeBlock = document.querySelector('.show-code')
-    const themeBtn = document.getElementById('theme-toggle')
-    showCodeBtn.addEventListener('click', () => {
-        showCode = !showCode
-        if(showCode){
-            codeBlock.style.display = 'block'
-        } else {
-            codeBlock.style.display = 'none'
+            <!-- Button 2: Glitch Effect -->
+            <div class="button-card">
+                <h3>Glitch Effect</h3>
+                <div class="button-wrapper">
+                    <button class="glitch-btn">GLITCH</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="glitch-btn"&gt;GLITCH&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.glitch-btn {
+    padding: 15px 40px;
+    border: none;
+    background: #ff0080;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.glitch-btn:hover {
+    animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
+                    0.025em 0.05em 0 #fffc00;
+    }
+    15% {
+        text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
+                    0.025em 0.05em 0 #fffc00;
+    }
+    16% {
+        text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
+                    0 -0.05em 0 #fffc00;
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
+                    0 -0.05em 0 #fffc00;
+    }
+    100% {
+                text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff,
+                    -0.025em -0.05em 0 #fffc00;
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 3: Morphing Button -->
+            <div class="button-card">
+                <h3>Shape Morph</h3>
+                <div class="button-wrapper">
+                    <button class="morph-btn">Transform</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="morph-btn"&gt;Transform&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.morph-btn {
+    padding: 15px 40px;
+    border: none;
+    background: #667eea;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.morph-btn:hover {
+    border-radius: 50px;
+    background: #764ba2;
+    transform: scale(1.1);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 4: 3D Rotate -->
+            <div class="button-card">
+                <h3>3D Rotate</h3>
+                <div class="button-wrapper">
+                    <button class="rotate-3d-btn">3D Flip</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="rotate-3d-btn"&gt;3D Flip&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.rotate-3d-btn {
+    padding: 15px 40px;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.rotate-3d-btn:hover {
+    transform: rotateY(180deg);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 5: Particle Effect -->
+            <div class="button-card">
+                <h3>Particle Burst</h3>
+                <div class="button-wrapper">
+                    <button class="particle-btn" id="particleBtn">Click Me</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                        <button class="code-tab" onclick="switchTab(this, 'js')">JS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="particle-btn" id="particleBtn"&gt;Click Me&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.particle-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.particle-btn:hover {
+    color: #000;
+    background: #fff;
+}
+
+.particle {
+    position: absolute;
+    background: #fff;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: particleAnimation 1s ease-out forwards;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}</pre>
+                    </div>
+                    <div class="code-content" data-lang="js">
+                        <pre>document.getElementById('particleBtn').addEventListener('click', function(e) {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    for (let i = 0; i < 30; i++) {
+        createParticle(x, y, button);
+    }
+});
+
+function createParticle(x, y, button) {
+    const particle = document.createElement('span');
+    particle.classList.add('particle');
+    
+    const size = Math.random() * 8 + 2;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    
+    const destinationX = (Math.random() - 0.5) * 200;
+    const destinationY = (Math.random() - 0.5) * 200;
+    particle.style.setProperty('--x', destinationX + 'px');
+    particle.style.setProperty('--y', destinationY + 'px');
+    
+    button.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 1000);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 6: Elastic -->
+            <div class="button-card">
+                <h3>Elastic Bounce</h3>
+                <div class="button-wrapper">
+                    <button class="elastic-btn">Bounce</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="elastic-btn"&gt;Bounce&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.elastic-btn {
+    padding: 15px 40px;
+    border: none;
+    background: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.elastic-btn:hover {
+    transform: scale(1.1);
+}
+
+.elastic-btn:active {
+    transform: scale(0.9);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 7: Neon -->
+            <div class="button-card">
+                <h3>Neon Glow</h3>
+                <div class="button-wrapper">
+                    <button class="neon-btn">NEON</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="neon-btn"&gt;NEON&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.neon-btn {
+    padding: 15px 40px;
+    border: 2px solid #0ff;
+    background: transparent;
+    color: #0ff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.neon-btn:hover {
+    color: #000;
+    background: #0ff;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff,
+                                inset 0 0 10px #0ff;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 8: Split -->
+            <div class="button-card">
+                <h3>Split Effect</h3>
+                <div class="button-wrapper">
+                    <button class="split-btn">
+                        <span>Split</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="split-btn"&gt;Split&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.split-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: #ef6e6e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.split-btn span {
+    position: relative;
+    z-index: 3;
+}
+
+.split-btn::before,
+.split-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #e5324d;
+    transition: transform 0.3s;
+    z-index: 2;
+}
+
+.split-btn::before {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.split-btn::after {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.split-btn:hover::before {
+    transform: translateX(0);
+}
+
+.split-btn:hover::after {
+    transform: translateX(0);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 9: Border Animation -->
+            <div class="button-card">
+                <h3>Animated Border</h3>
+                <div class="button-wrapper">
+                    <button class="border-btn">Border</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="border-btn"&gt;Border&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.border-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.border-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
+    border-image-slice: 1;
+    animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+    0% {
+        border-image-source: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
+    }
+    100% {
+        border-image-source: linear-gradient(405deg, #ff0080, #00d4ff, #ff0080);
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 10: Magnetic -->
+            <div class="button-card">
+                <h3>Magnetic Effect</h3>
+                <div class="button-wrapper">
+                    <button class="magnetic-btn" id="magneticBtn">Magnetic</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                        <button class="code-tab" onclick="switchTab(this, 'js')">JS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="magnetic-btn" id="magneticBtn"&gt;Magnetic&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.magnetic-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}</pre>
+                    </div>
+                    <div class="code-content" data-lang="js">
+                        <pre>const magneticBtn = document.getElementById('magneticBtn');
+
+magneticBtn.addEventListener('mousemove', (e) => {
+    const rect = magneticBtn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    magneticBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+});
+
+magneticBtn.addEventListener('mouseleave', () => {
+    magneticBtn.style.transform = 'translate(0, 0)';
+});</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 11: Wave -->
+            <div class="button-card">
+                <h3>Wave Effect</h3>
+                <div class="button-wrapper">
+                    <button class="wave-btn">Wave</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="wave-btn"&gt;Wave&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.wave-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: #3498db;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.wave-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.wave-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 12: Slide Text -->
+            <div class="button-card">
+                <h3>Slide Text</h3>
+                <div class="button-wrapper">
+                    <button class="slide-text-btn" data-text="Hovered!">
+                        <span>Hover Me</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="slide-text-btn" data-text="Hovered!"&gt;
+    &lt;span&gt;Hover Me&lt;/span&gt;
+&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.slide-text-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #e74c3c;
+    background: transparent;
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s;
+}
+
+.slide-text-btn span {
+    display: inline-block;
+    transition: transform 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.slide-text-btn::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 150%);
+    color: #fff;
+    transition: transform 0.3s;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.slide-text-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e74c3c;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    z-index: 1;
+}
+
+.slide-text-btn:hover {
+    color: #fff;
+}
+
+.slide-text-btn:hover span {
+    transform: translateY(-200%);
+}
+
+.slide-text-btn:hover::before {
+    transform: translate(-50%, -50%);
+}
+
+.slide-text-btn:hover::after {
+    transform: translateY(0);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 13: Gradient Border -->
+            <div class="button-card">
+                <h3>Gradient Border</h3>
+                <div class="button-wrapper">
+                    <button class="gradient-border-btn">Gradient</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="gradient-border-btn"&gt;Gradient&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.gradient-border-btn {
+    position: relative;
+    padding: 15px 40px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+    .gradient-border-btn::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #ff0080);
+        background-size: 400%;
+        border-radius: 30px;
+        z-index: -1;
+        animation: gradientMove 3s ease infinite;
+    }
+
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
         }
-    })
-</script>
-<script src="../script.js"></script>
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 14: Icon Morph -->
+            <div class="button-card">
+                <h3>Icon Morph</h3>
+                <div class="button-wrapper">
+                    <button class="icon-morph-btn">
+                        <span class="icon">→</span>
+                        <span>Next</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="icon-morph-btn"&gt;
+    &lt;span class="icon"&gt;→&lt;/span&gt;
+    &lt;span&gt;Next&lt;/span&gt;
+&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.icon-morph-btn {
+    position: relative;
+    padding: 15px 20px;
+    border: none;
+    background: #9b59b6;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.icon-morph-btn .icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+.icon-morph-btn:hover {
+    background: #8e44ad;
+    padding-right: 30px;
+}
+
+.icon-morph-btn:hover .icon {
+    transform: translateX(10px);
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 15: Ripple Effect -->
+            <div class="button-card">
+                <h3>Ripple Effect</h3>
+                <div class="button-wrapper">
+                    <button class="ripple-btn">Ripple</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                        <button class="code-tab" onclick="switchTab(this, 'js')">JS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="ripple-btn"&gt;Ripple&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.ripple-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: #2ecc71;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+</pre>
+                    </div>
+                    <div class="code-content" data-lang="js">
+                        <pre>document.querySelectorAll('.ripple-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+});</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 16: Shiny -->
+            <div class="button-card">
+                <h3>Shiny Effect</h3>
+                <div class="button-wrapper">
+                    <button class="shiny-btn">Shiny</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="shiny-btn"&gt;Shiny&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.shiny-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.shiny-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.shiny-btn:hover::before {
+    left: 100%;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 17: Pulse Shadow -->
+            <div class="button-card">
+                <h3>Pulse Shadow</h3>
+                <div class="button-wrapper">
+                    <button class="pulse-shadow-btn">Pulse</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="pulse-shadow-btn"&gt;Pulse&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.pulse-shadow-btn {
+    padding: 15px 40px;
+    border: none;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    animation: pulseShadow 2s infinite;
+}
+
+@keyframes pulseShadow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 18: Fold -->
+            <div class="button-card">
+                <h3>Fold Effect</h3>
+                <div class="button-wrapper">
+                    <button class="fold-btn">
+                        <span>Fold</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="fold-btn"&gt;
+    &lt;span&gt;Fold&lt;/span&gt;
+&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.fold-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #34495e;
+    background: transparent;
+    color: #34495e;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s;
+}
+
+.fold-btn::before,
+.fold-btn::after {
+    content: '';
+    position: absolute;
+    background: #34495e;
+    transition: transform 0.3s;
+}
+
+.fold-btn::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform-origin: top;
+    transform: scaleY(0);
+}
+
+.fold-btn::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+}
+
+.fold-btn:hover {
+    color: #fff;
+}
+
+.fold-btn:hover::before,
+.fold-btn:hover::after {
+    transform: scaleY(1);
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 19: Typewriter -->
+            <div class="button-card">
+                <h3>Typewriter Effect</h3>
+                <div class="button-wrapper">
+                    <button class="typewriter-btn">
+                        <span>Type</span>
+                    </button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="typewriter-btn"&gt;
+    &lt;span&gt;Type&lt;/span&gt;
+&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.typewriter-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: 2px solid #16a085;
+    background: transparent;
+    color: #16a085;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.typewriter-btn span {
+    display: inline-block;
+}
+
+.typewriter-btn:hover span {
+    animation: typewriter 0.5s steps(10);
+}
+
+@keyframes typewriter {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button 20: Bubble -->
+            <div class="button-card">
+                <h3>Bubble Float</h3>
+                <div class="button-wrapper">
+                    <button class="bubble-btn">Bubble</button>
+                </div>
+                <button class="show-code-btn" onclick="toggleCode(this)">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+                        </path>
+                    </svg>
+                    Show Code
+                </button>
+                <div class="code-display">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+                        <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+                        <button class="code-tab" onclick="switchTab(this, 'js')">JS</button>
+                    </div>
+                    <div class="code-content active" data-lang="html">
+                        <pre>&lt;button class="bubble-btn"&gt;Bubble&lt;/button&gt;</pre>
+                    </div>
+                    <div class="code-content" data-lang="css">
+                        <pre>.bubble-btn {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    background: #3498db;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: bubbleFloat 2s ease-in-out infinite;
+}
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}</pre>
+                    </div>
+                    <div class="code-content" data-lang="js">
+                        <pre>document.querySelectorAll('.bubble-btn').forEach(button => {
+            setInterval(() => {
+                createBubble(button);
+            }, 300);
+        });
+
+        function createBubble(button) {
+            const bubble = document.createElement('span');
+            bubble.classList.add('bubble');
+
+            const size = Math.random() * 10 + 5;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.bottom = '0';
+
+            button.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 2000);
+        }</pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+     <script>
+        // Toggle code display
+        function toggleCode(button) {
+            const codeDisplay = button.nextElementSibling;
+            codeDisplay.classList.toggle('active');
+
+            if (codeDisplay.classList.contains('active')) {
+                button.innerHTML = `
+                                        <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
+                    </svg>
+                    Hide Code
+                `;
+            } else {
+                button.innerHTML = `
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"></path>
+                    </svg>
+                    Show Code
+                `;
+            }
+        }
+
+        // Switch between code tabs
+        function switchTab(tab, lang) {
+            const codeDisplay = tab.closest('.code-display');
+            const tabs = codeDisplay.querySelectorAll('.code-tab');
+            const contents = codeDisplay.querySelectorAll('.code-content');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            tab.classList.add('active');
+            const activeContent = codeDisplay.querySelector(`.code-content[data-lang="${lang}"]`);
+            if (activeContent) {
+                activeContent.classList.add('active');
+            }
+        }
+
+        // Particle effect
+        document.getElementById('particleBtn').addEventListener('click', function (e) {
+            const button = e.currentTarget;
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            for (let i = 0; i < 30; i++) {
+                createParticle(x, y, button);
+            }
+        });
+
+        function createParticle(x, y, button) {
+            const particle = document.createElement('span');
+            particle.classList.add('particle');
+
+            const size = Math.random() * 8 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+
+            const destinationX = (Math.random() - 0.5) * 200;
+            const destinationY = (Math.random() - 0.5) * 200;
+            particle.style.setProperty('--x', destinationX + 'px');
+            particle.style.setProperty('--y', destinationY + 'px');
+
+            button.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 1000);
+        }
+
+        // Magnetic button effect
+        const magneticBtn = document.getElementById('magneticBtn');
+
+        magneticBtn.addEventListener('mousemove', (e) => {
+            const rect = magneticBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            magneticBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+
+        magneticBtn.addEventListener('mouseleave', () => {
+            magneticBtn.style.transform = 'translate(0, 0)';
+        });
+
+        // Ripple effect for all ripple buttons
+        document.querySelectorAll('.ripple-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Bubble effect
+        document.querySelectorAll('.bubble-btn').forEach(button => {
+            setInterval(() => {
+                createBubble(button);
+            }, 300);
+        });
+
+        function createBubble(button) {
+            const bubble = document.createElement('span');
+            bubble.classList.add('bubble');
+
+            const size = Math.random() * 10 + 5;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.bottom = '0';
+
+            button.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 2000);
+        }
+
+        // Additional button animations can be added here
+
+        // Initialize any other interactive elements
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Animated Buttons Collection Loaded');
+        });
+    </script>
+  </body>
 </html>
