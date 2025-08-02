@@ -1,0 +1,63 @@
+<html>
+    <main class="templates-main">
+      <h1>Modal/Popup Templates</h1>
+      <button id="open-modal" style="
+          background: #4f8cff;
+          color: #fff;
+          padding: 0.8em 2em;
+          border: none;
+          border-radius: 2em;
+          font-size: 1.1rem;
+          font-weight: 600;
+          box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+          margin-top: 2rem;
+          cursor: pointer;
+        ">
+        Open Modal
+      </button>
+      <div id="modal" style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.4);
+          justify-content: center;
+          align-items: center;
+          z-index: 999;
+        ">
+        <div style="
+            background: #fff;
+            padding: 2rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+            min-width: 300px;
+            max-width: 90vw;
+            text-align: center;
+          ">
+          <h2 style="margin-bottom: 1rem">This is a Modal Popup!</h2>
+          <button id="close-modal" style="
+              background: #2563eb;
+              color: #fff;
+              padding: 0.6em 1.5em;
+              border: none;
+              border-radius: 2em;
+              font-size: 1rem;
+              font-weight: 600;
+              cursor: pointer;
+            ">
+            Close
+          </button>
+        </div>
+      </div>
+      <script>
+        document.getElementById("open-modal").onclick = function () {
+          document.getElementById("modal").style.display = "flex";
+        };
+        document.getElementById("close-modal").onclick = function () {
+          document.getElementById("modal").style.display = "none";
+        };
+      </script>
+    </main>
+</html>
