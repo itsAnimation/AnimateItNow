@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Flip Cards with Side-by-Side Code</title>
-  <meta name="description" content=" A comprehensive collection of CSS animation templates and effects for web developers" />
-<!--   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" /> <!-- updated favicon --> -->
-  <link rel="icon" type="image/png" href="://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" />
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,12 +16,8 @@
     }
 
     @keyframes glow {
-      from {
-        filter: brightness(1);
-      }
-      to {
-        filter: brightness(1.2);
-      }
+      from { filter: brightness(1); }
+      to { filter: brightness(1.2); }
     }
 
     .section {
@@ -47,7 +43,7 @@
     }
 
     .flip-card:hover {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* hover effect added */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       transform: scale(1.05);
     }
 
@@ -77,7 +73,7 @@
       color: white;
       text-align: center;
       padding: 10px;
-      transition: background 0.3s ease; /* smooth color transition */
+      transition: background 0.3s ease;
     }
 
     .card-front {
@@ -85,7 +81,7 @@
     }
 
     .card-front:hover {
-      background: linear-gradient(135deg, #1abc9c, #ecf0f1); /* hover color */
+      background: linear-gradient(135deg, #1abc9c, #ecf0f1);
     }
 
     .card-back {
@@ -94,16 +90,11 @@
     }
 
     .card-back:hover {
-      background: linear-gradient(135deg, #f39c12, #f1c40f); /* hover color */
+      background: linear-gradient(135deg, #f39c12, #f1c40f);
     }
 
-    .card-back.rotateY {
-      transform: rotateY(180deg);
-    }
-
-    .card-back.rotateX {
-      transform: rotateX(180deg);
-    }
+    .card-back.rotateY { transform: rotateY(180deg); }
+    .card-back.rotateX { transform: rotateX(180deg); }
 
     .code-box {
       flex: 1;
@@ -139,7 +130,7 @@
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(255, 255, 255, 0.3); /* updated opacity */
+      background: rgba(255, 255, 255, 0.3);
       color: var(--nav-text);
       display: flex;
       align-items: center;
@@ -161,7 +152,7 @@
     }
 
     .nav-left:hover {
-      transform: scale(1.05); /* hover zoom */
+      transform: scale(1.05);
     }
 
     .logo {
@@ -170,12 +161,12 @@
       margin-right: 0.75rem;
       object-fit: contain;
       border-radius: 50%;
-      border: 2px solid #2980b9; /* added border */
+      border: 2px solid #2980b9;
       transition: border-color 0.3s ease;
     }
 
     .logo:hover {
-      border-color: #f39c12; /* logo hover border */
+      border-color: #f39c12;
     }
 
     .site-name {
@@ -194,26 +185,20 @@
     }
 
     .nav-links a {
+      background: none;
+      border: none !important;
+      margin-left: 5rem;
       text-decoration: none;
       color: var(--nav-text);
       font-weight: 500;
       transition: color var(--transition);
+      cursor: pointer;
       position: relative;
     }
 
     .nav-links a.active,
     .nav-links a:hover {
       color: var(--accent);
-    }
-
-    /* ✅ Restored missing styles here */
-    .nav-links a {
-      background: none;
-      border: none !important;
-      margin-left: 5rem;
-      cursor: pointer;
-      color: var(--nav-text);
-      transition: color var(--transition);
     }
 
     :root {
@@ -226,7 +211,7 @@
 <body>
   <nav class="navbar">
     <div class="nav-left">
-      <img src="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" alt="Logo" class="logo" /> <!-- updated logo src -->
+      <img src="https://raw.githubusercontent.com/itsAnimation/AnimateItNow/main/images/logo.png" alt="Logo" class="logo" />
       <span class="site-name">AnimateItNow</span>
     </div>
     <ul class="nav-links">
@@ -238,85 +223,65 @@
   </nav>
 
   <br><br><br><br>
-  <h1 style="text-align: center; font-family: Arial, sans-serif;">Flip Card Effects</h1>
+  <h1 style="text-align: center;">Flip Card Effects</h1>
   <br><br>
   <h2 style="text-align: center;">CODE</h2>
 
-<div class="ready">
-<!-- === CARD 1: Horizontal Flip === -->
-<div class="section">
-  <div class="card-wrapper">
-    <h2>Horizontal Flip</h2>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-front">FRONT</div>
-      <div class="card-back rotateY">BACK</div>
+  <!-- === CARD 1: Horizontal Flip === -->
+  <div class="section">
+    <div class="card-wrapper">
+      <h2>Horizontal Flip</h2>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-front">FRONT</div>
+        <div class="card-back rotateY">BACK</div>
+      </div>
     </div>
-  </div>
-  <div class="code-box">
+    <div class="code-box">
 <pre>
 &lt;div class="flip-card" onclick="this.classList.toggle('flipped')"&gt;
   &lt;div class="card-front"&gt;FRONT&lt;/div&gt;
   &lt;div class="card-back rotateY"&gt;BACK&lt;/div&gt;
 &lt;/div&gt;
-
-.flip-card.flipped {
-  transform: rotateY(180deg);
-}
-.card-back.rotateY {
-  transform: rotateY(180deg);
-}
 </pre>
-  </div>
-</div>
-
-<!-- === CARD 2: Vertical Flip === -->
-<div class="section">
-  <div class="card-wrapper">
-    <h2>Vertical Flip</h2>
-    <div class="flip-card flip-card-vertical" onclick="this.classList.toggle('flipped')">
-      <div class="card-front">TOP SIDE</div>
-      <div class="card-back rotateX">BOTTOM SIDE</div>
     </div>
   </div>
-  <div class="code-box">
+
+  <!-- === CARD 2: Vertical Flip === -->
+  <div class="section">
+    <div class="card-wrapper">
+      <h2>Vertical Flip</h2>
+      <div class="flip-card flip-card-vertical" onclick="this.classList.toggle('flipped')">
+        <div class="card-front">TOP SIDE</div>
+        <div class="card-back rotateX">BOTTOM SIDE</div>
+      </div>
+    </div>
+    <div class="code-box">
 <pre>
 &lt;div class="flip-card flip-card-vertical" onclick="this.classList.toggle('flipped')"&gt;
   &lt;div class="card-front"&gt;TOP SIDE&lt;/div&gt;
   &lt;div class="card-back rotateX"&gt;BOTTOM SIDE&lt;/div&gt;
 &lt;/div&gt;
-
-.flip-card-vertical.flipped {
-  transform: rotateX(180deg);
-}
-.card-back.rotateX {
-  transform: rotateX(180deg);
-}
 </pre>
-  </div>
-</div>
-
-<!-- === CARD 3: Diagonal Flip === -->
-<div class="section">
-  <div class="card-wrapper">
-    <h2>Diagonal Flip</h2>
-    <div class="flip-card flip-card-diagonal" onclick="this.classList.toggle('flipped')">
-      <div class="card-front" style="background:#4CAF50;">Diagonal FRONT</div>
-      <div class="card-back" style="background:#FFC107; color:#333;">Diagonal BACK</div>
     </div>
   </div>
-  <div class="code-box">
+
+  <!-- === CARD 3: Diagonal Flip === -->
+  <div class="section">
+    <div class="card-wrapper">
+      <h2>Diagonal Flip</h2>
+      <div class="flip-card flip-card-diagonal" onclick="this.classList.toggle('flipped')">
+        <div class="card-front" style="background:#4CAF50;">Diagonal FRONT</div>
+        <div class="card-back" style="background:#FFC107; color:#333;">Diagonal BACK</div>
+      </div>
+    </div>
+    <div class="code-box">
 <pre>
 &lt;div class="flip-card flip-card-diagonal" onclick="this.classList.toggle('flipped')"&gt;
   &lt;div class="card-front"&gt;Diagonal FRONT&lt;/div&gt;
   &lt;div class="card-back"&gt;Diagonal BACK&lt;/div&gt;
 &lt;/div&gt;
-
-.flip-card-diagonal.flipped {
-  transform: rotateY(45deg) rotateX(45deg);
-}
 </pre>
+    </div>
   </div>
-</div>
-</div>
 </body>
 </html>
