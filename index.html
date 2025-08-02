@@ -19,11 +19,51 @@
     />
     <meta name="msapplication-TileColor" content="#ff6b6b" />  
   <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
+  <!-- styles & external resources -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ProgressBar -->
+  <div id="progress-bar"></div>
+  <!-- ProgressBar Ends -->
+
+  <!-- ───────── NAVBAR ───────── -->
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
+        <!-- cursor toggle switch -->
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <!-- github icon -->
+        <li>
   <link rel="icon" type="image/png" href="images/logo.png" /> 
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
-
+    
     <!-- PWA Icons -->
     <link
       rel="icon"
@@ -85,6 +125,73 @@
       sizes="192x192"
       href="images/logo.png"
     />
+   <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      padding: 30px;
+    }
+
+    .animate {
+      display: inline-block;
+      margin: 30px;
+      font-size: 100px;
+      animation-fill-mode: both;
+    }
+
+    /* ✅ All Animations */
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes zoom {
+      0% { transform: scale(0.5); }
+      100% { transform: scale(1.2); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-50px); }
+    }
+
+    @keyframes slideLinear {
+      0% { transform: translateX(-200px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes combo {
+      0%   { transform: scale(0.5) rotate(0deg); opacity: 0; }
+      50%  { transform: scale(1.2) rotate(180deg); opacity: 1; }
+      70%  { transform: scale(0.9) rotate(270deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    input, select, button {
+      padding: 10px;
+      margin: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1e7e34;
+    }
+
+  </style>
 
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
@@ -122,6 +229,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html">Templates</a></li>
+           <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
@@ -194,7 +302,29 @@
         Get Started
       </a>
     </header>   
-   
+   <h1 style="font-size: 60px;">🎯 Animate the UFO!</h1>
+
+
+  <div id="animatedObject" class="animate" style="font-size: 200px; margin: 30px;">
+    🛸
+  </div>
+
+<div>
+    <input id="speedInput" type="number" placeholder="Speed (e.g. 2)">
+    <input id="delayInput" type="number" placeholder="Delay (e.g. 0.5)">
+    <input id="repeatInput" type="text" placeholder="Repeat (e.g. 1, 2, infinite)">
+    <br>
+    <select id="animationSelect">
+      <option value="rotate">Rotate</option>
+      <option value="zoom">Zoom</option>
+      <option value="bounce">Bounce</option>
+      <option value="slideLinear">Linear Slide</option>
+      <option value="fade">Fade</option>
+      <option value="combo">Combo (Rotate+Zoom+Bounce)</option>
+    </select>
+    <button onclick="applyAnimation()">Apply Animation</button>
+  </div>
+ 
     <!-- ───────── MAIN─────── -->
     <main>
         <!-- ─────── OUR SINGLE STATIC FAQ ─────── -->
@@ -522,8 +652,45 @@
     <!-- <script src="pwa.js"></script> Removed: file not found -->
 
   <script src="script.js"></script>
-  
-  
+
+  <script>
+    function applyAnimation() {
+      const speed = Math.min(parseFloat(document.getElementById("speedInput").value) || 1, 10);
+      const delay = Math.min(parseFloat(document.getElementById("delayInput").value) || 0, 5);
+      let repeatRaw = document.getElementById("repeatInput").value.trim().toLowerCase();
+      let repeat = (repeatRaw === "infinite") ? "infinite" : Math.min(parseInt(repeatRaw) || 1, 20);
+      const animationType = document.getElementById("animationSelect").value;
+
+      const object = document.getElementById("animatedObject");
+
+      // Reset
+      object.style.animation = "none";
+      object.offsetHeight; // force reflow
+      object.classList.remove("animate");
+
+      // Apply new
+      object.classList.add("animate");
+      object.style.animation = `${animationType} ${speed}s ease-in-out ${delay}s ${repeat}`;
+    }
+  </script>
+    
 </body>
-<button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button> 
+        <div class="animation-card">
+            <img src="animations/animation1.gif" alt="Animation 1" />
+            <p>Animation 1</p>
+        </div>
+        <div class="animation-card">
+            <img src="animations/animation2.gif" alt="Animation 2" />
+            <p>Animation 2</p>
+        </div>
+        <div class="animation-card">
+            <img src="animations/animation3.gif" alt="Animation 3" />
+            <p>Animation 3</p>
+        </div>
+
+        <section class="about">
+            <h2>About AnimateItNow</h2>
+            <p>AnimateItNow is your ultimate resource for animations.</p>
+        </section>
+
 </html>
