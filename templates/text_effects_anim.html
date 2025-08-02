@@ -89,6 +89,8 @@
 
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
       :root {
         --nav-text: #222;
@@ -114,121 +116,7 @@
         font-family: "Segoe UI", Arial, sans-serif;
         color: white;
       }
-      /* navBar decoration */
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-        border-bottom: 1px solid #333;
-        background: rgba(2, 13, 47);
-        -webkit-backdrop-filter: blur(14px);
-        backdrop-filter: blur(14px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      }
-      /* Left Logo Section */
-      .nav-left {
-        display: flex;
-        align-items: center;
-        width: 25ch;
-        position: relative;
-        gap: 12px;
-        color: #00d1ff;
-      }
-      .logo {
-        height: 36px;
-        width: 36px;
-      }
-      .site-name {
-        font-weight: 700;
-        font-size: 1.3rem;
-        letter-spacing: 0.5px;
-        cursor: pointer;
-        border-right: 2px solid var(--white);
-        white-space: nowrap;
-        overflow: hidden;
-        width: 0;
-        /* Add animation in website Name */
-        animation: sitetyping 3s steps(14) 1s infinite,
-          blink 0.6s infinite step-end alternate;
-      }
-
-      @keyframes sitetyping {
-        0% {
-          width: 0;
-        }
-        50% {
-          width: 14ch;
-        }
-        70% {
-          width: 14ch;
-        }
-        100% {
-          width: 0;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
-      }
-      /* Navigation Links */
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        list-style: none;
-      }
-
-      .nav-links li {
-        display: flex;
-        align-items: center;
-      }
-      .nav-links a {
-        color: var(--nav-text-60);
-        text-decoration: none;
-        font-size: 1rem;
-        padding: 8px 10px;
-        position: relative;
-        transition: all 0.3s ease;
-        font-weight: 500;
-      }
-
-      .nav-links a:hover {
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-        background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-      }
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 8px;
-        bottom: 3px;
-        width: 84%;
-        height: 1px;
-        background: #fff;
-        transform-origin: right;
-        transform: scaleX(0);
-        transition: transform 0.5s;
-      }
-
-      .nav-links a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
-
-      .nav-links a.active {
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-        font-weight: 700;
-        font-size: 1.1rem;
-      }
+      /* Navbar Styles */
 
       #theme-toggle {
         background: none;
@@ -411,6 +299,7 @@
         background-size: 400% 400%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       /* 5. Wave Text */
@@ -494,18 +383,68 @@
   </head>
 
   <body>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <h2 class="site-name">Animate It Now</h2>
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
       </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html" >Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li>
+        </ul>
+      </div>
     </nav>
     <!-- <h2 class="section-title">Typing & Text Animation Effects</h2> -->
     <div class="section-title">
@@ -603,21 +542,24 @@
       typeLoop(); // Start animation
 
       // Dark mode toggle
-      const themeToggleBtn = document.getElementById("theme-toggle");
-      const body = document.body;
-      const navbar = document.getElementById("navbar");
+      // const themeToggleBtn = document.getElementById("theme-toggle");
+      // const body = document.body;
+      // const navbar = document.getElementById("navbar");
 
-      themeToggleBtn.addEventListener("click", () => {
-        body.classList.toggle("dark");
-        navbar.classList.toggle("dark");
-        if (body.classList.contains("dark")) {
-          themeToggleBtn.textContent = "☀️";
-        } else {
-          themeToggleBtn.textContent = "🌙";
-        }
-      });
+      // themeToggleBtn.addEventListener("click", () => {
+      //   body.classList.toggle("dark");
+      //   navbar.classList.toggle("dark");
+      //   if (body.classList.contains("dark")) {
+      //     themeToggleBtn.textContent = "☀️";
+      //   } else {
+      //     themeToggleBtn.textContent = "🌙";
+      //   }
+      // });
     </script>
     <!-- PWA Support -->
     <script src="../pwa.js"></script>
+
+    <div id="cursor-snake"></div>
+    <script src="../script.js"></script>
   </body>
 </html>

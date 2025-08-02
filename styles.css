@@ -36,6 +36,49 @@
   --feedback-warning: #f59e0b;
 }
 
+/* ✅ Toast Notification Styles */
+.toast {
+  position: fixed;
+  top: 6.25rem; /* 20px */
+  right: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #28a745; /* Green for success */
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem; /* 14px */
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 90vw;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+/* ✅ Show animation */
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Initial hidden transform */
+.toast {
+  transform: translateY(-10px);
+}
+
+/* ✅ Responsive adjustment */
+@media (max-width: 480px) {
+  .toast {
+    right: 1rem;
+    left: 1rem;
+    max-width: unset;
+    width: auto;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
 
 /* Ripple effect for buttons and interactive elements */
 .ripple {
@@ -231,6 +274,11 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+.navbar #theme-toggle {
+  color: #fff !important; /* Use white for better contrast */
+  opacity: 1;
+}
+
 /* Left Logo Section */
 .nav-left {
   display: flex;
@@ -245,6 +293,34 @@ body {
   height: 36px;
   width: 36px;
   animation: pulse 2s infinite;
+}
+/* Remove link underline and adjust logo spacing */
+/* Make the link a flex container to align items */
+.logo-link {
+  display: flex;          /* Aligns logo and text horizontally */
+  align-items: center;   /* Centers them vertically */
+  gap: 10px;            /* Adds space between logo and text */
+  text-decoration: none; /* Removes underline */
+  color: inherit;       /* Inherits text color (if needed) */
+}
+
+/* Ensure the logo image stays aligned */
+.logo-link img.logo {
+  height: 40px;         /* Adjust as needed */
+  width: auto;          /* Maintains aspect ratio */
+}
+
+/* Style the text (optional) */
+.site-name {
+  font-size: 1.2rem;    /* Adjust size */
+  font-weight: bold;    /* Optional: Bold text */
+  pointer-events: none; /* Ensures clicks pass to parent <a> */
+}
+
+/* Hover effect (optional) */
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 .site-name {
   font-weight: 700;
@@ -340,7 +416,7 @@ body {
 .nav-links a.active {
  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
   font-weight: 700;
-  color: var(--nav-text);
+  color: #fff;
   font-size: 1.1rem;
 }
 
@@ -1028,8 +1104,8 @@ main {
 
 
 body.dark .contact-container {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.714);
+  border: 1px solid rgba(28, 200, 200, 0.775);
   border-radius: 20px;
   padding: 2rem;
   animation: neonPulse 3s ease-in-out infinite;
@@ -1527,6 +1603,7 @@ body:not(.dark) .contributor-card {
 .contributor-card h3 {
   background: linear-gradient(90deg, #0099F7, #F11712); /* Blue to orange flame */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -1536,6 +1613,7 @@ body:not(.dark) .contributor-card {
 .contributors-main h1{
   background: linear-gradient(90deg, #3ed8ff, #7f6bff, #fca5f1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(126, 211, 247, 0.3);
 }
@@ -1598,6 +1676,7 @@ body.dark .contributor-card:hover {
   color: transparent; 
  
  -webkit-background-clip: text;
+  background-clip: text;
  -webkit-text-fill-color: transparent;  
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                0 4px 8px rgba(79, 140, 255, 0.25);
@@ -1676,6 +1755,7 @@ body.dark .contributor-card:hover {
 
 }
 
+
  #submit{
   cursor: pointer;
   padding: 0.85rem 2rem;
@@ -1723,8 +1803,8 @@ body.dark .contributor-card {
 
 body.dark .form-group input,
 body.dark .form-group textarea {
-  background-color: rgba(255, 255, 255, 0.03); 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(68, 57, 57, 0.42); 
+  border: 1px solid rgb(31, 114, 110);
   color: #ffffff;
   padding: 0.8rem 1rem;
   border-radius: 10px;
@@ -1742,13 +1822,13 @@ body.dark .nav-links a {
 }
 
 body.dark .contact-main h1 {
-  /* color: #8aadf4; */
   background: linear-gradient(to right, #67e8f9, #3b82f6);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-  0 0 4px rgba(138, 180, 248, 0.4),  
-  0 0 10px rgba(138, 180, 248, 0.2),  
+  0 0 4px rgba(138, 180, 248, 0.1),  
+  0 0 10px rgba(138, 180, 248, 0.1),  
   0 0 20px rgba(138, 180, 248, 0.1);  
 }
 
@@ -1756,6 +1836,7 @@ body.dark .contact-main h1 {
   background: linear-gradient(to right, rgb(80, 12, 80), rgb(143, 220, 160));
   color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow:
     0 0 4px rgba(138, 180, 248, 0.4),  
     0 0 10px rgba(138, 180, 248, 0.2),  
@@ -1797,14 +1878,7 @@ body.dark .navbar {
   box-shadow: 0.8rem 0.8rem 0.5rem rgba(0, 0, 0, 0.04);
 }
 
-body.dark .contact-container {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  padding: 2rem;
-  animation: neonPulse 3s ease-in-out infinite alternate;
-  transition: all 0.3s ease;
-}
+
 
 body.contact.dark {
   background: url("images/bgdark.png") no-repeat center center;
@@ -2335,16 +2409,121 @@ body.dark .template-card h2 {
 .faq-answer-content {
   padding: 2rem;
 }
+
 .faq-answer-content p {
   margin: 0;
   line-height: 1.7;
   color: var(--primary-text);
   font-size: 1.2rem;
 }
+
+/* =================== Dark Mode UI of FAQs starts =================== */
 body.dark .faq-section {
-  background-color: rgba(30, 30, 30, 0.6); /* darker translucent background for dark mode */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* optional: slightly dimmer border */
+background: linear-gradient(
+  135deg,
+  rgba(33, 73, 73, 0.608) 5%,
+  #000000 50%
+);
+  border: 1px solid rgb(21, 86, 82); 
+
+
 }
+body.dark .faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-color:  #66eae6;
+}
+body.dark .faq-title {
+    background: linear-gradient(135deg, #66ead2 10%, rgb(126, 85, 154) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+body.dark .faq-subtitle{
+  font-weight: 500;
+    background: linear-gradient(135deg,#bc54ed 0%, #66ead2 100% );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark .faq-btn {
+  
+  padding: 0.7rem 1.5rem;
+  margin: 1rem 1rem 1rem 1rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #66dfea 0%, #061418 100%);
+ color: #053137;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+}
+body.dark .faq-btn:hover {
+  background: linear-gradient(135deg, #061418 0%, #66dfea 100%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.18);
+}
+
+
+body.dark .faq-question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+
+  border: 0.5px solid transparent; /* Set a base border */
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(23, 60, 60, 0.608) 0%,
+    #000000 100%
+  );
+
+  transition: border-color 0.3s ease; /* Smooth transition */
+}
+
+body.dark .faq-question-header:hover {
+  border-color: #00ffff; /* Cyan border on hover */
+}
+
+body.dark .faq-question-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #46dabf 10%, rgb(207, 173, 229) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark .faq-icon-static {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #4d94a0 10%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+body.dark .faq-item:hover .faq-icon-static {
+  transform: scale(1.1) rotate(5deg);
+}
+
+body.dark .faq-answer-content{
+  background: linear-gradient(135deg, #061418 95%, #66dfea 80%);
+}
+
+
+/* =================== Dark Mode UI of FAQs ends =================== */
+
 
 
 /* moving neon-style glow */
@@ -2379,13 +2558,13 @@ body.dark .faq-section {
 }
 
 /* dark-mode tweaks */
-body.dark .faq-question-header {
+/* body.dark .faq-question-header {
   background: linear-gradient(
     135deg,
     transparent 0%,
     rgba(102, 126, 234, 0.08) 100%
   );
-}
+} */
 body.dark .faq-answer-content p {
   color: #cbd5e1;
 }
