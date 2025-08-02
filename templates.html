@@ -1,5 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates | AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /*  Removed conflicting navbar CSS, relying on styles.css */
+    .navbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+    }
+    .nav-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+    a {
+      text-decoration: none;
+    }
+    /* 🌒 DARK MODE GLOBAL TEXT FIXES */
+    /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+    body.dark {
+      background-color: #121212;
+      color: #f5f5f5;
+      background: url(images/bgdark.png) no-repeat center center fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    /* ✅ Heading fix */
+    body.dark .templates-main h1 {
+       background: linear-gradient(to right, #67e8f9, #3b82f6); /* bright neon cyan-blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+    }
+    /* ✅ Template card titles */
+    body.dark .template-card h2 {
+      color: #e0f2fe;
+      text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+    }
+    /* ✅ Button text */
+    body.dark .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #fff;
+    }
+    /* ✅ Navbar items */
+    body.dark .navbar,
+    body.dark .nav-links a,
+    body.dark .site-name {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    body.dark .nav-links a:hover {
+      color: #90caf9;
+    }
+    /* 🧼 Remove margins to prevent light-space bleed */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* 💡 Smooth transitions */
+    
+    .templates-main h1,
+    .template-card h2,
+    .template-btn,
+    .navbar,
+    .nav-links a {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    /* ✨ Make text inside template cards fully visible */
+    body.dark .template-card h2,
+    body.dark .template-btn,
+    body.dark .template-card {
+      color: #ffffff;
+    }
+    /* 🎯 Bonus: ensure buttons look clickable and clean */
+    body.dark .template-btn {
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
+    /* 🔧 Template card container */
+    body.dark .template-card {
+      background-color: rgba(30, 41, 59, 0.6); 
+     border: 1px solid rgba(59, 130, 246, 0.15);
+        box-shadow:
+    0 0 6px rgba(59, 130, 246, 0.25),
+    0 0 12px rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+      animation: darkNeonPulse 4s ease-in-out infinite;
+    }
+    /* 🖋 Titles inside cards */
+    body.dark .template-card h2 {
+      color: #ffffff;
+    }
+    /* 🔘 Buttons */
+    body.dark .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    /* 🖱 Hover effect for buttons */
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
+    /* 🪄 Smooth transitions */
+    .template-card h2,
+    .template-btn {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    /* Base preview style */
+    .template-preview {
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    /* Dark mode support */
+    /*  Changed 'dark-theme' to 'dark' */
+    body.dark .template-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+    }
+    /* Feature Cards Preview */
+    .feature-preview {
+      background-color: #4f8cff;
+      padding: 12px;
+      gap: 10px;
+    }
+    .feature-preview .mini-card {
+      background-color: white;
+      flex: 1;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #555;
+      font-weight: 600;
+    }
+    /* Hero Section Preview */
+    .hero-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      padding: 14px;
+      gap: 8px;
+    }
+    .hero-preview .hero-image {
+      background-color: white;
+      border-radius: 8px;
+      width: 100%;
+      height: 50px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+    .hero-preview .hero-text-line {
+      background-color: white;
+      border-radius: 5px;
+      height: 8px;
+      width: 80%;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .hero-preview .hero-text-line.short {
+      width: 50%;
+    }
+    /* Social Share Preview */
+    .social-share-preview {
+      background-color: #4f8cff;
+      gap: 15px;
+      font-size: 28px;
+      color: white;
+    }
+    .social-share-preview .social-icon-preview {
+      transition: transform 0.2s ease-in-out;
+    }
+    .social-share-preview:hover .social-icon-preview {
+      transform: scale(1.1);
+    }
+    /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+    }
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-line.logo {
+      width: 40%;
+    }
+    .navbar-line.link {
+      width: 70%;
+    }
+    .navbar-line.link.short {
+      width: 50%;
+    }
+    /* ADDED: Animated Toggles Preview CSS */
+    .toggles-preview {
+      background-color: #4f8cff;
+      gap: 20px;
+    }
+    .mini-toggle {
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      position: relative;
+      padding: 3px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .mini-handle {
+      width: 19px;
+      height: 19px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
+    .mini-toggle.off .mini-handle {
+      transform: translateX(0);
+    }
+    .mini-toggle.on {
+      background-color: #25d366; /* A nice 'on' color */
+    }
+    .mini-toggle.on .mini-handle {
+      transform: translateX(25px);
+    }
+    /*Display Properties Preview */
+    .display-preview {
+      background-color: #4f8cff;
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .display-box {
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .display-box.box1 {
+      width: 24px;
+      height: 24px;
+      background-color: #bbdefb;
+    }
+    .display-box.box2 {
+      width: 24px;
+      height: 32px;
+      background-color: #90caf9;
+    }
+    .display-box.box3 {
+      width: 24px;
+      height: 28px;
+      background-color: #64b5f6;
+    }
+    /* 🌙 Dark Theme Support */
+    body.dark .display-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="dark">
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <!-- template class must be active when we click on it -->
+        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
+                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -611,6 +969,7 @@
                 <path
                   d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+
                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                 -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
                .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
@@ -629,6 +988,114 @@
             <button id="theme-toggle" aria-label="Toggle Theme">
               <i data-lucide="moon"></i>
             </button>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main class="templates-main ">
+    <h1>Templates Gallery</h1>
+    <div style="display: flex; justify-content: center; margin-bottom: 1.5rem ;margin-top:0.5rem;">
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search templates..."
+        style="color: #1f2937;; 
+         padding: 0.6rem 1.2rem; 
+       background: linear-gradient(to right, #67e8f9, #60a5fa);
+  box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
+         border-radius: 18px; 
+         border: none; 
+         min-width: 420px;   
+         font-size: 1rem; 
+         outline: none;
+        ";
+        aria-label="Search templates"
+      />
+    </div>
+    <section class="templates-grid">
+      <a class="template-card" href="templates/login.html">
+        <h2>Login Page UI</h2>
+        <div class="template-preview login-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/button.html">
+        <h2>Hover Button Effects</h2>
+        <div class="template-preview button-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/loader.html">
+        <h2>Loaders</h2>
+        <div class="template-preview loader-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/modal.html">
+        <h2>Popup Templates</h2>
+        <div class="template-preview modal-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/glassmorphism.html">
+        <h2>Glassmorphism profile card</h2>
+        <div class="template-preview modal-preview"></div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/feature.html">
+        <h2>Feature Cards UI</h2>
+        <div class="template-preview feature-preview">
+          <div class="mini-card">Card1</div>
+          <div class="mini-card">Card2</div>
+          <div class="mini-card">Card3</div>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <a class="template-card" href="templates/hero.html">
+        <h2>Hero Section Template</h2>
+        <div class="template-preview hero-preview">
+          <div class="hero-image"></div>
+          <div class="hero-text-line"></div>
+          <div class="hero-text-line short"></div>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <article class="template-card">
+        <h2>Animated Button</h2>
+        <div class="template-preview button-preview"></div>
+        <a class="template-btn" href="templates/animated-btn.html">View Template</a>
+      </article>
+      <a class="template-card" href="templates/social-share-buttons.html">
+        <h2>Animated Social Share Buttons</h2>
+        <div class="template-preview social-share-preview">
+          <i class="fab fa-facebook-f social-icon-preview"></i>
+          <i class="fab fa-twitter social-icon-preview"></i>
+          <i class="fab fa-instagram social-icon-preview"></i>
+        </div>
+        <button class="template-btn">View Template</button>
+      </a>
+      <!-- CORRECTED TOOLTIP COMPONENT -->
+      <a class="template-card" href="templates/tooltip.html">
+        <h2>Tooltip UI Component</h2>
+        <div class="template-preview">
+          <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+        </div>
+        <span class="template-btn">View Template</span>
+      </a>
+      <!-- Responsive Card Carousel -->
+      <a class="template-card" href="templates/carousel.html">
+        <h2>Responsive Card Carousel</h2>
+        <div class="template-preview carousel-preview">
+          <div class="mini-card"></div>
+          <div class="mini-card"></div>
+          <div class="mini-card"></div>
+        </div>
+        <span class="template-btn">View Template</span>
+      </a>
+      <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
+      <a class="template-card" href="templates/toggles-and-checkboxes.html">
+        <h2>Animated Toggles</h2>
+        <div class="template-preview toggles-preview">
+          <div class="mini-toggle off">
+            <div class="mini-handle"></div>
+
           </li>
         </ul>
       </div>
@@ -653,6 +1120,7 @@
           <h2>Login Form with Glassmorphism.</h2>
           <div class="template-preview login-preview">
             <div class="page link"></div>
+
           </div>
           <button class="template-btn">View Template</button>
         </a>
