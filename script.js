@@ -259,10 +259,10 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-        alert("Message sent successfully!")
+        showSuccessPopup()
         contactForm.reset()
       } else {
-        alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
+        showErrorPopup("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
       }
     })
     formInputs.forEach((input) => {
@@ -335,6 +335,110 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Success Popup Functions
+function showSuccessPopup() {
+  const popup = document.getElementById('success-popup');
+  if (popup) {
+    popup.classList.add('show');
+    
+    // Auto-dismiss after 4 seconds
+    setTimeout(() => {
+      closeSuccessPopup();
+    }, 4000);
+    
+    // Close on background click
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closeSuccessPopup();
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSuccessPopup();
+      }
+    });
+  }
+}
+
+function closeSuccessPopup() {
+  const popup = document.getElementById('success-popup');
+  if (popup) {
+    popup.classList.remove('show');
+  }
+}
+
+// Error Popup Function (fallback to alert for now, can be enhanced later)
+function showErrorPopup(message) {
+  // For now, using a styled alert. Can be enhanced to match success popup design
+  const errorDiv = document.createElement('div');
+  errorDiv.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ef4444;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    z-index: 10000;
+    max-width: 300px;
+    font-family: inherit;
+    animation: slideInRight 0.3s ease-out;
+  `;
+  errorDiv.textContent = message;
+  
+  document.body.appendChild(errorDiv);
+  
+  // Auto-remove after 4 seconds
+  setTimeout(() => {
+    errorDiv.style.animation = 'slideOutRight 0.3s ease-out';
+    setTimeout(() => {
+      if (errorDiv.parentNode) {
+        errorDiv.parentNode.removeChild(errorDiv);
+      }
+    }, 300);
+  }, 4000);
+  
+  // Add click to dismiss
+  errorDiv.addEventListener('click', () => {
+    errorDiv.style.animation = 'slideOutRight 0.3s ease-out';
+    setTimeout(() => {
+      if (errorDiv.parentNode) {
+        errorDiv.parentNode.removeChild(errorDiv);
+      }
+    }, 300);
+  });
+}
+
+// Add CSS animations for error popup
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
 
 
 
