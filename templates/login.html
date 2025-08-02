@@ -400,19 +400,7 @@
       overflow: hidden;
     }
 
-    .variant-7::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg,
-          rgba(255, 255, 255, 0.1),
-          transparent,
-          rgba(255, 255, 255, 0.1));
-    }
-
+    
     .variant-7 input {
       background: rgba(255, 255, 255, 0.9);
       border: none;
@@ -420,13 +408,13 @@
       position: relative;
       z-index: 2;
     }
-
+    
     .variant-7 input:focus {
       background: rgba(255, 255, 255, 1);
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
-
+    
     .variant-7 button {
       background: linear-gradient(45deg, #ff6b6b, #ee5a52);
       border: none;
@@ -434,11 +422,25 @@
       font-weight: 700;
       letter-spacing: 1px;
     }
-
+    
     .variant-7 button:hover {
       background: linear-gradient(45deg, #ee5a52, #ff6b6b);
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
+    }
+    .variant-7::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(45deg,
+          rgba(255, 255, 255, 0.1),
+          transparent,
+          rgba(255, 255, 255, 0.1));
     }
 
     /* Variant 8 - Premium*/
@@ -1074,7 +1076,7 @@ form.login-form button:hover {
   background: linear-gradient(45deg, #ee5a52, #ff6b6b);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(238, 90, 82, 0.4);
-}
+} 
 &lt;/style&gt;
 
 </code>
