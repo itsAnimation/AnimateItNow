@@ -35,6 +35,24 @@
             --nav-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Dark theme variables */
+        [data-theme="dark"] {
+            --accent-color: #60a5fa;
+            --bg-color: #111827;
+            --text-color: #f9fafb;
+            --card-bg: #1f2937;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --border-color: #374151;
+            --sidebar-bg: #1f2937;
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
+            --btn-secondary-bg: #374151;
+            --btn-secondary-text: #e5e7eb;
+            --btn-secondary-border: #4b5563;
+            --nav-bg: rgba(31, 41, 55, 0.9);
+            --nav-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -117,14 +135,30 @@
 
         /* --- CAROUSEL DEMO STYLES --- */
         .demo-card {
-            background-color: #fff;
+            background-color: var(--card-bg);
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             padding: 2rem;
             text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
-        .demo-card h4 { margin: 0 0 0.5rem; }
-        .demo-card p { margin: 0; font-size: 0.9rem; color: #6b7280; }
+        .demo-card h4 { 
+            margin: 0 0 0.5rem; 
+            color: var(--text-color);
+        }
+        .demo-card p { 
+            margin: 0; 
+            font-size: 0.9rem; 
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        /* Dark theme hover effects */
+        [data-theme="dark"] .demo-card:hover {
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.15);
+            border-color: var(--accent-color);
+        }
 
         /* 1. Slides Only (Scroll Snap) */
         .scroll-carousel {
@@ -156,7 +190,24 @@
             background-color: rgba(0,0,0,0.3); border-radius: 50%;
             width: 40px; height: 40px; cursor: pointer; z-index: 10;
             display: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.5);
         }
+        .carousel-control:hover {
+            background-color: rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.8);
+        }
+        
+        /* Dark theme carousel controls */
+        [data-theme="dark"] .carousel-control {
+            background-color: rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+        [data-theme="dark"] .carousel-control:hover {
+            background-color: rgba(96, 165, 250, 0.5);
+            border-color: var(--accent-color);
+        }
+        
         .carousel-control.prev { left: 15px; }
         .carousel-control.next { right: 15px; }
         .carousel-indicators {
@@ -165,7 +216,21 @@
         }
         .indicator-dot {
             width: 12px; height: 12px; border-radius: 50%;
-            background-color: #ccc; cursor: pointer;
+            background-color: rgba(255,255,255,0.4); cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+        .indicator-dot:hover {
+            background-color: rgba(255,255,255,0.7);
+        }
+        
+        /* Dark theme indicators */
+        [data-theme="dark"] .indicator-dot {
+            background-color: rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+        [data-theme="dark"] .indicator-dot:hover {
+            background-color: rgba(96, 165, 250, 0.6);
         }
 
         /* --- CORRECTED CSS LOGIC --- */
@@ -191,16 +256,64 @@
         #slide1-ind:checked ~ .carousel-indicators label[for="slide1-ind"],
         #slide2-ind:checked ~ .carousel-indicators label[for="slide2-ind"],
         #slide3-ind:checked ~ .carousel-indicators label[for="slide3-ind"] {
-            background-color: #333;
+            background-color: rgba(255,255,255,0.9);
+            border-color: #fff;
         }
+        
+        /* Dark theme active indicators */
+        [data-theme="dark"] #slide1-ind:checked ~ .carousel-indicators label[for="slide1-ind"],
+        [data-theme="dark"] #slide2-ind:checked ~ .carousel-indicators label[for="slide2-ind"],
+        [data-theme="dark"] #slide3-ind:checked ~ .carousel-indicators label[for="slide3-ind"] {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
         #slide1-ind:checked ~ #next-1-ind,
         #slide2-ind:checked ~ #prev-2-ind, #slide2-ind:checked ~ #next-2-ind,
         #slide3-ind:checked ~ #prev-3-ind {
             display: block;
         }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            padding: 10px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            z-index: 99999;
+            user-select: none;
+            min-width: 120px;
+            justify-content: center;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        [data-theme="dark"] .theme-toggle:hover {
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.25);
+        }
+        
+        .theme-toggle:active {
+            transform: translateY(0px);
+        }
     </style>
 </head>
-<body>
+<body data-theme="light">
     <nav class="navbar scroll-fade">
       <div class="nav-left">
         <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
@@ -252,7 +365,7 @@
               </svg>
             </a>
           </li>
-          <!-- <li>
+          <li>
             <button
               id="theme-toggle"
               class="ripple btn-press"
@@ -260,7 +373,7 @@
             >
               <i data-lucide="moon"></i>
             </button> 
-          </li> -->
+          </li>
         </ul>
       </div>
     </nav>
@@ -385,5 +498,88 @@
 
         </main>
     </div>
+
+    <!-- Floating Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()" id="global-theme-button">
+        🌙 Dark Mode
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const globalButton = document.getElementById('global-theme-button');
+            const navToggle = document.getElementById('theme-toggle');
+
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            if (newTheme === 'dark') {
+                if (globalButton) {
+                    globalButton.innerHTML = '☀️ Light Mode';
+                }
+                if (navToggle && navToggle.querySelector('i')) {
+                    navToggle.querySelector('i').setAttribute('data-lucide', 'sun');
+                }
+            } else {
+                if (globalButton) {
+                    globalButton.innerHTML = '🌙 Dark Mode';
+                }
+                if (navToggle && navToggle.querySelector('i')) {
+                    navToggle.querySelector('i').setAttribute('data-lucide', 'moon');
+                }
+            }
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('load', function () {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const globalButton = document.getElementById('global-theme-button');
+            const navToggle = document.getElementById('theme-toggle');
+
+            document.body.setAttribute('data-theme', savedTheme);
+
+            if (savedTheme === 'dark') {
+                if (globalButton) {
+                    globalButton.innerHTML = '☀️ Light Mode';
+                }
+                if (navToggle && navToggle.querySelector('i')) {
+                    navToggle.querySelector('i').setAttribute('data-lucide', 'sun');
+                }
+            }
+        });
+
+        // Add event listener to navbar theme toggle if it exists
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('theme-toggle');
+            if (navToggle) {
+                navToggle.addEventListener('click', toggleTheme);
+            }
+
+            // Sidebar navigation active state
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('.content-section');
+
+            function updateActiveLink() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        sidebarLinks.forEach(link => link.classList.remove('active'));
+                        if (sidebarLinks[index]) {
+                            sidebarLinks[index].classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+        });
+    </script>
   </body>
 </html>
