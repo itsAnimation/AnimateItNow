@@ -800,7 +800,8 @@ main {
 }
 .testi .aside > p {
   position: relative;
-  font-size: 14px;
+/* increase font size description */
+  font-size: 17px;
   line-height: normal;
   margin-bottom: 30px;
 
@@ -827,7 +828,8 @@ main {
 .testi .aside .name {
   position: relative;
   width: fit-content;
-  line-height: 1;
+  /* make gap between name and profession */
+  line-height: 2;
 }
 .testi .aside .name h4 {
   font-size: 22px;
@@ -836,7 +838,8 @@ main {
   opacity: .8;
 }
 .testi .aside .name p {
-  font-size: 12px;
+  /* increase font size */
+  font-size: 15px;
   text-align: right;
 }
 .testi :is(.swiper-button-next, .swiper-button-prev){
@@ -2922,8 +2925,7 @@ body.dark .playground-main h1{
   position: fixed;
   bottom: 65px;
   right: 30px;
-  z-index: 99;
-  font-size: 18px;
+  z-index: 99; 
   border: none;
   outline: none;
   background-color: #333;
@@ -2932,19 +2934,55 @@ body.dark .playground-main h1{
   padding: 10px 15px;
   border-radius: 50%;
   opacity: 0;
-  pointer-events: none;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none; 
+   transition: all 0.4s ease;
+   /* initially at bottom */
+  transform: translateY(65px);
 }
-
-#scrollBtn.show {
+#scrollBtn svg{ 
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s ease;
+  fill: white;  
+  position: relative;
+  top: 5px;
+} 
+#scrollBtn.show{
   opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
+  pointer-events: auto;  
+  /* show applied -> then come back to 0 */
+  transform: translateY(0); 
+}    
 
 #scrollBtn:hover {
-  background-color: #555; /* Darker on hover */
+  background-color: #4f8cff; /*Darker on hover*/
+  transform: translateY(0) scale(1.05); 
+  box-shadow: 0 0 10px rgba(14, 39, 182, 0.4);
+}
+#scrollBtn:hover svg{
+  transform: scale(1.1);
+  top: 0;
+}
+/* bounce animation added on back to top */
+@keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* applied when not hover */
+#scrollBtn.bounce:not(:hover) svg{
+    animation: bounce 2s infinite;
+}
+
+/* back to top on dark theme */
+body.dark #scrollBtn:not(:hover){
+  background-color: white;  
+}
+body.dark #scrollBtn svg:not(:hover){
+  fill:black;
+}
+body.dark #scrollBtn:hover svg{  
+  fill:white;
 }
 .animation-gallery {
   padding: 2rem;
@@ -3002,7 +3040,7 @@ body.dark .playground-main h1{
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 }
 
