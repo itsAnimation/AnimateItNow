@@ -2340,6 +2340,73 @@ body.dark .faq-section {
 }
 
 
+/* ============== footer ABOUT section navigation link  ================ */
+.footer-about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #f1f1f1;
+  font-family: 'Segoe UI', sans-serif;
+  
+}
+
+.footer-about-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.footer-about-section a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-about-section a {
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-about-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc, #ffcc00, #ff00cc);
+  background-size: 300%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.footer-about-section a:hover {
+  color: #ffffff;
+}
+
+.footer-about-section a:hover::after {
+  transform: scaleX(1);
+  animation: underlineFlow 2s linear infinite;
+}
+
+@keyframes underlineFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+/* ====================================================================== */
+
 /* moving neon-style glow */
 .glow-wrap {
   position: relative;
