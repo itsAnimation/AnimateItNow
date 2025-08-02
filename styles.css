@@ -1,4 +1,5 @@
 /* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -228,7 +229,7 @@ body.dark .ripple-effect {
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Mozilla Text', sans-serif;
   background: url("images/bg.jpg") no-repeat center center fixed;
   background-size: cover;
   background-color: var(--primary-bg);
@@ -258,20 +259,37 @@ body {
   background-color: #e0e0e0;
 }
 
-/* NAVBAR */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 50px;
   background: rgba(2, 13, 47);
-  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 57px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .navbar #theme-toggle {
@@ -279,14 +297,12 @@ body {
   opacity: 1;
 }
 
-/* Left Logo Section */
-.nav-left {
+
+.nav-left .logo-link {
   display: flex;
   align-items: center;
-  width: 25ch;
-  position: relative;
-  gap: 12px;
-  color:#00d1ff
+  gap: 10px;
+  text-decoration: none;
 }
 
 .logo {
@@ -294,15 +310,9 @@ body {
   width: 36px;
   animation: pulse 2s infinite;
 }
+
 /* Remove link underline and adjust logo spacing */
 /* Make the link a flex container to align items */
-.logo-link {
-  display: flex;          /* Aligns logo and text horizontally */
-  align-items: center;   /* Centers them vertically */
-  gap: 10px;            /* Adds space between logo and text */
-  text-decoration: none; /* Removes underline */
-  color: inherit;       /* Inherits text color (if needed) */
-}
 
 /* Ensure the logo image stays aligned */
 .logo-link img.logo {
@@ -324,8 +334,8 @@ body {
 }
 .site-name {
   font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
   cursor: pointer;
   border-right: 2px solid var(--white);
   white-space: nowrap;
@@ -341,10 +351,10 @@ body {
     width: 0;
   }
   50% {
-    width: 14ch;
+    width: 12ch;
   }
   70% {
-    width: 14ch;
+    width: 12ch;
   }
   100% {
     width: 0;
@@ -357,18 +367,12 @@ body {
   }
 }
 
-/* .site-name {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #1b1717;
-  animation: fadeInLeft 0.8s ease;
-}  */
-
 /* Navigation Links */
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 10px;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links li {
@@ -1420,25 +1424,7 @@ body:not(.dark) .template-card {
     transform: translateX(-50%) rotate(360deg);
   }
 }
-/* .template-btn {
-  margin-top: 0.7rem;
-  background: var(--accent);
-  color: var(--light);
-  border: none;
-  border-radius: 0.3em;
-  text-decoration: none;
-  padding: 0.6em 1.5em;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
-  transition: background 0.2s, transform 0.2s;
-  text-decoration: none;
-}
-.template-btn:hover {
-  background: var(--secondary);
-  transform: scale(1.05);
-} */
+
 .footer {
   background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: white;
@@ -1519,48 +1505,45 @@ body:not(.dark) .template-card {
   }
 }
 
-@media (max-width: 700px) {
-  .navbar {
-    padding: 0 1rem;
-  }
 
-  .nav-links {
-    gap: 1rem;
-  }
-
-  .templates-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .templates-main h1 {
-    font-size: 1.4rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 0.5rem 0.5rem;
-  }
-
-  .nav-left {
-    margin-bottom: 0.5rem;
-  }
-
-  .nav-links {
-    /* Remove stacking */
+/* ========== Appearance of hamburger button ========== */
+@media (max-width: 1092px) {
+  .navbar-inner {
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
+    justify-content: space-between;
+    height: 57px;
+    padding: 0 20px;
   }
 
-  .site-name {
-    font-size: 1rem;
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 57px;
+    right: 0;
+    width: 25%;
+    height: 100vh;
+    background: rgba(2, 13, 47, 0.95);
+    padding: 20px;
+    z-index: 9999;
+    overflow-y: auto;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links li {
+    margin-bottom: 12px;
   }
 }
+
+
 
 /* Contributors Page */
 body:not(.dark) .contributor-card {
