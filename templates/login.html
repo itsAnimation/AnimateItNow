@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login Variants with Custom Navbar and Dark Mode</title>
+    <link rel="stylesheet" href="../styles.css" />
     <meta
       name="description"
       content="A comprehensive collection of CSS animation templates and effects for web developers"
@@ -77,9 +78,10 @@
 
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
+    
     <style>
       /* CSS Variables for Light and Dark mode */
-      :root {
+      /* :root {
         --nav-text: #222;
         --accent: #007bff;
         --background: #f5f5f5;
@@ -91,7 +93,7 @@
         --accent: #55aaff;
         --background: #121212;
         --text-color: #ddd;
-      }
+      } */
 
       /* Reset & base */
       * {
@@ -106,71 +108,7 @@
         transition: background-color var(--transition), color var(--transition);
       }
 
-      /* Your navbar CSS with variables */
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 64px;
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--nav-text);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 2rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        z-index: 1000;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        transition: background var(--transition), color var(--transition);
-      }
-      .nav-left {
-        display: flex;
-        align-items: center;
-      }
-      .logo {
-        width: 36px;
-        height: 36px;
-        margin-right: 0.75rem;
-        object-fit: contain;
-        background: var(--accent);
-        border-radius: 6px;
-      }
-      .site-name {
-        font-weight: 700;
-        font-size: 1.2rem;
-        letter-spacing: 0.5px;
-      }
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        margin: 0;
-        padding: 0;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--nav-text);
-        font-weight: 500;
-        transition: color var(--transition);
-        position: relative;
-      }
-      .nav-links a.active,
-      .nav-links a:hover {
-        color: var(--accent);
-      }
-      #theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-left: 1.5rem;
-        color: var(--nav-text);
-        transition: color var(--transition);
-      }
-
+      
       /* Section wrapper */
       section {
         max-width: 400px;
@@ -609,18 +547,68 @@
     </style>
   </head>
   <body>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
       </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <!-- <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li> -->
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <!-- <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li> -->
+        </ul>
+      </div>
     </nav>
 
     <section class="variant-1">
@@ -1187,20 +1175,20 @@ form.login-form button:hover {
       });
 
       // Dark mode toggle
-      const themeToggleBtn = document.getElementById("theme-toggle");
-      const body = document.body;
-      const navbar = document.getElementById("navbar");
+      // const themeToggleBtn = document.getElementById("theme-toggle");
+      // const body = document.body;
+      // const navbar = document.getElementById("navbar");
 
-      themeToggleBtn.addEventListener("click", () => {
-        body.classList.toggle("dark");
-        navbar.classList.toggle("dark");
-        if (body.classList.contains("dark")) {
-          themeToggleBtn.textContent = "☀️";
-        } else {
-          themeToggleBtn.textContent = "🌙";
-        }
-      });
+      // themeToggleBtn.addEventListener("click", () => {
+      //   body.classList.toggle("dark");
+      //   navbar.classList.toggle("dark");
+      //   if (body.classList.contains("dark")) {
+      //     themeToggleBtn.textContent = "☀️";
+      //   } else {
+      //     themeToggleBtn.textContent = "🌙";
+      //   }
+      // });
     </script>
-
+    
     </body>
 </html>

@@ -108,14 +108,17 @@
     <!-- ───────── NAVBAR ───────── -->
     <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </div>
+        <a href="/" class="logo-link">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <span class="site-name">Animate It Now</span>
+        </a>
+      </div>      
 
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html">Templates</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -225,13 +228,14 @@
                             <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
                         </div>
                         <div class="faq-answer-content">
-                            <ol>
-                                <li>Fork this repository to your own GitHub account.</li>
-                                <li> Add your unique and creative web components or improvements.</li>
-                                <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
-                                <li>Submit a Pull Request with a short description of your changes.</li>
-                                <li>Need ideas? Check out our Templates page for inspiration!</li>
-                            </ol>
+                            <ul class="faq-guidelines">
+                                  <li>Fork this repository to your own GitHub account.</li>
+                                  <li>Add your unique and creative web components or improvements.</li>
+                                  <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
+                                  <li>Submit a Pull Request with a short description of your changes.</li>
+                                  <li>Need ideas? Check out our Templates page for inspiration!</li>
+                            </ul>
+
                         </div>
                     </div>
 
@@ -309,48 +313,44 @@
                                 the design — colors, layouts, animations, responsiveness, and overall look and feel. It
                                 allows developers to create visually appealing and user-friendly websites that work well
                                 across different devices and screen sizes.</p>
-
-                            <!-- 03-->
-                            <div class="faq-item glow-wrap">
-                                <div class="faq-question-header" onclick="toggleFAQ(this)">
-                                    <h3>What is Javascript?</h3>
-                                    <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
-                                </div>
-                                <div class="faq-answer-content">
-                                    <p>JavaScript is the programming language of the web. It adds interactivity and
+                        </div>
+                    </div>
+                    <!-- 03-->
+                    <div class="faq-item glow-wrap">
+                        <div class="faq-question-header" onclick="toggleFAQ(this)">
+                            <h3>What is Javascript?</h3>
+                            <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
+                        </div>
+                        <div class="faq-answer-content">
+                           <p>JavaScript is the programming language of the web. It adds interactivity and
                                         dynamic behavior to your web pages like sliders, buttons that respond to clicks,
                                         form validation, animations, and real-time updates. Without JavaScript, a
                                         website would be static and unresponsive. It's essential for building modern,
                                         interactive user experiences..</p>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <!-- 04-->
-                            <div class="faq-item glow-wrap">
-                                <div class="faq-question-header" onclick="toggleFAQ(this)">
-                                    <h3>How do I preview my changes locally?</h3>
-                                    <div class="faq-icon-static">
-                                        <i class="fas fa-desktop"></i>
-                                    </div>
-                                </div>
-                                <div class="faq-answer-content">
-                                    <p>
+                    <!-- 04-->
+                      <div class="faq-item glow-wrap">
+                          <div class="faq-question-header" onclick="toggleFAQ(this)">
+                              <h3>How do I preview my changes locally?</h3>
+                                  <div class="faq-icon-static">
+                                    <i class="fas fa-desktop"></i>
+                          </div>
+                              </div>
+                            <div class="faq-answer-content">
+                                <p>
                                         Open index.html in a browser or use VS Code's Live Server
                                         extension for live preview.
-                                    </p>
-                                </div>
-                            </div>
+                                </p>
                         </div>
-
                     </div>
-                </div><!-- /faq-container-->
+                </div><!-- /technical-faq -->
+            </div><!-- /faq-container-->
         </section>
 
         <!-- /faq-list -->
-        </div>
-        <!-- /faq-container -->
-        </section>
-    
+        
     
     <div id="page" class="site">
       <div class="container">
@@ -443,6 +443,7 @@
                       <p>Full Stack Developer</p> 
                     </div>
                   </div>
+                </div>  
                 </li>
               </ul>
               <div class="swiper-pagination"></div>

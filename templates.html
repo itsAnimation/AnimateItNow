@@ -131,6 +131,7 @@
           #3b82f6
         ); /*bright neon cyan-blue */
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
       }
@@ -317,6 +318,33 @@
       }
       .navbar-line.link.short {
         width: 50%;
+      }
+      /* Make the link a flex container to align items */
+      .logo-link {
+        display: flex;          /* Aligns logo and text horizontally */
+        align-items: center;   /* Centers them vertically */
+        gap: 10px;            /* Adds space between logo and text */
+        text-decoration: none; /* Removes underline */
+        color: inherit;       /* Inherits text color (if needed) */
+      }
+
+      /* Ensure the logo image stays aligned */
+      .logo-link img.logo {
+        height: 40px;         /* Adjust as needed */
+        width: auto;          /* Maintains aspect ratio */
+      }
+
+      /* Style the text (optional) */
+      .site-name {
+        font-size: 1.2rem;    /* Adjust size */
+        font-weight: bold;    /* Optional: Bold text */
+        pointer-events: none; /* Ensures clicks pass to parent <a> */
+      }
+
+      /* Hover effect (optional) */
+      .logo-link:hover {
+        opacity: 0.8;
+        cursor: pointer;
       }
       /* ADDED: Animated Toggles Preview CSS */
       .toggles-preview {
@@ -509,14 +537,17 @@
   <body class="dark">
     <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
+        <a href="/" class="logo-link">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <span class="site-name">Animate It Now</span>
+        </a>
       </div>
 
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
