@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Sidebar and Scroll Card</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- Apple Touch Icons -->
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f3f4f6;
+      color: #111;
+      padding: 40px 20px;
+    }
+
+    section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .view-code-btn {
+      margin-top: 20px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .view-code-btn:hover {
+      background: #1e40af;
+    }
+
+    .code-block {
+      background: #111827;
+      color: #10b981;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 13px;
+      overflow-x: auto;
+      max-height: 0;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .code-block.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    /* Sidebar Styles */
+    .sidebar-wrapper {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+    }
+
+    .hamburger {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .hamburger div {
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111827;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: left 0.4s ease;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #cbd5e1;
+      margin: 10px 0;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: white;
+    }
+
+    /* Scroll Card */
+    .scroll-card {
+      max-width: 350px;
+      border: 2px solid #e5e7eb;
+      padding: 20px;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .line {
+      height: 12px;
+      background: #e5e7eb;
+      border-radius: 5px;
+      margin: 15px 0;
+      animation: shimmer 1.2s infinite;
+      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+      background-size: 200% 100%;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        margin: 20px;
+      }
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.75rem;
+      object-fit: contain;
+    }
+    .site-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 500;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    /* Base variables and body */
+    :root {
+      --nav-text: #222;
+      --accent: #007BFF;
+      --transition: 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">AnimateItNow</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    
+  </nav>
+<br><br><br>
+  <!-- SECTION 1: Animated Sidebar -->
+  <section>
+    <h2>🔹 Animated Sidebar Webpage</h2>
+
+    <div class="sidebar-wrapper">
+      <div class="hamburger" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <h3>Navigation</h3>
+        <a href="#">🏠 Home</a>
+        <a href="#">📁 Projects</a>
+        <a href="#">⚙️ Settings</a>
+      </div>
+    </div>
+
+    <button class="view-code-btn" onclick="toggleCode('code1')">View Code</button>
+    <pre id="code1" class="code-block">
+&lt;div class="sidebar-wrapper"&gt;
+  &lt;div class="hamburger" onclick="toggleSidebar()"&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="sidebar" id="sidebar"&gt;
+    &lt;h3&gt;Navigation&lt;/h3&gt;
+    &lt;a href="#"&gt;🏠 Home&lt;/a&gt;
+    &lt;a href="#"&gt;📁 Projects&lt;/a&gt;
+    &lt;a href="#"&gt;⚙️ Settings&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+&lt;/script&gt;
+    </pre>
+  </section>
+
+  <!-- SECTION 2: Scroll Card -->
+  
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function toggleCode(id) {
+      const block = document.getElementById(id);
+      block.classList.toggle('open');
+    }
+  </script>
+
+  </body>
+</html>

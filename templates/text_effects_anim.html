@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="../styles.css" /> -->
+
+    <title>Text Animation Effect</title>
+    <meta
+      name="description"
+      content="A comprehensive collection of CSS animation templates and effects for web developers"
+    />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ff6b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+    <meta
+      name="msapplication-TileImage"
+      content="images/icons/icon-144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#ff6b6b" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json" />
+
+    <!-- PWA Icons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="72x72"
+      href="../images/icons/icon-72x72.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="../images/icons/icon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="../images/icons/icon-128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="144x144"
+      href="../images/icons/icon-144x144.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="152x152"
+      href="../images/icons/icon-152x152.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../images/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="384x384"
+      href="../images/icons/icon-384x384.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../images/icons/icon-512x512.png"
+    />
+
+    <!-- Apple Touch Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="../images/icons/icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="../images/icons/icon-192x192.png"
+    />
+
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --nav-text: #222;
+        --accent: #007bff;
+        --background: #f5f5f5;
+        --text-color: #222;
+        --transition: 0.3s ease;
+      }
+      body.dark {
+        --nav-text: #ddd;
+        --accent: #55aaff;
+        --background: #121212;
+        --text-color: #ddd;
+      }
+      body {
+        /* margin: 0;
+        min-height: 100vh;
+        animation: gradAnimation 10s linear infinite; */
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+          sans-serif;
+        background: linear-gradient(-45deg, #a5aad8, #23a6d5);
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: white;
+      }
+      /* Navbar Styles */
+
+      #theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-left: 1.5rem;
+        color: var(--nav-text);
+        transition: color var(--transition);
+      }
+
+      /* text effect container CSS */
+      .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0 2rem 2rem;
+      }
+      body.dark .container {
+        background: #1e1e1e;
+        color: var(--text-color);
+      }
+      .section-title {
+        color: #0b22f5;
+        padding: 0.5rem;
+        /* border-radius: 20px; */
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      .section-title h2 {
+        font-size: 1.5rem;
+        text-shadow: 0 0 10px rgb(10, 65, 65);
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.03);
+          opacity: 0.6;
+        }
+      }
+      body.dark .section-title {
+        background-color: #1e1e1e;
+      }
+      .card {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: flex;
+        margin-top: 2rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+        position: relative;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 12px;
+        background: linear-gradient(45deg,  #000000, rgb(8, 8, 43), #050506);
+        z-index: -1;
+        animation: borderAnim 3s linear infinite;
+        background-size: 300% 300%;
+      }
+
+      @keyframes borderAnim {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .card:hover {
+        transform: scale(1.03);
+      }
+
+      .card h2 {
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .card p {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-top: 1rem;
+        position: static;
+      }
+
+      /* 1. Typing Effect */
+      .typing {
+        font-family: monospace;
+        border-right: 2px solid white;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: typing 3s steps(20) 1s infinite,
+          blink 0.7s infinite step-end alternate;
+      }
+      @keyframes typing {
+        to {
+          width: 12ch;
+        }
+      }
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      /* 2. Glitch */
+      .glitch {
+        position: relative;
+        color: white;
+        font-weight: bold;
+      }
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+      .glitch::before {
+        animation: glitchTop 1s infinite linear alternate-reverse;
+        color: #0ff;
+        top: -2px;
+      }
+      .glitch::after {
+        animation: glitchBottom 1s infinite linear alternate-reverse;
+        color: #f0f;
+        top: 2px;
+      }
+      @keyframes glitchTop {
+        0% {
+          clip-path: inset(0 0 80% 0);
+        }
+        100% {
+          clip-path: inset(0 0 20% 0);
+        }
+      }
+      @keyframes glitchBottom {
+        0% {
+          clip-path: inset(80% 0 0 0);
+        }
+        100% {
+          clip-path: inset(20% 0 0 0);
+        }
+      }
+
+      /* 3. Neon Glow */
+      .neon {
+        color: #fff;
+        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+      }
+
+      /* 4. Gradient Text */
+      .gradient {
+        /* background: linear-gradient(90deg, #ff6ec4, #7873f5); */
+        background: linear-gradient(-45deg, #bd4f06, #4a59e0, #23a6d5, #07eb8c);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* 5. Wave Text */
+      .wave span {
+        display: inline-block;
+        animation: wave 1.5s infinite;
+      }
+      .wave span:nth-child(even) {
+        animation-delay: 0.1s;
+      }
+      .wave span:nth-child(odd) {
+        animation-delay: 0.2s;
+      }
+      @keyframes wave {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* 6. Flicker Text */
+      .flicker {
+        color: #fffc;
+        animation: flicker 2s infinite;
+      }
+      @keyframes flicker {
+        0%,
+        19%,
+        21%,
+        23%,
+        25%,
+        54%,
+        56%,
+        100% {
+          opacity: 1;
+          text-shadow: 0 0 5px #fff, 0 0 10px #ff0;
+        }
+        20%,
+        22%,
+        24%,
+        55% {
+          opacity: 0.4;
+          text-shadow: none;
+        }
+      }
+
+      /* 7. Stretch Text */
+      .stretch {
+        display: inline-block;
+        animation: stretch 2s infinite ease-in-out;
+      }
+      @keyframes stretch {
+        0%,
+        100% {
+          transform: scaleX(1);
+        }
+        50% {
+          transform: scaleX(1.5);
+        }
+      }
+      footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      footer p {
+        align-items: center;
+        font-size: 1rem;
+      }
+      body.dark footer {
+        background-color: #1e1e1e;
+      }
+      body.dark p {
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html" >Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- <h2 class="section-title">Typing & Text Animation Effects</h2> -->
+    <div class="section-title">
+      <h2>Typing & Text Animation Effects</h2>
+    </div>
+    <!-- text effect section -->
+    <div class="container">
+      <!-- Typing effect -->
+      <div class="card">
+        <h2 class="typing">Typing Effect</h2>
+        <p>Simulates a typewriter effect character by character.</p>
+      </div>
+      <!-- glitch effect -->
+      <div class="card">
+        <h2 class="glitch" data-text="Glitch Text">Glitch Text</h2>
+        <p>Distorted glitch effect with offset pseudo-elements.</p>
+      </div>
+      <!-- typing one another -->
+      <div class="card">
+        <h2 class="typing-sequence" id="typeTarget"></h2>
+        <p>Header text which Type one after in Loop</p>
+      </div>
+      <!-- Neon GLow -->
+      <div class="card">
+        <h2 class="neon">Neon Glow</h2>
+        <p>Bright glowing text perfect for dark themes.</p>
+      </div>
+
+      <!-- Gradient Text -->
+      <div class="card">
+        <h2 class="gradient">Gradient Text</h2>
+        <p>Animated gradient color effect using background clip.</p>
+      </div>
+      <!-- wavy effect -->
+      <div class="card wave">
+        <h2>
+          <span>W</span><span>a</span><span>v</span><span>e</span><span> </span
+          ><span>T</span><span>e</span><span>x</span><span>t</span>
+        </h2>
+        <p>Characters bounce in a wave animation.</p>
+      </div>
+      <!-- flicker text -->
+      <div class="card">
+        <h2 class="flicker">Flicker Text</h2>
+        <p>Random flickering text for a spooky or retro vibe.</p>
+      </div>
+      <!-- stretch text -->
+      <div class="card">
+        <h2 class="stretch">Stretch Text</h2>
+        <p>Text stretches and shrinks in a smooth motion.</p>
+      </div>
+    </div>
+    <footer>
+      <p>Made with ❤️ by Anuj and Contributors</p>
+    </footer>
+    <script>
+      // typing animation
+      const texts = [
+        "Happy Coding 💖",
+        "Grow YourSelf ✌",
+        "Consistency Streak 🔥",
+      ];
+      let currentIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const speed = 100;
+      const pauseTime = 1000;
+      const target = document.getElementById("typeTarget");
+
+      function typeLoop() {
+        const currentText = texts[currentIndex];
+
+        if (isDeleting) {
+          target.textContent = currentText.substring(0, charIndex--);
+        } else {
+          target.textContent = currentText.substring(0, charIndex++);
+        }
+
+        if (!isDeleting && charIndex === currentText.length + 1) {
+          setTimeout(() => {
+            isDeleting = true;
+            typeLoop();
+          }, pauseTime);
+          return;
+        }
+
+        if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          currentIndex = (currentIndex + 1) % texts.length;
+        }
+
+        setTimeout(typeLoop, isDeleting ? speed / 2 : speed);
+      }
+
+      typeLoop(); // Start animation
+
+      // Dark mode toggle
+      // const themeToggleBtn = document.getElementById("theme-toggle");
+      // const body = document.body;
+      // const navbar = document.getElementById("navbar");
+
+      // themeToggleBtn.addEventListener("click", () => {
+      //   body.classList.toggle("dark");
+      //   navbar.classList.toggle("dark");
+      //   if (body.classList.contains("dark")) {
+      //     themeToggleBtn.textContent = "☀️";
+      //   } else {
+      //     themeToggleBtn.textContent = "🌙";
+      //   }
+      // });
+    </script>
+    <!-- PWA Support -->
+    <script src="../pwa.js"></script>
+
+    <div id="cursor-snake"></div>
+    <script src="../script.js"></script>
+  </body>
+</html>
