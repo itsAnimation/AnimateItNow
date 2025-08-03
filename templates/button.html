@@ -91,6 +91,17 @@
         color: #000;
         font-weight: bold;
     }
+
+    /*display-code login*/
+    #greyBox {
+      display: none;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
   </style>
 </head>
 
@@ -168,20 +179,20 @@
           margin-top: 2rem;
           flex-wrap: wrap;
         ">
-      <button class="hover-btn glow" style="
+      <button onclick="showBox('glowBlue')" class="hover-btn glow" style="
             background: #4f8cff;
             color: #fff;
             padding: 1em 2em;
             border: none;
             border-radius: 2em;
             font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+            box-shadow: 0 0 10px #4d8fff;
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
           ">
         Glow
       </button>
-      <button class="hover-btn outline" style="
+      <button onclick="showBox('outlineBlue')" class="hover-btn outline" style="
             background: #fff;
             color: #4f8cff;
             padding: 1em 2em;
@@ -195,7 +206,7 @@
           ">
         Outline
       </button>
-      <button class="hover-btn gradient" style="
+      <button onclick="showBox('gradientBlue')" class="hover-btn gradient" style="
             background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
             color: #fff;
             padding: 1em 2em;
@@ -217,21 +228,21 @@
           margin-top: 2rem;
           flex-wrap: wrap;
         ">
-      <button class="hover-btn glow" style="
+      <button onclick="showBox('glowBlue')" class ="hover-btn glow" style="
             background: #4f8cff;
             color: #fff;
             padding: 1em 2em;
             border: none;
             border-radius: 2em;
             font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+            box-shadow: 0 0 10px #4d8fff;
             transition: background 0.2s, transform 0.2s;
             cursor: pointer;
             
           ">
         Glow
       </button>
-      <button class="hover-btn outline" style="
+      <button onclick = "showBox('outlineBlue')" class="hover-btn outline" style="
             background: #fff;
             color: #4f8cff;
             padding: 1em 2em;
@@ -245,7 +256,7 @@
           ">
         Outline
       </button>
-      <button class="hover-btn gradient" style="
+      <button onclick = "showBox('gradientBlue')" class="hover-btn gradient" style="
             background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
             color: #fff;
             padding: 1em 2em;
@@ -267,7 +278,7 @@
           margin-top: 2rem;
           flex-wrap: wrap;
         ">
-      <button class="btn" style="
+      <button onclick = "showBox('glowBlack')" class="btn" style="
             
             color: #fff;
             padding: 1em 2em;
@@ -275,6 +286,7 @@
             border-radius: 2em;
             font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 0;
             
@@ -282,7 +294,7 @@
         ">
         Glow
       </button>
-      <button class="btn" style="
+      <button onclick = "showBox('outlineBlack')" class="btn" style="
             padding: 1em 2em;
             border-radius: 2em;
             font-size: 1.1rem;
@@ -295,7 +307,7 @@
         ">
         Outline
       </button>
-      <button class="btn" style="
+      <button onclick = "showBox('gradientBlack')" class="btn" style="
             padding: 1em 2em;
             border: none;
             border-radius: 2em;
@@ -309,6 +321,7 @@
         Gradient
       </button>
     </div>
+    <div id="greyBox"></div>
   </main>
   <footer>
     <p>Made with ❤️ by Anuj and Contributors</p>

@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\
+  <!-- Prism.js CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
   <title>Neuromorphic Button Gallery</title>
   <link rel="icon" href="../images/logo.png" />
   <link rel="stylesheet" href="../styles.css" />
@@ -486,12 +490,13 @@
       <h2>Level 1 - Soft Pink & Aqua</h2>
       <button class="neu-btn">Level 1</button><br />
       <button class="toggle-btn" onclick="toggleCode(1)">Show Code</button>
-      <pre class="code-block" id="code1">
+      <pre class="code-block" id="code1"><code class="language-css">
 .neu-btn {
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 6px 6px 12px rgba(0,0,0,0.1),
               -6px -6px 12px rgba(255,255,255,0.7);
 }
+</code>
       </pre>
     </div>
 
@@ -500,13 +505,13 @@
       <h2>Level 2 - Lime & Mint</h2>
       <button class="neu-btn">Level 2</button><br />
       <button class="toggle-btn" onclick="toggleCode(2)">Show Code</button>
-      <pre class="code-block" id="code2">
+      <pre class="code-block" id="code2"><code class="language-css">
 .neu-btn:hover {
   transform: scale(1.05);
   box-shadow: 4px 4px 8px rgba(0,0,0,0.2),
               -4px -4px 8px rgba(255,255,255,0.6);
 }
-      </pre>
+      </code></pre>
     </div>
 
     <!-- Level 3 Card -->
@@ -514,12 +519,13 @@
       <h2>Level 3 - Rainbow Glow</h2>
       <button class="neu-btn"><span>Level 3</span></button><br />
       <button class="toggle-btn" onclick="toggleCode(3)">Show Code</button>
-      <pre class="code-block" id="code3">
+      <pre class="code-block" id="code3"><code class="language-css">
 .neu-btn::before {
   background: linear-gradient(60deg, ...colors...);
   filter: blur(10px);
   animation: rainbowGlow 10s linear infinite;
 }
+</code>
       </pre>
     </div>
 

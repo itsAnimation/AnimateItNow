@@ -8,6 +8,15 @@
     <meta name="description"
         content="A comprehensive collection of CSS animation templates and effects for web developers" />
 
+    <!-- Prism.js CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <!-- Apple Touch Icons -->
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+
+
     <!-- Apple Touch Icons -->
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
@@ -58,16 +67,63 @@
 
         /* --- Navbar Styles --- */
         .navbar {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 1000 !important;
-            height: 60px !important;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 20;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
-        body {
-            padding-top: 60px !important;
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            height: 32px;
+            width: 32px;
+        }
+
+        .site-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--accent-color);
         }
 
         #theme-toggle {
@@ -77,6 +133,7 @@
             cursor: pointer;
             color: var(--text-color);
         }
+
 
         /* --- Page Layout --- */
         .container {
@@ -411,8 +468,13 @@
 <body>
     <nav class="navbar scroll-fade">
         <div class="nav-left">
-            <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
+
+
+
+
+            <img src="../images/logo.png" alt="Animate It Now Logo" class="logo" />
+            <h1 class="site-name">Animate It Now</h1>
+
         </div>
 
         <div class="nav-right">
@@ -488,10 +550,12 @@
                 <div class="demo-actions">
                     <label for="toggle-basic" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper" data-position="bottom"&gt;
+                <pre class="code-block">
+                    <code class="language-html"> 
+    &lt;div class="tooltip-wrapper" data-position="bottom"&gt;
     &lt;button class="btn"&gt;Hover Me&lt;/button&gt;
     &lt;div class="tooltip"&gt;This is a basic tooltip.&lt;/div&gt;
-&lt;/div&gt;</pre>
+    &lt;/div&gt;</code> </pre>
             </section>
 
             <section id="positions" class="content-section">
@@ -514,7 +578,7 @@
                 <div class="demo-actions">
                     <label for="toggle-positions" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper" data-position="top"&gt;...&lt;/div&gt;</pre>
+                <pre class="code-block"><code class="language-html"> &lt;div class="tooltip-wrapper" data-position="top"&gt;...&lt;/div&gt;</code></pre>
             </section>
 
             <section id="interactive" class="content-section">
@@ -530,10 +594,10 @@
                 <div class="demo-actions">
                     <label for="toggle-interactive" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+                <pre class="code-block"><code class="language-html"> &lt;div class="tooltip-wrapper"&gt;
     &lt;button class="btn"&gt;Interactive&lt;/button&gt;
     &lt;div class="tooltip"&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
             </section>
 
             <section id="delayed" class="content-section">
@@ -548,10 +612,10 @@
                 <div class="demo-actions">
                     <label for="toggle-delayed" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+                <pre class="code-block"><code class="language-html"> &lt;div class="tooltip-wrapper"&gt;
     &lt;button class="btn"&gt;Delayed&lt;/button&gt;
     &lt;div class="tooltip delayed"&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
             </section>
 
             <section id="custom-html" class="content-section">
@@ -566,10 +630,10 @@
                 <div class="demo-actions">
                     <label for="toggle-custom-html" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+                <pre class="code-block"><code class="language-html">  &lt;div class="tooltip-wrapper"&gt;
     &lt;button class="btn"&gt;HTML Tooltip&lt;/button&gt;
     &lt;div class="tooltip"&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
             </section>
 
             <section id="disabled" class="content-section">
@@ -584,10 +648,10 @@
                 <div class="demo-actions">
                     <label for="toggle-disabled" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="tooltip-wrapper"&gt;
+                <pre class="code-block"><code class="language-html"> &lt;div class="tooltip-wrapper"&gt;
     &lt;button class="btn" disabled&gt;...&lt;/button&gt;
     &lt;div class="tooltip"&gt;...&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
             </section>
 
             <section id="fade" class="content-section">
@@ -602,10 +666,12 @@
                 <div class="demo-actions">
                     <label for="toggle-fade" class="action-label show-code-label"></label>
                 </div>
-                <pre class="code-block">&lt;div class="fade-tooltip-demo"&gt;
+
+                <pre class="code-block"><code class="language-html"> &lt;div class="fade-tooltip-demo"&gt;
     &lt;button class="btn"&gt;Hover me&lt;/button&gt;
     &lt;span class="fade-tooltip-text"&gt;Tooltip text&lt;/span&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
+
             </section>
             <section id="conclusion" class="content-section">
                 <h3>Conclusion</h3>
@@ -748,8 +814,10 @@
 
     </script>
 
+
     <div id="cursor-snake"></div>
     <script src="../script.js"></script>
+
 </body>
 
 </html>

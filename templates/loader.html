@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loaders | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
+  <meta name="description"
+    content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
   <!-- Apple Touch Icons -->
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
@@ -13,15 +19,44 @@
   <style>
     /* Animations */
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
-    @keyframes l1 { to { transform: rotate(0.5turn); } }
-    @keyframes l2 { to { transform: rotate(1turn); } }
-    @keyframes l3 { 100% { transform: rotate(1turn); } }
-    @keyframes l4 { to { transform: rotate(1turn); } }
-    @keyframes l26 { 100% { transform: rotate(1turn); } }
+    @keyframes l1 {
+      to {
+        transform: rotate(0.5turn);
+      }
+    }
+
+    @keyframes l2 {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes l3 {
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes l4 {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes l26 {
+      100% {
+        transform: rotate(1turn);
+      }
+    }
 
     /*  Loader Container */
     .loader-container {
@@ -30,16 +65,23 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 30px;
-      background: rgba(255, 255, 255, 0.1); /* light transparent bg */
-      backdrop-filter: blur(10px); /* blur effect */
-      border: 1px solid rgba(255, 255, 255, 0.2); /* added border */
+      background: rgba(255, 255, 255, 0.1);
+      /* light transparent bg */
+      backdrop-filter: blur(10px);
+      /* blur effect */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      /* added border */
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(3, 145, 119, 0.147);
       padding: 40px;
       margin: 20px auto;
       width: fit-content;
     }
-
+    /* Override Prism.js code block background to black */
+pre[class*="language-"], code[class*="language-"] {
+  background: #111 !important;
+  color: #f8f8f2 !important; /* Optional: keep text readable */
+}
     /*Individual Loaders */
     .loader-spin {
       width: 80px;
@@ -66,6 +108,10 @@
       border: 8px solid #cfbaf0;
       border-right-color: #8338ec;
       animation: l2 1s infinite linear;
+    }
+
+    pre[class*="language-"] .token {
+      text-shadow: none !important;
     }
 
     .loader-l3 {
@@ -105,9 +151,9 @@
         conic-gradient(#0000 10%, #000),
         linear-gradient(#000 0 0) content-box;
       -webkit-mask: var(--_m);
-              mask: var(--_m);
+      mask: var(--_m);
       -webkit-mask-composite: source-out;
-              mask-composite: subtract;
+      mask-composite: subtract;
       animation: l4 1s infinite linear;
     }
 
@@ -116,7 +162,7 @@
       aspect-ratio: 1;
       display: grid;
       -webkit-mask: conic-gradient(from 15deg, #0000, #000);
-              mask: conic-gradient(from 15deg, #0000, #000);
+      mask: conic-gradient(from 15deg, #0000, #000);
       animation: l26 1s infinite steps(12);
     }
 
@@ -146,6 +192,7 @@
       margin: 1.5rem 0;
       justify-content: center;
     }
+
     .loader-card {
       flex: 1 1 100px;
       padding: 0.75rem 1rem;
@@ -160,6 +207,7 @@
       min-width: 90px;
       box-shadow: 0 1px 4px #0001;
     }
+
     .loader-card.active,
     .loader-card:hover {
       background: #4f8cff;
@@ -176,6 +224,7 @@
       margin-bottom: 2rem;
       align-items: flex-start;
     }
+
     .controls-pane {
       display: flex;
       flex-direction: column;
@@ -183,9 +232,10 @@
       background: #fafafa;
       padding: 1rem;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       min-width: 0;
     }
+
     .controls-pane label {
       font-size: 0.9rem;
       display: flex;
@@ -193,6 +243,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .preview-pane {
       display: flex;
       align-items: center;
@@ -200,9 +251,10 @@
       height: 200px;
       background: #f5f5f5;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       min-width: 120px;
     }
+
     #loader-preview {
       display: flex;
       align-items: center;
@@ -215,6 +267,7 @@
       height: 80px;
       transition: width 0.2s, height 0.2s;
     }
+
     /* Loader hover animation */
     #loader-preview .loader-spinner,
     #loader-preview .loader-dots,
@@ -222,6 +275,7 @@
       transition: box-shadow 0.2s, transform 0.2s, border-top-color 0.2s, animation-duration 0.2s;
       cursor: pointer;
     }
+
     #loader-preview .loader-spinner:hover,
     #loader-preview .loader-dots:hover,
     #loader-preview .loader-bars:hover {
@@ -245,35 +299,59 @@
       font-weight: 500;
       box-shadow: 0 1px 4px #0001;
     }
+
     #copy-code:hover {
       background: #367ed1;
     }
 
-  #code-block {
-  background: #282c34;
-  color: #f8f8f2;
-  padding: 1.2rem;
-  border-radius: 8px;
-  font-family: monospace;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-height: 320px;
-  min-height: 120px;
-  min-width: 220px;
-  width: 100%;
-  overflow: auto;
-  margin-bottom: 0.75rem;
-}
-    /* Animations */
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes dots {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
+    #code-block {
+      background: #282c34;
+      color: #f8f8f2;
+      padding: 1.2rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-height: 320px;
+      min-height: 120px;
+      min-width: 220px;
+      width: 100%;
+      overflow: auto;
+      margin-bottom: 0.75rem;
     }
+
+    /* Animations */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dots {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0);
+      }
+
+      40% {
+        transform: scale(1);
+      }
+    }
+
     @keyframes bars {
-      0% { transform: scaleY(1); }
-      50% { transform: scaleY(0.3); }
-      100% { transform: scaleY(1); }
+      0% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(0.3);
+      }
+
+      100% {
+        transform: scaleY(1);
+      }
     }
 
     /* Loader base styles */
@@ -282,12 +360,14 @@
       border-radius: 50%;
       animation: spin linear infinite;
     }
+
     .loader-dots,
     .loader-bars {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     .loader-dots div,
     .loader-bars div {
       background: currentColor;
@@ -295,29 +375,69 @@
       animation-iteration-count: infinite;
       animation-timing-function: ease-in-out;
     }
-    .loader-dots div { animation-name: dots; }
-    .loader-bars div { animation-name: bars; }
+
+    .loader-dots div {
+      animation-name: dots;
+    }
+
+    .loader-bars div {
+      animation-name: bars;
+    }
 
     /* Responsive */
     @media (max-width: 800px) {
-      .loader-playground { grid-template-columns: 1fr; }
-      .preview-pane { height: 160px; }
+      .loader-playground {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-pane {
+        height: 160px;
+      }
     }
+
     @media (max-width: 600px) {
       .loader-cards {
         flex-direction: column;
         gap: 0.7rem;
       }
+
       .loader-card { min-width: 0; }
       .loader-playground { gap: 1rem; }
       .preview-pane { height: 120px; }
       /*#loader-preview { width: 48px; height: 48px; }*/
       .controls-pane { padding: 0; }
       .controls-pane label { flex-direction: column; align-items: flex-start; }
-    }
 
+
+      .loader-card {
+        min-width: 0;
+      }
+
+      .loader-playground {
+        gap: 1rem;
+      }
+
+      .preview-pane {
+        height: 120px;
+      }
+
+      #loader-preview {
+        width: 48px;
+        height: 48px;
+      }
+
+      .controls-pane {
+        padding: 0;
+      }
+
+      .controls-pane label {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Navigation -->
  <nav class="navbar scroll-fade">
@@ -388,14 +508,14 @@
   <main class="templates-main">
     <h1>Loaders</h1>
 
-        <!-- Loader Selection Cards -->
+    <!-- Loader Selection Cards -->
     <section class="loader-cards">
       <div class="loader-card active" data-type="spinner">Spinner</div>
-      <div class="loader-card"        data-type="dots">Dots</div>
-      <div class="loader-card"        data-type="bars">Bars</div>
+      <div class="loader-card" data-type="dots">Dots</div>
+      <div class="loader-card" data-type="bars">Bars</div>
     </section>
 
-       <!-- Controls & Preview Playground -->
+    <!-- Controls & Preview Playground -->
     <div class="loader-playground">
       <!-- Controls Panel -->
       <div class="controls-pane">
@@ -411,7 +531,9 @@
           <span>Color:</span>
           <input type="color" id="ctrl-color" value="#4f8cff" />
         </label>
-        <pre id="code-block"></pre>
+
+        <pre id="html-block"><code class="language-html"></code></pre>
+        <pre id="css-block"><code class="language-css"></code></pre>
         <button id="copy-code">Copy Code</button>
       </div>
 
@@ -437,20 +559,20 @@
   </footer>
 
   <!-- Loader Playground -->
-    <script>
-    const cards     = document.querySelectorAll('.loader-card');
-    const preview   = document.getElementById('loader-preview');
-    const sizeCtrl  = document.getElementById('ctrl-size');
+  <script>
+    const cards = document.querySelectorAll('.loader-card');
+    const preview = document.getElementById('loader-preview');
+    const sizeCtrl = document.getElementById('ctrl-size');
     const speedCtrl = document.getElementById('ctrl-speed');
     const colorCtrl = document.getElementById('ctrl-color');
     const codeBlock = document.getElementById('code-block');
-    const copyBtn   = document.getElementById('copy-code');
+    const copyBtn = document.getElementById('copy-code');
     let currentType = 'spinner';
 
     const loaders = {
       spinner: () => '<div class="loader-spinner"></div>',
-      dots:    () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
-      bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
+      dots: () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
+      bars: () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
     };
 
     function renderLoader() {
@@ -463,6 +585,7 @@
       el.style.color = color;
 
       if (currentType === 'spinner') {
+
         el.style.width        = size + 'px';
         el.style.height       = size + 'px';
         el.style.minWidth     = size + 'px';
@@ -471,21 +594,22 @@
         el.style.maxHeight    = size + 'px';        
         el.style.borderWidth  = size / 8 + 'px';
         el.style.borderColor  = color + '33';
+
         el.style.borderTopColor = color;
         el.style.animationDuration = speed;
       } else if (currentType === 'dots') {
         el.querySelectorAll('div').forEach(dot => {
-          dot.style.width            = size / 4 + 'px';
-          dot.style.height           = size / 4 + 'px';
-          dot.style.margin           = '0 ' + size / 8 + 'px';
+          dot.style.width = size / 4 + 'px';
+          dot.style.height = size / 4 + 'px';
+          dot.style.margin = '0 ' + size / 8 + 'px';
           dot.style.animationDuration = speed;
           dot.style.background = color;
         });
       } else {
         el.querySelectorAll('div').forEach(bar => {
-          bar.style.width            = size / 8 + 'px';
-          bar.style.height           = size + 'px';
-          bar.style.margin           = '0 ' + size / 16 + 'px';
+          bar.style.width = size / 8 + 'px';
+          bar.style.height = size + 'px';
+          bar.style.margin = '0 ' + size / 16 + 'px';
           bar.style.animationDuration = speed;
           bar.style.background = color;
         });
@@ -553,8 +677,17 @@
   100% { transform: scaleY(1); }
 }`.trim();
       }
+      const htmlElem = document.getElementById('html-block').querySelector('code');
+      const cssElem = document.getElementById('css-block').querySelector('code');
 
-      codeBlock.textContent = `<!-- HTML -->\n${loaders[currentType]().trim()}\n\n<!-- CSS -->\n${css}`;
+      htmlElem.innerHTML = loaders[currentType]().trim()
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      cssElem.textContent = css;
+
+      Prism.highlightElement(htmlElem);
+      Prism.highlightElement(cssElem);
+
     }
 
     cards.forEach(c => {
@@ -579,8 +712,11 @@
     // Initialize
     renderLoader();
   </script>
-  
-  <!-- <script src="../script.js"></script>   -->
-   <!-- there is no logic imports from script.js in this file, so it is no need to import it here -->
-  </body>
+
+
+  <script src="../script.js"></script>
+  <!-- there is no logic imports from script.js in this file, so it is no need to import it here -->
+</body>
+
 </html>
+
