@@ -336,5 +336,39 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// ---- Smooth Page Transition Logic ----
+window.addEventListener("DOMContentLoaded", () => {
+    // Select only the links within the main navigation
+    const navLinks = document.querySelectorAll('.navbar .nav-links a');
 
+    navLinks.forEach(link => {
+        // Don't add this behavior to the currently active page link
+        if (link.classList.contains('active')) {
+            return;
+        }
+
+        // Add the event listener to all other navigation links
+        link.addEventListener('click', function(event) {
+            // Ignore links that open in a new tab
+            if (this.target === '_blank' || event.ctrlKey || event.metaKey) {
+                return;
+            }
+            
+            // Prevent the browser from navigating immediately
+            event.preventDefault();
+            const destinationUrl = this.href;
+            const pageWrapper = document.getElementById('page-wrapper');
+            
+            // If the wrapper exists, apply the fade-out animation
+            if (pageWrapper) {
+                pageWrapper.classList.add('page-fade-out');
+            }
+
+            // After the animation duration, navigate to the new page
+            setTimeout(() => {
+                window.location.href = destinationUrl;
+            }, 500); // This duration should match your CSS animation time
+        });
+    });
+});
 

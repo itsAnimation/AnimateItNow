@@ -2609,6 +2609,38 @@ body.dark .glow-wrap::before {
   background-color: #555; /* Darker on hover */
 }
 
+/* ---- Page Transition Animations ---- */
+#page-wrapper {
+  /* This applies the fade-in animation when any page loads */
+  animation: page-fade-in 0.5s ease-in-out forwards;
+}
+
+.page-fade-out {
+  /* This class will be added by JavaScript to trigger the fade-out */
+  animation: page-fade-out 0.5s ease-in-out forwards;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
 
 /* #search-bar::placeholder {
    color: rgba(31, 41, 55, 0.8);
