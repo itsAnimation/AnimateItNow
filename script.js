@@ -259,7 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-        alert("Message sent successfully!")
+       showToast("Message sent successfully!");
         contactForm.reset()
       } else {
         alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
@@ -272,6 +272,25 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     })
   }
+
+
+ function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Trigger fade-in
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  // Fade out and remove
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300); // Wait for transition to finish
+  }, 3000);
+}
+
+
 
   // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
