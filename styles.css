@@ -308,6 +308,125 @@ body {
   color: #00d1ff;
 }
 
+/*Voice Demo Section */
+.voice-demo-section {
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  max-width: 500px;
+  background: #f6f8fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.voice-demo-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+#voiceDemoInput {
+  padding: 0.7em 1em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 220px;
+  background: #fff;
+}
+#voiceDemoMicBtn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+#voiceDemoMicBtn.active {
+  background: #1e40af;
+}
+.voice-animation-box {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  background: #2563eb;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.voice-animation-box.animate {
+  opacity: 1;
+  transform: scale(1.2);
+  animation: bounce 1s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes bounce {
+  0%   { transform: scale(1.2) translateY(0);}
+  30%  { transform: scale(1.1) translateY(-30px);}
+  50%  { transform: scale(1)   translateY(0);}
+  70%  { transform: scale(1.05) translateY(-15px);}
+  100% { transform: scale(1)   translateY(0);}
+}
+/* 🎯 Voice-triggered animations */
+
+@keyframes animBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes animSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes animShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+}
+
+@keyframes animZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@keyframes animPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Animation classes */
+.anim-bounce {
+  animation: animBounce 1s ease;
+}
+.anim-spin {
+  animation: animSpin 1s linear;
+}
+.anim-shake {
+  animation: animShake 0.5s ease;
+}
+.anim-zoom {
+  animation: animZoom 1s ease-in-out;
+}
+.anim-pulse {
+  animation: animPulse 1.2s infinite;
+}
+.anim-default {
+  animation: animBounce 1s ease;
+}
+#lottiePlayer {
+  max-width: 200px;
+  margin: 20px auto;
+}
+
 /* Landing Section */
 .landing-section {
   /* background: url("images/bg.jpg") center center / cover no-repeat; */

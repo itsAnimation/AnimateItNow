@@ -65,8 +65,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 📨 Contact form validation
   const contactForm = document.querySelector('.contact-form');
+   if (contactForm) {
   const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
-  if (contactForm) {
+ 
     function checkFormValidity() {
       return [...formInputs].every(input => input.value.trim() !== '');
     }
@@ -183,6 +184,7 @@ if (!isMobile && cursorToggle) {
 }
 
 
+
   // 🚦 ProgressBar Functionality
   function updateProgressBar() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -197,5 +199,99 @@ if (!isMobile && cursorToggle) {
   // Initialize on load
   updateProgressBar();
 
-
+// 🎤 Initialize Voice Animation (FIXED)
+  // Only initialize if we're on the speech page and the function exists
+  if (typeof window.initVoiceAnimation === 'function' && document.getElementById('voiceDemoMicBtn')) {
+    console.log("Initializing voice animation...");
+    
+    // Create basic CSS animations as fallback for missing Lottie files
+    const style = document.createElement('style');
+    style.textContent = `
+      .voice-animation-fallback {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        transition: all 0.3s ease;
+      }
+      .bounce-anim { 
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        animation: bounceEffect 1s ease-in-out;
+      }
+      .spin-anim { 
+        background: linear-gradient(45deg, #0abde3, #006ba6);
+        animation: spinEffect 1s linear;
+      }
+      .shake-anim { 
+        background: linear-gradient(45deg, #feca57, #ff9ff3);
+        animation: shakeEffect 0.5s ease-in-out;
+      }
+      .zoom-anim { 
+        background: linear-gradient(45deg, #48dbfb, #0abde3);
+        animation: zoomEffect 1s ease-in-out;
+      }
+      .boy-anim { 
+        background: linear-gradient(45deg, #54a0ff, #2e86de);
+      }
+      .girl-anim { 
+        background: linear-gradient(45deg, #ff9ff3, #f368e0);
+      }
+      .handshake-anim, .fistbump-anim { 
+        background: linear-gradient(45deg, #5f27cd, #00d2d3);
+        animation: pulseEffect 1s ease-in-out;
+      }
+      
+      @keyframes bounceEffect {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+      }
+      @keyframes spinEffect {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes shakeEffect {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+      }
+      @keyframes zoomEffect {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+      }
+      @keyframes pulseEffect {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize with fallback animations
+    window.initVoiceAnimation({
+      micBtnId: 'voiceDemoMicBtn',
+      inputBoxId: 'voiceDemoInput',
+      animationBoxId: 'lottiePlayer',
+      commands: {
+        bounce: 'animations/Bounce.json',
+        spin: 'animations/spin.json', 
+        shake: 'animations/Shakeit.json',
+        zoom: 'animations/zoom.json',
+        boy: 'animations/boy.json',
+        girl: 'animations/girl.json',
+        handshake: 'animations/FistBump.json',
+        fist: 'animations/FistBump.json'
+      }
+    });
+  }
+  
+  // Remove animation class after it ends
+  document.querySelectorAll('.voice-animation-box').forEach(box => {
+    box.addEventListener('animationend', () => {
+      box.classList.remove('animate');
+    });
+  });
 });
