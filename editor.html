@@ -6,72 +6,126 @@
     <title>AnimateItNow - Live Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="editor.css" />
+    <style>
+      :root {
+        --nav-text: #222;
+        --accent: #007BFF;
+        --transition: 0.3s ease;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #222;
+        padding-top: 64px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 60px !important;
+        z-index: 1000 !important;
+        background-color: #f5f5f5;
+        color: var(--nav-text);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+      }
+
+      .accent-strip {
+        height: 8px;
+        width: 100%;
+        background-color: var(--accent);
+        position: fixed;
+        top: 60px;
+        z-index: 999;
+      }
+
+      .run-button {
+        background-color: var(--accent);
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border: none;
+        transition: background-color var(--transition);
+      }
+
+      .run-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Dark theme styles */
+      body.dark-theme {
+        background-color: #121212;
+        color: #eee;
+      }
+
+      body.dark-theme .navbar {
+        background: rgba(40, 40, 40, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+      }
+
+      body.dark-theme .accent-strip {
+        background-color: #90caf9;
+      }
+
+      body.dark-theme .run-button {
+        background-color: #90caf9;
+        color: #000;
+      }
+
+      body.dark-theme .run-button:hover {
+        background-color: #64b5f6;
+      }
+    </style>
   </head>
 
-  <body class="bg-gray-50 text-gray-900 min-h-screen">
-    <header class="bg-white shadow p-4 flex items-center justify-between">
-      <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
-      <div class="flex gap-2">
-        <button
-          id="resetBtn"
-          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
-          title="Reset"
-        >
-          &#x21bb;
-        </button>
-        <button
-          id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
-        >
-          Run
-        </button>
+  <body class="relative overflow-x-hidden">
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <h1 class="text-xl font-bold text-[#007BFF]">AnimateItNow</h1>
+      <div class="flex gap-2 items-center">
+        <button id="themeToggle" class="text-xl text-yellow-500 hover:scale-110 transition">🌙</button>
+        <button id="resetBtn" class="text-[#007BFF] hover:text-blue-800 text-2xl font-bold px-4 py-2" title="Reset">&#x21bb;</button>
       </div>
     </header>
 
-    <main class="p-6 space-y-6">
-      <div class="flex flex-row gap-4">
-        <!-- HTML Editor -->
-        <div class="flex-1">
+    <div class="accent-strip"></div>
+
+    <main class="p-6 space-y-6 relative z-10">
+      <div class="flex flex-col lg:flex-row gap-4">
+        <div class="flex-1 animate-editor-box box-hover">
           <div class="editor-label html-label">HTML</div>
-          <textarea
-            id="htmlCode"
-            class="editor-area html-area"
-            placeholder="Write HTML here..."
-          ></textarea>
+          <textarea id="htmlCode" class="editor-area html-area" placeholder="Write HTML here..."></textarea>
         </div>
 
-        <!-- CSS Editor -->
-        <div class="flex-1">
+        <div class="flex-1 animate-editor-box box-hover">
           <div class="editor-label css-label">CSS</div>
-          <textarea
-            id="cssCode"
-            class="editor-area css-area"
-            placeholder="Write CSS here..."
-          ></textarea>
+          <textarea id="cssCode" class="editor-area css-area" placeholder="Write CSS here..."></textarea>
         </div>
 
-        <!-- JS Editor -->
-        <div class="flex-1">
+        <div class="flex-1 animate-editor-box box-hover">
           <div class="editor-label js-label">JavaScript</div>
-          <textarea
-            id="jsCode"
-            class="editor-area js-area"
-            placeholder="Write JavaScript here..."
-          ></textarea>
+          <textarea id="jsCode" class="editor-area js-area" placeholder="Write JavaScript here..."></textarea>
         </div>
       </div>
 
-      <!-- Output -->
-      <div>
-        <h2 class="text-lg font-semibold mb-2">Output</h2>
-        <iframe
-          id="output"
-          class="w-full h-[300px] border border-gray-300 rounded bg-white"
-        ></iframe>
+      <div class="space-y-4">
+        <button id="runBtn" class="run-button px-6 py-2 rounded shadow hover:scale-105 transition-all duration-300">▶ Run</button>
+        <iframe id="output" class="w-full h-[300px] border rounded animate-output shadow-lg backdrop-blur-sm"></iframe>
       </div>
     </main>
 
     <script src="editor.js"></script>
   </body>
 </html>
-
