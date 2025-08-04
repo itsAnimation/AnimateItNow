@@ -43,8 +43,8 @@
   /*Dark mode for glass heading */
   .dark .glass-heading {
     color: #ffffff;
-    background: rgba(255,255,255,0.1);
-    border: 1.5px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.458);
+    border: 1.5px solid rgba(31, 164, 182, 0.334);
     box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3);
   }
   /*Search container with transparent background */
@@ -78,12 +78,12 @@
   }
   /*Dark mode for search input */
   .dark .search-input {
-    background: #2d2d2d;
+    background: #00000093;
     color: #ffffff;
-    border-color: #404040;
+    border-color: #ffffff5f;
   }
   .dark .search-input:focus {
-    border-color: #4dabf7;
+    border-color: #55cad0;
     box-shadow: 0 4px 20px rgba(77,171,247,0.3);
   }
   /*Search button styling */
@@ -119,8 +119,9 @@
   }
   /*Dark mode for table container */
   .dark .table-container {
-    background: #2d2d2d;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    background: #000000;
+    border: 2px solid rgb(28, 145, 135);
+    box-shadow: 0 10px 30px rgba(36, 163, 158, 0.432);
   }
   /*Table styling */
   .leaderboard-table {
@@ -142,10 +143,21 @@
   /*Dark mode for table cells */
   .dark .leaderboard-table th,
   .dark .leaderboard-table td {
-    border-bottom: 1px solid #404040;
+    border-bottom: 1px solid #159d8897;
   }
   .leaderboard-table th {
     background: linear-gradient(135deg, #1e1e2f 0%, #2d2d4a 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .dark .leaderboard-table th {
+    background: linear-gradient(135deg, #0a312e 0%, #3b817f 100%);
     color: #ffffff;
     font-weight: 700;
     font-size: 1.1rem;
@@ -189,9 +201,16 @@
     font-weight: 600;
     color: #28a745;
   }
+  .dark .leaderboard-table th:last-child,
+  .dark .leaderboard-table td:last-child {
+    width: 120px;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+  }
   /*Dark mode for points column */
   .dark .leaderboard-table td:last-child {
-    color: #51cf66;
+    color: #29ddcb;
   }
   /*Avatar styling */
   .contributor-avatar {
@@ -231,10 +250,10 @@
   }
   /*Dark mode for contributor links */
   .dark .contributor-link {
-    color: #4dabf7;
+    color: #43c3b6e2;
   }
   .dark .contributor-link:hover {
-    color: #74c0fc;
+    color: #156d6d;
   }
   /*PR Details styling */
   .pr-details {
@@ -304,7 +323,7 @@
   }
   .pagination-btn {
     padding: 12px 20px;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(135deg, #00fff7 0%, #041322 100%);
     color: white;
     border: none;
     border-radius: 8px;
