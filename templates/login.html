@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
- 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,7 +77,7 @@
 
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
-    
+
     <style>
       /* CSS Variables for Light and Dark mode */
       /* :root {
@@ -107,8 +106,6 @@
         color: var(--text-color);
         transition: background-color var(--transition), color var(--transition);
       }
-
-      
       /* Section wrapper */
       section {
         max-width: 400px;
@@ -1148,6 +1145,80 @@ form.login-form button:hover {
       </button>
     </section>
 
+    <section class="variant-10">
+     <h2>Login Variant 10 - <br/><span class="geometric">geometric design elements<span/></h2>
+      <p class="subtitle">Translucent glass effect with backdrop blur</p>
+      <form
+        class="login-form"
+        onsubmit="event.preventDefault(); alert('Login Variant 10 submitted!');"
+      >
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+          <div class="form-options">
+                <label>
+                  <input type="checkbox" id="remember-me"> Remember me
+                </label>
+                <a href="#" id="forget">Forgot password?</a>
+            </div>
+        <button type="submit">Sign In</button>
+        <p class="signup-link">
+          Don't have an account? <a href="#">Sign up</a>
+        </p>
+      </form>
+      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+      <pre class="code-block">
+&lt;section class="variant-10"&gt;
+  &lt;form class="login-form"&gt;
+    &lt;input type="email" placeholder="Email" required /&gt;
+    &lt;input type="password" placeholder="Password" required /&gt;
+    &lt;button type="submit"&gt;Sign In&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+.variant-10 {
+  background: #d4f5f9
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+.variant-10::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+.variant-10 input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+.variant-10 button {
+  background: rgba(79, 140, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.variant-10 button:hover {
+  background: rgba(79, 140, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(79, 140, 255, 0.4);
+}
+
+&lt;/style&gt;
+  </pre
+      >
+      <button class="expand-btn copy-btn" aria-label="Copy code">
+        Copy Code
+      </button>
+    </section>
+
     <script>
       // Toggle code block visibility
       function toggleCode(button) {
@@ -1174,6 +1245,11 @@ form.login-form button:hover {
         });
       });
 
+      let forgetbuttom = document.getElementById("forget");
+      forgetbuttom.addEventListener("click", function(){
+        alert("forget your password");
+      })
+
       // Dark mode toggle
       // const themeToggleBtn = document.getElementById("theme-toggle");
       // const body = document.body;
@@ -1189,6 +1265,5 @@ form.login-form button:hover {
       //   }
       // });
     </script>
-    
-    </body>
+  </body>
 </html>
