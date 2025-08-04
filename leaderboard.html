@@ -912,6 +912,14 @@
   });
   //Download Excel functionality
   function downloadExcel() {
+    // Check if the XLSX object exists before proceeding.
+    if (typeof XLSX === 'undefined') {
+      // Alert the user that the functionality is unavailable.
+      alert("Excel download functionality is currently unavailable. Please check your internet connection or try again later.");
+      console.error("XLSX library not loaded. Aborting download.");
+      return;
+    }
+    
     const table = document.createElement("table");
     table.innerHTML = `<thead><tr>        <th>Rank</th>        <th>Contributor</th>        <th>Merged PRs</th>        <th>Total Points</th>      </tr></thead><tbody></tbody>`;
           
