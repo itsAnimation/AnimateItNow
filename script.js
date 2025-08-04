@@ -6,11 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
   function setTheme(dark) {
     if (dark) {
       body.classList.add('dark');
-      themeToggle.textContent = '☀️';
       localStorage.setItem('theme', 'dark');
     } else {
       body.classList.remove('dark');
-      themeToggle.textContent = '🌙';
       localStorage.setItem('theme', 'light');
     }
   }
