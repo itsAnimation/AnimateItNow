@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <title>404 Page Templates - Page Not Found</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../manifest.json" />
+
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+
+  <meta name="description" content="Multiple 404 page designs and templates for web developers" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    /* Reset & base */
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    
+    /* Dark theme toggle */
+    .theme-toggle {
+      position: fixed !important;
+      top: 20px !important;
+      right: 20px !important;
+      background: #ffffff !important;
+      border: 2px solid #218cfa !important;
+      border-radius: 25px !important;
+      padding: 10px 18px !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #333 !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.2) !important;
+      backdrop-filter: blur(10px) !important;
+      z-index: 99999 !important;
+      user-select: none !important;
+      min-width: 80px !important;
+      justify-content: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      font-family: 'Poppins', sans-serif !important;
+    }
+    
+    .theme-toggle:hover {
+      background: #f8f9ff !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.3) !important;
+    }
+    
+    .theme-toggle:active {
+      transform: translateY(0px) !important;
+    }
+    
+    body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f5ff;
+      color: #333;
+      padding: 20px;
+      user-select: none;
+    }
+
+    /* Main content wrapper */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+
+    /* Page title */
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #218cfa;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    /* Base container */
+    .container {
+      background: #ffffff;
+      width: 100%;
+      padding: 40px 30px 50px;
+      border-radius: 15px;
+      box-shadow:
+        0 10px 20px rgba(33, 140, 250, 0.15),
+        0 6px 6px rgba(33, 140, 250, 0.1);
+      position: relative;
+      overflow: visible;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 15px 30px rgba(33, 140, 250, 0.2),
+        0 10px 10px rgba(33, 140, 250, 0.15);
+    }
+
+    /* Container variants */
+    .container.gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .container.glass-bg {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .container.neon-bg {
+      background: #1a1a2e;
+      color: #00fff0;
+      border: 2px solid #00fff0;
+      box-shadow: 
+        0 0 20px rgba(0, 255, 240, 0.3),
+        inset 0 0 20px rgba(0, 255, 240, 0.1);
+    }
+
+    .container.minimal-bg {
+      background: #fafafa;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Big 404 text variants */
+    .error-code {
+      font-weight: 700;
+      font-size: 5rem;
+      color: #218cfa;
+      position: relative;
+      line-height: 1;
+      margin-bottom: 15px;
+      user-select: text;
+    }
+
+    .error-code.gradient-text {
+      background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .error-code.neon-text {
+      color: #00fff0;
+      text-shadow: 
+        0 0 10px #00fff0,
+        0 0 20px #00fff0,
+        0 0 40px #00fff0;
+      animation: neonGlow 2s ease-in-out infinite alternate;
+    }
+
+    .error-code.minimal-text {
+      color: #333;
+      font-weight: 300;
+    }
+
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 10px #00fff0, 0 0 20px #00fff0, 0 0 40px #00fff0; }
+      to { text-shadow: 0 0 5px #00fff0, 0 0 10px #00fff0, 0 0 20px #00fff0; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+      40%, 43% { transform: translate3d(0,-10px,0); }
+      70% { transform: translate3d(0,-5px,0); }
+      90% { transform: translate3d(0,-2px,0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Subheading */
+    .error-msg {
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #555;
+      user-select: text;
+    }
+
+    /* Description */
+    .error-desc {
+      color: #7a7a7a;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      user-select: text;
+    }
+
+    /* Interactive Go Back button */
+    .btn-go-back {
+      background: linear-gradient(45deg, #218cfa, #1e6cd9);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 38px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(33, 140, 250, 0.45);
+      transition: all 0.25s ease-in-out;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .btn-go-back:hover {
+      filter: brightness(1.15);
+      transform: scale(1.08);
+      box-shadow: 0 12px 20px rgba(33, 140, 250, 0.55);
+    }
+    
+    .btn-go-back:active {
+      transform: scale(0.95);
+      box-shadow: 0 6px 15px rgba(33, 140, 250, 0.35);
+    }
+
+    /* Button variants */
+    .btn-go-back.gradient-btn {
+      background: linear-gradient(45deg, #ff6b6b, #feca57);
+      box-shadow: 0 6px 12px rgba(255, 107, 107, 0.45);
+    }
+
+    .btn-go-back.neon-btn {
+      background: transparent;
+      border: 2px solid #00fff0;
+      color: #00fff0;
+      box-shadow: 0 0 20px rgba(0, 255, 240, 0.3);
+    }
+
+    .btn-go-back.minimal-btn {
+      background: #333;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-go-back.glass-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    /* Subtle animated background circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(33, 140, 250, 0.15);
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      pointer-events: none;
+    }
+    
+    .circle.one {
+      width: 150px;
+      height: 150px;
+      top: -40px;
+      right: -50px;
+      animation-name: float1;
+      animation-duration: 4.5s;
+    }
+    
+    .circle.two {
+      width: 90px;
+      height: 90px;
+      bottom: -30px;
+      left: -20px;
+      animation-name: float2;
+      animation-duration: 6s;
+    }
+
+    @keyframes float1 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-10px, 15px); }
+    }
+    
+    @keyframes float2 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(15px, -10px); }
+    }
+
+    /* SVG icon styling */
+    .icon-robot {
+      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      stroke: #218cfa;
+      stroke-width: 2;
+      fill: none;
+      animation: pulseStroke 2.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulseStroke {
+      0%, 100% { stroke-opacity: 1; }
+      50% { stroke-opacity: 0.4; }
+    }
+
+    /* Different icon styles */
+    .icon-robot.gradient-icon {
+      stroke: #ff6b6b;
+    }
+
+    .icon-robot.neon-icon {
+      stroke: #00fff0;
+      filter: drop-shadow(0 0 10px #00fff0);
+    }
+
+    .icon-robot.minimal-icon {
+      stroke: #666;
+    }
+
+    /* Small footer note */
+    .footer-note {
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 22px;
+      user-select: none;
+    }
+
+    /* Dark theme styles */
+    [data-theme="dark"] {
+      background: #1a1a2e;
+      color: #eee;
+    }
+
+    [data-theme="dark"] .main-content {
+      color: #eee;
+    }
+
+    [data-theme="dark"] .page-title {
+      color: #66b3ff;
+    }
+
+    [data-theme="dark"] .page-subtitle {
+      color: #bbb;
+    }
+
+    [data-theme="dark"] .container {
+      background: #16213e;
+      box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 6px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="dark"] .container.minimal-bg {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+
+    [data-theme="dark"] .container.glass-bg {
+      background: rgba(45, 55, 72, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="dark"] .error-msg {
+      color: #ddd;
+    }
+    
+    [data-theme="dark"] .error-desc {
+      color: #bbb;
+    }
+    
+    [data-theme="dark"] .footer-note {
+      color: #888;
+    }
+
+    [data-theme="dark"] .error-code.minimal-text {
+      color: #eee;
+    }
+
+    [data-theme="dark"] .btn-go-back.minimal-btn {
+      background: #4a5568;
+      color: #eee;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: #16213e !important;
+      border-color: #218cfa !important;
+      color: #eee !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    [data-theme="dark"] .theme-toggle:hover {
+      background: #1a2542 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    [data-theme="dark"] .circle {
+      background: rgba(33, 140, 250, 0.1);
+    }
+    
+    [data-theme="dark"] .icon-robot circle {
+      fill: #1e3a5f;
+    }
+
+    /*navbar*/
+    .navbar {
+      width: 100%;
+      margin-bottom: 2%;
+    }
+
+    #theme-toggle {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .error-code {
+        font-size: 4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-code {
+        font-size: 3rem;
+      }
+      
+      .container {
+        padding: 30px 24px 40px;
+      }
+      
+      .btn-go-back {
+        padding: 12px 28px;
+        font-size: 1rem;
+      }
+      
+      .theme-toggle {
+        top: 15px !important;
+        right: 15px !important;
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+        min-width: 70px !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <!-- cursor toggle switch -->
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+              </path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <!-- Theme Toggle Button - Global -->
+    <div class="theme-toggle" onclick="toggleTheme()" id="global-theme-button">
+      🌙 Dark Mode
+    </div>
+
+    <!-- Page Header -->
+    <h1 class="page-title">404 Page Templates</h1>
+    <p class="page-subtitle">Choose from different 404 page designs for your projects</p>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+
+      <!-- Card 1: Classic Blue -->
+      <div class="container" role="main" aria-labelledby="error-title-1">
+        <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Friendly robot head icon">
+          <circle cx="32" cy="32" r="30" stroke="#218cfa" stroke-width="4" fill="#d6eaff" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#218cfa" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="#218cfa" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-1" class="error-code">404</h2>
+        <p class="error-msg">Classic Design</p>
+        <p class="error-desc">The page you're looking for can't be found. But don't worry, let's get you back on track.
+        </p>
+        <button type="button" class="btn-go-back" onclick="window.history.back()"
+          aria-label="Go back to previous page">
+          👈 Go Back
+        </button>
+        <div class="footer-note" aria-live="polite">
+          Or <a href="/" style="color:#218cfa; text-decoration:underline;">head home</a> and start fresh.
+        </div>
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+      </div>
+
+      <!-- Card 2: Gradient Style -->
+      <div class="container gradient-bg" role="main" aria-labelledby="error-title-2">
+        <svg aria-hidden="true" class="icon-robot gradient-icon" viewBox="0 0 64 64" role="img"
+          xmlns="http://www.w3.org/2000/svg" aria-label="Gradient robot head icon">
+          <circle cx="32" cy="32" r="30" stroke="#ff6b6b" stroke-width="4" fill="rgba(255,255,255,0.2)" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#ff6b6b" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#ff6b6b" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#ff6b6b" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-2" class="error-code gradient-text">404</h2>
+        <p class="error-msg">Gradient Magic</p>
+        <p class="error-desc">Oops! This page seems to have wandered off into the digital void.</p>
+        <button type="button" class="btn-go-back gradient-btn" onclick="window.history.back()"
+          aria-label="Go back to previous page">
+          ✨ Go Back
+        </button>
+        <div class="footer-note" aria-live="polite">
+          Or <a href="/" style="color:#feca57; text-decoration:underline;">return home</a> safely.
+        </div>
+      </div>
+
+      <!-- Card 3: Glassmorphism -->
+      <div class="container glass-bg" role="main" aria-labelledby="error-title-3">
+        <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Glass robot head icon">
+          <circle cx="32" cy="32" r="30" stroke="white" stroke-width="4" fill="rgba(255,255,255,0.1)" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="white" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="white" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="white" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="white" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-3" class="error-code" style="color: white;">404</h2>
+        <p class="error-msg" style="color: white;">Glass Effect</p>
+        <p class="error-desc" style="color: rgba(255,255,255,0.8);">Lost in the transparency? This page doesn't exist
+          in our reality.</p>
+        <button type="button" class="btn-go-back glass-btn" onclick="window.history.back()"
+          aria-label="Go back to previous page">
+          🔙 Go Back
+        </button>
+        <div class="footer-note" style="color: rgba(255,255,255,0.7);" aria-live="polite">
+          Or <a href="/" style="color:white; text-decoration:underline;">find your way home</a>.
+        </div>
+      </div>
+
+      <!-- Card 4: Neon Cyberpunk -->
+      <div class="container neon-bg" role="main" aria-labelledby="error-title-4">
+        <svg aria-hidden="true" class="icon-robot neon-icon" viewBox="0 0 64 64" role="img"
+          xmlns="http://www.w3.org/2000/svg" aria-label="Neon robot head icon">
+          <circle cx="32" cy="32" r="30" stroke="#00fff0" stroke-width="4" fill="rgba(0,255,240,0.1)" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#00fff0" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#00fff0" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#00fff0" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="#00fff0" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-4" class="error-code neon-text">404</h2>
+        <p class="error-msg">SYSTEM ERROR</p>
+        <p class="error-desc">Access denied. This sector of cyberspace is restricted or doesn't exist.</p>
+        <button type="button" class="btn-go-back neon-btn" onclick="window.history.back()"
+          aria-label="Go back to previous page">
+          ⚡ RETURN
+        </button>
+        <div class="footer-note" aria-live="polite">
+          Or <a href="/" style="color:#00fff0; text-decoration:underline;">jack out</a> to main grid.
+        </div>
+      </div>
+
+      <!-- Card 5: Minimal Clean -->
+      <div class="container minimal-bg" role="main" aria-labelledby="error-title-5">
+        <svg aria-hidden="true" class="icon-robot minimal-icon" viewBox="0 0 64 64" role="img"
+          xmlns="http://www.w3.org/2000/svg" aria-label="Minimal robot head icon">
+          <circle cx="32" cy="32" r="30" stroke="#666" stroke-width="2" fill="none" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#666" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#666" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#666" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="#666" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-5" class="error-code minimal-text">404</h2>
+        <p class="error-msg">Simply Not Found</p>
+        <p class="error-desc">Clean and simple. The page you requested is not available.</p>
+        <button type="button" class="btn-go-back minimal-btn" onclick="window.history.back()"
+          aria-label="Go back to previous page">
+          ← Go Back
+        </button>
+        <div class="footer-note" aria-live="polite">
+          Or <a href="/" style="color:#333; text-decoration:underline;">go home</a>.
+        </div>
+      </div>
+
+      <!-- Card 6: Animated Fun -->
+      <div class="container" style="background: linear-gradient(45deg, #ff9a56, #ff6b95);" role="main"
+        aria-labelledby="error-title-6">
+        <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg"
+          aria-label="Animated robot head icon" style="animation: bounce 2s infinite;">
+          <circle cx="32" cy="32" r="30" stroke="white" stroke-width="4" fill="rgba(255,255,255,0.2)" />
+          <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="white" />
+          <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="white" />
+          <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="white" />
+          <line x1="32" y1="28" x2="32" y2="44" stroke="white" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <h2 id="error-title-6" class="error-code" style="color: white; animation: pulse 2s infinite;">404</h2>
+        <p class="error-msg" style="color: white;">Whoops! Page Missing</p>
+        <p class="error-desc" style="color: rgba(255,255,255,0.9);">Don't worry, even the best explorers take wrong
+          turns sometimes!</p>
+        <button type="button" class="btn-go-back"
+          style="background: rgba(255,255,255,0.2); border: 2px solid white; color: white;"
+          onclick="window.history.back()" aria-label="Go back to previous page">
+          🏠 Take Me Home
+        </button>
+        <div class="footer-note" style="color: rgba(255,255,255,0.8);" aria-live="polite">
+          Let's get you back on track!
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dark Theme Toggle Script -->
+  <script>
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const globalButton = document.getElementById('global-theme-button');
+
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+
+      if (newTheme === 'dark') {
+        if (globalButton) {
+          globalButton.innerHTML = '☀️ Light Mode';
+        }
+      } else {
+        if (globalButton) {
+          globalButton.innerHTML = '🌙 Dark Mode';
+        }
+      }
+    }
+
+    // Load saved theme on page load
+    window.addEventListener('load', function () {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const globalButton = document.getElementById('global-theme-button');
+
+      document.body.setAttribute('data-theme', savedTheme);
+
+      if (savedTheme === 'dark') {
+        if (globalButton) {
+          globalButton.innerHTML = '☀️ Light Mode';
+        }
+      }
+    });
+  </script>
+
+  <div id="cursor-snake"></div>
+  <script src="../script.js"></script>
+</body>
+
+</html>
