@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feature Section Variants with Expandable Code</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  <!-- Prism.js CSS and JS -->
-<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature Section Variants with Expandable Code</title>
+  <meta name="description"
+    content="A comprehensive collection of CSS animation templates and effects for web developers" />
 
   <!-- Apple Touch Icons -->
   <!-- Fallback icon -->
@@ -386,73 +382,6 @@
         <h3>Live Chat</h3>
         <p>Connect instantly with others in real-time.</p>
       </div>
-
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block"><code class="language-html">
-&lt;style&gt;
-.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
-.card { background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-&lt;/style&gt;
-&lt;div class="card"&gt;
-  &lt;h3&gt;Live Chat&lt;/h3&gt;
-  &lt;p&gt;Connect instantly with others.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
-
-    <!-- Icon Features Section -->
-    <section>
-      <h2>2. Icon-Based Features</h2>
-      <p class="subtitle">Circular icons with short descriptions</p>
-      <div class="icon-container">
-        <div class="icon-box">
-          <div class="circle">💬</div>
-          <h4>Chat</h4>
-          <p>Talk live with users</p>
-        </div>
-        <div class="icon-box">
-          <div class="circle">📊</div>
-          <h4>Analytics</h4>
-          <p>Monitor activity</p>
-        </div>
-        <div class="icon-box">
-          <div class="circle">🔔</div>
-          <h4>Alerts</h4>
-          <p>Stay updated</p>
-        </div>
-      </div>
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block"><code class="language-html">
-&lt;style&gt;
-.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
-.card { background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-&lt;/style&gt;
-&lt;div class="card"&gt;
-  &lt;h3&gt;Live Chat&lt;/h3&gt;
-  &lt;p&gt;Connect instantly with others.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
-
-    <!-- Accordion Section -->
-    <section>
-      <h2>3. Accordion Features</h2>
-      <p class="subtitle">Expandable/collapsible details</p>
-      <div class="accordion-item">
-        <div
-          class="accordion-title"
-          onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';"
-        >
-          What is the feature about?
-        </div>
-        <div class="accordion-content">
-          This feature allows you to connect and collaborate.
-        </div>
-
       <div class="card">
         <h3>Dashboard</h3>
         <p>Track your tasks and stats in one place.</p>
@@ -461,98 +390,134 @@
         <h3>Reminders</h3>
         <p>Get automated alerts and notifications.</p>
       </div>
-    
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+      &lt;style&gt; .card-container { display: flex; gap: 20px; flex-wrap:
+      wrap; } .card { background: #f0f0f0; border-radius: 12px; padding: 20px;
+      width: 280px; } .card:hover { transform: translateY(-5px); box-shadow: 0
+      6px 20px rgba(0,0,0,0.15); } &lt;/style&gt; &lt;div class="card"&gt;
+      &lt;h3&gt;Live Chat&lt;/h3&gt; &lt;p&gt;Connect instantly with
+      others.&lt;/p&gt; &lt;/div&gt;
+    </div>
+    <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
+
+  <!-- Icon Features Section -->
+  <section>
+    <h2>2. Icon-Based Features</h2>
+    <p class="subtitle">Circular icons with short descriptions</p>
+    <div class="icon-container">
+      <div class="icon-box">
+        <div class="circle">💬</div>
+        <h4>Chat</h4>
+        <p>Talk live with users</p>
+      </div>
+      <div class="icon-box">
+        <div class="circle">📊</div>
+        <h4>Analytics</h4>
+        <p>Monitor activity</p>
       </div>
       <div class="icon-box">
         <div class="circle">🔔</div>
         <h4>Alerts</h4>
         <p>Stay updated</p>
       </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+      &lt;div class="icon-box"&gt; &lt;div class="circle"&gt;💬&lt;/div&gt;
+      &lt;h4&gt;Chat&lt;/h4&gt; &lt;p&gt;Talk live with users&lt;/p&gt;
+      &lt;/div&gt; .circle { width: 70px; height: 70px; border-radius: 50%;
+      background: #4CAF50; display: flex; align-items: center;
+      justify-content: center; color: #fff; }
+    </div>
+    <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block"><code class="language-html">
-&lt;style&gt;
-.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
-.card { background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-&lt;/style&gt;
-&lt;div class="card"&gt;
-  &lt;h3&gt;Live Chat&lt;/h3&gt;
-  &lt;p&gt;Connect instantly with others.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
-
-    <!-- Step Section -->
-    <section>
-      <h2>4. Numbered Steps</h2>
-      <p class="subtitle">Use this for tutorials or onboarding</p>
-      <div class="steps-container">
-        <div class="step-box">
-          <div class="step-number">Step 1</div>
-          <p>Create your account.</p>
-        </div>
-        <div class="step-box">
-          <div class="step-number">Step 2</div>
-          <p>Customize your dashboard.</p>
-        </div>
-        <div class="step-box">
-          <div class="step-number">Step 3</div>
-          <p>Join community events.</p>
-        </div>
+  <!-- Accordion Section -->
+  <section>
+    <h2>3. Accordion Features</h2>
+    <p class="subtitle">Expandable/collapsible details</p>
+    <div class="accordion-item">
+      <div class="accordion-title"
+        onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        What is the feature about?
       </div>
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-     <pre class="code-block"><code class="language-html">
-&lt;style&gt;
-.card-container { display: flex; gap: 20px; flex-wrap: wrap; }
-.card { background: #f0f0f0; border-radius: 12px; padding: 20px; width: 280px; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-&lt;/style&gt;
-&lt;div class="card"&gt;
-  &lt;h3&gt;Live Chat&lt;/h3&gt;
-  &lt;p&gt;Connect instantly with others.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-      <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
+      <div class="accordion-content">
+        This feature allows you to connect and collaborate.
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-title"
+        onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        Is my data safe?
+      </div>
+      <div class="accordion-content">
+        Yes, we use strong encryption for your data.
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+      &lt;div class="accordion-item"&gt; &lt;div
+      class="accordion-title"&gt;Click to expand&lt;/div&gt; &lt;div
+      class="accordion-content"&gt;Hidden content here&lt;/div&gt;
+      &lt;/div&gt; .accordion-title { background: #eee; padding: 15px; cursor:
+      pointer; } .accordion-content { display: none; background: #f9f9f9;
+      padding: 15px; }
+    </div>
+    <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-    <script>
-      function toggleCode(button) {
-        const code = button.nextElementSibling;
-        const isVisible = code.style.display === "block";
-        code.style.display = isVisible ? "none" : "block";
-        button.textContent = isVisible ? "Show Code" : "Hide Code";
-      }
+  <!-- Step Section -->
+  <section>
+    <h2>4. Numbered Steps</h2>
+    <p class="subtitle">Use this for tutorials or onboarding</p>
+    <div class="steps-container">
+      <div class="step-box">
+        <div class="step-number">Step 1</div>
+        <p>Create your account.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-number">Step 2</div>
+        <p>Customize your dashboard.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-number">Step 3</div>
+        <p>Join community events.</p>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <div class="code-block">
+      &lt;div class="step-box"&gt; &lt;div class="step-number"&gt;Step
+      1&lt;/div&gt; &lt;p&gt;Create your account.&lt;/p&gt; &lt;/div&gt;
+      .step-box { border-left: 5px solid #2196F3; background: #f0f8ff;
+      padding: 15px; border-radius: 8px; }
+    </div>
+    <button class="expand-btn copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-      document.querySelectorAll(".copy-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const codeBlock = btn.previousElementSibling;
-          try {
-            await navigator.clipboard.writeText(codeBlock.innerText);
-            btn.textContent = "Copied!";
-            btn.disabled = true;
-            setTimeout(() => {
-              btn.textContent = "Copy Code";
-              btn.disabled = false;
-            }, 1500);
-          } catch (err) {
-            console.error("Copy failed:", err);
-          }
-        });
-      });
+  <script>
+    function toggleCode(button) {
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
 
-      // Dark mode toggle
-      const themeToggleBtn = document.getElementById("theme-toggle");
-      themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-theme");
-        if (document.body.classList.contains("dark-theme")) {
-          themeToggleBtn.textContent = "☀️";
-          themeToggleBtn.setAttribute("aria-label", "Toggle light mode");
-        } else {
-          themeToggleBtn.textContent = "🌙";
-          themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
-
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const codeBlock = btn.previousElementSibling;
+        try {
+          await navigator.clipboard.writeText(codeBlock.innerText);
+          btn.textContent = "Copied!";
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.disabled = false;
+          }, 1500);
+        } catch (err) {
+          console.error("Copy failed:", err);
         }
       });
     });
