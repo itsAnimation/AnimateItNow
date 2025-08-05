@@ -1,174 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Button | AnimateItNow</title>
-<meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-<!-- Prism.js CSS and JS -->
-<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="../images/logo.png" />
-<link rel="stylesheet" href="../styles.css" />
+    <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+    <!-- Apple Touch Icons -->
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../styles.css" />
 
-<style>
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #0a0a0a;
-    color: #fff;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            position: relative;
+            z-index: 1;
+        }
 
-  /* Header */
-  .header {
-    text-align: center;
-    padding: 50px 20px 30px;
-    position: relative;
-    z-index: 1;
-  }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
 
-  .header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: titleGlow 2s ease-in-out infinite alternate;
-  }
+        @keyframes titleGlow {
+            from {
+                filter: brightness(1);
+            }
 
-  @keyframes titleGlow {
-    from {
-      filter: brightness(1);
-    }
-    to {
-      filter: brightness(1.2);
-    }
-  }
+            to {
+                filter: brightness(1.2);
+            }
+        }
 
-  .header p {
-    color: #888;
-    font-size: 1.1rem;
-  }
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
 
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px 50px;
-  }
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
 
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-  }
+        /* Button Grid */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-  .button-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+        /* Button Card */
+        .button-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-  .button-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
+        .button-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
-  .button-card h3 {
-    margin-bottom: 20px;
-    color: #fff;
-    font-size: 1.2rem;
-  }
+        .button-card h3 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+        }
 
-  .button-wrapper {
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+        .button-wrapper {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-  /* Show Code Button */
-  .show-code-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
+        /* Show Code Button */
+        .show-code-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-  .show-code-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
+        .show-code-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
 
-  .show-code-btn svg {
-    width: 16px;
-    height: 16px;
-  }
+        .show-code-btn svg {
+            width: 16px;
+            height: 16px;
+        }
 
-  /* Code Block Display */
-  .code-display {
-    display: none;
-    margin-top: 20px;
-    background: #1a1a1a;
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
-    max-height: 400px;
-    overflow-y: auto;
-  }
+        /* Code Display */
+        .code-display {
+            display: none;
+            margin-top: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            max-height: 400px;
+            overflow-y: auto;
+        }
 
-  .code-display.active {
-    display: block;
-  }
+        .code-display.active {
+            display: block;
+        }
 
-  .code-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-  }
+        .code-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
 
-  .code-tab {
-    background: none;
-    border: none;
-    color: #666;
-    padding: 5px 15px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: color 0.3s;
-  }
+        .code-tab {
+            background: none;
+            border: none;
+            color: #666;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
 
-  .code-tab.active {
-    color: #fff;
-    border-bottom: 2px solid #667eea;
-  }
+        .code-tab.active {
+            color: #fff;
+            border-bottom: 2px solid #667eea;
+        }
 
-  .code-content {
+        .code-content {
             display: none;
         }
 
@@ -875,7 +874,6 @@
 </head>
 
 <body>
-
    <nav class="navbar scroll-fade">
       <div class="nav-left">
         <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
@@ -938,75 +936,7 @@
           </li> -->
         </ul>
       </div>
-
     </nav>
-
-    <section class="animated-btn-section">
-        <main class="templates-main">
-            <h1>Animated Hover Button</h1>
-            <div class="btn-container" style="display: flex;
-            justify-content: center;
-            align-items: center;">
-                <button class="btn-1"> Button</button>
-                <button class="btn-2"> Button</button>
-                <button class="btn-3"> Button</button>
-            </div>
-            <div class="show-btn-container">
-                <button class="show-btn">Show Code</button>
-            </div>
-            <div class="show-code" style="display:none;">
-                <pre><code class="language-html">
-&lt;button&gt;Button&lt;/button&gt;
-
-&lt;style&gt;
-button {
-  display: inline-block;
-  margin: 15px;
-  padding: 15px 30px;
-  text-align: center;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  color: #725AC1;
-  background: transparent;
-  cursor: pointer;
-  transition: ease-out 0.5s;
-  border: 2px solid #725AC1;
-  border-radius: 10px;
-  box-shadow: inset 0 0 0 0 #725AC1;
-}
-
-button:hover {
-  color: white;
-  box-shadow: inset 0 -100px 0 0 #725AC1;
-}
-
-button:active {
-  transform: scale(0.9);
-}
-&lt;/style&gt;
-  </code></pre>
-            </div>
-        </main>
-    </section>
-</body>
-
-<script>
-    let showCode = false;
-    const showCodeBtn = document.querySelector('.show-btn')
-    const codeBlock = document.querySelector('.show-code')
-    const themeBtn = document.getElementById('theme-toggle')
-    showCodeBtn.addEventListener('click', () => {
-        showCode = !showCode
-        if (showCode) {
-            codeBlock.style.display = 'block'
-        } else {
-            codeBlock.style.display = 'none'
-        }
-    })
-</script>
-<script src="../script.js"></script>
-
 
     <!-- Animated Button Section -->
     <div class="bg-animation"></div>
@@ -1481,7 +1411,7 @@ function createParticle(x, y, button) {
     z-index: 3;
 }
 
-
+.split-btn::before,
 .split-btn::after {
     content: '';
     position: absolute;
@@ -2447,5 +2377,4 @@ magneticBtn.addEventListener('mouseleave', () => {
         });
     </script>
   </body>
-
 </html>

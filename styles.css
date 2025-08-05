@@ -701,7 +701,7 @@ main {
   padding-bottom: 8.5rem; /* Space for footer */
   display: flex; /* Main content area used flex */
   flex-direction: column;
-  gap: 1rem; /* Space between sections */
+  gap: 3rem; /* Space between sections */
 }
 .info-section {
   /* margin: 3rem 0; */
@@ -3013,74 +3013,51 @@ body.dark .playground-main h1{
 #scrollBtn:hover {
   background-color: #555; /* Darker on hover */
 }
-.animation-gallery {
-  padding: 2rem;
-  text-align: center;
-}
 
-.gallery-title {
-  font-size: 2rem;
-  color: white;
-  margin-bottom: 1.5rem;
+.geometric{
+  padding-left: 55px;
+  font-size: 20px;
 }
-
-.animation-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.animation-card {
-  background: #1e1e2f;
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  width: 200px;
-  transition: transform 0.3s ease;
-}
-
-.animation-card:hover {
-  transform: translateY(-5px);
-}
-
-.animation-preview {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.box {
-  width: 40px;
-  height: 40px;
-  background-color: #ff4081;
-  border-radius: 50%;
-}
-
-/* Bounce animation only plays on hover */
-.animation-card:hover .box {
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0px);
+ .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+    z-index: 1;
+    position: relative;
   }
-  50% {
-    transform: translateY(-20px);
+  .form-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
-}
-
-.animation-name {
-  margin-top: 1rem;
-  color: white;
-  font-weight: bold;
-}
+   .form-options a {
+    color: #3b82f6;
+    text-decoration: none;
+   }
+  .form-options a:hover {
+    text-decoration: underline;
+  }
+  .signup-link {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #4b5563;
+    z-index: 1;
+    position: relative;
+  }
+  .signup-link a {
+    color: #3b82f6;
+   text-decoration: none;
+  }
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
 
 
 /* #search-bar::placeholder {
    color: rgba(31, 41, 55, 0.8);
 }
+
 
