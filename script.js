@@ -345,8 +345,11 @@ window.onscroll = function () {
   const btn = document.getElementById("scrollBtn");
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     btn.classList.add("show");
+    // added bounce animation 
+    btn.classList.add("bounce");
   } else {
     btn.classList.remove("show");
+    btn.classList.remove("bounce");
   }
 };
 

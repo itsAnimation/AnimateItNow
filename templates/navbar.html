@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar with Expandable Code</title>
+    <meta
+      name="description"
+      content="A comprehensive collection of CSS animation templates and effects for web developers"
+    />
 
 <head>
   <meta charset="UTF-8">
@@ -21,16 +29,16 @@
       --transition: 0.3s ease;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      color: #222;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      padding-top: 64px;
-      /* offset for fixed navbar */
-    }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #222;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        padding-top: 64px;
+        /* offset for fixed navbar */
+      }
 
     /* Navbar */
     .navbar {
@@ -46,95 +54,95 @@
       padding-top: 60px !important;
     }
 
-    section {
-      max-width: 1100px;
-      margin: 2rem auto 3rem;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+      section {
+        max-width: 1100px;
+        margin: 2rem auto 3rem;
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
 
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+      h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
 
-    .subtitle {
-      text-align: center;
-      color: #555;
-      margin-bottom: 30px;
-      transition: color 0.3s ease;
-    }
+      .subtitle {
+        text-align: center;
+        color: #555;
+        margin-bottom: 30px;
+        transition: color 0.3s ease;
+      }
 
-    /* Dark mode variables */
-    body.dark-theme {
-      --nav-text: #eee;
-      --accent: #90caf9;
-      background-color: #121212;
-      color: #eee;
-    }
+      /* Dark mode variables */
+      body.dark-theme {
+        --nav-text: #eee;
+        --accent: #90caf9;
+        background-color: #121212;
+        color: #eee;
+      }
 
-    body.dark-theme .navbar {
-      background: rgba(40, 40, 40, 0.6);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: none;
-    }
+      body.dark-theme .navbar {
+        background: rgba(40, 40, 40, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+      }
 
-    body.dark-theme .nav-links a {
-      color: var(--nav-text);
-    }
+      body.dark-theme .nav-links a {
+        color: var(--nav-text);
+      }
 
-    body.dark-theme .nav-links a.active,
-    body.dark-theme .nav-links a:hover {
-      color: var(--accent);
-    }
+      body.dark-theme .nav-links a.active,
+      body.dark-theme .nav-links a:hover {
+        color: var(--accent);
+      }
 
-    body.dark-theme #theme-toggle {
-      color: var(--nav-text);
-    }
+      body.dark-theme #theme-toggle {
+        color: var(--nav-text);
+      }
 
-    body.dark-theme section {
-      background-color: #1f1f1f;
-      box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
-    }
+      body.dark-theme section {
+        background-color: #1f1f1f;
+        box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+      }
 
-    body.dark-theme .subtitle {
-      color: #bbb;
-    }
+      body.dark-theme .subtitle {
+        color: #bbb;
+      }
 
-    .expand-btn {
-      display: block;
-      margin: 25px auto 10px;
-      padding: 8px 18px;
-      background-color: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+      .expand-btn {
+        display: block;
+        margin: 25px auto 10px;
+        padding: 8px 18px;
+        background-color: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
 
-    .expand-btn:hover {
-      background-color: #0056b3;
-    }
+      .expand-btn:hover {
+        background-color: #0056b3;
+      }
 
-    .code-block {
-      display: none;
-      background: #222;
-      color: #ddd;
-      padding: 20px;
-      font-size: 0.85rem;
-      border-radius: 8px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-  </style>
-</head>
+      .code-block {
+        display: none;
+        background: #222;
+        color: #ddd;
+        padding: 20px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+        margin-top: 10px;
+        white-space: pre-wrap;
+        overflow-x: auto;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+    </style>
+  </head>
 
 <body>
   <nav class="navbar scroll-fade">
@@ -199,11 +207,14 @@
         <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" />
         <span>Website</span>
       </div>
-      <a href="#">Home</a>
-      <a href="#">Features</a>
-      <a href="#">Services</a>
-      <a href="#">Our Work</a>
-    </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </nav>
 
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
@@ -283,88 +294,95 @@
 &lt;/style&gt;
 </pre>
 
-    <style>
-      .sticky-demo-navbar {
-        position: sticky;
-        top: 10px;
-        background: #fff;
-        padding: 10px 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        z-index: 10;
-        font-family: 'Poppins', sans-serif;
-      }
+      <style>
+        .sticky-demo-navbar {
+          position: sticky;
+          top: 10px;
+          background: #fff;
+          padding: 10px 20px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 2rem;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+          z-index: 10;
+          font-family: "Poppins", sans-serif;
+        }
 
-      .navbar-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
+        .navbar-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
 
-      .navbar-logo img {
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-      }
+        .navbar-logo img {
+          width: 40px;
+          height: 40px;
+          border-radius: 6px;
+        }
 
-      .sticky-demo-navbar a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 500;
-        margin-left: 20px;
-        transition: all 0.3s ease;
-      }
+        .sticky-demo-navbar a {
+          text-decoration: none;
+          color: #000;
+          font-weight: 500;
+          margin-left: 20px;
+          transition: all 0.3s ease;
+        }
 
-      .sticky-demo-navbar a:hover {
-        color: #ffbb00;
-        transform: translateY(-2px);
-      }
+        .sticky-demo-navbar a:hover {
+          color: #ffbb00;
+          transform: translateY(-2px);
+        }
 
-      body.dark-theme .sticky-demo-navbar {
-        background-color: #222;
-        border-color: #444;
-      }
+        body.dark-theme .sticky-demo-navbar {
+          background-color: #222;
+          border-color: #444;
+        }
 
-      body.dark-theme .sticky-demo-navbar a {
-        color: #90caf9;
-      }
+        body.dark-theme .sticky-demo-navbar a {
+          color: #90caf9;
+        }
 
-      body.dark-theme .sticky-demo-navbar a:hover {
-        color: #ffbb00;
-      }
+        body.dark-theme .sticky-demo-navbar a:hover {
+          color: #ffbb00;
+        }
 
-      body.dark-theme .navbar-logo span {
-        color: white;
-      }
-    </style>
-  </section>
+        body.dark-theme .navbar-logo span {
+          color: white;
+        }
+      </style>
+    </section>
 
-  <section>
-    <h2>2. Hamburger Menu</h2>
-    <p class="subtitle">A compact icon which reveals a dropdown of links on clicking. Suitable for mobile</p>
+    <section>
+      <h2>2. Hamburger Menu</h2>
+      <p class="subtitle">
+        A compact icon which reveals a dropdown of links on clicking. Suitable
+        for mobile
+      </p>
 
-    <div class="hamburger-navbar">
-      <div class="hamburger-top">
-        <div class="hamburger-left">
-          <span class="site-name">MyWebsite</span>
-          <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="hamburger-logo">
+      <div class="hamburger-navbar">
+        <div class="hamburger-top">
+          <div class="hamburger-left">
+            <span class="site-name">MyWebsite</span>
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png"
+              alt="Logo"
+              class="hamburger-logo"
+            />
+          </div>
+          <div class="hamburger-icon" onclick="toggleHamburger()">☰</div>
         </div>
-        <div class="hamburger-icon" onclick="toggleHamburger()">☰</div>
+        <div class="hamburger-links" id="hamburgerLinks">
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Services</a>
+          <a href="#">Our Work</a>
+        </div>
       </div>
-      <div class="hamburger-links" id="hamburgerLinks">
-        <a href="#">Home</a>
-        <a href="#">Features</a>
-        <a href="#">Services</a>
-        <a href="#">Our Work</a>
-      </div>
-    </div>
 
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
@@ -465,104 +483,118 @@
 &lt;/script&gt;
 </pre>
 
+      <style>
+        .hamburger-navbar {
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 10px 20px;
+          margin-top: 2rem;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+          font-family: "Poppins", sans-serif;
+          background-color: #fff;
+        }
 
-    <style>
-      .hamburger-navbar {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px 20px;
-        margin-top: 2rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        font-family: 'Poppins', sans-serif;
-        background-color: #fff;
-      }
+        .hamburger-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
 
-      .hamburger-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+        .hamburger-left {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
-      .hamburger-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+        .hamburger-logo {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
 
-      .hamburger-logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-      }
+        .hamburger-icon {
+          font-size: 26px;
+          cursor: pointer;
+          user-select: none;
+        }
 
-      .hamburger-icon {
-        font-size: 26px;
-        cursor: pointer;
-        user-select: none;
-      }
+        .hamburger-links {
+          display: none;
+          flex-direction: column;
+          align-items: flex-end;
+          margin-top: 10px;
+        }
 
-      .hamburger-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-end;
-        margin-top: 10px;
-      }
+        .hamburger-links a {
+          text-decoration: none;
+          color: #000;
+          padding: 6px 0;
+          transition: all 0.3s ease;
+          font-weight: 500;
+        }
 
-      .hamburger-links a {
-        text-decoration: none;
-        color: #000;
-        padding: 6px 0;
-        transition: all 0.3s ease;
-        font-weight: 500;
-      }
+        .hamburger-links a:hover {
+          color: #ffbb00;
+          transform: translateX(5px);
+        }
 
-      .hamburger-links a:hover {
-        color: #ffbb00;
-        transform: translateX(5px);
-      }
+        body.dark-theme .hamburger-navbar {
+          background-color: #222;
+          border-color: #444;
+        }
 
-      body.dark-theme .hamburger-navbar {
-        background-color: #222;
-        border-color: #444;
-      }
+        body.dark-theme .hamburger-links a {
+          color: #90caf9;
+        }
 
-      body.dark-theme .hamburger-links a {
-        color: #90caf9;
-      }
+        body.dark-theme .hamburger-links a:hover {
+          color: #ffbb00;
+        }
 
-      body.dark-theme .hamburger-links a:hover {
-        color: #ffbb00;
-      }
+        body.dark-theme .site-name {
+          color: white;
+        }
+      </style>
 
-      body.dark-theme .site-name {
-        color: white;
-      }
-    </style>
+      <script>
+        function toggleHamburger() {
+          const links = document.getElementById("hamburgerLinks");
+          links.style.display =
+            links.style.display === "flex" ? "none" : "flex";
+        }
+      </script>
+    </section>
 
-    <script>
-      function toggleHamburger() {
-        const links = document.getElementById("hamburgerLinks");
-        links.style.display = links.style.display === "flex" ? "none" : "flex";
-      }
-    </script>
-  </section>
+    <section>
+      <h2>3. Tab Navigation Bar</h2>
+      <p class="subtitle">
+        Tabs like in a browser, with an underline on the active one.
+      </p>
 
-  <section>
-    <h2>3. Tab Navigation Bar</h2>
-    <p class="subtitle">Tabs like in a browser, with an underline on the active one.</p>
-
-    <div class="tab-navbar">
-      <div class="tab-logo-section">
-        <span class="site-name">MyWebsite</span>
-        <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="tab-logo">
+      <div class="tab-navbar">
+        <div class="tab-logo-section">
+          <span class="site-name">MyWebsite</span>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png"
+            alt="Logo"
+            class="tab-logo"
+          />
+        </div>
+        <div class="tab-links">
+          <a href="#" class="tab-link active" onclick="setActiveTab(event)"
+            >Home</a
+          >
+          <a href="#" class="tab-link" onclick="setActiveTab(event)"
+            >Features</a
+          >
+          <a href="#" class="tab-link" onclick="setActiveTab(event)"
+            >Services</a
+          >
+          <a href="#" class="tab-link" onclick="setActiveTab(event)"
+            >Our Work</a
+          >
+        </div>
       </div>
-      <div class="tab-links">
-        <a href="#" class="tab-link active" onclick="setActiveTab(event)">Home</a>
-        <a href="#" class="tab-link" onclick="setActiveTab(event)">Features</a>
-        <a href="#" class="tab-link" onclick="setActiveTab(event)">Services</a>
-        <a href="#" class="tab-link" onclick="setActiveTab(event)">Our Work</a>
-      </div>
-    </div>
 
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
@@ -672,116 +704,127 @@
 &lt;/script&gt;
 </pre>
 
+      <style>
+        .tab-navbar {
+          border-bottom: 2px solid #ddd;
+          padding: 12px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: "Poppins", sans-serif;
+          background-color: #f9f9f9;
+        }
 
-    <style>
-      .tab-navbar {
-        border-bottom: 2px solid #ddd;
-        padding: 12px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Poppins', sans-serif;
-        background-color: #f9f9f9;
-      }
+        .tab-logo-section {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
-      .tab-logo-section {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+        .tab-logo {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
 
-      .tab-logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-      }
+        .site-name {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
 
-      .site-name {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
+        .tab-links {
+          display: flex;
+          gap: 25px;
+        }
 
-      .tab-links {
-        display: flex;
-        gap: 25px;
-      }
+        .tab-link {
+          text-decoration: none;
+          color: #555;
+          font-weight: 500;
+          position: relative;
+          padding: 6px 0;
+        }
 
-      .tab-link {
-        text-decoration: none;
-        color: #555;
-        font-weight: 500;
-        position: relative;
-        padding: 6px 0;
-      }
+        .tab-link::after {
+          content: "";
+          position: absolute;
+          width: 0%;
+          height: 2px;
+          background-color: #ffbb00;
+          left: 0;
+          bottom: -2px;
+          transition: width 0.3s;
+        }
 
-      .tab-link::after {
-        content: '';
-        position: absolute;
-        width: 0%;
-        height: 2px;
-        background-color: #ffbb00;
-        left: 0;
-        bottom: -2px;
-        transition: width 0.3s;
-      }
+        .tab-link:hover::after,
+        .tab-link.active::after {
+          width: 100%;
+        }
 
-      .tab-link:hover::after,
-      .tab-link.active::after {
-        width: 100%;
-      }
+        .tab-link:hover {
+          color: #000;
+        }
 
-      .tab-link:hover {
-        color: #000;
-      }
+        .tab-link.active {
+          color: #000;
+        }
 
-      .tab-link.active {
-        color: #000;
-      }
+        body.dark-theme .tab-navbar {
+          background-color: #222;
+          border-color: #444;
+        }
 
-      body.dark-theme .tab-navbar {
-        background-color: #222;
-        border-color: #444;
-      }
+        body.dark-theme .tab-link {
+          color: #90caf9;
+        }
 
-      body.dark-theme .tab-link {
-        color: #90caf9;
-      }
+        body.dark-theme .tab-link.active {
+          color: #fff;
+        }
 
-      body.dark-theme .tab-link.active {
-        color: #fff;
-      }
+        body.dark-theme .site-name {
+          color: white;
+        }
+      </style>
 
-      body.dark-theme .site-name {
-        color: white;
-      }
-    </style>
+      <script>
+        function setActiveTab(event) {
+          event.preventDefault();
+          const tabs = document.querySelectorAll(".tab-link");
+          tabs.forEach((tab) => tab.classList.remove("active"));
+          event.target.classList.add("active");
+        }
+      </script>
+    </section>
 
-    <script>
-      function setActiveTab(event) {
-        event.preventDefault()
-        const tabs = document.querySelectorAll('.tab-link');
-        tabs.forEach(tab => tab.classList.remove('active'));
-        event.target.classList.add('active');
-      }
-    </script>
-  </section>
+    <section>
+      <h2>4. Pill Navigation Bar</h2>
+      <p class="subtitle">Rounded pill-like links with active highlighting.</p>
 
-  <section>
-    <h2>4. Pill Navigation Bar</h2>
-    <p class="subtitle">Rounded pill-like links with active highlighting.</p>
-
-    <div class="pill-navbar">
-      <div class="pill-logo-section">
-        <span class="site-name">MyWebsite</span>
-        <img src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png" alt="Logo" class="pill-logo">
+      <div class="pill-navbar">
+        <div class="pill-logo-section">
+          <span class="site-name">MyWebsite</span>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/2294/2294479.png"
+            alt="Logo"
+            class="pill-logo"
+          />
+        </div>
+        <div class="pill-links">
+          <a href="#" class="pill-link active" onclick="setActivePill(event)"
+            >Home</a
+          >
+          <a href="#" class="pill-link" onclick="setActivePill(event)"
+            >Features</a
+          >
+          <a href="#" class="pill-link" onclick="setActivePill(event)"
+            >Services</a
+          >
+          <a href="#" class="pill-link" onclick="setActivePill(event)"
+            >Our Work</a
+          >
+        </div>
       </div>
-      <div class="pill-links">
-        <a href="#" class="pill-link active" onclick="setActivePill(event)">Home</a>
-        <a href="#" class="pill-link" onclick="setActivePill(event)">Features</a>
-        <a href="#" class="pill-link" onclick="setActivePill(event)">Services</a>
-        <a href="#" class="pill-link" onclick="setActivePill(event)">Our Work</a>
-      </div>
-    </div>
 
     <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
     <pre class="code-block">
@@ -872,113 +915,108 @@ body.dark-theme .site-name {
 &lt;/style&gt;
   </pre>
 
-    <style>
-      .pill-navbar {
-        padding: 12px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Poppins', sans-serif;
-        background-color: #f9f9f9;
-      }
+      <style>
+        .pill-navbar {
+          padding: 12px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: "Poppins", sans-serif;
+          background-color: #f9f9f9;
+        }
 
-      .pill-logo-section {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+        .pill-logo-section {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
-      .pill-logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-      }
+        .pill-logo {
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+        }
 
-      .site-name {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
+        .site-name {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
 
-      .pill-links {
-        display: flex;
-        gap: 15px;
-      }
+        .pill-links {
+          display: flex;
+          gap: 15px;
+        }
 
-      .pill-link {
-        padding: 8px 18px;
-        text-decoration: none;
-        color: #333;
-        border: 2px solid transparent;
-        border-radius: 999px;
-        transition: all 0.3s ease;
-        font-weight: 500;
-      }
+        .pill-link {
+          padding: 8px 18px;
+          text-decoration: none;
+          color: #333;
+          border: 2px solid transparent;
+          border-radius: 999px;
+          transition: all 0.3s ease;
+          font-weight: 500;
+        }
 
-      .pill-link:hover {
-        background-color: #ffbb00;
-        color: #fff;
-        transform: translateY(-2px);
-      }
+        .pill-link:hover {
+          background-color: #ffbb00;
+          color: #fff;
+          transform: translateY(-2px);
+        }
 
-      .pill-link.active {
-        background-color: #ffbb00;
-        color: #fff;
-      }
+        .pill-link.active {
+          background-color: #ffbb00;
+          color: #fff;
+        }
 
-      body.dark-theme .pill-navbar {
-        background-color: #222;
-      }
+        body.dark-theme .pill-navbar {
+          background-color: #222;
+        }
 
-      body.dark-theme .pill-link {
-        color: #90caf9;
-      }
+        body.dark-theme .pill-link {
+          color: #90caf9;
+        }
 
-      body.dark-theme .pill-link.active {
-        color: white;
-        background-color: #ffbb00;
-      }
+        body.dark-theme .pill-link.active {
+          color: white;
+          background-color: #ffbb00;
+        }
 
-      body.dark-theme .site-name {
-        color: white;
-      }
-    </style>
+        body.dark-theme .site-name {
+          color: white;
+        }
+      </style>
+
+      <script>
+        function setActivePill(event) {
+          event.preventDefault();
+          const links = document.querySelectorAll(".pill-link");
+          links.forEach((link) => link.classList.remove("active"));
+          event.target.classList.add("active");
+        }
+      </script>
+    </section>
 
     <script>
-      function setActivePill(event) {
-        event.preventDefault();
-        const links = document.querySelectorAll('.pill-link');
-        links.forEach(link => link.classList.remove('active'));
-        event.target.classList.add('active');
+      // Toggle code block visibility
+      function toggleCode(button) {
+        const code = button.nextElementSibling;
+        const isVisible = code.style.display === "block";
+        code.style.display = isVisible ? "none" : "block";
+        button.textContent = isVisible ? "Show Code" : "Hide Code";
       }
+
+      // Dark mode toggle
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+          themeToggleBtn.textContent = "☀️";
+          themeToggleBtn.setAttribute("aria-label", "Toggle light mode");
+        } else {
+          themeToggleBtn.textContent = "🌙";
+          themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
+        }
+      });
     </script>
-  </section>
-
-
-  <script>
-    // Toggle code block visibility
-    function toggleCode(button) {
-      const code = button.nextElementSibling;
-      const isVisible = code.style.display === "block";
-      code.style.display = isVisible ? "none" : "block";
-      button.textContent = isVisible ? "Show Code" : "Hide Code";
-    }
-
-    // Dark mode toggle
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    themeToggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
-      if (document.body.classList.contains('dark-theme')) {
-        themeToggleBtn.textContent = '☀️';
-        themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
-      } else {
-        themeToggleBtn.textContent = '🌙';
-        themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
-      }
-    });
-  </script>
-
-  <div id="cursor-snake"></div>
-  <script src="../script.js"></script>
-</body>
-
+  </body>
 </html>
