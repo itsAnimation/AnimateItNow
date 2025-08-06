@@ -36,4 +36,3 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   jsEditor.value = "";
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
-

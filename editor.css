@@ -54,9 +54,9 @@ background: linear-gradient(270deg, #c976ea, #6366f1, #3f8f9b);
   background-color: rgba(255, 255, 255, 0.654);
   border-radius: 0 0 0.5rem 0.5rem;
   border-width: 1px;
-border: 2px solid #94a3b8; /* slate-400 */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
-
+  border: 2px solid #94a3b8; /* slate-400 */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
+  
 
 }
 .editor-area:hover {
@@ -98,3 +98,139 @@ border: 2px solid #94a3b8; /* slate-400 */
   
 }
 
+/* FOOTER */
+.footer {
+ background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
+  color: #ffffff;
+  padding: 50px 20px 30px;
+  margin-top: 80px;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12);
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+  width: 100%;
+}
+
+/* Footer main content container */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 800px; /* 🔹 Decreased width */
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+/* Left content block */
+.footer-left {
+  flex: 1;
+  min-width: 260px;
+  padding-right: 50px;
+}
+
+.footer-left h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-left p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* Right content block */
+.footer-right {
+  flex: 1;
+  min-width: 220px;
+  padding-left: 50px;
+}
+
+.footer-right h4 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-right li {
+  margin-bottom: 10px;
+}
+
+.footer-right a {
+  color: #e0eaff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-right a:hover {
+  color: #e4f2fc;
+  transform: translateX(5px);
+}
+/* for mobile version */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center; /* centers items horizontally */
+    text-align: center;   /* centers text */
+  }
+
+  .footer-left, .footer-right {
+    width: 100%;
+    padding: 15px 0;
+  }
+}
+
+/* Bottom section with copyright */
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding-top: 15px;
+  margin-top: 20px;
+  max-width: 800px; /* 🔹 Match with content width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Highlight "Anuj" with tooltip */
+.footer-bottom .highlight {
+  font-weight: bold;
+  color: #ffe05d;
+  position: relative;
+  cursor: help;
+}
+
+.footer-bottom .highlight .tooltip-link {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e2bff;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none; /* Prevent clicks when hidden */
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-bottom .highlight:hover .tooltip-link {
+  opacity: 1;
+  pointer-events: auto; /* Make clickable on hover */
+  transform: translate(-50%, -5px);
+}
