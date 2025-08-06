@@ -321,23 +321,23 @@
       }
       /* Make the link a flex container to align items */
       .logo-link {
-        display: flex;          /* Aligns logo and text horizontally */
-        align-items: center;   /* Centers them vertically */
-        gap: 10px;            /* Adds space between logo and text */
+        display: flex; /* Aligns logo and text horizontally */
+        align-items: center; /* Centers them vertically */
+        gap: 10px; /* Adds space between logo and text */
         text-decoration: none; /* Removes underline */
-        color: inherit;       /* Inherits text color (if needed) */
+        color: inherit; /* Inherits text color (if needed) */
       }
 
       /* Ensure the logo image stays aligned */
       .logo-link img.logo {
-        height: 40px;         /* Adjust as needed */
-        width: auto;          /* Maintains aspect ratio */
+        height: 40px; /* Adjust as needed */
+        width: auto; /* Maintains aspect ratio */
       }
 
       /* Style the text (optional) */
       .site-name {
-        font-size: 1.2rem;    /* Adjust size */
-        font-weight: bold;    /* Optional: Bold text */
+        font-size: 1.2rem; /* Adjust size */
+        font-weight: bold; /* Optional: Bold text */
         pointer-events: none; /* Ensures clicks pass to parent <a> */
       }
 
@@ -531,6 +531,8 @@
         font-weight: bold;
       }
 
+      
+
       /* end for game animation */
     </style>
   </head>
@@ -549,7 +551,11 @@
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
-          <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+          <li>
+            <a href="playground.html" style="white-space: nowrap"
+              >Hover-Effects</a
+            >
+          </li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
@@ -624,9 +630,7 @@
           aria-label="Search templates"
         />
       </div>
-       <div class="no-results">
-  No Templates Found.
-</div>
+      <div class="no-results">No Templates Found.</div>
       <section class="templates-grid">
         <a class="template-card" href="templates/LoginFormGlassMorphism.html">
           <h2>Login Form with Glassmorphism.</h2>
@@ -778,12 +782,15 @@
           <button class="template-btn">View Template</button>
         </a>
         <a class="template-card" href="templates/contact.html">
-        <h2>Contact Us Template</h2>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="template-btn">View Template</button>
-      </a>
+          <h2>Contact Us Template</h2>
+          <div class="template-preview navbar-preview">
+            <div
+              class="fas fa-envelope"
+              style="font-size: 40px; color: white"
+            ></div>
+          </div>
+          <button class="template-btn">View Template</button>
+        </a>
         <a class="template-card" href="templates/accordian.html">
           <h2>Accordian Template</h2>
           <div class="template-preview 404-preview">
@@ -892,35 +899,35 @@
       });
 
       // Search & Category Filter Functionality
-      const searchBar = document.getElementById("search-bar");
-      const templateCards = document.querySelectorAll(".template-card");
-      const noResultsMsg = document.querySelector(".no-results"); // Added a "no results" div to your HTML
+      function liveSearch(inputSelector, cardSelector) {
+        const input = document.querySelector(inputSelector);
+        const cards = document.querySelectorAll(cardSelector);
+        const noResultsMsg = document.querySelector(".no-results");
 
-      function filterTemplates() {
-        const query = searchBar.value.trim().toLowerCase();
-        let visibleCount = 0;
+        input.addEventListener("keyup", function () {
+          const filter = input.value.toLowerCase();
+          let visibleCount = 0;
 
-        templateCards.forEach((card) => {
-          const title = card
-            .querySelector("h2")
-            .textContent.trim()
-            .toLowerCase();
-          const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
-          if (matchesTitle) {
-            card.style.display = "";
-            visibleCount++;
-          } else {
-            card.style.display = "none";
-          }
+          cards.forEach((card) => {
+            const title = card.querySelector("h2").textContent.toLowerCase();
+
+            if (title.startsWith(filter)) {
+              // match from beginning
+              card.style.display = "";
+              visibleCount++;
+            } else {
+              card.style.display = "none";
+            }
+          });
+
+          // Show "No Templates Found" if nothing matches
+          noResultsMsg.style.display = visibleCount === 0 ? "block" : "none";
         });
-
-        if (noResultsMsg) {
-
-          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-     
       }
-      searchBar.addEventListener("input", filterTemplates);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        liveSearch("#search-bar", ".templates-grid .template-card");
+      });
 
       //script for animation type one after other
       const texts = [
