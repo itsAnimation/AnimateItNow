@@ -1,3 +1,23 @@
+
+
+function typewriter(){
+  const el=document.getElementById("modify");
+  if(!el)return;
+  const text=el.textContent;
+  el.textContent='';
+  let index=0;
+  let interval=setInterval(()=>{
+    if(index<text.length){
+      el.textContent+=text.charAt(index);
+      index++;
+    }
+    else{
+      clearInterval(interval);
+      }
+  },100);
+}
+typewriter();
+
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return
@@ -261,6 +281,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Initialize on load
   updateProgressBar()
 })
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function () {
   // Try to find by id, class, or text
   const btn = document.querySelector("#getStartedBtn");
@@ -276,3 +297,26 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Get Started button not found. Check the selector or ID.");
   }
 });
+=======
+
+
+
+// Scroll to top button functionality
+  // Show button when scrolled down
+window.onscroll = function () {
+  const btn = document.getElementById("scrollBtn");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+};
+
+// Scroll to top on click
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+>>>>>>> 7333f243810d3e1737bc6d9cb21b5e5afb320ad4

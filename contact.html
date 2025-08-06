@@ -6,45 +6,15 @@
     <title>Contact | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   </head>
-
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | AnimateItNow</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
-</head>
+ 
+ 
 
 <body class="contact">
   <nav class="navbar scroll-fade">
@@ -61,11 +31,12 @@
         <li><a href="contact.html" class="active">Contact</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>  
                 <!-- cursor toggle switch -->
-        <li>
+        <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
             <span class="slider round"></span>
           </label>
+          <span class="snakeLabel">Snake Cursor</span>
         </li>
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
@@ -160,51 +131,32 @@
     </main>
 
     <footer class="footer scroll-fade">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
-        </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li>
-              <a
-                href="https://github.com/itsAnimation/AnimateItNow"
-                target="_blank"
-                rel="noopener noreferrer"
-                >🌐 GitHub</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >💼 LinkedIn</a
-              >
-            </li>
-            <li>
-              <a
-                href="mailto:contact@animateitnow.com"
-                rel="noopener noreferrer"
-                >📧 Email Us</a
-              >
-            </li>
-          </ul>
-        </div>
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
       </div>
-      <div class="footer-bottom">
-        <p>
-          © 2025 AnimateItNow. Made with ❤️ by
-          <span class="highlight">Anuj</span> and Contributors.
-        </p>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+        </ul>
       </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </div>
+  </footer>
     <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>
+
     <!-- PWA Support -->
   <script src="pwa.js"></script>
 </body>
+  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 </html>
