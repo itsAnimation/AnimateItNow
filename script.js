@@ -1,4 +1,14 @@
 
+
+  function setTheme(dark) {
+    if (dark) {
+      body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -10,6 +20,7 @@ function displaycategory(category){
   else if(category==='technical'){
     general.style.display='none';
     technical.style.display='block';
+
   }
 }
 // Service worker registration removed to fix 404 error
