@@ -2199,6 +2199,46 @@ body.dark .template-card:hover {
   .form-options label {
     display: flex;
     align-items: center;
+    min-height: 120px;
+    margin-bottom: 20px;
+}
+
+/* This targets the button inside the preview */
+.tooltip-preview .tooltip {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #64b5f6; /* Correct blue button color */
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Add smooth scrolling to the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth transitions for navigation links */
+.nav-links a {
+  transition: all 0.3s ease;
+}
+
+/* Add smooth hover effects */
+.nav-links a:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Smooth button transitions */
+.cta-btn, .ripple, .btn-press {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scroll offset for fixed navbar */
+section {
+  scroll-margin-top: 80px; /* Adjust based on your navbar height */
+}
     gap: 0.5rem;
   }
    .form-options a {
@@ -2222,7 +2262,3 @@ body.dark .template-card:hover {
   .signup-link a:hover {
     text-decoration: underline;
   }
-
-
-
-
