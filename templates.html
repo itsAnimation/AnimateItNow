@@ -99,7 +99,6 @@
 
     <style>
       /*  Removed conflicting navbar CSS, relying on styles.css */
-      
       .navbar {
         display: flex;
         flex-direction: row;
@@ -239,7 +238,7 @@
       /*  Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
-        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+        box-shadow: 0 2px 6px rgb(255, 255, 255 / 0.1);
       }
       /* Feature Cards Preview */
       .feature-preview {
@@ -531,40 +530,8 @@
         margin-top: 1rem;
         font-weight: bold;
       }
-      
-      #search-bar {
-        width: 20em;
-        height: 2.5em;
-        padding-left: 0.8em;
-        color: #1f2937;
-        background-color: #67e8f9;
-        background-image: linear-gradient(to right, #67e8f9, #60a5fa);
-        border: 2px solid #67e8f9;
-        border-radius: 15px;
-        outline: none;
-        font-size: 1rem;
-        box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
-        background-clip: padding-box;
-        transition:
-        background-color 0.3s ease-in-out,
-        background 0.3s ease-in-out,
-        border 0.3s ease-in-out,
-        box-shadow 0.3s ease-in-out;
-      }
 
-      #search-bar:hover,
-      #search-bar:focus {
-        background: white;
-        background-image: none;
-        border: 2px solid #4A9DEC;
-        box-shadow: 0 0 0 7px rgba(74, 157, 236, 0.2);
-      }
-      #search-bar::placeholder {
-        color: #2f61ad; 
-        opacity: 1;
-        font-style: italic;
-      }
-        /* end for game animation */
+      /* end for game animation */
     </style>
   </head>
   <body class="dark">
@@ -582,6 +549,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
+          <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
@@ -634,7 +602,7 @@
       </div>
     </nav>
     <main class="templates-main">
-      <h1 style=" margin: 1rem auto 1rem auto;">Template Gallery</h1>
+      <h1>Templates Gallery</h1>
       <div
         style="display: flex; justify-content: center; margin-bottom: 1.5rem"
       >
@@ -642,6 +610,17 @@
           type="text"
           id="search-bar"
           placeholder="Search templates..."
+          style="
+            color: #1f2937;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(to right, #67e8f9, #60a5fa);
+            box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
+            border-radius: 18px;
+            border: 1px solid #ccc;
+            min-width: 420px;
+            font-size: 1rem;
+            outline: none;
+          "
           aria-label="Search templates"
         />
       </div>
@@ -911,34 +890,36 @@
       document.querySelectorAll(".template-card").forEach((card) => {
         observer.observe(card);
       });
-// Search & Category Filter Functionality
-const searchBar = document.getElementById("search-bar");
-const templateCards = document.querySelectorAll(".template-card");
-const noResultsMsg = document.querySelector(".no-results"); // Added a "no results" div to your HTML
 
-function filterTemplates() {
-  const query = searchBar.value.trim().toLowerCase();
-  let visibleCount = 0;
+      // Search & Category Filter Functionality
+      const searchBar = document.getElementById("search-bar");
+      const templateCards = document.querySelectorAll(".template-card");
+      const noResultsMsg = document.querySelector(".no-results"); // Added a "no results" div to your HTML
 
-  templateCards.forEach((card) => {
-    const title = card
-      .querySelector("h2")
-      .textContent.trim()
-      .toLowerCase();
-    const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
-    if (matchesTitle) {
-      card.style.display = "";
-      visibleCount++;
-    } else {
-      card.style.display = "none";
-    }
-  });
+      function filterTemplates() {
+        const query = searchBar.value.trim().toLowerCase();
+        let visibleCount = 0;
 
-  if (noResultsMsg) {
-    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
-  }
-}
+        templateCards.forEach((card) => {
+          const title = card
+            .querySelector("h2")
+            .textContent.trim()
+            .toLowerCase();
+          const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
+          if (matchesTitle) {
+            card.style.display = "";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
 
+        if (noResultsMsg) {
+
+          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+     
+      }
       searchBar.addEventListener("input", filterTemplates);
 
       //script for animation type one after other

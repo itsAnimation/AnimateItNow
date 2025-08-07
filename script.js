@@ -71,26 +71,6 @@ function toggleFAQ(element) {
   faqItem.classList.toggle("active", !isActive)
 }
 
-
-
-//dynamically add the active or current class only to the tab that matches the current route or URL section.
-  window.addEventListener('DOMContentLoaded', () => {
-    const currentPage = window.location.pathname.split("/").pop(); // e.g., about.html
-    const navLinks = document.querySelectorAll(".nav-links a");
-
-    navLinks.forEach(link => {
-      // Remove 'active' class from all
-      link.classList.remove("active");
-
-      // Add 'active' class to current page's link
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-
-
 // Make toggleFAQ globally accessible
 window.toggleFAQ = toggleFAQ
 
@@ -103,16 +83,7 @@ let snakeContainerElement = null // Keep a reference to the container element
 // The actual 'lucide' object is provided by the external script loaded in HTML.
 // Declaring it as 'const' here prevented the global 'lucide' from being used.
 
-
-document.querySelectorAll(".faq-toggle").forEach(button => {
-  button.addEventListener("click", () => toggleFAQ(button))
-})
-
-
-// Cursor Follower Snake Effect
-
 // Moved cursor functions outside DOMContentLoaded for better scope and reusability
-
 const isMobile = window.matchMedia("(max-width: 768px)").matches
 
 function enableSnakeCursor() {
@@ -226,6 +197,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".scroll-fade").forEach((el) => {
     observer.observe(el)
   })
+
   // 🧪 Testimonial slider
   const slider = document.getElementById("slider")
   if (slider) {
@@ -245,8 +217,6 @@ window.addEventListener("DOMContentLoaded", () => {
       nextSlide()
     }, 5000)
   }
-
-
 
   // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
@@ -385,257 +355,5 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// You can test a food-related effect visually with this:
-// document.body.style.backgroundImage = 'url("https://www.transparenttextures.com/patterns/food.png")'
-// document.body.style.backgroundRepeat = 'repeat';
 
 
-//hover buttons logic
-
-const codeSnippets = {
-      glowBlue: `
-            <style>
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #glowBtn{
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 0 10px #4d8fff;
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            }
-            </style>
-            <button id = "glowBtn" class="btn glow">Glow</button>`,
-      outlineBlue: `
-            <style>
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #outlineBtn{
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            }
-            </style>
-            <button id = "outlineBtn" class="btn">Outline</button>`,
-      gradientBlue: `
-            <style>
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #gradientBtn{
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            }
-            </style>
-            <button id = "gradientBtn" class="btn gradient">Gradient</button>`,
-      glowBlack: `
-            <style>
-            .btn::after{
-            content: "";
-            z-index: -1;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            left: 0;
-            top: 0;
-            border-radius: 2em;
-            }
-            .btn::before{
-            content: "";
-            background: linear-gradient(
-              45deg,
-              #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
-              rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
-              rgb(220, 19, 169),rgb(222, 18, 18)
-            );
-            position: absolute;
-            top:-2px;
-            left: -2px;
-            background-size:600%;
-            z-index: -1;
-            width: calc(100% + 0.3em);
-            height: calc(100% + 0.3em);
-            filter: blur(1em);
-            animation: glow 20s linear infinite;
-            border-radius: 2px;
-            opacity: 0;
-            }
-            @keyframes glow{
-                0%{
-                    background-position: 0 0;
-                }
-                50%{
-                    background-position: 400% 0;
-                }
-                100%{background-position: 0 0;}
-            }
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #glowBtn{
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 0;
-            }
-            </style>
-            <button id = "glowBtn" class="btn glow">Glow</button>`,
-      outlineBlack: `
-            <style>
-            .btn::after{
-            content: "";
-            z-index: -1;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            left: 0;
-            top: 0;
-            border-radius: 2em;
-            }
-            .btn::before{
-            content: "";
-            background: linear-gradient(
-              45deg,
-              #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
-              rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
-              rgb(220, 19, 169),rgb(222, 18, 18)
-            );
-            position: absolute;
-            top:-2px;
-            left: -2px;
-            background-size:600%;
-            z-index: -1;
-            width: calc(100% + 0.3em);
-            height: calc(100% + 0.3em);
-            filter: blur(1em);
-            animation: glow 20s linear infinite;
-            border-radius: 2px;
-            opacity: 0;
-            }
-            @keyframes glow{
-                0%{
-                    background-position: 0 0;
-                }
-                50%{
-                    background-position: 400% 0;
-                }
-                100%{background-position: 0 0;}
-            }
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #outlineBtn{
-            padding: 1em 2em;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            color: white;
-            position: relative;
-            z-index: 0;
-            }
-            </style>
-            <button id = "outlineBtn" class="btn outline">Outline</button>`,
-      gradientBlack: `
-            <style>
-            .btn::after{
-            content: "";
-            z-index: -1;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            left: 0;
-            top: 0;
-            border-radius: 2em;
-            }
-            .btn::before{
-            content: "";
-            background: linear-gradient(
-              45deg,
-              #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
-              rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
-              rgb(220, 19, 169),rgb(222, 18, 18)
-            );
-            position: absolute;
-            top:-2px;
-            left: -2px;
-            background-size:600%;
-            z-index: -1;
-            width: calc(100% + 0.3em);
-            height: calc(100% + 0.3em);
-            filter: blur(1em);
-            animation: glow 20s linear infinite;
-            border-radius: 2px;
-            opacity: 0;
-            }
-            @keyframes glow{
-                0%{
-                    background-position: 0 0;
-                }
-                50%{
-                    background-position: 400% 0;
-                }
-                100%{background-position: 0 0;}
-            }
-            .btn:hover{
-            transform: scale(1.08);
-            }
-            #gradientBtn{
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: white;
-            position: relative;
-            z-index: 0;
-            }
-            </style>
-            <button id = "gradientBtn" class="btn gradient">Gradient</button>`
-    };
-
-    let currentShown = null;
-
-function showBox(type) {
-      const box = document.getElementById("greyBox");
-      if (currentShown === type) {
-        box.style.display = "none";
-        box.textContent = "";
-        currentShown = null;
-      } else {
-        box.style.display = "block";
-        box.textContent = codeSnippets[type];
-        currentShown = type;
-      }
-    }
