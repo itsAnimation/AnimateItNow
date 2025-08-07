@@ -1,17 +1,17 @@
 
 // Function for displaying FAQ categories
-function displaycategory(category){
-  const general=document.getElementById('general-faq');
-  const technical=document.getElementById('technical-faq');
-  if(category==='general'){
-    general.style.display='block';
-    technical.style.display='none';
-  }
-  else if(category==='technical'){
-    general.style.display='none';
-    technical.style.display='block';
-  }
-}
+// function displaycategory(category){
+//   const general=document.getElementById('general-faq');
+//   const technical=document.getElementById('technical-faq');
+//   if(category==='general'){
+//     general.style.display='block';
+//     technical.style.display='none';
+//   }
+//   else if(category==='technical'){
+//     general.style.display='none';
+//     technical.style.display='block';
+//   }
+// }
 // Service worker registration removed to fix 404 error
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', () => {
@@ -36,21 +36,21 @@ function displaycategory(category){
 //   });
 // }
 
-function typewriter(){
-  const el=document.getElementById("modify");
-  if(!el)return;
-  const text=el.textContent;
-  el.textContent='';
-  let index=0;
-  let interval=setInterval(()=>{
-    if(index<text.length){
-      el.textContent+=text.charAt(index);
+function typewriter() {
+  const el = document.getElementById("modify");
+  if (!el) return;
+  const text = el.textContent;
+  el.textContent = '';
+  let index = 0;
+  let interval = setInterval(() => {
+    if (index < text.length) {
+      el.textContent += text.charAt(index);
       index++;
     }
-    else{
+    else {
       clearInterval(interval);
-      }
-  },100);
+    }
+  }, 100);
 }
 typewriter();
 
@@ -259,7 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-       showToast("Message sent successfully!");
+        showToast("Message sent successfully!");
         contactForm.reset()
       } else {
         alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
@@ -274,21 +274,21 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
 
- function showToast(message) {
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.textContent = message;
-  document.body.appendChild(toast);
+  function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
 
-  // Trigger fade-in
-  setTimeout(() => toast.classList.add("show"), 100);
+    // Trigger fade-in
+    setTimeout(() => toast.classList.add("show"), 100);
 
-  // Fade out and remove
-  setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300); // Wait for transition to finish
-  }, 3000);
-}
+    // Fade out and remove
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 300); // Wait for transition to finish
+    }, 3000);
+  }
 
 
 
@@ -340,7 +340,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 // Scroll to top button functionality
-  // Show button when scrolled down
+// Show button when scrolled down
 window.onscroll = function () {
   const btn = document.getElementById("scrollBtn");
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -355,5 +355,66 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+function loadFAQ(category) {
+  const container = document.getElementById("faq-container");
+  container.innerHTML = "";
+
+  const data = JSON.parse(localStorage.getItem("faq_" + category)) || [];
+
+  data.forEach((item, index) => {
+    const faq = document.createElement("div");
+    faq.className = "faq-item";
+
+    const question = document.createElement("p");
+    question.innerText = `Q: ${item.question}`;
+    faq.appendChild(question);
+
+    item.replies.forEach(reply => {
+      const replyElem = document.createElement("div");
+      replyElem.className = "reply";
+      replyElem.innerText = `↳ ${reply}`;
+      faq.appendChild(replyElem);
+    });
+
+    const replyInput = document.createElement("input");
+    replyInput.placeholder = "Write a reply...";
+    faq.appendChild(replyInput);
+
+    const replyBtn = document.createElement("button");
+    replyBtn.innerText = "Reply";
+    replyBtn.onclick = () => {
+      if (!replyInput.value) return;
+      item.replies.push(replyInput.value);
+      localStorage.setItem("faq_" + category, JSON.stringify(data));
+      loadFAQ(category);
+    };
+
+    faq.appendChild(replyBtn);
+    container.appendChild(faq);
+  });
+}
+
+function submitQuestion(category) {
+  const input = document.getElementById("question-input");
+  const questionText = input.value.trim();
+
+  if (!questionText) return;
+
+  // Fetch or initialize the questions array
+  const data = JSON.parse(localStorage.getItem("faq_" + category)) || [];
+
+  // Add the new question with a blank replies array
+  data.push({ question: questionText, replies: [] });
+
+  // Save updated questions back to localStorage
+  localStorage.setItem("faq_" + category, JSON.stringify(data));
+
+  // Clear the input field
+  input.value = "";
+
+  // Immediately reload the FAQ view
+  loadFAQ(category);
+}
 
 
