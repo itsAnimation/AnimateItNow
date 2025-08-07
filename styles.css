@@ -263,7 +263,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 50px;
+  padding: 18px 40px;
   background: rgba(2, 13, 47);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
@@ -290,7 +290,7 @@ body {
 }
 
 .logo {
-  height: 36px;
+  height: 38px;
   width: 36px;
   animation: pulse 2s infinite;
 }
@@ -311,30 +311,30 @@ body {
 }
 
 /* Style the text (optional) */
-.site-name {
-  font-size: 1.2rem;    /* Adjust size */
-  font-weight: bold;    /* Optional: Bold text */
-  pointer-events: none; /* Ensures clicks pass to parent <a> */
-}
+/* .site-name {
+  font-size: 1.2rem;   
+  font-weight: bold;   
+  pointer-events: none; 
+} */
 
 /* Hover effect (optional) */
 .logo-link:hover {
   opacity: 0.8;
   cursor: pointer;
 }
+
 .site-name {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   letter-spacing: 0.5px;
   cursor: pointer;
   border-right: 2px solid var(--white);
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
-  /* Add animation in website Name */
-  animation: typing 3s steps(14) 1s infinite,
-    blink 0.6s infinite step-end alternate;
+  width: 14ch; /* Reserve full space */
+  animation: typing 3s steps(14) 1s infinite, blink 0.6s infinite step-end alternate;
 }
+
 
 @keyframes typing {
   0% {
@@ -436,6 +436,15 @@ body {
   }
 }
 
+/* Aligns the toggle and label horizontally */
+.snakeToggleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
 
 #cursor-snake {
   position: fixed;
@@ -456,20 +465,33 @@ body {
 
 /*Snake toggle */
 
-.snakeList{
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 5px;
-}
-
-.snakeLabel{
-  color: var(--nav-text-60);
-  font-size: 0.8rem;
-  font-weight: bold;
+.snakeList {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  padding-top: 0px; /* override any vertical shift */
+  padding-bottom: 0px;
 }
+
+/* 
+.snakeLabel {
+  color: var(--nav-text-60);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.3px;
+} */
+
+.snakeLabel {
+  color: var(--nav-text-60);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
 
 .snakeList:hover .snakeLabel {
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
@@ -542,13 +564,15 @@ body {
   }
 }
 
-/* Snake Cursor Toggle Switch */
+/* Sleek & Compact Snake Cursor Toggle Switch */
 .nav-links .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 42px;
   height: 22px;
+  margin-top: 2px; /* for better vertical alignment */
 }
+
 
 .nav-links .switch input {
   opacity: 0;
@@ -563,30 +587,35 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #888;
-  transition: 0.4s;
-  border-radius: 34px;
+  background-color: #444;
+  transition: background-color 0.3s ease;
+  border-radius: 30px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links .slider:before {
-  position: absolute;
   content: "";
-  height: 16px;
-  width: 16px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  top: 2px;
+  background-color: #fff;
   border-radius: 50%;
+  transition: transform 0.3s ease;
 }
 
+
 .nav-links .switch input:checked + .slider {
-  background-color: #4caf50;
+  background-color: #00d1ff;
+  box-shadow: 0 0 8px #00d1ff;
 }
+
 
 .nav-links .switch input:checked + .slider:before {
   transform: translateX(18px);
 }
+
 .fade-in span{
   color: #00d1ff;
 }
