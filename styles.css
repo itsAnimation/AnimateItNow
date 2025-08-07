@@ -2196,7 +2196,6 @@ body.dark .glow-wrap::before {
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 /* This targets the button inside the preview */
 .tooltip-preview .tooltip {
     padding: 8px 16px;
@@ -2207,26 +2206,29 @@ body.dark .glow-wrap::before {
     font-size: 1rem;
     cursor: pointer;
 }
-=======
-.faq-question-header {
-  cursor: pointer; 
+
+/* Add smooth scrolling to the entire page */
+html {
+  scroll-behavior: smooth;
 }
 
-.faq-answer-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 2rem; /* Remove top/bottom padding initially */
+/* Ensure smooth transitions for navigation links */
+.nav-links a {
+  transition: all 0.3s ease;
 }
 
-.faq-item.active .faq-answer-content {
-  max-height: 500px; 
-  padding: 2rem; /* Restore to full padding when active */
+/* Add smooth hover effects */
+.nav-links a:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
 }
 
-/* Added a subtle rotation to the existing icon when active */
-.faq-item.active .faq-icon-static {
-  transform: rotate(5deg) scale(1.1);
+/* Smooth button transitions */
+.cta-btn, .ripple, .btn-press {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
->>>>>>> 9bdc90f8029993cfc70064e448b7ac08426eec9b
+/* Smooth scroll offset for fixed navbar */
+section {
+  scroll-margin-top: 80px; /* Adjust based on your navbar height */
+}
