@@ -794,6 +794,11 @@
       </section>
     </main>
 
+    <!-- Back to Top Button -->
+<button id="backToTopBtn" aria-label="Back to Top">
+  ↑
+</button>
+
     <div id="container">
       <footer class="footer scroll-fade">
         <div class="footer-content">
@@ -968,6 +973,27 @@
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
       typeLoop(); // start animation
+
+      //back to top button
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+// Show/hide button on scroll
+window.onscroll = function () {
+  if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+};
+
+// Scroll to top smoothly
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
     </script>
   </body>
 </html>
