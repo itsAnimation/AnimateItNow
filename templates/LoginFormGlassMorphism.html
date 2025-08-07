@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Glassmorphism Login form | Lakshya Singh</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Loader Styles */
+      .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #6060ffb4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .loader-container.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+        position: relative;
+      }
+      .loader::after,
+      .loader::before {
+        content: "";
+        box-sizing: border-box;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: animloader 2s linear infinite;
+      }
+      .loader::after {
+        animation-delay: 1s;
+      }
+
+      @keyframes animloader {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+
+      /* Main Content Styles */
+      .main-content {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
+      }
+
+      .main-content.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        background: url("http://codingstella.com/wp-content/uploads/2024/01/download-8-scaled.jpeg")
+          no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .form-box {
+        position: relative;
+        width: 400px;
+        height: 450px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h2 {
+        font-size: 2em;
+        color: #fff;
+        text-align: center;
+      }
+
+      .inputbox {
+        position: relative;
+        margin: 30px 0;
+        width: 310px;
+        border-bottom: 2px solid #fff;
+      }
+
+      .inputbox label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 1em;
+        pointer-events: none;
+        transition: 0.5s;
+      }
+
+      input:focus ~ label {
+        top: -5px;
+      }
+      input:valid ~ label {
+        top: -5px;
+      }
+      input:not(:placeholder-shown) ~ label {
+        top: -5px;
+      }
+
+      .inputbox input {
+        width: 100%;
+        height: 50px;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        padding: 0 35px 0 5px;
+        color: #fff;
+      }
+
+      .inputbox ion-icon {
+        position: absolute;
+        right: 8px;
+        color: #fff;
+        font-size: 1.2em;
+        top: 20px;
+      }
+
+      .forget {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0 15px;
+        font-size: 0.9em;
+        color: #fff;
+      }
+
+      .forget label:nth-child(2) {
+        order: 1;
+      }
+
+      .forget label {
+        display: flex;
+        align-items: center;
+      }
+
+      .forget label input[type="checkbox"] {
+        margin-right: 6px;
+      }
+
+      .forget label a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .forget label a:hover {
+        text-decoration: underline;
+      }
+
+      button {
+        width: 100%;
+        height: 40px;
+        border-radius: 40px;
+        background: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+      }
+
+      .register {
+        font-size: 0.9em;
+        color: #fff;
+        text-align: center;
+        margin: 25px 0 10px;
+      }
+
+      .register p a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .register p a:hover {
+        text-decoration: underline;
+      }
+      .code-block {
+        display: none;
+        text-align: left;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #2d2d2d;
+        color: #f8f8f2;
+        font-family: monospace;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        position: relative; /* For copy button positioning */
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: #444;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 12px;
+        font-size: 0.9em;
+        cursor: pointer;
+        z-index: 2;
+        opacity: 0.85;
+        transition: background 0.2s, opacity 0.2s;
+      }
+      .copy-btn:hover {
+        background: #007bff;
+        opacity: 1;
+      }
+
+      .toggle-btn {
+        margin-top: 1rem;
+        font-size: 14px;
+        padding: 10px 20px;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+      }
+
+      .toggle-btn:hover {
+        background: #0069d9;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html" >Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+      <span class="loader"></span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- partial:index.partial.html -->
+      <section>
+        <div class="form-box">
+          <div class="form-value">
+            <form action="">
+              <h2>Login</h2>
+              <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="email" required placeholder=" " />
+                <label for="">Email</label>
+              </div>
+              <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" required placeholder=" " />
+                <label for="">Password</label>
+              </div>
+              <div class="forget">
+                <label> <input type="checkbox" /> Remember me </label>
+                <label>
+                  <a href="#">Forgot password?</a>
+                </label>
+              </div>
+              <button>Log in</button>
+              <div class="register">
+                <p>Don't have a account ? <a href="#">Register</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <button class="toggle-btn" onclick="toggleCode(3)">Show Code</button>
+      <pre class="code-block" id="code3">
+        
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+          }
+    
+          /* Loader Styles */
+          .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #6060ffb4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+          }
+    
+          .loader-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+          }
+    
+          .loader {
+            width: 48px;
+            height: 48px;
+            display: inline-block;
+            position: relative;
+          }
+          .loader::after,
+          .loader::before {
+            content: "";
+            box-sizing: border-box;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: animloader 2s linear infinite;
+          }
+          .loader::after {
+            animation-delay: 1s;
+          }
+    
+          @keyframes animloader {
+            0% {
+              transform: scale(0);
+              opacity: 1;
+            }
+            100% {
+              transform: scale(1);
+              opacity: 0;
+            }
+          }
+    
+          /* Main Content Styles */
+          .main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in, visibility 0.5s ease-in;
+          }
+    
+          .main-content.visible {
+            opacity: 1;
+            visibility: visible;
+          }
+    
+          section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background: url("http://codingstella.com/wp-content/uploads/2024/01/download-8-scaled.jpeg")
+              no-repeat;
+            background-position: center;
+            background-size: cover;
+          }
+    
+          .form-box {
+            position: relative;
+            width: 400px;
+            height: 450px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+    
+          h2 {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+          }
+    
+          .inputbox {
+            position: relative;
+            margin: 30px 0;
+            width: 310px;
+            border-bottom: 2px solid #fff;
+          }
+    
+          .inputbox label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 1em;
+            pointer-events: none;
+            transition: 0.5s;
+          }
+    
+          input:focus ~ label {
+            top: -5px;
+          }
+          input:valid ~ label {
+            top: -5px;
+          }
+          input:not(:placeholder-shown) ~ label {
+            top: -5px;
+          }
+    
+          .inputbox input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 0 35px 0 5px;
+            color: #fff;
+          }
+    
+          .inputbox ion-icon {
+            position: absolute;
+            right: 8px;
+            color: #fff;
+            font-size: 1.2em;
+            top: 20px;
+          }
+    
+          .forget {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0 15px;
+            font-size: 0.9em;
+            color: #fff;
+          }
+    
+          .forget label:nth-child(2) {
+            order: 1;
+          }
+    
+          .forget label {
+            display: flex;
+            align-items: center;
+          }
+    
+          .forget label input[type="checkbox"] {
+            margin-right: 6px;
+          }
+    
+          .forget label a {
+            color: #fff;
+            text-decoration: none;
+          }
+    
+          .forget label a:hover {
+            text-decoration: underline;
+          }
+    
+          button {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            background: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+          }
+    
+          .register {
+            font-size: 0.9em;
+            color: #fff;
+            text-align: center;
+            margin: 25px 0 10px;
+          }
+    
+          .register p a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+          }
+    
+          .register p a:hover {
+            text-decoration: underline;
+          }
+          &lt;div class="loader-container" id="loader"&gt;
+            &lt;span class="loader"></span>
+          &lt;/div>
+      
+          <!-- Main Content -->
+          &lt;div class="main-content" id="mainContent"&gt;
+            <!-- partial:index.partial.html -->
+            &lt;section>
+              &lt;div class="form-box">
+                &lt;div class="form-value">
+                  &lt;form action="">
+                    &lt;h2&gt;Login&lt;/h2&gt;
+                    &lt;div class="inputbox">
+                      &lt;ion-icon name="mail-outline"&gt;&lt;/ion-icon&gt;
+                      &lt;input type="email" required placeholder=" " /&gt;
+                      &lt;label for=""&gt;Email&lt;/label&gt;
+                    &lt;/div>
+                    &lt;div class="inputbox">
+                      &lt;ion-icon name="lock-closed-outline"&gt;&lt;/ion-icon&gt;
+                      &lt;input type="password" required placeholder=" " /&gt;
+                      &lt;label for=""&gt;Password&lt;/label&gt;
+                    &lt;/div>
+                    &lt;div class="forget">
+                      &lt;label&gt; &lt;input type="checkbox" /&gt; Remember me &lt;/label&gt;
+                      &lt;label&gt;
+                        &lt;a href="#"&gt;Forgot password?&lt;/a&gt;
+                      &lt;/label&gt;
+                    &lt;/div>
+                    &lt;button&gt;Log in&lt;/button&gt;
+                    &lt;div class="register"&gt;
+                      &lt;p&gt;Don't have a account ? &lt;a href="#"&gt;Register&lt;/a&gt;&lt;/p&gt;
+                    &lt;/div>
+                  &lt;/form>
+                &lt;/div>
+              &lt;/div>
+            &lt;/section>
+
+            &lt;script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"&gt;&lt;/script&gt;
+            &lt;script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"&gt;&lt;/script&gt;
+            &lt;script&gt; 
+            function copyCode(codeBlock, btn) {
+                btn.style.display = "none";
+                const code = codeBlock.innerText;
+                btn.style.display = "";
+                navigator.clipboard.writeText(code).then(() => {
+                  btn.textContent = "Copied!";
+                  setTimeout(() => {
+                    btn.textContent = "Copy";
+                  }, 1200);
+                });
+              }
+              // Loader functionality
+              window.addEventListener("load", function () {
+                const loader = document.getElementById("loader");
+                const mainContent = document.getElementById("mainContent");
+        
+                // Simulate loading time (you can remove this if you want immediate transition)
+                setTimeout(function () {
+                  // Hide loader
+                  loader.classList.add("hidden");
+        
+                  // Show main content
+                  mainContent.classList.add("visible");
+        
+                  // Remove loader from DOM after transition
+                  setTimeout(function () {
+                    loader.style.display = "none";
+                  }, 500);
+                }, 2000); // 1.5 seconds delay - adjust as needed
+              });
+              &lt;/script&gt;
+    </pre
+      >
+    </div>
+
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <script>
+      // Toggle code block visibility
+      function toggleCode(level) {
+        const block = document.getElementById("code" + level);
+        // Ensure the code block is wrapped for absolute positioning of the copy button
+        let wrapper = block.parentElement;
+        if (!wrapper.classList.contains("code-wrapper")) {
+          const newWrapper = document.createElement("div");
+          newWrapper.className = "code-wrapper";
+          newWrapper.style.position = "relative";
+          block.parentNode.insertBefore(newWrapper, block);
+          newWrapper.appendChild(block);
+          wrapper = newWrapper;
+        }
+        const isVisible = block.style.display === "block";
+        block.style.display = isVisible ? "none" : "block";
+
+        // Add/remove copy button (does not affect Show button UI)
+        if (!isVisible) {
+          if (!wrapper.querySelector(".copy-btn")) {
+            const copyBtn = document.createElement("button");
+            copyBtn.className = "copy-btn";
+            copyBtn.textContent = "Copy";
+            copyBtn.type = "button";
+            copyBtn.style.position = "absolute";
+            copyBtn.style.top = "12px";
+            copyBtn.style.right = "16px";
+            copyBtn.onclick = function (e) {
+              e.stopPropagation();
+              copyCode(block, copyBtn);
+            };
+            wrapper.appendChild(copyBtn);
+          }
+        } else {
+          const btn = wrapper.querySelector(".copy-btn");
+          if (btn) btn.remove();
+        }
+      }
+
+      function copyCode(codeBlock, btn) {
+        btn.style.display = "none";
+        const code = codeBlock.innerText;
+        btn.style.display = "";
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = "Copied!";
+          setTimeout(() => {
+            btn.textContent = "Copy";
+          }, 1200);
+        });
+      }
+      // Loader functionality
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("loader");
+        const mainContent = document.getElementById("mainContent");
+
+        // Simulate loading time (you can remove this if you want immediate transition)
+        setTimeout(function () {
+          // Hide loader
+          loader.classList.add("hidden");
+
+          // Show main content
+          mainContent.classList.add("visible");
+
+          // Remove loader from DOM after transition
+          setTimeout(function () {
+            loader.style.display = "none";
+          }, 500);
+        }, 2000); // 1.5 seconds delay - adjust as needed
+      });
+    </script>
+
+    <div id="cursor-snake"></div>
+    <script src="../script.js"></script>
+  </body>
+</html>
