@@ -662,6 +662,49 @@ body {
   transform: scale(1.05);
 }
 
+/* Hero buttons container */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Editor button */
+.editor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #10b981;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.9em 2.2em;
+  border-radius: 2em;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.editor-btn:hover {
+  background: #059669;
+  transform: scale(1.05);
+}
+
+.editor-btn.btn-press:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.editor-btn i {
+  font-size: 1rem;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
