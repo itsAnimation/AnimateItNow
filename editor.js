@@ -37,3 +37,10 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
 
+document.getElementById("themeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  // Update emoji icon
+  const isDark = document.body.classList.contains("dark-theme");
+  document.getElementById("themeToggle").textContent = isDark ? "☀️" : "🌙";
+});
