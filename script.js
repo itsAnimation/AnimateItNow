@@ -1,4 +1,3 @@
-
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -36,8 +35,8 @@ function displaycategory(category){
 //   });
 // }
 
-function typewriter(){
-  const el=document.getElementById("modify");
+function typewriter(elementId){
+  const el=document.getElementById(elementId);
   if(!el)return;
   const text=el.textContent;
   el.textContent='';
@@ -52,7 +51,12 @@ function typewriter(){
       }
   },100);
 }
-typewriter();
+typewriter("modify");
+
+// Apply typewriter effect to other elements
+document.addEventListener('DOMContentLoaded', () => {
+  typewriter('anotherElement'); // Replace 'anotherElement' with the ID of the element you want to apply the effect to
+});
 
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
@@ -71,89 +75,47 @@ function toggleFAQ(element) {
   faqItem.classList.toggle("active", !isActive)
 }
 
-// Make toggleFAQ globally accessible
-window.toggleFAQ = toggleFAQ
+// Add copy functionality to FAQ items
+function addCopyToFAQ() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const copyButton = document.createElement('button');
+    copyButton.innerText = 'Copy';
+    copyButton.classList.add('faq-copy-btn'); // Add a class for styling
+    item.appendChild(copyButton);
 
-// Global (or module-level) variables to store animation and listener references for snake cursor
-let currentAnimationId = null
-let currentMousemoveListener = null
-let snakeContainerElement = null // Keep a reference to the container element
-
-// Removed the problematic 'const lucide = { createIcons: () => {}, }' declaration.
-// The actual 'lucide' object is provided by the external script loaded in HTML.
-// Declaring it as 'const' here prevented the global 'lucide' from being used.
-
-// Moved cursor functions outside DOMContentLoaded for better scope and reusability
-const isMobile = window.matchMedia("(max-width: 768px)").matches
-
-function enableSnakeCursor() {
-  // Always ensure a clean slate before enabling.
-  // This is crucial for persistence across page navigations (especially with bfcache).
-  disableSnakeCursor()
-
-  snakeContainerElement = document.createElement("div") // Assign to global variable
-  snakeContainerElement.id = "cursor-snake"
-  document.body.appendChild(snakeContainerElement)
-
-  const dots = []
-  const dotCount = 20
-  for (let i = 0; i < dotCount; i++) {
-    const dot = document.createElement("div")
-    dot.className = "snake-dot"
-    snakeContainerElement.appendChild(dot) // Append to the new global container
-    dots.push({ el: dot, x: 0, y: 0 })
-  }
-
-  let mouseX = window.innerWidth / 2
-  let mouseY = window.innerHeight / 2
-
-  // Store event listener reference in a global variable
-  currentMousemoveListener = (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-  }
-  document.addEventListener("mousemove", currentMousemoveListener)
-
-  function animateSnake() {
-    let x = mouseX,
-      y = mouseY
-    dots.forEach((dot, i) => {
-      dot.x += (x - dot.x) * 0.2
-      dot.y += (y - dot.y) * 0.2
-      dot.el.style.left = dot.x + "px"
-      dot.el.style.top = dot.y + "px"
-      dot.el.style.transform = `scale(${1 - i / dotCount})`
-      x = dot.x
-      y = dot.y
-    })
-    // Store the animation ID in a global variable
-    currentAnimationId = requestAnimationFrame(animateSnake)
-  }
-  animateSnake()
+    copyButton.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent FAQ toggle
+      const text = item.querySelector('p').innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          copyButton.innerText = 'Copied!';
+          setTimeout(() => copyButton.innerText = 'Copy', 1500);
+        })
+        .catch(err => console.error('Could not copy text: ', err));
+    });
+  });
 }
 
-function disableSnakeCursor() {
-  // Use the global reference to the container element
-  if (snakeContainerElement) {
-    if (currentAnimationId) {
-      cancelAnimationFrame(currentAnimationId)
-      currentAnimationId = null // Reset global ID
-    }
-    if (currentMousemoveListener) {
-      document.removeEventListener("mousemove", currentMousemoveListener)
-      currentMousemoveListener = null // Reset global listener
-    }
-    snakeContainerElement.remove() // Remove the cursor container
-    snakeContainerElement = null // Reset global reference
-  }
+// Add like button functionality
+function addLikeButtons() {
+  const templateCards = document.querySelectorAll('.template-card');
+  templateCards.forEach(card => {
+    const likeButton = document.createElement('button');
+    likeButton.innerText = 'Like';
+    likeButton.classList.add('like-btn'); // Add a class for styling
+    card.appendChild(likeButton);
+
+    let likes = 0; // Initialize likes count
+    likeButton.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent card click
+      likes++;
+      likeButton.innerText = `Liked (${likes})`;
+    });
+  });
 }
 
-// Add event listener for page unload to ensure cleanup, especially for bfcache
-window.addEventListener("pagehide", () => {
-  disableSnakeCursor()
-})
-
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Theme toggle
   const themeToggle = document.getElementById("theme-toggle")
   const body = document.body
@@ -335,6 +297,8 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateProgressBar)
   // Initialize on load
   updateProgressBar()
+  addCopyToFAQ();
+  addLikeButtons();
 })
 
 

@@ -229,13 +229,26 @@ body.dark .ripple-effect {
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: url("images/bg.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: linear-gradient(45deg, #a5aad8, #23a6d5); /* Example gradient */
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
   background-color: var(--primary-bg);
   color: var(--primary-text);
   transition: background var(--transition), color var(--transition);
   min-height: 100vh;
   transition: background 0.5s ease 0.2s;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .list-group {
@@ -1109,7 +1122,7 @@ body.dark .contact-container {
   .footer-content {
     display: flex;
     flex-direction: column;
-    align-items: center; /* ✅ Ensure footer sections are centered */
+    align-items: center;
     text-align: center;
   }
 
@@ -2180,8 +2193,6 @@ body.dark .template-card:hover {
   transform: translateY(-8px) scale(1.02);
 }
 
-/* ...existing code... */
-
 .geometric{
   padding-left: 55px;
   font-size: 20px;
@@ -2222,7 +2233,92 @@ body.dark .template-card:hover {
   .signup-link a:hover {
     text-decoration: underline;
   }
+.faq-copy-btn {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
 
+.faq-copy-btn:hover {
+  background-color: #2563eb;
+}
+
+/* Scroll to top button */
+#scrollBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--accent);
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#scrollBtn:hover {
+  background-color: #2563eb;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#scrollBtn.show {
+  display: block;
+}
+.like-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.like-btn:hover {
+  background-color: #388e3c;
+}
+#scrollBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--accent);
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#scrollBtn:hover {
+  background-color: #2563eb;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#scrollBtn.show {
+  display: block;
+}
 
 
 
