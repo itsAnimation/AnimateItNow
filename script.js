@@ -356,4 +356,24 @@ function scrollToTop() {
 }
 
 
+//back to top button
+const backToTopBtn = document.getElementById("backToTopBtn");
+
+// Show/hide button on scroll
+window.onscroll = function () {
+  if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+    backToTopBtn.classList.add("show");
+  } else {
+    backToTopBtn.classList.remove("show");
+  }
+};
+
+// Scroll to top smoothly
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
 
