@@ -1,157 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modal/Popup Templates | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modal/Popup Templates | AnimateItNow</title>
+  <meta name="description"
+    content="A comprehensive collection of CSS animation templates and effects for web developers" />
+
   <!-- Apple Touch Icons -->
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
-    <link rel="stylesheet" href="../styles.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
-  </head>
-  <body>
-    <nav class="navbar scroll-fade">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </div>
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../templates.html" class="active">Templates</a></li>
-          <li><a href="../contributors.html">Contributors</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-          <li><a href="../leaderboard.html">Leaderboard</a></li>
-          <!--leaderboard linkup> -->
-          <!-- cursor toggle switch -->
-          <li class="snakeList">
-            <label class="switch" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle" />
-              <span class="slider round"></span>
-            </label>
-            <span class="snakeLabel">Snake Cursor</span>
-          </li>
-          <!-- github icon -->
-          <li>
-            <a
-              href="https://github.com/itsAnimation/AnimateItNow"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Repo"
-              class="github-icon"
-            >
-              <svg
-                viewBox="0 0 16 16"
-                width="24"
-                height="24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+  <style>
+    /* Base styles and Theme Variables */
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color-primary: #212529;
+      --text-color-secondary: #6c757d;
+      --card-bg: #ffffff;
+      --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --border-color: #e5e7eb;
+      --accent-color: #3b82f6;
+      --accent-color-hover: #2563eb;
+      --nav-bg: rgba(255, 255, 255, 0.8);
+      --code-bg: #f5f2f0;
+      --code-text: #333;
+      --tab-active-bg: #e5e7eb;
+      --tab-inactive-bg: transparent;
+      --transition-speed: 0.3s;
+    }
+
+    .dark {
+      --bg-color: #111827;
+      --text-color-primary: #f9fafb;
+      --text-color-secondary: #9ca3af;
+      --card-bg: #1f2937;
+      --card-shadow: 0 4px 6px -1px rgb(255 255 255 / 0.05), 0 2px 4px -2px rgb(255 255 255 / 0.05);
+      --border-color: #374151;
+      --accent-color: #60a5fa;
+      --accent-color-hover: #3b82f6;
+      --nav-bg: rgba(31, 41, 55, 0.8);
+      --code-bg: #2d2d2d;
+      --code-text: #ccc;
+      --tab-active-bg: #374151;
+      --tab-inactive-bg: transparent;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color-primary);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    /* PrismJS Toolbar Customization */
+    div.code-toolbar>.toolbar {
+      opacity: 1;
+      background: transparent;
+      border: none;
+    }
+
+    div.code-toolbar>.toolbar a,
+    div.code-toolbar>.toolbar button,
+    div.code-toolbar>.toolbar span {
+      background: var(--accent-color);
+      color: white;
+      border-radius: 0.375rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      box-shadow: none;
+    }
+
+    div.code-toolbar>.toolbar a:hover,
+    div.code-toolbar>.toolbar button:hover,
+    div.code-toolbar>.toolbar span:hover {
+      background: var(--accent-color-hover);
+    }
+
+    pre[class*="language-"] {
+      background: var(--code-bg) !important;
+      color: var(--code-text) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 0 0.5rem 0.5rem 0.5rem;
+      margin-top: -1px;
+    }
+
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+      color: var(--text-color-secondary);
+    }
+
+    /* Modal Base Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      color: var(--text-color-primary);
+      border-radius: 0.75rem;
+      box-shadow: var(--card-shadow);
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    /* Modal Animations */
+    .modal-fade-scale {
+      transform: scale(0.95);
+      opacity: 0;
+      transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+    }
+
+    .modal-overlay.active .modal-fade-scale, .modal-fade-scale.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal-slide-in-right {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed) ease-out;
+    }
+
+    .modal-slide-in-right.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .modal-3d-flip {
+      transform-style: preserve-3d;
+      transform: rotateY(-90deg);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .modal-overlay.active .modal-3d-flip {
+      transform: rotateY(0deg);
+    }
+
+    .modal-newspaper {
+      transform: scale(0) rotate(720deg);
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+
+    .modal-overlay.active .modal-newspaper {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+
+    .modal-slide-down {
+      transform: translateY(-100%);
+      transition: transform var(--transition-speed) ease-out;
+    }
+
+    .modal-overlay.active .modal-slide-down {
+      transform: translateY(0);
+    }
+
+    .modal-slide-up {
+      transform: translateY(100%);
+      transition: transform var(--transition-speed) ease-out;
+    }
+
+    .modal-overlay.active .modal-slide-up {
+      transform: translateY(0);
+    }
+
+    .modal-genie {
+      transform-origin: bottom center;
+      transform: scale(0.1) translateY(100vh);
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-genie {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    .modal-blur-bg.active~main {
+      filter: blur(5px) grayscale(50%);
+      transform: scale(0.98);
+    }
+
+    /* SVG Border Draw Animation */
+    @keyframes draw-border {
+        from {
+            stroke-dashoffset: 2000;
+        }
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .modal-border-draw {
+        fill: transparent;
+        stroke: var(--accent-color);
+        stroke-width: 4px;
+        stroke-dasharray: 2000;
+        stroke-dashoffset: 2000;
+    }
+
+    .modal-overlay.active .modal-border-draw {
+        animation: draw-border 1.2s ease-out forwards;
+    }
+
+    .modal-overlay.has-svg-border.active .modal-fade-scale {
+        transition-delay: 0.2s;
+    }
+
+
+    /* Show Code Button */
+    .show-code-btn:hover {
+      background-color: #f3f4f6;
+    }
+
+    .dark .show-code-btn:hover {
+      background-color: #374151;
+    }
+
+    main {
+      transition: filter var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+  </style>
+
+  <script>
+    // Anti-flicker theme script
+    (function () {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+
+<body class="transition-colors duration-300">
+  <!-- Navbar -->
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <!--leaderboard linkup> -->
+        <!-- cursor toggle switch -->
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
                -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
                -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
                7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
                .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-                ></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <button
-              id="theme-toggle"
-              class="ripple btn-press"
-              aria-label="Toggle Theme"
-            >
-              <i data-lucide="moon"></i>
-            </button> 
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <main class="templates-main">
-      <h1>Modal/Popup Templates</h1>
-      <button
-        id="open-modal"
-        style="
-          background: #4f8cff;
-          color: #fff;
-          padding: 0.8em 2em;
-          border: none;
-          border-radius: 2em;
-          font-size: 1.1rem;
-          font-weight: 600;
-          box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-          margin-top: 2rem;
-          cursor: pointer;
-        "
-      >
-        Open Modal
-      </button>
-      <div
-        id="modal"
-        style="
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background: rgba(0, 0, 0, 0.4);
-          justify-content: center;
-          align-items: center;
-          z-index: 999;
-        "
-      >
-        <div
-          style="
-            background: #fff;
-            padding: 2rem 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
-            min-width: 300px;
-            max-width: 90vw;
-            text-align: center;
-          "
-        >
-          <h2 style="margin-bottom: 1rem">This is a Modal Popup!</h2>
-          <button
-            id="close-modal"
-            style="
-              background: #2563eb;
-              color: #fff;
-              padding: 0.6em 1.5em;
-              border: none;
-              border-radius: 2em;
-              font-size: 1rem;
-              font-weight: 600;
-              cursor: pointer;
-            "
-          >
-            Close
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
           </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight text-[var(--text-color-primary)] sm:text-5xl md:text-6xl">
+        <span class="block">Interactive Modal &</span>
+        <span class="block text-[var(--accent-color)]">Popup Templates</span>
+      </h1>
+      <p
+        class="mt-3 max-w-md mx-auto text-base text-[var(--text-color-secondary)] sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+        A curated collection of 10 unique, animated, and responsive popup designs. Click to preview and view the
+        code.
+      </p>
+    </div>
+
+    <!-- Templates Grid -->
+    <div id="templates-grid" class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Template cards will be injected here by JavaScript -->
+    </div>
+  </main>
+
+  <!-- Container for standard, centered modals -->
+  <div id="modals-container">
+    <!-- Modal HTML structures for centered modals will be injected here by JavaScript -->
+  </div>
+
+  <!-- NEW: Dedicated container for corner notifications ("toasts") -->
+  <div id="toasts-container" class="fixed top-20 right-4 z-[9999] w-full max-w-sm space-y-4 pointer-events-none">
+    <!-- Toast notifications will be injected here by JavaScript -->
+  </div>
+
+
+  <!-- Prism JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const templatesGrid = document.getElementById('templates-grid');
+      const modalsContainer = document.getElementById('modals-container');
+      const toastsContainer = document.getElementById('toasts-container');
+
+      const templates = [
+        {
+          id: 1,
+          title: 'Subtle Fade & Scale',
+          description: 'A classic, non-intrusive notification. Great for success messages.',
+          animationClass: 'modal-fade-scale',
+          html: `
+<div class="p-6">
+    <div class="text-center">
+        <svg class="mx-auto h-12 w-12 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+        <h3 class="mt-2 text-lg leading-6 font-medium text-[var(--text-color-primary)]">Action Complete</h3>
+        <p class="mt-2 text-sm text-[var(--text-color-secondary)]">Your request has been processed successfully.</p>
+    </div>
+</div>
+<div class="bg-[var(--border-color)] bg-opacity-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg">
+    <button type="button" class="modal-close w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[var(--accent-color)] text-base font-medium text-white hover:bg-[var(--accent-color-hover)] focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+        Great!
+    </button>
+</div>`,
+          css: `
+.modal-fade-scale {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.modal-overlay.active .modal-fade-scale, .modal-fade-scale.active {
+    transform: scale(1);
+    opacity: 1;
+}`
+        },
+        {
+          id: 2,
+          title: 'Slide-in Notification',
+          description: 'A "toast" style modal that slides in from the side. Less intrusive.',
+          animationClass: 'modal-slide-in-right',
+          isSideModal: true,
+          html: `
+<div class="p-4">
+    <div class="flex items-start">
+        <div class="flex-shrink-0">
+            <svg class="h-6 w-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </div>
-      </div>
-      <script>
-        document.getElementById("open-modal").onclick = function () {
-          document.getElementById("modal").style.display = "flex";
-        };
-        document.getElementById("close-modal").onclick = function () {
-          document.getElementById("modal").style.display = "none";
-        };
-      </script>
-    </main>
-    <!-- <footer>
-      <p>Made with ❤️ by Anuj and Contributors</p>
-    </footer> -->
-    <div id="cursor-snake"></div>
-    <script src="../script.js"></script>
-    </body>
+        <div class="ml-3 w-0 flex-1 pt-0.5">
+            <p class="text-sm font-medium text-[var(--text-color-primary)]">New Update Available</p>
+            <p class="mt-1 text-sm text-[var(--text-color-secondary)]">A new version of the application is ready to be installed.</p>
+        </div>
+        <div class="ml-4 flex-shrink-0 flex">
+            <button class="modal-close bg-transparent rounded-md inline-flex text-[var(--text-color-secondary)] hover:text-[var(--text-color-primary)] focus:outline-none">
+                <span class="sr-only">Close</span>
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+            </button>
+        </div>
+    </div>
+</div>`,
+          css: `
+.modal-slide-in-right {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed) ease-out;
+}
+
+.modal-slide-in-right.active {
+    transform: translateX(0);
+    opacity: 1;
+}`
+        },
+        {
+          id: 3,
+          title: '3D Flip Confirmation',
+          description: 'Uses a 3D transform for a card-flipping effect. Visually engaging.',
+          animationClass: 'modal-3d-flip',
+          html: `
+<div class="p-6 text-center">
+    <svg class="mx-auto h-12 w-12 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+    <h3 class="mt-2 text-lg font-medium text-[var(--text-color-primary)]">Are you sure?</h3>
+    <p class="mt-2 text-sm text-[var(--text-color-secondary)]">This action cannot be undone. All data will be permanently deleted.</p>
+    <div class="mt-4 flex justify-center space-x-4">
+        <button type="button" class="modal-close inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-500 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-[var(--text-color-primary)] hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none">Cancel</button>
+        <button type="button" class="modal-close inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none">Delete</button>
+    </div>
+</div>`,
+          css: `
+.modal-3d-flip {
+    transform-style: preserve-3d;
+    transform: rotateY(-90deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.modal-overlay.active .modal-3d-flip {
+    transform: rotateY(0deg);
+}`
+        },
+        {
+          id: 4,
+          title: 'Newspaper Unfold',
+          description: 'A fun animation where the modal appears to unfold like a newspaper.',
+          animationClass: 'modal-newspaper',
+          html: `
+<div class="p-6">
+    <h3 class="text-2xl font-bold text-center text-[var(--accent-color)]">EXTRA! EXTRA!</h3>
+    <p class="mt-4 text-center text-[var(--text-color-secondary)]">Read all about our latest product launch. It's a game-changer! We've introduced new features that will revolutionize your workflow.</p>
+    <button class="modal-close mt-6 w-full bg-[var(--accent-color)] hover:bg-[var(--accent-color-hover)] text-white font-bold py-2 px-4 rounded-lg">Read More</button>
+</div>`,
+          css: `
+.modal-newspaper {
+    transform: scale(0) rotate(720deg);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.modal-overlay.active .modal-newspaper {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+}`
+        },
+        {
+          id: 5,
+          title: 'Top Slide-Down',
+          description: 'A simple but effective modal that slides down from the top of the viewport.',
+          animationClass: 'modal-slide-down',
+          isTopModal: true,
+          html: `
+<div class="p-4 bg-[var(--accent-color)] text-white text-center">
+    <p>This is an important announcement! Get 50% off on all products this week only. <a href="#" class="font-bold underline">Shop Now!</a></p>
+    <button class="modal-close absolute top-2 right-2 p-1 rounded-full hover:bg-white/20">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+    </button>
+</div>`,
+          css: `
+.modal-slide-down {
+    transform: translateY(-100%);
+    transition: transform var(--transition-speed) ease-out;
+}
+
+.modal-overlay.active .modal-slide-down {
+    transform: translateY(0);
+}`
+        },
+        {
+          id: 6,
+          title: 'Genie Effect',
+          description: 'A whimsical animation where the modal is "sucked" out from the bottom.',
+          animationClass: 'modal-genie',
+          html: `
+<div class="p-6 text-center">
+    <h3 class="text-2xl font-bold">Your Wish is My Command!</h3>
+    <p class="mt-2 text-sm text-[var(--text-color-secondary)]">This modal appeared with a touch of magic. What would you like to do next?</p>
+    <div class="mt-4 flex justify-center space-x-2">
+        <button class="modal-close flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Grant a Wish</button>
+        <button class="modal-close flex-1 bg-transparent border border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white font-bold py-2 px-4 rounded-lg">Go Back</button>
+    </div>
+</div>`,
+          css: `
+.modal-genie {
+    transform-origin: bottom center;
+    transform: scale(0.1) translateY(100vh);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+}
+
+.modal-overlay.active .modal-genie {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}`
+        },
+        {
+          id: 7,
+          title: 'SVG Border Draw',
+          description: 'An elegant effect where the modal\'s border is drawn on screen using SVG.',
+          animationClass: 'modal-fade-scale',
+          overlayClass: 'has-svg-border',
+          html: `
+<div class="p-6 text-center relative">
+    <!-- SVG for border animation -->
+    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <rect class="modal-border-draw" x="0" y="0" width="100%" height="100%" rx="12" ry="12"></rect>
+    </svg>
+    <h3 class="text-lg font-medium text-[var(--text-color-primary)] relative">A Touch of Elegance</h3>
+    <p class="mt-2 text-sm text-[var(--text-color-secondary)] relative">This modal uses an SVG animation to draw its own border, creating a sophisticated entrance effect.</p>
+    <button class="modal-close mt-4 relative inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[var(--accent-color)] text-base font-medium text-white hover:bg-[var(--accent-color-hover)] focus:outline-none">
+        Appreciate
+    </button>
+</div>`,
+          css: `
+@keyframes draw-border {
+    from {
+        stroke-dashoffset: 2000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.modal-border-draw {
+    fill: transparent;
+    stroke: var(--accent-color);
+    stroke-width: 4px;
+    stroke-dasharray: 2000; /* A large number to cover perimeter */
+    stroke-dashoffset: 2000;
+}
+
+.modal-overlay.active .modal-border-draw {
+    animation: draw-border 1.2s ease-out forwards;
+}
+
+/* The content still fades in for a nice combined effect */
+.modal-overlay.has-svg-border.active .modal-fade-scale {
+    transition-delay: 0.2s;
+}`
+        },
+        {
+          id: 8,
+          title: 'Background Blur',
+          description: 'The page content behind the modal scales back and blurs, drawing focus.',
+          animationClass: 'modal-fade-scale',
+          isBlur: true,
+          html: `
+<div class="p-6">
+    <div class="text-center">
+        <h3 class="text-lg font-medium text-[var(--text-color-primary)]">Focus Mode Activated</h3>
+        <p class="mt-2 text-sm text-[var(--text-color-secondary)]">The background is blurred to help you concentrate on this task. Please confirm your choice below.</p>
+    </div>
+    <div class="mt-5 sm:mt-6">
+        <button type="button" class="modal-close w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[var(--accent-color)] text-base font-medium text-white hover:bg-[var(--accent-color-hover)] focus:outline-none">Confirm & Continue</button>
+    </div>
+</div>`,
+          css: `
+/* This effect targets the <main> element when the modal is active. */
+.modal-blur-bg.active ~ main {
+    filter: blur(5px) grayscale(50%);
+    transform: scale(0.98);
+}
+
+main {
+    transition: filter var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+/* It also uses the .modal-fade-scale animation for the modal itself. */
+.modal-fade-scale {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+.modal-overlay.active .modal-fade-scale {
+    transform: scale(1);
+    opacity: 1;
+}`
+        },
+        {
+          id: 9,
+          title: 'Cookie Consent',
+          description: 'A common bottom banner for cookie consent, with accept/decline options.',
+          isBottomBanner: true,
+          animationClass: 'modal-slide-up',
+          html: `
+<div class="p-4 bg-[var(--card-bg)] shadow-lg w-full">
+    <div class="sm:flex sm:items-start">
+        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-[var(--text-color-primary)]">We value your privacy</h3>
+            <div class="mt-2">
+                <p class="text-sm text-[var(--text-color-secondary)]">We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+        <button type="button" class="modal-close w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[var(--accent-color)] text-base font-medium text-white hover:bg-[var(--accent-color-hover)] focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">Accept All</button>
+        <button type="button" class="modal-close mt-3 w-full inline-flex justify-center rounded-md border border-[var(--border-color)] shadow-sm px-4 py-2 bg-transparent text-base font-medium text-[var(--text-color-primary)] hover:bg-[var(--border-color)] focus:outline-none sm:mt-0 sm:w-auto sm:text-sm">Decline</button>
+    </div>
+</div>`,
+          css: `
+.modal-slide-up {
+    transform: translateY(100%);
+    transition: transform var(--transition-speed) ease-out;
+}
+
+.modal-overlay.active .modal-slide-up {
+    transform: translateY(0);
+}`
+        },
+        {
+          id: 10,
+          title: 'Interactive Form',
+          description: 'A modal containing a styled subscription form. Focuses on input UX.',
+          animationClass: 'modal-fade-scale',
+          html: `
+<div class="p-6">
+    <h3 class="text-lg font-medium leading-6 text-[var(--text-color-primary)]">Subscribe to our Newsletter</h3>
+    <div class="mt-2">
+        <p class="text-sm text-[var(--text-color-secondary)]">Get the latest updates and offers directly in your inbox.</p>
+    </div>
+    <form class="mt-4 space-y-4">
+        <div>
+            <label for="name" class="block text-sm font-medium text-[var(--text-color-secondary)]">Name</label>
+            <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-[var(--border-color)] bg-[var(--bg-color)] shadow-sm focus:border-[var(--accent-color)] focus:ring-[var(--accent-color)] sm:text-sm p-2">
+        </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-[var(--text-color-secondary)]">Email</label>
+            <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-[var(--border-color)] bg-[var(--bg-color)] shadow-sm focus:border-[var(--accent-color)] focus:ring-[var(--accent-color)] sm:text-sm p-2">
+        </div>
+        <button type="submit" class="modal-close w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[var(--accent-color)] text-base font-medium text-white hover:bg-[var(--accent-color-hover)] focus:outline-none">Subscribe</button>
+    </form>
+</div>`,
+            css: `
+.modal-fade-scale {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.modal-overlay.active .modal-fade-scale {
+    transform: scale(1);
+    opacity: 1;
+}`
+              }
+      ];
+
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      templates.forEach(template => {
+        // Create Template Card
+        const card = document.createElement('div');
+        card.className = 'flex flex-col rounded-lg shadow-lg overflow-hidden bg-[var(--card-bg)] border border-[var(--border-color)] transition-all duration-300';
+        card.innerHTML = `
+                    <div class="flex-1 p-6 flex flex-col justify-between">
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-[var(--accent-color)]">Template ${template.id}</p>
+                            <div class="block mt-2">
+                                <p class="text-xl font-semibold text-[var(--text-color-primary)]">${template.title}</p>
+                                <p class="mt-3 text-base text-[var(--text-color-secondary)]">${template.description}</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center space-x-3">
+                            <button class="open-modal-btn flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[var(--accent-color)] hover:bg-[var(--accent-color-hover)] transition-colors" data-modal-id="${template.id}">
+                                Preview
+                            </button>
+                            <button class="show-code-btn flex-1 inline-flex items-center justify-center px-4 py-2 border border-[var(--border-color)] text-sm font-medium rounded-md text-[var(--text-color-primary)] bg-transparent transition-colors" data-code-id="${template.id}">
+                                Show Code
+                            </button>
+                        </div>
+                    </div>
+                    <div id="code-viewer-${template.id}" class="code-viewer hidden bg-[var(--bg-color)]">
+                        <div class="flex border-b border-[var(--border-color)]">
+                            <button class="code-tab active px-4 py-2 text-sm font-medium text-[var(--text-color-primary)] bg-[var(--tab-active-bg)]" data-lang="html" data-code-id="${template.id}">HTML</button>
+                            <button class="code-tab px-4 py-2 text-sm font-medium text-[var(--text-color-secondary)] hover:bg-[var(--tab-active-bg)]" data-lang="css" data-code-id="${template.id}">CSS</button>
+                        </div>
+                        <div class="code-content active" data-lang-content="html" data-code-id="${template.id}">
+                            <div class="code-toolbar">
+                                <pre class="language-markup !m-0 !rounded-t-none"><code>${escapeHtml(template.html)}</code></pre>
+                            </div>
+                        </div>
+                        <div class="code-content hidden" data-lang-content="css" data-code-id="${template.id}">
+                             <div class="code-toolbar">
+                                <pre class="language-css !m-0 !rounded-t-none"><code>${escapeHtml(template.css)}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        templatesGrid.appendChild(card);
+
+        // Create Modal Overlays for standard modals ONLY
+        if (!template.isSideModal) {
+            const modal = document.createElement('div');
+            modal.id = `modal-${template.id}`;
+            modal.className = 'modal-overlay';
+            
+            if (template.overlayClass) {
+                modal.classList.add(template.overlayClass);
+            }
+            if (template.isBlur) {
+              modal.classList.add('modal-blur-bg');
+            }
+
+            let modalContentClasses = 'modal-content';
+            let overlayStyles = '';
+            
+            if (template.isTopModal) {
+              overlayStyles = 'background: transparent; align-items: flex-start;';
+              modalContentClasses = 'w-full rounded-none';
+            }
+            if (template.isFullScreen) {
+              overlayStyles = 'background: transparent;';
+              modalContentClasses = `w-screen h-screen transition-opacity duration-500`;
+            }
+            if (template.isBottomBanner) {
+              overlayStyles = 'background: transparent; align-items: flex-end;';
+              modalContentClasses = `w-full`;
+            }
+
+            modal.style.cssText = overlayStyles;
+            modal.innerHTML = `
+                        <div class="${modalContentClasses} ${template.animationClass}">
+                            ${template.html}
+                        </div>
+                    `;
+            modalsContainer.appendChild(modal);
+        }
+      });
+
+      Prism.highlightAll();
+
+      // --- Event Delegation ---
+      document.body.addEventListener('click', function (e) {
+        // Open modal
+        const openBtn = e.target.closest('.open-modal-btn');
+        if (openBtn) {
+            const modalId = openBtn.dataset.modalId;
+            const template = templates.find(t => t.id == modalId);
+
+            if (template.isSideModal) {
+                // --- SPECIAL LOGIC FOR SIDE NOTIFICATION ---
+                const toast = document.createElement('div');
+                // The notification is created with the necessary classes directly
+                toast.className = 'modal-content modal-slide-in-right pointer-events-auto shadow-lg rounded-lg';
+                toast.innerHTML = template.html;
+                
+                // It's added to the new, dedicated container
+                toastsContainer.appendChild(toast);
+
+                // Trigger animation and handle closing
+                requestAnimationFrame(() => {
+                    toast.classList.add('active');
+                });
+                
+                const closeButton = toast.querySelector('.modal-close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', () => {
+                        toast.classList.remove('active');
+                        toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+                    });
+                }
+
+            } else {
+                // --- ORIGINAL LOGIC FOR ALL OTHER MODALS ---
+                const modal = document.getElementById(`modal-${modalId}`);
+                if (modal) modal.classList.add('active');
+            }
+        }
+
+        // Close modal
+        const closeBtn = e.target.closest('.modal-close');
+        if (closeBtn) {
+          const modal = closeBtn.closest('.modal-overlay');
+          if (modal) modal.classList.remove('active');
+        }
+
+        // Close on overlay click (but not on content)
+        if (e.target.matches('.modal-overlay')) {
+          e.target.classList.remove('active');
+        }
+
+        // Show code
+        const showCodeBtn = e.target.closest('.show-code-btn');
+        if (showCodeBtn) {
+          const codeId = showCodeBtn.dataset.codeId;
+          const viewer = document.getElementById(`code-viewer-${codeId}`);
+          const isHidden = viewer.classList.contains('hidden');
+          viewer.classList.toggle('hidden');
+          showCodeBtn.textContent = isHidden ? 'Hide Code' : 'Show Code';
+        }
+
+        // Switch code tabs
+        const codeTab = e.target.closest('.code-tab');
+        if (codeTab) {
+          const codeId = codeTab.dataset.codeId;
+          const lang = codeTab.dataset.lang;
+          const viewer = document.getElementById(`code-viewer-${codeId}`);
+
+          viewer.querySelectorAll('.code-tab').forEach(t => {
+            t.classList.remove('active', 'bg-[var(--tab-active-bg)]', 'text-[var(--text-color-primary)]');
+            t.classList.add('text-[var(--text-color-secondary)]');
+          });
+          codeTab.classList.add('active', 'bg-[var(--tab-active-bg)]', 'text-[var(--text-color-primary)]');
+          codeTab.classList.remove('text-[var(--text-color-secondary)]');
+
+          viewer.querySelectorAll('.code-content').forEach(c => {
+            c.classList.toggle('hidden', c.dataset.langContent !== lang);
+          });
+        }
+      });
+
+      // --- Theme Toggle ---
+      const themeToggle = document.getElementById('theme-toggle');
+
+      function updateThemeIcon() {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (themeToggle) {
+          themeToggle.innerHTML = `<i data-lucide="${isDark ? 'sun' : 'moon'}"></i>`;
+          if (window.lucide) {
+            window.lucide.createIcons();
+          }
+        }
+      }
+
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeIcon();
+      });
+
+      updateThemeIcon();
+
+    });
+  </script>
+
+  <div id="cursor-snake"></div>
+  <script src="../script.js"></script>
+</body>
+
 </html>
