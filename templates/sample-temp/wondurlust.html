@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Adventures - Discover the World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a"><stop offset="0" stop-color="%2393c5fd"/><stop offset="1" stop-color="%236366f1"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl">✈️</span>
+                    <h1 class="ml-2 text-2xl font-bold text-blue-600">Wanderlust Adventures</h1>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                    <a href="#destinations" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Destinations</a>
+                    <a href="#packages" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Packages</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+                </div>
+                
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <div class="floating mb-8">
+                <span class="text-8xl">🌍</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-bold mb-6">Explore the World</h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Discover breathtaking destinations and create unforgettable memories with our expertly crafted travel experiences</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="showBookingForm()" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300">
+                    Start Your Journey
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">
+                    View Destinations
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section id="destinations" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Popular Destinations</h3>
+                <p class="text-xl text-gray-600">Discover the world's most amazing places</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center">
+                        <span class="text-8xl">🏝️</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">Maldives</h4>
+                        <p class="text-gray-600 mb-4">Crystal clear waters and pristine beaches await you in this tropical paradise</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $2,499</span>
+                            <button onclick="selectDestination('Maldives')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center">
+                        <span class="text-8xl">🗼</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">Paris, France</h4>
+                        <p class="text-gray-600 mb-4">The city of love and lights with iconic landmarks and rich culture</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $1,899</span>
+                            <button onclick="selectDestination('Paris')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-green-400 to-emerald-400 flex items-center justify-center">
+                        <span class="text-8xl">🏔️</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">Swiss Alps</h4>
+                        <p class="text-gray-600 mb-4">Majestic mountains and charming villages in the heart of Europe</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $2,199</span>
+                            <button onclick="selectDestination('Swiss Alps')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
+                        <span class="text-8xl">🌸</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">Tokyo, Japan</h4>
+                        <p class="text-gray-600 mb-4">Modern metropolis blending ancient traditions with cutting-edge technology</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $2,799</span>
+                            <button onclick="selectDestination('Tokyo')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center">
+                        <span class="text-8xl">🦁</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">African Safari</h4>
+                        <p class="text-gray-600 mb-4">Experience wildlife in their natural habitat on an unforgettable adventure</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $3,299</span>
+                            <button onclick="selectDestination('African Safari')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-teal-400 to-blue-400 flex items-center justify-center">
+                        <span class="text-8xl">🏛️</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">Santorini, Greece</h4>
+                        <p class="text-gray-600 mb-4">Stunning sunsets and white-washed buildings overlooking the Aegean Sea</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $1,799</span>
+                            <button onclick="selectDestination('Santorini')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Explore
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Packages -->
+    <section id="packages" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Travel Packages</h3>
+                <p class="text-xl text-gray-600">Choose the perfect package for your adventure</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                    <div class="text-6xl mb-4">🎒</div>
+                    <h4 class="text-2xl font-bold mb-4">Explorer</h4>
+                    <p class="text-gray-600 mb-6">Perfect for budget-conscious travelers who want to see the world</p>
+                    <ul class="text-left mb-8 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 3-star accommodations</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Group tours</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Basic meals included</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Airport transfers</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">From $999</div>
+                    <button onclick="selectPackage('Explorer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                        Choose Package
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center border-4 border-blue-500 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div class="text-6xl mb-4">🌟</div>
+                    <h4 class="text-2xl font-bold mb-4">Adventurer</h4>
+                    <p class="text-gray-600 mb-6">The perfect balance of comfort and adventure for most travelers</p>
+                    <ul class="text-left mb-8 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 4-star accommodations</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Small group tours</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> All meals included</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Private transfers</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Local experiences</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">From $1,999</div>
+                    <button onclick="selectPackage('Adventurer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                        Choose Package
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                    <div class="text-6xl mb-4">👑</div>
+                    <h4 class="text-2xl font-bold mb-4">Luxury</h4>
+                    <p class="text-gray-600 mb-6">Ultimate luxury experience with premium accommodations and services</p>
+                    <ul class="text-left mb-8 space-y-2">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 5-star accommodations</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Private tours</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Gourmet dining</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Luxury transfers</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Exclusive experiences</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Personal concierge</li>
+                    </ul>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">From $4,999</div>
+                    <button onclick="selectPackage('Luxury')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                        Choose Package
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-6">Why Choose Wanderlust Adventures?</h3>
+                    <p class="text-lg text-gray-600 mb-8">With over 15 years of experience in creating unforgettable travel experiences, we're your trusted partner in exploring the world. Our expert team crafts personalized journeys that go beyond typical tourism.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-3xl mr-4">🎯</div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Personalized Experiences</h4>
+                                <p class="text-gray-600">Every trip is tailored to your interests and preferences</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-3xl mr-4">🛡️</div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">24/7 Support</h4>
+                                <p class="text-gray-600">Round-the-clock assistance wherever you are in the world</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-3xl mr-4">💎</div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2">Premium Quality</h4>
+                                <p class="text-gray-600">Carefully selected accommodations and experiences</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl p-12 text-white">
+                        <div class="text-8xl mb-6">🌟</div>
+                        <h4 class="text-3xl font-bold mb-4">50,000+</h4>
+                        <p class="text-xl mb-6">Happy Travelers</p>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold">4.9/5</div>
+                                <div class="text-sm opacity-90">Average Rating</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold">150+</div>
+                                <div class="text-sm opacity-90">Destinations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold mb-4">Ready to Start Your Adventure?</h3>
+                <p class="text-xl text-gray-300">Get in touch with our travel experts today</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">📞</div>
+                    <h4 class="text-xl font-semibold mb-2">Call Us</h4>
+                    <p class="text-gray-300">+1 (555) 123-4567</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl mb-4">✉️</div>
+                    <h4 class="text-xl font-semibold mb-2">Email Us</h4>
+                    <p class="text-gray-300">hello@wanderlustadventures.com</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl mb-4">📍</div>
+                    <h4 class="text-xl font-semibold mb-2">Visit Us</h4>
+                    <p class="text-gray-300">123 Travel Street, Adventure City</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="showBookingForm()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300">
+                    Plan Your Trip Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Book Your Adventure</h3>
+                <button onclick="hideBookingForm()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Destination</label>
+                        <select id="destinationSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Select a destination</option>
+                            <option value="Maldives">Maldives</option>
+                            <option value="Paris">Paris, France</option>
+                            <option value="Swiss Alps">Swiss Alps</option>
+                            <option value="Tokyo">Tokyo, Japan</option>
+                            <option value="African Safari">African Safari</option>
+                            <option value="Santorini">Santorini, Greece</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Package</label>
+                        <select id="packageSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Select a package</option>
+                            <option value="Explorer">Explorer - From $999</option>
+                            <option value="Adventurer">Adventurer - From $1,999</option>
+                            <option value="Luxury">Luxury - From $4,999</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Travel Date</label>
+                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5+">5+ People</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mt-6">
+                    Submit Booking Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Show booking form
+        function showBookingForm() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        // Hide booking form
+        function hideBookingForm() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Select destination
+        function selectDestination(destination) {
+            showBookingForm();
+            document.getElementById('destinationSelect').value = destination;
+        }
+
+        // Select package
+        function selectPackage(packageName) {
+            showBookingForm();
+            document.getElementById('packageSelect').value = packageName;
+        }
+
+        // Submit booking
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const bookingData = Object.fromEntries(formData);
+            
+            // Show success message
+            alert('Thank you for your booking request! Our travel experts will contact you within 24 hours to finalize your adventure.');
+            
+            // Hide modal and reset form
+            hideBookingForm();
+            event.target.reset();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideBookingForm();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b24b1df1cf7e79',t:'MTc1NDUyMjcyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

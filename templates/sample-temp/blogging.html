@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechInsights - Modern Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .blog-card:hover { transform: translateY(-4px); }
+        .blog-card { transition: all 0.3s ease; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .text-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-gradient">TechInsights</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Categories</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">Contact</a>
+                </div>
+                <button class="gradient-bg text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-5xl font-bold mb-6">Discover Amazing Stories</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Explore the latest insights in technology, design, and innovation. Join thousands of readers who trust our content.
+            </p>
+            <div class="flex justify-center">
+                <div class="relative max-w-md w-full">
+                    <input type="email" placeholder="Enter your email..." class="w-full px-6 py-4 rounded-full text-gray-800 pr-32 focus:outline-none focus:ring-4 focus:ring-white/30">
+                    <button class="absolute right-2 top-2 bg-gray-800 text-white px-6 py-2 rounded-full font-medium hover:bg-gray-700 transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="md:flex">
+                <div class="md:w-1/2">
+                    <div class="h-64 md:h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <svg class="w-20 h-20 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <p class="text-lg font-medium">Featured Image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-8">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Featured</span>
+                        <span class="text-gray-500 ml-4">Dec 15, 2024</span>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">The Future of Web Development: Trends to Watch</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Discover the emerging technologies and methodologies that are shaping the future of web development. From AI integration to new frameworks, explore what's coming next.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold">
+                                JS
+                            </div>
+                            <div class="ml-3">
+                                <p class="font-medium text-gray-900">Jane Smith</p>
+                                <p class="text-sm text-gray-500">Senior Developer</p>
+                            </div>
+                        </div>
+                        <button class="text-purple-600 font-medium hover:text-purple-800 transition-colors">
+                            Read More →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900">Latest Articles</h2>
+            <div class="flex space-x-4">
+                <button onclick="filterPosts('all')" class="filter-btn bg-purple-600 text-white px-4 py-2 rounded-full font-medium hover:bg-purple-700 transition-colors">
+                    All
+                </button>
+                <button onclick="filterPosts('tech')" class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Tech
+                </button>
+                <button onclick="filterPosts('design')" class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Design
+                </button>
+                <button onclick="filterPosts('business')" class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-gray-300 transition-colors">
+                    Business
+                </button>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid">
+            <!-- Blog Post 1 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="tech">
+                <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                        <p class="font-medium">Tech Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Technology</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 12, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Building Scalable APIs with Modern Frameworks</h3>
+                    <p class="text-gray-600 mb-4">Learn how to create robust and scalable APIs using the latest development frameworks and best practices.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                MJ
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">Mike Johnson</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="design">
+                <div class="h-48 bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+                        </svg>
+                        <p class="font-medium">Design Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">Design</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 10, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">The Psychology of Color in User Interface Design</h3>
+                    <p class="text-gray-600 mb-4">Explore how color choices impact user behavior and create more effective digital experiences.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-pink-400 to-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                SL
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">Sarah Lee</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="business">
+                <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 1a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+                        </svg>
+                        <p class="font-medium">Business Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Business</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 8, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Remote Work: Strategies for Team Productivity</h3>
+                    <p class="text-gray-600 mb-4">Discover proven methods to maintain high productivity and team cohesion in remote work environments.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                DW
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">David Wilson</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 4 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="tech">
+                <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                        <p class="font-medium">Tech Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs font-medium">Technology</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 5, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI Integration in Modern Web Applications</h3>
+                    <p class="text-gray-600 mb-4">Learn how artificial intelligence is transforming user experiences in web applications and mobile apps.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                AC
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">Alex Chen</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 5 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="design">
+                <div class="h-48 bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+                        </svg>
+                        <p class="font-medium">Design Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs font-medium">Design</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 3, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Minimalist Design Principles for Better UX</h3>
+                    <p class="text-gray-600 mb-4">Understand how minimalist design can improve user experience and create more intuitive interfaces.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                EM
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">Emma Martinez</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 6 -->
+            <article class="blog-card bg-white rounded-xl shadow-lg overflow-hidden" data-category="business">
+                <div class="h-48 bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/>
+                            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/>
+                        </svg>
+                        <p class="font-medium">Business Article</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-rose-100 text-rose-800 px-2 py-1 rounded-full text-xs font-medium">Business</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 1, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Building a Strong Company Culture in 2024</h3>
+                    <p class="text-gray-600 mb-4">Essential strategies for creating and maintaining a positive company culture that drives success.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                RT
+                            </div>
+                            <span class="ml-2 text-sm text-gray-700">Rachel Taylor</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium text-sm transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button class="bg-white border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-medium hover:bg-purple-600 hover:text-white transition-all">
+                Load More Articles
+            </button>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-gray-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-xl text-gray-300 mb-8">Get the latest articles delivered straight to your inbox. No spam, just quality content.</p>
+            <div class="flex justify-center">
+                <div class="relative max-w-md w-full">
+                    <input type="email" placeholder="Your email address..." class="w-full px-6 py-4 rounded-full text-gray-800 pr-32 focus:outline-none focus:ring-4 focus:ring-purple-500/30">
+                    <button class="absolute right-2 top-2 gradient-bg text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient mb-4">TechInsights</h3>
+                    <p class="text-gray-600">Sharing knowledge and insights about technology, design, and business innovation.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Technology</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Design</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Business</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Innovation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center text-gray-600">
+                <p>&copy; 2024 TechInsights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        function filterPosts(category) {
+            const posts = document.querySelectorAll('[data-category]');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update button styles
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-purple-600', 'text-white');
+            
+            // Filter posts
+            posts.forEach(post => {
+                if (category === 'all' || post.dataset.category === category) {
+                    post.style.display = 'block';
+                    post.style.animation = 'fadeIn 0.5s ease-in';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Newsletter subscription
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Subscribe')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const input = this.parentElement.querySelector('input[type="email"]') || 
+                                 this.closest('section').querySelector('input[type="email"]');
+                    
+                    if (input && input.value) {
+                        // Simple email validation
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (emailRegex.test(input.value)) {
+                            alert('Thank you for subscribing! You\'ll receive our latest articles in your inbox.');
+                            input.value = '';
+                        } else {
+                            alert('Please enter a valid email address.');
+                        }
+                    } else {
+                        alert('Please enter your email address.');
+                    }
+                });
+            }
+        });
+        
+        // Load more functionality
+        document.querySelector('button').addEventListener('click', function() {
+            if (this.textContent.includes('Load More')) {
+                alert('Loading more articles... This would typically fetch additional blog posts from a server.');
+            }
+        });
+        
+        // Add reading time to posts
+        document.querySelectorAll('.blog-card').forEach(card => {
+            const readTime = Math.floor(Math.random() * 5) + 3; // Random 3-7 min read time
+            const timeElement = document.createElement('span');
+            timeElement.className = 'text-gray-500 text-sm ml-auto';
+            timeElement.textContent = `${readTime} min read`;
+            
+            const metaDiv = card.querySelector('.flex.items-center.mb-3');
+            if (metaDiv) {
+                metaDiv.appendChild(timeElement);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b2412516bedb32',t:'MTc1NDUyMjMxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
