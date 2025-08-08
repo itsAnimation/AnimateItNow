@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
@@ -14,6 +14,7 @@
   <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
   <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
   <meta name="msapplication-TileColor" content="#ff6b6b" />
+  <meta name="mobile-web-app-capable" content="yes">
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json" />
@@ -54,14 +55,21 @@
       <span class="site-name">Animate It Now</span>
     </div>
 
-    <div class="nav-right">
+      
+    <div class="nav-right" id="navMenu">
+      <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+            <span></span>
+            <span></span> <!-- hamburger -->
+            <span></span>
+        </button>
       <ul class="nav-links">
+        
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
+        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup-->
         <!-- cursor toggle switch -->
         <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
@@ -395,9 +403,17 @@
   <div id="cursor-snake"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
   <!-- PWA Support -->
   <script src="pwa.js"></script>
+
+
+
+
+<!-- javascript for hamburger -->
+<script src="script.js" >
+
+</script>
 </body>
 
 </html>

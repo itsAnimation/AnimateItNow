@@ -1,3 +1,23 @@
+function setupNavbar() {
+  const hamburger = document.getElementById('hamburger-menu');
+  const navLinks = document.querySelector('.nav-links');
+  if (!hamburger || !navLinks) return;
+  hamburger.addEventListener('click', function(e) {
+    navLinks.classList.toggle('open');
+    e.stopPropagation();
+  });
+  document.addEventListener('click', function(e) {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+    }
+  });
+}
+// Initialize in DOMContentLoaded
+window.addEventListener('DOMContentLoaded', setupNavbar);
+
+
+
+
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return

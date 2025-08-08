@@ -204,49 +204,7 @@ body {
 }
 
 /* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 50px;
-  background: rgba(2, 13, 47);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
 
-/* Left Logo Section */
-.nav-left {
-  display: flex;
-  align-items: center;
-  width: 25ch;
-  position: relative;
-  gap: 12px;
-  color:#00d1ff
-}
-
-.logo {
-  height: 36px;
-  width: 36px;
-  animation: pulse 2s infinite;
-}
-.site-name {
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  border-right: 2px solid var(--white);
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  /* Add animation in website Name */
-  animation: typing 3s steps(14) 1s infinite,
-    blink 0.6s infinite step-end alternate;
-}
 
 @keyframes typing {
   0% {
@@ -269,24 +227,168 @@ body {
   }
 }
 
-/* .site-name {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #1b1717;
-  animation: fadeInLeft 0.8s ease;
-}  */
-
-/* Navigation Links */
-.nav-links {
+.navbar {
+  height: 60px;
   display: flex;
-  gap: 32px;
-  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #020d2f;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.nav-links li {
+.nav-left {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
+
+.logo {
+  width: 40px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Hamburger menu - hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  margin: 4px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Nav links - horizontal on desktop */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  position: static;
+  background: none;
+  flex-direction: row;
+  width: auto;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* =========================== */
+/* MOBILE NAVBAR RESPONSIVENESS*/
+/* =========================== */
+@media (max-width: 900px) {
+  
+  .hamburger {
+    display: flex;
+  }
+  .nav-right {
+    position: relative;
+    right: 0;
+  }
+  .nav-links {
+  display: none;
+  position: absolute;
+  top: 60px;        
+  right: 0;          /* Stick menu to the right side */
+  flex-direction: column;
+  width: 220px;
+  background: linear-gradient( to bottom, rgb(3, 163, 163), rgb(27, 26, 26)) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1001;
+  gap: 0;
+  padding: 20px 0;
+  border-radius: 0 0 12px 12px;
+}
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links li a {
+    color: #00252bac !important;
+    padding: 12px 24px;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 0;
+    transition: background .3s;
+  }
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background: #f0f4f8;
+    color: #00163e !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
+
+  /* --------------------------------- */
+    
+  .nav-links .github-icon svg {
+    fill: #020d2f !important;
+    color: #020d2f !important;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  
+  .nav-links .snakeList {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 24px;
+    width: 100%;
+  }
+  .nav-links .snakeLabel {
+    margin-left: 8px;
+    color: #020d2f !important;
+    font-size: 1rem;
+    font-weight: 500;
+    vertical-align: middle;
+    display: inline-block !important;
+  }
+
+  /* Style the theme toggle button and icon */
+  .nav-links #theme-toggle {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    margin: 12px 24px 0 24px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #020d2f !important;
+  }
+  .nav-links #theme-toggle i,
+  .nav-links #theme-toggle svg {
+    color: #020d2f !important;
+    fill: #020d2f !important;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+  }
+  
+/* ----------------------------------------- */
+}
+/*----------------------------------------------------------------------------------*/
 .nav-links a {
   color: var(--nav-text-60);
   text-decoration: none;
@@ -2358,5 +2460,15 @@ body.dark .glow-wrap::before {
 #search-bar::placeholder {
    color: rgba(31, 41, 55, 0.8);
 }
+
+
+
+
+
+
+
+
+
+
 
 
