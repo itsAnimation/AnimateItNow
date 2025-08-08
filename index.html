@@ -195,5 +195,61 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="script.js"></script>
   <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
+
+  <!--AI assistant Link-->
+ <!-- AI Assistant Embed -->
+<!-- Your existing content -->
+
+<!-- The assistant icon button outside iframe -->
+<img
+  id="assistant-icon"
+  src="ai-assistant/icon.png"
+  alt="Assistant"
+  style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 10000;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  "
+/>
+
+<iframe
+  id="assistant-iframe"
+  src="ai-assistant/assistant.html"
+  style="
+    border: none;
+    width: 350px;
+    height: 500px;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 9999;
+    display: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  "
+  scrolling="no"
+></iframe>
+
+<script>
+  const icon = document.getElementById('assistant-icon');
+  const iframe = document.getElementById('assistant-iframe');
+
+  icon.addEventListener('click', () => {
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+      iframe.style.display = 'block';
+    } else {
+      iframe.style.display = 'none';
+    }
+  });
+</script>
+
+
+<!-- --------------- -->
 </body>
 </html>
