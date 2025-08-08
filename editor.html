@@ -6,25 +6,36 @@
     <title>AnimateItNow - Live Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="editor.css" />
+    <link rel="stylesheet" href="accessibility.css" />
   </head>
 
   <body class="bg-gray-50 text-gray-900 min-h-screen">
     <header id="header-section" class="bg-white shadow p-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
-      <div class="flex gap-2">
-        <button
-          id="resetBtn"
-          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
-          title="Reset"
-        >
-          &#x21bb;
-        </button>
-        <button
-          id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
-        >
-          Run
-        </button>
+      <div class="flex gap-4 items-center">
+        <!-- reduce motion toggle -->
+        <div class="reduce-motion-toggle tooltip" data-tooltip="Disables most site animations for improved accessibility">
+          <label class="switch" aria-label="Reduce Animations">
+            <input type="checkbox" id="reduceMotionToggle" aria-label="Reduce animations for accessibility">
+            <span class="slider"></span>
+          </label>
+          <span class="text-sm text-gray-600">Reduce Animations</span>
+        </div>
+        <div class="flex gap-2">
+          <button
+            id="resetBtn"
+            class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
+            title="Reset"
+          >
+            &#x21bb;
+          </button>
+          <button
+            id="runBtn"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
+          >
+            Run
+          </button>
+        </div>
       </div>
     </header>
 
@@ -71,6 +82,7 @@
       </div>
     </main>
 
+    <script src="accessibility.js"></script>
     <script src="editor.js"></script>
   </body>
 </html>

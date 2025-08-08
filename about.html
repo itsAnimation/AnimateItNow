@@ -10,6 +10,7 @@
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="accessibility.css" />
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 </head>
@@ -34,8 +35,15 @@
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
+        <!-- reduce motion toggle -->
+        <li class="reduce-motion-toggle tooltip" data-tooltip="Disables most site animations for improved accessibility">
+          <label class="switch" aria-label="Reduce Animations">
+            <input type="checkbox" id="reduceMotionToggle" aria-label="Reduce animations for accessibility">
+            <span class="slider"></span>
+          </label>
+          <span>Reduce Animations</span>
+        </li>
         <!-- cursor toggle switch -->
-         
         <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
@@ -185,6 +193,7 @@
   </footer>
   <div id="cursor-snake"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="accessibility.js"></script>
 
 <script>
     // Theme toggle functionality
