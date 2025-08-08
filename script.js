@@ -182,12 +182,23 @@ window.addEventListener("DOMContentLoaded", () => {
     window.lucide.createIcons()
   }
 
-  // 🔽 Scroll Reveal Animation
+  // 🔽 Scroll Reveal Animation - Updated for Reduced Motion Support
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible")
+          // Check if reduced motion is active (system or user preference)
+          const isReducedMotion = window.prefersReducedMotion ? window.prefersReducedMotion() : false
+          
+          if (isReducedMotion) {
+            // Skip animation, make content immediately visible
+            entry.target.style.opacity = '1'
+            entry.target.style.transform = 'none'
+            entry.target.style.visibility = 'visible'
+          } else {
+            // Apply normal animation
+            entry.target.classList.add("visible")
+          }
           // observer.unobserve(entry.target); // uncomment to animate only once
         }
       })
@@ -292,7 +303,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Snake cursor initialization and state management
+  // Snake cursor initialization and state management - Updated for Reduced Motion Support
   const cursorToggle = document.getElementById("cursorToggle")
   if (!isMobile && cursorToggle) {
     // Read saved state from localStorage for initial setup
@@ -300,26 +311,44 @@ window.addEventListener("DOMContentLoaded", () => {
     // Default to false if no state is saved, or use the saved state
     const initialCursorEnabled = savedCursorState !== null ? JSON.parse(savedCursorState) : false
 
-    // Set initial state of the toggle checkbox
-    cursorToggle.checked = initialCursorEnabled
-
-    // Apply initial cursor state immediately
-    if (initialCursorEnabled) {
-      enableSnakeCursor()
-    } else {
+    // Check if reduced motion is active (system or user preference)
+    const isReducedMotion = window.prefersReducedMotion ? window.prefersReducedMotion() : false
+    
+    // Disable cursor if reduced motion is active
+    if (isReducedMotion) {
+      cursorToggle.disabled = true
+      cursorToggle.checked = false
+      cursorToggle.parentElement.style.opacity = '0.5'
+      cursorToggle.parentElement.title = 'Snake cursor disabled due to reduced motion setting'
       disableSnakeCursor()
-    }
+    } else {
+      // Set initial state of the toggle checkbox
+      cursorToggle.checked = initialCursorEnabled
 
-    // Add event listener for changes to toggle cursor and save state
-    cursorToggle.addEventListener("change", function () {
-      if (this.checked) {
+      // Apply initial cursor state immediately
+      if (initialCursorEnabled) {
         enableSnakeCursor()
-        localStorage.setItem("cursorEnabled", "true")
       } else {
         disableSnakeCursor()
-        localStorage.setItem("cursorEnabled", "false")
       }
-    })
+
+      // Add event listener for changes to toggle cursor and save state
+      cursorToggle.addEventListener("change", function () {
+        // Double-check reduced motion state before enabling
+        if (window.prefersReducedMotion && window.prefersReducedMotion()) {
+          this.checked = false
+          return
+        }
+        
+        if (this.checked) {
+          enableSnakeCursor()
+          localStorage.setItem("cursorEnabled", "true")
+        } else {
+          disableSnakeCursor()
+          localStorage.setItem("cursorEnabled", "false")
+        }
+      })
+    }
   }
 
   // 🚦 ProgressBar Functionality

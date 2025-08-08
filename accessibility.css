@@ -1,0 +1,248 @@
+/* ===================================
+   ACCESSIBILITY CONTROLS FOR ANIMATIONS
+   Reduce Motion Support for AnimateItNow
+   =================================== */
+
+/* 1. SYSTEM PREFERENCE DETECTION */
+/* Respect user's OS/browser setting for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations and transitions globally */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Ensure content remains visible - no opacity or transform changes */
+  .fade-in,
+  .bounce,
+  .pulse,
+  .spin,
+  .ripple,
+  .card-lift,
+  .interactive,
+  .logo,
+  .site-name,
+  .template-preview::before,
+  .template-preview::after,
+  .loader-preview::before,
+  .timer-preview::after,
+  .button-preview::before {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Keep hover color changes but remove transforms */
+  .template-card:hover,
+  .cta-btn:hover,
+  .template-btn:hover,
+  .nav-links a:hover {
+    transform: none !important;
+  }
+}
+
+/* 2. MANUAL TOGGLE SUPPORT */
+/* When user manually enables reduced motion via toggle */
+body.reduced-motion *,
+body.reduced-motion *::before,
+body.reduced-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Ensure all content remains visible when reduced motion is active */
+body.reduced-motion .fade-in,
+body.reduced-motion .bounce,
+body.reduced-motion .pulse,
+body.reduced-motion .spin,
+body.reduced-motion .ripple,
+body.reduced-motion .card-lift,
+body.reduced-motion .interactive,
+body.reduced-motion .logo,
+body.reduced-motion .site-name,
+body.reduced-motion .snake-dot,
+body.reduced-motion .swiper,
+body.reduced-motion .template-preview::before,
+body.reduced-motion .template-preview::after,
+body.reduced-motion .loader-preview::before,
+body.reduced-motion .timer-preview::after,
+body.reduced-motion .button-preview::before {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Keep hover color changes but remove transforms */
+body.reduced-motion .template-card:hover,
+body.reduced-motion .cta-btn:hover,
+body.reduced-motion .template-btn:hover,
+body.reduced-motion .nav-links a:hover {
+  transform: none !important;
+}
+
+/* Stop progress bar and other continuous animations */
+body.reduced-motion #progress-bar,
+body.reduced-motion .testimonial,
+body.reduced-motion .swiper-slide {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 3. REDUCE MOTION TOGGLE STYLES */
+.reduce-motion-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--nav-text-60, rgba(255,255,255,0.7));
+  white-space: nowrap;
+}
+
+.reduce-motion-toggle:hover {
+  color: var(--nav-text, #fff);
+}
+
+/* Toggle switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Disable toggle animation when reduced motion is active */
+body.reduced-motion .slider,
+body.reduced-motion .slider:before {
+  transition: none !important;
+}
+
+/* 4. ACCESSIBILITY FEATURES */
+.reduce-motion-toggle:focus-within {
+  outline: 2px solid var(--accent, #4f8cff);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 5. RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .reduce-motion-toggle {
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+  
+  .switch {
+    width: 38px;
+    height: 20px;
+  }
+  
+  .slider:before {
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+}
+
+/* 6. DARK MODE SUPPORT */
+body.dark .reduce-motion-toggle {
+  color: var(--nav-text-60, rgba(255,255,255,0.7));
+}
+
+body.dark .reduce-motion-toggle:hover {
+  color: var(--nav-text, #fff);
+}
+
+body.dark .slider {
+  background-color: #555;
+}
+
+body.dark .switch input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+/* 7. TOOLTIP STYLES */
+.tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+body.reduced-motion .tooltip::after {
+  transition: none !important;
+}
+
+/* 8. PRINT STYLES */
+@media print {
+  .reduce-motion-toggle {
+    display: none;
+  }
+}

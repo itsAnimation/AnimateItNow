@@ -99,11 +99,33 @@ AnimateItNow is a collaborative platform where contributors share, discover, and
 - **Live Previews:** See animations in action before using
 - **Easy Navigation:** Browse templates, contributors, and contact info
 - **Theme Toggle:** Switch between light and dark modes
+- **Accessibility Controls:** Reduce motion support for better accessibility
 - **Mouse Tracker:** Disabled in mobile layout
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="1000">
 </div>
+
+## ♿ Accessibility Features
+
+AnimateItNow is committed to creating inclusive web experiences. Our accessibility features include:
+
+### 🎛️ Reduce Motion Controls
+- **System Integration:** Automatically respects your OS/browser's "reduce motion" setting
+- **Manual Toggle:** "Reduce Motion" switch in the navigation bar for user control
+- **Smart Adaptation:** Disables non-essential animations while preserving functionality
+- **Persistent Preferences:** Your choice is saved and remembered across sessions
+
+### 🌟 Benefits
+- **Vestibular Safety:** Reduces motion that can trigger dizziness or nausea
+- **Focus Enhancement:** Minimizes distracting animations for better concentration
+- **Performance:** Improves battery life and reduces resource usage
+- **Inclusivity:** Makes the site usable for users with various accessibility needs
+
+**Testing Reduced Motion:**
+- **Manual:** Use the "Reduce Motion" toggle in the navigation
+- **System:** Enable "Reduce motion" in your OS accessibility settings
+- **DevTools:** Chrome/Edge → DevTools → Rendering → Emulate prefers-reduced-motion
 
 ## 🛠️ How to Contribute
 
