@@ -6,6 +6,10 @@
     <title>AnimateItNow - Live Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="editor.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
 
   <body class="bg-gray-50 text-gray-900 min-h-screen">
@@ -61,6 +65,19 @@
         </div>
       </div>
 
+      <!-- Animation Search -->
+      <div>
+        <input 
+          type="text" 
+          id="animationSearch" 
+          placeholder="Search animation..." 
+          class="w-full p-2 border border-gray-300 rounded mb-2"
+        >
+
+        <ul id="suggestions" class="border border-gray-300 rounded bg-white shadow" style="display:none;"></ul>
+
+      </div>
+
       <!-- Output -->
       <div>
         <h2 class="Output-line">Output</h2>
@@ -74,4 +91,3 @@
     <script src="editor.js"></script>
   </body>
 </html>
-
