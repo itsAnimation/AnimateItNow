@@ -1,3 +1,48 @@
+.faq-btn {
+  background: linear-gradient(90deg, #4f8cff 0%, #1dc5c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 32px;
+  margin: 24px 12px 12px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.15);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  outline: none;
+  position: relative;
+}
+.faq-btn:hover, .faq-btn:focus {
+  background: linear-gradient(90deg, #1dc5c8 0%, #4f8cff 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.18);
+}
+/* FAQ Section Styles */
+.faq-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 16px 0;
+  background: #fff;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+.faq-question {
+  padding: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f5f7fa;
+  border-bottom: 1px solid #eee;
+}
+.faq-answer {
+  padding: 16px;
+  display: none;
+  color: #333;
+  background: #fff;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
 /* Reset and base styles */
 * {
   margin: 0;
