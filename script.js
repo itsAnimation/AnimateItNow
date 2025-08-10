@@ -1,17 +1,18 @@
 
 // Function for displaying FAQ categories
-function displaycategory(category){
-  const general=document.getElementById('general-faq');
-  const technical=document.getElementById('technical-faq');
-  if(category==='general'){
-    general.style.display='block';
-    technical.style.display='none';
-  }
-  else if(category==='technical'){
-    general.style.display='none';
-    technical.style.display='block';
-  }
-}
+// function displaycategory(category){
+//   const general=document.getElementById('general-faq');
+//   const technical=document.getElementById('technical-faq');
+//   if(category==='general'){
+//     general.style.display='block';
+//     technical.style.display='none';
+//   }
+//   else if(category==='technical'){
+//     general.style.display='none';
+//     technical.style.display='block';
+//   }
+// }
+
 // Service worker registration removed to fix 404 error
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', () => {
@@ -53,8 +54,13 @@ function typewriter(){
   },100);
 }
 typewriter();
-
-// Function to make the FAQ collapsible
+//Added a function to toggle FAQ items
+// This function toggles the active state of a FAQ item when clicked
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('active');
+}
+// Function to make the FAQ 
 function toggleFAQ(element) {
   if (!document.querySelector(".faq-item")) return
   const faqItem = element.closest(".faq-item") //to make sure we can click anywhere

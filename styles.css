@@ -2169,8 +2169,6 @@ body.dark .faq-answer-content{
 
 /* =================== Dark Mode UI of FAQs ends =================== */
 
-
-
 /* ============== footer ABOUT section navigation link  ================ */
 .footer-about-section {
   display: flex;
@@ -2361,6 +2359,58 @@ body.dark .glow-wrap::before {
     margin-bottom: 20px;
 } 
  
+/*
+This is changed UI for FAQ section
+Faq style adding here... */
+/* FAQ Dropdown Styles */
+.faq-item {
+  margin-bottom: 1em;
+  border-radius: 8px;
+  background: #f7f9fc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+/* With the FAQ default content */
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 1em;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+.faq-question:hover {
+  background: #eaf3ff;
+}
+.faq-answer {
+  display: none;
+  padding: 0 1em 1em 1em;
+  color: #444;
+  font-size: 1em;
+  animation: fadeIn 0.3s;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
+.faq-item .arrow {
+  transition: transform 0.3s;
+}
+.faq-item.active .arrow {
+  transform: rotate(180deg);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Done till here : Faq addition */
 /* This targets the button inside the preview */
 .tooltip-preview .tooltip {
     padding: 8px 16px;
@@ -2642,144 +2692,52 @@ body.dark .template-card:hover {
   transform: translateY(-8px) scale(1.02);
 }
 
-/* ...existing code... */
-
-.geometric{
-  padding-left: 55px;
-  font-size: 20px;
-}
- .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    color: #4b5563;
-    margin-bottom: 1rem;
-    z-index: 1;
-    position: relative;
-  }
-  .form-options label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-   .form-options a {
-    color: #3b82f6;
-    text-decoration: none;
-   }
-  .form-options a:hover {
-    text-decoration: underline;
-  }
-  .signup-link {
-    text-align: center;
-    font-size: 0.875rem;
-    color: #4b5563;
-    z-index: 1;
-    position: relative;
-  }
-  .signup-link a {
-    color: #3b82f6;
-   text-decoration: none;
-  }
-  .signup-link a:hover {
-    text-decoration: underline;
-  }
-
-/*PlayGround Of Hover effects page */
-.playground-section {
-  text-align: center;
-  padding: 40px 20px;
-  
-}
-
-.playground-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.playground-section .para-box {
-  margin-bottom: 40px;
-}
-
-.effects {
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
-  gap: 30px;
-  justify-content: center;
-}
-
-.box {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff;
-  position: relative;
-  background: #1a1a1a;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-
-  /* 🛡 Prevent collisions */
+/* FAQ Dropdown Styles */
+.faq-item {
+  margin-bottom: 1em;
+  border-radius: 8px;
+  background: #f7f9fc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   overflow: hidden;
-  transform-origin: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: box-shadow 0.2s;
 }
-
-/* Neon gradient borders per effect */
-.scale {
-  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 1em;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
 }
-
-.translate {
-  border-image: linear-gradient(45deg, #00f0ff, #0077ff) 1;
+.faq-question:hover {
+  background: #eaf3ff;
 }
-
-.rotate {
-  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+.faq-answer {
+  display: none;
+  padding: 0 1em 1em 1em;
+  color: #444;
+  font-size: 1em;
+  animation: fadeIn 0.3s;
 }
-
-.Box-Shadow {
-  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+.faq-item.active .faq-answer {
+  display: block;
 }
-
-.Background-Color {
-  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+.faq-item .arrow {
+  transition: transform 0.3s;
 }
-
-.Color {
-  border-image: linear-gradient(45deg, #00f0ff, #0077ff) 1;
+.faq-item.active .arrow {
+  transform: rotate(180deg);
 }
-
-/* Hover glow without breaking layout */
-
-
-/* Responsive */
-@media (max-width: 900px) {
-  .effects {
-    grid-template-columns: repeat(2, 300px);
-  }
-}
-
-@media (max-width: 600px) {
-  .effects {
-    grid-template-columns: 300px;
-  }
-}
-
-/*Light Theme playground boxes*/
-
-body:not(.dark-theme) .scale,
-body:not(.dark-theme) .translate,
-body:not(.dark-theme) .rotate,
-body:not(.dark-theme) .Box-Shadow,
-body:not(.dark-theme) .Background-Color,
-body:not(.dark-theme) .Color {
-  color: black;
-  background-color: rgb(165, 159, 255);
-  border-image: linear-gradient(45deg, #222529, #65797a) 1;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 
