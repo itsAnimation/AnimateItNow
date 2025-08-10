@@ -2223,6 +2223,104 @@ body.dark .template-card:hover {
     text-decoration: underline;
   }
 
+/*PlayGround Of Hover effects page */
+.playground-section {
+  text-align: center;
+  padding: 40px 20px;
+  
+}
+
+.playground-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.playground-section .para-box {
+  margin-bottom: 40px;
+}
+
+.effects {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 30px;
+  justify-content: center;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  background: #1a1a1a;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+
+  /* 🛡 Prevent collisions */
+  overflow: hidden;
+  transform-origin: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Neon gradient borders per effect */
+.scale {
+  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+}
+
+.translate {
+  border-image: linear-gradient(45deg, #00f0ff, #0077ff) 1;
+}
+
+.rotate {
+  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+}
+
+.Box-Shadow {
+  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+}
+
+.Background-Color {
+  border-image: linear-gradient(45deg,  #00f0ff, #0077ff) 1;
+}
+
+.Color {
+  border-image: linear-gradient(45deg, #00f0ff, #0077ff) 1;
+}
+
+/* Hover glow without breaking layout */
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .effects {
+    grid-template-columns: repeat(2, 300px);
+  }
+}
+
+@media (max-width: 600px) {
+  .effects {
+    grid-template-columns: 300px;
+  }
+}
+
+/*Light Theme playground boxes*/
+
+body:not(.dark-theme) .scale,
+body:not(.dark-theme) .translate,
+body:not(.dark-theme) .rotate,
+body:not(.dark-theme) .Box-Shadow,
+body:not(.dark-theme) .Background-Color,
+body:not(.dark-theme) .Color {
+  color: black;
+  background-color: rgb(165, 159, 255);
+  border-image: linear-gradient(45deg, #222529, #65797a) 1;
+}
+
+
 
 
 
