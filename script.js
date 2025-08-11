@@ -1,4 +1,4 @@
-
+﻿
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -153,28 +153,22 @@ window.addEventListener("pagehide", () => {
   disableSnakeCursor()
 })
 
-window.addEventListener("DOMContentLoaded", () => {
-  // Initialize Template Manager if present on page
-  try {
-    if (document.querySelector('.templates-grid') && window.TemplateImporter && window.TemplatePackager) {
-      // UI is auto-initialized by template-manager.js on load
-    }
-  } catch (e) { console.warn('Template manager init skipped:', e) }
 
-  // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle")
-  const body = document.body
-  function setTheme(dark) {
-    const newIcon = dark ? "sun" : "moon"
-    body.classList.toggle("dark", dark) // Use 'dark' class for consistency
-    localStorage.setItem("theme", dark ? "dark" : "light")
-    // Replace icon completely
-    if (themeToggle) {
-      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
-      // Only call lucide.createIcons() if the lucide object is actually available
-      if (window.lucide) {
-        window.lucide.createIcons()
-      }
+  // Scroll reveal via singleton manager
+  const initScrollReveal = () => {
+    if (window.scrollRevealManager) {
+      document.querySelectorAll('.scroll-fade, .template-card').forEach((el)=>{
+        if (!el.classList.contains('visible')) {
+          window.scrollRevealManager.observe(el)
+        }
+      })
+    }
+  }
+  initScrollReveal()
+  window.addEventListener('pageshow', () => { initScrollReveal() })
+  window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
+  })
+}
     }
   }
   const savedTheme = localStorage.getItem("theme")
@@ -189,7 +183,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.lucide.createIcons()
   }
 
-  // 🔽 Scroll Reveal Animation
+  // ðŸ”½ Scroll Reveal Animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -205,7 +199,7 @@ window.addEventListener("DOMContentLoaded", () => {
     observer.observe(el)
   })
 
-  // 🧪 Testimonial slider
+  // ðŸ§ª Testimonial slider
   const slider = document.getElementById("slider")
   if (slider) {
     const slides = document.querySelectorAll(".card")
@@ -225,7 +219,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 5000)
   }
 
-  // 🧑‍💻 Contributors fetch
+  // ðŸ§‘â€ðŸ’» Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
     fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
@@ -252,7 +246,7 @@ window.addEventListener("DOMContentLoaded", () => {
       })
   }
 
-  // 📨 Contact form validation
+  // ðŸ“¨ Contact form validation
   const contactForm = document.querySelector(".contact-form")
   // Removed the problematic 'if (!contactForm) return;' line.
   // This line was preventing the rest of the DOMContentLoaded block (including theme toggle and cursor logic)
@@ -329,7 +323,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // 🚦 ProgressBar Functionality
+  // ðŸš¦ ProgressBar Functionality
   function updateProgressBar() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop
     const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -361,6 +355,7 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 
 
 
