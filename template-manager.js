@@ -270,22 +270,34 @@
 
     // Add checkboxes to each template card
     document.querySelectorAll('.template-card').forEach((card) => {
+      // For anchor cards, wrap in a container to ensure checkbox is outside clickable area
+      let container = card
+      if (card.tagName === 'A' && !card.closest('.template-card-container')) {
+        const wrapper = document.createElement('div')
+        wrapper.className = 'template-card-container selectable'
+        card.parentNode.insertBefore(wrapper, card)
+        wrapper.appendChild(card)
+        container = wrapper
+      }
       if (!card.classList.contains('selectable')) card.classList.add('selectable')
-      if (card.querySelector('.template-select-checkbox')) return
+      // Avoid duplicates whether checkbox is inside card or the wrapper container
+      if ((container || card).querySelector('.template-select-checkbox')) return
       const checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
       checkbox.className = 'template-select-checkbox'
       checkbox.title = 'Select for export'
-      checkbox.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); checkbox.checked = !checkbox.checked; card.classList.toggle('selected', checkbox.checked) })
-      checkbox.addEventListener('change', (e) => { e.stopPropagation(); card.classList.toggle('selected', checkbox.checked) })
-      card.prepend(checkbox)
+      // Let the checkbox toggle naturally; only stop event from bubbling to anchors
+      checkbox.addEventListener('click', (e) => { e.stopPropagation() })
+      checkbox.addEventListener('change', () => {
+        // Highlight the container if present, else the card
+        const highlightTarget = container || card
+        highlightTarget.classList.toggle('selected', checkbox.checked)
+      })
+      ;(container || card).appendChild(checkbox)
 
-      // Prevent navigation when interacting within checkbox area
+      // Prevent navigation only when clicking the checkbox itself
       card.addEventListener('click', (e) => {
-        const target = e.target
-        if (target === checkbox) {
-          e.preventDefault(); e.stopPropagation()
-        }
+        if (e.target === checkbox) { e.stopPropagation(); e.preventDefault() }
       }, true)
     })
 
@@ -299,7 +311,7 @@
 
     document.getElementById('btn-export-selected').addEventListener('click', async () => {
       const selected = [...document.querySelectorAll('.template-select-checkbox:checked')]
-        .map(cb => cb.closest('.template-card'))
+        .map(cb => cb.closest('.template-card') || cb.closest('.template-card-container')?.querySelector('.template-card'))
       if (selected.length === 0) {
         alert('Select at least one template')
         return
@@ -307,7 +319,7 @@
       openExportModal(async (options, setProgress) => {
         const items = await gatherTemplateItems(selected)
         const { blob } = await packager.exportBulk(items, { ...options, onProgress: p => setProgress(p) })
-        blobDownload(blob, `templates-bulk${PACKAGE_EXT}`)
+        blobDownload(blob, `templates-bulk.zip`)
       })
     })
 
@@ -316,7 +328,7 @@
       openExportModal(async (options, setProgress) => {
         const items = await gatherTemplateItems(allCards)
         const { blob } = await packager.exportBulk(items, { ...options, onProgress: p => setProgress(p) })
-        blobDownload(blob, `all-templates${PACKAGE_EXT}`)
+        blobDownload(blob, `all-templates.zip`)
       })
     })
 
@@ -607,11 +619,17 @@
       confirmBtn.disabled = true
       setStatus('Installing...')
       try {
+        // Simulate progress updates during import
+        const update = (p) => { progressBar.style.width = `${Math.floor(p)}%` }
+        update(5)
+        await new Promise(r => setTimeout(r, 100))
+        update(30)
         await onConfirmHandler(file, {
           setStatus,
           setError,
           pickConflictResolution,
         })
+        update(100)
         close()
       } finally {
         confirmBtn.disabled = false
@@ -635,14 +653,15 @@
     if (!onTemplatesPage) return
 
     // Load JSZip
+    const boot = () => { initTemplateManagerUI(); refreshGalleryFromDB().catch(()=>{}) }
     if (!window.JSZip) {
       const s = document.createElement('script')
       s.src = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js'
       document.head.appendChild(s)
-      s.onload = () => initTemplateManagerUI()
+      s.onload = () => boot()
       s.onerror = () => console.error('Failed to load JSZip')
     } else {
-      initTemplateManagerUI()
+      boot()
     }
   })
 })()
