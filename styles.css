@@ -25,7 +25,11 @@
   --light-color: #ced6e0;
   --dark-color: #2f3542;
   --box-shadow: rgb(0 0 2 / 35%) 0px 20px 30px -10px;
-  
+   --btn-bg: #4cafef;
+  --btn-hover-bg: #3793d4;
+  --btn-text: #ffffff;
+  --btn-shadow: rgba(0, 0, 0, 0.1);
+  --btn-hover-shadow: rgba(0, 0, 0, 0.15);
   /* Micro-interaction colors */
   --ripple-color: rgba(79, 140, 255, 0.3);
   --ripple-color-dark: rgba(0, 209, 255, 0.3);
@@ -34,6 +38,58 @@
   --feedback-success: #10b981;
   --feedback-error: #ef4444;
   --feedback-warning: #f59e0b;
+}
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --btn-bg: #1e88e5;
+    --btn-hover-bg: #1565c0;
+    --btn-text: #e0e0e0;
+    --btn-shadow: rgba(255, 255, 255, 0.05);
+    --btn-hover-shadow: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Button style */
+.faq-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px var(--btn-shadow);
+}
+
+.faq-btn:hover {
+  background-color: var(--btn-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--btn-hover-shadow);
+}
+
+.faq-btn:active {
+  transform: translateY(0px);
+}
+.faq-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .faq-subtitle {
+    color: #ccc;
+  }
 }
 
 /* ✅ Toast Notification Styles */
