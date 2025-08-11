@@ -703,6 +703,7 @@ main {
   display: flex; /* Main content area used flex */
   flex-direction: column;
   gap: 3rem; /* Space between sections */
+
 }
 .info-section {
   /* margin: 3rem 0; */
@@ -1181,6 +1182,7 @@ body.dark .landing-section p {
   margin: 2.5rem;
   font-size: 2.7rem;
   font-weight: 800;
+
   letter-spacing: 1px;
   animation: fadeIn 1s ease-in-out;
 background: linear-gradient(to right, #34d399, #3b82f6);
@@ -1461,7 +1463,94 @@ body:not(.dark) .template-card {
     transform: translateX(-50%) rotate(360deg);
   }
 }
-/* .template-btn {
+
+.text_animations-preview {
+  background: linear-gradient(135deg, #e0e7ff 60%, #4f8cff 100%);
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text_animations-preview::before {
+  content: "Animated Text!";
+  animation: textFade 3s ease-in-out infinite;
+}
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+
+
+.celebrations-preview {
+  background: linear-gradient(135deg, #e0e7ff 60%, #4f8cff 100%);
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.skeleton_loaders-preview {
+  background: linear-gradient(135deg, #e0e7ff 60%, #4f8cff 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  width: 50%;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: linear-gradient(90deg, #cfd8e3 25%, #e0e7ff 50%, #cfd8e3 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-line.short {
+  width: 50%;
+}
+.skeleton-line.medium {
+  width: 80%;
+}
+.skeleton-line.long {
+  width: 100%;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
+.template-btn {
+
   margin-top: 0.7rem;
   background: var(--accent);
   color: var(--light);
@@ -1479,7 +1568,10 @@ body:not(.dark) .template-card {
 .template-btn:hover {
   background: var(--secondary);
   transform: scale(1.05);
-} */
+
+} 
+
+
 .footer {
   background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: white;
