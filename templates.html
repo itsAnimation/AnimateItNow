@@ -88,6 +88,7 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="template-manager.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -603,6 +604,11 @@
     </nav>
     <main class="templates-main">
       <h1>Templates Gallery</h1>
+      <div class="template-toolbar" style="margin-top: 10px">
+        <button class="btn" id="btn-import">Import</button>
+        <button class="btn" id="btn-export-selected">Export Selected</button>
+        <button class="btn secondary" id="btn-export-all">Export All</button>
+      </div>
       <div
         style="display: flex; justify-content: center; margin-bottom: 1.5rem"
       >
@@ -843,6 +849,10 @@
     <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
     <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="dependency-resolver.js"></script>
+    <script src="package-validator.js"></script>
+    <script src="template-manager.js"></script>
     <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
     <script>

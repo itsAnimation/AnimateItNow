@@ -154,6 +154,13 @@ window.addEventListener("pagehide", () => {
 })
 
 window.addEventListener("DOMContentLoaded", () => {
+  // Initialize Template Manager if present on page
+  try {
+    if (document.querySelector('.templates-grid') && window.TemplateImporter && window.TemplatePackager) {
+      // UI is auto-initialized by template-manager.js on load
+    }
+  } catch (e) { console.warn('Template manager init skipped:', e) }
+
   // Theme toggle
   const themeToggle = document.getElementById("theme-toggle")
   const body = document.body
