@@ -92,3 +92,23 @@ resetBtn.addEventListener("click", () => {
   suggestions.style.display = "none";
   outputFrame.srcdoc = "";
 });
+
+const toggleSwitch = document.getElementById("theme-toggle");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const savedTheme = localStorage.getItem("theme");
+
+    // Apply saved or preferred theme
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      toggleSwitch.checked = savedTheme === "dark";
+    } else if (prefersDark.matches) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      toggleSwitch.checked = true;
+    }
+
+    toggleSwitch.addEventListener("change", () => {
+      const theme = toggleSwitch.checked ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+    });
+
