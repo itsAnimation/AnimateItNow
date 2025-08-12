@@ -405,6 +405,59 @@
 #likeIcon {
   font-size: 24px;
 }
+
+/* this is the quick preview styless */
+.template-btn {
+  display: inline-block; 
+  margin: 0;             
+}
+
+.quick-preview-btn {
+  display: block;
+  width: 40%;
+  padding: 10px 0;
+  margin-bottom: 4px;
+  background: linear-gradient(90deg, #6c63ff, #00c9ff); 
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.quick-preview-btn:hover {
+  background: linear-gradient(90deg, #5a52e0, #00b0e6);
+  transform: translateY(-2px);
+}
+
+.quick-preview-btn:active {
+  transform: translateY(0);
+}
+
+.quick-preview-image {
+  display: none;
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 410px;
+  height: 350px;
+  background-size: cover;
+  background-position: top center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  margin-bottom: 8px; 
+}
+.quick-preview-btn:hover .quick-preview-image {
+  display: block;
+}
+
       /*Display Properties Preview */
       .display-preview {
         background-color: #4f8cff;
@@ -681,6 +734,9 @@
           <div class="template-preview login-preview">
             <div class="page link"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="login-glassmorphism"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="glassmorphism-template">
             <span class="like-icon">🤍</span>
@@ -690,6 +746,9 @@
         <a class="template-card" href="templates/login.html">
           <h2>Login Page UI</h2>
           <div class="template-preview login-preview"></div>
+          <button class="quick-preview-btn" data-template-id="login-template"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="login-template">
             <span class="like-icon">🤍</span>
@@ -699,6 +758,9 @@
         <a class="template-card" href="templates/button.html">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
+          <button class="quick-preview-btn" data-template-id="hover-button">Quick Preview
+          <div class="quick-preview-image"></div>
+          </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="hoverButton-template">
             <span class="like-icon">🤍</span>
@@ -708,6 +770,9 @@
         <a class="template-card" href="templates/loader.html">
           <h2>Loaders</h2>
           <div class="template-preview loader-preview"></div>
+          <button class="quick-preview-btn" data-template-id="loaders"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="loaders-template">
             <span class="like-icon">🤍</span>
@@ -720,6 +785,9 @@
           <div class="template-preview text-preview">
             <h2 id="textTarget"></h2>
           </div>
+          <button class="quick-preview-btn" data-template-id="text-animation"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="effects-template">
             <span class="like-icon">🤍</span>
@@ -729,6 +797,9 @@
         <a class="template-card" href="templates/modal.html">
           <h2>Popup Templates</h2>
           <div class="template-preview modal-preview"></div>
+           <button class="quick-preview-btn" data-template-id="modal-popup"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="popup-template">
             <span class="like-icon">🤍</span>
@@ -738,6 +809,9 @@
         <a class="template-card" href="templates/glassmorphism.html">
           <h2>Glassmorphism profile card</h2>
           <div class="template-preview modal-preview"></div>
+          <button class="quick-preview-btn" data-template-id="profile-glassmorphism"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="glassmorphism-template">
             <span class="like-icon">🤍</span>
@@ -748,6 +822,9 @@
         <a class="template-card" href="templates/code_playground.html">
           <h2>Code PlayGround</h2>
           <div class="template-preview code-play-preview">Write Code</div>
+          <button class="quick-preview-btn" data-template-id="code-playground"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="codePlayground-template">
             <span class="like-icon">🤍</span>
@@ -762,6 +839,9 @@
             <div class="mini-card">Card2</div>
             <div class="mini-card">Card3</div>
           </div>
+          <button class="quick-preview-btn" data-template-id="features-card"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="featureCards-template">
             <span class="like-icon">🤍</span>
@@ -775,6 +855,9 @@
             <div class="hero-text-line"></div>
             <div class="hero-text-line short"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="hero-section"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="heroSection-template">
             <span class="like-icon">🤍</span>
@@ -784,6 +867,9 @@
         <article class="template-card">
           <h2>Animated Button</h2>
           <div class="template-preview button-preview"></div>
+          <button class="quick-preview-btn" data-template-id="button-animation"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <a class="template-btn" href="templates/animated-btn.html">View Template</a>
           <button class="like-button" data-template-id="animatedButton-template">
             <span class="like-icon">🤍</span>
@@ -797,6 +883,9 @@
             <i class="fab fa-twitter social-icon-preview"></i>
             <i class="fab fa-instagram social-icon-preview"></i>
           </div>
+          <button class="quick-preview-btn" data-template-id="social-buttons"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="share-template">
             <span class="like-icon">🤍</span>
@@ -809,6 +898,9 @@
           <div class="template-preview">
             <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
           </div>
+          <button class="quick-preview-btn" data-template-id="tooltip"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <span class="template-btn">View Template</span>
           <button class="like-button" data-template-id="tooltip-template">
             <span class="like-icon">🤍</span>
@@ -823,6 +915,9 @@
             <div class="mini-card"></div>
             <div class="mini-card"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="card-carousel"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <span class="template-btn">View Template</span>
           <button class="like-button" data-template-id="carousel-template">
             <span class="like-icon">🤍</span>
@@ -840,6 +935,9 @@
               <div class="mini-handle"></div>
             </div>
           </div>
+          <button class="quick-preview-btn" data-template-id="animated-toggles"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="toggle-template">
             <span class="like-icon">🤍</span>
@@ -849,6 +947,9 @@
         <a class="template-card" href="templates/neumorphic.html">
           <h2>Neumorphic Button Effects</h2>
           <div class="template-preview neumorphic-preview"></div>
+          <button class="quick-preview-btn" data-template-id="neumorphic-buttons"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="neumorphic-template">
             <span class="like-icon">🤍</span>
@@ -862,6 +963,9 @@
             <div class="navbar-line link"></div>
             <div class="navbar-line link short"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="navbar-variants"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="navbar-template">
             <span class="like-icon">🤍</span>
@@ -875,6 +979,9 @@
             <div class="display-box box2"></div>
             <div class="display-box box3"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="display-properties"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="display-template">
             <span class="like-icon">🤍</span>
@@ -886,6 +993,9 @@
           <div class="template-preview navbar-preview">
             <div class="navbar-line link"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="3D-card-hover"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="3Dcard-template">
             <span class="like-icon">🤍</span>
@@ -897,6 +1007,9 @@
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="page-404"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="404-template">
             <span class="like-icon">🤍</span>
@@ -908,6 +1021,9 @@
         <div class="template-preview navbar-preview">
           <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
         </div>
+        <button class="quick-preview-btn" data-template-id="contact-us"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
         <button class="template-btn">View Template</button>
         <button class="like-button" data-template-id="contact-template">
             <span class="like-icon">🤍</span>
@@ -919,6 +1035,9 @@
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="accordian"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="Accordian-template">
             <span class="like-icon">🤍</span>
@@ -934,6 +1053,9 @@
             <div class="hero-text-line"></div>
             <div class="hero-text-line short"></div>
           </div>
+          <button class="quick-preview-btn" data-template-id="professional"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="professional-template">
             <span class="like-icon">🤍</span>
@@ -943,6 +1065,9 @@
        <a class="template-card" href="templates/timer.html">
           <h2>Countdown Timer Template</h2>
           <div class="template-preview timer-preview"></div>
+          <button class="quick-preview-btn" data-template-id="timers"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="timer-template">
             <span class="like-icon">🤍</span>
@@ -953,6 +1078,9 @@
         <a class="template-card" href="templates/text_animations.html">
           <h2>Text Animations</h2>
           <div class="template-preview modal-preview"></div>
+          <button class="quick-preview-btn" data-template-id="text-animation2"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="textanimation-template">
             <span class="like-icon">🤍</span>
@@ -963,18 +1091,21 @@
         <a class="template-card" href="templates/skeletons.html">
           <h2>Skeleton Loader </h2>
           <div class="template-preview modal-preview"></div>
+          <button class="quick-preview-btn" data-template-id="skeleton"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="skeleton-template">
             <span class="like-icon">🤍</span>
             <span class="like-count">0</span> Likes
           </button>
         </a>
-       
-        
-        
         <a class="template-card" href="templates/celebrations.html">
           <h2>Celebrations Template</h2>
           <div class="template-preview modal-preview"></div>
+          <button class="quick-preview-btn" data-template-id="celebrations"> Quick Preview
+           <div class="quick-preview-image"></div>
+           </button>
           <button class="template-btn">View Template</button>
           <button class="like-button" data-template-id="celebrations-template">
             <span class="like-icon">🤍</span>
@@ -1208,6 +1339,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+
+document.querySelectorAll('.quick-preview-btn').forEach(btn => {
+  let loaded = false;
+  const id = btn.getAttribute('data-template-id');
+  const imgDiv = btn.querySelector('.quick-preview-image');
+
+  btn.addEventListener('mouseenter', () => {
+    if (!loaded) {
+      imgDiv.style.backgroundImage = `url('preview/${id}.png')`;
+      loaded = true;
+    }
+  });
+});
+
+
+
     </script>
   </body>
 </html>
