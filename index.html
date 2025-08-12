@@ -72,7 +72,6 @@
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="editor.html" target="_blank">Editor</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
         <li><a href="contributors.html">Contributors</a></li>
@@ -119,13 +118,24 @@
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-    <a
-      href="#faq"
-      class="cta-btn bounce ripple btn-press"
-      onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });"
-    >
-      Get Started
-    </a>
+    <div class="hero-buttons fade-in delay-3">
+      <a
+        href="#faq"
+        class="cta-btn bounce ripple btn-press"
+        onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });"
+      >
+        Get Started
+      </a>
+      <a
+        href="editor.html"
+        target="_blank"
+        class="editor-btn ripple btn-press"
+        rel="noopener noreferrer"
+      >
+        <i class="fas fa-code"></i>
+        Code Editor
+      </a>
+    </div>
   </header>
   <!-- ───────── MAIN─────── -->
   <main>
@@ -140,11 +150,41 @@
         </div>
         <!--General-->
         <div id="general-faq">
-          <!-- FAQ items here ... -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              What is AnimateItNow?
+            </div>
+            <div class="faq-answer">
+              AnimateItNow is an open-source platform for sharing and discovering web UI animation components and templates.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              How can I contribute?
+            </div>
+            <div class="faq-answer">
+              You can contribute by submitting your own animation templates or improving existing ones. Check our CONTRIBUTING.md for details.
+            </div>
+          </div>
         </div>
         <!--Technical FAQ (hidden initially)-->
         <div id="technical-faq" style="display: none;">
-          <!-- FAQ items here ... -->
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              What technologies are used?
+            </div>
+            <div class="faq-answer">
+              AnimateItNow uses HTML, CSS, and JavaScript. Some templates may use external libraries for advanced effects.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              How do I add a new animation?
+            </div>
+            <div class="faq-answer">
+              Fork the repository, add your animation template, and submit a pull request. Our team will review and merge your contribution.
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -158,7 +198,48 @@
           </div>
           <div class="body swiper">
             <ul class="swiper-wrapper">
-              <!-- Testimonial slides here ... -->
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img1.jpg" alt="Alex">
+                  </div>
+                  <div class="aside">
+                    <p>"AnimateItNow helped me quickly add beautiful animations to my website! Highly recommended."</p>
+                    <div class="name">
+                      <h4>Alex</h4>
+                      <p>Web Developer</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img2.jpg" alt="Priya">
+                  </div>
+                  <div class="aside">
+                    <p>"A fantastic resource for learning and sharing creative UI effects. The community is super helpful!"</p>
+                    <div class="name">
+                      <h4>Priya</h4>
+                      <p>Frontend Engineer</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img3.jpg" alt="Sam">
+                  </div>
+                  <div class="aside">
+                    <p>"Contributing to AnimateItNow improved my CSS skills and helped me connect with other developers."</p>
+                    <div class="name">
+                      <h4>Sam</h4>
+                      <p>Contributor</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
             </ul>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
