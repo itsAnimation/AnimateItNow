@@ -1,0 +1,186 @@
+/* Template Manager UI Styles */
+
+/* Toolbar */
+.template-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 16px 0;
+}
+
+.template-toolbar .btn {
+  appearance: none;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.25);
+}
+
+.template-toolbar .btn.secondary {
+  background: #334155;
+}
+
+.template-toolbar .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Selection mode */
+.template-card {
+  position: relative;
+}
+
+.template-select-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+.template-card.selectable::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px dashed rgba(59, 130, 246, 0.5);
+  pointer-events: none;
+}
+
+.template-card.selected {
+  outline: 3px solid #22d3ee;
+  outline-offset: -3px;
+}
+
+/* Modal base */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  width: min(720px, 92vw);
+  max-height: 86vh;
+  overflow: auto;
+  background: #0b1220;
+  color: #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-title { font-weight: 700; font-size: 1.1rem; }
+
+.modal-body { padding: 16px 18px; }
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 12px 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.outline { background: transparent; border: 1px solid #3b82f6; }
+.btn.ghost { background: transparent; color: #e5e7eb; }
+
+/* Drag & drop */
+.drop-zone {
+  border: 2px dashed #38bdf8;
+  border-radius: 12px;
+  padding: 26px;
+  text-align: center;
+  background: rgba(2, 6, 23, 0.6);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.drop-zone.dragover {
+  border-color: #22d3ee;
+  background: rgba(8, 47, 73, 0.45);
+}
+
+.drop-zone input[type="file"] { display: none; }
+
+.drop-zone .hint { color: #93c5fd; font-size: 0.95rem; }
+.drop-zone .sub { color: #9ca3af; font-size: 0.85rem; }
+
+/* Options grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.options-grid label { font-size: 0.95rem; color: #cbd5e1; }
+.options-grid input, .options-grid select, .options-grid textarea {
+  width: 100%;
+  background: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+/* Progress */
+.progress { width: 100%; height: 8px; background: #0f172a; border-radius: 6px; overflow: hidden; }
+.progress .bar { height: 100%; background: linear-gradient(90deg,#06b6d4,#3b82f6); width: 0%; transition: width 0.2s ease; }
+
+/* Import preview */
+.preview-row { display: flex; gap: 16px; align-items: center; }
+.preview-thumb { width: 80px; height: 60px; background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; object-fit: cover; }
+.preview-meta { flex: 1; }
+
+/* Conflict resolution */
+.conflict-box { background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; }
+.conflict-options { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .options-grid { grid-template-columns: 1fr; }
+  .preview-row { flex-direction: column; align-items: stretch; }
+}
+
+/* Light mode compatibility when body lacks .dark */
+body:not(.dark) .modal {
+  background: #ffffff;
+  color: #0f172a;
+}
+body:not(.dark) .drop-zone { background: #f1f5f9; }
+body:not(.dark) .options-grid input, body:not(.dark) .options-grid select, body:not(.dark) .options-grid textarea {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
+}
