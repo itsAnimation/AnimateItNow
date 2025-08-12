@@ -1,478 +1,455 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="stylesheet" href="../styles.css" />
-   <script src="https://unpkg.com/lucide@latest"></script>
-  <title>404 - Page Not Found</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 Error Page Templates - AnimateItNow</title>
+<meta name="description" content="A showcase of animated and creative 404 error page templates with copyable code." />
 
-  <!-- PWA Meta Tags -->
-<meta name="theme-color" content="#ff6b6b" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-<meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-<meta name="msapplication-TileColor" content="#ff6b6b" />
+<!-- Icon + Fonts -->
+<link rel="icon" type="image/png" href="../images/logo.png" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- PWA Manifest -->
-<link rel="manifest" href="../manifest.json" />
-
-<!-- PWA Icons -->
-<link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-<link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-<link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-<link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-<link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-<link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-
-<!-- Apple Touch Icons -->
-<link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-<link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-
-
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-    /* Reset & base */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    
-    /* Dark theme toggle */
-    .theme-toggle {
-      position: fixed !important;
-      top: 20px !important;
-      right: 20px !important;
-      background: #ffffff !important;
-      border: 2px solid #218cfa !important;
-      border-radius: 25px !important;
-      padding: 10px 18px !important;
-      cursor: pointer !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      font-size: 14px !important;
-      font-weight: 600 !important;
-      color: #333 !important;
-      transition: all 0.3s ease !important;
-      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.2) !important;
-      backdrop-filter: blur(10px) !important;
-      z-index: 99999 !important;
-      user-select: none !important;
-      min-width: 80px !important;
-      justify-content: center !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      font-family: 'Poppins', sans-serif !important;
-    }
-    .theme-toggle:hover {
-      background: #f8f9ff !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.3) !important;
-    }
-    .theme-toggle:active {
-      transform: translateY(0px) !important;
-    }
-    
-    /* Dark theme styles */
-    [data-theme="dark"] {
-      background: #1a1a2e;
-      color: #eee;
-    }
-    [data-theme="dark"] .container {
-      background: #16213e;
-      box-shadow: 
-        0 10px 20px rgba(0, 0, 0, 0.3),
-        0 6px 6px rgba(0, 0, 0, 0.2);
-    }
-    [data-theme="dark"] .error-msg {
-      color: #ddd;
-    }
-    [data-theme="dark"] .error-desc {
-      color: #bbb;
-    }
-    [data-theme="dark"] .footer-note {
-      color: #888;
-    }
-    [data-theme="dark"] .theme-toggle {
-      background: #16213e !important;
-      border-color: #218cfa !important;
-      color: #eee !important;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    }
-    [data-theme="dark"] .theme-toggle:hover {
-      background: #1a2542 !important;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-    }
-    [data-theme="dark"] .circle {
-      background: rgba(33, 140, 250, 0.1);
-    }
-    [data-theme="dark"] .icon-robot circle {
-      fill: #1e3a5f;
-    }
-    body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: #f0f5ff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-      user-select: none;
-    }
-
-    /* Container */
-    .container {
-      background: #ffffff;
-      max-width: 400px;
-      width: 100%;
-      padding: 40px 30px 50px;
-      border-radius: 15px;
-      box-shadow:
-        0 10px 20px rgba(33, 140, 250, 0.15),
-        0 6px 6px rgba(33, 140, 250, 0.1);
-      position: relative;
-      overflow: visible;
-    }
-
-  /*navbar*/
-      .navbar{
-      width: 100%;
-      margin-bottom: 1%;
-    }
-
-    
+<style>
+:root {
+  --nav-text: #333;
+  --accent: #007bff;
+  --background: #f5f5f5;
+  --text-color: #333;
+}
+body.dark-theme {
+  --nav-text: #ddd;
+  --accent: #55aaff;
+  --background: #121212;
+  --text-color: #ddd;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-color);
+  padding-top: 60px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Navbar */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 60px; display: flex; justify-content: space-between; align-items: center;
+  padding: 0 1rem;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+}
+body.dark-theme .navbar {
+  background: rgba(18, 18, 18, 0.9);
+}
+.nav-left {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-left img.logo {
+  height: 40px;
+}
+.site-name {
+  font-weight: 700; color: var(--nav-text); letter-spacing: 0.05em;
+}
+.nav-right .nav-links {
+  display: flex; gap: 1rem; align-items: center; list-style: none; margin: 0;
+}
+.nav-right .nav-links a {
+  text-decoration: none; color: var(--nav-text);
+  padding: 4px 8px;
+  font-weight: 600;
+  transition: border-bottom 0.3s ease;
+}
+.nav-right .nav-links a.active,
+.nav-right .nav-links a:hover {
+  border-bottom: 2px solid var(--accent);
+}
 #theme-toggle {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+  background: none; border: none; font-size: 1.3rem;
+  cursor: pointer; color: var(--nav-text);
+  transition: color 0.3s ease;
+}
+/* Snake toggle */
+.switch {
+  position: relative; display: inline-block; width: 36px; height: 18px;
+}
+.switch input {
+  opacity: 0; width: 0; height: 0;
+}
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc; transition: 0.4s; border-radius: 18px;
+}
+.slider:before {
+  position: absolute; content: "";
+  height: 14px; width: 14px; left: 2px; bottom: 2px;
+  background-color: white; transition: 0.4s; border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--accent);
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+.snakeLabel {
+  font-size: 0.75rem; color: var(--nav-text);
+  user-select: none;
 }
 
+/* Templates grid */
+main {
+  max-width: 1200px; margin: 2rem auto; padding: 1rem;
+}
+.page-header {
+  text-align: center; margin-bottom: 3rem;
+}
+.templates-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
+}
+.template-card {
+  background: white; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  display: flex; flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.template-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+body.dark-theme .template-card {
+  background: #1e1e1e;
+  box-shadow: 0 5px 20px rgba(255,255,255,0.07);
+}
+.template-preview {
+  height: 200px; display: flex; justify-content: center; align-items: center;
+  font-size: 3rem; font-weight: 700; color: white;
+  border-radius: 12px 12px 0 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  transition: box-shadow 0.3s ease;
+  background-size: 200% 200%;
+  background-position: center;
+}
+.template-preview:hover {
+  box-shadow: 0 0 25px var(--accent);
+  background-position: right center;
+}
+.template-info {
+  padding: 1rem; flex: 1; display: flex; flex-direction: column;
+}
+.template-title {
+  font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem;
+  letter-spacing: 0.03em;
+}
+.template-description {
+  flex: 1; font-size: 0.9rem; color: #555;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+body.dark-theme .template-description {
+  color: #bbb;
+}
+.template-actions {
+  display: flex; gap: 0.6rem; margin-top: 1rem;
+}
+.btn {
+  padding: 0.55rem 1rem; border: none; border-radius: 8px; cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 15px var(--accent);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #0065d1;
+  box-shadow: 0 6px 18px #0065d1;
+  outline: none;
+}
+.btn-secondary {
+  background: #f2f2f2;
+  color: #222;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+body.dark-theme .btn-secondary {
+  background: #333;
+  color: #ddd;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.07);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: #ccc;
+  outline: none;
+}
 
-    /* Theme toggle button inside card */
-    .card-theme-toggle {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #218cfa;
-      border: 2px solid white;
-      border-radius: 20px;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: white;
-      font-size: 14px;
-      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.3);
-      transition: all 0.3s ease;
-      z-index: 100;
-    }
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.25s ease forwards;
+}
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark-theme .modal-content {
+  background: #222;
+  color: #ccc;
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: var(--accent);
+  user-select: none;
+  transition: color 0.25s ease;
+}
+.close:hover {
+  color: #005bb5;
+}
+.copy-btn {
+  position: absolute;
+  top: 14px;
+  right: 70px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 14px var(--accent);
+  transition: background-color 0.25s ease;
+  user-select: none;
+}
+.copy-btn:hover {
+  background-color: #0065d1;
+}
+.code-block {
+  background: #1e1e1e;
+  color: #0ff;
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  min-height: 250px;
+  user-select: text;
+}
 
-    .card-theme-toggle:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.4);
-    }
-
-    /* Dark theme styles for card button */
-    [data-theme="dark"] .card-theme-toggle {
-      background: #ff6b6b;
-      color: white;
-      border-color: white;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-    }
-
-    [data-theme="dark"] .card-theme-toggle:hover {
-      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-    }
-
-    /* Big 404 text */
-    .error-code {
-      font-weight: 700;
-      font-size: 7rem;
-      color: #218cfa;
-      position: relative;
-      line-height: 1;
-      margin-bottom: 15px;
-      user-select: text;
-    }
-
-    /* Subheading */
-    .error-msg {
-      font-weight: 500;
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-      color: #555;
-      user-select: text;
-    }
-
-    /* Description */
-    .error-desc {
-      color: #7a7a7a;
-      font-weight: 400;
-      line-height: 1.5;
-      margin-bottom: 25px;
-      font-size: 1rem;
-      user-select: text;
-    }
-
-    /* Interactive Go Back button */
-    .btn-go-back {
-      background: linear-gradient(45deg, #218cfa, #1e6cd9);
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      padding: 14px 38px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(33, 140, 250, 0.45);
-      transition: all 0.25s ease-in-out;
-      user-select: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-go-back:hover {
-      filter: brightness(1.15);
-      transform: scale(1.08);
-      box-shadow: 0 12px 20px rgba(33, 140, 250, 0.55);
-    }
-    .btn-go-back:active {
-      transform: scale(0.95);
-      box-shadow: 0 6px 15px rgba(33, 140, 250, 0.35);
-    }
-
-    /* Subtle animated background circles */
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(33, 140, 250, 0.15);
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-      pointer-events: none;
-    }
-    .circle.one {
-      width: 150px;
-      height: 150px;
-      top: -40px;
-      right: -50px;
-      animation-name: float1;
-      animation-duration: 4.5s;
-    }
-    .circle.two {
-      width: 90px;
-      height: 90px;
-      bottom: -30px;
-      left: -20px;
-      animation-name: float2;
-      animation-duration: 6s;
-    }
-
-    @keyframes float1 {
-      0%   { transform: translate(0, 0); }
-      100% { transform: translate(-10px, 15px); }
-    }
-    @keyframes float2 {
-      0%   { transform: translate(0, 0); }
-      100% { transform: translate(15px, -10px); }
-    }
-
-    /* SVG icon styling */
-    .icon-robot {
-      margin-bottom: 20px;
-      width: 100px;
-      height: 100px;
-      stroke: #218cfa;
-      stroke-width: 2;
-      fill: none;
-      animation: pulseStroke 2.5s ease-in-out infinite;
-    }
-    @keyframes pulseStroke {
-      0%, 100% { stroke-opacity: 1; }
-      50% { stroke-opacity: 0.4; }
-    }
-
-    /* Small footer note */
-    .footer-note {
-      font-size: 0.9rem;
-      color: #999;
-      margin-top: 22px;
-      user-select: none;
-    }
-
-    @media (max-width: 480px) {
-      .error-code {
-        font-size: 5rem;
-      }
-      .container {
-        padding: 30px 24px 40px;
-      }
-      .btn-go-back {
-        padding: 12px 28px;
-        font-size: 1rem;
-      }
-      .theme-toggle {
-        top: 15px !important;
-        right: 15px !important;
-        padding: 8px 14px !important;
-        font-size: 12px !important;
-        min-width: 70px !important;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-    }
-  </style>
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+</style>
 </head>
-<body data-theme="light">
+<body>
 
- <nav class="navbar scroll-fade">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </div>
+<nav class="navbar scroll-fade">
+  <div class="nav-left">
+    <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+    <span class="site-name">Animate It Now</span>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../leaderboard.html">Leaderboard</a></li>
+      <li class="snakeList">
+        <label class="switch" title="Toggle Snake Cursor">
+          <input type="checkbox" id="cursorToggle" />
+          <span class="slider round"></span>
+        </label>
+        <span class="snakeLabel">Snake Cursor</span>
+      </li>
+      <li>
+        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" class="github-icon" aria-label="GitHub Repository">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <button id="theme-toggle" aria-label="Toggle Theme"><i data-lucide="moon"></i></button>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../templates.html" class="active">Templates</a></li>
-          <li><a href="../contributors.html">Contributors</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-          <li><a href="../leaderboard.html">Leaderboard</a></li>
-          <!--leaderboard linkup> -->
-          <!-- cursor toggle switch -->
-          <li class="snakeList">
-            <label class="switch" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle" />
-              <span class="slider round"></span>
-            </label>
-            <span class="snakeLabel">Snake Cursor</span>
-          </li>
-          <!-- github icon -->
-          <li>
-            <a
-              href="https://github.com/itsAnimation/AnimateItNow"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Repo"
-              class="github-icon"
-            >
-              <svg
-                viewBox="0 0 16 16"
-                width="24"
-                height="24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
-               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
-               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
-               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-                ></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <button
-              id="theme-toggle"
-              class="ripple btn-press"
-              aria-label="Toggle Theme"
-            >
-              <i data-lucide="moon"></i>
-            </button> 
-          </li>
-        </ul>
-      </div>
-    </nav>
+<main>
+  <div class="page-header">
+    <h1>404 Error Page Templates</h1>
+    <p>6 Unique 404 designs - view and copy their code instantly.</p>
+  </div>
 
+  <div class="templates-grid" id="templatesGrid"></div>
+</main>
 
-  <main class="container" role="main" aria-labelledby="error-title">
-    <!-- Theme Toggle Button inside card - Very visible -->
-    <div class="card-theme-toggle" onclick="toggleTheme()" id="card-theme-button">
-      🌙 Dark Mode
+<div class="modal" id="codeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()" role="button" aria-label="Close modal">&times;</span>
+    <button class="copy-btn" onclick="copyModalCode()" aria-label="Copy code to clipboard">Copy</button>
+    <div class="code-block" id="codeBlock" tabindex="0"></div>
+  </div>
+</div>
+
+<div id="cursor-snake"></div>
+
+<script>
+const templates = [
+  {
+    title: "Minimal Clean",
+    desc: "Simple and professional design",
+    preview: "linear-gradient(135deg,#667eea,#764ba2)",
+    code: `<div style="text-align:center;padding:40px;font-family:sans-serif">
+<h1 style="font-size:5rem;color:#667eea;letter-spacing:0.05em;">404</h1>
+<p style="font-size:1.3rem; margin-top:0.5rem;">Oops! Page not found.</p>
+<a href="/" style="background:#667eea;color:white;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block;margin-top:20px;transition:background-color 0.3s ease;">Go Home</a>
+</div>`
+  },
+  {
+    title: "Animated Bounce",
+    desc: "Fun and lively bounce effect",
+    preview: "linear-gradient(135deg,#f093fb,#f5576c)",
+    code: `<div style="display:flex;flex-direction:column;height:100vh;justify-content:center;align-items:center;font-family:sans-serif;background:#f093fb;color:#fff;">
+<h1 style="font-size:6rem;animation:bounce 1s infinite;letter-spacing:0.07em;">404</h1>
+<p style="margin-top:0.5rem;">Looks like you took a wrong turn!</p>
+<style>@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}</style>
+</div>`
+  },
+  {
+    title: "Glassmorphism",
+    desc: "Frosted glass aesthetic",
+    preview: "linear-gradient(135deg,#4facfe,#00f2fe)",
+    code: `<div style="height:100vh;display:flex;justify-content:center;align-items:center;background:url('https://picsum.photos/1600/900') center/cover no-repeat;">
+  <div style="background:rgba(255,255,255,0.15);padding:40px;border-radius:12px;backdrop-filter:blur(10px);color:white;text-align:center;">
+    <h1 style="font-size:5rem;letter-spacing:0.06em;">404</h1>
+    <p style="margin-top:0.5rem;">Page Not Found</p>
+  </div>
+</div>`
+  },
+  {
+    title: "Dark Mode",
+    desc: "Elegant dark theme",
+    preview: "#2c3e50",
+    code: `<div style="background:#2c3e50;color:#ecf0f1;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+  <h1 style="font-size:5rem;letter-spacing:0.06em;">404</h1>
+  <p style="margin-top:0.5rem;">We couldn't find the page.</p>
+</div>`
+  },
+  {
+    title: "Neon Cyberpunk",
+    desc: "Bright glowing neon text",
+    preview: "#0f0f0f",
+    code: `<div style="background:#0f0f0f;color:#0ff;text-align:center;font-family:monospace;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+  <h1 style="font-size:5rem;text-shadow:0 0 10px #0ff, 0 0 20px #0ff;letter-spacing:0.07em;">404</h1>
+  <p style="color:#f0f;text-shadow:0 0 5px #f0f;margin-top:0.5rem;">Lost in Cyberspace</p>
+</div>`
+  },
+  {
+    title: "Creative Illustrated",
+    desc: "Colorful illustrated style",
+    preview: "linear-gradient(135deg,#ffecd2,#fcb69f)",
+    code: `<div style="background:#ffecd2;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#333;">
+  <img src="https://cdn-icons-png.flaticon.com/512/748/748122.png" alt="Lost" style="width:150px;margin-bottom:20px" />
+  <h1 style="letter-spacing:0.05em;">404</h1>
+  <p style="margin-top:0;">Are you lost?</p>
+</div>`
+  }
+];
+
+const grid = document.getElementById("templatesGrid");
+let currentCode = "";
+
+templates.forEach((tpl, idx) => {
+  const card = document.createElement("div");
+  card.className = "template-card";
+  card.innerHTML = `
+    <div class="template-preview" style="background:${tpl.preview}; background-size: 300% 300%; background-position: center;">
+      404
     </div>
-    
-    <!-- Minimal robot head SVG for a friendly vibe -->
-    <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Friendly robot head icon" >
-      <circle cx="32" cy="32" r="30" stroke="#218cfa" stroke-width="4" fill="#d6eaff"/>
-      <rect x="15" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa"/>
-      <rect x="41" y="20" width="8" height="8" rx="2" ry="2" fill="#218cfa"/>
-      <rect x="20" y="44" width="24" height="6" rx="3" ry="3" fill="#218cfa"/>
-      <line x1="32" y1="28" x2="32" y2="44" stroke="#218cfa" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-
-    <h1 id="error-title" class="error-code">404</h1>
-    <p class="error-msg">Uh oh — seems like you’ve hit a end!</p>
-    <p class="error-desc">The page you’re looking for can’t be found. But don’t worry, let’s get you back on track.</p>
-    <button type="button" class="btn-go-back" onclick="window.history.back()" aria-label="Go back to previous page">
-      👈 Go Back
-    </button>
-
-    <div class="footer-note" aria-live="polite">
-      Or <a href="/" style="color:#218cfa; text-decoration:underline;">head home</a> and start fresh.
+    <div class="template-info">
+      <div class="template-title">${tpl.title}</div>
+      <div class="template-description">${tpl.desc}</div>
+      <div class="template-actions">
+        <button class="btn btn-primary" onclick="viewCode(${idx})">View Code</button>
+        <button class="btn btn-secondary" onclick="copyCode(${idx})">Copy Code</button>
+      </div>
     </div>
+  `;
+  // Animate background gradient on preview
+  let angle = 135, shade1, shade2;
+  card.querySelector('.template-preview').style.backgroundImage = tpl.preview;
+  grid.appendChild(card);
+});
 
-    <!-- Background circles -->
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-  </main>
-  
-  <!-- Dark Theme Toggle Script -->
-  <script>
-    function toggleTheme() {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      const cardButton = document.getElementById('card-theme-button');
-      
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      
-      if (newTheme === 'dark') {
-        if (cardButton) {
-          cardButton.innerHTML = '☀️ Light Mode';
-        }
-      } else {
-        if (cardButton) {
-          cardButton.innerHTML = '🌙 Dark Mode';
-        }
-      }
-    }
-    
-    // Load saved theme on page load
-    window.addEventListener('load', function() {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      const cardButton = document.getElementById('card-theme-button');
-      
-      document.body.setAttribute('data-theme', savedTheme);
-      
-      if (savedTheme === 'dark') {
-        if (cardButton) {
-          cardButton.innerHTML = '☀️ Light Mode';
-        }
-      }
-    });
-  </script>
-  
-   <div id="cursor-snake"></div>
-    <script src="../script.js"></script>
-  </body>
+function viewCode(index){
+  currentCode = templates[index].code;
+  const codeBlock = document.getElementById("codeBlock");
+  codeBlock.textContent = currentCode;
+  document.getElementById("codeModal").style.display = "flex";
+  codeBlock.focus();
+}
+function copyCode(index){
+  navigator.clipboard.writeText(templates[index].code);
+  alert("Code copied!");
+}
+function copyModalCode(){
+  navigator.clipboard.writeText(currentCode);
+  alert("Code copied!");
+}
+function closeModal(){
+  document.getElementById("codeModal").style.display = "none";
+}
+window.onclick = e => {
+  if(e.target == document.getElementById("codeModal")) closeModal();
+};
+// Dark mode toggle
+const themeToggleBtn = document.getElementById("theme-toggle");
+function applyTheme(){
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.body.classList.add("dark-theme");
+  } else {
+    document.body.classList.remove("dark-theme");
+  }
+}
+themeToggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+  const isDark = document.body.classList.contains("dark-theme");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+applyTheme();
+</script>
+<script src="../script.js"></script>
+</body>
 </html>
