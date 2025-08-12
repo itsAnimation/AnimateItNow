@@ -1,40 +1,96 @@
-const htmlEditor = document.getElementById("htmlCode");
-const cssEditor = document.getElementById("cssCode");
-const jsEditor = document.getElementById("jsCode");
-const output = document.getElementById("output");
+const htmlCode = document.getElementById("htmlCode");
+const cssCode = document.getElementById("cssCode");
+const jsCode = document.getElementById("jsCode");
+const runBtn = document.getElementById("runBtn");
+const resetBtn = document.getElementById("resetBtn");
+const outputFrame = document.getElementById("output");
+const animationSearch = document.getElementById("animationSearch");
+const suggestions = document.getElementById("suggestions");
 
-document.getElementById("runBtn").addEventListener("click", () => {
-  const html = htmlEditor.value.trim();
-  const css = cssEditor.value.trim();
-  const js = jsEditor.value.trim();
+const animations = [
+  "bounce", "flash", "pulse", "rubberBand", "shakeX", "shakeY", "headShake", "swing",
+  "tada", "wobble", "jello", "heartBeat", "backInDown", "backInLeft", "backInRight",
+  "backInUp", "backOutDown", "backOutLeft", "backOutRight", "backOutUp", "bounceIn",
+  "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "bounceOut",
+  "bounceOutDown", "bounceOutLeft", "bounceOutRight", "bounceOutUp", "fadeIn",
+  "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight",
+  "fadeInRightBig", "fadeInUp", "fadeInUpBig", "fadeOut", "fadeOutDown",
+  "fadeOutDownBig", "fadeOutLeft", "fadeOutLeftBig", "fadeOutRight", "fadeOutRightBig",
+  "fadeOutUp", "fadeOutUpBig", "flip", "flipInX", "flipInY", "flipOutX", "flipOutY",
+  "lightSpeedInRight", "lightSpeedInLeft", "lightSpeedOutRight", "lightSpeedOutLeft",
+  "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight",
+  "rotateOut", "rotateOutDownLeft", "rotateOutDownRight", "rotateOutUpLeft", "rotateOutUpRight",
+  "hinge", "jackInTheBox", "rollIn", "rollOut", "zoomIn", "zoomInDown", "zoomInLeft",
+  "zoomInRight", "zoomInUp", "zoomOut", "zoomOutDown", "zoomOutLeft", "zoomOutRight",
+  "zoomOutUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp", "slideOutDown",
+  "slideOutLeft", "slideOutRight", "slideOutUp"
+];
 
-  const result = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <style>${css}</style>
-    </head>
-    <body>
-      ${html}
-      <script>
-        try {
-          ${js}
-        } catch (e) {
-          document.body.innerHTML += '<pre style="color:red;">' + e + '</pre>';
-        }
-      <\/script>
-    </body>
-    </html>
-  `;
+runBtn.addEventListener("click", () => {
+  const html = htmlCode.value;
+  const css = `<style>${cssCode.value}</style>`;
+  const js = `<script>${jsCode.value}<\/script>`;
+  const animateCSS = `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>`;
 
-  output.srcdoc = result;
+  outputFrame.contentDocument.open();
+  outputFrame.contentDocument.write(`${animateCSS} ${css} ${html} ${js}`);
+  outputFrame.contentDocument.close();
 });
 
-document.getElementById("resetBtn").addEventListener("click", () => {
-  htmlEditor.value = "";
-  cssEditor.value = "";
-  jsEditor.value = "";
-  output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
+animationSearch.addEventListener("input", () => {
+  const query = animationSearch.value.toLowerCase();
+  suggestions.innerHTML = "";
+
+  if (!query) {
+    suggestions.style.display = "none";
+    return;
+  }
+
+  const filtered = animations.filter(anim => anim.toLowerCase().includes(query));
+
+  filtered.forEach(anim => {
+    const li = document.createElement("li");
+    li.textContent = anim;
+    li.className = "p-2 hover:bg-gray-200 cursor-pointer";
+    li.addEventListener("click", () => {
+      applyAnimation(anim);
+      animationSearch.value = anim;
+      suggestions.style.display = "none";
+    });
+    suggestions.appendChild(li);
+  });
+
+  suggestions.style.display = filtered.length ? "block" : "none";
+});
+
+animationSearch.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const firstOption = suggestions.querySelector("li");
+    if (firstOption) {
+      firstOption.click();
+    }
+  }
+});
+
+function applyAnimation(animationName) {
+  const body = outputFrame.contentDocument.body;
+  if (!body) return;
+
+  body.classList.add("animate__animated", `animate__${animationName}`);
+
+  body.addEventListener("animationend", () => {
+    body.classList.remove("animate__animated", `animate__${animationName}`);
+  }, { once: true });
+}
+
+resetBtn.addEventListener("click", () => {
+  htmlCode.value = "";
+  cssCode.value = "";
+  jsCode.value = "";
+  animationSearch.value = "";
+  suggestions.style.display = "none";
+  outputFrame.srcdoc = "";
 });
 
 const toggleSwitch = document.getElementById("theme-toggle");
@@ -55,3 +111,4 @@ const toggleSwitch = document.getElementById("theme-toggle");
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
     });
+
