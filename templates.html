@@ -377,6 +377,33 @@
       .mini-toggle.on .mini-handle {
         transform: translateX(25px);
       }
+
+          /* like */
+.like-button {
+  padding: 5px 25px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  transition: all 0.3s;
+  margin-top: 5px;
+}
+
+.like-button:hover {
+  background: #f0f0f0;
+}
+
+.liked {
+  color: #ff0000;
+}
+
+#likeIcon {
+  font-size: 24px;
+}
       /*Display Properties Preview */
       .display-preview {
         background-color: #4f8cff;
@@ -634,21 +661,37 @@
             <div class="page link"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="glassmorphism-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/login.html">
           <h2>Login Page UI</h2>
           <div class="template-preview login-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="login-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/button.html">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="hoverButton-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/loader.html">
           <h2>Loaders</h2>
           <div class="template-preview loader-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="loaders-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <!-- aading texts effects -->
         <a class="template-card" href="templates/text_effects_anim.html">
@@ -657,22 +700,38 @@
             <h2 id="textTarget"></h2>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="effects-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/modal.html">
           <h2>Popup Templates</h2>
           <div class="template-preview modal-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="popup-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/glassmorphism.html">
           <h2>Glassmorphism profile card</h2>
           <div class="template-preview modal-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="glassmorphism-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <!-- adding code Playground -->
         <a class="template-card" href="templates/code_playground.html">
           <h2>Code PlayGround</h2>
           <div class="template-preview code-play-preview">Write Code</div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="codePlayground-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
 
         <a class="template-card" href="templates/feature.html">
@@ -683,6 +742,10 @@
             <div class="mini-card">Card3</div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="featureCards-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/hero.html">
           <h2>Hero Section Template</h2>
@@ -692,13 +755,19 @@
             <div class="hero-text-line short"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="heroSection-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <article class="template-card">
           <h2>Animated Button</h2>
           <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/animated-btn.html"
-            >View Template</a
-          >
+          <a class="template-btn" href="templates/animated-btn.html">View Template</a>
+          <button class="like-button" data-template-id="animatedButton-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </article>
         <a class="template-card" href="templates/social-share-buttons.html">
           <h2>Animated Social Share Buttons</h2>
@@ -708,6 +777,10 @@
             <i class="fab fa-instagram social-icon-preview"></i>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="share-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <!-- CORRECTED TOOLTIP COMPONENT -->
         <a class="template-card" href="templates/tooltip.html">
@@ -716,6 +789,10 @@
             <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
           </div>
           <span class="template-btn">View Template</span>
+          <button class="like-button" data-template-id="tooltip-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <!-- Responsive Card Carousel -->
         <a class="template-card" href="templates/carousel.html">
@@ -726,6 +803,10 @@
             <div class="mini-card"></div>
           </div>
           <span class="template-btn">View Template</span>
+          <button class="like-button" data-template-id="carousel-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
         <a class="template-card" href="templates/toggles-and-checkboxes.html">
@@ -739,11 +820,19 @@
             </div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="toggle-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/neumorphic.html">
           <h2>Neumorphic Button Effects</h2>
           <div class="template-preview neumorphic-preview"></div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="neumorphic-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/navbar.html">
           <h2>Navbar Variants</h2>
@@ -753,6 +842,10 @@
             <div class="navbar-line link short"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="navbar-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/display.html">
           <h2>Display Properties</h2>
@@ -762,6 +855,10 @@
             <div class="display-box box3"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="display-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/CardHoverEffects.html">
           <h2>3D Card Hover Effects</h2>
@@ -769,6 +866,10 @@
             <div class="navbar-line link"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="3Dcard-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/page_not_found_template.html">
           <h2>404 Page not found</h2>
@@ -776,6 +877,10 @@
             <div class="page link"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="404-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
         <a class="template-card" href="templates/contact.html">
         <h2>Contact Us Template</h2>
@@ -783,6 +888,10 @@
           <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
         </div>
         <button class="template-btn">View Template</button>
+        <button class="like-button" data-template-id="contact-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
       </a>
         <a class="template-card" href="templates/accordian.html">
           <h2>Accordian Template</h2>
@@ -790,6 +899,10 @@
             <div class="page link"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="Accordian-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
 
       <!-- Professional Template section -->
@@ -801,8 +914,52 @@
             <div class="hero-text-line short"></div>
           </div>
           <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="professional-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
         </a>
-      <!-- Professional Template section ends-->
+       <a class="template-card" href="templates/timer.html">
+          <h2>Countdown Timer Template</h2>
+          <div class="template-preview timer-preview"></div>
+          <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="timer-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
+        </a>
+
+        <a class="template-card" href="templates/text_animations.html">
+          <h2>Text Animations</h2>
+          <div class="template-preview modal-preview"></div>
+          <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="textanimation-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
+        </a>
+
+        <a class="template-card" href="templates/skeletons.html">
+          <h2>Skeleton Loader </h2>
+          <div class="template-preview modal-preview"></div>
+          <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="skeleton-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
+        </a>
+       
+        
+        
+        <a class="template-card" href="templates/celebrations.html">
+          <h2>Celebrations Template</h2>
+          <div class="template-preview modal-preview"></div>
+          <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="celebrations-template">
+            <span class="like-icon">🤍</span>
+            <span class="like-count">0</span> Likes
+          </button>
+        </a>
       </section>
     </main>
 
@@ -986,6 +1143,46 @@
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
       typeLoop(); // start animation
+
+       // New Like Button System
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.like-button').forEach(button => {
+    const templateId = button.getAttribute('data-template-id');
+    const icon = button.querySelector('.like-icon');
+    const count = button.querySelector('.like-count');
+
+    let templateData = JSON.parse(localStorage.getItem(templateId)) || {
+      totalLikes: 0,
+      hasLiked: false
+    };
+
+    updateButton();
+
+    button.addEventListener('click', function (event) {
+      //  Prevent anchor navigation
+      event.stopPropagation();
+      event.preventDefault();
+
+      // Toggle like state
+      if (templateData.hasLiked) {
+        templateData.totalLikes--;
+        templateData.hasLiked = false;
+      } else {
+        templateData.totalLikes++;
+        templateData.hasLiked = true;
+      }
+
+      localStorage.setItem(templateId, JSON.stringify(templateData));
+      updateButton();
+    });
+
+    function updateButton() {
+      count.textContent = templateData.totalLikes;
+      icon.textContent = templateData.hasLiked ? '❤' : '🤍';
+      button.classList.toggle('liked', templateData.hasLiked);
+    }
+  });
+});
     </script>
   </body>
 </html>
