@@ -32,11 +32,9 @@
 }
 
 /* Selection mode */
-.template-card, .template-card-container {
+.template-card {
   position: relative;
 }
-
-.template-card-container { display: block; }
 
 .template-select-checkbox {
   position: absolute;
@@ -45,34 +43,21 @@
   width: 20px;
   height: 20px;
   transform: scale(1.1);
-  z-index: 1000;
-  pointer-events: auto;
-  cursor: pointer;
+  z-index: 2;
 }
 
-/* Ensure checkbox is outside card content when wrapped */
-.template-card-container { position: relative; }
-.template-card-container .template-select-checkbox { top: 12px; left: 12px; }
-
-.template-card.selectable::after, .template-card-container.selectable::after {
+.template-card.selectable::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 12px;
-  border: 2px dashed rgba(59, 130, 246, 0.35);
+  border: 2px dashed rgba(59, 130, 246, 0.5);
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
 }
 
-.template-card.selectable:hover::after, .template-card-container.selectable:hover::after {
-  opacity: 1;
-}
-
-.template-card.selected, .template-card-container.selected {
+.template-card.selected {
   outline: 3px solid #22d3ee;
   outline-offset: -3px;
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15) inset;
 }
 
 /* Modal base */
