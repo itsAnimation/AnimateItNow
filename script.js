@@ -153,24 +153,44 @@ window.addEventListener("pagehide", () => {
   disableSnakeCursor()
 })
 
-
-  // Scroll reveal via singleton manager
-  const initScrollReveal = () => {
-    if (window.scrollRevealManager) {
-      document.querySelectorAll('.scroll-fade, .template-card').forEach((el)=>{
-        if (!el.classList.contains('visible')) {
-          window.scrollRevealManager.observe(el)
-        }
-      })
-    }
+// Scroll reveal via singleton manager
+const initScrollReveal = () => {
+  if (window.scrollRevealManager) {
+    document.querySelectorAll('.scroll-fade, .template-card').forEach((el)=>{
+      if (!el.classList.contains('visible')) {
+        window.scrollRevealManager.observe(el)
+      }
+    })
   }
-  initScrollReveal()
-  window.addEventListener('pageshow', () => { initScrollReveal() })
-  window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
-  })
 }
+initScrollReveal()
+window.addEventListener('pageshow', () => { initScrollReveal() })
+window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
+
+window.addEventListener("DOMContentLoaded", () => {
+    // Initialize Template Manager if present on page
+    try {
+      if (document.querySelector('.templates-grid') && window.TemplateImporter && window.TemplatePackager) {
+        // UI is auto-initialized by template-manager.js on load
+      }
+    } catch (e) { console.warn('Template manager init skipped:', e) }
+
+    // Theme toggle
+    const themeToggle = document.getElementById("theme-toggle")
+    const body = document.body
+    function setTheme(dark) {
+      const newIcon = dark ? "sun" : "moon"
+      body.classList.toggle("dark", dark) // Use 'dark' class for consistency
+      localStorage.setItem("theme", dark ? "dark" : "light")
+      // Replace icon completely
+      if (themeToggle) {
+        themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
+        // Only call lucide.createIcons() if the lucide object is actually available
+        if (window.lucide) {
+          window.lucide.createIcons()
+        }
+      }
     }
-  }
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
