@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Like Button Ideas | AnimateItNow</title>
+  <meta name="description" content="Creative animated like button ideas with CSS and JavaScript." />
+
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    :root{
+      --bg: #0a0a0a;
+      --panel: rgba(255,255,255,0.05);
+      --panel-border: rgba(255,255,255,0.1);
+      --muted: #9aa0a6;
+      --accent: #ff2d55;
+      --accent-2: #0fd976;
+      --glow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .header{
+      text-align: center;
+      padding: 48px 16px 24px;
+    }
+    .header h1{
+      margin: 0 0 8px;
+      font-size: 2.6rem;
+      background: linear-gradient(135deg,#667eea,#764ba2);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+    .header p{ color: var(--muted); margin: 0; }
+    @keyframes titleGlow{ from{ filter:brightness(1)} to{ filter:brightness(1.15)} }
+
+    .container{ max-width: 1200px; margin: 0 auto; padding: 0 16px 64px; }
+    .grid{
+      display: grid; gap: 24px; margin-top: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--glow);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.4) }
+    .card h3{ margin: 0 0 12px; font-size: 1.1rem; }
+    .preview{ display:flex; align-items:center; justify-content:center; min-height:90px; }
+    .hint{ color: var(--muted); font-size: 12px; text-align:center; margin-top: 10px; }
+
+    /* Like Button 1: Heart Toggle */
+    .heart-like{ position: relative; width: 64px; height: 64px; cursor: pointer; }
+    .heart-like input{ display:none; }
+    .heart{
+      width: 64px; height: 64px; display:grid; place-items:center; border-radius: 16px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      transition: transform .2s ease;
+    }
+    .heart svg{ width: 30px; height: 30px; fill: transparent; stroke: #bbb; stroke-width: 2.2; transition: .25s ease; }
+    .heart-like input:checked + .heart svg{ fill: var(--accent); stroke: var(--accent); filter: drop-shadow(0 0 10px rgba(255,45,85,.4)); }
+    .heart-like input:checked + .heart{ animation: pop .35s ease; }
+    @keyframes pop{ 50%{ transform: scale(1.15)} }
+    /* bursts */
+    .burst{ position:absolute; inset:0; pointer-events:none; }
+    .dot{ position:absolute; width:8px; height:8px; border-radius:50%; background: var(--accent); opacity:0; transform: translate(32px,32px) scale(.2); }
+
+    /* Like Button 2: Clap + Counter */
+    .clap{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius: 28px;
+      border:1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); cursor:pointer; position:relative;
+      transition: transform .15s ease;
+    }
+    .clap:active{ transform: scale(.97); }
+    .clap .hands{ font-size:18px; }
+    .clap .count{ font-weight:700; color:#e6e6e6 }
+    .clap .spark{ position:absolute; width:6px; height:6px; border-radius:50%; background:#ffd166; opacity:0; }
+
+    /* Like Button 3: Bookmark/Heart Morph */
+    .morph-like{ display:flex; align-items:center; gap:10px; }
+    .morph-btn{
+      width: 56px; height: 56px; display:grid; place-items:center; border-radius: 14px; cursor:pointer;
+      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .morph-btn svg{ width:26px; height:26px; fill: none; stroke:#e5e7eb; stroke-width:2; transition: .25s ease; }
+    .morph-btn.active{ border-color: rgba(15,217,118,.5); box-shadow: 0 0 0 4px rgba(15,217,118,.12) inset; }
+    .morph-btn.active svg{ stroke: var(--accent-2) }
+
+    /* Like Button 4: Burst Confetti */
+    .burst-like{ position:relative; display:inline-flex; align-items:center; gap:12px; }
+    .burst-btn{
+      padding: 12px 18px; border-radius: 12px; background: linear-gradient(135deg,#ff7eb3,#ff758c);
+      border: none; color:#fff; font-weight:700; cursor:pointer; position:relative; overflow:hidden;
+      box-shadow: 0 6px 24px rgba(255,118,152,.35);
+    }
+    .confetti{ position:absolute; pointer-events:none; inset:0; }
+    .piece{ position:absolute; width:7px; height:7px; opacity:0; }
+    
+    /* Like Button 5: Hold-to-Like (Progress Ring) */
+    .hold-like{ position:relative; width:64px; height:64px; display:grid; place-items:center; cursor:pointer; }
+    .hold-like .btn{ width:52px; height:52px; border-radius:14px; display:grid; place-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); }
+    .hold-like svg.heart{ width:24px; height:24px; fill:none; stroke:#e5e7eb; stroke-width:2.2 }
+    .hold-like.active svg.heart{ stroke: var(--accent); filter: drop-shadow(0 0 10px rgba(255,45,85,.35)); }
+    .hold-like .ring{ position:absolute; width:64px; height:64px; transform: rotate(-90deg); }
+    .hold-like .ring circle{ fill:none; stroke:#444; stroke-width:6; stroke-linecap:round }
+    .hold-like .ring circle.progress{ stroke:#67e8f9; stroke-dasharray: 157; stroke-dashoffset: 157; transition: stroke-dashoffset .02s linear }
+
+    /* Like Button 6: Emoji Float Like */
+    .emoji-like{ position:relative; display:inline-flex; align-items:center; gap:10px; }
+    .emoji-btn{ padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#fff; cursor:pointer }
+    .emoji-layer{ position:absolute; inset:0; pointer-events:none; overflow:visible }
+
+    /* Code toggle */
+    .actions{ display:flex; justify-content:center; margin-top:12px }
+    .show-code{ padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#eaeaea; cursor:pointer; font-size:13px }
+    .code-block{ display:none; margin-top:12px; background:#0f1012; border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px; overflow:auto; max-height:240px }
+    .code-block code{ color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; white-space:pre }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Like Button Ideas</h1>
+    <p>Interactive, micro-animated like buttons using pure CSS and a sprinkle of JS.</p>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <!-- Card 1: Heart toggle -->
+      <article class="card">
+        <h3>Heart Toggle</h3>
+        <div class="preview">
+          <label class="heart-like">
+            <input type="checkbox" id="heartToggle" />
+            <div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.35-9.33-8.11A5.66 5.66 0 0 1 12 5.09a5.66 5.66 0 0 1 9.33 7.8C19 16.65 12 21 12 21Z"/>
+              </svg>
+            </div>
+            <div class="burst" aria-hidden="true"></div>
+          </label>
+        </div>
+        <p class="hint">Click to like. Pops with subtle particles.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-heart" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-heart"><pre><code>&lt;label class=&quot;heart-like&quot;&gt;
+  &lt;input type=&quot;checkbox&quot; /&gt;
+  &lt;div class=&quot;heart&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot;&gt;
+      &lt;path d=&quot;M12 21s-7-4.35-9.33-8.11A5.66 5.66 0 0 1 12 5.09a5.66 5.66 0 0 1 9.33 7.8C19 16.65 12 21 12 21Z&quot;/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;burst&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+&lt;/label&gt;</code></pre></div>
+      </article>
+
+      <!-- Card 2: Clap with counter -->
+      <article class="card">
+        <h3>Clap + Counter</h3>
+        <div class="preview">
+          <button class="clap" id="clapBtn" type="button">
+            <span class="hands">👏</span>
+            <span class="count" id="clapCount">0</span>
+          </button>
+        </div>
+        <p class="hint">Press repeatedly. Limit, easing and sparkles.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-clap" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-clap"><pre><code>&lt;button class=&quot;clap&quot; type=&quot;button&quot;&gt;
+  &lt;span class=&quot;hands&quot;&gt;👏&lt;/span&gt;
+  &lt;span class=&quot;count&quot;&gt;0&lt;/span&gt;
+&lt;/button&gt;</code></pre></div>
+      </article>
+
+      <!-- Card 3: Morphing like (bookmark/heart) -->
+      <article class="card">
+        <h3>Morphing Like</h3>
+        <div class="preview">
+          <div class="morph-like">
+            <button class="morph-btn" id="morphBtn" type="button" aria-label="Toggle like">
+              <svg viewBox="0 0 24 24">
+                <path id="morphPath" d="M6 3h12a1 1 0 0 1 1 1v17l-7-3-7 3V4a1 1 0 0 1 1-1z"/>
+              </svg>
+            </button>
+            <span id="morphText" class="hint" style="margin:0">Save</span>
+          </div>
+        </div>
+        <p class="hint">Bookmark toggles into a heart with color feedback.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-morph" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-morph"><pre><code>&lt;div class=&quot;morph-like&quot;&gt;
+  &lt;button class=&quot;morph-btn&quot; type=&quot;button&quot; aria-label=&quot;Toggle like&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot;&gt;
+      &lt;path d=&quot;M6 3h12a1 1 0 0 1 1 1v17l-7-3-7 3V4a1 1 0 0 1 1-1z&quot;/&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;span class=&quot;hint&quot; style=&quot;margin:0&quot;&gt;Save&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+      </article>
+
+      <!-- Card 4: Burst confetti like -->
+      <article class="card">
+        <h3>Confetti Burst</h3>
+        <div class="preview">
+          <div class="burst-like">
+            <button class="burst-btn" id="confettiBtn" type="button">Like</button>
+            <div class="confetti" id="confetti"></div>
+          </div>
+        </div>
+        <p class="hint">Shower of confetti on like, auto-clears.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-confetti" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-confetti"><pre><code>&lt;div class=&quot;burst-like&quot;&gt;
+  &lt;button class=&quot;burst-btn&quot; type=&quot;button&quot;&gt;Like&lt;/button&gt;
+  &lt;div class=&quot;confetti&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </article>
+
+      <!-- Card 5: Hold to Like (Progress Ring) -->
+      <article class="card">
+        <h3>Hold to Like</h3>
+        <div class="preview">
+          <div class="hold-like" id="holdLike">
+            <svg class="ring" viewBox="0 0 56 56" aria-hidden="true">
+              <circle cx="28" cy="28" r="25" opacity="0.25"></circle>
+              <circle class="progress" cx="28" cy="28" r="25"></circle>
+            </svg>
+            <div class="btn">
+              <svg class="heart" viewBox="0 0 24 24">
+                <path d="M12 21s-7-4.35-9.33-8.11A5.66 5.66 0 0 1 12 5.09a5.66 5.66 0 0 1 9.33 7.8C19 16.65 12 21 12 21Z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <p class="hint">Press and hold to complete the ring and like.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-hold" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-hold"><pre><code>&lt;div class=&quot;hold-like&quot;&gt;
+  &lt;svg class=&quot;ring&quot; viewBox=&quot;0 0 56 56&quot;&gt;
+    &lt;circle cx=&quot;28&quot; cy=&quot;28&quot; r=&quot;25&quot; opacity=&quot;0.25&quot;&gt;&lt;/circle&gt;
+    &lt;circle class=&quot;progress&quot; cx=&quot;28&quot; cy=&quot;28&quot; r=&quot;25&quot;&gt;&lt;/circle&gt;
+  &lt;/svg&gt;
+  &lt;div class=&quot;btn&quot;&gt;
+    &lt;svg class=&quot;heart&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+      &lt;path d=&quot;M12 21s-7-4.35-9.33-8.11A5.66 5.66 0 0 1 12 5.09a5.66 5.66 0 0 1 9.33 7.8C19 16.65 12 21 12 21Z&quot;/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </article>
+
+      <!-- Card 6: Emoji Float Like -->
+      <article class="card">
+        <h3>Emoji Float</h3>
+        <div class="preview">
+          <div class="emoji-like">
+            <button class="emoji-btn" id="emojiBtn" type="button">Like</button>
+            <div class="emoji-layer" id="emojiLayer"></div>
+          </div>
+        </div>
+        <p class="hint">Floating ❤️ 🔥 ✨ emojis on each like.</p>
+        <div class="actions">
+          <button class="show-code" data-target="code-emoji" type="button">Show Code</button>
+        </div>
+        <div class="code-block" id="code-emoji"><pre><code>&lt;div class=&quot;emoji-like&quot;&gt;
+  &lt;button class=&quot;emoji-btn&quot; type=&quot;button&quot;&gt;Like&lt;/button&gt;
+  &lt;div class=&quot;emoji-layer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    // Heart burst particles
+    (function(){
+      const wrap = document.querySelector('.heart-like');
+      const burst = wrap?.querySelector('.burst');
+      const input = wrap?.querySelector('input');
+      if(!wrap || !burst || !input) return;
+
+      function spawnBurst(){
+        burst.innerHTML = '';
+        const N = 10;
+        for(let i=0;i<N;i++){
+          const d = document.createElement('span');
+          d.className = 'dot';
+          const angle = (Math.PI * 2 * i) / N;
+          const dist = 26 + Math.random()*10;
+          d.style.background = i % 2 ? '#ff7eb3' : '#ffd166';
+          d.style.transition = 'transform .5s ease, opacity .5s ease';
+          requestAnimationFrame(()=>{
+            d.style.opacity = '1';
+            d.style.transform = `translate(${32+Math.cos(angle)*dist}px, ${32+Math.sin(angle)*dist}px) scale(1)`;
+          });
+          burst.appendChild(d);
+          setTimeout(()=>{ d.style.opacity='0'; }, 380);
+        }
+        setTimeout(()=>{ burst.innerHTML=''; }, 700);
+      }
+
+      input.addEventListener('change', ()=>{ if(input.checked) spawnBurst(); });
+    })();
+
+    // Clap button with counter and sparks
+    (function(){
+      const btn = document.getElementById('clapBtn');
+      const cnt = document.getElementById('clapCount');
+      if(!btn || !cnt) return;
+      let value = 0; const LIMIT = 50;
+
+      function spark(x,y){
+        const s = document.createElement('span');
+        s.className = 'spark';
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        s.style.background = Math.random() > .5 ? '#0fd976' : '#67e8f9';
+        btn.appendChild(s);
+        const dx = (Math.random()-0.5)*60; const dy = -20 - Math.random()*30;
+        s.animate([
+          { transform: 'translate(0,0) scale(1)', opacity: .9 },
+          { transform: `translate(${dx}px, ${dy}px) scale(0)`, opacity: 0 }
+        ], { duration: 600, easing: 'ease-out' });
+        setTimeout(()=> s.remove(), 620);
+      }
+
+      btn.addEventListener('click', (e)=>{
+        if(value < LIMIT) value++;
+        cnt.textContent = value;
+        const r = btn.getBoundingClientRect();
+        spark(e.clientX - r.left, e.clientY - r.top);
+      });
+    })();
+
+    // Morphing like (bookmark -> heart)
+    (function(){
+      const btn = document.getElementById('morphBtn');
+      const path = document.getElementById('morphPath');
+      const text = document.getElementById('morphText');
+      if(!btn || !path || !text) return;
+      const bookmark = 'M6 3h12a1 1 0 0 1 1 1v17l-7-3-7 3V4a1 1 0 0 1 1-1z';
+      const heart = 'M12 21s-7-4.35-9.33-8.11A5.66 5.66 0 0 1 12 5.09a5.66 5.66 0 0 1 9.33 7.8C19 16.65 12 21 12 21Z';
+      let liked = false;
+      btn.addEventListener('click', ()=>{
+        liked = !liked;
+        btn.classList.toggle('active', liked);
+        path.setAttribute('d', liked ? heart : bookmark);
+        text.textContent = liked ? 'Liked' : 'Save';
+      });
+    })();
+
+    // Confetti burst like
+    (function(){
+      const btn = document.getElementById('confettiBtn');
+      const layer = document.getElementById('confetti');
+      if(!btn || !layer) return;
+
+      function piece(x,y){
+        const p = document.createElement('span');
+        p.className = 'piece';
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        p.style.background = ['#ffd166','#06d6a0','#118ab2','#ef476f'][Math.floor(Math.random()*4)];
+        layer.appendChild(p);
+        const dx = (Math.random()-.5)*160; const dy = -40 - Math.random()*60; const rot = (Math.random()*360)|0;
+        p.animate([
+          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${rot}deg)`, opacity: 0 }
+        ], { duration: 900, easing: 'cubic-bezier(.2,.8,.2,1)' });
+        setTimeout(()=> p.remove(), 930);
+      }
+
+      btn.addEventListener('click', ()=>{
+        const r = btn.getBoundingClientRect();
+        for(let i=0;i<18;i++) piece(r.width/2, r.height/2);
+      });
+    })();
+
+    // Hold to Like (progress ring)
+    (function(){
+      const root = document.getElementById('holdLike');
+      if(!root) return;
+      const progress = root.querySelector('circle.progress');
+      const activeCls = 'active';
+      const CIRC = 2 * Math.PI * 25; // r=25
+      let raf = null, start = 0, holding = false;
+      progress.style.strokeDasharray = String(CIRC);
+      progress.style.strokeDashoffset = String(CIRC);
+
+      function step(ts){
+        if(!holding){ raf = null; return; }
+        if(!start) start = ts;
+        const elapsed = ts - start; // ms
+        const dur = 900; // hold duration
+        const pct = Math.min(1, elapsed / dur);
+        progress.style.strokeDashoffset = String(CIRC * (1 - pct));
+        if(pct >= 1){
+          root.classList.add(activeCls);
+          holding = false; raf = null; start = 0;
+          progress.style.strokeDashoffset = String(CIRC);
+          return;
+        }
+        raf = requestAnimationFrame(step);
+      }
+
+      function down(){ if(holding) return; holding = true; start = 0; raf = requestAnimationFrame(step); }
+      function up(){ holding = false; if(raf) cancelAnimationFrame(raf); raf=null; start=0; progress.style.strokeDashoffset = String(CIRC); }
+
+      root.addEventListener('pointerdown', down);
+      window.addEventListener('pointerup', up);
+      window.addEventListener('pointercancel', up);
+      window.addEventListener('blur', up);
+    })();
+
+    // Emoji Float Like
+    (function(){
+      const btn = document.getElementById('emojiBtn');
+      const layer = document.getElementById('emojiLayer');
+      if(!btn || !layer) return;
+      const EMOJIS = ['❤️','🔥','✨','💖','💫','🥳'];
+
+      function floatEmoji(x,y){
+        const s = document.createElement('span');
+        s.textContent = EMOJIS[(Math.random()*EMOJIS.length)|0];
+        s.style.position='absolute';
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        s.style.fontSize = (16 + Math.random()*10) + 'px';
+        s.style.opacity = '0';
+        layer.appendChild(s);
+        const dx = (Math.random()-.5)*40; const dy = -40 - Math.random()*40;
+        s.animate([
+          { transform:'translate(0,0) scale(.9)', opacity:.0 },
+          { transform:`translate(${dx}px, ${dy}px) scale(1.2)`, opacity:1, offset:.3 },
+          { transform:`translate(${dx}px, ${dy-20}px) scale(1)`, opacity:0 }
+        ], { duration: 900, easing:'cubic-bezier(.2,.7,.2,1)'});
+        setTimeout(()=> s.remove(), 920);
+      }
+
+      btn.addEventListener('click', ()=>{
+        const r = btn.getBoundingClientRect();
+        const x = r.width/2, y = r.height/2;
+        for(let i=0;i<5;i++) floatEmoji(x,y);
+      });
+    })();
+
+    // Show Code toggles
+    (function(){
+      function toggle(block, btn){
+        const isOpen = block.style.display === 'block';
+        block.style.display = isOpen ? 'none' : 'block';
+        if(btn) btn.textContent = isOpen ? 'Show Code' : 'Hide Code';
+      }
+      document.addEventListener('click', (e)=>{
+        const b = e.target.closest('.show-code');
+        if(!b) return;
+        const id = b.getAttribute('data-target');
+        const block = id ? document.getElementById(id) : null;
+        if(block) toggle(block, b);
+      });
+    })();
+  </script>
+</body>
+</html>
