@@ -127,8 +127,9 @@
     /* Code toggle */
     .actions{ display:flex; justify-content:center; margin-top:12px }
     .show-code{ padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.06); color:#eaeaea; cursor:pointer; font-size:13px }
-    .code-block{ display:none; margin-top:12px; background:#0f1012; border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px; overflow:auto; max-height:240px }
+    .code-block{ display:none; margin-top:12px; background:#0f1012; border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px; overflow:auto; max-height:240px; position:relative }
     .code-block code{ color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; white-space:pre }
+    .copy-code{ position:absolute; top:8px; right:8px; padding:6px 10px; font-size:12px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08); color:#eaeaea; cursor:pointer }
   </style>
 </head>
 <body>
@@ -157,7 +158,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-heart" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-heart"><pre><code>&lt;label class=&quot;heart-like&quot;&gt;
+        <div class="code-block" id="code-heart"><button class="copy-code" type="button">Copy</button><pre><code>&lt;label class=&quot;heart-like&quot;&gt;
   &lt;input type=&quot;checkbox&quot; /&gt;
   &lt;div class=&quot;heart&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot;&gt;
@@ -181,7 +182,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-clap" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-clap"><pre><code>&lt;button class=&quot;clap&quot; type=&quot;button&quot;&gt;
+        <div class="code-block" id="code-clap"><button class="copy-code" type="button">Copy</button><pre><code>&lt;button class=&quot;clap&quot; type=&quot;button&quot;&gt;
   &lt;span class=&quot;hands&quot;&gt;👏&lt;/span&gt;
   &lt;span class=&quot;count&quot;&gt;0&lt;/span&gt;
 &lt;/button&gt;</code></pre></div>
@@ -204,7 +205,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-morph" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-morph"><pre><code>&lt;div class=&quot;morph-like&quot;&gt;
+        <div class="code-block" id="code-morph"><button class="copy-code" type="button">Copy</button><pre><code>&lt;div class=&quot;morph-like&quot;&gt;
   &lt;button class=&quot;morph-btn&quot; type=&quot;button&quot; aria-label=&quot;Toggle like&quot;&gt;
     &lt;svg viewBox=&quot;0 0 24 24&quot;&gt;
       &lt;path d=&quot;M6 3h12a1 1 0 0 1 1 1v17l-7-3-7 3V4a1 1 0 0 1 1-1z&quot;/&gt;
@@ -227,7 +228,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-confetti" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-confetti"><pre><code>&lt;div class=&quot;burst-like&quot;&gt;
+        <div class="code-block" id="code-confetti"><button class="copy-code" type="button">Copy</button><pre><code>&lt;div class=&quot;burst-like&quot;&gt;
   &lt;button class=&quot;burst-btn&quot; type=&quot;button&quot;&gt;Like&lt;/button&gt;
   &lt;div class=&quot;confetti&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre></div>
@@ -253,7 +254,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-hold" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-hold"><pre><code>&lt;div class=&quot;hold-like&quot;&gt;
+        <div class="code-block" id="code-hold"><button class="copy-code" type="button">Copy</button><pre><code>&lt;div class=&quot;hold-like&quot;&gt;
   &lt;svg class=&quot;ring&quot; viewBox=&quot;0 0 56 56&quot;&gt;
     &lt;circle cx=&quot;28&quot; cy=&quot;28&quot; r=&quot;25&quot; opacity=&quot;0.25&quot;&gt;&lt;/circle&gt;
     &lt;circle class=&quot;progress&quot; cx=&quot;28&quot; cy=&quot;28&quot; r=&quot;25&quot;&gt;&lt;/circle&gt;
@@ -279,7 +280,7 @@
         <div class="actions">
           <button class="show-code" data-target="code-emoji" type="button">Show Code</button>
         </div>
-        <div class="code-block" id="code-emoji"><pre><code>&lt;div class=&quot;emoji-like&quot;&gt;
+        <div class="code-block" id="code-emoji"><button class="copy-code" type="button">Copy</button><pre><code>&lt;div class=&quot;emoji-like&quot;&gt;
   &lt;button class=&quot;emoji-btn&quot; type=&quot;button&quot;&gt;Like&lt;/button&gt;
   &lt;div class=&quot;emoji-layer&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre></div>
@@ -473,6 +474,33 @@
         const id = b.getAttribute('data-target');
         const block = id ? document.getElementById(id) : null;
         if(block) toggle(block, b);
+      });
+    })();
+
+    // Copy Code
+    (function(){
+      async function copyText(text){
+        try{
+          if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(text);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); ta.remove();
+          }
+          return true;
+        }catch(e){ return false; }
+      }
+      document.addEventListener('click', async (e)=>{
+        const btn = e.target.closest('.copy-code');
+        if(!btn) return;
+        const block = btn.closest('.code-block');
+        const code = block ? block.querySelector('code') : null;
+        if(!code) return;
+        const ok = await copyText(code.innerText);
+        const prev = btn.textContent;
+        btn.textContent = ok ? 'Copied!' : 'Copy failed';
+        setTimeout(()=> btn.textContent = prev, 1200);
       });
     })();
   </script>
