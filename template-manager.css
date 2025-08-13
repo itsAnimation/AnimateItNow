@@ -184,3 +184,19 @@ body:not(.dark) .options-grid input, body:not(.dark) .options-grid select, body:
   color: #0f172a;
   border: 1px solid #e5e7eb;
 }
+
+/* Mobile-first modal layout improvements */
+@media (max-width: 48rem) {
+  .modal-overlay { padding: 0 !important; }
+  .modal {
+    width: 100vw;
+    height: 100svh;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+  }
+  .modal-body { overflow: auto; max-height: none; }
+}
+
+/* Prevent background scroll when modal is open */
+body.lock-scroll { overflow: hidden; }

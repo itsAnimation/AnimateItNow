@@ -5,11 +5,16 @@
         return ScrollRevealManager._instance;
       }
       this.elements = new Set();
-      this.observer = new IntersectionObserver(this.onIntersect.bind(this), { threshold: 0.1 });
+      this.prefersReducedMotion = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || false;
+      this.observer = this.prefersReducedMotion ? null : new IntersectionObserver(this.onIntersect.bind(this), { threshold: 0.1 });
       ScrollRevealManager._instance = this;
     }
     observe(el){
       if (!el) return;
+      if (this.prefersReducedMotion){
+        el.classList.add('visible');
+        return;
+      }
       this.elements.add(el);
       this.observer.observe(el);
     }

@@ -434,7 +434,7 @@
     `
     document.body.appendChild(overlay)
 
-    const close = () => overlay.classList.remove('active')
+    const close = () => { overlay.classList.remove('active'); document.body.classList.remove('lock-scroll') }
     overlay.querySelector('#export-close').onclick = close
     overlay.querySelector('#export-cancel').onclick = close
 
@@ -462,6 +462,7 @@
     window.openExportModal = function (handler) {
       onConfirm = handler
       overlay.classList.add('active')
+      document.body.classList.add('lock-scroll')
     }
   }
 
@@ -523,7 +524,7 @@
 
     const importer = new TemplateImporter()
 
-    const close = () => overlay.classList.remove('active')
+    const close = () => { overlay.classList.remove('active'); document.body.classList.remove('lock-scroll') }
     overlay.querySelector('#import-close').onclick = close
     overlay.querySelector('#import-cancel').onclick = close
 
@@ -622,6 +623,7 @@
       resetState()
       overlay.classList.add('active')
       onConfirmHandler = handler
+      document.body.classList.add('lock-scroll')
     }
   }
 
