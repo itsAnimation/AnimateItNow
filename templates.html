@@ -1076,19 +1076,13 @@
 
       lucide.createIcons();
 
-      // Scroll animation for cards
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      document.querySelectorAll(".template-card").forEach((card) => {
-        observer.observe(card);
+      // Scroll animation for cards (use shared manager for reduced-motion support)
+      document.querySelectorAll('.template-card').forEach((card) => {
+        if (window.scrollRevealManager) {
+          window.scrollRevealManager.observe(card)
+        } else {
+          card.classList.add('visible')
+        }
       });
 
       // Search & Category Filter Functionality
