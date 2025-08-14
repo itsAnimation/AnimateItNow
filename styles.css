@@ -80,6 +80,21 @@
       padding: 1rem;
       max-height: 500px; /* Enough to fit long answers */
     }
+   .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 15px; /* horizontal padding only, vertical handled dynamically */
+  background: #f1f1f1;
+  transition: max-height 0.4s ease, padding-top 0.4s ease, padding-bottom 0.4s ease;
+}
+
+
+
+
+.faq-item.active .faq-answer {
+  padding: 15px;
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
