@@ -167,10 +167,7 @@ window.addEventListener("pagehide", () => {
   initScrollReveal()
   window.addEventListener('pageshow', () => { initScrollReveal() })
   window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
-  })
-}
-    }
-  }
+  
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
@@ -336,7 +333,7 @@ window.addEventListener("pagehide", () => {
   window.addEventListener("scroll", updateProgressBar)
   // Initialize on load
   updateProgressBar()
-})
+
 
 
 
