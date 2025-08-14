@@ -2704,7 +2704,7 @@ justify-content: center;
   font-size: 1.1rem;
   height:12rem;
   width:12rem;
- background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
   box-shadow: 0 2px 10px rgba(0, 255, 255, 0.15); 
   border: 1px solid rgba(0, 255, 255, 0.2); 
   margin:4rem 2rem;
@@ -2760,6 +2760,53 @@ justify-content: center;
     cursor: pointer;
 
 }
+
+/*adding styles to new boxes introduced*/
+
+
+.box.shaky:hover {
+  animation: shake 0.5s infinite;
+}
+
+
+@keyframes shake {
+  0%, 100% {transform: translate(0);}
+  25% {transform: translate(-10px);}
+  50% {transform: translate(10px);}
+  75% {transform: translate(-10px);}
+}
+
+.box.box.flip, .box.box.shaky, .box.box.blur-reveal, .box.box.gradient, .box.box.image-reveal, .box.box.letter-spacing{
+  background-color: #958fe2;
+
+}
+.box.flip:hover{
+  transform: rotateY(180deg);
+}
+
+.box.gradient:hover{
+  background: linear-gradient(to right, pink, purple, rgb(0, 140, 255));
+}
+
+.box.letter-spacing:hover{
+  letter-spacing: 10px;
+}
+
+.box.image-reveal:hover{
+  background: url(images/img-reveal.jpeg);
+  background-size: cover;
+  color: rgba(0, 0, 0, 0);
+}
+
+
+.box.blur-reveal{
+  filter: blur(5px);
+}
+.box.blur-reveal:hover{
+  filter: none;
+}
+
+
 
 .Box-Shadow:hover{
 box-shadow: 
