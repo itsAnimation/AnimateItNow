@@ -6,31 +6,71 @@
   <title>Hover Button Effects | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="../styles.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    .hover-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.18);
+    /* Original button styles */
+    .hover-btn {
+      background: #4f8cff;
+      color: #fff;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 2em;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
+    .hover-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    }
+    
     .hover-btn.glow:hover {
       background: #2563eb;
+      box-shadow: 0 0 30px rgba(79, 140, 255, 0.6);
+    }
+
+    .hover-btn.outline {
+      background: transparent;
+      color: #4f8cff;
+      border: 2px solid #4f8cff;
     }
 
     .hover-btn.outline:hover {
       background: #4f8cff;
       color: #fff;
+      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+    }
+
+    .hover-btn.gradient {
+      background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
     }
 
     .hover-btn.gradient:hover {
-      background: linear-gradient(90deg, #2563eb 60%, #4f8cff 100%);
+      background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
     }
-    .btn::after{
+
+    /* Rainbow glow button */
+    .btn-rainbow {
+      color: #fff;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 2em;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      background: #333;
+      transition: all 0.3s ease;
+    }
+
+    .btn-rainbow::after {
       content: "";
       z-index: -1;
       position: absolute;
@@ -40,281 +80,680 @@
       left: 0;
       top: 0;
       border-radius: 2em;
-    
-    }
-    /* glowing button */
-    .btn::before{
-        content: "";
-        background: linear-gradient(
-            45deg,
-            #f11616,rgb(224, 210, 10),rgb(106, 223, 10),
-            rgba(16, 205, 139, 0.942),rgb(9, 194, 223),rgba(55, 13, 221, 0.871),
-            rgb(220, 19, 169),rgb(222, 18, 18)
-        );
-        position: absolute;
-        top:-2px;
-        left: -2px;
-        background-size:600%;
-        z-index: -1;
-        width: calc(100% + 0.3em);
-        height: calc(100% + 0.3em);
-        filter: blur(1em);
-        animation: glow 20s linear infinite;
-        border-radius: 2px;
-        opacity: 0;
-
-
-    }
-    @keyframes glow{
-        0%{
-            background-position: 0 0;
-        }
-        50%{
-            background-position: 400% 0;
-        }
-        100%{background-position: 0 0;}
-    }
-    .btn:hover{
-       transform: scale(1.08);
-    }
-    .btn:hover::before{
-        opacity: 1;
-        
     }
 
-    .btn:active:after{
-        background: transparent;
-
+    .btn-rainbow::before {
+      content: "";
+      background: linear-gradient(45deg, #ff1616, #e4d20a, #6adf0a, #10cd8b, #09c2df, #371ddd, #dc13a9, #de1212);
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 600%;
+      z-index: -1;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      filter: blur(1em);
+      animation: rainbow-glow 20s linear infinite;
+      border-radius: 2em;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .btn:active{
-        color: #000;
-        font-weight: bold;
+    @keyframes rainbow-glow {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .btn-rainbow:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-rainbow:hover::before {
+      opacity: 1;
+    }
+
+    .btn-rainbow:active::after {
+      background: transparent;
+    }
+
+    .btn-rainbow:active {
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* Pulse effect */
+    .btn-pulse {
+      background: #ff6b6b;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+    }
+
+    /* Slide effect */
+    .btn-slide {
+      background: #10b981;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-slide:hover::before {
+      left: 100%;
+    }
+
+    /* Neon effect */
+    .btn-neon {
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+      box-shadow: inset 0 0 5px #00ffff, 0 0 5px #00ffff;
+    }
+
+    .btn-neon:hover {
+      background: #00ffff;
+      color: #000;
+      text-shadow: none;
+      box-shadow: inset 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+    }
+
+    /* Button showcase grid */
+    .button-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      align-items: start; /* Prevent cards from stretching */
+    }
+
+    .button-card {
+      background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+      height: fit-content; /* Maintain natural height */
+    }
+
+    .button-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .button-card h3 {
+      margin: 0 0 1rem 0;
+      color: #1e293b;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .button-demo {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+
+    .code-section {
+      margin-top: 1rem;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .code-section.active {
+      opacity: 1;
+      max-height: 500px;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2d3748;
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      font-size: 0.875rem;
+    }
+
+    .copy-btn {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #3182ce;
+    }
+
+    .copy-btn.copied {
+      background: #38a169;
+    }
+
+    pre {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+      overflow-x: auto;
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .show-code-btn {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 100%;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .show-code-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem 0;
+      background: linear-gradient(45deg, #fff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Dark theme support */
+    @media (prefers-color-scheme: dark) {
+      .button-card {
+        background: linear-gradient(145deg, #2d3748, #1a202c);
+        color: white;
+      }
+      
+      .button-card h3 {
+        color: white;
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .button-showcase {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-section p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <nav class="navbar scroll-fade">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </div>
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../templates.html" class="active">Templates</a></li>
-          <li><a href="../contributors.html">Contributors</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-          <li><a href="../leaderboard.html">Leaderboard</a></li>
-          <!--leaderboard linkup> -->
-          <!-- cursor toggle switch -->
-          <li class="snakeList">
-            <label class="switch" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle" />
-              <span class="slider round"></span>
-            </label>
-            <span class="snakeLabel">Snake Cursor</span>
-          </li>
-          <!-- github icon -->
-          <li>
-            <a
-              href="https://github.com/itsAnimation/AnimateItNow"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Repo"
-              class="github-icon"
-            >
-              <svg
-                viewBox="0 0 16 16"
-                width="24"
-                height="24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
-               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
-               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
-               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-                ></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <button
-              id="theme-toggle"
-              class="ripple btn-press"
-              aria-label="Toggle Theme"
-            >
-              <i data-lucide="moon"></i>
-            </button> 
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67 7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button> 
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <main class="templates-main">
-    <h1>Hover Button Effects</h1>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="hover-btn glow" style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Glow
-      </button>
-      <button class="hover-btn outline" style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Outline
-      </button>
-      <button class="hover-btn gradient" style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Gradient
-      </button>
+    <div class="hero-section">
+      <h1>🎨 Hover Button Effects</h1>
+      <p>Discover stunning CSS button animations with ready-to-use code. Click any button to view and copy the code!</p>
     </div>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="hover-btn glow" style="
-            background: #4f8cff;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            
-          ">
-        Glow
-      </button>
-      <button class="hover-btn outline" style="
-            background: #fff;
-            color: #4f8cff;
-            padding: 1em 2em;
-            border: 2px solid #4f8cff;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Outline
-      </button>
-      <button class="hover-btn gradient" style="
-            background: linear-gradient(90deg, #4f8cff 60%, #2563eb 100%);
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-          ">
-        Gradient
-      </button>
-    </div>
-    <div style="
-          display: flex;
-          gap: 2rem;
-          justify-content: center;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        ">
-      <button class="btn" style="
-            
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
-            
-        
-        ">
-        Glow
-      </button>
-      <button class="btn" style="
-            padding: 1em 2em;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            color: white;
-            position: relative;
-            z-index: 0;
-        ">
-        Outline
-      </button>
-      <button class="btn" style="
-            padding: 1em 2em;
-            border: none;
-            border-radius: 2em;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: white;
-            position: relative;
-            z-index: 0;
-        ">
-        Gradient
-      </button>
+
+    <div class="button-showcase">
+      <!-- Glow Effect -->
+      <div class="button-card">
+        <h3>✨ Glow Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn glow">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('glow-code')">
+          📋 Show Code
+        </button>
+        <div id="glow-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('glow-css')">Copy</button>
+          </div>
+          <pre id="glow-css">.glow-btn {
+  background: #4f8cff;
+  color: #fff;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glow-btn:hover {
+  transform: scale(1.08);
+  background: #2563eb;
+  box-shadow: 0 0 30px rgba(79, 140, 255, 0.6);
+}
+
+&lt;button class="glow-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Outline Effect -->
+      <div class="button-card">
+        <h3>🔲 Outline Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn outline">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('outline-code')">
+          📋 Show Code
+        </button>
+        <div id="outline-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('outline-css')">Copy</button>
+          </div>
+          <pre id="outline-css">.outline-btn {
+  background: transparent;
+  color: #4f8cff;
+  padding: 1em 2em;
+  border: 2px solid #4f8cff;
+  border-radius: 2em;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.outline-btn:hover {
+  background: #4f8cff;
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+}
+
+&lt;button class="outline-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Gradient Effect -->
+      <div class="button-card">
+        <h3>🌈 Gradient Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn gradient">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('gradient-code')">
+          📋 Show Code
+        </button>
+        <div id="gradient-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('gradient-css')">Copy</button>
+          </div>
+          <pre id="gradient-css">.gradient-btn {
+  background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
+  color: #fff;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.gradient-btn:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
+}
+
+&lt;button class="gradient-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Rainbow Glow Effect -->
+      <div class="button-card">
+        <h3>🎆 Rainbow Glow</h3>
+        <div class="button-demo">
+          <button class="btn-rainbow">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('rainbow-code')">
+          📋 Show Code
+        </button>
+        <div id="rainbow-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('rainbow-css')">Copy</button>
+          </div>
+          <pre id="rainbow-css">.rainbow-btn {
+  color: #fff;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  background: #333;
+  transition: all 0.3s ease;
+}
+
+.rainbow-btn::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  left: 0;
+  top: 0;
+  border-radius: 2em;
+}
+
+.rainbow-btn::before {
+  content: "";
+  background: linear-gradient(45deg, #ff1616, #e4d20a, #6adf0a, #10cd8b, #09c2df, #371ddd, #dc13a9, #de1212);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(1em);
+  animation: rainbow-glow 20s linear infinite;
+  border-radius: 2em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes rainbow-glow {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.rainbow-btn:hover {
+  transform: scale(1.08);
+}
+
+.rainbow-btn:hover::before {
+  opacity: 1;
+}
+
+&lt;button class="rainbow-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Pulse Effect -->
+      <div class="button-card">
+        <h3>💓 Pulse Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn btn-pulse">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('pulse-code')">
+          📋 Show Code
+        </button>
+        <div id="pulse-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('pulse-css')">Copy</button>
+          </div>
+          <pre id="pulse-css">.pulse-btn {
+  background: #ff6b6b;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+.pulse-btn:hover {
+  transform: scale(1.08);
+}
+
+&lt;button class="pulse-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Slide Effect -->
+      <div class="button-card">
+        <h3>⚡ Slide Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn btn-slide">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('slide-code')">
+          📋 Show Code
+        </button>
+        <div id="slide-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('slide-css')">Copy</button>
+          </div>
+          <pre id="slide-css">.slide-btn {
+  background: #10b981;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.slide-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.slide-btn:hover::before {
+  left: 100%;
+}
+
+.slide-btn:hover {
+  transform: scale(1.08);
+}
+
+&lt;button class="slide-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Neon Effect -->
+      <div class="button-card">
+        <h3>💡 Neon Effect</h3>
+        <div class="button-demo">
+          <button class="hover-btn btn-neon">Hover Me</button>
+        </div>
+        <button class="show-code-btn" onclick="toggleCode('neon-code')">
+          📋 Show Code
+        </button>
+        <div id="neon-code" class="code-section">
+          <div class="code-header">
+            <span>CSS + HTML</span>
+            <button class="copy-btn" onclick="copyCode('neon-css')">Copy</button>
+          </div>
+          <pre id="neon-css">.neon-btn {
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  padding: 1em 2em;
+  border-radius: 2em;
+  font-weight: 600;
+  cursor: pointer;
+  text-shadow: 0 0 5px #00ffff;
+  box-shadow: inset 0 0 5px #00ffff, 0 0 5px #00ffff;
+  transition: all 0.3s ease;
+}
+
+.neon-btn:hover {
+  background: #00ffff;
+  color: #000;
+  text-shadow: none;
+  transform: scale(1.08);
+  box-shadow: inset 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+}
+
+&lt;button class="neon-btn"&gt;Hover Me&lt;/button&gt;</pre>
+        </div>
+      </div>
     </div>
   </main>
+
   <footer>
     <p>Made with ❤️ by Anuj and Contributors</p>
   </footer>
-  <div id="cursor-snake"></div>
-  <script src="../script.js"></script>
-  </body>
 
+  <div id="cursor-snake"></div>
+
+  <script>
+    function toggleCode(codeId) {
+      const codeSection = document.getElementById(codeId);
+      const button = event.target;
+      
+      if (codeSection.classList.contains('active')) {
+        codeSection.classList.remove('active');
+        button.textContent = '📋 Show Code';
+      } else {
+        // Close all other code sections
+        document.querySelectorAll('.code-section.active').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.querySelectorAll('.show-code-btn').forEach(btn => {
+          btn.textContent = '📋 Show Code';
+        });
+        
+        // Open this code section
+        codeSection.classList.add('active');
+        button.textContent = '🔼 Hide Code';
+      }
+    }
+
+    function copyCode(codeId) {
+      const codeElement = document.getElementById(codeId);
+      const button = event.target;
+      
+      // Create a temporary textarea to copy the text
+      const textArea = document.createElement('textarea');
+      textArea.value = codeElement.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      // Update button text temporarily
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      button.classList.add('copied');
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.classList.remove('copied');
+      }, 2000);
+    }
+
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+  <script src="../script.js"></script>
+</body>
 </html>
