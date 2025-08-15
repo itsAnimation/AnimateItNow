@@ -222,7 +222,7 @@ window.addEventListener("pagehide", () => {
   // ðŸ§‘â€ðŸ’» Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
-    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+   fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
         contributorsGrid.innerHTML = ""
