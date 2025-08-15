@@ -342,9 +342,21 @@ body {
 
 .logo {
   height: 36px;
-  width: 30px;
-  animation: pulse 2s infinite;
+
+  width: 36px;
+  /* animation: pulse 2s forwards; */
 }
+
+.logo.animate-once {
+  animation: popIn 1.5s ease forwards;
+
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* Remove link underline and adjust logo spacing */
 /* Make the link a flex container to align items */
 .logo-link {
@@ -367,6 +379,37 @@ body {
   opacity: 0.8;
   cursor: pointer;
 }
+
+.site-name {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-right: 2px solid var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  width: 0;
+  /* Add animation in website Name */
+  animation: typing 3s steps(14) 1s forwards,
+    blink 0.6s infinite step-end alternate;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 14ch;
+  }
+  70% {
+    width: 14ch;
+  }
+  100% {
+    width: 14ch;
+  }
+}
+
 
 
 /* .site-name {
@@ -469,8 +512,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex 
+  flex-direction: column;
   gap: 5px;
 }
 
