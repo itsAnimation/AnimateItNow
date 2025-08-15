@@ -3111,4 +3111,96 @@ body:not(.dark-theme) .Color {
 .site-name span:nth-child(13) { animation-delay: 1.3s; }   /* O */
 .site-name span:nth-child(14) { animation-delay: 1.5s; }   /* w */
 
+/* HERO SECTION */
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation Class - HERO SECTION */
+.animated {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+/* Delay Helpers */
+.delay-0 {
+  animation-delay: 0.1s;
+}
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.5s;
+}
+.delay-3 {
+  animation-delay: 0.7s;
+}
+
+/* Button Hover Effects */
+.cta-btn,
+.editor-btn {
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover,
+.editor-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Hero buttons container */
+.landing-section .hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Buttons base style */
+.landing-section .hero-buttons > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 20px;
+  margin: 0;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+  animation: smoothFloat 1.5s ease-in-out infinite; /* even faster */
+}
+
+/* Icon spacing */
+.landing-section .hero-buttons > a i {
+  margin-right: 8px;
+  line-height: 1;
+}
+
+/* Smooth floating animation */
+@keyframes smoothFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+
+
+
 
