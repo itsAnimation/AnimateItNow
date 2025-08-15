@@ -1046,36 +1046,37 @@
     <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
     <script>
-      //  This script now ONLY contains functionality specific to templates.html
-      // Theme toggle and cursor logic are handled by script.js
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const body = document.body;
+// Theme toggle functionality
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
 
-      function setTheme(isDark) {
-        const newIcon = isDark ? "sun" : "moon";
-        document.getElementById("container").classList.toggle("dark", isDark);
-        body.classList.toggle("dark-theme", isDark);
-        localStorage.setItem("theme", isDark ? "dark" : "light");
+function setTheme(isDark) {
+  const newIcon = isDark ? 'sun' : 'moon';
+  body.classList.toggle('dark', isDark); // Use 'dark' consistently
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  
+  if (themeToggle) {
+    themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+    if (window.lucide) lucide.createIcons();
+  }
+}
 
-        if (themeToggle) {
-          themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
-          lucide.createIcons();
-        }
-      }
+// Initialize theme
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+}
 
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
+// Event listener
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    setTheme(!body.classList.contains('dark'));
+  });
+}
 
-      themeToggle?.addEventListener("click", () => {
-        setTheme(!body.classList.contains("dark-theme"));
-      });
-
-      lucide.createIcons();
-
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', initTheme);
       // Scroll animation for cards
       const observer = new IntersectionObserver(
         (entries) => {
