@@ -3328,3 +3328,91 @@ body:not(.dark-theme) .Color {
 
 
 
+/* Animations for the Background */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Giant Floating Orb Animation */
+body::before,
+body::after,
+body > .flair {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  will-change: transform;
+}
+
+body::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,105,180,0.4) 0%, rgba(255,20,147,0.2) 70%, rgba(255,20,147,0) 100%);
+  top: -200px;
+  left: -200px;
+  animation-name: float1;
+}
+
+body::after {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(0,120,255,0.2) 70%, rgba(0,120,255,0) 100%);
+  bottom: -300px;
+  right: -300px;
+  animation-name: float2;
+}
+
+body > .flair {
+  display: block;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(150,255,150,0.4) 0%, rgba(50,220,50,0.2) 70%, rgba(50,220,50,0) 100%);
+  top: 60%;
+  left: 40%;
+  animation-name: float3;
+}
+
+/* Dramatic Animation Keyframes */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  33% { transform: translate(300px, 200px) scale(1.3); opacity: 1; }
+  66% { transform: translate(-150px, 300px) scale(0.8); opacity: 0.7; }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  33% { transform: translate(-400px, -300px) scale(1.2); opacity: 1; }
+  66% { transform: translate(300px, -100px) scale(0.7); opacity: 0.6; }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  33% { transform: translate(200px, -200px) scale(1.4); opacity: 0.9; }
+  66% { transform: translate(-250px, 150px) scale(0.6); opacity: 0.5; }
+}
+
+/* Dark mode adaptation */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  body::before {
+    background: radial-gradient(circle, rgba(255,75,150,0.5) 0%, rgba(200,0,100,0.3) 70%, rgba(200,0,100,0) 100%);
+  }
+  body::after {
+    background: radial-gradient(circle, rgba(50,150,255,0.5) 0%, rgba(0,80,200,0.3) 70%, rgba(0,80,200,0) 100%);
+  }
+  body > .flair {
+    background: radial-gradient(circle, rgba(100,255,100,0.5) 0%, rgba(0,180,50,0.3) 70%, rgba(0,180,50,0) 100%);
+  }
+}
+
+
