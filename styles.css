@@ -321,6 +321,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  flex-wrap: nowrap;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -344,6 +345,7 @@ body {
   height: 36px;
 
   width: 36px;
+  
   /* animation: pulse 2s forwards; */
 }
 
@@ -364,7 +366,11 @@ body {
   align-items: center;   /* Centers them vertically */
   gap: 10px;            /* Adds space between logo and text */
   text-decoration: none; /* Removes underline */
-  color: inherit;       /* Inherits text color (if needed) */
+  color: inherit; 
+  white-space: nowrap;
+  flex-shrink: 0;
+
+       /* Inherits text color (if needed) */
 }
 
 /* Ensure the logo image stays aligned */
@@ -431,7 +437,7 @@ body {
   align-items: center;
 }
 .nav-links a {
-  color: var(--nav-text-60);
+  color: #fff;
   text-decoration: none;
   font-size: 1rem;
   padding: 8px 10px;
@@ -474,7 +480,54 @@ body {
   color: #fff;
   font-size: 1.1rem;
 }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
 
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 1315px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #0a0f2c;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links li {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+  .nav-links.open {
+    max-height: 650px;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .nav-links.open li {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+}
 .github-icon svg {
   fill: #ffffff;
   margin-top: 4px;

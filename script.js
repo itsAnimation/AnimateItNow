@@ -1,5 +1,4 @@
-﻿
-// Function for displaying FAQ categories
+﻿// Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
   const technical=document.getElementById('technical-faq');
@@ -147,6 +146,12 @@ function disableSnakeCursor() {
     snakeContainerElement = null // Reset global reference
   }
 }
+const hamburger = document.getElementById("hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
 
 // Add event listener for page unload to ensure cleanup, especially for bfcache
 window.addEventListener("pagehide", () => {

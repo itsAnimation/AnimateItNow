@@ -155,7 +155,7 @@
       body.dark .navbar,
       body.dark .nav-links a,
       body.dark .site-name {
-        background-color: #1a1a1a;
+        
         color: #ffffff;
       }
       body.dark .nav-links a:hover {
@@ -522,6 +522,44 @@
       .nav button:hover {
         background: #084bb3;
       }
+      .hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 1315px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #0a0f2c;
+    flex-direction: column;
+    width: 200px;
+    max-height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 620px;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
       .section {
         display: none;
       }
@@ -695,6 +733,11 @@
             </button>
           </li>
         </ul>
+        <div class="hamburger" id="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </nav>
     <main class="templates-main">
