@@ -115,8 +115,8 @@
       a {
         text-decoration: none;
       }
+      
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
       body.dark {
         background-color: #121212;
         color: #f5f5f5;
@@ -124,33 +124,141 @@
         background-size: cover;
         background-position: center;
       }
-      /* ✅ Heading fix */
-      body.dark .templates-main h1 {
-        background: linear-gradient(
-          to right,
-          #67e8f9,
-          #3b82f6
-        ); /*bright neon cyan-blue */
+
+      .new-templates-grid{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr); /* Changed to exactly 3 columns */
+        gap: 2rem; /* Reduced gap to fit 3 columns better */
+        padding: 3rem 2rem;
+        margin: 2rem auto;
+        max-width: 1600px;
+
+      }
+      
+      /* ✅ IMPROVED TEMPLATE CARDS - Removed individual blue borders and fixed hover overlap */
+      .template-card {
+        background: linear-gradient(145deg, #ffffff, #f8fafc);
+        border: 2px solid rgba(0, 0, 0, 0.05); /* Removed blue border */
+        border-radius: 20px;
+        padding: 3.4rem;
+        margin-bottom: 2rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+                    0 1px 8px rgba(0, 0, 0, 0.06);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        z-index: 1; /* Base z-index */
+      }
+      
+      .template-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #6c63ff, #00c9ff);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      
+      .template-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .template-card:hover {
+        transform: translateY(-12px) scale(1.03); /* Increased translateY to prevent overlap */
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15),
+                    0 15px 30px rgba(0, 0, 0, 0.1);
+        border-color: rgba(108, 99, 255, 0.3);
+        z-index: 10; /* Higher z-index on hover to prevent overlap */
+      }
+      
+      /* Dark mode template cards - Removed individual blue borders */
+      body.dark .template-card {
+        background: linear-gradient(145deg, #1e293b, #0f172a);
+        border: 2px solid rgba(255, 255, 255, 0.1); /* Changed to subtle white border */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+                    0 1px 8px rgba(0, 0, 0, 0.2);
+        color: #ffffff;
+      }
+      
+      body.dark .template-card:hover {
+        border-color: rgba(108, 99, 255, 0.4);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                    0 15px 30px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+      }
+      
+      /* ✅ Template card titles */
+      .template-card h2 {
+        color: #1f2937;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        line-height: 1.3;
+        transition: color 0.3s ease;
+      }
+      
+      body.dark .template-card h2 {
+        background: linear-gradient(to right, #67e8f9, #3b82f6);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
       }
-      /* ✅ Template card titles */
-      body.dark .template-card h2 {
-        color: #e0f2fe;
-        text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+      
+      /* ✅ Main heading */
+      body.dark .templates-main h1 {
+        background: linear-gradient(to right, #67e8f9, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
       }
-      /* ✅ Button text */
+
+      .templates-main{
+        backdrop-filter: blur(20px);
+        border: 1px solid rgb(100, 150, 251);
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+                    0 0 40px rgba(59, 130, 246, 0.15); /* Added blue glow to container */
+      }
+      
+      /* ✅ Button styling */
+      .template-btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #6c63ff, #4f46e5);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        margin-top: 1rem;
+      }
+      
+      .template-btn:hover {
+        background: linear-gradient(135deg, #5b52d9, #4338ca);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+      }
+      
       body.dark .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
       }
+      
       body.dark .template-btn:hover {
-        background-color: #444;
-        color: #fff;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
       }
+      
       /* ✅ Navbar items */
       body.dark .navbar,
       body.dark .nav-links a,
@@ -161,6 +269,7 @@
       body.dark .nav-links a:hover {
         color: #90caf9;
       }
+      
       /* 🧼 Remove margins to prevent light-space bleed */
       body,
       html {
@@ -169,6 +278,7 @@
         width: 100%;
         overflow-x: hidden;
       }
+      
       /* 💡 Smooth transitions */
       .templates-main h1,
       .template-card h2,
@@ -177,50 +287,7 @@
       .nav-links a {
         transition: color 0.3s ease, background-color 0.3s ease;
       }
-      /* ✨ Make text inside template cards fully visible */
-      body.dark .template-card h2,
-      body.dark .template-btn,
-      body.dark .template-card {
-        color: #ffffff;
-      }
-      /* 🎯 Bonus: ensure buttons look clickable and clean */
-      body.dark .template-btn {
-        background-color: #333;
-        border: 1px solid #555;
-      }
-      body.dark .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
-      /* 🔧 Template card container */
-      body.dark .template-card {
-        background-color: rgba(30, 41, 59, 0.6);
-        border: 1px solid rgba(59, 130, 246, 0.15);
-        box-shadow: 0 0 6px rgba(59, 130, 246, 0.25),
-          0 0 12px rgba(56, 189, 248, 0.3);
-        color: #ffffff;
-        animation: darkNeonPulse 4s ease-in-out infinite;
-      }
-      /* 🖋 Titles inside cards */
-      body.dark .template-card h2 {
-        color: #ffffff;
-      }
-      /* 🔘 Buttons */
-      body.dark .template-btn {
-        color: #ffffff;
-        background-color: #333;
-        border: 1px solid #555;
-      }
-      /* 🖱 Hover effect for buttons */
-      body.dark .template-btn:hover {
-        background-color: #444;
-        color: #ffffff;
-      }
-      /* 🪄 Smooth transitions */
-      .template-card h2,
-      .template-btn {
-        transition: color 0.3s ease, background-color 0.3s ease;
-      }
+      
       /* Base preview style */
       .template-preview {
         height: 90px;
@@ -235,12 +302,13 @@
         padding: 10px;
         box-sizing: border-box;
       }
+      
       /* Dark mode support */
-      /*  Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgb(255, 255, 255 / 0.1);
       }
+      
       /* Feature Cards Preview */
       .feature-preview {
         background-color: #4f8cff;
@@ -260,6 +328,7 @@
         color: #555;
         font-weight: 600;
       }
+      
       /* Hero Section Preview */
       .hero-preview {
         background-color: #4f8cff;
@@ -284,6 +353,7 @@
       .hero-preview .hero-text-line.short {
         width: 50%;
       }
+      
       /* Social Share Preview */
       .social-share-preview {
         background-color: #4f8cff;
@@ -297,6 +367,7 @@
       .social-share-preview:hover .social-icon-preview {
         transform: scale(1.1);
       }
+      
       /* Navbar Preview */
       .navbar-preview {
         background-color: #4f8cff;
@@ -320,26 +391,27 @@
       .navbar-line.link.short {
         width: 50%;
       }
+      
       /* Make the link a flex container to align items */
       .logo-link {
-        display: flex;          /* Aligns logo and text horizontally */
-        align-items: center;   /* Centers them vertically */
-        gap: 10px;            /* Adds space between logo and text */
-        text-decoration: none; /* Removes underline */
-        color: inherit;       /* Inherits text color (if needed) */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
       }
 
       /* Ensure the logo image stays aligned */
       .logo-link img.logo {
-        height: 40px;         /* Adjust as needed */
-        width: auto;          /* Maintains aspect ratio */
+        height: 40px;
+        width: auto;
       }
 
       /* Style the text (optional) */
       .site-name {
-        font-size: 1.2rem;    /* Adjust size */
-        font-weight: bold;    /* Optional: Bold text */
-        pointer-events: none; /* Ensures clicks pass to parent <a> */
+        font-size: 1.2rem;
+        font-weight: bold;
+        pointer-events: none;
       }
 
       /* Hover effect (optional) */
@@ -347,6 +419,7 @@
         opacity: 0.8;
         cursor: pointer;
       }
+      
       /* ADDED: Animated Toggles Preview CSS */
       .toggles-preview {
         background-color: #4f8cff;
@@ -373,92 +446,103 @@
         transform: translateX(0);
       }
       .mini-toggle.on {
-        background-color: #25d366; /* A nice 'on' color */
+        background-color: #25d366;
       }
       .mini-toggle.on .mini-handle {
         transform: translateX(25px);
       }
 
-          /* like */
-.like-button {
-  padding: 5px 25px;
-  background: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  transition: all 0.3s;
-  margin-top: 5px;
-}
+      /* like */
+      .like-button {
+        padding: 8px 20px;
+        background: rgba(248, 248, 248, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        transition: all 0.3s;
+        margin-top: 8px;
+        backdrop-filter: blur(10px);
+      }
 
-.like-button:hover {
-  background: #f0f0f0;
-}
+      .like-button:hover {
+        background: rgba(240, 240, 240, 0.95);
+        transform: scale(1.05);
+      }
 
-.liked {
-  color: #ff0000;
-}
+      body.dark .like-button {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: #ffffff;
+      }
 
-#likeIcon {
-  font-size: 24px;
-}
+      body.dark .like-button:hover {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
 
-/* this is the quick preview styless */
-.template-btn {
-  display: inline-block; 
-  margin: 0;             
-}
+      .liked {
+        color: #ff0000;
+      }
 
-.quick-preview-btn {
-  display: block;
-  width: 40%;
-  padding: 10px 0;
-  margin-bottom: 4px;
-  background: linear-gradient(90deg, #6c63ff, #00c9ff); 
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.2s ease;
-}
+      #likeIcon {
+        font-size: 18px;
+      }
 
-.quick-preview-btn:hover {
-  background: linear-gradient(90deg, #5a52e0, #00b0e6);
-  transform: translateY(-2px);
-}
+      /* this is the quick preview styles */
+      .quick-preview-btn {
+        display: block;
+        width: 48%;
+        padding: 0.6rem 0;
+        margin-bottom: 8px;
+        background: linear-gradient(90deg, #6c63ff, #00c9ff); 
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(108, 99, 255, 0.25);
+        transition: all 0.3s ease;
+        position: relative;
+      }
 
-.quick-preview-btn:active {
-  transform: translateY(0);
-}
+      .quick-preview-btn:hover {
+        background: linear-gradient(90deg, #5a52e0, #00b0e6);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(108, 99, 255, 0.35);
+      }
 
-.quick-preview-image {
-  display: none;
-  position: absolute;
-  bottom: 100%; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 410px;
-  height: 350px;
-  background-size: cover;
-  background-position: top center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 100;
-  margin-bottom: 8px; 
-}
-.quick-preview-btn:hover .quick-preview-image {
-  display: block;
-}
+      .quick-preview-btn:active {
+        transform: translateY(0);
+      }
 
-      /*Display Properties Preview */
+      .quick-preview-image {
+        display: none;
+        position: absolute;
+        bottom: 100%; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 410px;
+        height: 350px;
+        background-size: cover;
+        background-position: top center;
+        border: 2px solid rgba(108, 99, 255, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        z-index: 100;
+        margin-bottom: 12px; 
+      }
+      
+      .quick-preview-btn:hover .quick-preview-image {
+        display: block;
+      }
+
+      /* Display Properties Preview */
       .display-preview {
         background-color: #4f8cff;
         height: 90px;
@@ -493,14 +577,14 @@
         font-size: 1rem;
         font-weight: bold;
       }
+      
       /* 🌙 Dark Theme Support */
       body.dark .display-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
       }
 
-      /*  start for game animation */
-
+      /* Game animation styles */
       h1 {
         text-align: center;
         margin-bottom: 2rem;
@@ -612,7 +696,43 @@
         font-weight: bold;
       }
 
-      /* end for game animation */
+      /* No results message styling */
+      .no-results {
+        text-align: center;
+        padding: 3rem;
+        font-size: 1.2rem;
+        color: #666;
+        display: none;
+      }
+      
+      body.dark .no-results {
+        color: #94a3b8;
+      }
+
+      /* Responsive improvements */
+      @media (max-width: 1200px) {
+        .new-templates-grid {
+          grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+          max-width: 1200px;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .new-templates-grid {
+          grid-template-columns: 1fr; /* 1 column on mobile */
+          gap: 1.5rem;
+          padding: 2rem 1rem;
+          margin: 1rem;
+        }
+        
+        .template-card {
+          padding: 1.5rem;
+        }
+        
+        .quick-preview-btn {
+          width: 60%;
+        }
+      }
     </style>
   </head>
   <body class="dark">
@@ -697,6 +817,7 @@
         </ul>
       </div>
     </nav>
+    
     <main class="templates-main">
       <h1>Templates Gallery</h1>
       <div class="template-toolbar" style="margin-top: 10px">
@@ -725,12 +846,14 @@
           aria-label="Search templates"
         />
       </div>
-       <div class="no-results">
-  No Templates Found.
-</div>
-      <section class="templates-grid">
+      
+      <div class="no-results">
+        No Templates Found.
+      </div>
+      
+      <section class="new-templates-grid">
         <a class="template-card" href="templates/LoginFormGlassMorphism.html">
-          <h2>Login Form with Glassmorphism.</h2>
+          <h2>Login Form with Glassmorphism</h2>
           <div class="template-preview login-preview">
             <div class="page link"></div>
           </div>
@@ -743,6 +866,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/login.html">
           <h2>Login Page UI</h2>
           <div class="template-preview login-preview"></div>
@@ -755,6 +879,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/button.html">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
@@ -767,6 +892,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/loader.html">
           <h2>Loaders</h2>
           <div class="template-preview loader-preview"></div>
@@ -779,7 +905,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        <!-- aading texts effects -->
+        
         <a class="template-card" href="templates/text_effects_anim.html">
           <h2>Text Animation Effects</h2>
           <div class="template-preview text-preview">
@@ -794,6 +920,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/modal.html">
           <h2>Popup Templates</h2>
           <div class="template-preview modal-preview"></div>
@@ -806,8 +933,9 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/glassmorphism.html">
-          <h2>Glassmorphism profile card</h2>
+          <h2>Glassmorphism Profile Card</h2>
           <div class="template-preview modal-preview"></div>
           <button class="quick-preview-btn" data-template-id="profile-glassmorphism"> Quick Preview
            <div class="quick-preview-image"></div>
@@ -818,7 +946,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        <!-- adding code Playground -->
+        
         <a class="template-card" href="templates/code_playground.html">
           <h2>Code PlayGround</h2>
           <div class="template-preview code-play-preview">Write Code</div>
@@ -848,6 +976,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/hero.html">
           <h2>Hero Section Template</h2>
           <div class="template-preview hero-preview">
@@ -864,6 +993,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <article class="template-card">
           <h2>Animated Button</h2>
           <div class="template-preview button-preview"></div>
@@ -876,7 +1006,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </article>
-        <!-- Like Buttons Gallery Card (dup for visibility near top) -->
+        
         <a class="template-card" href="templates/Like_Buttons.html">
           <h2>Like Buttons Gallery</h2>
           <div class="template-preview social-share-preview" style="gap:10px; font-size:24px; background: linear-gradient(135deg,#1b191a,#1b191a);">
@@ -909,11 +1039,11 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        <!-- CORRECTED TOOLTIP COMPONENT -->
+        
         <a class="template-card" href="templates/tooltip.html">
           <h2>Tooltip UI Component</h2>
           <div class="template-preview">
-            <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+            <button class="tooltip" data-tooltip="I'm a tooltip!">Hover</button>
           </div>
           <button class="quick-preview-btn" data-template-id="tooltip"> Quick Preview
            <div class="quick-preview-image"></div>
@@ -924,7 +1054,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        <!-- Responsive Card Carousel -->
+        
         <a class="template-card" href="templates/carousel.html">
           <h2>Responsive Card Carousel</h2>
           <div class="template-preview carousel-preview">
@@ -941,7 +1071,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
+        
         <a class="template-card" href="templates/toggles-and-checkboxes.html">
           <h2>Animated Toggles</h2>
           <div class="template-preview toggles-preview">
@@ -961,6 +1091,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/neumorphic.html">
           <h2>Neumorphic Button Effects</h2>
           <div class="template-preview neumorphic-preview"></div>
@@ -973,6 +1104,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/navbar.html">
           <h2>Navbar Variants</h2>
           <div class="template-preview navbar-preview">
@@ -989,6 +1121,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/display.html">
           <h2>Display Properties</h2>
           <div class="template-preview display-preview">
@@ -1005,6 +1138,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/CardHoverEffects.html">
           <h2>3D Card Hover Effects</h2>
           <div class="template-preview navbar-preview">
@@ -1019,8 +1153,9 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/page_not_found_template.html">
-          <h2>404 Page not found</h2>
+          <h2>404 Page Not Found</h2>
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
@@ -1033,22 +1168,24 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/contact.html">
-        <h2>Contact Us Template</h2>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="quick-preview-btn" data-template-id="contact-us"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-        <button class="template-btn">View Template</button>
-        <button class="like-button" data-template-id="contact-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-      </a>
+          <h2>Contact Us Template</h2>
+          <div class="template-preview navbar-preview">
+            <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
+          </div>
+          <button class="quick-preview-btn" data-template-id="contact-us"> Quick Preview
+             <div class="quick-preview-image"></div>
+             </button>
+          <button class="template-btn">View Template</button>
+          <button class="like-button" data-template-id="contact-template">
+              <span class="like-icon">🤍</span>
+              <span class="like-count">0</span> Likes
+            </button>
+        </a>
+        
         <a class="template-card" href="templates/accordian.html">
-          <h2>Accordian Template</h2>
+          <h2>Accordion Template</h2>
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
@@ -1062,7 +1199,6 @@
           </button>
         </a>
 
-      <!-- Professional Template section -->
         <a class="template-card" href="templates/professional_temp.html">
           <h2>Professional Templates</h2>
           <div class="template-preview hero-preview">
@@ -1079,6 +1215,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
        <a class="template-card" href="templates/timer.html">
           <h2>Countdown Timer Template</h2>
           <div class="template-preview timer-preview"></div>
@@ -1106,7 +1243,7 @@
         </a>
 
         <a class="template-card" href="templates/skeletons.html">
-          <h2>Skeleton Loader </h2>
+          <h2>Skeleton Loader</h2>
           <div class="template-preview modal-preview"></div>
           <button class="quick-preview-btn" data-template-id="skeleton"> Quick Preview
            <div class="quick-preview-image"></div>
@@ -1117,6 +1254,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+        
         <a class="template-card" href="templates/celebrations.html">
           <h2>Celebrations Template</h2>
           <div class="template-preview modal-preview"></div>
@@ -1129,7 +1267,6 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
-        
         
       </section>
     </main>
@@ -1186,18 +1323,15 @@
         </div>
       </footer>
     </div>
-    <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
-    <!-- <div id="cursor-snake"></div> -->
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="dependency-resolver.js"></script>
     <script src="package-validator.js"></script>
     <script src="template-manager.js"></script>
-    <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
+    
     <script>
-      //  This script now ONLY contains functionality specific to templates.html
-      // Theme toggle and cursor logic are handled by script.js
       // Theme toggle functionality
       const themeToggle = document.getElementById("theme-toggle");
       const body = document.body;
@@ -1244,7 +1378,7 @@
       // Search & Category Filter Functionality
       const searchBar = document.getElementById("search-bar");
       const templateCards = document.querySelectorAll(".template-card");
-      const noResultsMsg = document.querySelector(".no-results"); // Added a "no results" div to your HTML
+      const noResultsMsg = document.querySelector(".no-results");
 
       function filterTemplates() {
         const query = searchBar.value.trim().toLowerCase();
@@ -1255,7 +1389,7 @@
             .querySelector("h2")
             .textContent.trim()
             .toLowerCase();
-          const matchesTitle = title.includes(query); // 'includes' is better than 'startsWith' for search
+          const matchesTitle = title.includes(query);
           if (matchesTitle) {
             card.style.display = "";
             visibleCount++;
@@ -1265,14 +1399,12 @@
         });
 
         if (noResultsMsg) {
-
           noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
         }
-     
       }
       searchBar.addEventListener("input", filterTemplates);
 
-      //script for animation type one after other
+      // Text animation for preview
       const texts = [
         "Typing Animation",
         "Gradient Text",
@@ -1281,12 +1413,12 @@
         "Zoom on Hover",
       ];
 
-      let currTextIdx = 0; // Index of current string in the array
-      let charIdx = 0; // index of current char currently being typed /deleted
+      let currTextIdx = 0;
+      let charIdx = 0;
       let isDelete = false;
 
-      const speed = 100; //type/delete speed
-      const pausTime = 1000; //pause time
+      const speed = 100;
+      const pausTime = 1000;
       const target = document.getElementById("textTarget");
 
       function typeLoop() {
@@ -1297,7 +1429,7 @@
         } else {
           target.textContent = currentText.substring(0, charIdx++);
         }
-        //typed full character
+
         if (!isDelete && charIdx === currentText.length + 1) {
           setTimeout(() => {
             isDelete = true;
@@ -1306,75 +1438,66 @@
           return;
         }
 
-        //move to next char when deleted
         if (isDelete && charIdx === 0) {
           isDelete = false;
-          //use modulo so that it can reback at 0
           currTextIdx = (currTextIdx + 1) % texts.length;
         }
 
-        // Deleting is faster (half the speed)
-        // Typing is slower
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
-      typeLoop(); // start animation
+      typeLoop();
 
-       // New Like Button System
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.like-button').forEach(button => {
-    const templateId = button.getAttribute('data-template-id');
-    const icon = button.querySelector('.like-icon');
-    const count = button.querySelector('.like-count');
+      // Like Button System
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.like-button').forEach(button => {
+          const templateId = button.getAttribute('data-template-id');
+          const icon = button.querySelector('.like-icon');
+          const count = button.querySelector('.like-count');
 
-    let templateData = JSON.parse(localStorage.getItem(templateId)) || {
-      totalLikes: 0,
-      hasLiked: false
-    };
+          let templateData = JSON.parse(localStorage.getItem(templateId)) || {
+            totalLikes: 0,
+            hasLiked: false
+          };
 
-    updateButton();
+          updateButton();
 
-    button.addEventListener('click', function (event) {
-      //  Prevent anchor navigation
-      event.stopPropagation();
-      event.preventDefault();
+          button.addEventListener('click', function (event) {
+            event.stopPropagation();
+            event.preventDefault();
 
-      // Toggle like state
-      if (templateData.hasLiked) {
-        templateData.totalLikes--;
-        templateData.hasLiked = false;
-      } else {
-        templateData.totalLikes++;
-        templateData.hasLiked = true;
-      }
+            if (templateData.hasLiked) {
+              templateData.totalLikes--;
+              templateData.hasLiked = false;
+            } else {
+              templateData.totalLikes++;
+              templateData.hasLiked = true;
+            }
 
-      localStorage.setItem(templateId, JSON.stringify(templateData));
-      updateButton();
-    });
+            localStorage.setItem(templateId, JSON.stringify(templateData));
+            updateButton();
+          });
 
-    function updateButton() {
-      count.textContent = templateData.totalLikes;
-      icon.textContent = templateData.hasLiked ? '❤' : '🤍';
-      button.classList.toggle('liked', templateData.hasLiked);
-    }
-  });
-});
+          function updateButton() {
+            count.textContent = templateData.totalLikes;
+            icon.textContent = templateData.hasLiked ? '❤' : '🤍';
+            button.classList.toggle('liked', templateData.hasLiked);
+          }
+        });
+      });
 
+      // Quick preview functionality
+      document.querySelectorAll('.quick-preview-btn').forEach(btn => {
+        let loaded = false;
+        const id = btn.getAttribute('data-template-id');
+        const imgDiv = btn.querySelector('.quick-preview-image');
 
-document.querySelectorAll('.quick-preview-btn').forEach(btn => {
-  let loaded = false;
-  const id = btn.getAttribute('data-template-id');
-  const imgDiv = btn.querySelector('.quick-preview-image');
-
-  btn.addEventListener('mouseenter', () => {
-    if (!loaded) {
-      imgDiv.style.backgroundImage = `url('preview/${id}.png')`;
-      loaded = true;
-    }
-  });
-});
-
-
-
+        btn.addEventListener('mouseenter', () => {
+          if (!loaded) {
+            imgDiv.style.backgroundImage = `url('preview/${id}.png')`;
+            loaded = true;
+          }
+        });
+      });
     </script>
   </body>
 </html>
