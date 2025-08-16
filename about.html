@@ -234,6 +234,79 @@
   <script src="script.js"></script>
   </body>
 
-<button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
+<!-- <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button> -->
+ <!-- Scroll Buttons -->
+<button id="scrollToTopBtn" title="Go to top">↑</button>
+<button id="scrollToBottomBtn" title="Go to bottom">↓</button>
+
+<style>
+  #scrollToTopBtn,
+  #scrollToBottomBtn {
+    display: none;
+    position: fixed;
+    right: 20px;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 35%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  #scrollToTopBtn:hover,
+  #scrollToBottomBtn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+  }
+
+ 
+  #scrollToTopBtn {
+    bottom: 70px; 
+  }
+  #scrollToBottomBtn {
+    bottom: 20px; 
+  }
+</style>
+
+<script>
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  const scrollToBottomBtn = document.getElementById("scrollToBottomBtn");
+
+  window.onscroll = function () {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    
+    if (scrollTop > 20) {
+      scrollToTopBtn.style.display = "block";
+    } else {
+      scrollToTopBtn.style.display = "none";
+    }
+
+    
+    if (scrollTop + clientHeight < scrollHeight - 20) {
+      scrollToBottomBtn.style.display = "block";
+    } else {
+      scrollToBottomBtn.style.display = "none";
+    }
+  };
+
+  scrollToTopBtn.onclick = function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  scrollToBottomBtn.onclick = function () {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth"
+    });
+  };
+</script>
 
 </html>
