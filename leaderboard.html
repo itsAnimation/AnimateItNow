@@ -23,6 +23,56 @@
   padding: 0 20px; /*  */
   /*Removed background to let page background show through */ /*  */
 }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+/* Mobile */
+@media (max-width: 1315px) {
+  .nav-links {
+    position: absolute;
+    color:#ffffff;
+    top: 70px;
+    right: 0;
+    background: #0a0f2c;
+    flex-direction: column;
+    width: 200px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links li {
+    opacity: 0;
+    /* visibility: hidden; */
+    transition: opacity 0.3s ease;
+    height:auto;
+  }
+  .nav-links.open {
+    max-height: 650px;
+    padding: 10px 0;
+    text-align: center;
+  }
+ 
+  .nav-links.open li {
+    opacity: 1;
+    visibility: visible;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
 /*Glass heading with proper dark mode support */
 .glass-heading {
   color: #222; /*  */
@@ -823,6 +873,11 @@
       </button>
     </li>
   </ul>
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
 
 </nav>

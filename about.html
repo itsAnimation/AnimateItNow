@@ -71,6 +71,11 @@
           </button>
         </li>
       </ul>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </nav>
 
@@ -215,7 +220,7 @@
       }
     }
 
-    const savedTheme = localStorage.getItem('theme');
+    savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
 
