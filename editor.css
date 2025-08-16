@@ -1,23 +1,48 @@
+
+
+
+
 .editor-label {
+  
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+  background-size: 600% 600%;
+  color: #ffffff;
+       /* sky-500, indigo-500, cyan-400 */
+
+    box-shadow: 0 2px 6px rgb(0, 0, 0);
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+  height: 60px; /* sets label height to 48px */
+  display: flex;
+  align-items: center; /* vertically center the text */
+ 
 }
 
+
+
+
 .html-label {
-  background-color: #fee2e2;
-  color: #b91c1c;
+  /* background-color: #fee2e2; */
+background: linear-gradient(270deg, #c976ea, #6366f1, #3f8f9b);
+  font-size: 1.3rem;
+  color: #001551;
 }
 
 .css-label {
-  background-color: #dbeafe;
-  color: #1d4ed8;
+  /* background-color: #dbeafe; */
+  background: linear-gradient(270deg, #2be90e, #6366f1, #22ebee);
+  font-size: 1.3rem;
+  color: #001551;
 }
 
 .js-label {
-  background-color: #d1fae5;
-  color: #047857;
+  /* background-color: #d1fae5; */
+  background: linear-gradient(270deg, #e9e90e, #6366f1, #22d3ee);
+  font-size: 1.3rem;
+  color: #001551;
 }
 
 .editor-area {
@@ -26,8 +51,262 @@
   padding: 0.75rem;
   font-family: monospace;
   font-size: 0.875rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.654);
   border-radius: 0 0 0.5rem 0.5rem;
   border-width: 1px;
+border: 2px solid #94a3b8; /* slate-400 */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
+
+
+}
+.editor-area:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+}
+#output {
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid #94a3b8; /* slate-400 */
+  background: linear-gradient(to bottom, #f1f5f9, #ffffff);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.677);
+
 }
 
+#output:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+}
+
+
+.Output-line {
+  font-size: 1.75rem; /* larger heading */
+  font-weight: 800;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(254, 254, 254, 0.05);
+  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left:7px solid #220149 ;
+  color: #380475;
+  
+  
+  text-align: left;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgb(150, 140, 160); /* subtle blue glow */
+  
+}
+
+
+:root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --header-bg: #f0f0f0;
+      --button-bg: #e0e0e0;
+      --panel-bg: #ffffff;
+      --border-color: #cccccc;
+      --accent-color: #007acc;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #000000ff;
+      --text-color: #ffffffff;
+      --header-bg: #252526;
+      --button-bg: #3c3c3c;
+      --panel-bg: #2d2d2d;
+      --border-color: #3c3c3c;
+      --accent-color: #13181cff;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: var(--text-color);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    textarea {
+      background-color: var(--panel-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      border-radius: 6px;
+      resize: vertical;
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+      transition: background-color 0.3s, color 0.3s, border 0.3s;
+      margin-top: 1rem;
+    }
+
+    /* Light Theme Placeholder */
+textarea::placeholder {
+  color: #666666;
+}
+
+/* Dark Theme Placeholder */
+[data-theme="dark"] textarea::placeholder {
+  color: #fff9f9ff;
+}
+
+    .theme-switch {
+      display: flex;
+      align-items: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #73C0FC;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  left: 2px;
+  bottom: 2px;
+  z-index: 2;
+  background-color: #e8e8e8;
+  transition: .4s;
+}
+
+.sun svg {
+  position: absolute;
+  top: 6px;
+  left: 36px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+.moon svg {
+  fill: #73C0FC;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+/* .switch:hover */.sun svg {
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+ 
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .switch:hover */.moon svg {
+  animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+ 
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
