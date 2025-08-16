@@ -986,9 +986,46 @@
     transform: scale(0.95);
   }
 }
+
+
   </style>
 </div>
-  
+<script>
+  const blob = document.querySelector(".blob-cursor");
+
+document.addEventListener("mousemove", (e) => {
+  blob.style.left = `${e.clientX}px`;
+  blob.style.top = `${e.clientY}px`;
+});
+
+document.querySelectorAll("a, button, .hover-target").forEach((el) => {
+  el.addEventListener("mouseenter", () => {
+    blob.style.transform = "scale(2)";
+  });
+  el.addEventListener("mouseleave", () => {
+    blob.style.transform = "scale(1)";
+  });
+});
+
+const blobCursor = document.querySelector('.blob-cursor');
+
+window.addEventListener('mousemove', (e) => {
+  blobCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const blobCursor = document.querySelector('.blob-cursor');
+  window.addEventListener('mousemove', (e) => {
+    blobCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+});
+
+</script>
+  <script src="cursor.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <button class="magnetic">Hover Me</button>
+<div class="blob-cursor"></div>
+
 </body>
 
 </html>

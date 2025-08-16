@@ -1,8 +1,43 @@
+body {
+  cursor: none;
+}
+
 .faq-btn-style{
   display:flex;
   justify-content:center;
   margin-bottom: 1rem; 
 }
+#blob-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  background: rgba(0, 255, 200, 0.25);
+  border: 2px solid #00ffe0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, background 0.3s ease;
+  mix-blend-mode: difference;
+  backdrop-filter: blur(4px);
+}
+
+#blob-cursor.hover {
+  transform: scale(2);
+  background: rgba(0, 255, 200, 0.5);
+}
+
+.magnetic {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.magnetic:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
 .faq-btn {
   background: linear-gradient(90deg, #4f8cff 0%, #1dc5c8 100%);
   color: #fff;
@@ -447,6 +482,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
@@ -512,7 +548,7 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex 
+  display: flex;
   flex-direction: column;
   gap: 5px;
 }
@@ -3414,5 +3450,20 @@ body > .flair {
     background: radial-gradient(circle, rgba(100,255,100,0.5) 0%, rgba(0,180,50,0.3) 70%, rgba(0,180,50,0) 100%);
   }
 }
-
+.blob-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #ff0055;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  z-index: 9999;
+}
+.blob-cursor:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
 
