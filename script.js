@@ -167,12 +167,14 @@ window.addEventListener("pagehide", () => {
   initScrollReveal()
   window.addEventListener('pageshow', () => { initScrollReveal() })
   window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
+   window.addEventListener('pagehide', () => {
+     if (window.scrollRevealManager) { 
+      window.scrollRevealManager.disconnect() 
+    } 
   })
-}
-    }
-  }
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
+
   themeToggle?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
@@ -222,7 +224,7 @@ window.addEventListener("pagehide", () => {
   // ðŸ§‘â€ðŸ’» Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
-    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+   fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
         contributorsGrid.innerHTML = ""
@@ -336,7 +338,6 @@ window.addEventListener("pagehide", () => {
   window.addEventListener("scroll", updateProgressBar)
   // Initialize on load
   updateProgressBar()
-})
 
 
 
@@ -355,6 +356,25 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  if (!logo) return;
+
+  // Remove any previous animation class just in case
+  logo.classList.remove('animate-once');
+
+  // Force reflow so browser restarts the animation
+  void logo.offsetWidth;
+
+  // Add class to start animation
+  logo.classList.add('animate-once');
+
+  // Remove after animation ends (so next refresh works again)
+  logo.addEventListener('animationend', () => {
+    logo.classList.remove('animate-once');
+  }, { once: true });
+});
+
 
 
 
