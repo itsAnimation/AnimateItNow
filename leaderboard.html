@@ -1221,6 +1221,38 @@ window.onload = function () {
   });
 };
 </script>
+<script>// Theme toggle functionality
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+function setTheme(isDark) {
+  const newIcon = isDark ? 'sun' : 'moon';
+  body.classList.toggle('dark', isDark); // Use 'dark' consistently
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  
+  if (themeToggle) {
+    themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+// Initialize theme
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+}
+
+// Event listener
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    setTheme(!body.classList.contains('dark'));
+  });
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', initTheme);
+</script>
 </body>
 <!--  Moved scrollBtn to inside the body for valid HTML structure. -->
 <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
