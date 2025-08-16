@@ -168,8 +168,14 @@ window.addEventListener("pagehide", () => {
   window.addEventListener('pageshow', () => { initScrollReveal() })
   window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
   
+   window.addEventListener('pagehide', () => {
+     if (window.scrollRevealManager) { 
+      window.scrollRevealManager.disconnect() 
+    } 
+  })
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
+
   themeToggle?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
@@ -219,7 +225,7 @@ window.addEventListener("pagehide", () => {
   // ðŸ§‘â€ðŸ’» Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
-    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+   fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
         contributorsGrid.innerHTML = ""
@@ -336,7 +342,6 @@ window.addEventListener("pagehide", () => {
 
 
 
-
 // Scroll to top button functionality
   // Show button when scrolled down
 window.onscroll = function () {
@@ -352,24 +357,26 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  if (!logo) return;
 
-const hamburger = document.querySelector(".hamburger");
-const navRight = document.querySelector(".nav-right");
-const body = document.body;
+  // Remove any previous animation class just in case
+  logo.classList.remove('animate-once');
 
-hamburger.addEventListener("click", () =>{
-  hamburger.classList.toggle("active");
-  navRight.classList.toggle("active");
-  body.classList.toggle("menu-open");
+  // Force reflow so browser restarts the animation
+  void logo.offsetWidth;
+
+  // Add class to start animation
+  logo.classList.add('animate-once');
+
+  // Remove after animation ends (so next refresh works again)
+  logo.addEventListener('animationend', () => {
+    logo.classList.remove('animate-once');
+  }, { once: true });
 });
 
-// Close menu when clicking on nav links
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth <= 1024) {
-      hamburger.classList.remove("active");
-      navRight.classList.remove("active");
-      body.classList.remove("menu-open");
-    }
-  });
-});
+
+
+
+

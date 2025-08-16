@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,13 +36,13 @@
   <link rel="icon" type="image/png" href="images/logo.png" />
 
   <!-- styles & external resources -->
-  <link rel="stylesheet" href="darkMode.css">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+<div class="fair">
   <!-- ProgressBar -->
   <div id="progress-bar"></div>
   <!-- ProgressBar Ends -->
@@ -49,26 +50,10 @@
   <!-- ───────── NAVBAR ───────── -->
   <nav class="navbar scroll-fade">
     <div class="nav-left">
-      <a href="/" class="logo-link">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">
-          <span>A</span>
-          <span>n</span>
-          <span>i</span>
-          <span>m</span>
-          <span>a</span>
-          <span>t</span>
-          <span>e</span>
-          <span>&nbsp;</span>
-          <span>I</span>
-          <span>t</span>
-          <span>&nbsp;</span>
-          <span>N</span>
-          <span>o</span>
-          <span>w</span>
-        </span>
-      </a>
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
     </div>
+
     <!-- hamburger menu -->
      <div class="hamburger">
       <span class="bar"></span>
@@ -80,21 +65,22 @@
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="templates.html">Templates</a></li>
-        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
         <!-- cursor toggle switch -->
         <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle" />
+            <input type="checkbox" id="cursorToggle">
             <span class="slider round"></span>
           </label>
           <span class="snakeLabel">Snake Cursor</span>
         </li>
         <!-- github icon -->
         <li>
-          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repo" class="github-icon">
             <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
@@ -106,54 +92,49 @@
             </svg>
           </a>
         </li>
-        <li>
-          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
-            <i data-lucide="moon"></i>
-          </button>
+        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+              <i data-lucide="moon"></i>
+            </button>
         </li>
       </ul>
     </div>
     
   </nav>
 
+
   <!-- ───────── HERO ───────── -->
   <header class="landing-section">
-    <h1 class="fade-in">Welcome to <span>AnimateItNow</span></h1>
-    <h2 class="fade-in delay-1">
+    <h1 class="animated fade-slide-up delay-0">Welcome to <span>AnimateItNow</span></h1>
+    <h2 class="animated fade-slide-up delay-1">
       A creative space where contributors build beautiful web components.
     </h2>
-    <p class="fade-in delay-2">
+    <p class="animated fade-slide-up delay-2">
       This project is a collaborative, open-source platform for sharing and
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-    <div class="hero-buttons fade-in delay-3">
-      <a
-        href="#faq"
-        class="cta-btn bounce ripple btn-press"
-        onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });"
-      >
-        Get Started
-      </a>
-      <a
-        href="editor.html"
-        target="_blank"
-        class="editor-btn ripple btn-press"
-        rel="noopener noreferrer"
-      >
-        <i class="fas fa-code"></i>
-        Code Editor
+
+    <a href="#faq" class="cta-btn bounce ripple btn-press"
+   onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
+   Get Started
+</a>
+    <div class="hero-buttons animated delay-3">
+      <a href="#faq" class="cta-btn ripple btn-press">Get Started</a>
+      <a href="editor.html" target="_blank" class="editor-btn ripple btn-press" rel="noopener noreferrer">
+        <i class="fas fa-code"></i> Code Editor
       </a>
     </div>
+
   </header>
-  <!-- ───────── MAIN─────── -->
+
+  <!-- ───────── MAIN ───────── -->
   <main>
     <!-- ─────── OUR SINGLE STATIC FAQ ─────── -->
     <section id="faq" class="faq-section info-section scroll-fade">
       <div class="faq-container">
-        <h2 class="faq-title">Frequently Asked Questions</h2>
-        <p class="faq-subtitle">Everything you need to know about AnimateItNow</p>
-        <div>
+        <h2 class="faq-title" style="text-align: center;">Frequently Asked Questions</h2>
+        <p class="faq-subtitle" style="text-align: center;">Everything you need to know about AnimateItNow</p>
+        <div class="faq-btn-style faq-item glow-wrap">
           <button class="faq-btn" onclick="displaycategory('general')">General</button>
           <button class="faq-btn" onclick="displaycategory('technical')">Technical</button>
         </div>
@@ -163,46 +144,130 @@
             <div class="faq-question" onclick="toggleFAQ(this)">
               What is AnimateItNow?
             </div>
-            <div class="faq-answer">
-              AnimateItNow is an open-source platform for sharing and discovering web UI animation components and templates.
+            <div class="faq-answer-content">
+              <p>AnimateItNow is an open-source platform that helps beginners learn web development by building and exploring simple animations using HTML, CSS, and JavaScript. It offers a collaborative space for contributors to create, improve, and share animation templates while gaining hands-on coding experience.</p>
             </div>
           </div>
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              How can I contribute?
+
+          <!-- 02 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
+              <h3>How to contribute?</h3>
+              <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
             </div>
-            <div class="faq-answer">
-              You can contribute by submitting your own animation templates or improving existing ones. Check our CONTRIBUTING.md for details.
-            </div>
-          </div>
-        </div>
-        <!--Technical FAQ (hidden initially)-->
-        <div id="technical-faq" style="display: none;">
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              What technologies are used?
-            </div>
-            <div class="faq-answer">
-              AnimateItNow uses HTML, CSS, and JavaScript. Some templates may use external libraries for advanced effects.
+            <div class="faq-answer-content">
+              <p>
+                <li>Fork this repository to your own GitHub account.</li>
+                <li> Add your unique and creative web components or improvements.</li>
+                <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
+                <li>Submit a Pull Request with a short description of your changes.</li>
+                <li>Need ideas? Check out our Templates page for inspiration!</li>
+              </p>
             </div>
           </div>
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              How do I add a new animation?
+
+          <!-- 03 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
+              <h3>Why open source?</h3>
+              <div class="faq-icon-static"><i class="fas fa-users"></i></div>
             </div>
-            <div class="faq-answer">
-              Fork the repository, add your animation template, and submit a pull request. Our team will review and merge your contribution.
+            <div class="faq-answer-content">
+              <p>Open source is more than just code — it's about collaboration, learning, and community.
+              It empowers developers from all backgrounds to contribute, share knowledge, and grow together. By working openly, we drive innovation, improve transparency, and build real-world solutions that benefit everyone.</p>
             </div>
           </div>
-        </div>
-      </div>
+
+          <!-- 04 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header"onclick="toggleFAQ(this)">
+              <h3>HTML Basics</h3>
+              <div class="faq-icon-static"><i class="fas fa-code"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Learning HTML, especially semantic HTML, is the foundation of web development. It helps you create structured and meaningful web pages that are not only easier to maintain but also accessible to all users, including those using screen readers. Semantic tags improve readability, and ensure that your websites follow modern best practices.</p>
+            </div>
+          </div>
+
+          <!-- 05 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>CSS Styling</h3>
+              <div class="faq-icon-static"><i class="fas fa-paint-brush"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>CSS is what brings your web pages to life. While HTML gives your site structure, CSS adds the design — colors, layouts, animations, responsiveness, and overall look and feel. It allows developers to create visually appealing and user-friendly websites that work well across different devices and screen sizes.</p>
+            </div>
+          </div>
+
+          <!-- 06 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>JavaScript Logic</h3>
+              <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>JavaScript is the programming language of the web. It adds interactivity and dynamic behavior to your web pages — like sliders, buttons that respond to clicks, form validation, animations, and real-time updates. Without JavaScript, a website would be static and unresponsive. It's essential for building modern, interactive user experiences..</p>
+            </div>
+          </div>
+
+          <!-- 07 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>Animations</h3>
+              <div class="faq-icon-static"><i class="fas fa-wave-square"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Create smooth, engaging animations that not only delight users but also enhance usability and guide user interaction. Well-designed animations can make interfaces feel more responsive, intuitive, and modern.</p>
+            </div>
+          </div>
+
+          <!-- 08 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>Open Source Contributors</h3>
+              <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Join our welcoming community and collaborate on fun, creative, and impactful web development projects.
+                Whether you're just starting out or an experienced dev, there's a place for you here!</p>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>Is AnimateItNow responsive on all devices?</h3>
+              <div class="faq-icon-static"><i class="fa-solid fa-mobile-screen"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Absolutely! All components are designed with responsiveness in mind. Feel free to report issues if any
+                component breaks on smaller screens.</p>
+            </div>
+          </div>
+        
+
+          
+
+          <!-- 10 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>How do I preview my changes locally?</h3>
+              <div class="faq-icon-static"><i class="fas fa-desktop"></i></div>
+            </div>
+            <div class="faq-answer-content">
+              <p>Open index.html in a browser or use VS Code's Live Server extension for live preview.</p>
+            </div>
+          </div>
+
+        </div><!-- /faq-list -->
+      </div><!-- /faq-container -->
     </section>
-    <!-- Testimonials Section -->
     <div id="page" class="site">
       <div class="container">
         <div class="testi">
           <div class="head">
-            <h3>Testimonials</h3>
+            <h3>Testmonials</h3>
             <p>See What People are saying...</p>
           </div>
           <div class="body swiper">
@@ -210,13 +275,13 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/img1.jpg" alt="Alex">
+                    <img src="images/img1.jpg" alt="">
                   </div>
                   <div class="aside">
-                    <p>"AnimateItNow helped me quickly add beautiful animations to my website! Highly recommended."</p>
+                    <p>AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
                     <div class="name">
-                      <h4>Alex</h4>
-                      <p>Web Developer</p>
+                      <h4>Priya Verma</h4>
+                      <p>UI/UX Designer at PixelCraft</p>
                     </div>
                   </div>
                 </div>
@@ -224,13 +289,13 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/img2.jpg" alt="Priya">
+                    <img src="images/img2.jpg" alt="">
                   </div>
                   <div class="aside">
-                    <p>"A fantastic resource for learning and sharing creative UI effects. The community is super helpful!"</p>
+                    <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
                     <div class="name">
-                      <h4>Priya</h4>
-                      <p>Frontend Engineer</p>
+                      <h4>Rohan Malhotra</h4>
+                      <p>Freelance Web Developer</p>
                     </div>
                   </div>
                 </div>
@@ -238,19 +303,63 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/img3.jpg" alt="Sam">
+                    <img src="images/img3.jpg" alt="">
                   </div>
                   <div class="aside">
-                    <p>"Contributing to AnimateItNow improved my CSS skills and helped me connect with other developers."</p>
+                    <p>Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
                     <div class="name">
-                      <h4>Sam</h4>
-                      <p>Contributor</p>
+                      <h4>Alisha Singh</h4>
+                      <p>Frontend Engineer at DevNest</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img4.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
+                    <div class="name">
+                      <h4>David Kim</h4>
+                      <p>Product Engineer at Innovix</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img5.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
+                    <div class="name">
+                      <h4>Zoya Khan</h4>
+                      <p>Creative Director at StudioZ</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img6.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p>It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
+                    <div class="name">
+                      <h4>Anuj Mehta</h4>
+                      <p>Full Stack Developer</p>
                     </div>
                   </div>
                 </div>
               </li>
             </ul>
             <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
           </div>
@@ -259,81 +368,635 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
+      window.swiper = new Swiper('.swiper', {
         autoHeight: true,
         loop: true,
-        pagination: { el: ".swiper-pagination" },
+
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
       });
     </script>
-    <div class="quote-box">
-      <p>"Creativity is intelligence having fun."<br><strong>— Albert Einstein</strong></p>
-    </div>
   </main>
   <!-- ───────── FOOTER ───────── -->
   <footer class="footer scroll-fade">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" style="text-decoration: none; color: inherit;">
-          <h2>AnimateItNow</h2>
-        </a>
+        <h2>AnimateItNow</h2>
         <p>Creating impactful web animations and templates for everyone.</p>
       </div>
 
-
-
-        <div class="footer-about-section">
-          <h3>Know us more</h3>
-          <a href="about.html">About</a>
-          <a href="contributors.html">Contributors</a>
-          <a href="contact.html">Contact</a>
-          <a href="leaderboard.html">Leaderboard</a>
-          <a href="templates.html">Templates</a>
-          <a href="playground.html">Hover-Effects</a>
-          <a href="editor.html" target="_blank">Editor</a>
-        </div>
-        
-
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li class="github">
-              <a
-                href="https://github.com/itsAnimation/AnimateItNow"
-                target="_blank"
-                ><i class="fab fa-github fa-beat"></i> GitHub</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/anujshrivastava1/"
-                target="_blank"
-                ><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a
-              >
-            </li>
-            <!-- fa-beat class added in email for animation -->
-            <li>
-              <a href="mailto:contact@animateitnow.com"
-                ><i class="fas fa-envelope fa-beat"></i> Email Us</a
-              >
-            </li>
-          </ul>
-        </div>
-
-
-
-      
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li class="github"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li> 
+          <!-- fa-beat class added in email for animation -->
+          <li><a href="mailto:contact@animateitnow.com"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li> 
+        </ul>
+      </div>
     </div>
+
     <div class="footer-bottom">
-      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj<a href="https://www.linkedin.com/in/anujshrivastava1/" class="tooltip-link" target="_blank">Project Admin</a></span> and Contributors.</p>
+      <p>© <script>document.write(new Date().getFullYear())</script> AnimateItNow. Made with ❤️ by <span class="highlight">Anuj<a href="https://www.linkedin.com/in/anujshrivastava1/" class="tooltip-link" target="_blank">Project Admin</a></span> and Contributors.</p>
     </div>
   </footer>
+
   <div id="cursor-snake"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <script src="script.js"></script>
-  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
+  <!-- PWA Support -->
+  <script src="pwa.js"></script>
+
+  <!-- testimonials-effect-animations -->
+   <!-- GSSOC'25 Contributor : 6vam4arya -->
+  <style>
+    .testi {
+  animation: fadeIn 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Header animations with 3D text effect */
+.testi .head h3 {
+  animation: flipInX 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  text-shadow: 2px 2px 0 rgba(29, 197, 200, 0.2);
+  position: relative;
+}
+
+.testi .head p {
+  animation: flipInY 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
+  animation-fill-mode: both;
+}
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotateX(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateX(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotateX(-5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotateY(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateY(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotateY(-5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+
+/* Cool neon glow effect for headings */
+.testi .head h3::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: transparent;
+  text-shadow: 0 0 10px #1dc5c8, 0 0 20px #1dc5c8, 0 0 30px #1dc5c8;
+  filter: blur(10px);
+  opacity: 0;
+  animation: neonPulse 2s ease-in-out infinite alternate, fadeIn 1s ease-out 1.5s forwards;
+}
+
+@keyframes neonPulse {
+  from { filter: blur(10px); }
+  to { filter: blur(15px); }
+}
+
+/* Holographic wrapper effect */
+.testi .wrapper {
+  transition: all 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 15px;
+}
+
+.testi .wrapper::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.02) 25%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.02) 75%,
+    rgba(255,255,255,0) 100%
+  );
+  top: -50%;
+  left: -50%;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease-out;
+  opacity: 0;
+}
+
+.testi .swiper-slide-active .wrapper::before {
+  opacity: 1;
+  animation: holographicShift 8s linear infinite;
+}
+
+@keyframes holographicShift {
+  0% { transform: rotate(45deg) translateY(-100%); }
+  100% { transform: rotate(45deg) translateY(100%); }
+}
+
+/* 3D flip card effect for thumbnail */
+.testi .thumbnail {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.testi .swiper-slide-active .thumbnail {
+  animation: floatAndRotate 5s ease-in-out infinite;
+}
+
+@keyframes floatAndRotate {
+  0%, 100% { transform: translateY(0) rotateY(0); }
+  25% { transform: translateY(-10px) rotateY(5deg); }
+  50% { transform: translateY(0) rotateY(0); }
+  75% { transform: translateY(10px) rotateY(-5deg); }
+}
+
+.testi .thumbnail img {
+  filter: contrast(110%) brightness(105%);
+  transition: all 0.8s ease-out;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.testi .swiper-slide-active .thumbnail img {
+  filter: contrast(110%) brightness(105%);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced thumbnail hover with glitch effect */
+.testi .swiper-slide-active .thumbnail:hover img {
+  animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(-5px, -5px); }
+  60% { transform: translate(5px, 5px); }
+  80% { transform: translate(5px, -5px); }
+  100% { transform: translate(0); }
+}
+
+/* Fancy liquid blob shape for thumbnail background */
+.testi .thumbnail::before {
+  transition: all 0.8s ease-out;
+  background-color: #1dc5c8;
+}
+
+.testi .swiper-slide-active .thumbnail::before {
+  animation: liquidBlob 10s ease-in-out infinite;
+}
+
+@keyframes liquidBlob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 70%; }
+  75% { border-radius: 40% 30% 70% 30% / 70% 50% 40% 60%; }
+}
+
+/* Text content animations with typewriter effect */
+.testi .aside {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s ease-out;
+}
+
+.testi .swiper-slide-active .aside {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideInRight 0.8s forwards 0.3s;
+}
+
+.testi .swiper-slide-active .aside > p {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid transparent;
+  width: 0;
+  animation: typing 2s steps(40, end) forwards 0.5s,
+             cursorBlink 1s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; white-space: nowrap; }
+  to { width: 100%; white-space: normal; }
+}
+
+@keyframes cursorBlink {
+  from, to { border-color: transparent; }
+  50% { border-color: #1dc5c8; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Quote marks with particle effect */
+.testi .aside > p::before,
+.testi .aside > p::after {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.testi .swiper-slide-active .aside > p::before {
+  opacity: 0.3;
+  animation: particleFloat 5s ease-in-out infinite;
+}
+
+.testi .swiper-slide-active .aside > p::after {
+  opacity: 0.3;
+  animation: particleFloat 5.5s ease-in-out infinite reverse;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) rotate(0); opacity: 0.3; }
+  50% { transform: translateY(-15px) rotate(5deg); opacity: 0.6; }
+  100% { transform: translateY(0) rotate(0); opacity: 0.3; }
+}
+
+/* Name section with 3D text effect */
+.testi .aside .name {
+  opacity: 0;
+  transform: perspective(500px) rotateX(45deg);
+  transform-origin: center bottom;
+  transition: all 0.5s ease-out;
+}
+
+.testi .swiper-slide-active .aside .name {
+  opacity: 1;
+  transform: perspective(500px) rotateX(0);
+  animation: flipUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
+}
+
+@keyframes flipUp {
+  from {
+    opacity: 0;
+    transform: perspective(500px) rotateX(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(500px) rotateX(0);
+  }
+}
+
+/* Cool neon text effect for name */
+.testi .aside .name h4 {
+  position: relative;
+  display: inline-block;
+  color: #1dc5c8;
+  text-shadow: 0 0 5px rgba(29, 197, 200, 0.5);
+  animation: neonText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonText {
+  from {
+    text-shadow: 0 0 5px rgba(29, 197, 200, 0.5), 
+                0 0 10px rgba(29, 197, 200, 0.3), 
+                0 0 15px rgba(29, 197, 200, 0.2);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(29, 197, 200, 0.8), 
+                0 0 20px rgba(29, 197, 200, 0.5), 
+                0 0 30px rgba(29, 197, 200, 0.3);
+  }
+}
+
+/* Cool hover effect with rainbow gradient underline */
+.testi .swiper-slide-active .aside .name h4::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background: linear-gradient(90deg, #1dc5c8, #9c27b0, #ff7043, #1dc5c8);
+  background-size: 300% 100%;
+  animation: lineGrow 0.5s forwards 1.5s, gradientShift 3s ease infinite;
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navigation buttons with futuristic glow effect */
+.testi :is(.swiper-button-next, .swiper-button-prev) {
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev):hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(29, 197, 200, 0.7), 
+              0 0 30px rgba(29, 197, 200, 0.4), 
+              0 0 45px rgba(29, 197, 200, 0.2);
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev)::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(29, 197, 200, 0.8) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev):hover::before {
+  opacity: 0.5;
+  animation: pulseButton 1s infinite alternate;
+}
+
+@keyframes pulseButton {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Pagination bullets with shooting star effect */
+.testi .swiper-pagination span {
+  transition: all 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.testi .swiper-pagination span:hover {
+  transform: scale(1.5);
+}
+
+.testi .swiper-pagination .swiper-pagination-bullet-active {
+  position: relative;
+}
+
+.testi .swiper-pagination .swiper-pagination-bullet-active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 300%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: shootingStar 2s linear infinite;
+}
+
+@keyframes shootingStar {
+  0% { left: -100%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Slide transition with matrix effect */
+.swiper-slide {
+  opacity: 0.4;
+  transform: scale(0.85) translateY(30px);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: blur(2px);
+  position: relative;
+}
+
+.swiper-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 197, 200, 0.1) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(29, 197, 200, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+}
+
+.swiper-slide-active::before {
+  opacity: 1;
+  animation: matrixRain 10s linear infinite;
+}
+
+@keyframes matrixRain {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* Cool entrance animation with shatter effect */
+.swiper-slide-active .wrapper {
+  animation: shatterIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes shatterIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+  30% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Prism light effect across slides */
+.swiper-slide-active .wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(29, 197, 200, 0.2),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: prismLight 7s ease-in-out infinite;
+}
+
+@keyframes prismLight {
+  0% { left: -150%; }
+  20%, 100% { left: 150%; }
+}
+
+/* Background cosmic particles effect */
+.site::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 20%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 50%, rgba(29, 197, 200, 0.3) 0%, transparent 100%);
+  background-size: 200% 200%;
+  animation: cosmicParticles 20s ease infinite;
+  z-index: -2;
+}
+
+@keyframes cosmicParticles {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Media queries - preserve responsive design with enhanced desktop effects */
+@media screen and (min-width: 768px) {
+  .testi .wrapper {
+    flex-direction: row;
+    padding: 30px 100px;
+  }
+  
+  .testi .thumbnail {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .testi :is(.swiper-button-next, .swiper-button-prev) {
+    top: 50%;
+  }
+  
+  /* Enhanced desktop 3D perspective effect */
+  .swiper-slide-active .wrapper {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: desktopReveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  @keyframes desktopReveal {
+    from {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-10deg) translateZ(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0) translateZ(0);
+    }
+  }
+  
+  /* Desktop-only parallax effect */
+  .testi .aside {
+    transform: translateZ(20px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .thumbnail {
+    transform: translateZ(40px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .swiper-slide-active:hover .thumbnail {
+    transform: translateZ(60px);
+  }
+  
+  .testi .swiper-slide-active:hover .aside {
+    transform: translateZ(30px);
+  }
+}
+
+/* Additional cool zoom hover effect for mobile */
+@media screen and (max-width: 767px) {
+  .testi .swiper-slide-active .wrapper {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .swiper-slide-active .wrapper:active {
+    transform: scale(0.95);
+  }
+}
+  </style>
+</div>
+  
 </body>
+
 </html>
