@@ -401,6 +401,17 @@
     padding: 20px 25px; /*  */
     max-width: 95%; /*  */
   }
+
+  /*Dark mode for glass heading */
+  .dark .glass-heading {
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.458);
+    border: 1.5px solid rgba(31, 164, 182, 0.334);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3);
+  }
+  /*Search container with transparent background */
+
+
   .search-container {
     margin: 30px auto; /*  */
     flex-direction: column; /*  */
@@ -412,6 +423,20 @@
     border-radius: 12px 12px 0 0; /*  */
     margin-bottom: -2px; /*  */
   }
+
+  /*Dark mode for search input */
+  .dark .search-input {
+    background: #00000093;
+    color: #ffffff;
+    border-color: #ffffff5f;
+  }
+  .dark .search-input:focus {
+    border-color: #55cad0;
+    box-shadow: 0 4px 20px rgba(77,171,247,0.3);
+  }
+  /*Search button styling */
+
+
   .search-btn {
     width: 100%; /*  */
     border-radius: 0 0 12px 12px; /*  */
@@ -421,6 +446,16 @@
     margin: 0 -15px 30px -15px; /*  */
     border-radius: 0; /*  */
   }
+
+  /*Dark mode for table container */
+  .dark .table-container {
+    background: #000000;
+    border: 2px solid rgb(28, 145, 135);
+    box-shadow: 0 10px 30px rgba(36, 163, 158, 0.432);
+  }
+  /*Table styling */
+
+
   .leaderboard-table {
     font-size: 0.9rem; /*  */
     table-layout: fixed; /* Ensures columns respect specified widths */ /*  */
@@ -428,16 +463,46 @@
   }
   .leaderboard-table th,
   .leaderboard-table td {
+
+    padding: 16px 12px;
+    text-align: left;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  /*Dark mode for table cells */
+  .dark .leaderboard-table th,
+  .dark .leaderboard-table td {
+    border-bottom: 1px solid #159d8897;
+
     padding: 12px 8px; /*  */
+
   }
   .contributor-avatar {
     width: 32px; /*  */
     height: 32px; /*  */
     margin-right: 8px; /*  */
   }
+
+  .dark .leaderboard-table th {
+    background: linear-gradient(135deg, #0a312e 0%, #3b817f 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .leaderboard-table tbody tr {
+    transition: all 0.3s ease;
+  }
+
   .pagination-container {
     gap: 15px; /*  */
     margin: 30px 0; /*  */
+
   }
   .pagination-btn {
     padding: 10px 16px; /*  */
@@ -462,6 +527,115 @@
   }
   .leaderboard-table th:last-child,
   .leaderboard-table td:last-child {
+
+    width: 120px;
+    text-align: center;
+    font-weight: 600;
+    color: #28a745;
+  }
+  .dark .leaderboard-table th:last-child,
+  .dark .leaderboard-table td:last-child {
+    width: 120px;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  /*Dark mode for points column */
+  .dark .leaderboard-table td:last-child {
+    color: #29ddcb;
+  }
+  /*Avatar styling */
+  .contributor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    vertical-align: middle;
+    border: 3px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .contributor-avatar:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+  }
+  /*Dark mode for avatar */
+  .dark .contributor-avatar {
+    border-color: #404040;
+  }
+  .dark .contributor-avatar:hover {
+    border-color: #4dabf7;
+  }
+  /*Contributor link styling */
+  .contributor-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  .contributor-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  /*Dark mode for contributor links */
+  .dark .contributor-link {
+    color: #43c3b6e2;
+  }
+  .dark .contributor-link:hover {
+    color: #156d6d;
+  }
+  /*PR Details styling */
+  .pr-details {
+    margin-top: 8px;
+    width: 100%;
+  }
+  .pr-summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #495057;
+    outline: none;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+  }
+  .pr-summary:hover {
+    color: #007bff;
+  }
+  /*Dark mode for PR details */
+  .dark .pr-summary {
+    color: #adb5bd;
+  }
+  .dark .pr-summary:hover {
+    color: #4dabf7;
+  }
+  .pr-details[open] .pr-summary {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  .dark .pr-details[open] .pr-summary {
+    color: #4dabf7;
+  }
+  .pr-list {
+    margin: 0;
+    padding-left: 20px;
+    animation: fadeIn 0.4s ease;
+  }
+  .pr-list li {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  .pr-list a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .pr-list a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+
     width: 20%; /* Points column */ /*  */
   }
 }
@@ -470,6 +644,7 @@
     font-size: 1.1rem; /*  */
     margin: 90px auto 25px auto; /*  */
     padding: 16px 20px; /*  */
+
   }
   .leaderboard-table {
     font-size: 0.8rem; /*  */
@@ -484,8 +659,40 @@
     margin-right: 6px; /*  */
   }
   .pagination-btn {
+
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #00fff7 0%, #041322 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+  }
+  .pagination-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.3);
+  }
+  .pagination-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .pagination-info {
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.1rem;
+  }
+  /*Dark mode for pagination */
+  .dark .pagination-info {
+    color: #adb5bd;
+
     padding: 8px 12px; /*  */
     font-size: 0.85rem; /*  */
+
   }
   .download-button {
     padding: 12px 24px; /*  */
@@ -549,14 +756,33 @@
 <nav class="navbar scroll-fade">
 
 <div class="nav-left">
-  <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-  <span class="site-name">Animate It Now</span>
+  <a href="/" class="logo-link">
+    <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+    <span class="site-name">
+      <span>A</span>
+      <span>n</span>
+      <span>i</span>
+      <span>m</span>
+      <span>a</span>
+      <span>t</span>
+      <span>e</span>
+      <span>&nbsp;</span>
+      <span>I</span>
+      <span>t</span>
+      <span>&nbsp;</span>
+      <span>N</span>
+      <span>o</span>
+      <span>w</span>
+    </span>
+  </a>
 </div>
 <div class="nav-right">
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="editor.html" target="_blank">Editor</a></li>
     <li><a href="templates.html">Templates</a></li>
+    <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
     <li><a href="contributors.html">Contributors</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
@@ -592,7 +818,7 @@
       </a>
     </li>
     <li>
-      <button id="theme-toggle" aria-label="Toggle Theme">
+      <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
         <i data-lucide="moon"></i>
       </button>
     </li>
@@ -636,25 +862,62 @@
 <!--Footer exactly like other pages -->
 
 <footer class="footer scroll-fade">
-<div class="footer-content">
-  <div class="footer-left">
-    <h2>AnimateItNow</h2>
-    <p>Creating impactful web animations and templates for everyone.</p>
-  </div>
-  <div class="footer-right">
-    <h4>Connect With Us</h4>
-    <ul>
-      <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-      <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-    </ul>
-  </div>
-</div>
-<div class="footer-bottom">
-  <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-</div>
-</footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <h2>AnimateItNow</h2>
+        </a>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
 
+
+
+        <div class="footer-about-section">
+          <h3>Know us more</h3>
+          <a href="about.html">About</a>
+          <a href="contributors.html">Contributors</a>
+          <a href="contact.html">Contact</a>
+          <a href="leaderboard.html">Leaderboard</a>
+          <a href="templates.html">Templates</a>
+          <a href="playground.html">Hover-Effects</a>
+          <a href="editor.html" target="_blank">Editor</a>
+        </div>
+        
+
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li class="github">
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                ><i class="fab fa-github fa-beat"></i> GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                ><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a
+              >
+            </li>
+            <!-- fa-beat class added in email for animation -->
+            <li>
+              <a href="mailto:contact@animateitnow.com"
+                ><i class="fas fa-envelope fa-beat"></i> Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
+
+
+
+      
+    </div>
+    <div class="footer-bottom">
+      <p>© <script>document.write(new Date().getFullYear())</script> AnimateItNow. Made with ❤️ by <span class="highlight">Anuj<a href="https://www.linkedin.com/in/anujshrivastava1/" class="tooltip-link" target="_blank">Project Admin</a></span> and Contributors.</p>
+    </div>
+  </footer>
 <!--Cursor snake div for consistency -->
 <!--  Note: The script.js dynamically creates the cursor-snake div. This hardcoded div might cause issues. -->
 <div id="cursor-snake"></div>

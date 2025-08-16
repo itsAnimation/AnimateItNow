@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Animations | AnimateItNow</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
+  <main class="templates-main">
+      <h1>Text Animations</h1>
+  <div class="container">
+    <div class="column">
+      <div class="animation-block slide-hover">
+        <h2 class="animation-title">1. Slide In on Hover</h2>
+
+        <h3 class="slide-in-text">Hello Guys!!</h3>
+
+      </div>
+      <div class="animation-block">
+        <h2 class="animation-title">3. Typewriter on Hover</h2>
+        <div class="typewriter-wrapper">
+          <div class="typewriter-text">Welcome to AnimateItNow</div>
+        </div>
+      </div>
+      <div class="animation-block">
+        <h2 class="animation-title">5. Shimmer Text</h2>
+
+        <h3 class="shimmer">Shimmering Beauty</h3>
+
+      </div>
+    </div>
+    <div class="column">
+      <div class="animation-block pop-div">
+        <h2 class="animation-title">2. Pop / Zoom on Hover</h2>
+        <h1>All Good?</h1>
+      </div>
+      <div class="animation-block">
+        <h2 class="animation-title">4. Gradient Text</h2>
+
+        <h3 class="gradient-text">Gradient Vibes</h3>
+
+      </div>
+      <div class="animation-block">
+        <h2 class="animation-title">6. 3D Flip Text</h2>
+        <div class="flip">
+          <div class="flip-inner">
+            <span>Flip Me!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+  
+  <style>
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1.5rem;
+      color: var(--nav-text);
+      transition: color var(--transition);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 120px auto 60px;
+      padding: 0 30px;
+    }
+
+    .column {
+      flex: 1 1 45%;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .animation-block {
+      background: #e5e7eb;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+      border: 1px solid #d1d5db;
+      transition: transform 0.3s ease, background-color var(--transition);
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body.dark .animation-block {
+      background: #1f2937;
+      border-color: #374151;
+    }
+
+    .animation-block:hover {
+      transform: scale(1.02);
+    }
+
+    .animation-title {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    /* Animations (unchanged) */
+    .slide-in-text {
+      opacity: 1;
+      transform: translateX(0);
+      transition: none;
+      display: inline-block;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    }
+
+    .slide-hover:hover .slide-in-text {
+      animation: slideInOnce 0.7s ease-out;
+    }
+
+    @keyframes slideInOnce {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .pop-div h1 {
+      display: inline-block;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    }
+
+    .pop-div:hover h1 {
+      animation: popOnce 1.3s ease-in-out;
+    }
+
+    @keyframes popOnce {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.3); color: black; }
+      100% { transform: scale(1); color: #1f2937;}
+    }
+
+    .shimmer {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: bold;
+      background: linear-gradient(to right, #111827 10%, #1e3a8a 40%, #4b5563 60%, #111827 90%);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: shimmer 2s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    .gradient-text {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: bold;
+      
+      background: linear-gradient(to right, #4f46e5, #ec4899, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: gradientFlow 4s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .flip {
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      display: inline-block;
+      transform-style: preserve-3d;
+      animation: flip3D 6s ease-in-out infinite;
+    }
+
+    @keyframes flip3D {
+      0% { transform: rotateX(0); }
+      50% { transform: rotateX(180deg); }
+      100% { transform: rotateX(360deg); }
+    }
+
+    .flip-inner span {
+      display: inline-block;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .typewriter-wrapper {
+      display: inline-block;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    .animation-block:hover .typewriter-text {
+      animation: typing 2.5s steps(30, end) 1, blink 0.75s step-end 3;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .column {
+        flex: 1 1 100%;
+      }
+
+      .animation-block {
+        height: auto;
+      }
+    }
+  </style>
+
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    const navbar = document.getElementById('navbar');
+
+    themeToggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      navbar.classList.toggle('dark');
+      themeToggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+  </script>
+
+</body>
+</html>

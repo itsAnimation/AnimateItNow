@@ -1,4 +1,4 @@
-# Security Policy
+# 🔐 Security Policy
 
 ## Supported Versions
 
@@ -10,6 +10,12 @@ We currently support and maintain the following versions of this project:
 | Older   | ❌ (No longer supported — please upgrade) |
 
 If you are using an older version, we recommend upgrading to the latest release for security and stability.
+
+---
+
+## Supported Tech Stack
+AnimateItNow is a project using HTML, CSS, and JavaScript.  
+As a frontend-focused project, security practices are still critical to prevent vulnerabilities such as XSS or unsafe DOM manipulation.
 
 ---
 
@@ -28,6 +34,23 @@ Include the following details in your message:
 > _Note: Do **not** publicly disclose the vulnerability until it has been investigated and resolved._
 
 Alternatively, you may use GitHub’s built-in [Security Advisories](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability) feature to report issues.
+
+---
+
+## Best Practices
+
+To help keep the project secure, contributors should:
+- Avoid unsafe JS methods that may create XSS attack vectors.
+- Prefer secure DOM APIs (`textContent`, `createElement`, `appendChild`) for injecting dynamic content.
+- Do not include untrusted external scripts or stylesheets.
+
+---
+
+## Scope
+
+This project is intended for open-source use by contributors worldwide.  
+Security remains a top priority, even though it is a frontend-focused project.  
+Refer to [CONTRIBUTING.md](CONTRIBUTING.md) for secure contribution practices.  
 
 ---
 
