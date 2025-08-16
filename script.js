@@ -353,6 +353,23 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+const hamburger = document.querySelector(".hamburger");
+const navRight = document.querySelector(".nav-right");
+const body = document.body;
 
+hamburger.addEventListener("click", () =>{
+  hamburger.classList.toggle("active");
+  navRight.classList.toggle("active");
+  body.classList.toggle("menu-open");
+});
 
-
+// Close menu when clicking on nav links
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 1024) {
+      hamburger.classList.remove("active");
+      navRight.classList.remove("active");
+      body.classList.remove("menu-open");
+    }
+  });
+});
