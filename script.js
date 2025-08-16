@@ -356,6 +356,19 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+});
+
+// Enhanced smooth scrolling function
+function smoothScrollTo(targetId, offset = 70) {
+  const element = document.getElementById(targetId);
+  if (element) {
+    const elementPosition = element.offsetTop - offset;
+    window.scrollTo({
+      top: elementPosition,
+      behavior: 'smooth'
+    });
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
   if (!logo) return;
@@ -375,7 +388,72 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { once: true });
 });
 
+// Update navigation active states
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll('section, header');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  let current = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.clientHeight;
+    
+    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+}
+// Handle smooth scroll for internal links
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle internal navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      smoothScrollTo(targetId);
+    });
+  });
+  
+  // Update active navigation on scroll
+  window.addEventListener('scroll', updateActiveNavLink);
+  
+  // Initialize active nav state
+  updateActiveNavLink();
+});
 
+// Enhanced CTA button with smooth scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const ctaBtn = document.querySelector('.cta-btn');
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      smoothScrollTo('faq');
+    });
+  }
+});
 
-
-
+// Add smooth page transitions for external links
+document.querySelectorAll('a:not([href^="#"])').forEach(link => {
+  link.addEventListener('click', function(e) {
+    if (this.hostname === window.location.hostname) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      
+      // Add fade out effect
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.3s ease';
+      
+      setTimeout(() => {
+        window.location.href = href;
+      }, 300);
+    }
+  });
+});
