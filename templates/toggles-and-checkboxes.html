@@ -174,10 +174,374 @@
 
   <main class="main-container">
     <!-- Sections 1-8 remain the same -->
-    <section><h2>1. Gooey Liquid Toggle</h2><p class="subtitle">A toggle with a mesmerizingly fluid animation, achieved with an SVG filter.</p><div class="component-container tgl-gooey-container"><input type="checkbox" id="tgl-gooey" class="hidden-input"><label for="tgl-gooey" class="tgl-gooey"><span class="tgl-gooey-handle"></span><span class="tgl-gooey-blob"></span></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
-    <section><h2>2. 3D Flip Checkbox</h2><p class="subtitle">A satisfying checkbox that performs a 3D flip using CSS `perspective`.</p><div class="component-container"><label class="cbx-flip"><input type="checkbox" id="cbx-flip" class="hidden-input"><div class="cbx-flip-inner"><div class="cbx-flip-front"></div><div class="cbx-flip-back"><i class="fas fa-check"></i></div></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
-    <section><h2>3. Illuminating Toggle</h2><p class="subtitle">An elegant toggle that lights up with a soft glow and icon transition.</p><div class="component-container"><input type="checkbox" id="tgl-illuminate" class="hidden-input"><label for="tgl-illuminate" class="tgl-illuminate"><i class="fas fa-moon"></i><i class="fas fa-power-off"></i><span class="tgl-illuminate-handle"></span></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
-    <section><h2>4. Dynamic Stroke Checkbox</h2><p class="subtitle">A clean checkbox where the checkmark is animated with `stroke-dashoffset`.</p><div class="component-container"><label class="cbx-stroke"><input type="checkbox" id="cbx-stroke" class="hidden-input"><div class="cbx-stroke-box"><svg class="cbx-stroke-svg" viewBox="0 0 24 24"><path d="M6,12 L10,16 L18,8"></path></svg></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
+    <section>
+      <h2>1. Gooey Liquid Toggle</h2>
+      <p class="subtitle">A toggle with a mesmerizingly fluid animation, achieved with an SVG filter.</p>
+      <div class="component-container tgl-gooey-container"><input type="checkbox" id="tgl-gooey" class="hidden-input"><label
+          for="tgl-gooey" class="tgl-gooey"><span class="tgl-gooey-handle"></span><span
+            class="tgl-gooey-blob"></span></label></div>
+      <div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button
+          class="action-btn copy-btn">Copy HTML</button></div>
+      <pre class="code-block"><code>
+          &lt;style&gt;
+        .goo-filter {
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+        .toggle-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-track {
+            width: 100px;
+            height: 50px;
+            background: #e0e0e0;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+        }
+        .toggle-handle {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .toggle-blob {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            z-index: -1;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .toggle-input:checked + .toggle-track {
+            background: linear-gradient(135deg, #007bff 100%, #007bff 100%);
+        }
+    
+        .toggle-input:checked + .toggle-track .toggle-handle {
+            transform: translateX(50px);
+        }
+    
+        .toggle-input:checked + .toggle-track .toggle-blob {
+            animation: blob-morph 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        @keyframes blob-morph {
+            0% {
+                transform: scaleX(1) translateX(0);
+            }
+    
+            30% {
+                transform: scaleX(2.2) translateX(18px);
+            }
+    
+            60% {
+                transform: scaleX(1) translateX(40px);
+            }
+    
+            100% {
+                transform: scaleX(1) translateX(40px);
+            }
+        }
+        .toggle-input:not(:checked) + .toggle-track .toggle-blob {
+            animation: blob-reverse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+    
+        @keyframes blob-reverse {
+            0% {
+                transform: scaleX(1) translateX(0);
+            }
+    
+            30% {
+                transform: scaleX(2.2) translateX(18px);
+            }
+    
+            60% {
+                transform: scaleX(1) translateX(40px);
+            }
+    
+            100% {
+                transform: scaleX(1) translateX(40px);
+            }
+        }
+    &lt;/style&gt;
+    
+    &lt;svg class="goo-filter"&gt;
+        &lt;defs&gt;
+            &lt;filter id="goo"&gt;
+                &lt;feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/&gt;
+                &lt;feColorMatrix in="blur" mode="matrix" 
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo"/&gt;
+                &lt;feComposite in="SourceGraphic" in2="goo" operator="atop"/&gt;
+            &lt;/filter&gt;
+        &lt;/defs&gt;
+    &lt;/svg&gt;
+    
+    &lt;div class="container"&gt;    
+        &lt;div class="toggle-container"&gt;
+            &lt;input type="checkbox" id="liquid-toggle" class="toggle-input"&gt;
+            &lt;label for="liquid-toggle" class="toggle-track"&gt;
+                &lt;span class="toggle-blob"&gt;&lt;/span&gt;
+                &lt;span class="toggle-handle"&gt;&lt;/span&gt;
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+        </code></pre>
+    </section>
+    <section>
+      <h2>2. 3D Flip Checkbox</h2>
+      <p class="subtitle">A satisfying checkbox that performs a 3D flip using CSS `perspective`.</p>
+      <div class="component-container"><label class="cbx-flip"><input type="checkbox" id="cbx-flip" class="hidden-input">
+          <div class="cbx-flip-inner">
+            <div class="cbx-flip-front"></div>
+            <div class="cbx-flip-back"><i class="fas fa-check"></i></div>
+          </div>
+        </label></div>
+      <div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button
+          class="action-btn copy-btn">Copy HTML</button></div>
+      <pre class="code-block">
+          <code> &lt;div class=&quot;checkbox-wrapper-flip&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;flip-checkbox-input&quot; /&gt;
+        &lt;label for=&quot;flip-checkbox-input&quot; class=&quot;flipper&quot;&gt;
+            &lt;div class=&quot;front&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;back&quot;&gt;
+                &lt;svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;3&quot;
+                    stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+                    &lt;polyline points=&quot;20 6 9 17 4 12&quot;&gt;&lt;/polyline&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        .checkbox-wrapper-flip {
+            perspective: 800px;
+        }
+    
+        #flip-checkbox-input {
+            display: none;
+        }
+    
+        .flipper {
+            position: relative;
+            display: block;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+    
+        .checkbox-wrapper-flip .front,
+        .checkbox-wrapper-flip .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .checkbox-wrapper-flip .front {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            z-index: 1;
+        }
+    
+        .checkbox-wrapper-flip .back {
+            background: #007bff;
+            transform: rotateY(180deg);
+        }
+    
+        #flip-checkbox-input:checked + .flipper {
+            transform: rotateY(180deg);
+        }
+    &lt;/style&gt;
+    </code></pre>
+    </section>
+    <section>
+      <h2>3. Illuminating Toggle</h2>
+      <p class="subtitle">An elegant toggle that lights up with a soft glow and icon transition.</p>
+      <div class="component-container"><input type="checkbox" id="tgl-illuminate" class="hidden-input"><label
+          for="tgl-illuminate" class="tgl-illuminate"><i class="fas fa-moon"></i><i class="fas fa-power-off"></i><span
+            class="tgl-illuminate-handle"></span></label></div>
+      <div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button
+          class="action-btn copy-btn">Copy HTML</button></div>
+      <pre class="code-block"><code>
+      &lt;head&gt;
+      &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+    &lt;input type="checkbox" id="tgl-illuminate" class="hidden-input"&gt;
+    &lt;label for="tgl-illuminate" class="tgl-illuminate"&gt;
+        &lt;i class="fas fa-moon"&gt;&lt;/i&gt;
+        &lt;i class="fas fa-power-off"&gt;&lt;/i&gt;
+        &lt;span class="tgl-illuminate-handle"&gt;&lt;/span&gt;
+    &lt;/label&gt;
+    
+    &lt;style&gt;
+        .hidden-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .tgl-illuminate {
+            width: 60px;
+            height: 40px;
+            background: #333;
+            border-radius: 45px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 9px;
+            transition: all 0.4s ease;
+        }
+        .tgl-illuminate-handle {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #555;
+            border-radius: 50%;
+            left: 4px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .tgl-illuminate i {
+            font-size: 14px;
+            color: #888;
+            transition: all 0.4s ease-in-out;
+        }
+    
+        .tgl-illuminate .fa-power-off {
+            margin-left: auto;
+        }
+        #tgl-illuminate:checked+.tgl-illuminate {
+            background: #007bff;
+            box-shadow: 0 0 15px 2px rgba(0, 123, 255, 0.6);
+        }
+        #tgl-illuminate:checked+.tgl-illuminate .tgl-illuminate-handle {
+            transform: translateX(35px);
+            background: #fff;
+        }
+        #tgl-illuminate:checked+.tgl-illuminate .fa-power-off {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        #tgl-illuminate:checked+.tgl-illuminate .fa-moon {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        &lt;/style&gt;
+        &lt;/body&gt;
+      </code></pre>
+  </section>
+    <section>
+      <h2>4. Dynamic Stroke Checkbox</h2>
+      <p class="subtitle">A clean checkbox where the checkmark is animated with `stroke-dashoffset`.</p>
+      <div class="component-container"><label class="cbx-stroke"><input type="checkbox" id="cbx-stroke"
+            class="hidden-input">
+          <div class="cbx-stroke-box"><svg class="cbx-stroke-svg" viewBox="0 0 24 24">
+              <path d="M6,12 L10,16 L18,8"></path>
+            </svg></div>
+        </label></div>
+      <div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button
+          class="action-btn copy-btn">Copy HTML</button></div>
+      <pre class="code-block"><code>
+      
+      &lt;label class="cbx-stroke"&gt;
+      &lt;input type="checkbox" id="cbx-stroke" class="hidden-input"&gt;
+      &lt;div class="cbx-stroke-box"&gt;
+      &lt;svg class="cbx-stroke-svg" viewBox="0 0 24 24"&gt;
+      &lt;path d="M6,12 L10,16 L18,8"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;/label&gt;
+      &lt;style&gt;
+      .hidden-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      
+      .cbx-stroke {
+      cursor: pointer;
+      display: inline-block;
+      }
+      
+      .cbx-stroke-box {
+      width: 28px;
+      height: 28px;
+      border: 2px solid #b0b0b0;
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.2s ease;
+      }
+      
+      .cbx-stroke-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      }
+      
+      .cbx-stroke-svg path {
+      fill: none;
+      stroke: white;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.3s ease 0.1s;
+      }
+      
+      #cbx-stroke:checked~.cbx-stroke-box {
+      background: #007bff;
+      border-color: #007bff;
+      animation: cbx-bounce 0.4s ease;
+      }
+      
+      #cbx-stroke:checked~.cbx-stroke-box .cbx-stroke-svg path {
+      stroke-dashoffset: 0;
+      }
+      
+      @keyframes cbx-bounce {
+      30% {
+      transform: scale(1.2);
+      }
+      
+      60% {
+      transform: scale(0.9);
+      }
+      
+      100% {
+      transform: scale(1);
+      }
+      }
+      &lt;/style&gt;
+
+        </code></pre>
+    </section>
     <section><h2>5. Icon Morphing Toggle</h2><p class="subtitle">An icon smoothly morphs from a plus to a checkmark using SVG path animation.</p><div class="component-container"><input type="checkbox" id="tgl-morph" class="hidden-input"><label for="tgl-morph" class="tgl-morph"><svg class="tgl-morph-svg" width="20" height="20" viewBox="0 0 20 20"><path id="path-morph" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 3,10 H 17 M 10,3 V 17" /></svg></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
     <section><h2>6. Stretchy Elastic Checkbox</h2><p class="subtitle">A playful checkbox that stretches and snaps back with a fun, elastic animation.</p><div class="component-container"><label class="cbx-elastic"><input type="checkbox" id="cbx-elastic" class="hidden-input"><div class="cbx-elastic-box"><i class="fas fa-check cbx-elastic-check"></i></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
     <section><h2>7. 3D "Flip-Flop" Switch</h2><p class="subtitle">A realistic switch that flips on its X-axis to reveal ON/OFF states.</p><div class="component-container"><label class="tgl-flip-flop"><input type="checkbox" id="tgl-flip-flop" class="hidden-input"><div class="tgl-flip-flop-inner"><div class="tgl-flip-flop-face tgl-flip-flop-front">OFF</div><div class="tgl-flip-flop-face tgl-flip-flop-back">ON</div></div></label></div><div class="code-actions"><button class="action-btn view-code-btn">View Code</button><button class="action-btn copy-btn">Copy HTML</button></div><pre class="code-block"><code>...</code></pre></section>
