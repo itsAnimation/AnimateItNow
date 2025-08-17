@@ -191,8 +191,9 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-  const savedTheme = localStorage.getItem("theme")
-  setTheme(savedTheme === "dark")
+    
+    const savedTheme = localStorage.getItem("theme")
+    setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
