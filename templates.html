@@ -88,6 +88,7 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
+     <link rel="stylesheet" href="navbar-footer.css"> <!-- overrides below -->
     <link rel="stylesheet" href="template-manager.css" />
     <link
       rel="stylesheet"
@@ -562,7 +563,75 @@
       /* end for game animation */
     </style>
   </head>
-  <body class="dark">
+  <body>
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  /* ---------- Hamburger / mobile menu ---------- */
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  // backdrop for mobile
+  const backdrop = document.createElement("div");
+  backdrop.className = "nav-backdrop";
+  document.body.appendChild(backdrop);
+
+  function closeMenu() {
+    navLinks?.classList.remove("show");
+    hamburger?.classList.remove("open");
+    body.classList.remove("nav-open");
+    backdrop.classList.remove("show");
+    hamburger?.setAttribute("aria-expanded", "false");
+  }
+  function toggleMenu() {
+    const open = !navLinks.classList.contains("show");
+    navLinks.classList.toggle("show", open);
+    hamburger.classList.toggle("open", open);
+    body.classList.toggle("nav-open", open);
+    backdrop.classList.toggle("show", open);
+    hamburger.setAttribute("aria-expanded", String(open));
+  }
+
+  hamburger?.addEventListener("click", (e) => { e.stopPropagation(); toggleMenu(); });
+  backdrop.addEventListener("click", closeMenu);
+  window.addEventListener("resize", () => { if (window.innerWidth > 900) closeMenu(); });
+  document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", closeMenu));
+  window.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+
+  /* ---------- Theme toggle (lucide icon aware) ---------- */
+  const themeToggle = document.getElementById("theme-toggle");
+  function setTheme(mode) {
+    const isDark = mode === "dark";
+    body.classList.toggle("dark-theme", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${isDark ? "sun" : "moon"}"></i>`;
+      if (window.lucide) window.lucide.createIcons();
+    }
+  }
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  setTheme(savedTheme || (prefersDark ? "dark" : "light"));
+  themeToggle?.addEventListener("click", () => {
+    setTheme(body.classList.contains("dark-theme") ? "light" : "dark");
+  });
+
+  /* ---------- Snake cursor toggle ---------- */
+  const cursorToggle = document.getElementById("cursorToggle");
+  const snakeLayer = document.getElementById("cursor-snake");
+  function setSnake(on) {
+    body.classList.toggle("snake-on", on);
+    if (snakeLayer) snakeLayer.style.display = on ? "block" : "none";
+    localStorage.setItem("snake", on ? "on" : "off");
+    if (cursorToggle) cursorToggle.checked = on;
+  }
+  const savedSnake = localStorage.getItem("snake");
+  setSnake(savedSnake ? savedSnake === "on" : false);
+  cursorToggle?.addEventListener("change", (e) => setSnake(e.target.checked));
+});
+</script>
+    class="dark">
     <nav class="navbar scroll-fade">
       <div class="nav-left">
         <a href="/" class="logo-link">
