@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hover Effects | AnimateItNow</title>
     <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.css" rel="stylesheet">
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#ff6b6b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -103,21 +103,21 @@
         <h1 class="fade-in">Live Transition Playground</h1>
         <div class="para-box fade-in"><p>Hover over the boxes to experience different CSS style effects!</p></div>
         <div class="effects">
-            <div class="box scale">Scale</div>
-            <div class="box translate">Translate</div>
-            <div class="box rotate">Rotate</div>
-            <div class="box Box-Shadow">Box-Shadow</div>
-            <div class="box Background-Color">Background-Color</div>
-            <div class="box Color">Color</div>
+            <div class="box scale" data-aos="fade-up">Scale</div>
+            <div class="box translate" data-aos="fade-up">Translate</div>
+            <div class="box rotate" data-aos="fade-up">Rotate</div>
+            <div class="box Box-Shadow" data-aos="fade-up">Box-Shadow</div>
+            <div class="box Background-Color" data-aos="fade-up">Background-Color</div>
+            <div class="box Color" data-aos="fade-up">Color</div>
 
             <!-- adding new hover effects animations-->
-             <div class="box shaky">Shaking box</div>
+             <div class="box shaky" data-aos="fade-up">Shaking box</div>
 
-             <div class="box flip">Box Flip</div>
-             <div class="box gradient">Gradient Box</div>
-             <div class="box letter-spacing">Letter<br> Spacing</div>
-             <div class="box image-reveal">Image Reveal</div>
-             <div class="box blur-reveal">Blur Reveal</div>
+             <div class="box flip" data-aos="fade-up">Box Flip</div>
+             <div class="box gradient" data-aos="fade-up">Gradient Box</div>
+             <div class="box letter-spacing" data-aos="fade-up">Letter<br> Spacing</div>
+             <div class="box image-reveal" data-aos="fade-up">Image Reveal</div>
+             <div class="box blur-reveal" data-aos="fade-up">Blur Reveal</div>
         </div>
     </section>
   </main>
@@ -125,17 +125,17 @@
   <footer class="footer scroll-fade">
     <div class="footer-content">
       <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
+        <h2 data-aos="fade-up">AnimateItNow</h2>
+        <p data-aos="fade-up">Creating impactful web animations and templates for everyone.</p>
       </div>
       <div class="footer-right">
-        <h4>Connect With Us</h4>
+        <h4 data-aos="fade-up">Connect With Us</h4>
         <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+          <li data-aos="fade-up"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
 
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          <li data-aos="fade-up"><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
           
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+          <li data-aos="fade-up"><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
         </ul>
       </div>
     </div>
@@ -181,6 +181,13 @@
   <script src="script.js"></script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
-    
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 650,
+      easing: 'ease-in-out'
+    });
+  </script>  
 </body>
 </html>

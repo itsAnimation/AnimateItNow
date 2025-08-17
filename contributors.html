@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributors | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.css" rel="stylesheet">
   <!-- Apple Touch Icons -->
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
@@ -87,8 +87,8 @@
   </nav>
 
   <main class="contributors-main scroll-fade">
-    <h1 class="fade-in">Meet Our Contributors</h1>
-    <div id="contributors-grid" class="templates-grid scroll-fade">
+    <h1 class="fade-in" data-aos="fade-up">Meet Our Contributors</h1>
+    <div data-aos="fade-up" id="contributors-grid" class="templates-grid scroll-fade">
       <!-- Cards get populated dynamically -->
     </div>
   </main>
@@ -97,30 +97,30 @@
     <div class="footer-content">
       <div class="footer-left">
         <a href="index.html" style="text-decoration: none; color: inherit;">
-          <h2>AnimateItNow</h2>
+          <h2 data-aos="fade-up">AnimateItNow</h2>
         </a>
-        <p>Creating impactful web animations and templates for everyone.</p>
+        <p data-aos="fade-up">Creating impactful web animations and templates for everyone.</p>
       </div>
       <div class="footer-about-section">
-        <h3>Know us more</h3>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contributors.html">Contributors</a>
-          <a href="contact.html">Contact</a>
-          <a href="leaderboard.html">Leaderboard</a>
-          <a href="templates.html">Templates</a>
-          <a href="playground.html">Hover-Effects</a>
-          <a href="editor.html" target="_blank">Editor</a>
+        <h3 data-aos="fade-up">Know us more</h3>
+        <a href="index.html" data-aos="fade-up">Home</a>
+        <a href="about.html" data-aos="fade-up">About</a>
+        <a href="contributors.html" data-aos="fade-up">Contributors</a>
+          <a href="contact.html" data-aos="fade-up">Contact</a>
+          <a href="leaderboard.html" data-aos="fade-up">Leaderboard</a>
+          <a href="templates.html" data-aos="fade-up">Templates</a>
+          <a href="playground.html" data-aos="fade-up">Hover-Effects</a>
+          <a href="editor.html" target="_blank" data-aos="fade-up">Editor</a>
           
       </div>
       <div class="footer-right">
-        <h4>Connect With Us</h4>
+        <h4 data-aos="fade-up">Connect With Us</h4>
         <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+          <li data-aos="fade-up"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
 
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          <li data-aos="fade-up"><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
           
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+          <li data-aos="fade-up"><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
         </ul>
       </div>
     </div>
@@ -133,7 +133,14 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="script.js"></script>
  <script src="contributors.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+  <script>
+   AOS.init({
+        once: true,
+        easing: 'ease-in-out', 
+        duration: 650,
+    });
+  </script>
 
   </body>
 
