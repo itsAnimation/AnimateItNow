@@ -520,7 +520,7 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex 
+  display: flex ;
   flex-direction: column;
   gap: 5px;
 }
@@ -2085,7 +2085,7 @@ body.dark .submit-btn.disabled:hover {
   color: #444;
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s, background 0.2s, color 0.2s;
+transition: transform 0.2s, background-color 0.2s, color 0.2s;
   position: relative;
   overflow: hidden;
 }
@@ -3257,7 +3257,7 @@ body:not(.dark-theme) .Color {
 .site-name span:nth-child(13) { animation-delay: 1.3s; }   /* O */
 .site-name span:nth-child(14) { animation-delay: 1.5s; }   /* w */
 
-/* HERO SECTION */
+/*  SECTION */
 /* Animation Keyframes */
 @keyframes fadeSlideUp {
   0% {
@@ -3369,8 +3369,12 @@ header p span{
   line-height: 1;
   vertical-align: middle;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb); /* example gradient */
+  color: #fff;
   animation: smoothFloat 1.5s ease-in-out infinite; /* even faster */
+}
+.landing-section .hero-buttons > a:hover {
+  box-shadow: 5px 13px 20px rgba(106, 54, 152, 0.6);
 }
 
 /* Icon spacing */
