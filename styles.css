@@ -342,9 +342,21 @@ body {
 
 .logo {
   height: 36px;
-  width: 30px;
-  animation: pulse 2s infinite;
+
+  width: 36px;
+  /* animation: pulse 2s forwards; */
 }
+
+.logo.animate-once {
+  animation: popIn 1.5s ease forwards;
+
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* Remove link underline and adjust logo spacing */
 /* Make the link a flex container to align items */
 .logo-link {
@@ -367,6 +379,37 @@ body {
   opacity: 0.8;
   cursor: pointer;
 }
+
+.site-name {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-right: 2px solid var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  width: 0;
+  /* Add animation in website Name */
+  animation: typing 3s steps(14) 1s forwards,
+    blink 0.6s infinite step-end alternate;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 14ch;
+  }
+  70% {
+    width: 14ch;
+  }
+  100% {
+    width: 14ch;
+  }
+}
+
 
 
 /* .site-name {
@@ -469,8 +512,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex 
+  flex-direction: column;
   gap: 5px;
 }
 
@@ -783,16 +826,18 @@ main {
 }
 /* Testmonials */
 .site{
-  height: 100vh;
+ 
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 8rem;
+  margin-bottom: 4rem;
 }
 .container{
   max-width: 1100px;
   width: 100%;
   padding: 0 30px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 
 }
 .testi{
@@ -801,10 +846,10 @@ main {
 }
 .testi .head{
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 8rem;
 }
 .testi .head h3{
-  font-size: 34px;
+  font-size: 60px;
   font-weight: 800;
 }
 .testi .wrapper {
@@ -1268,7 +1313,7 @@ body:not(.dark) .template-card {
   transform: translateY(40px);
   animation: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   transition: opacity 0.7s, transform 0.7s;
 }
 
@@ -1814,8 +1859,8 @@ body.dark .contributor-card:hover {
 .contributors-main h1,
 .contact-main h1 {
   text-align: center;
-  margin-top: 7rem;
-  margin-bottom: 2.5rem;
+  /* margin-top: 7rem; */
+  margin-bottom: 5rem;
   font-size: 2.1rem;
   font-weight: 700;
 }
@@ -1858,7 +1903,7 @@ body.dark .contributor-card:hover {
  -webkit-text-fill-color: transparent;  
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                0 4px 8px rgba(79, 140, 255, 0.25);
-  margin-bottom: 1.5rem;
+  margin-bottom: 5rem;
   transition: all 0.3s ease;
 }
 
@@ -2916,6 +2961,78 @@ body.dark .template-card:hover {
     text-decoration: underline;
   }
 
+
+
+  .demo-preview{
+    margin-top: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0);
+  }
+  .para1{
+    padding-top: 7px;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .second-para{
+    height: 350px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 200px;
+    border-radius: 15px;
+  }
+  .second{
+    height: 300px;
+    width: 30%;
+    margin: 10px ;
+    background-color: #10efe4;
+    border-radius: 15px;
+  }
+ .second {
+  transition: transform 0.3s ease;
+}
+
+.second:hover {
+  transform: translateY(-10px);
+}
+   .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0);
+      padding: 20px;
+      width: 300px;
+      text-align: left;
+      margin: 15px;
+      height: 180px;
+    }
+    .second h3 {
+      margin: 0 0 10px;
+      font-size: 1.2em;
+      color: #333;
+      padding: 15px 0 5px 20px;
+    }
+    .card p {
+      margin: 0 0 15px;
+      color: #666;
+    }
+    .card span {
+      background-color: #ffebee;
+      padding: 2px 5px;
+    }
+    .second button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      height: 35px;
+      width: 100px;
+      cursor: pointer;
+      margin-left: 120px;
+    }
+    .card button:hover {
+      background-color: #0056b3;
+    }
+
 /* Quote-box */
 .quote-box{
   text-align: center;
@@ -2965,6 +3082,7 @@ body.dark .template-card:hover {
 
 
 
+
 /*PlayGround Of Hover effects page */
 .playground-section {
   text-align: center;
@@ -2976,6 +3094,7 @@ body.dark .template-card:hover {
   font-size: 2.5rem;
   margin-bottom: 10px;
 }
+
 
 .playground-section .para-box {
   margin-bottom: 40px;
@@ -3207,5 +3326,93 @@ body:not(.dark-theme) .Color {
 
 
 
+
+
+/* Animations for the Background */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Giant Floating Orb Animation */
+body::before,
+body::after,
+body > .flair {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  will-change: transform;
+}
+
+body::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,105,180,0.4) 0%, rgba(255,20,147,0.2) 70%, rgba(255,20,147,0) 100%);
+  top: -200px;
+  left: -200px;
+  animation-name: float1;
+}
+
+body::after {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(0,120,255,0.2) 70%, rgba(0,120,255,0) 100%);
+  bottom: -300px;
+  right: -300px;
+  animation-name: float2;
+}
+
+body > .flair {
+  display: block;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(150,255,150,0.4) 0%, rgba(50,220,50,0.2) 70%, rgba(50,220,50,0) 100%);
+  top: 60%;
+  left: 40%;
+  animation-name: float3;
+}
+
+/* Dramatic Animation Keyframes */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  33% { transform: translate(300px, 200px) scale(1.3); opacity: 1; }
+  66% { transform: translate(-150px, 300px) scale(0.8); opacity: 0.7; }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  33% { transform: translate(-400px, -300px) scale(1.2); opacity: 1; }
+  66% { transform: translate(300px, -100px) scale(0.7); opacity: 0.6; }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  33% { transform: translate(200px, -200px) scale(1.4); opacity: 0.9; }
+  66% { transform: translate(-250px, 150px) scale(0.6); opacity: 0.5; }
+}
+
+/* Dark mode adaptation */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  body::before {
+    background: radial-gradient(circle, rgba(255,75,150,0.5) 0%, rgba(200,0,100,0.3) 70%, rgba(200,0,100,0) 100%);
+  }
+  body::after {
+    background: radial-gradient(circle, rgba(50,150,255,0.5) 0%, rgba(0,80,200,0.3) 70%, rgba(0,80,200,0) 100%);
+  }
+  body > .flair {
+    background: radial-gradient(circle, rgba(100,255,100,0.5) 0%, rgba(0,180,50,0.3) 70%, rgba(0,180,50,0) 100%);
+  }
+}
 
 
