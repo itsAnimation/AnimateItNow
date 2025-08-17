@@ -102,6 +102,7 @@
     <section class="playground-section ">
         <h1 class="fade-in">Live Transition Playground</h1>
         <div class="para-box fade-in"><p>Hover over the boxes to experience different CSS style effects!</p></div>
+        <input type="text" id="searchBox" placeholder="Enter the hover effect" class="input">
         <div class="effects">
             <div class="box scale">Scale</div>
             <div class="box translate">Translate</div>
@@ -148,8 +149,24 @@
 
 <script>
     // Theme toggle functionality
+    const input=document.getElementById('searchBox');
+    const boxes = document.querySelectorAll(".box");
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
+
+    input.addEventListener("input", () => {
+      const query = input.value.toLowerCase();
+
+      boxes.forEach(box => {
+        const text = box.textContent.toLowerCase();
+
+        if (text.includes(query)) {
+        box.classList.remove("hide"); // show card
+      } else {
+        box.classList.add("hide");    // hide card
+    }
+  });
+});
 
     function setTheme(isDark) {
       const newIcon = isDark ? 'sun' : 'moon';
