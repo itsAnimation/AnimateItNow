@@ -194,6 +194,21 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal()
   window.addEventListener('pageshow', initScrollReveal)
   window.addEventListener('pagehide', () => { window.scrollRevealManager?.disconnect() })
+  
+  // Theme management
+  const savedTheme = localStorage.getItem("theme")
+  setTheme(savedTheme === "dark")
+
+  themeToggle?.addEventListener("click", () => {
+    const isDark = body.classList.contains("dark") // Check for 'dark' class
+    setTheme(!isDark)
+  })
+  
+  // Only call lucide.createIcons() if the lucide object is actually available
+  // This ensures icons are created on initial load if the library is ready.
+  if (window.lucide) {
+    window.lucide.createIcons()
+  }
 
   // Global image loading hints (skip logo)
   ;(() => {
@@ -221,18 +236,54 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.querySelector('.nav-right')?.prepend(toggle)
     }
 
-    const onResizeClose = () => {
-      if (window.innerWidth >= 768 && nav.classList.contains('is-open')) {
-        nav.classList.remove('is-open')
-        toggle.setAttribute('aria-expanded', 'false')
-      }
+    // Contributors fetch
+    const contributorsGrid = document.getElementById("contributors-grid")
+    if (contributorsGrid) {
+     fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+        .then((res) => res.json())
+        .then((contributors) => {
+          contributorsGrid.innerHTML = ""
+          contributors.forEach((contributor) => {
+            const card = document.createElement("a")
+            card.href = contributor.html_url
+            card.className = "contributor-card"
+            card.target = "_blank"
+            card.rel = "noopener noreferrer"
+            card.innerHTML = `
+              <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+              <h3>${contributor.login}</h3>
+              <p>Contributions: ${contributor.contributions}</p>
+            `
+            contributorsGrid.appendChild(card)
+          })
+        })
+        .catch((err) => {
+          console.error("Error fetching contributors:", err)
+          contributorsGrid.innerHTML = "<p>Could not load contributors at this time.</p>"
+        })
     }
 
-    toggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('is-open')
-      toggle.setAttribute('aria-expanded', String(isOpen))
-    })
-    window.addEventListener('resize', debounce(onResizeClose, 200))
+    // Contact form validation
+    const contactForm = document.querySelector(".contact-form")
+    const formInputs = contactForm ? contactForm.querySelectorAll("input[required], textarea[required]") : []
+    if (contactForm) {
+      function checkFormValidity() {
+        return [...formInputs].every((input) => input.value.trim() !== "")
+      }
+
+      const onResizeClose = () => {
+        if (window.innerWidth >= 768 && nav.classList.contains('is-open')) {
+          nav.classList.remove('is-open')
+          toggle.setAttribute('aria-expanded', 'false')
+        }
+      }
+
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('is-open')
+        toggle.setAttribute('aria-expanded', String(isOpen))
+      })
+      window.addEventListener('resize', debounce(onResizeClose, 200))
+    }
   })()
 
   // Progress bar (passive scroll)
@@ -309,7 +360,21 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Scroll to top button functionality remains below
+  // ProgressBar Functionality
+  function updateProgressBar() {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    const scrollPercent = (windowScroll / documentHeight) * 100
+    const progressBar = document.getElementById("progress-bar")
+    if (progressBar) {
+      progressBar.style.width = scrollPercent + "%"
+    }
+  }
+  window.addEventListener("scroll", updateProgressBar)
+  // Initialize on load
+  updateProgressBar()
+
+  // Scroll to top button functionality
 
 // Scroll to top button functionality
   // Show button when scrolled down
@@ -326,6 +391,25 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  if (!logo) return;
+
+  // Remove any previous animation class just in case
+  logo.classList.remove('animate-once');
+
+  // Force reflow so browser restarts the animation
+  void logo.offsetWidth;
+
+  // Add class to start animation
+  logo.classList.add('animate-once');
+
+  // Remove after animation ends (so next refresh works again)
+  logo.addEventListener('animationend', () => {
+    logo.classList.remove('animate-once');
+  }, { once: true });
+});
+
 
 function debounce(fn, wait) {
   let t
