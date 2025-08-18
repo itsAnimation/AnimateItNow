@@ -1,0 +1,31 @@
+name: Safe PR Greeting
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  safe-pr-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add safe comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### Thanks for creating a PR for your Issue! ☺️
+
+              We'll review it as soon as possible.
+              In the meantime, please double-check the **file changes** and ensure that **all commits** are accurate.
+
+              If there are any **unresolved review comments**, feel free to resolve them. 🙌🏼`
+            })
