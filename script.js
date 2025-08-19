@@ -1,4 +1,4 @@
-
+﻿
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -12,29 +12,29 @@ function displaycategory(category){
     technical.style.display='block';
   }
 }
-// Register and auto-reload on service worker update
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then((registration) => {
-      console.log('Service Worker registered:', registration);
-
-      registration.onupdatefound = () => {
-        const newWorker = registration.installing;
-        newWorker.onstatechange = () => {
-          if (
-            newWorker.state === 'installed' &&
-            navigator.serviceWorker.controller
-          ) {
-            console.log('New version available. Reloading...');
-            window.location.reload();
-          }
-        };
-      };
-    }).catch((error) => {
-      console.error('Service Worker registration failed:', error);
-    });
-  });
-}
+// Service worker registration removed to fix 404 error
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js').then((registration) => {
+//       console.log('Service Worker registered:', registration);
+//
+//       registration.onupdatefound = () => {
+//         const newWorker = registration.installing;
+//         newWorker.onstatechange = () => {
+//           if (
+//             newWorker.state === 'installed' &&
+//             navigator.serviceWorker.controller
+//           ) {
+//             console.log('New version available. Reloading...');
+//             window.location.reload();
+//           }
+//         };
+//       };
+//     }).catch((error) => {
+//       console.error('Service Worker registration failed:', error);
+//     });
+//   });
+// }
 
 function typewriter(){
   const el=document.getElementById("modify");
@@ -153,25 +153,28 @@ window.addEventListener("pagehide", () => {
   disableSnakeCursor()
 })
 
-window.addEventListener("DOMContentLoaded", () => {
-  // Theme toggle
-  const themeToggle = document.getElementById("theme-toggle")
-  const body = document.body
-  function setTheme(dark) {
-    const newIcon = dark ? "sun" : "moon"
-    body.classList.toggle("dark", dark) // Use 'dark' class for consistency
-    localStorage.setItem("theme", dark ? "dark" : "light")
-    // Replace icon completely
-    if (themeToggle) {
-      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
-      // Only call lucide.createIcons() if the lucide object is actually available
-      if (window.lucide) {
-        window.lucide.createIcons()
-      }
+
+  // Scroll reveal via singleton manager
+  const initScrollReveal = () => {
+    if (window.scrollRevealManager) {
+      document.querySelectorAll('.scroll-fade, .template-card').forEach((el)=>{
+        if (!el.classList.contains('visible')) {
+          window.scrollRevealManager.observe(el)
+        }
+      })
     }
   }
+  initScrollReveal()
+  window.addEventListener('pageshow', () => { initScrollReveal() })
+  window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
+   window.addEventListener('pagehide', () => {
+     if (window.scrollRevealManager) { 
+      window.scrollRevealManager.disconnect() 
+    } 
+  })
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
+
   themeToggle?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
@@ -182,7 +185,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.lucide.createIcons()
   }
 
-  // 🔽 Scroll Reveal Animation
+  // ðŸ”½ Scroll Reveal Animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -198,7 +201,7 @@ window.addEventListener("DOMContentLoaded", () => {
     observer.observe(el)
   })
 
-  // 🧪 Testimonial slider
+  // ðŸ§ª Testimonial slider
   const slider = document.getElementById("slider")
   if (slider) {
     const slides = document.querySelectorAll(".card")
@@ -218,10 +221,10 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 5000)
   }
 
-  // 🧑‍💻 Contributors fetch
+  // ðŸ§‘â€ðŸ’» Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
-    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+   fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
         contributorsGrid.innerHTML = ""
@@ -245,7 +248,7 @@ window.addEventListener("DOMContentLoaded", () => {
       })
   }
 
-  // 📨 Contact form validation
+  // ðŸ“¨ Contact form validation
   const contactForm = document.querySelector(".contact-form")
   // Removed the problematic 'if (!contactForm) return;' line.
   // This line was preventing the rest of the DOMContentLoaded block (including theme toggle and cursor logic)
@@ -259,7 +262,7 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-        alert("Message sent successfully!")
+       showToast("Message sent successfully!");
         contactForm.reset()
       } else {
         alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
@@ -272,6 +275,25 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     })
   }
+
+
+ function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Trigger fade-in
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  // Fade out and remove
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300); // Wait for transition to finish
+  }, 3000);
+}
+
+
 
   // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
@@ -303,7 +325,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // 🚦 ProgressBar Functionality
+  // ðŸš¦ ProgressBar Functionality
   function updateProgressBar() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop
     const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -316,7 +338,6 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateProgressBar)
   // Initialize on load
   updateProgressBar()
-})
 
 
 
@@ -335,6 +356,26 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  if (!logo) return;
+
+  // Remove any previous animation class just in case
+  logo.classList.remove('animate-once');
+
+  // Force reflow so browser restarts the animation
+  void logo.offsetWidth;
+
+  // Add class to start animation
+  logo.classList.add('animate-once');
+
+  // Remove after animation ends (so next refresh works again)
+  logo.addEventListener('animationend', () => {
+    logo.classList.remove('animate-once');
+  }, { once: true });
+});
+
+
 
 
 
