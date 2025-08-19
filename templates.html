@@ -613,6 +613,111 @@
       }
 
       /* end for game animation */
+      /* Base styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.site-name span {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Navigation links */
+.nav-right {
+  flex: 2;
+  min-width: 250px;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* GitHub icon and other buttons */
+.github-icon svg,
+#theme-toggle {
+  vertical-align: middle;
+}
+
+.snakeList {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.snakeLabel {
+  font-size: 0.8rem;
+}
+
+/* Responsive styling */
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    justify-content: flex-start;
+  }
+
+  .site-name span {
+    font-size: 0.9rem;
+  }
+
+  .snakeLabel {
+    display: none; /* hide label to save space */
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
+
+  .site-name {
+    display: none; /* Optional: hide text, keep logo only */
+  }
+
+  .nav-left img.logo {
+    height: 32px;
+  }
+}
+
     </style>
   </head>
   <body class="dark">
@@ -707,24 +812,25 @@
       <div
         style="display: flex; justify-content: center; margin-bottom: 1.5rem"
       >
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Search templates..."
-          style="
-            color: #1f2937;
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(to right, #67e8f9, #60a5fa);
-            box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
-            border-radius: 18px;
-            border: 1px solid #ccc;
-            min-width: 420px;
-            font-size: 1rem;
-            outline: none;
-          "
-          aria-label="Search templates"
-        />
-      </div>
+      <input
+        type="text"
+        id="search-bar"
+        placeholder="Search templates..."
+        style="
+          color: #1f2937;
+          padding: 0.6rem 1.2rem;
+          background: linear-gradient(to right, #67e8f9, #60a5fa);
+          box-shadow: 0 6px 18px rgba(96, 165, 250, 0.25);
+          border-radius: 18px;
+          border: 1px solid #ccc;
+          font-size: 1rem;
+          outline: none;
+          width: 100%;
+          max-width: 600px;
+        "
+        aria-label="Search templates"
+      />
+    </div>
        <div class="no-results">
   No Templates Found.
 </div>
