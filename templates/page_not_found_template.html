@@ -41,6 +41,7 @@
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <style>
+
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
     /* Reset & base */
@@ -476,8 +477,423 @@
     opacity: 0;
   }
 }
+.robot-card-enhanced {
+  margin-top: 60px;
+  padding: 40px 30px;
+  background: linear-gradient(to bottom right, #1e1e2f, #2a2a40);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Robot visuals */
+.robot-card-enhanced .robot-visuals {
+  position: relative;
+  height: 180px;
+  margin-top: 10px;
+}
+
+.robot-card-enhanced .robot {
+  width: 120px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: floatRobot 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+}
+
+/* Floating animation */
+@keyframes floatRobot {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-12px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.robot-card-enhanced .btn-go-back {
+  background: linear-gradient(45deg, #00e0ff, #00bfff);
+  box-shadow: 0 6px 12px rgba(0, 224, 255, 0.4);
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.robot-card-enhanced .btn-go-back:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.robot-card-enhanced .btn-go-back:active {
+  transform: scale(0.95);
+}
+
+.neon-text {
+  color: #fff;
+  text-shadow: 0 0 6px #00e0ff, 0 0 12px #00bfff, 0 0 16px #0099cc;
+}
+
+/* Little sparks for effect */
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00e0ff;
+  border-radius: 50%;
+  animation: sparkle 3s infinite ease-in-out;
+}
+
+.spark:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.spark:nth-child(2) { top: 40%; left: 70%; animation-delay: 1s; }
+.spark:nth-child(3) { top: 70%; left: 20%; animation-delay: 2s; }
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(0.8); opacity: 0.4; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+.reveal-card {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4),
+              0 0 25px rgba(0, 224, 255, 0.4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 1s ease forwards;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Sliding panels inside card */
+.reveal-card .panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(to bottom, #0f0f1a, #1e1e3f);
+  z-index: 5;
+  animation: slideOpen 1.2s ease forwards;
+}
+
+.reveal-card .panel.left { left: 0; border-right: 1px solid rgba(255,255,255,0.1); }
+.reveal-card .panel.right { right: 0; border-left: 1px solid rgba(255,255,255,0.1); }
+
+@keyframes slideOpen {
+  to { width: 0; }
+}
+
+/* Content revealed */
+.reveal-card .content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.reveal-card h1 {
+  font-size: 4rem;
+  margin: 0;
+  color: #086c7a;
+  text-shadow: 0 0 12px #00bfff, 0 0 24px #0099cc;
+}
+
+.reveal-card p {
+  color: #06607d;
+  margin: 12px 0 20px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.reveal-card .btn-go-back {
+  background: linear-gradient(45deg, #05535e, #00bfff);
+  box-shadow: 0 6px 12px rgba(0, 224, 255, 0.4);
+  font-size: 0.95rem;
+  padding: 10px 24px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.reveal-card .btn-go-back:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.reveal-card .btn-go-back:active {
+  transform: scale(1.5);
+}
+
+/* Card Container */
+.puzzle-card {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  background: #00CFC8;
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4),
+              0 0 25px rgba(0, 224, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 30px;
+}
+
+/* Puzzle Background */
+.puzzle-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('https://cdn-icons-png.flaticon.com/512/1034/1034036.png') no-repeat center;
+  background-size: 60%;
+  opacity: 0.15;
+}
+
+/* Floating puzzle piece */
+.puzzle-piece {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: url('https://cdn-icons-png.flaticon.com/512/1034/1034036.png') no-repeat center;
+  background-size: cover;
+  top: 30%;
+  left: 80%;
+  animation: floatPiece 2.5s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+/* Floating animation */
+@keyframes floatPiece {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -20px) rotate(15deg); }
+  100% { transform: translate(0, -40px) rotate(-10deg); }
+}
+
+/* Content */
+.puzzle-card h1 {
+  font-size: 4rem;
+  color: #112D4E;
+  text-shadow: 0 0 12px #00bfff, 0 0 24px #0099cc;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.puzzle-card p {
+  color: #11427a;
+  margin: 12px 0 20px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+}
+
+/* Button */
+.puzzle-card .btn-go-back {
+  box-shadow: 0 6px 12px rgba(0, 224, 255, 0.4);
+  font-size: 0.95rem;
+  padding: 10px 24px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: rgb(5, 70, 98);
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.puzzle-card .btn-go-back:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.puzzle-card .btn-go-back:active {
+  transform: scale(0.95);
+}
+
+/* Card Container */
+.timer-card {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  width: 380px;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, rgba(0,224,255,0.1), rgba(0,128,255,0.1));
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px rgba(217, 240, 134, 0.3);
+  text-align: center;
+  color: #e63535;
+  overflow: hidden;
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fa5335;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0.7;}
+  50% { opacity: 0.2; }
+  100% { transform: translateY(-400px) translateX(50px); opacity: 0; }
+}
+
+/* Illustration Image */
+.timer-card .illustration {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  background: url('images/Sand_timer.png') no-repeat center;
+  background-size: contain;
+  animation: bounce 2s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-15px); }
+}
+
+/* 404 Text */
+.timer-card h1 {
+  font-size: 4rem;
+  margin: 15px 0 10px;
+  color: rgb(150, 57, 57);
+  text-shadow: 0 0 15px rgb(237, 75, 75), 0 0 30px rgb(210, 52, 52);
+}
+
+.timer-card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* Button */
+.timer-card .btn-go-back {
+  background: linear-gradient(45deg, rgb(181, 56, 56), rgb(190, 79, 79));
+  box-shadow: 0 6px 15px rgba(235, 100, 88, 0.4);
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.timer-card .btn-go-back:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.timer-card .btn-go-back:active {
+  transform: scale(0.95);
+}
 
 
+/* Card Container */
+.leaves-card {
+  position: relative;
+  width: 380px;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px rgba(34,139,34,0.3);
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Falling Leaves */
+.leaf {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('images/leaf.png') no-repeat center;
+  background-size: contain;
+  top: -50px;
+  animation: fall linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+}
+
+/* 404 Text */
+.leaves-card h1 {
+  font-size: 4rem;
+  margin: 15px 0 10px;
+  color: #02704d;
+  text-shadow: 0 0 15px #028632, 0 0 30px #04650b;
+}
+
+.leaves-card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+  color: #109538;
+}
+
+
+/* Button */
+.leaves-card .btn-go-back {
+  background: linear-gradient(45deg, #016921, #076c04);
+  box-shadow: 0 6px 15px rgba(28, 150, 52, 0.4);
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.leaves-card .btn-go-back:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.leaves-card .btn-go-back:active {
+  transform: scale(0.95);
+}
 
   </style>
 </head>
@@ -606,10 +1022,88 @@
   <!-- Shooting star effect -->
   <div class="shooting-star"></div>
 </section>
+<section class="container robot-card-enhanced" role="region" aria-labelledby="robot-card-heading">
 
+  <!-- Robot Image -->
+  <div class="robot-visuals">
+    <img src="images/robot.svg" alt="Cute Robot" class="robot" />
+  </div>
 
-  
+  <!-- Content -->
+  <h2 id="robot-card-heading" class="error-msg neon-text">Beep Boop! Error 404</h2>
+  <p class="error-desc">Our little robot couldn’t find this page, but it’s ready to guide you back to fun places!</p>
+
+  <a href="../templates.html" class="btn-go-back" aria-label="Explore Templates">
+    Back to Templates
+  </a>
+
+  <div class="footer-note">
+    Powered by circuits & cuteness. Designed for developers.
+  </div>
+
+  <!-- Spark Effects -->
+  <div class="spark"></div>
+  <div class="spark"></div>
+  <div class="spark"></div>
+</section>
   <!-- Dark Theme Toggle Script -->
+   <div class="reveal-card">
+  <!-- Sliding Panels -->
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>404</h1>
+    <p>Oops! This page got lost in the matrix.</p>
+    <a href="../templates.html" class="btn-go-back">🔗 Back to Templates</a>
+  </div>
+</div>
+<div class="puzzle-card">
+  <!-- Background puzzle -->
+  <div class="puzzle-bg"></div>
+
+  <!-- Floating puzzle piece -->
+  <div class="puzzle-piece"></div>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>404</h1>
+    <p>Looks like a puzzle piece is missing. Don’t worry, we’ve got your back!</p>
+    <a href="../templates.html" class="btn-go-back">🧩 Back to Templates</a>
+  </div>
+</div>
+
+<div class="timer-card" style="background-color: rgb(248, 248, 146);">
+  <!-- Floating particles -->
+  <div class="particle" style="top:80%; left:20%; animation-delay:0s;"></div>
+  <div class="particle" style="top:90%; left:70%; animation-delay:2s;"></div>
+  <div class="particle" style="top:85%; left:40%; animation-delay:4s;"></div>
+  <div class="particle" style="top:75%; left:60%; animation-delay:1s;"></div>
+  
+  <!-- Illustration -->
+  <div class="illustration"></div>
+  
+  <!-- 404 Content -->
+  <h1>404</h1>
+  <p>Oops! The page is lost in the digital sands.</p>
+  <a href="../templates.html" class="btn-go-back">⏳ Back to Templates</a>
+</div>
+
+<div class="leaves-card" style="background-color: #b5face;">
+  <!-- Multiple leaves -->
+  <div class="leaf" style="left:10%; animation-duration:6s; animation-delay:0s;"></div>
+  <div class="leaf" style="left:25%; animation-duration:8s; animation-delay:2s;"></div>
+  <div class="leaf" style="left:40%; animation-duration:7s; animation-delay:1s;"></div>
+  <div class="leaf" style="left:60%; animation-duration:9s; animation-delay:3s;"></div>
+  <div class="leaf" style="left:75%; animation-duration:6s; animation-delay:2s;"></div>
+  
+  <!-- 404 Content -->
+  <h1>404</h1>
+  <p>Oops! The page has fallen away with the leaves.</p>
+  <a href="../templates.html" class="btn-go-back">Back to Templates</a>
+</div>
+
   <script>
     function toggleTheme() {
       const currentTheme = document.body.getAttribute('data-theme');
