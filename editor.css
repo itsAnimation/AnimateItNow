@@ -1,4 +1,55 @@
+/* search container css */
 
+.search-container {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#animationSearch {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the element's total width */
+    transition: border-color 0.3s;
+}
+
+#animationSearch:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.animation-list-item {
+    display: block; /* Ensures that filtered items appear correctly */
+}
+#suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: absolute;
+    z-index: 1000;
+}
+
+#suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+#suggestions li:hover {
+    background-color: #f0f0f0;
+}
 
 
 
@@ -293,7 +344,7 @@ textarea::placeholder {
 }
 
 @keyframes tilt {
- 
+
   0% {
     transform: rotate(0deg);
   }
