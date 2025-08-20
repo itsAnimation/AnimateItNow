@@ -9,270 +9,361 @@
 <!-- Icon + Fonts -->
 <link rel="icon" type="image/png" href="../images/logo.png" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/lucide@latest"></script>
 
+<!-- PWA Manifest and Icons -->
+<link rel="manifest" href="../manifest.json" />
+<link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+<link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+<link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+<link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+
 <style>
-:root {
-  --nav-text: #333;
-  --accent: #007bff;
-  --background: #f5f5f5;
-  --text-color: #333;
-}
-body.dark-theme {
-  --nav-text: #ddd;
-  --accent: #55aaff;
-  --background: #121212;
-  --text-color: #ddd;
-}
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  background: var(--background);
-  color: var(--text-color);
-  padding-top: 60px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-/* Navbar */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: 60px; display: flex; justify-content: space-between; align-items: center;
-  padding: 0 1rem;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(10px);
-}
-body.dark-theme .navbar {
-  background: rgba(18, 18, 18, 0.9);
-}
-.nav-left {
-  display: flex; align-items: center; gap: 10px;
-}
-.nav-left img.logo {
-  height: 40px;
-}
-.site-name {
-  font-weight: 700; color: var(--nav-text); letter-spacing: 0.05em;
-}
-.nav-right .nav-links {
-  display: flex; gap: 1rem; align-items: center; list-style: none; margin: 0;
-}
-.nav-right .nav-links a {
-  text-decoration: none; color: var(--nav-text);
-  padding: 4px 8px;
-  font-weight: 600;
-  transition: border-bottom 0.3s ease;
-}
-.nav-right .nav-links a.active,
-.nav-right .nav-links a:hover {
-  border-bottom: 2px solid var(--accent);
-}
-#theme-toggle {
-  background: none; border: none; font-size: 1.3rem;
-  cursor: pointer; color: var(--nav-text);
-  transition: color 0.3s ease;
-}
-/* Snake toggle */
-.switch {
-  position: relative; display: inline-block; width: 36px; height: 18px;
-}
-.switch input {
-  opacity: 0; width: 0; height: 0;
-}
-.slider {
-  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc; transition: 0.4s; border-radius: 18px;
-}
-.slider:before {
-  position: absolute; content: "";
-  height: 14px; width: 14px; left: 2px; bottom: 2px;
-  background-color: white; transition: 0.4s; border-radius: 50%;
-}
-input:checked + .slider {
-  background-color: var(--accent);
-}
-input:checked + .slider:before {
-  transform: translateX(18px);
-}
-.snakeLabel {
-  font-size: 0.75rem; color: var(--nav-text);
-  user-select: none;
-}
+  /* Base reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: #f0f5ff;
+    color: #333;
+    padding-top: 60px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
 
-/* Templates grid */
-main {
-  max-width: 1200px; margin: 2rem auto; padding: 1rem;
-}
-.page-header {
-  text-align: center; margin-bottom: 3rem;
-}
-.templates-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
-}
-.template-card {
-  background: white; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  display: flex; flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.template-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-}
-body.dark-theme .template-card {
-  background: #1e1e1e;
-  box-shadow: 0 5px 20px rgba(255,255,255,0.07);
-}
-.template-preview {
-  height: 200px; display: flex; justify-content: center; align-items: center;
-  font-size: 3rem; font-weight: 700; color: white;
-  border-radius: 12px 12px 0 0;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  transition: box-shadow 0.3s ease;
-  background-size: 200% 200%;
-  background-position: center;
-}
-.template-preview:hover {
-  box-shadow: 0 0 25px var(--accent);
-  background-position: right center;
-}
-.template-info {
-  padding: 1rem; flex: 1; display: flex; flex-direction: column;
-}
-.template-title {
-  font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem;
-  letter-spacing: 0.03em;
-}
-.template-description {
-  flex: 1; font-size: 0.9rem; color: #555;
-  line-height: 1.3;
-  transition: color 0.3s ease;
-}
-body.dark-theme .template-description {
-  color: #bbb;
-}
-.template-actions {
-  display: flex; gap: 0.6rem; margin-top: 1rem;
-}
-.btn {
-  padding: 0.55rem 1rem; border: none; border-radius: 8px; cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  user-select: none;
-}
-.btn-primary {
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 4px 15px var(--accent);
-}
-.btn-primary:hover, .btn-primary:focus {
-  background-color: #0065d1;
-  box-shadow: 0 6px 18px #0065d1;
-  outline: none;
-}
-.btn-secondary {
-  background: #f2f2f2;
-  color: #222;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-}
-body.dark-theme .btn-secondary {
-  background: #333;
-  color: #ddd;
-  box-shadow: 0 4px 15px rgba(255,255,255,0.07);
-}
-.btn-secondary:hover, .btn-secondary:focus {
-  background-color: #ccc;
-  outline: none;
-}
+  body.dark-theme {
+    background: #121212;
+    color: #ddd;
+  }
 
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.25s ease forwards;
-}
-.modal-content {
-  background: white;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow: auto;
-  position: relative;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-body.dark-theme .modal-content {
-  background: #222;
-  color: #ccc;
-}
-.close {
-  position: absolute;
-  top: 12px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 1.8rem;
-  color: var(--accent);
-  user-select: none;
-  transition: color 0.25s ease;
-}
-.close:hover {
-  color: #005bb5;
-}
-.copy-btn {
-  position: absolute;
-  top: 14px;
-  right: 70px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 4px 14px var(--accent);
-  transition: background-color 0.25s ease;
-  user-select: none;
-}
-.copy-btn:hover {
-  background-color: #0065d1;
-}
-.code-block {
-  background: #1e1e1e;
-  color: #0ff;
-  padding: 1rem;
-  border-radius: 8px;
-  white-space: pre-wrap;
-  overflow: auto;
-  font-family: monospace;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  min-height: 250px;
-  user-select: text;
-}
+  /* Navbar */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 1000;
+  }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
+  body.dark-theme .navbar {
+    background: rgba(18, 18, 18, 0.9);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-left img.logo {
+    height: 40px;
+  }
+  .site-name {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #333;
+  }
+  body.dark-theme .site-name {
+    color: #ddd;
+  }
+
+  .nav-right .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .nav-right .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    padding: 4px 8px;
+    transition: border-bottom 0.3s ease;
+  }
+  body.dark-theme .nav-right .nav-links a {
+    color: #ddd;
+  }
+  .nav-right .nav-links a.active,
+  .nav-right .nav-links a:hover {
+    border-bottom: 2px solid #007bff;
+  }
+
+  /* Snake toggle */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 18px;
+  }
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 18px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: #007bff;
+  }
+  input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+  .snakeLabel {
+    font-size: 0.75rem;
+    color: #333;
+    user-select: none;
+  }
+  body.dark-theme .snakeLabel {
+    color: #ddd;
+  }
+
+  /* Templates grid */
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 100%;
+  }
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .template-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  body.dark-theme .template-card {
+    background: #1e1e1e;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.07);
+  }
+  .template-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  }
+  .template-preview {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 12px 12px 0 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease;
+    background-size: 200% 200%;
+    background-position: center;
+  }
+  .template-preview:hover {
+    box-shadow: 0 0 25px #007bff;
+    background-position: right center;
+  }
+  .template-info {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .template-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.03em;
+  }
+  .template-description {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+  body.dark-theme .template-description {
+    color: #bbb;
+  }
+  .template-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.55rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    user-select: none;
+  }
+  .btn-primary {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 4px 15px #007bff;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #0065d1;
+    box-shadow: 0 6px 18px #0065d1;
+    outline: none;
+  }
+  .btn-secondary {
+    background: #f2f2f2;
+    color: #222;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  }
+  body.dark-theme .btn-secondary {
+    background: #333;
+    color: #ddd;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.07);
+  }
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    background-color: #ccc;
+    outline: none;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.25s ease forwards;
+  }
+  .modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  body.dark-theme .modal-content {
+    background: #222;
+    color: #ccc;
+  }
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #007bff;
+    user-select: none;
+    transition: color 0.25s ease;
+  }
+  .close:hover {
+    color: #005bb5;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 14px;
+    right: 70px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 14px #007bff;
+    transition: background-color 0.25s ease;
+    user-select: none;
+  }
+  .copy-btn:hover {
+    background-color: #0065d1;
+  }
+  .code-block {
+    background: #1e1e1e;
+    color: #0ff;
+    padding: 1rem;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow: auto;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    min-height: 250px;
+    user-select: text;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
 </style>
 </head>
 <body>
-
 <nav class="navbar scroll-fade">
   <div class="nav-left">
     <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
@@ -325,131 +416,133 @@ body.dark-theme .modal-content {
 <div id="cursor-snake"></div>
 
 <script>
-const templates = [
-  {
-    title: "Minimal Clean",
-    desc: "Simple and professional design",
-    preview: "linear-gradient(135deg,#667eea,#764ba2)",
-    code: `<div style="text-align:center;padding:40px;font-family:sans-serif">
+  const templates = [
+    {
+      title: "Minimal Clean",
+      desc: "Simple and professional design",
+      preview: "linear-gradient(135deg,#667eea,#764ba2)",
+      code: `<div style="text-align:center;padding:40px;font-family:sans-serif">
 <h1 style="font-size:5rem;color:#667eea;letter-spacing:0.05em;">404</h1>
-<p style="font-size:1.3rem; margin-top:0.5rem;">Oops! Page not found.</p>
+<p style="font-size:1.3rem;margin-top:0.5rem;">Oops! Page not found.</p>
 <a href="/" style="background:#667eea;color:white;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block;margin-top:20px;transition:background-color 0.3s ease;">Go Home</a>
-</div>`
-  },
-  {
-    title: "Animated Bounce",
-    desc: "Fun and lively bounce effect",
-    preview: "linear-gradient(135deg,#f093fb,#f5576c)",
-    code: `<div style="display:flex;flex-direction:column;height:100vh;justify-content:center;align-items:center;font-family:sans-serif;background:#f093fb;color:#fff;">
+</div>`,
+    },
+    {
+      title: "Animated Bounce",
+      desc: "Fun and lively bounce effect",
+      preview: "linear-gradient(135deg,#f093fb,#f5576c)",
+      code: `<div style="display:flex;flex-direction:column;height:100vh;justify-content:center;align-items:center;font-family:sans-serif;background:#f093fb;color:#fff;">
 <h1 style="font-size:6rem;animation:bounce 1s infinite;letter-spacing:0.07em;">404</h1>
 <p style="margin-top:0.5rem;">Looks like you took a wrong turn!</p>
 <style>@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}</style>
-</div>`
-  },
-  {
-    title: "Glassmorphism",
-    desc: "Frosted glass aesthetic",
-    preview: "linear-gradient(135deg,#4facfe,#00f2fe)",
-    code: `<div style="height:100vh;display:flex;justify-content:center;align-items:center;background:url('https://picsum.photos/1600/900') center/cover no-repeat;">
+</div>`,
+    },
+    {
+      title: "Glassmorphism",
+      desc: "Frosted glass aesthetic",
+      preview: "linear-gradient(135deg,#4facfe,#00f2fe)",
+      code: `<div style="height:100vh;display:flex;justify-content:center;align-items:center;background:url('https://picsum.photos/1600/900') center/cover no-repeat;">
   <div style="background:rgba(255,255,255,0.15);padding:40px;border-radius:12px;backdrop-filter:blur(10px);color:white;text-align:center;">
     <h1 style="font-size:5rem;letter-spacing:0.06em;">404</h1>
     <p style="margin-top:0.5rem;">Page Not Found</p>
   </div>
-</div>`
-  },
-  {
-    title: "Dark Mode",
-    desc: "Elegant dark theme",
-    preview: "#2c3e50",
-    code: `<div style="background:#2c3e50;color:#ecf0f1;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+</div>`,
+    },
+    {
+      title: "Dark Mode",
+      desc: "Elegant dark theme",
+      preview: "#2c3e50",
+      code: `<div style="background:#2c3e50;color:#ecf0f1;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
   <h1 style="font-size:5rem;letter-spacing:0.06em;">404</h1>
   <p style="margin-top:0.5rem;">We couldn't find the page.</p>
-</div>`
-  },
-  {
-    title: "Neon Cyberpunk",
-    desc: "Bright glowing neon text",
-    preview: "#0f0f0f",
-    code: `<div style="background:#0f0f0f;color:#0ff;text-align:center;font-family:monospace;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+</div>`,
+    },
+    {
+      title: "Neon Cyberpunk",
+      desc: "Bright glowing neon text",
+      preview: "#0f0f0f",
+      code: `<div style="background:#0f0f0f;color:#0ff;text-align:center;font-family:monospace;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
   <h1 style="font-size:5rem;text-shadow:0 0 10px #0ff, 0 0 20px #0ff;letter-spacing:0.07em;">404</h1>
   <p style="color:#f0f;text-shadow:0 0 5px #f0f;margin-top:0.5rem;">Lost in Cyberspace</p>
-</div>`
-  },
-  {
-    title: "Creative Illustrated",
-    desc: "Colorful illustrated style",
-    preview: "linear-gradient(135deg,#ffecd2,#fcb69f)",
-    code: `<div style="background:#ffecd2;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#333;">
+</div>`,
+    },
+    {
+      title: "Creative Illustrated",
+      desc: "Colorful illustrated style",
+      preview: "linear-gradient(135deg,#ffecd2,#fcb69f)",
+      code: `<div style="background:#ffecd2;font-family:sans-serif;text-align:center;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#333;">
   <img src="https://cdn-icons-png.flaticon.com/512/748/748122.png" alt="Lost" style="width:150px;margin-bottom:20px" />
   <h1 style="letter-spacing:0.05em;">404</h1>
   <p style="margin-top:0;">Are you lost?</p>
-</div>`
-  }
-];
+</div>`,
+    },
+  ];
 
-const grid = document.getElementById("templatesGrid");
-let currentCode = "";
+  const grid = document.getElementById("templatesGrid");
+  let currentCode = "";
 
-templates.forEach((tpl, idx) => {
-  const card = document.createElement("div");
-  card.className = "template-card";
-  card.innerHTML = `
-    <div class="template-preview" style="background:${tpl.preview}; background-size: 300% 300%; background-position: center;">
-      404
-    </div>
-    <div class="template-info">
-      <div class="template-title">${tpl.title}</div>
-      <div class="template-description">${tpl.desc}</div>
-      <div class="template-actions">
-        <button class="btn btn-primary" onclick="viewCode(${idx})">View Code</button>
-        <button class="btn btn-secondary" onclick="copyCode(${idx})">Copy Code</button>
+  templates.forEach((tpl, idx) => {
+    const card = document.createElement("div");
+    card.className = "template-card";
+    card.innerHTML = `
+      <div class="template-preview" style="background:${tpl.preview}; background-size: 300% 300%; background-position: center;">
+        404
       </div>
-    </div>
-  `;
-  // Animate background gradient on preview
-  let angle = 135, shade1, shade2;
-  card.querySelector('.template-preview').style.backgroundImage = tpl.preview;
-  grid.appendChild(card);
-});
+      <div class="template-info">
+        <div class="template-title">${tpl.title}</div>
+        <div class="template-description">${tpl.desc}</div>
+        <div class="template-actions">
+          <button class="btn btn-primary" onclick="viewCode(${idx})">View Code</button>
+          <button class="btn btn-secondary" onclick="copyCode(${idx})">Copy Code</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
 
-function viewCode(index){
-  currentCode = templates[index].code;
-  const codeBlock = document.getElementById("codeBlock");
-  codeBlock.textContent = currentCode;
-  document.getElementById("codeModal").style.display = "flex";
-  codeBlock.focus();
-}
-function copyCode(index){
-  navigator.clipboard.writeText(templates[index].code);
-  alert("Code copied!");
-}
-function copyModalCode(){
-  navigator.clipboard.writeText(currentCode);
-  alert("Code copied!");
-}
-function closeModal(){
-  document.getElementById("codeModal").style.display = "none";
-}
-window.onclick = e => {
-  if(e.target == document.getElementById("codeModal")) closeModal();
-};
-// Dark mode toggle
-const themeToggleBtn = document.getElementById("theme-toggle");
-function applyTheme(){
-  const theme = localStorage.getItem("theme");
-  if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    document.body.classList.add("dark-theme");
-  } else {
-    document.body.classList.remove("dark-theme");
+  function viewCode(index) {
+    currentCode = templates[index].code;
+    const codeBlock = document.getElementById("codeBlock");
+    codeBlock.textContent = currentCode;
+    document.getElementById("codeModal").style.display = "flex";
+    codeBlock.focus();
   }
-}
-themeToggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
-  const isDark = document.body.classList.contains("dark-theme");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-});
-applyTheme();
+  function copyCode(index) {
+    navigator.clipboard.writeText(templates[index].code);
+    alert("Code copied!");
+  }
+  function copyModalCode() {
+    navigator.clipboard.writeText(currentCode);
+    alert("Code copied!");
+  }
+  function closeModal() {
+    document.getElementById("codeModal").style.display = "none";
+  }
+  window.onclick = (e) => {
+    if (e.target == document.getElementById("codeModal")) closeModal();
+  };
+
+  // Dark mode toggle
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  function applyTheme() {
+    const theme = localStorage.getItem("theme");
+    if (
+      theme === "dark" ||
+      (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
+  }
+  themeToggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+    const isDark = document.body.classList.contains("dark-theme");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+  applyTheme();
 </script>
+
 <script src="../script.js"></script>
 </body>
 </html>
