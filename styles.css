@@ -512,7 +512,7 @@ body {
 /*Snake toggle */
 
 .snakeList{
-  display: flex 
+  display: flex;
   flex-direction: column;
   gap: 5px;
 }
@@ -851,6 +851,10 @@ main {
 .testi .head h3{
   font-size: 60px;
   font-weight: 800;
+  color: whitesmoke; /*Adding text colour to heading*/
+}
+.testi .head p{ /*Text colour to testimonial paragragh*/
+  color:white;
 }
 .testi .wrapper {
   display: flex;
@@ -901,9 +905,12 @@ main {
 }
 .testi .aside > p {
   position: relative;
-  font-size: 14px;
+  font-size: 18px; /*Increasing text size slightly to make it look more balanced*/
   line-height: normal;
   margin-bottom: 30px;
+  color: #ffffff; /* Changing text color to white with shadow for better visibility on both light and dark mode*/
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  font-weight: 500;
 
 }
 .testi .aside > p::before,
@@ -939,6 +946,11 @@ main {
 .testi .aside .name p {
   font-size: 12px;
   text-align: right;
+  margin-top: 8px;/*Fixing the gap between name and designation*/
+  color: #8E24AA;/* Changing color of designation to make it visible on both light and dark mode*/
+  font-weight: 700;/*Making designation bold for better visibility*/
+  opacity: 1;
+
 }
 .testi :is(.swiper-button-next, .swiper-button-prev){
   background-color: var(--light-color);

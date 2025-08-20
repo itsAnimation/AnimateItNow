@@ -286,7 +286,7 @@
                   <div class="aside">
                     <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
                     <div class="name">
-                      <h4>Rohan Malhotra</h4>
+                      <h4>Roshani Malhotra</h4>
                       <p>Freelance Web Developer</p>
                     </div>
                   </div>
@@ -425,13 +425,30 @@
 /* Header animations with 3D text effect */
 .testi .head h3 {
   animation: flipInX 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  text-shadow: 2px 2px 0 rgba(29, 197, 200, 0.2);
+  /*Enhanced Testimonial Header*/
+  color: #fff; /* main text white */
+  text-shadow: /*Rainbow text shadow effect*/
+    1px 1px 2px #ff0000,   /* red */
+    -1px -1px 2px #ff7f00, /* orange */
+    1px -1px 2px #ffff00,  /* yellow */
+    -1px 1px 2px #00ff00,  /* green */
+    2px 2px 3px #0000ff,   /* blue */
+    -2px -2px 3px #4b0082, /* indigo */
+    2px -2px 3px #8f00ff;  /* violet */
   position: relative;
 }
 
 .testi .head p {
   animation: flipInY 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
   animation-fill-mode: both;
+  color: white;
+  font-weight: 500;
+  text-shadow: /*text shadow effect */
+   0 0 4px white,
+   2px 2px 4px red,
+   -2px -2px 4px blue,
+   2px -2px 4px green;
+
 }
 
 @keyframes flipInX {
