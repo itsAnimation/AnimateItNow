@@ -9,6 +9,20 @@
       name="description"
       content="A comprehensive collection of CSS animation templates and effects for web developers"
     />
+    <script>
+      // Handle all login forms
+      window.onload = function() {
+        // Find all forms in the document
+        document.querySelectorAll('form').forEach(function(form) {
+          form.onsubmit = function(e) {
+            e.preventDefault();
+            alert('Login successful! Redirecting to home page...');
+            window.location.href = "../index.html";
+            return false;
+          };
+        });
+      };
+    </script>
 
     <meta
       name="msapplication-TileImage"
