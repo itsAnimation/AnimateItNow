@@ -122,6 +122,7 @@ resetBtn.addEventListener("click", () => {
     outputFrame.srcdoc = "";
 });
 
+
 const toggleSwitch = document.getElementById("theme-toggle");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     const savedTheme = localStorage.getItem("theme");
@@ -140,3 +141,4 @@ const toggleSwitch = document.getElementById("theme-toggle");
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
     });
+
