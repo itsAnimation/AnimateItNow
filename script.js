@@ -1,4 +1,4 @@
-﻿
+
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -153,17 +153,24 @@ window.addEventListener("pagehide", () => {
   disableSnakeCursor()
 })
 
-
-  // Scroll reveal via singleton manager
-  const initScrollReveal = () => {
-    if (window.scrollRevealManager) {
-      document.querySelectorAll('.scroll-fade, .template-card').forEach((el)=>{
-        if (!el.classList.contains('visible')) {
-          window.scrollRevealManager.observe(el)
-        }
-      })
+window.addEventListener("DOMContentLoaded", () => {
+  // Theme toggle
+  const themeToggle = document.getElementById("theme-toggle")
+  const body = document.body
+  function setTheme(dark) {
+    const newIcon = dark ? "sun" : "moon"
+    body.classList.toggle("dark", dark) // Use 'dark' class for consistency
+    localStorage.setItem("theme", dark ? "dark" : "light")
+    // Replace icon completely
+    if (themeToggle) {
+      themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`
+      // Only call lucide.createIcons() if the lucide object is actually available
+      if (window.lucide) {
+        window.lucide.createIcons()
+      }
     }
   }
+<<<<<<< HEAD
   initScrollReveal()
   window.addEventListener('pageshow', () => { initScrollReveal() })
   window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
@@ -173,9 +180,10 @@ window.addEventListener("pagehide", () => {
       window.scrollRevealManager.disconnect() 
     } 
   })
+=======
+>>>>>>> c668d7634b79569200755b94405d407e9b988531
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
-
   themeToggle?.addEventListener("click", () => {
     const isDark = body.classList.contains("dark") // Check for 'dark' class
     setTheme(!isDark)
@@ -186,7 +194,7 @@ window.addEventListener("pagehide", () => {
     window.lucide.createIcons()
   }
 
-  // ðŸ”½ Scroll Reveal Animation
+  // 🔽 Scroll Reveal Animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -202,7 +210,7 @@ window.addEventListener("pagehide", () => {
     observer.observe(el)
   })
 
-  // ðŸ§ª Testimonial slider
+  // 🧪 Testimonial slider
   const slider = document.getElementById("slider")
   if (slider) {
     const slides = document.querySelectorAll(".card")
@@ -222,10 +230,10 @@ window.addEventListener("pagehide", () => {
     }, 5000)
   }
 
-  // ðŸ§‘â€ðŸ’» Contributors fetch
+  // 🧑‍💻 Contributors fetch
   const contributorsGrid = document.getElementById("contributors-grid")
   if (contributorsGrid) {
-   fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
+    fetch("https://api.github.com/repos/itsAnimation/AnimateItNow/contributors")
       .then((res) => res.json())
       .then((contributors) => {
         contributorsGrid.innerHTML = ""
@@ -249,7 +257,7 @@ window.addEventListener("pagehide", () => {
       })
   }
 
-  // ðŸ“¨ Contact form validation
+  // 📨 Contact form validation
   const contactForm = document.querySelector(".contact-form")
   // Removed the problematic 'if (!contactForm) return;' line.
   // This line was preventing the rest of the DOMContentLoaded block (including theme toggle and cursor logic)
@@ -326,7 +334,7 @@ window.addEventListener("pagehide", () => {
     })
   }
 
-  // ðŸš¦ ProgressBar Functionality
+  // 🚦 ProgressBar Functionality
   function updateProgressBar() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop
     const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
@@ -339,6 +347,7 @@ window.addEventListener("pagehide", () => {
   window.addEventListener("scroll", updateProgressBar)
   // Initialize on load
   updateProgressBar()
+})
 
 
 
@@ -357,6 +366,7 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
   if (!logo) return;
@@ -384,3 +394,8 @@ hamburger.addEventListener("click", () => {
   navMenu.classList.toggle("active");
   document.body.classList.toggle("menu-open");
 });
+=======
+
+
+
+>>>>>>> c668d7634b79569200755b94405d407e9b988531
