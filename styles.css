@@ -647,8 +647,13 @@ body {
 }
 
 /* hamburger menu */
-html, body {
+/* html, body {
   overflow-x: hidden;
+} */
+
+.navbar {
+  position: relative;
+  z-index: 4000; /* ensure it's on top */
 }
 
 .hamburger{
@@ -657,7 +662,9 @@ html, body {
   background: transparent;
   border: none;
   padding: 10px;
-  z-index: 1001;
+  z-index: 5000;
+  position: absolute;
+  right: 20px;
 }
 
 .bar{
@@ -671,12 +678,12 @@ html, body {
 }
 
 @media(max-width:1024px){
-  
+
   .hamburger{
     display: block;
     position: absolute;
     right: 20px;
-    top: 20px;
+    /* top: 20px; */
   }
   
   .hamburger.active .bar:nth-child(2){
@@ -700,7 +707,7 @@ html, body {
     padding: 80px 20px 20px;
     transition: right 0.3s ease;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 3000;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   }
 
@@ -715,6 +722,7 @@ html, body {
     gap: 16px;
     padding: 0;
     margin: 0;
+    height: 100%;
     list-style: none;
   }
 
@@ -728,12 +736,18 @@ html, body {
     padding: 10px 0;
     color: white;
     text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
+
+  .nav-links a:hover {
+  color: #4ade80; /* green hover */
+   }
 
   /* Prevent body scroll when menu is open */
   body.menu-open {
     overflow: hidden;
-    position: fixed;
     width: 100%;
   }
 

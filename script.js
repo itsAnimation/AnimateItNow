@@ -376,7 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { once: true });
 });
 
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-right");
 
-
-
-
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+  document.body.classList.toggle("menu-open");
+});
