@@ -42,7 +42,7 @@
 </head>
 
 <body>
-<div class="fair">
+
   <!-- ProgressBar -->
   <div id="progress-bar"></div>
   <!-- ProgressBar Ends -->
@@ -96,26 +96,19 @@
 
   <!-- ───────── HERO ───────── -->
   <header class="landing-section">
-    <h1 class="animated fade-slide-up delay-0">Welcome to <span>AnimateItNow</span></h1>
-    <h2 class="animated fade-slide-up delay-1">
+    <h1 class="fade-in">Welcome to <span>AnimateItNow</span></h1>
+    <h2 class="fade-in delay-1">
       A creative space where contributors build beautiful web components.
     </h2>
-    <p class="animated fade-slide-up delay-2">
+    <p class="fade-in delay-2">
       This project is a collaborative, open-source platform for sharing and
       discovering stunning web UI components. Join us to contribute, learn,
       and inspire others!
     </p>
-
     <a href="#faq" class="cta-btn bounce ripple btn-press"
    onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
    Get Started
 </a>
-    <div class="hero-buttons animated delay-3">
-      <a href="#faq" class="cta-btn ripple btn-press">Get Started</a>
-      <a href="editor.html" target="_blank" class="editor-btn ripple btn-press" rel="noopener noreferrer">
-        <i class="fas fa-code"></i> Code Editor
-      </a>
-    </div>
 
   </header>
 
@@ -124,17 +117,15 @@
     <!-- ─────── OUR SINGLE STATIC FAQ ─────── -->
     <section id="faq" class="faq-section info-section scroll-fade">
       <div class="faq-container">
-        <h2 class="faq-title" style="text-align: center;">Frequently Asked Questions</h2>
-        <p class="faq-subtitle" style="text-align: center;">Everything you need to know about AnimateItNow</p>
-        <div class="faq-btn-style faq-item glow-wrap">
-          <button class="faq-btn" onclick="displaycategory('general')">General</button>
-          <button class="faq-btn" onclick="displaycategory('technical')">Technical</button>
-        </div>
-        <!--General-->
-        <div id="general-faq">
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-              What is AnimateItNow?
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <p class="faq-subtitle">Everything you need to know about AnimateItNow</p>
+
+        <div class="faq-list">
+          <!-- 01 -->
+          <div class="faq-item glow-wrap">
+            <div class="faq-question-header" onclick="toggleFAQ(this)">
+              <h3>What is this project?</h3>
+              <div class="faq-icon-static"><i class="fas fa-question"></i></div>
             </div>
             <div class="faq-answer-content">
               <p>AnimateItNow is an open-source platform that helps beginners learn web development by building and exploring simple animations using HTML, CSS, and JavaScript. It offers a collaborative space for contributors to create, improve, and share animation templates while gaining hands-on coding experience.</p>
@@ -397,7 +388,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© <script>document.write(new Date().getFullYear())</script> AnimateItNow. Made with ❤️ by <span class="highlight">Anuj<a href="https://www.linkedin.com/in/anujshrivastava1/" class="tooltip-link" target="_blank">Project Admin</a></span> and Contributors.</p>
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
     </div>
   </footer>
 
@@ -1021,7 +1012,7 @@ document.addEventListener('DOMContentLoaded', initTheme);
   }
 }
   </style>
-</div>
+
   
 </body>
 
