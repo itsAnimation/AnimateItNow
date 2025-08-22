@@ -1,4 +1,4 @@
-
+﻿
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -170,7 +170,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-<<<<<<< HEAD
   initScrollReveal()
   window.addEventListener('pageshow', () => { initScrollReveal() })
   window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
@@ -180,8 +179,6 @@ window.addEventListener("DOMContentLoaded", () => {
       window.scrollRevealManager.disconnect() 
     } 
   })
-=======
->>>>>>> c668d7634b79569200755b94405d407e9b988531
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
@@ -366,7 +363,6 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
   if (!logo) return;
@@ -394,8 +390,3 @@ hamburger.addEventListener("click", () => {
   navMenu.classList.toggle("active");
   document.body.classList.toggle("menu-open");
 });
-=======
-
-
-
->>>>>>> c668d7634b79569200755b94405d407e9b988531
