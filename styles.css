@@ -457,13 +457,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
-<<<<<<< HEAD
   display: flex ;
   flex-direction: column;
-=======
-  display: flex !important;
-  flex-direction: column !important;
->>>>>>> c668d7634b79569200755b94405d407e9b988531
   gap: 5px;
 }
 
@@ -595,6 +590,117 @@ body {
 .fade-in span{
   color: #00d1ff;
 }
+
+/* hamburger menu */
+html, body {
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: relative;
+  z-index: 4000; /* ensure it's on top */
+}
+
+.hamburger{
+  display: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  z-index: 5000;
+  position: absolute;
+  right: 20px;
+}
+
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+@media(max-width:1024px){
+
+  .hamburger{
+    display: block;
+    position: absolute;
+    right: 20px;
+    /* top: 20px; */
+  }
+  
+  .hamburger.active .bar:nth-child(2){
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 250px;
+    height: 100vh;
+    background:  rgba(2, 13, 47);
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    z-index: 3000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-right.active{
+    right: 0;
+  }
+
+  .nav-links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    list-style: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .nav-links a{
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+  color: #4ade80; /* green hover */
+   }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .snakeList{
+    display: none !important;
+  }
+}
+
 
 /* Landing Section */
 .landing-section {
