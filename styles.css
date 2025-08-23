@@ -3107,6 +3107,103 @@ body.dark .template-card:hover {
   justify-content: center;
 }
 
+/* Effect Container - holds both the box and dropdown */
+.effect-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Effect Copy Dropdown Styles */
+.effect-copy-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.effect-copy-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+  min-width: 110px;
+}
+
+.effect-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.effect-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 110px;
+  box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  z-index: 1000;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+}
+
+.effect-dropdown-content.show {
+  display: block;
+  animation: fadeInEffect 0.3s ease;
+}
+
+.effect-dropdown-content .dropdown-item {
+  color: #333;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 12px;
+}
+
+.effect-dropdown-content .dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.effect-dropdown-content .dropdown-item:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.effect-dropdown-content .dropdown-item:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+@keyframes fadeInEffect {
+  from {opacity: 0; transform: translateX(-50%) translateY(-10px);}
+  to {opacity: 1; transform: translateX(-50%) translateY(0);}
+}
+
+/* Dark theme adjustments for effect dropdowns */
+.dark .effect-dropdown-content {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.dark .effect-dropdown-content .dropdown-item {
+  color: #fff;
+}
+
+.dark .effect-dropdown-content .dropdown-item:hover {
+  background-color: #404040;
+}
+
 .box {
   width: 300px;
   height: 300px;

@@ -102,22 +102,192 @@
     <section class="playground-section ">
         <h1 class="fade-in">Live Transition Playground</h1>
         <div class="para-box fade-in"><p>Hover over the boxes to experience different CSS style effects!</p></div>
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+          <span id="toastMessage"></span>
+        </div>
+
         <div class="effects">
-            <div class="box scale">Scale</div>
-            <div class="box translate">Translate</div>
-            <div class="box rotate">Rotate</div>
-            <div class="box Box-Shadow">Box-Shadow</div>
-            <div class="box Background-Color">Background-Color</div>
-            <div class="box Color">Color</div>
+            <div class="effect-container">
+                <div class="box scale">Scale</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('scale')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-scale">
+                        <button class="dropdown-item" onclick="copyEffectCode('scale', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('scale', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('scale', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('scale', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box translate">Translate</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('translate')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-translate">
+                        <button class="dropdown-item" onclick="copyEffectCode('translate', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('translate', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('translate', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('translate', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box rotate">Rotate</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('rotate')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-rotate">
+                        <button class="dropdown-item" onclick="copyEffectCode('rotate', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('rotate', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('rotate', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('rotate', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box Box-Shadow">Box-Shadow</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('box-shadow')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-box-shadow">
+                        <button class="dropdown-item" onclick="copyEffectCode('box-shadow', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('box-shadow', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('box-shadow', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('box-shadow', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box Background-Color">Background-Color</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('background-color')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-background-color">
+                        <button class="dropdown-item" onclick="copyEffectCode('background-color', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('background-color', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('background-color', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('background-color', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box Color">Color</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('color')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-color">
+                        <button class="dropdown-item" onclick="copyEffectCode('color', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('color', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('color', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('color', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
 
             <!-- adding new hover effects animations-->
-             <div class="box shaky">Shaking box</div>
+            <div class="effect-container">
+                <div class="box shaky">Shaking box</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('shaky')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-shaky">
+                        <button class="dropdown-item" onclick="copyEffectCode('shaky', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('shaky', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('shaky', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('shaky', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
 
-             <div class="box flip">Box Flip</div>
-             <div class="box gradient">Gradient Box</div>
-             <div class="box letter-spacing">Letter<br> Spacing</div>
-             <div class="box image-reveal">Image Reveal</div>
-             <div class="box blur-reveal">Blur Reveal</div>
+            <div class="effect-container">
+                <div class="box flip">Box Flip</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('flip')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-flip">
+                        <button class="dropdown-item" onclick="copyEffectCode('flip', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('flip', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('flip', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('flip', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box gradient">Gradient Box</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('gradient')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-gradient">
+                        <button class="dropdown-item" onclick="copyEffectCode('gradient', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('gradient', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('gradient', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('gradient', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box letter-spacing">Letter<br> Spacing</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('letter-spacing')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-letter-spacing">
+                        <button class="dropdown-item" onclick="copyEffectCode('letter-spacing', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('letter-spacing', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('letter-spacing', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('letter-spacing', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box image-reveal">Image Reveal</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('image-reveal')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-image-reveal">
+                        <button class="dropdown-item" onclick="copyEffectCode('image-reveal', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('image-reveal', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('image-reveal', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('image-reveal', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="effect-container">
+                <div class="box blur-reveal">Blur Reveal</div>
+                <div class="effect-copy-dropdown">
+                    <button class="effect-copy-btn" onclick="toggleEffectDropdown('blur-reveal')">
+                        <i class="fa fa-code"></i> Copy Code <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="effect-dropdown-content" id="dropdown-blur-reveal">
+                        <button class="dropdown-item" onclick="copyEffectCode('blur-reveal', 'css')">CSS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('blur-reveal', 'js')">JS</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('blur-reveal', 'react')">React</button>
+                        <button class="dropdown-item" onclick="copyEffectCode('blur-reveal', 'tailwind')">Tailwind</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
   </main>
@@ -176,6 +346,306 @@
       if (window.lucide) {
         lucide.createIcons();
       }
+    });
+    
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      
+      if (!toast || !toastMessage) return;
+
+      toastMessage.textContent = message;
+      
+      if (type === 'error') {
+        toast.style.backgroundColor = '#e74c3c';
+      } else {
+        toast.style.backgroundColor = '#333';
+      }
+      
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Individual Effect Dropdown Functions
+    function toggleEffectDropdown(effectName) {
+      console.log('Toggle effect dropdown:', effectName);
+      
+      // Close all other effect dropdowns first
+      document.querySelectorAll('.effect-dropdown-content').forEach(dropdown => {
+        if (dropdown.id !== `dropdown-${effectName}`) {
+          dropdown.classList.remove('show');
+        }
+      });
+      
+      const dropdown = document.getElementById(`dropdown-${effectName}`);
+      if (dropdown) {
+        dropdown.classList.toggle('show');
+        console.log(`Effect dropdown ${effectName} toggled, show class:`, dropdown.classList.contains('show'));
+      }
+    }
+    
+    function copyEffectCode(effectName, format) {
+      console.log(`Copy effect code: ${effectName} in ${format} format`);
+      
+      // Close the dropdown
+      const dropdown = document.getElementById(`dropdown-${effectName}`);
+      if (dropdown) {
+        dropdown.classList.remove('show');
+      }
+      
+      const effectCodeSnippets = getEffectCodeSnippets(effectName);
+      const code = effectCodeSnippets[format];
+      
+      if (!code) {
+        showToast(`${format.toUpperCase()} code not available for ${effectName}`, 'error');
+        return;
+      }
+      
+      navigator.clipboard.writeText(code).then(() => {
+        showToast(`${effectName.replace('-', ' ').toUpperCase()} code copied in ${format.toUpperCase()} format ✅`);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        showToast('Failed to copy code', 'error');
+      });
+    }
+    
+    function getEffectCodeSnippets(effectName) {
+      const snippets = {
+        'scale': {
+          css: `/* Scale Effect */
+.box {
+  width: 300px;
+  height: 300px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box.scale:hover {
+  transform: scale(1.1);
+}`,
+          js: `// Scale Effect - JavaScript
+const scaleBox = document.querySelector('.scale');
+
+scaleBox.addEventListener('mouseenter', () => {
+  scaleBox.style.transform = 'scale(1.1)';
+});
+
+scaleBox.addEventListener('mouseleave', () => {
+  scaleBox.style.transform = 'scale(1)';
+});`,
+          react: `// Scale Effect - React Component
+import React, { useState } from 'react';
+
+const ScaleBox = ({ children }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        width: '300px',
+        height: '300px',
+        background: '#1a1a1a',
+        borderRadius: '8px',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        transform: isHovered ? 'scale(1.1)' : 'scale(1)'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+    </div>
+  );
+};`,
+          tailwind: `<!-- Scale Effect - Tailwind CSS -->
+<div class="w-72 h-72 bg-gray-900 rounded-lg transition-all duration-300 cursor-pointer hover:scale-110">
+  Scale Effect
+</div>`
+        },
+        'translate': {
+          css: `/* Translate Effect */
+.box {
+  width: 300px;
+  height: 300px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box.translate:hover {
+  transform: translateY(-20px);
+}`,
+          js: `// Translate Effect - JavaScript
+const translateBox = document.querySelector('.translate');
+
+translateBox.addEventListener('mouseenter', () => {
+  translateBox.style.transform = 'translateY(-20px)';
+});
+
+translateBox.addEventListener('mouseleave', () => {
+  translateBox.style.transform = 'translateY(0)';
+});`,
+          react: `// Translate Effect - React Component
+import React, { useState } from 'react';
+
+const TranslateBox = ({ children }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        width: '300px',
+        height: '300px',
+        background: '#1a1a1a',
+        borderRadius: '8px',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        transform: isHovered ? 'translateY(-20px)' : 'translateY(0)'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+    </div>
+  );
+};`,
+          tailwind: `<!-- Translate Effect - Tailwind CSS -->
+<div class="w-72 h-72 bg-gray-900 rounded-lg transition-all duration-300 cursor-pointer hover:-translate-y-5">
+  Translate Effect
+</div>`
+        },
+        'rotate': {
+          css: `/* Rotate Effect */
+.box {
+  width: 300px;
+  height: 300px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box.rotate:hover {
+  transform: rotate(15deg);
+}`,
+          js: `// Rotate Effect - JavaScript
+const rotateBox = document.querySelector('.rotate');
+
+rotateBox.addEventListener('mouseenter', () => {
+  rotateBox.style.transform = 'rotate(15deg)';
+});
+
+rotateBox.addEventListener('mouseleave', () => {
+  rotateBox.style.transform = 'rotate(0deg)';
+});`,
+          react: `// Rotate Effect - React Component
+import React, { useState } from 'react';
+
+const RotateBox = ({ children }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        width: '300px',
+        height: '300px',
+        background: '#1a1a1a',
+        borderRadius: '8px',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        transform: isHovered ? 'rotate(15deg)' : 'rotate(0deg)'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+    </div>
+  );
+};`,
+          tailwind: `<!-- Rotate Effect - Tailwind CSS -->
+<div class="w-72 h-72 bg-gray-900 rounded-lg transition-all duration-300 cursor-pointer hover:rotate-12">
+  Rotate Effect
+</div>`
+        },
+        'box-shadow': {
+          css: `/* Box Shadow Effect */
+.box {
+  width: 300px;
+  height: 300px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box.Box-Shadow:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}`,
+          js: `// Box Shadow Effect - JavaScript
+const shadowBox = document.querySelector('.Box-Shadow');
+
+shadowBox.addEventListener('mouseenter', () => {
+  shadowBox.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+});
+
+shadowBox.addEventListener('mouseleave', () => {
+  shadowBox.style.boxShadow = 'none';
+});`,
+          react: `// Box Shadow Effect - React Component
+import React, { useState } from 'react';
+
+const ShadowBox = ({ children }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        width: '300px',
+        height: '300px',
+        background: '#1a1a1a',
+        borderRadius: '8px',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        boxShadow: isHovered ? '0 20px 40px rgba(0,0,0,0.3)' : 'none'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+    </div>
+  );
+};`,
+          tailwind: `<!-- Box Shadow Effect - Tailwind CSS -->
+<div class="w-72 h-72 bg-gray-900 rounded-lg transition-all duration-300 cursor-pointer hover:shadow-2xl">
+  Shadow Effect
+</div>`
+        }
+      };
+      
+      // Add more effects as needed
+      return snippets[effectName] || {
+        css: '/* Code not available */',
+        js: '// Code not available',
+        react: '// Code not available',
+        tailwind: '<!-- Code not available -->'
+      };
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      // Close all effect dropdowns when clicking outside
+      document.querySelectorAll('.effect-dropdown-content').forEach(effectDropdown => {
+        const effectButton = effectDropdown.previousElementSibling;
+        if (effectButton && !effectButton.contains(e.target) && !effectDropdown.contains(e.target)) {
+          effectDropdown.classList.remove('show');
+        }
+      });
     });
   </script>
   <script src="script.js"></script>
