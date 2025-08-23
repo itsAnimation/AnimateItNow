@@ -6,17 +6,17 @@ Welcome to the learning guide for **AnimateItNow**! This document is designed to
 
 ## 📚 Table of Contents
 
-1. [Project Overview](#-project-overview)
+1. [Project Overview](#project-overview)
 2. [Architecture & Design](#architecture--design)
-3. [Code Structure Deep Dive](#-code-structure-deep-dive)
+3. [Code Structure Deep Dive](#code-structure-deep-dive)
 4. [Templates & Reusability](#templates--reusability)
 5. [CSS Styling Explained](#css-styling-explained)
 6. [JavaScript Functionality Breakdown](#javascript-functionality-breakdown)
-7. [Key Programming Concepts](#-key-programming-concepts)
+7. [Key Programming Concepts](#key-programming-concepts)
 8. [Best Practices for Contributors](#best-practices-for-contributors)
-9. [How to Extend AnimateItNow](#-how-to-extend-animateitnow)
-10. [Troubleshooting Guide](#-troubleshooting-guide)
-11. [Getting Started as a Contributor](#-getting-started-as-a-contributor)
+9. [How to Extend AnimateItNow](#how-to-extend-animateitnow)
+10. [Troubleshooting Guide](#troubleshooting-guide)
+11. [Getting Started as a Contributor](#getting-started-as-a-contributor)
 
 
 ## 🎯 Project Overview
@@ -32,7 +32,7 @@ Welcome to the learning guide for **AnimateItNow**! This document is designed to
 - **Open for Contributions**: Easy to extend with new animations, templates, or features.
 
 
-## Architecture & Design
+## 🏗️ Architecture & Design
 
 ### Design Philosophy
 
@@ -71,7 +71,7 @@ The main HTML file sets up the page layout and loads styles and scripts. It refe
 - **Maintainability**: Clear hierarchy and logical grouping of elements
 
 
-## Templates & Reusability
+### Templates & Reusability
 
 Reusable templates are stored in `templates.html` and the `templates/` folder. These include:
 
@@ -82,7 +82,7 @@ Reusable templates are stored in `templates.html` and the `templates/` folder. T
 
 You can add new templates by creating a new HTML file in the `templates/` folder and referencing it in your main HTML.
 
-## CSS Styling Explained
+### CSS Styling (`styles.css`)
 
 Modern CSS is used for layout, animations, and responsive design. Key features include:
 
@@ -92,7 +92,7 @@ Modern CSS is used for layout, animations, and responsive design. Key features i
 - **Component Classes**: Styles for buttons, modals, loaders, etc.
 
 
-## JavaScript Functionality Breakdown
+### JavaScript Logic (`script.js`)
 
 All interactivity and dynamic behavior is handled in `script.js`. This includes:
 
@@ -124,7 +124,7 @@ Functions are modular and well-commented. You can add new features by creating n
 - **Responsive Layouts**: Mobile-friendly design
 
 
-## Best Practices for Contributors
+## � Best Practices for Contributors
 
 1. **Follow File Structure**: Place new templates in `templates/`, images in `images/`, and keep logic in `script.js`.
 2. **Comment Your Code**: Write clear comments for new functions and components.
