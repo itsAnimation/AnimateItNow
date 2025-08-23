@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Footer Section Variants with Expandable Code</title>
+    <meta name="description"
+        content="A comprehensive collection of CSS animation templates and effects for web developers" />
+
+    <!-- Apple Touch Icons -->
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        :root {
+            --nav-text: #222;
+            --accent: #007bff;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-top: 64px;
+            /* offset for fixed navbar */
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            height: 60px !important;
+        }
+
+        body {
+            padding-top: 60px !important;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+
+        .expand-btn {
+            display: block;
+            margin: 25px auto 10px;
+            padding: 8px 18px;
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .code-block {
+            display: none;
+            background: #222;
+            color: #ddd;
+            padding: 20px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode variables */
+        body.dark-theme {
+            --nav-text: #eee;
+            --accent: #90caf9;
+            background-color: #121212;
+            color: #eee;
+        }
+
+        body.dark-theme .navbar {
+            background: rgba(40, 40, 40, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        body.dark-theme .nav-links a {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme .nav-links a.active,
+        body.dark-theme .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        body.dark-theme #theme-toggle {
+            color: var(--nav-text);
+        }
+
+        body.dark-theme section {
+            background-color: #1f1f1f;
+            box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+        }
+
+        body.dark-theme .subtitle {
+            color: #bbb;
+        }
+
+        body.dark-theme .expand-btn {
+            background-color: #0056b3;
+            color: #eee;
+        }
+
+        body.dark-theme .expand-btn:hover {
+            background-color: #003865;
+            color: #ddd;
+        }
+
+        body.dark-theme .code-block {
+            background-color: #111;
+            color: #ddd;
+        }
+
+        .copy-btn {
+            display: block;
+            margin: 25px auto 10px;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--accent);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            font-size: 1rem;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        /* ================================
+   SHARED STYLES
+   ================================ */
+        .footer-bottom {
+            font-size: 0.85rem;
+            padding-top: 24px;
+            margin-top: 32px;
+            border-top: 1px solid #cbd5e1;
+            color: #cbd5e1;
+            text-align: center;
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        .footer-bottom a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .newsletter-form {
+            display: flex;
+            align-items: center;
+            background-color: #1e293b;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form i {
+            color: #ffffff;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            color: #93c5fd;
+        }
+
+        .social-icons {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #93c5fd;
+        }
+
+        /* ================================
+   FOOTER 1 — Chobani Style
+   ================================ */
+        .footer-chobani {
+            background-color: #7a853a;
+            color: #ffffff;
+            padding: 48px 24px;
+            font-family: system-ui, sans-serif;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .footer-columns {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-newsletter {
+            max-width: 320px;
+            color: #ffffff;
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .footer-newsletter label {
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .footer-newsletter input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-newsletter button {
+            background-color: #ffffff;
+            color: #7a853a;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-newsletter button:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* ================================
+   FOOTER 2 — Style Quadrant
+   ================================ */
+        .footer-style {
+            background: linear-gradient(to right, #0f172a, #3b1f1f);
+            color: #ffffff;
+            padding: 48px 24px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 36px;
+            font-family: 'Segoe UI', sans-serif;
+            position: relative;
+        }
+
+        .footer-box {
+            flex: 1 1 240px;
+            min-width: 200px;
+        }
+
+        .footer-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .footer-box p,
+        .footer-box a {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            line-height: 1.6;
+        }
+
+        .footer-box a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        /* ================================
+   RESPONSIVE LAYOUTS
+   ================================ */
+        @media (max-width: 768px) {
+
+            .footer-top,
+            .footer-columns,
+            .footer-style {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-columns {
+                gap: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .newsletter-form input {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scroll-fade">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+            <span class="site-name">Animate It Now</span>
+        </div>
+
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../templates.html">Templates</a></li>
+                <li><a href="../contributors.html">Contributors</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../leaderboard.html">Leaderboard</a></li>
+                <!--leaderboard linkup> -->
+                <!-- cursor toggle switch -->
+                <!-- <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li> -->
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub Repo" class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <h2>1. Footer Variant: Chobani-Style Newsletter & Legal Links</h2>
+        <p class="subtitle">Structured footer with brand, multi-column links, newsletter input, and legal links</p>
+
+        <div class="footer footer-chobani">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Chobani</h3>
+                </div>
+
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <a href="#"><i class="fas fa-briefcase"></i> Careers</a>
+                        <a href="#"><i class="fas fa-headset"></i> Customer Care</a>
+                        <a href="#"><i class="fas fa-users"></i> Alumni</a>
+                    </div>
+                    <div class="footer-col">
+                        <a href="#"><i class="fas fa-newspaper"></i> Chobani News</a>
+                        <a href="#"><i class="fas fa-utensils"></i> Foodservice</a>
+                    </div>
+                    <div class="footer-col">
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Chobani® Canada</a>
+                        <a href="#"><i class="fas fa-globe"></i> Chobani® Mexico</a>
+                    </div>
+                </div>
+
+                <div class="footer-newsletter">
+                    <p><i class="fas fa-envelope-open-text"></i> Get the freshest Chobani news</p>
+                    <form>
+                        <input type="email" placeholder="Your email here" required />
+                        <label>
+                            <input type="checkbox" required />
+                            By checking this box, you agree that you are at least 13 years of age.
+                        </label>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <a href="#">Website Terms</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Accessibility Statement</a>
+                <a href="#">CA Transparency in Supply Chains Act</a>
+                <a href="#">Supplier Code of Conduct</a>
+                <a href="#">Marketing to Children</a>
+                <a href="#">Do Not Sell My Information</a>
+            </div>
+        </div>
+
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">
+&lt;!-- Font Awesome CDN --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /&gt;
+
+&lt;!-- HTML --&gt;
+&lt;div class="footer footer-chobani"&gt;
+  &lt;div class="footer-top"&gt;
+    &lt;div class="footer-brand"&gt;
+      &lt;h3&gt;Chobani&lt;/h3&gt;
+    &lt;/div&gt;
+
+    &lt;div class="footer-columns"&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-briefcase"&gt;&lt;/i&gt; Careers&lt;/a&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-headset"&gt;&lt;/i&gt; Customer Care&lt;/a&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-users"&gt;&lt;/i&gt; Alumni&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-newspaper"&gt;&lt;/i&gt; Chobani News&lt;/a&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-utensils"&gt;&lt;/i&gt; Foodservice&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-map-marker-alt"&gt;&lt;/i&gt; Chobani® Canada&lt;/a&gt;
+        &lt;a href="#"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt; Chobani® Mexico&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="footer-newsletter"&gt;
+      &lt;p&gt;&lt;i class="fas fa-envelope-open-text"&gt;&lt;/i&gt; Get the freshest Chobani news&lt;/p&gt;
+      &lt;form&gt;
+        &lt;input type="email" placeholder="Your email here" required /&gt;
+        &lt;label&gt;
+          &lt;input type="checkbox" required /&gt;
+          By checking this box, you agree that you are at least 13 years of age.
+        &lt;/label&gt;
+        &lt;button type="submit"&gt;&lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Subscribe&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="footer-bottom"&gt;
+    &lt;a href="#"&gt;Website Terms&lt;/a&gt;
+    &lt;a href="#"&gt;Privacy Policy&lt;/a&gt;
+    &lt;a href="#"&gt;Accessibility Statement&lt;/a&gt;
+    &lt;a href="#"&gt;CA Transparency in Supply Chains Act&lt;/a&gt;
+    &lt;a href="#"&gt;Supplier Code of Conduct&lt;/a&gt;
+    &lt;a href="#"&gt;Marketing to Children&lt;/a&gt;
+    &lt;a href="#"&gt;Do Not Sell My Information&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+.footer-chobani {
+  background-color: #7a853a;
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: system-ui, sans-serif;
+}
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.footer-brand h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+.footer-columns {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-col a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.footer-col a i {
+  margin-right: 6px;
+}
+.footer-col a:hover {
+  text-decoration: underline;
+}
+.footer-newsletter {
+  max-width: 300px;
+  color: #ffffff;
+}
+.footer-newsletter p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.footer-newsletter input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: none;
+}
+.footer-newsletter label {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+}
+.footer-newsletter button {
+  background-color: #ffffff;
+  color: #7a853a;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.footer-newsletter button i {
+  margin-right: 6px;
+}
+.footer-newsletter button:hover {
+  background-color: #f1f5f9;
+}
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8rem;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.footer-bottom a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-columns {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+&lt;/style&gt;
+  </pre>
+        <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+    </section>
+
+    <section>
+        <h2>2. Footer Variant: Style Quadrant: About, Contact Info, Links & Newsletter</h2>
+        <p class="subtitle">Segmented footer with branding, contact details, navigation links, newsletter input, and
+            social media icons</p>
+
+        <footer class="footer-style">
+            <div class="footer-box">
+                <h3>Style Quadrant</h3>
+                <p>Where fashion meets function. Discover curated styles and timeless pieces that elevate your everyday
+                    look.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQs</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest updates and offers.</p>
+                <form class="newsletter-form">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Enter your email" />
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+
+            <div class="footer-box">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Fashion Street, Mumbai</p>
+                <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> support@stylequadrant.com</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Style Quadrant. All rights reserved.</p>
+            </div>
+        </footer>
+
+
+        <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+        <pre class="code-block">
+&lt;!-- Font Awesome CDN --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css&quot; /&gt;
+
+&lt;!-- HTML --&gt;
+&lt;div class=&quot;footer footer-style&quot;&gt;
+  &lt;div class=&quot;footer-box&quot;&gt;
+    &lt;h3&gt;Style&lt;/h3&gt;
+    &lt;p&gt;Subscribe Easy Tutorials Youtube channel for web design and development tips.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;footer-box&quot;&gt;
+    &lt;h3&gt;Office&lt;/h3&gt;
+    &lt;p&gt;ITPL Road, Whitefield, Bangalore&lt;/p&gt;
+    &lt;p&gt;Email: avinasdham@outlook.com&lt;/p&gt;
+    &lt;p&gt;Phone: +91 – 0123456789&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;footer-box&quot;&gt;
+    &lt;h3&gt;Links&lt;/h3&gt;
+    &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Services&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;About Us&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Features&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Contacts&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;footer-box&quot;&gt;
+    &lt;h3&gt;Newsletter&lt;/h3&gt;
+    &lt;form class=&quot;newsletter-form&quot;&gt;
+      &lt;i class=&quot;fas fa-envelope&quot;&gt;&lt;/i&gt;
+      &lt;input type=&quot;email&quot; placeholder=&quot;Enter your email&quot; required /&gt;
+      &lt;button type=&quot;submit&quot;&gt;&lt;i class=&quot;fas fa-arrow-right&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;div class=&quot;social-icons&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fab fa-facebook-f&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fab fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fab fa-whatsapp&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fab fa-pinterest-p&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;footer-bottom&quot;&gt;
+  &lt;p&gt;Easy Tutorials © 2024 – All Rights Reserved&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+.footer-style {
+  background: linear-gradient(to right, #0f172a, #3b1f1f);
+  color: #ffffff;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  font-family: system-ui, sans-serif;
+}
+.footer-box {
+  flex: 1 1 220px;
+}
+.footer-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.footer-box p,
+.footer-box a {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  text-decoration: none;
+  margin-bottom: 8px;
+  display: block;
+}
+.footer-box a:hover {
+  text-decoration: underline;
+}
+.newsletter-form {
+  display: flex;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.newsletter-form i {
+  color: #ffffff;
+  margin-right: 8px;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.newsletter-form input::placeholder {
+  color: #cbd5e1;
+}
+.newsletter-form button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.social-icons {
+  margin-top: 12px;
+}
+.social-icons a {
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.social-icons a:hover {
+  color: #93c5fd;
+}
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .footer-style {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+&lt;/style&gt;
+</pre>
+        <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+    </section>
+
+    <script>
+        // Toggle code block visibility
+        function toggleCode(button) {
+            const code = button.nextElementSibling;
+            const isVisible = code.style.display === "block";
+            code.style.display = isVisible ? "none" : "block";
+            button.textContent = isVisible ? "Show Code" : "Hide Code";
+        }
+
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                const codeBlock = btn.previousElementSibling;
+
+                try {
+                    await navigator.clipboard.writeText(codeBlock.innerText);
+                    btn.textContent = "Copied!";
+                    btn.disabled = true;
+                    setTimeout(() => {
+                        btn.textContent = "Copy Code";
+                        btn.disabled = false;
+                    }, 1500);
+                } catch (err) {
+                    console.error("Copy failed:", err);
+                }
+            });
+        });
+
+        // Dark mode toggle
+        const themeToggleBtn = document.getElementById("theme-toggle");
+        themeToggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            if (document.body.classList.contains("dark-theme")) {
+                themeToggleBtn.textContent = "☀️";
+                themeToggleBtn.setAttribute("aria-label", "Toggle light mode");
+            } else {
+                themeToggleBtn.textContent = "🌙";
+                themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
+            }
+        });
+    </script>
+</body>
+
+</html>
