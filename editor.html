@@ -1,77 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AnimateItNow - Live Editor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="editor.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnimateItNow - Enhanced Code Editor</title>
 
-  <body class="bg-gray-50 text-gray-900 min-h-screen">
-    <header id="header-section" class="bg-white shadow p-4 flex items-center justify-between">
-      <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
-      <div class="flex gap-2">
-        <button
-          id="resetBtn"
-          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
-          title="Reset"
-        >
-          &#x21bb;
-        </button>
-        <button
-          id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
-        >
-          Run
-        </button>
-      </div>
-    </header>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="editor.css" />
 
-    <main class="p-6 space-y-6">
-      <div class="flex flex-row gap-4">
-        <!-- HTML Editor -->
-        <div class="flex-1">
-          <div class="editor-label html-label">HTML</div>
-          <textarea
-            id="htmlCode"
-            class="editor-area html-area"
-            placeholder="Write HTML here..."
-          ></textarea>
-        </div>
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+</head>
 
-        <!-- CSS Editor -->
-        <div class="flex-1">
-          <div class="editor-label css-label">CSS</div>
-          <textarea
-            id="cssCode"
-            class="editor-area css-area"
-            placeholder="Write CSS here..."
-          ></textarea>
-        </div>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+  <header id="header-section" class="bg-white shadow p-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
+    <div class="flex gap-2">
+      <button
+        id="resetBtn"
+        class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
+        title="Reset"
+      >
+        &#x21bb;
+      </button>
+      <button
+        id="runBtn"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
+      >
+        Run
+      </button>
+      <button onclick="toggleTheme()" class="bg-gray-200 px-3 py-1 rounded">🌙</button>
+    </div>
+  </header>
 
-        <!-- JS Editor -->
-        <div class="flex-1">
-          <div class="editor-label js-label">JavaScript</div>
-          <textarea
-            id="jsCode"
-            class="editor-area js-area"
-            placeholder="Write JavaScript here..."
-          ></textarea>
+  <main class="p-6 space-y-6">
+    <div class="flex flex-row gap-4">
+      <!-- HTML Editor -->
+      <div class="flex-1">
+        <div class="editor-label html-label font-semibold mb-2">HTML</div>
+        <textarea id="htmlCode" class="editor-area html-area"></textarea>
+        <div class="flex gap-2 mt-2">
+          <button onclick="copyCode(htmlEditor)" class="bg-green-600 text-white px-3 py-1 rounded">Copy</button>
+          <button onclick="resetCode(htmlEditor, defaultHTML)" class="bg-gray-500 text-white px-3 py-1 rounded">Reset</button>
         </div>
       </div>
 
-      <!-- Output -->
-      <div>
-        <h2 class="Output-line">Output</h2>
-        <iframe
-          id="output"
-          class="w-full h-[300px] border border-gray-300 rounded bg-white"
-        ></iframe>
+      <!-- CSS Editor -->
+      <div class="flex-1">
+        <div class="editor-label css-label font-semibold mb-2">CSS</div>
+        <textarea id="cssCode" class="editor-area css-area"></textarea>
+        <div class="flex gap-2 mt-2">
+          <button onclick="copyCode(cssEditor)" class="bg-green-600 text-white px-3 py-1 rounded">Copy</button>
+          <button onclick="resetCode(cssEditor, defaultCSS)" class="bg-gray-500 text-white px-3 py-1 rounded">Reset</button>
+        </div>
       </div>
-    </main>
 
-    <script src="editor.js"></script>
-  </body>
+      <!-- JS Editor -->
+      <div class="flex-1">
+        <div class="editor-label js-label font-semibold mb-2">JavaScript</div>
+        <textarea id="jsCode" class="editor-area js-area"></textarea>
+        <div class="flex gap-2 mt-2">
+          <button onclick="copyCode(jsEditor)" class="bg-green-600 text-white px-3 py-1 rounded">Copy</button>
+          <button onclick="resetCode(jsEditor, defaultJS)" class="bg-gray-500 text-white px-3 py-1 rounded">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div>
+      <h2 class="font-bold mb-2">Live Preview</h2>
+      <iframe id="preview" class="w-full h-[300px] border border-gray-300 rounded bg-white"></iframe>
+    </div>
+  </main>
+
+  <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-black text-white px-4 py-2 rounded hidden">
+    Code copied!
+  </div>
+
+  <!-- CodeMirror Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
+  <script>
+    // Default boilerplate
+    const defaultHTML = `<h1>Hello World 👋</h1>\n<p>Welcome to AnimateItNow 🚀</p>`;
+    const defaultCSS = `body { font-family: Arial, sans-serif; color: black; background: white; margin: 20px; }
+h1 { color: #333; }`;
+    const defaultJS = `console.log("✨ Hello from JavaScript!");`;
+
+    // Initialize editors
+    const htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlCode"), {
+      mode: "xml", lineNumbers: true, theme: "dracula"
+    });
+    const cssEditor = CodeMirror.fromTextArea(document.getElementById("cssCode"), {
+      mode: "css", lineNumbers: true, theme: "dracula"
+    });
+    const jsEditor = CodeMirror.fromTextArea(document.getElementById("jsCode"), {
+      mode: "javascript", lineNumbers: true, theme: "dracula"
+    });
+
+    // Set defaults
+    htmlEditor.setValue(defaultHTML);
+    cssEditor.setValue(defaultCSS);
+    jsEditor.setValue(defaultJS);
+
+    // Update Preview
+    function updatePreview() {
+      const html = htmlEditor.getValue();
+      const css = `<style>${cssEditor.getValue()}</style>`;
+      const js = `<script>${jsEditor.getValue()}<\/script>`;
+      document.getElementById("preview").srcdoc = html + css + js;
+    }
+
+    // Debounce
+    function debounce(fn, delay) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+      };
+    }
+    [htmlEditor, cssEditor, jsEditor].forEach(editor => editor.on("change", debounce(updatePreview, 300)));
+    updatePreview();
+
+    // Copy
+    function copyCode(editor) {
+      navigator.clipboard.writeText(editor.getValue()).then(() => showToast("Code copied!"));
+    }
+
+    // Reset
+    function resetCode(editor, def) {
+      editor.setValue(def);
+      updatePreview();
+    }
+
+    // Toast
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.classList.remove("hidden");
+      setTimeout(() => { toast.classList.add("hidden"); }, 2000);
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+    }
+  </script>
+</body>
 </html>
-
