@@ -88,7 +88,6 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="template-manager.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -239,7 +238,7 @@
       /*  Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
-        box-shadow: 0 2px 6px rgb(255, 255, 255 / 0.1);
+        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
       }
       /* Feature Cards Preview */
       .feature-preview {
@@ -398,86 +397,6 @@
       .mini-toggle.on .mini-handle {
         transform: translateX(25px);
       }
-
-          /* like */
-.like-button {
-  padding: 5px 25px;
-  background: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  transition: all 0.3s;
-  margin-top: 5px;
-}
-
-.like-button:hover {
-  background: #f0f0f0;
-}
-
-.liked {
-  color: #ff0000;
-}
-
-#likeIcon {
-  font-size: 24px;
-}
-
-/* this is the quick preview styless */
-.template-btn {
-  display: inline-block; 
-  margin: 0;             
-}
-
-.quick-preview-btn {
-  display: block;
-  width: 40%;
-  padding: 10px 0;
-  margin-bottom: 4px;
-  background: linear-gradient(90deg, #6c63ff, #00c9ff); 
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.quick-preview-btn:hover {
-  background: linear-gradient(90deg, #5a52e0, #00b0e6);
-  transform: translateY(-2px);
-}
-
-.quick-preview-btn:active {
-  transform: translateY(0);
-}
-
-.quick-preview-image {
-  display: none;
-  position: absolute;
-  bottom: 100%; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 410px;
-  height: 350px;
-  background-size: cover;
-  background-position: top center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 100;
-  margin-bottom: 8px; 
-}
-.quick-preview-btn:hover .quick-preview-image {
-  display: block;
-}
-
       /*Display Properties Preview */
       .display-preview {
         background-color: #4f8cff;
@@ -640,22 +559,7 @@
       <div class="nav-left">
         <a href="/" class="logo-link">
           <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-          <span class="site-name">
-            <span>A</span>
-            <span>n</span>
-            <span>i</span>
-            <span>m</span>
-            <span>a</span>
-            <span>t</span>
-            <span>e</span>
-            <span>&nbsp;</span>
-            <span>I</span>
-            <span>t</span>
-            <span>&nbsp;</span>
-            <span>N</span>
-            <span>o</span>
-            <span>w</span>
-          </span>
+          <span class="site-name">Animate It Now</span>
         </a>
       </div>
 
@@ -663,18 +567,18 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
           <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
           <!-- cursor toggle switch -->
-          <li class="snakeList">
+          <li>
             <label class="switch" title="Toggle Snake Cursor">
               <input type="checkbox" id="cursorToggle" />
               <span class="slider round"></span>
             </label>
-            <span class="snakeLabel">Snake Cursor</span>
           </li>
           <!-- github icon -->
           <li>
@@ -710,7 +614,7 @@
             </a>
           </li>
           <li>
-            <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <button id="theme-toggle" aria-label="Toggle Theme">
               <i data-lucide="moon"></i>
             </button>
           </li>
@@ -719,11 +623,6 @@
     </nav>
     <main class="templates-main">
       <h1>Templates Gallery</h1>
-      <div class="template-toolbar" style="margin-top: 10px">
-        <button class="btn" id="btn-import">Import</button>
-        <button class="btn" id="btn-export-selected">Export Selected</button>
-        <button class="btn secondary" id="btn-export-all">Export All</button>
-      </div>
       <div
         style="display: flex; justify-content: center; margin-bottom: 1.5rem"
       >
@@ -754,50 +653,22 @@
           <div class="template-preview login-preview">
             <div class="page link"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="login-glassmorphism"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="glassmorphism-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/login.html">
           <h2>Login Page UI</h2>
           <div class="template-preview login-preview"></div>
-          <button class="quick-preview-btn" data-template-id="login-template"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="login-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/button.html">
           <h2>Hover Button Effects</h2>
           <div class="template-preview button-preview"></div>
-          <button class="quick-preview-btn" data-template-id="hover-button">Quick Preview
-          <div class="quick-preview-image"></div>
-          </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="hoverButton-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/loader.html">
           <h2>Loaders</h2>
           <div class="template-preview loader-preview"></div>
-          <button class="quick-preview-btn" data-template-id="loaders"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="loaders-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <!-- aading texts effects -->
         <a class="template-card" href="templates/text_effects_anim.html">
@@ -805,51 +676,23 @@
           <div class="template-preview text-preview">
             <h2 id="textTarget"></h2>
           </div>
-          <button class="quick-preview-btn" data-template-id="text-animation"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="effects-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/modal.html">
           <h2>Popup Templates</h2>
           <div class="template-preview modal-preview"></div>
-           <button class="quick-preview-btn" data-template-id="modal-popup"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="popup-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/glassmorphism.html">
           <h2>Glassmorphism profile card</h2>
           <div class="template-preview modal-preview"></div>
-          <button class="quick-preview-btn" data-template-id="profile-glassmorphism"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="glassmorphism-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <!-- adding code Playground -->
         <a class="template-card" href="templates/code_playground.html">
           <h2>Code PlayGround</h2>
           <div class="template-preview code-play-preview">Write Code</div>
-          <button class="quick-preview-btn" data-template-id="code-playground"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="codePlayground-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
 
         <a class="template-card" href="templates/feature.html">
@@ -859,14 +702,7 @@
             <div class="mini-card">Card2</div>
             <div class="mini-card">Card3</div>
           </div>
-          <button class="quick-preview-btn" data-template-id="features-card"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="featureCards-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/hero.html">
           <h2>Hero Section Template</h2>
@@ -875,44 +711,15 @@
             <div class="hero-text-line"></div>
             <div class="hero-text-line short"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="hero-section"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="heroSection-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <article class="template-card">
           <h2>Animated Button</h2>
           <div class="template-preview button-preview"></div>
-          <button class="quick-preview-btn" data-template-id="button-animation"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-          <a class="template-btn" href="templates/animated-btn.html">View Template</a>
-          <button class="like-button" data-template-id="animatedButton-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
+          <a class="template-btn" href="templates/animated-btn.html"
+            >View Template</a
+          >
         </article>
-        <!-- Like Buttons Gallery Card (dup for visibility near top) -->
-        <a class="template-card" href="templates/Like_Buttons.html">
-          <h2>Like Buttons Gallery</h2>
-          <div class="template-preview social-share-preview" style="gap:10px; font-size:24px; background: linear-gradient(135deg,#1b191a,#1b191a);">
-            <span>❤️</span>
-            <span>👏</span>
-            <span>🔖</span>
-            <span>🎉</span>
-            <span>✨</span>
-          </div>
-          <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="likeButtons-template-top">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-        </a>
-        
         <a class="template-card" href="templates/social-share-buttons.html">
           <h2>Animated Social Share Buttons</h2>
           <div class="template-preview social-share-preview">
@@ -920,14 +727,7 @@
             <i class="fab fa-twitter social-icon-preview"></i>
             <i class="fab fa-instagram social-icon-preview"></i>
           </div>
-          <button class="quick-preview-btn" data-template-id="social-buttons"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="share-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <!-- CORRECTED TOOLTIP COMPONENT -->
         <a class="template-card" href="templates/tooltip.html">
@@ -935,14 +735,7 @@
           <div class="template-preview">
             <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
           </div>
-          <button class="quick-preview-btn" data-template-id="tooltip"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <span class="template-btn">View Template</span>
-          <button class="like-button" data-template-id="tooltip-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <!-- Responsive Card Carousel -->
         <a class="template-card" href="templates/carousel.html">
@@ -952,14 +745,7 @@
             <div class="mini-card"></div>
             <div class="mini-card"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="card-carousel"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <span class="template-btn">View Template</span>
-          <button class="like-button" data-template-id="carousel-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
         <a class="template-card" href="templates/toggles-and-checkboxes.html">
@@ -972,26 +758,12 @@
               <div class="mini-handle"></div>
             </div>
           </div>
-          <button class="quick-preview-btn" data-template-id="animated-toggles"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="toggle-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/neumorphic.html">
           <h2>Neumorphic Button Effects</h2>
           <div class="template-preview neumorphic-preview"></div>
-          <button class="quick-preview-btn" data-template-id="neumorphic-buttons"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="neumorphic-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/navbar.html">
           <h2>Navbar Variants</h2>
@@ -1000,14 +772,7 @@
             <div class="navbar-line link"></div>
             <div class="navbar-line link short"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="navbar-variants"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="navbar-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/display.html">
           <h2>Display Properties</h2>
@@ -1016,126 +781,35 @@
             <div class="display-box box2"></div>
             <div class="display-box box3"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="display-properties"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="display-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/CardHoverEffects.html">
           <h2>3D Card Hover Effects</h2>
           <div class="template-preview navbar-preview">
             <div class="navbar-line link"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="3D-card-hover"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="3Dcard-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/page_not_found_template.html">
           <h2>404 Page not found</h2>
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="page-404"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="404-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/contact.html">
         <h2>Contact Us Template</h2>
         <div class="template-preview navbar-preview">
           <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
         </div>
-        <button class="quick-preview-btn" data-template-id="contact-us"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
         <button class="template-btn">View Template</button>
-        <button class="like-button" data-template-id="contact-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
       </a>
         <a class="template-card" href="templates/accordian.html">
           <h2>Accordian Template</h2>
           <div class="template-preview 404-preview">
             <div class="page link"></div>
           </div>
-          <button class="quick-preview-btn" data-template-id="accordian"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
           <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="Accordian-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-        </a>
-
-      <!-- Professional Template section -->
-        <a class="template-card" href="templates/professional_temp.html">
-          <h2>Professional Templates</h2>
-          <div class="template-preview hero-preview">
-            <div class="hero-image"></div>
-            <div class="hero-text-line"></div>
-            <div class="hero-text-line short"></div>
-          </div>
-          <button class="quick-preview-btn" data-template-id="professional"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-          <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="professional-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-        </a>
-       <a class="template-card" href="templates/timer.html">
-          <h2>Countdown Timer Template</h2>
-          <div class="template-preview timer-preview"></div>
-          <button class="quick-preview-btn" data-template-id="timers"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-          <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="timer-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-        </a>
-
-        <a class="template-card" href="templates/text_animations.html">
-          <h2>Text Animations</h2>
-          <div class="template-preview modal-preview"></div>
-          <button class="quick-preview-btn" data-template-id="text-animation2"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-          <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="textanimation-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
-        </a>
-
-        <a class="template-card" href="templates/skeletons.html">
-          <h2>Skeleton Loader </h2>
-          <div class="template-preview modal-preview"></div>
-          <button class="quick-preview-btn" data-template-id="skeleton"> Quick Preview
-           <div class="quick-preview-image"></div>
-           </button>
-          <button class="template-btn">View Template</button>
-          <button class="like-button" data-template-id="skeleton-template">
-            <span class="like-icon">🤍</span>
-            <span class="like-count">0</span> Likes
-          </button>
         </a>
         <a class="template-card" href="templates/celebrations.html">
           <h2>Celebrations Template</h2>
@@ -1167,6 +841,7 @@
             <span class="like-count">0</span> Likes
           </button>
         </a>
+
       </section>
     </main>
 
@@ -1174,14 +849,8 @@
       <footer class="footer scroll-fade">
         <div class="footer-content">
           <div class="footer-left">
-            <a href="index.html" style="text-decoration: none; color: inherit;">
-              <h2>AnimateItNow</h2>
-            </a>
+            <h2>AnimateItNow</h2>
             <p>Creating impactful web animations and templates for everyone.</p>
-          </div>
-          <div class="footer-about-section">
-            <h3>Know us more</h3>
-            <a href="about.html">About</a>
           </div>
           <div class="footer-right">
             <h4>Connect With Us</h4>
@@ -1216,7 +885,7 @@
         </div>
         <div class="footer-bottom">
           <p>
-            © <script>document.write(new Date().getFullYear())</script> AnimateItNow. Made with ❤️ by
+            © 2025 AnimateItNow. Made with ❤️ by
             <span class="highlight">Anuj</span> and Contributors.
           </p>
         </div>
@@ -1225,10 +894,6 @@
     <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
     <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-    <script src="dependency-resolver.js"></script>
-    <script src="package-validator.js"></script>
-    <script src="template-manager.js"></script>
     <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
     <script>
@@ -1354,63 +1019,6 @@
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
       typeLoop(); // start animation
-
-       // New Like Button System
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.like-button').forEach(button => {
-    const templateId = button.getAttribute('data-template-id');
-    const icon = button.querySelector('.like-icon');
-    const count = button.querySelector('.like-count');
-
-    let templateData = JSON.parse(localStorage.getItem(templateId)) || {
-      totalLikes: 0,
-      hasLiked: false
-    };
-
-    updateButton();
-
-    button.addEventListener('click', function (event) {
-      //  Prevent anchor navigation
-      event.stopPropagation();
-      event.preventDefault();
-
-      // Toggle like state
-      if (templateData.hasLiked) {
-        templateData.totalLikes--;
-        templateData.hasLiked = false;
-      } else {
-        templateData.totalLikes++;
-        templateData.hasLiked = true;
-      }
-
-      localStorage.setItem(templateId, JSON.stringify(templateData));
-      updateButton();
-    });
-
-    function updateButton() {
-      count.textContent = templateData.totalLikes;
-      icon.textContent = templateData.hasLiked ? '❤' : '🤍';
-      button.classList.toggle('liked', templateData.hasLiked);
-    }
-  });
-});
-
-
-document.querySelectorAll('.quick-preview-btn').forEach(btn => {
-  let loaded = false;
-  const id = btn.getAttribute('data-template-id');
-  const imgDiv = btn.querySelector('.quick-preview-image');
-
-  btn.addEventListener('mouseenter', () => {
-    if (!loaded) {
-      imgDiv.style.backgroundImage = `url('preview/${id}.png')`;
-      loaded = true;
-    }
-  });
-});
-
-
-
     </script>
   </body>
 </html>
