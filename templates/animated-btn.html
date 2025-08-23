@@ -10,6 +10,7 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../templates/style/link.css">
 
     <style>
         * {
@@ -870,6 +871,330 @@
                 opacity: 0;
             }
         }
+
+        .shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: rgb(0,140,255);
+    box-shadow: 0 0 25px rgb(0,140,255);
+    cursor: pointer;
+}
+
+.shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(0,140,255),
+                0 0 25px rgb(0,140,255),
+                0 0 50px rgb(0,140,255),
+                0 0 100px rgb(0,140,255);
+}
+
+
+/* Gradient Border Button Styles - Add this to your CSS file */
+.button {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    width: 128px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.button:hover::after {
+    filter: blur(30px);
+}
+
+.button:hover::before {
+    transform: rotate(-180deg);
+}
+
+.button:active::before {
+    scale: 0.7;
+}
+
+
+/* Hover Lift Button Styles */
+.lift-btn {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.lift-btn:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.lift-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Delete Expand Button Styles - Add to your CSS file */
+.delete-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: .3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.delete-btn:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+}
+
+.delete-btn:hover .svgIcon {
+    width: 50px;
+    transition-duration: .3s;
+    transform: translateY(60%);
+}
+
+.delete-btn::before {
+    position: absolute;
+    top: -20px;
+    content: "Delete";
+    color: white;
+    transition-duration: .3s;
+    font-size: 2px;
+}
+
+.delete-btn:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+}
+
+/* Neon Glow Button Styles - Add to your CSS file */
+.neon-btn {
+    --glow-color: rgb(217, 176, 255);
+    --glow-spread-color: rgba(191, 123, 255, 0.781);
+    --enhanced-glow-color: rgb(231, 206, 255);
+    --btn-color: rgb(100, 61, 136);
+    border: .25em solid var(--glow-color);
+    padding: 1em 3em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+               0 0 4em 1em var(--glow-spread-color),
+               inset 0 0 .75em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.neon-btn::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+.neon-btn:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+               0 0 4em 2em var(--glow-spread-color),
+               inset 0 0 .75em .25em var(--glow-color);
+}
+
+.neon-btn:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+               0 0 2.5em 2em var(--glow-spread-color),
+               inset 0 0 .5em .25em var(--glow-color);
+}
+
+/* Reflection Glow Button Styles - Add to your CSS file */
+.reflection-btn {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.reflection-btn:active {
+    scale: 0.92;
+}
+
+.reflection-btn:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}
+
+/* Neumorphism Button Styles - Add to your CSS file */
+.neuro-btn {
+    margin: 12px;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    background: #333;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+               inset -5px -5px 10px #222;
+    font-family: "Damion", cursive;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: rgb(161, 161, 161);
+    transition: 500ms;
+    display: flex;
+}
+
+.neuro-btn:hover {
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+               inset -5px -5px 10px #444;
+    color: #d6d6d6;
+    transition: 500ms;
+}
+
+
+/* Icon Transform Button Styles - Add to your CSS file */
+.icon-transform-btn {
+    font-family: inherit;
+    font-size: 20px;
+    background: #212121;
+    color: white;
+    fill: rgb(155, 153, 153);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+}
+
+.icon-transform-btn span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.icon-transform-btn svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon-transform-btn:hover {
+    background: #000;
+}
+
+.icon-transform-btn:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+}
+
+.icon-transform-btn:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+}
+
+.icon-transform-btn:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+.icon-transform-btn:active {
+    transform: scale(0.95);
+}
     </style>
 </head>
 
@@ -2236,6 +2561,712 @@ magneticBtn.addEventListener('mouseleave', () => {
                     </div>
                 </div>
             </div>
+
+
+<!-- Button 21: Hover Underline -->
+<div class="button-card">
+    <h3>Hover Underline Effect</h3>
+    <div class="button-wrapper">
+        <button class="hover-underline-btn">
+            HOVER ME
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+<pre>&lt;button class="hover-underline-btn"&gt;
+    HOVER ME
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+<pre>.hover-underline-btn {
+    position: relative;
+    color: white;
+    font-size: 25px;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.hover-underline-btn::after,
+.hover-underline-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: #f44336;
+    transition: width 0.5s;
+}
+
+.hover-underline-btn::before {
+    right: 0;
+    left: auto;
+}
+
+.hover-underline-btn:hover::after,
+.hover-underline-btn:hover::before {
+    width: 100%;
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 22: Gradient Border Hover -->
+<div class="button-card">
+    <h3>Gradient Border Hover</h3>
+    <div class="button-wrapper">
+        <button class="gradient-border-btn">
+            Button
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+<pre>&lt;button class="gradient-border-btn"&gt;
+    Button
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+<pre>.gradient-border-btn {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gradient-border-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    width: 128px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gradient-border-btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.gradient-border-btn:hover::after {
+    filter: blur(30px);
+}
+
+.gradient-border-btn:hover::before {
+    transform: rotate(-180deg);
+}
+
+.gradient-border-btn:active::before {
+    scale: 0.7;
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 23: Shadow Glow -->
+<div class="button-card">
+    <h3>Shadow Glow Effect</h3>
+    <div class="button-wrapper">
+        <button class="shadow__btn">
+            uiverse
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="shadow__btn"&gt;
+    uiverse
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: rgb(0,140,255);
+    box-shadow: 0 0 5px rgb(0,140,255),
+                0 0 25px rgb(0,140,255),
+                0 0 50px rgb(0,140,255),
+                0 0 100px rgb(0,140,255);
+}
+.shadow__btn:hover {
+    box-shadow: 0 0 10px rgb(0,140,255),
+                0 0 40px rgb(0,140,255),
+                0 0 80px rgb(0,140,255),
+                0 0 120px rgb(0,140,255);
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 24: Gradient Border -->
+<div class="button-card">
+    <h3>Gradient Border Effect</h3>
+    <div class="button-wrapper">
+        <button class="button">
+            Button
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="button"&gt;
+    Button
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.button {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    width: 128px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.button::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+.button:hover::after {
+    filter: blur(30px);
+}
+.button:hover::before {
+    transform: rotate(-180deg);
+}
+.button:active::before {
+    scale: 0.7;
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 25: Hover Lift -->
+<div class="button-card">
+    <h3>Hover Lift Effect</h3>
+    <div class="button-wrapper">
+        <button class="lift-btn">
+            Button
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="lift-btn"&gt;
+    Button
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.lift-btn {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+.lift-btn:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+.lift-btn:active {
+    transform: translateY(-1px);
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 26: Delete Expand -->
+<div class="button-card">
+    <h3>Delete Expand Effect</h3>
+    <div class="button-wrapper">
+        <button class="delete-btn">
+            <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="delete-btn"&gt;
+    &lt;svg viewBox="0 0 448 512" class="svgIcon"&gt;&lt;path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.delete-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+}
+.svgIcon {
+    width: 12px;
+    transition-duration: .3s;
+}
+.svgIcon path {
+    fill: white;
+}
+.delete-btn:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+}
+.delete-btn:hover .svgIcon {
+    width: 50px;
+    transition-duration: .3s;
+    transform: translateY(60%);
+}
+.delete-btn::before {
+    position: absolute;
+    top: -20px;
+    content: "Delete";
+    color: white;
+    transition-duration: .3s;
+    font-size: 2px;
+}
+.delete-btn:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+}</pre>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button 27: Neon Glow -->
+<div class="button-card">
+    <h3>Neon Glow Effect</h3>
+    <div class="button-wrapper">
+        <button class="neon-btn">
+            Button
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="neon-btn"&gt;
+    Button
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.neon-btn {
+    --glow-color: rgb(217, 176, 255);
+    --glow-spread-color: rgba(191, 123, 255, 0.781);
+    --enhanced-glow-color: rgb(231, 206, 255);
+    --btn-color: rgb(100, 61, 136);
+    border: .25em solid var(--glow-color);
+    padding: 1em 3em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+               0 0 4em 1em var(--glow-spread-color),
+               inset 0 0 .75em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.neon-btn::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(2em);
+    opacity: .7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+.neon-btn:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+               0 0 4em 2em var(--glow-spread-color),
+               inset 0 0 .75em .25em var(--glow-color);
+}
+.neon-btn:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+               0 0 2.5em 2em var(--glow-spread-color),
+               inset 0 0 .5em .25em var(--glow-color);
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- Button 28: Reflection Glow -->
+<div class="button-card">
+    <h3>Reflection Glow Effect</h3>
+    <div class="button-wrapper">
+        <button class="reflection-btn">
+            Watch
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="reflection-btn"&gt;
+    Watch
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.reflection-btn {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+.reflection-btn:active {
+    scale: 0.92;
+}
+.reflection-btn:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}</pre>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button 29: Neumorphism -->
+<div class="button-card">
+    <h3>Neumorphism Effect</h3>
+    <div class="button-wrapper">
+        <button class="neuro-btn">
+            Button
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="neuro-btn"&gt;
+    Button
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.neuro-btn {
+    margin: 12px;
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    background: #333;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+               inset -5px -5px 10px #222;
+    font-family: "Damion", cursive;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: rgb(161, 161, 161);
+    transition: 500ms;
+    display: flex;
+}
+.neuro-btn:hover {
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+               inset -5px -5px 10px #444;
+    color: #d6d6d6;
+    transition: 500ms;
+}</pre>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button 30: Icon Transform -->
+<div class="button-card">
+    <h3>Icon Transform Effect</h3>
+    <div class="button-wrapper">
+        <button class="icon-transform-btn">
+            <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="30"
+                        height="30"
+                        class="icon"
+                    >
+                        <path
+                            d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                        ></path>
+                    </svg>
+                </div>
+            </div>
+            <span>Save</span>
+        </button>
+    </div>
+    <button class="show-code-btn" onclick="toggleCode(this)">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z">
+            </path>
+        </svg>
+        Show Code
+    </button>
+    <div class="code-display">
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchTab(this, 'html')">HTML</button>
+            <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
+        </div>
+        <div class="code-content active" data-lang="html">
+            <pre>&lt;button class="icon-transform-btn"&gt;
+    &lt;div class="svg-wrapper-1"&gt;
+        &lt;div class="svg-wrapper"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" class="icon"&gt;
+                &lt;path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"&gt;&lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span&gt;Save&lt;/span&gt;
+&lt;/button&gt;</pre>
+        </div>
+        <div class="code-content" data-lang="css">
+            <pre>.icon-transform-btn {
+    font-family: inherit;
+    font-size: 20px;
+    background: #212121;
+    color: white;
+    fill: rgb(155, 153, 153);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+}
+.icon-transform-btn span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+.icon-transform-btn svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+.icon-transform-btn:hover {
+    background: #000;
+}
+.icon-transform-btn:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+}
+.icon-transform-btn:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+}
+.icon-transform-btn:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+.icon-transform-btn:active {
+    transform: scale(0.95);
+}</pre>
+        </div>
+    </div>
+</div>
+
+<!-- User can add from here by coping the format of each session -->
 
         </div>
     </div>
