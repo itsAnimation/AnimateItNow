@@ -47,52 +47,49 @@
   <div id="progress-bar"></div>
   <!-- ProgressBar Ends -->
 
-  <!-- ───────── NAVBAR ───────── -->
+ <!-- ───────── NAVBAR ───────── -->
   <nav class="navbar scroll-fade">
     <div class="nav-left">
       <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
+      <span class="site-name">AnimateItNow</span>
     </div>
 
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
-        <!-- cursor toggle switch -->
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <!-- github icon -->
-        <li>
+    <!-- Hamburger button for mobile -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      ☰
+    </button>
 
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active" >Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="editor.html" target="_blank">Editor</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html"  ">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        
+
+        <!-- GitHub icon -->
+        <li>
           <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
-            aria-label="GitHub Repo" class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
-               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
-               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
-               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-            </svg>
+            aria-label="GitHub Repo" class="github-icon text-center">
+              <i class="fa-brands fa-github fa-2x"></i> <!-- 3x size -->
           </a>
         </li>
-        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
-              <i data-lucide="moon"></i>
-            </button>
+
+        <li>
+          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
         </li>
+
+        
       </ul>
     </div>
   </nav>
+
 
   <!-- ───────── HERO ───────── -->
   <header class="landing-section">
@@ -399,587 +396,200 @@
   <!-- PWA Support -->
   <script src="pwa.js"></script>
 
-  <!-- testimonials-effect-animations -->
-   <!-- GSSOC'25 Contributor : 6vam4arya -->
-  <style>
-    .testi {
-  animation: fadeIn 1s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Header animations with 3D text effect */
-.testi .head h3 {
-  animation: flipInX 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  text-shadow: 2px 2px 0 rgba(29, 197, 200, 0.2);
-  position: relative;
-}
-
-.testi .head p {
-  animation: flipInY 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
-  animation-fill-mode: both;
-}
-
-@keyframes flipInX {
-  from {
-    transform: perspective(400px) rotateX(90deg);
-    opacity: 0;
+      <style>
+      :root {
+    --primary-color: purple;
+    --primary-hover-color: darkviolet;
+    --text-color: #333;
+    --background-color: #fff;
+    --icon-color: purple;
+    --darkmode-icon-color: gray;
   }
-  40% {
-    transform: perspective(400px) rotateX(-20deg);
+
+  body.dark {
+    --primary-color: gray;
+    --primary-hover-color: lightgray;
+    --text-color: #ddd;
+    --background-color: #121212;
+    --icon-color: gray;
   }
-  60% {
-    transform: perspective(400px) rotateX(10deg);
-    opacity: 1;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: var(--background-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
-  80% {
-    transform: perspective(400px) rotateX(-5deg);
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  to {
-    transform: perspective(400px);
+
+  .logo {
+    height: 40px;
   }
-}
 
-@keyframes flipInY {
-  from {
-    transform: perspective(400px) rotateY(90deg);
-    opacity: 0;
+  .site-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
   }
-  40% {
-    transform: perspective(400px) rotateY(-20deg);
+
+  .nav-right {
+    display: flex;
+    align-items: center;
   }
-  60% {
-    transform: perspective(400px) rotateY(10deg);
-    opacity: 1;
+
+  .nav-links {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
   }
-  80% {
-    transform: perspective(400px) rotateY(-5deg);
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
-  to {
-    transform: perspective(400px);
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--primary-hover-color);
   }
-}
 
-/* Cool neon glow effect for headings */
-.testi .head h3::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  color: transparent;
-  text-shadow: 0 0 10px #1dc5c8, 0 0 20px #1dc5c8, 0 0 30px #1dc5c8;
-  filter: blur(10px);
-  opacity: 0;
-  animation: neonPulse 2s ease-in-out infinite alternate, fadeIn 1s ease-out 1.5s forwards;
-}
-
-@keyframes neonPulse {
-  from { filter: blur(10px); }
-  to { filter: blur(15px); }
-}
-
-/* Holographic wrapper effect */
-.testi .wrapper {
-  transition: all 0.5s ease-out;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-radius: 15px;
-}
-
-.testi .wrapper::before {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.02) 25%,
-    rgba(255,255,255,0.05) 50%,
-    rgba(255,255,255,0.02) 75%,
-    rgba(255,255,255,0) 100%
-  );
-  top: -50%;
-  left: -50%;
-  transform: rotate(45deg);
-  transition: transform 0.5s ease-out;
-  opacity: 0;
-}
-
-.testi .swiper-slide-active .wrapper::before {
-  opacity: 1;
-  animation: holographicShift 8s linear infinite;
-}
-
-@keyframes holographicShift {
-  0% { transform: rotate(45deg) translateY(-100%); }
-  100% { transform: rotate(45deg) translateY(100%); }
-}
-
-/* 3D flip card effect for thumbnail */
-.testi .thumbnail {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.testi .swiper-slide-active .thumbnail {
-  animation: floatAndRotate 5s ease-in-out infinite;
-}
-
-@keyframes floatAndRotate {
-  0%, 100% { transform: translateY(0) rotateY(0); }
-  25% { transform: translateY(-10px) rotateY(5deg); }
-  50% { transform: translateY(0) rotateY(0); }
-  75% { transform: translateY(10px) rotateY(-5deg); }
-}
-
-.testi .thumbnail img {
-  filter: contrast(110%) brightness(105%);
-  transition: all 0.8s ease-out;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.testi .swiper-slide-active .thumbnail img {
-  filter: contrast(110%) brightness(105%);
-  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes popIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
+  /* Center the theme toggle and any special nav items */
+  .snakeList,
+  .nav-links > li:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
   }
-  to {
-    transform: scale(1);
-    opacity: 1;
+
+  /* Theme toggle button */
+  #theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.3s ease;
   }
-}
 
-/* Enhanced thumbnail hover with glitch effect */
-.testi .swiper-slide-active .thumbnail:hover img {
-  animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-5px, 5px); }
-  40% { transform: translate(-5px, -5px); }
-  60% { transform: translate(5px, 5px); }
-  80% { transform: translate(5px, -5px); }
-  100% { transform: translate(0); }
-}
-
-/* Fancy liquid blob shape for thumbnail background */
-.testi .thumbnail::before {
-  transition: all 0.8s ease-out;
-  background-color: #1dc5c8;
-}
-
-.testi .swiper-slide-active .thumbnail::before {
-  animation: liquidBlob 10s ease-in-out infinite;
-}
-
-@keyframes liquidBlob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 70%; }
-  75% { border-radius: 40% 30% 70% 30% / 70% 50% 40% 60%; }
-}
-
-/* Text content animations with typewriter effect */
-.testi .aside {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.8s ease-out;
-}
-
-.testi .swiper-slide-active .aside {
-  opacity: 1;
-  transform: translateX(0);
-  animation: slideInRight 0.8s forwards 0.3s;
-}
-
-.testi .swiper-slide-active .aside > p {
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid transparent;
-  width: 0;
-  animation: typing 2s steps(40, end) forwards 0.5s,
-             cursorBlink 1s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; white-space: nowrap; }
-  to { width: 100%; white-space: normal; }
-}
-
-@keyframes cursorBlink {
-  from, to { border-color: transparent; }
-  50% { border-color: #1dc5c8; }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
+  #theme-toggle svg,
+  #theme-toggle i {
+    color: var(--icon-color);
+    width: 24px;
+    height: 24px;
+    transition: color 0.3s ease;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  #theme-toggle:hover {
+    color: var(--primary-hover-color);
   }
-}
 
-/* Quote marks with particle effect */
-.testi .aside > p::before,
-.testi .aside > p::after {
-  opacity: 0;
-  transition: all 0.8s ease-out;
-}
-
-.testi .swiper-slide-active .aside > p::before {
-  opacity: 0.3;
-  animation: particleFloat 5s ease-in-out infinite;
-}
-
-.testi .swiper-slide-active .aside > p::after {
-  opacity: 0.3;
-  animation: particleFloat 5.5s ease-in-out infinite reverse;
-}
-
-@keyframes particleFloat {
-  0% { transform: translateY(0) rotate(0); opacity: 0.3; }
-  50% { transform: translateY(-15px) rotate(5deg); opacity: 0.6; }
-  100% { transform: translateY(0) rotate(0); opacity: 0.3; }
-}
-
-/* Name section with 3D text effect */
-.testi .aside .name {
-  opacity: 0;
-  transform: perspective(500px) rotateX(45deg);
-  transform-origin: center bottom;
-  transition: all 0.5s ease-out;
-}
-
-.testi .swiper-slide-active .aside .name {
-  opacity: 1;
-  transform: perspective(500px) rotateX(0);
-  animation: flipUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
-}
-
-@keyframes flipUp {
-  from {
-    opacity: 0;
-    transform: perspective(500px) rotateX(45deg);
+  /* GitHub icon styling */
+  .github-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  to {
-    opacity: 1;
-    transform: perspective(500px) rotateX(0);
+
+  .github-icon i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
   }
-}
 
-/* Cool neon text effect for name */
-.testi .aside .name h4 {
-  position: relative;
-  display: inline-block;
-  color: #1dc5c8;
-  text-shadow: 0 0 5px rgba(29, 197, 200, 0.5);
-  animation: neonText 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes neonText {
-  from {
-    text-shadow: 0 0 5px rgba(29, 197, 200, 0.5), 
-                0 0 10px rgba(29, 197, 200, 0.3), 
-                0 0 15px rgba(29, 197, 200, 0.2);
+  .github-icon:hover i {
+    color: var(--primary-hover-color);
   }
-  to {
-    text-shadow: 0 0 10px rgba(29, 197, 200, 0.8), 
-                0 0 20px rgba(29, 197, 200, 0.5), 
-                0 0 30px rgba(29, 197, 200, 0.3);
+
+  /* Responsive Hamburger button styling */
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
   }
-}
 
-/* Cool hover effect with rainbow gradient underline */
-.testi .swiper-slide-active .aside .name h4::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: -5px;
-  left: 0;
-  background: linear-gradient(90deg, #1dc5c8, #9c27b0, #ff7043, #1dc5c8);
-  background-size: 300% 100%;
-  animation: lineGrow 0.5s forwards 1.5s, gradientShift 3s ease infinite;
-}
-
-@keyframes lineGrow {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Navigation buttons with futuristic glow effect */
-.testi :is(.swiper-button-next, .swiper-button-prev) {
-  transition: all 0.3s ease-out;
-  overflow: hidden;
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev):hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(29, 197, 200, 0.7), 
-              0 0 30px rgba(29, 197, 200, 0.4), 
-              0 0 45px rgba(29, 197, 200, 0.2);
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev)::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(29, 197, 200, 0.8) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev):hover::before {
-  opacity: 0.5;
-  animation: pulseButton 1s infinite alternate;
-}
-
-@keyframes pulseButton {
-  from { opacity: 0.3; transform: scale(0.8); }
-  to { opacity: 0.6; transform: scale(1.2); }
-}
-
-/* Pagination bullets with shooting star effect */
-.testi .swiper-pagination span {
-  transition: all 0.3s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-.testi .swiper-pagination span:hover {
-  transform: scale(1.5);
-}
-
-.testi .swiper-pagination .swiper-pagination-bullet-active {
-  position: relative;
-}
-
-.testi .swiper-pagination .swiper-pagination-bullet-active::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -100%;
-  width: 300%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #fff, transparent);
-  animation: shootingStar 2s linear infinite;
-}
-
-@keyframes shootingStar {
-  0% { left: -100%; opacity: 0; }
-  50% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-/* Slide transition with matrix effect */
-.swiper-slide {
-  opacity: 0.4;
-  transform: scale(0.85) translateY(30px);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(2px);
-  position: relative;
-}
-
-.swiper-slide::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(29, 197, 200, 0.1) 0%,
-    rgba(0, 0, 0, 0) 20%,
-    rgba(0, 0, 0, 0) 80%,
-    rgba(29, 197, 200, 0.1) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.swiper-slide-active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  filter: blur(0);
-}
-
-.swiper-slide-active::before {
-  opacity: 1;
-  animation: matrixRain 10s linear infinite;
-}
-
-@keyframes matrixRain {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100%; }
-}
-
-/* Cool entrance animation with shatter effect */
-.swiper-slide-active .wrapper {
-  animation: shatterIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-@keyframes shatterIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-  }
-  30% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    transform: scale(0.7);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-
-/* Prism light effect across slides */
-.swiper-slide-active .wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.2),
-    rgba(29, 197, 200, 0.2),
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: prismLight 7s ease-in-out infinite;
-}
-
-@keyframes prismLight {
-  0% { left: -150%; }
-  20%, 100% { left: 150%; }
-}
-
-/* Background cosmic particles effect */
-.site::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(1px 1px at 20% 30%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 70%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 20%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 50%, rgba(29, 197, 200, 0.3) 0%, transparent 100%);
-  background-size: 200% 200%;
-  animation: cosmicParticles 20s ease infinite;
-  z-index: -2;
-}
-
-@keyframes cosmicParticles {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-/* Media queries - preserve responsive design with enhanced desktop effects */
-@media screen and (min-width: 768px) {
-  .testi .wrapper {
-    flex-direction: row;
-    padding: 30px 100px;
-  }
-  
-  .testi .thumbnail {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .testi :is(.swiper-button-next, .swiper-button-prev) {
-    top: 50%;
-  }
-  
-  /* Enhanced desktop 3D perspective effect */
-  .swiper-slide-active .wrapper {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    animation: desktopReveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-  
-  @keyframes desktopReveal {
-    from {
-      opacity: 0;
-      transform: perspective(1000px) rotateY(-10deg) translateZ(-100px);
+  /* Show hamburger on smaller screens */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
     }
-    to {
-      opacity: 1;
-      transform: perspective(1000px) rotateY(0) translateZ(0);
+
+    .nav-right {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: var(--background-color);
+      width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-right.show {
+      transform: translateX(0);
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .nav-links li {
+      text-align: left;
     }
   }
-  
-  /* Desktop-only parallax effect */
-  .testi .aside {
-    transform: translateZ(20px);
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .thumbnail {
-    transform: translateZ(40px);
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .swiper-slide-active:hover .thumbnail {
-    transform: translateZ(60px);
-  }
-  
-  .testi .swiper-slide-active:hover .aside {
-    transform: translateZ(30px);
-  }
-}
 
-/* Additional cool zoom hover effect for mobile */
-@media screen and (max-width: 767px) {
-  .testi .swiper-slide-active .wrapper {
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .swiper-slide-active .wrapper:active {
-    transform: scale(0.95);
-  }
-}
   </style>
 
+    
+    <script>
+  const hamburger = document.getElementById("hamburger");
+  const navRight = document.querySelector(".nav-right");
+
+  hamburger.addEventListener("click", () => {
+    navRight.classList.toggle("show");
+  });
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof lucide !== 'undefined') {
+    lucide.replace({ color: getComputedStyle(document.documentElement).getPropertyValue('--purple-color').trim() });
+  }
+});
+
+</script>
+
+
+
+
   
+
 </body>
 
 </html>
