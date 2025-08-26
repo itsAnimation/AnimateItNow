@@ -1,3 +1,88 @@
+body {
+  cursor: none;
+}
+
+.faq-btn-style{
+  display:flex;
+  justify-content:center;
+  margin-bottom: 1rem; 
+}
+#blob-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  background: rgba(0, 255, 200, 0.25);
+  border: 2px solid #00ffe0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, background 0.3s ease;
+  mix-blend-mode: difference;
+  backdrop-filter: blur(4px);
+}
+
+#blob-cursor.hover {
+  transform: scale(2);
+  background: rgba(0, 255, 200, 0.5);
+}
+
+.magnetic {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.magnetic:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.faq-btn {
+  background: linear-gradient(90deg, #4f8cff 0%, #1dc5c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 32px;
+  margin: 24px 12px 12px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.15);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  outline: none;
+  position: relative;
+}
+.faq-btn:hover, .faq-btn:focus {
+  background: linear-gradient(90deg, #1dc5c8 0%, #4f8cff 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.18);
+}
+/* FAQ Section Styles */
+.faq-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 16px 0;
+  background: #fff;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+.faq-question {
+  padding: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f5f7fa;
+  border-bottom: 1px solid #eee;
+}
+.faq-answer {
+  padding: 16px;
+  display: none;
+  color: #333;
+  background: #fff;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
 /* Reset and base styles */
 * {
   margin: 0;
@@ -392,6 +477,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
@@ -457,6 +543,8 @@ body {
 /*Snake toggle */
 
 .snakeList{
+  display: flex;
+  flex-direction: column;
   display: flex !important;
   flex-direction: column !important;
   gap: 5px;
@@ -2992,5 +3080,20 @@ body.dark .playground-main h1{
 /* #search-bar::placeholder {
    color: rgba(31, 41, 55, 0.8);
 }
-
+.blob-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #ff0055;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  z-index: 9999;
+}
+.blob-cursor:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
 
