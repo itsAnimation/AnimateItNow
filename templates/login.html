@@ -611,14 +611,32 @@
     <section class="variant-1">
       <h2>Login Variant 1 - Classic</h2>
       <p class="subtitle">Simple white card login form</p>
-      <form
-        class="login-form"
-        onsubmit="event.preventDefault(); alert('Login Variant 1 submitted!');"
-      >
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
+        <form class="login-form" id="loginForm">
+          <input type="text" id="loginUsername" placeholder="Username" required />
+          <input type="password" id="loginPassword" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+        <div class="login-link" style="text-align: center; margin-top: 1rem;">
+          Don't have an account? <a href="../signup.html">Sign up here</a>
+        </div>
+        <script>
+          document.getElementById('loginForm').addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              const username = document.getElementById('loginUsername').value.trim();
+              const password = document.getElementById('loginPassword').value;
+              
+              const userData = JSON.parse(localStorage.getItem('userData'));
+              
+              if (userData && userData.username === username && userData.password === password) {
+                  localStorage.setItem('isLoggedIn', 'true');
+                  localStorage.setItem('currentUser', username);
+                  window.location.href = 'dashboard.html';
+              } else {
+                  alert('Invalid username or password. Please try again.');
+              }
+          });
+        </script>
       <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
       <pre class="code-block">
 &lt;form class="login-form"&gt;

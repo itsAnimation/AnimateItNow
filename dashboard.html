@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Animate It Now</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        .dashboard-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-section h1 {
+            color: #01924e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .action-btn {
+            background: #01924e;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background: radial-gradient(
+                circle,
+                rgba(52, 173, 128, 1) 0%,
+                rgba(34, 139, 84, 1) 100%
+            );
+            transform: translateY(-2px);
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            margin-top: 2rem;
+        }
+        
+        .logout-btn:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scroll-fade">
+        <div class="nav-left">
+            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+            <span class="site-name">Animate It Now</span>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="welcome-section">
+            <h1>Welcome, <span id="userName">User</span>!</h1>
+            <p>You have successfully logged into your Animate It Now dashboard.</p>
+        </div>
+        
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Projects Created</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Templates Used</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Contributions</div>
+            </div>
+        </div>
+        
+        <div class="quick-actions">
+            <a href="templates.html" class="action-btn">Browse Templates</a>
+            <a href="editor.html" class="action-btn">Create Animation</a>
+            <a href="playground.html" class="action-btn">Code Playground</a>
+            <a href="leaderboard.html" class="action-btn">View Leaderboard</a>
+        </div>
+        
+        <button class="action-btn logout-btn" id="logoutButton">Logout</button>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        const currentUser = localStorage.getItem('currentUser');
+        
+        if (!isLoggedIn || isLoggedIn !== 'true') {
+            // Redirect to login if not authenticated
+            window.location.href = 'login.html';
+        } else {
+            // Display username
+            document.getElementById('userName').textContent = currentUser || 'User';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
+        
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

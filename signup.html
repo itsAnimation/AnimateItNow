@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Animate It Now</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        /* Signup specific styles */
+        .signup-container {
+            max-width: 400px;
+            margin: 100px auto 50px;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"] {
+            padding: 0.8em 1em;
+            border-radius: 0.5em;
+            border: 1px solid #e0e7ff;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        .signup-form button {
+            background: #01924e;
+            color: #fff;
+            padding: 0.8em 1em;
+            border: none;
+            border-radius: 0.5em;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .signup-form button:hover {
+            background: radial-gradient(
+                circle,
+                rgba(52, 173, 128, 1) 0%,
+                rgba(34, 139, 84, 1) 100%
+            );
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+        
+        .login-link a {
+            color: #01924e;
+            text-decoration: none;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scroll-fade">
+        <div class="nav-left">
+            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+            <span class="site-name">Animate It Now</span>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join Animate It Now community</p>
+        
+        <form class="signup-form" id="signupForm">
+            <div>
+                <input type="text" id="username" placeholder="Username" required>
+                <div class="error-message" id="usernameError"></div>
+            </div>
+            
+            <div>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div>
+                <input type="password" id="password" placeholder="Password" required>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+            
+            <button type="submit">Create Account</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="login.html">Sign in here</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+                el.textContent = '';
+            });
+            
+            // Get form values
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            let isValid = true;
+            
+            // Validation
+            if (username.length < 3) {
+                document.getElementById('usernameError').textContent = 'Username must be at least 3 characters';
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email.includes('@')) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Store user data in localStorage (for demo purposes)
+                const userData = {
+                    username: username,
+                    email: email,
+                    password: password
+                };
+                
+                localStorage.setItem('userData', JSON.stringify(userData));
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', username);
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>
