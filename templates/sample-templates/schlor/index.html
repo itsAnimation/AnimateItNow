@@ -1,665 +1,1043 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAcademy Pro - Learn & Teach Coding</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --border-color: #e5e7eb;
+        }
 
-  <head>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #ffffff;
+        }
 
-    <title>Edu- Courses Platform</title>
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
 
-    <!-- Bootstrap core CSS -->
-    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
 
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="./assets/css/fontawesome.css">
-    <link rel="stylesheet" href="./assets/css/templatemo-scholar.css">
-    <link rel="stylesheet" href="./assets/css/owl.css">
-    <link rel="stylesheet" href="./assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-  </head>
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            transition: color 0.3s ease;
+        }
 
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Search Bar */
+        .search-container {
+            background: white;
+            border-radius: 50px;
+            padding: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            width: 100%;
+            border-radius: 45px;
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Category Pills */
+        .category-pill {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-pill:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Course Cards */
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--success-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-body {
+            padding: 20px;
+        }
+
+        .course-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .course-instructor {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .course-rating {
+            color: var(--warning-color);
+            margin-bottom: 15px;
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .course-price .original {
+            text-decoration: line-through;
+            color: #9ca3af;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--light-color);
+            padding: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Feature Section */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .course-image {
+                height: 150px;
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
 <body>
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-code"></i> CodeAcademy Pro</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <a href="#sell-course" class="btn btn-outline-custom me-2">Sell Course</a>
+                    <a href="#browse" class="btn btn-primary-custom">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <a href="./index.html" class="logo">
-                        <h1>Edu</h1>
-                    </a>
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4 fade-in-up">Learn Coding Skills That Matter</h1>
+                    <p class="lead mb-4 fade-in-up">Master programming languages, build real projects, and advance your career with our comprehensive coding courses.</p>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-container fade-in-up">
+                        <div class="input-group">
+                            <input type="text" class="search-input" id="courseSearch" placeholder="Search for courses, technologies, or instructors...">
+                        </div>
                     </div>
-                    <ul class="nav">
-                      <li class="scroll-to-section"><a href="./index.html#top" class="active">Home</a></li>
-                      <li class="scroll-to-section"><a href="./index.html#services">Services</a></li>
-                      <li class="scroll-to-section"><a href="./index.html#courses">Courses</a></li>
-                      <li class="scroll-to-section"><a href="./index.html#team">Team</a></li>
-                      <li class="scroll-to-section"><a href="./index.html#events">Events</a></li>
-                      <li class="scroll-to-section"><a href="./index.html#contact">Register Now!</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                </nav>
+                    
+                    <!-- Popular Categories -->
+                    <div class="mt-4 fade-in-up">
+                        <p class="mb-2">Popular: </p>
+                        <a href="#" class="category-pill" onclick="filterCourses('javascript')">JavaScript</a>
+                        <a href="#" class="category-pill" onclick="filterCourses('python')">Python</a>
+                        <a href="#" class="category-pill" onclick="filterCourses('react')">React</a>
+                        <a href="#" class="category-pill" onclick="filterCourses('nodejs')">Node.js</a>
+                        <a href="#" class="category-pill" onclick="filterCourses('mobile')">Mobile Dev</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="hero-illustration">
+                        <i class="fas fa-laptop-code" style="font-size: 15rem; opacity: 0.1;"></i>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  </header>
+    </section>
 
-  <div class="main-banner" id="top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="owl-carousel owl-banner">
-            <div class="item item-1">
-              <div class="header-text">
-                <span class="category">Our Courses</span>
-                <h2>With Edu Teachers, Everything Is Easier</h2>
-                <p>Edu is free CSS template designed by TemplateMo for online educational related websites. This layout is based on the famous Bootstrap v5.3.0 framework.</p>
-                <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Request Demo</a>
-                  </div>
-                  <div class="icon-button">
-                    <a href="#"><i class="fa fa-play"></i> What's Scholar?</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item item-2">
-              <div class="header-text">
-                <span class="category">Best Result</span>
-                <h2>Get the best result out of your effort</h2>
-                <p>You are allowed to use this template for any educational or commercial purpose. You are not allowed to re-distribute the template ZIP file on any other website.</p>
-                <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Request Demo</a>
-                  </div>
-                  <div class="icon-button">
-                    <a href="#"><i class="fa fa-play"></i> What's the best result?</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item item-3">
-              <div class="header-text">
-                <span class="category">Online Learning</span>
-                <h2>Online Learning helps you save the time</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporious incididunt ut labore et dolore magna aliqua suspendisse.</p>
-                <div class="buttons">
-                  <div class="main-button">
-                    <a href="#">Request Demo</a>
-                  </div>
-                  <div class="icon-button">
-                    <a href="#"><i class="fa fa-play"></i> What's Online Course?</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="services section" id="services">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item">
-            <div class="icon">
-              <img src="./assets/images/service-01.png" alt="online degrees">
-            </div>
-            <div class="main-content">
-              <h4>Online Degrees</h4>
-              <p>Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
-              <div class="main-button">
-                <a href="#">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item">
-            <div class="icon">
-              <img src="./assets/images/service-02.png" alt="short courses">
-            </div>
-            <div class="main-content">
-              <h4>Short Courses</h4>
-              <p>You can browse free templates based on different tags such as digital marketing, etc.</p>
-              <div class="main-button">
-                <a href="#">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item">
-            <div class="icon">
-              <img src="./assets/images/service-03.png" alt="web experts">
-            </div>
-            <div class="main-content">
-              <h4>Web Experts</h4>
-              <p>You can start learning HTML CSS by modifying free templates from our website too.</p>
-              <div class="main-button">
-                <a href="#">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section about-us">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-1">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Where shall we begin?
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  How do we work together?
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Why Edu is the best?
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  There are more than one hundred responsive HTML templates to choose from <strong>Template</strong>Mo website. You can browse by different tags or categories.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Do we get the best support?
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  You can also search on Google with specific keywords such as <code>templatemo business templates, templatemo gallery templates, admin dashboard templatemo, 3-column templatemo, etc.</code>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 align-self-center">
-          <div class="section-heading">
-            <h6>About Us</h6>
-            <h2>What make us the best academy online?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid risus commodo.</p>
-            <div class="main-button">
-              <a href="#">Discover More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <section class="section courses" id="courses" >
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="section-heading">
-            <h6>Latest Courses</h6>
-            <h2>Latest Courses</h2>
-          </div>
-        </div>
-      </div>
-      <ul class="event_filter">
-        <li>
-          <a class="is_active" href="#!" data-filter="*">Show All</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".design">Webdesign</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".development">Development</a>
-        </li>
-        <li>
-          <a href="#!" data-filter=".wordpress">Wordpress</a>
-        </li>
-      </ul>
-      <div class="row event_box">
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-01.jpg" alt=""></a>
-              <span class="category">Webdesign</span>
-              <span class="price"><h6><em>$</em>160</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">Stella Blair</span>
-              <h4>Learn Web Design</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-02.jpg" alt=""></a>
-              <span class="category">Development</span>
-              <span class="price"><h6><em>$</em>340</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">Cindy Walker</span>
-              <h4>Web Development Tips</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-03.jpg" alt=""></a>
-              <span class="category">Wordpress</span>
-              <span class="price"><h6><em>$</em>640</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">David Hutson</span>
-              <h4>Latest Web Trends</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 development">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-04.jpg" alt=""></a>
-              <span class="category">Development</span>
-              <span class="price"><h6><em>$</em>450</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">Stella Blair</span>
-              <h4>Online Learning Steps</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress development">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-05.jpg" alt=""></a>
-              <span class="category">Wordpress</span>
-              <span class="price"><h6><em>$</em>320</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">Sophia Rose</span>
-              <h4>Be a WordPress Master</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress design">
-          <div class="events_item">
-            <div class="thumb">
-              <a href="#"><img src="./assets/images/course-06.jpg" alt=""></a>
-              <span class="category">Webdesign</span>
-              <span class="price"><h6><em>$</em>240</h6></span>
-            </div>
-            <div class="down-content">
-              <span class="author">David Hutson</span>
-              <h4>Full Stack Developer</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section fun-facts">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="wrapper">
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
             <div class="row">
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="150" data-speed="1000"></h2>
-                   <p class="count-text ">Happy Students</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Active Students</div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="804" data-speed="1000"></h2>
-                  <p class="count-text ">Course Hours</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">1,200+</div>
+                        <div class="stat-label">Available Courses</div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter">
-                  <h2 class="timer count-title count-number" data-to="50" data-speed="1000"></h2>
-                  <p class="count-text ">Employed Students</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Expert Instructors</div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <div class="counter end">
-                  <h2 class="timer count-title count-number" data-to="15" data-speed="1000"></h2>
-                  <p class="count-text ">Years Experience</p>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="team section" id="team">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="./assets/images/member-01.jpg" alt="">
-              <span class="category">UX Teacher</span>
-              <h4>Sophia Rose</h4>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
+    <!-- Featured Courses -->
+    <section id="courses" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Featured Courses</h2>
+                <p class="text-muted">Discover our most popular and highest-rated coding courses</p>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="./assets/images/member-02.jpg" alt="">
-              <span class="category">Graphic Teacher</span>
-              <h4>Cindy Walker</h4>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="./assets/images/member-03.jpg" alt="">
-              <span class="category">Full Stack Master</span>
-              <h4>David Hutson</h4>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="team-member">
-            <div class="main-content">
-              <img src="./assets/images/member-04.jpg" alt="">
-              <span class="category">Digital Animator</span>
-              <h4>Stella Blair</h4>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> 
+            
+            <div class="row" id="courseContainer">
+                <!-- Course 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="javascript react">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="course-badge">Bestseller</div>
+                        <div class="course-body">
+                            <h5 class="course-title">Complete JavaScript & React Developer Course</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By Sarah Johnson</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                4.8 (2,340 reviews)
+                            </div>
+                            <div class="course-price">
+                                $79.99 <span class="original">$149.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('Complete JavaScript & React Developer Course')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="section testimonials">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <div class="owl-carousel owl-testimonials">
-            <div class="item">
-              <p>“Please tell your friends or collegues about TemplateMo website. Anyone can access the website to download free templates. Thank you for visiting.”</p>
-              <div class="author">
-                <img src="./assets/images/testimonial-author.jpg" alt="">
-                <span class="category">Full Stack Master</span>
-                <h4>Claude David</h4>
-              </div>
-            </div>
-            <div class="item">
-              <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid.”</p>
-              <div class="author">
-                <img src="./assets/images/testimonial-author.jpg" alt="">
-                <span class="category">UI Expert</span>
-                <h4>Thomas Jefferson</h4>
-              </div>
-            </div>
-            <div class="item">
-              <p>“Scholar is free website template provided by TemplateMo for educational related websites. This CSS layout is based on Bootstrap v5.3.0 framework.”</p>
-              <div class="author">
-                <img src="./assets/images/testimonial-author.jpg" alt="">
-                <span class="category">Digital Animator</span>
-                <h4>Stella Blair</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 align-self-center">
-          <div class="section-heading">
-            <h6>TESTIMONIALS</h6>
-            <h2>What they say about us?</h2>
-            <p>You can search free CSS templates on Google using different keywords such as templatemo portfolio, templatemo gallery, templatemo blue color, etc.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                <!-- Course 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="python machine-learning">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="course-badge">New</div>
+                        <div class="course-body">
+                            <h5 class="course-title">Python for Data Science & Machine Learning</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By Dr. Michael Chen</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                4.9 (1,890 reviews)
+                            </div>
+                            <div class="course-price">
+                                $89.99 <span class="original">$169.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('Python for Data Science & Machine Learning')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="section events" id="events">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="section-heading">
-            <h6>Schedule</h6>
-            <h2>Upcoming Events</h2>
-          </div>
+                <!-- Course 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="mobile flutter">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="course-badge">Hot</div>
+                        <div class="course-body">
+                            <h5 class="course-title">Flutter Mobile App Development</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By Alex Rodriguez</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                4.7 (1,556 reviews)
+                            </div>
+                            <div class="course-price">
+                                $69.99 <span class="original">$129.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('Flutter Mobile App Development')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="nodejs backend">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="course-body">
+                            <h5 class="course-title">Node.js Backend Development Masterclass</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By Emma Wilson</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.6 (987 reviews)
+                            </div>
+                            <div class="course-price">
+                                $74.99 <span class="original">$139.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('Node.js Backend Development Masterclass')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="devops cloud">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="course-body">
+                            <h5 class="course-title">DevOps & Cloud Computing with AWS</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By David Kim</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                4.8 (1,234 reviews)
+                            </div>
+                            <div class="course-price">
+                                $99.99 <span class="original">$199.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('DevOps & Cloud Computing with AWS')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="cybersecurity">
+                    <div class="course-card position-relative">
+                        <div class="course-image">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="course-badge">Popular</div>
+                        <div class="course-body">
+                            <h5 class="course-title">Cybersecurity & Ethical Hacking</h5>
+                            <p class="course-instructor"><i class="fas fa-user"></i> By Jennifer Lee</p>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                4.5 (2,156 reviews)
+                            </div>
+                            <div class="course-price">
+                                $84.99 <span class="original">$159.99</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="buyCourse('Cybersecurity & Ethical Hacking')">Buy Now</a>
+                                <a href="#" class="btn btn-outline-custom">Preview</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-custom" onclick="loadMoreCourses()">Load More Courses</button>
+            </div>
         </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Browse by Category</h2>
+                <p class="text-muted">Find courses in your area of interest</p>
+            </div>
+            
             <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  <img src="./assets/images/event-01.jpg" alt="">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 text-center border-0 shadow-sm" onclick="filterCourses('frontend')">
+                        <div class="card-body">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h5 class="card-title">Frontend Development</h5>
+                            <p class="card-text text-muted">HTML, CSS, JavaScript, React, Vue.js</p>
+                            <small class="text-primary">120+ courses</small>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Web Design</span>
-                    <h4>UI Best Practices</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>16 Feb 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>22 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$120</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 text-center border-0 shadow-sm" onclick="filterCourses('backend')">
+                        <div class="card-body">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h5 class="card-title">Backend Development</h5>
+                            <p class="card-text text-muted">Node.js, Python, Java, PHP, .NET</p>
+                            <small class="text-primary">85+ courses</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 text-center border-0 shadow-sm" onclick="filterCourses('mobile')">
+                        <div class="card-body">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h5 class="card-title">Mobile Development</h5>
+                            <p class="card-text text-muted">Flutter, React Native, iOS, Android</p>
+                            <small class="text-primary">65+ courses</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 text-center border-0 shadow-sm" onclick="filterCourses('data-science')">
+                        <div class="card-body">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="card-title">Data Science</h5>
+                            <p class="card-text text-muted">Python, R, Machine Learning, AI</p>
+                            <small class="text-primary">90+ courses</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Why Choose CodeAcademy Pro?</h2>
+                <p class="text-muted">Learn from industry experts and build real-world projects</p>
+            </div>
+            
             <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  <img src="./assets/images/event-02.jpg" alt="">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h5>High-Quality Video Content</h5>
+                        <p class="text-muted">Learn with HD video lectures, downloadable resources, and lifetime access to course materials.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Front End</span>
-                    <h4>New Design Trend</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>24 Feb 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>30 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$320</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5>Expert Instructors</h5>
+                        <p class="text-muted">Learn from industry professionals with years of real-world experience in top tech companies.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h5>Real-World Projects</h5>
+                        <p class="text-muted">Build portfolio-worthy projects that showcase your skills to potential employers.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h5>Industry Certificates</h5>
+                        <p class="text-muted">Earn recognized certificates upon completion to boost your career prospects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h5>Learn at Your Pace</h5>
+                        <p class="text-muted">Self-paced learning with lifetime access means you can learn whenever works for you.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5>24/7 Support</h5>
+                        <p class="text-muted">Get help when you need it with our dedicated support team and community forums.</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-lg-12 col-md-6">
-          <div class="item">
+    </section>
+
+    <!-- Sell Course Section -->
+    <section id="sell-course" class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Become an Instructor</h2>
+                    <p class="lead mb-4">Share your expertise and earn money by creating courses. Join our community of expert instructors.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Earn up to $10,000+ per month</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Reach students worldwide</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Full marketing support</li>
+                        <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Easy course creation tools</li>
+                    </ul>
+                    <button class="btn btn-light btn-lg mt-3" onclick="startTeaching()">Start Teaching Today</button>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 10rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
             <div class="row">
-              <div class="col-lg-3">
-                <div class="image">
-                  <img src="./assets/images/event-03.jpg" alt="">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="fw-bold mb-4">Get in Touch</h2>
+                    <p class="text-muted mb-5">Have questions? We're here to help you on your coding journey.</p>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon mx-auto">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h5>Email Support</h5>
+                                <p class="text-muted">support@codeacademypro.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon mx-auto">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h5>Phone Support</h5>
+                                <p class="text-muted">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="text-center">
+                                <div class="feature-icon mx-auto">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h5>Live Chat</h5>
+                                <p class="text-muted">Available 24/7</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-9">
-                <ul>
-                  <li>
-                    <span class="category">Full Stack</span>
-                    <h4>Web Programming</h4>
-                  </li>
-                  <li>
-                    <span>Date:</span>
-                    <h6>12 Mar 2036</h6>
-                  </li>
-                  <li>
-                    <span>Duration:</span>
-                    <h6>48 Hours</h6>
-                  </li>
-                  <li>
-                    <span>Price:</span>
-                    <h6>$440</h6>
-                  </li>
-                </ul>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="contact-us section" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6  align-self-center">
-          <div class="section-heading">
-            <h6>Contact Us</h6>
-            <h2>Feel free to contact us anytime</h2>
-            <p>Thank you for choosing our templates. We provide you best CSS templates at absolutely 100% free of charge. You may support us by sharing our website to your friends.</p>
-            <div class="special-offer">
-              <span class="offer">off<br><em>50%</em></span>
-              <h6>Valide: <em>24 April 2036</em></h6>
-              <h4>Special Offer <em>50%</em> OFF!</h4>
-              <a href="#"><i class="fa fa-angle-right"></i></a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-code"></i> CodeAcademy Pro</h5>
+                    <p class="text-muted">Empowering developers worldwide with cutting-edge coding education and practical skills for the modern tech industry.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Courses</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">Data Science</a></li>
+                        <li><a href="#">DevOps</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Teaching</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Become Instructor</a></li>
+                        <li><a href="#">Teaching Guidelines</a></li>
+                        <li><a href="#">Course Creation</a></li>
+                        <li><a href="#">Instructor Support</a></li>
+                        <li><a href="#">Earnings</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
+            
+            <hr class="my-4" style="border-color: #374151;">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2025 CodeAcademy Pro. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-muted mb-0">Made with <i class="fas fa-heart text-danger"></i> for developers</p>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-          <div class="contact-us-content">
-            <form id="contact-form" action="" method="post">
-              <div class="row">
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="orange-button">Send Message Now</button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </footer>
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2036 Scholar Organization. All rights reserved </p>
-      </div>
-    </div>
-  </footer>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="./vendor/jquery/jquery.min.js"></script>
-  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="./assets/js/isotope.min.js"></script>
-  <script src="./assets/js/owl-carousel.js"></script>
-  <script src="./assets/js/counter.js"></script>
-  <script src="./assets/js/custom.js"></script>
-  </body>
+        // Search functionality
+        function searchCourses() {
+            const searchTerm = document.getElementById('courseSearch').value.toLowerCase();
+            const courseItems = document.querySelectorAll('.course-item');
+            
+            if (searchTerm.trim() === '') {
+                courseItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+            
+            courseItems.forEach(item => {
+                const title = item.querySelector('.course-title').textContent.toLowerCase();
+                const instructor = item.querySelector('.course-instructor').textContent.toLowerCase();
+                const category = item.getAttribute('data-category').toLowerCase();
+                
+                if (title.includes(searchTerm) || instructor.includes(searchTerm) || category.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter courses by category
+        function filterCourses(category) {
+            const courseItems = document.querySelectorAll('.course-item');
+            
+            courseItems.forEach(item => {
+                const itemCategories = item.getAttribute('data-category').toLowerCase();
+                if (itemCategories.includes(category.toLowerCase())) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Scroll to courses section
+            document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Buy course functionality
+        function buyCourse(courseName) {
+            alert(`Great choice! You're about to purchase: "${courseName}"\n\nThis would redirect to the payment gateway in a real application.`);
+        }
+
+        // Start teaching functionality
+        function startTeaching() {
+            alert('Welcome to our instructor program!\n\nThis would redirect to the instructor onboarding process where you can:\n\n• Create your instructor profile\n• Upload course content\n• Set pricing\n• Start earning money\n\nJoin thousands of successful instructors today!');
+        }
+
+        // Load more courses
+        function loadMoreCourses() {
+            alert('Loading more courses...\n\nIn a real application, this would load additional courses from the database via AJAX.');
+        }
+
+        // Search on Enter key
+        document.getElementById('courseSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCourses();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe course cards for animation
+        document.querySelectorAll('.course-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Category card click handlers
+        document.querySelectorAll('#categories .card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize tooltips if any
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
 </html>
