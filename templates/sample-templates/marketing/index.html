@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Marketing Agency</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f9f9f9; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; border-radius: 8px; }
+    h1, h2, h3 { color: #111; }
+
+    /* Navbar */
+    header { position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.1); z-index: 1000; }
+    nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
+    nav h1 { color: #2c6bed; font-size: 1.4rem; }
+    nav ul { display: flex; gap: 1rem; }
+    nav ul li { list-style: none; }
+    nav ul li a { padding: 6px 10px; border-radius: 5px; transition: background .3s; }
+    nav ul li a:hover { background: #2c6bed; color: #fff; }
+
+    /* Hero */
+    .hero { height: 90vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; background: linear-gradient(120deg, #2c6bed, #3dc1d3); color: #fff; padding: 2rem; }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { max-width: 600px; margin-bottom: 1.5rem; }
+    .hero button { padding: 12px 25px; border: none; border-radius: 25px; background: #fff; color: #2c6bed; font-weight: bold; cursor: pointer; transition: .3s; }
+    .hero button:hover { background: #e3e3e3; }
+
+    /* Services */
+    .section { max-width: 1200px; margin: auto; padding: 4rem 1rem; }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.1); transition: transform .3s; }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { margin-bottom: 0.5rem; color: #2c6bed; }
+
+    /* Stats */
+    .stats { display: flex; justify-content: space-around; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+    .stat { background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,.1); text-align: center; flex: 1; min-width: 180px; }
+    .stat h2 { color: #2c6bed; font-size: 2rem; }
+
+    /* Testimonials */
+    .testimonials { position: relative; }
+    .testimonial { display: none; text-align: center; padding: 2rem; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.1); }
+    .testimonial.active { display: block; }
+    .testimonial p { font-style: italic; }
+    .testimonial span { display: block; margin-top: 1rem; font-weight: bold; color: #2c6bed; }
+
+    /* Contact */
+    .contact form { display: flex; flex-direction: column; gap: 1rem; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.1); }
+    .contact input, .contact textarea, .contact button { padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; }
+    .contact button { background: #2c6bed; color: #fff; border: none; cursor: pointer; transition: .3s; }
+    .contact button:hover { background: #244fb6; }
+
+    /* Footer */
+    footer { text-align: center; padding: 1rem; background: #2c6bed; color: #fff; margin-top: 2rem; }
+
+    /* Back-to-top */
+    #backToTop { position: fixed; bottom: 30px; right: 30px; padding: 12px 16px; border: none; border-radius: 50%; background: #2c6bed; color: #fff; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(0,0,0,.2); }
+    #backToTop:hover { background: #244fb6; }
+
+    /* Responsive nav */
+    .menu-toggle { display: none; cursor: pointer; }
+    @media(max-width: 768px) {
+      nav ul { display: none; flex-direction: column; background: #fff; position: absolute; top: 60px; right: 20px; box-shadow: 0 4px 10px rgba(0,0,0,.1); padding: 1rem; }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h1>SEOBoost</h1>
+      <div class="menu-toggle">☰</div>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Boost Your Business with SEO</h2>
+    <p>We help businesses rank higher on search engines, attract more traffic, and convert visitors into customers.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <h2 style="text-align:center;margin-bottom:2rem;">Our Services</h2>
+    <div class="services">
+      <div class="card"><h3>SEO Optimization</h3><p>Improve your search ranking with our proven strategies.</p></div>
+      <div class="card"><h3>Content Marketing</h3><p>Create compelling content that attracts and retains customers.</p></div>
+      <div class="card"><h3>Analytics & Reports</h3><p>Track and measure success with detailed insights.</p></div>
+      <div class="card"><h3>Ads & Campaigns</h3><p>Reach your audience through targeted ad campaigns.</p></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section" id="stats">
+    <h2 style="text-align:center;margin-bottom:2rem;">Our Achievements</h2>
+    <div class="stats">
+      <div class="stat"><h2 id="clients">0</h2><p>Happy Clients</p></div>
+      <div class="stat"><h2 id="projects">0</h2><p>Projects Completed</p></div>
+      <div class="stat"><h2 id="rankings">0</h2><p>Top Rankings</p></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials" id="testimonials">
+    <h2 style="text-align:center;margin-bottom:2rem;">What Clients Say</h2>
+    <div class="testimonial active"><p>"SEOBoost transformed our online presence!"</p><span>- Alex, Startup Founder</span></div>
+    <div class="testimonial"><p>"We saw traffic double in just 3 months."</p><span>- Priya, Marketing Head</span></div>
+    <div class="testimonial"><p>"Professional team with amazing results."</p><span>- John, Business Owner</span></div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <h2 style="text-align:center;margin-bottom:2rem;">Get in Touch</h2>
+    <form onsubmit="event.preventDefault();alert('Message Sent!');this.reset();">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 SEOBoost Agency. All rights reserved.</p>
+  </footer>
+
+  <!-- Back-to-top -->
+  <button id="backToTop">↑</button>
+
+  <!-- JS -->
+  <script>
+    // Responsive menu
+    const toggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+    // Back-to-top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Stats counters
+    const counters = [
+      { id: "clients", target: 120 },
+      { id: "projects", target: 300 },
+      { id: "rankings", target: 75 }
+    ];
+    let counted = false;
+    window.addEventListener('scroll', () => {
+      const stats = document.getElementById('stats');
+      if (!counted && window.scrollY + window.innerHeight > stats.offsetTop) {
+        counters.forEach(counter => {
+          let count = 0;
+          const el = document.getElementById(counter.id);
+          const update = setInterval(() => {
+            count++;
+            el.textContent = count;
+            if (count >= counter.target) clearInterval(update);
+          }, 20);
+        });
+        counted = true;
+      }
+    });
+
+    // Testimonials slider
+    const testimonials = document.querySelectorAll('.testimonial');
+    let index = 0;
+    setInterval(() => {
+      testimonials[index].classList.remove('active');
+      index = (index + 1) % testimonials.length;
+      testimonials[index].classList.add('active');
+    }, 4000);
+  </script>
+</body>
+</html>
