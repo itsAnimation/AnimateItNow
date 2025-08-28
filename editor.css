@@ -9,7 +9,7 @@
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   background-size: 600% 600%;
-  color: #ffffff;
+  color: #d1d5db; /* slate-300 for consistency */
        /* sky-500, indigo-500, cyan-400 */
 
     box-shadow: 0 2px 6px rgb(0, 0, 0);
@@ -25,24 +25,44 @@
 
 
 .html-label {
-  /* background-color: #fee2e2; */
-background: linear-gradient(270deg, #c976ea, #6366f1, #3f8f9b);
+  background: #004c4b; /* keeps the background */
   font-size: 1.3rem;
-  color: #001551;
+
+  background: linear-gradient(270deg,  #6366f1, #22d3ee,#eb95fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox */
+  color: transparent;    /* fallback */
+  border: 2px solid #efefef; /* light border */
+
 }
 
+
+
 .css-label {
-  /* background-color: #dbeafe; */
-  background: linear-gradient(270deg, #2be90e, #6366f1, #22ebee);
+  background: #004c4b; /* keeps the background */
   font-size: 1.3rem;
-  color: #001551;
+
+  background: linear-gradient(270deg,  #6366f1, #00ea3e,#89d9ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox */
+  color: transparent;    /* fallback */
+  border: 2px solid #efefef; /* light border */
+
 }
 
 .js-label {
-  /* background-color: #d1fae5; */
-  background: linear-gradient(270deg, #e9e90e, #6366f1, #22d3ee);
+  background: #004c4b; /* keeps the background */
   font-size: 1.3rem;
-  color: #001551;
+
+  background: linear-gradient(270deg,  #6366f1, #c98b59,#eb95fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox */
+  color: transparent;    /* fallback */
+  border: 2px solid #efefef; /* light border */
+
 }
 
 .editor-area {
@@ -51,31 +71,29 @@ background: linear-gradient(270deg, #c976ea, #6366f1, #3f8f9b);
   padding: 0.75rem;
   font-family: monospace;
   font-size: 0.875rem;
-  background-color: rgba(255, 255, 255, 0.654);
+  background: #ffffff;
   border-radius: 0 0 0.5rem 0.5rem;
   border-width: 1px;
-border: 2px solid #94a3b8; /* slate-400 */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
-
-
+  border: 2px solid #efefef; /* light border */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
+  color: #51009c;/* slate-300 for consistency */
 }
 .editor-area:hover {
   transform: scale(1.01);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 9px 6px rgba(2, 176, 153, 0.11);
+  border-color:#d0d0d0;
 }
 #output {
+  color: #d1d5db; /* slate-300 */
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 2px solid #94a3b8; /* slate-400 */
-  background: linear-gradient(to bottom, #f1f5f9, #ffffff);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.677);
-
+  border: 3px solid #00968773; /* slate-400 */
+  background: linear-gradient(to bottom, #ffffff, #eaeaea);
 }
 
 #output:hover {
   transform: scale(1.01);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 36px rgba(2, 129, 93, 0.15);  /* subtle cyan glow */
 }
 
 
@@ -85,16 +103,10 @@ border: 2px solid #94a3b8; /* slate-400 */
   padding: 0.75rem 1.5rem;
   margin-bottom: 1rem;
   border-radius: 0.75rem;
-  background: rgba(254, 254, 254, 0.05);
-  
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-left:7px solid #220149 ;
-  color: #380475;
-  
-  
+  background: rgba(0, 225, 202, 0.281);
+  border-left:7px solid #03ade1 ;
   text-align: left;
   letter-spacing: 1px;
-  box-shadow: 0 4px 20px rgb(150, 140, 160); /* subtle blue glow */
-  
+  color: #004c4b; /* dark teal for contrast */  
 }
 
