@@ -530,6 +530,22 @@
         margin-top: 1rem;
         font-weight: bold;
       }
+      .favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.favorite-btn.active {
+  color: #ff4d6d;
+}
+
 
       /* end for game animation */
     </style>
@@ -630,6 +646,9 @@
       <section class="templates-grid">
         <a class="template-card" href="templates/LoginFormGlassMorphism.html">
           <h2>Login Form with Glassmorphism.</h2>
+          <button class="favorite-btn" title="Add to Favorites">
+  <i class="fas fa-heart"></i>
+</button>
           <div class="template-preview login-preview">
             <div class="page link"></div>
           </div>
@@ -968,6 +987,37 @@
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
       typeLoop(); // start animation
+
+      // =============================
+// Favorites Functionality
+// =============================
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+document.querySelectorAll(".favorite-btn").forEach(button => {
+  const card = button.closest(".template-card");
+  const templateId = card.getAttribute("data-id");
+
+  // Initial state
+  if (favorites.includes(templateId)) {
+    button.classList.add("active");
+  }
+
+  // Toggle on click
+  button.addEventListener("click", (e) => {
+    e.preventDefault(); // prevent <a> from redirecting immediately
+
+    if (favorites.includes(templateId)) {
+      favorites = favorites.filter(id => id !== templateId);
+      button.classList.remove("active");
+    } else {
+      favorites.push(templateId);
+      button.classList.add("active");
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  });
+});
+
     </script>
   </body>
 </html>
