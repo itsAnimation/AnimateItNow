@@ -37,3 +37,9 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
 
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.querySelector(".scroll-indicator").style.width = scrollPercent + "%";
+});
