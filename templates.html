@@ -9,7 +9,6 @@
       content="A comprehensive collection of CSS animation templates and effects for web developers"
     />
 
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ff6b6b" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -20,10 +19,8 @@
     />
     <meta name="msapplication-TileColor" content="#ff6b6b" />
 
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
 
-    <!-- PWA Icons -->
     <link
       rel="icon"
       type="image/png"
@@ -73,7 +70,6 @@
       href="images/icons/icon-512x512.png"
     />
 
-    <!-- Apple Touch Icons -->
     <link
       rel="apple-touch-icon"
       sizes="152x152"
@@ -85,7 +81,6 @@
       href="images/icons/icon-192x192.png"
     />
 
-    <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
     <link
@@ -98,7 +93,7 @@
     />
 
     <style>
-      /*  Removed conflicting navbar CSS, relying on styles.css */
+      /*  Removed conflicting navbar CSS, relying on styles.css */
       .navbar {
         display: flex;
         flex-direction: row;
@@ -115,7 +110,7 @@
         text-decoration: none;
       }
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+      /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
       body.dark {
         background-color: #121212;
         color: #f5f5f5;
@@ -125,11 +120,7 @@
       }
       /* ✅ Heading fix */
       body.dark .templates-main h1 {
-        background: linear-gradient(
-          to right,
-          #67e8f9,
-          #3b82f6
-        ); /*bright neon cyan-blue */
+        background: linear-gradient(to right, #67e8f9, #3b82f6); /*bright neon cyan-blue */
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -235,7 +226,7 @@
         box-sizing: border-box;
       }
       /* Dark mode support */
-      /*  Changed 'dark-theme' to 'dark' */
+      /*  Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
@@ -321,23 +312,23 @@
       }
       /* Make the link a flex container to align items */
       .logo-link {
-        display: flex;          /* Aligns logo and text horizontally */
-        align-items: center;   /* Centers them vertically */
-        gap: 10px;            /* Adds space between logo and text */
+        display: flex; /* Aligns logo and text horizontally */
+        align-items: center; /* Centers them vertically */
+        gap: 10px; /* Adds space between logo and text */
         text-decoration: none; /* Removes underline */
-        color: inherit;       /* Inherits text color (if needed) */
+        color: inherit; /* Inherits text color (if needed) */
       }
 
       /* Ensure the logo image stays aligned */
       .logo-link img.logo {
-        height: 40px;         /* Adjust as needed */
-        width: auto;          /* Maintains aspect ratio */
+        height: 40px; /* Adjust as needed */
+        width: auto; /* Maintains aspect ratio */
       }
 
       /* Style the text (optional) */
       .site-name {
-        font-size: 1.2rem;    /* Adjust size */
-        font-weight: bold;    /* Optional: Bold text */
+        font-size: 1.2rem; /* Adjust size */
+        font-weight: bold; /* Optional: Bold text */
         pointer-events: none; /* Ensures clicks pass to parent <a> */
       }
 
@@ -418,7 +409,7 @@
         box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
       }
 
-      /*  start for game animation */
+      /*  start for game animation */
 
       h1 {
         text-align: center;
@@ -531,22 +522,50 @@
         font-weight: bold;
       }
       .favorite-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #bbb;
-  transition: color 0.3s ease;
-}
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: #bbb;
+        transition: color 0.3s ease;
+      }
 
-.favorite-btn.active {
-  color: #ff4d6d;
-}
+      .favorite-btn.active {
+        color: #ff4d6d;
+      }
+      /* New CSS for the button and container */
+      .templates-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+      }
 
+      .templates-header h1 {
+        margin: 0;
+      }
 
+      .saved-templates-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 8px 16px;
+        background-color: #ff4d6d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .saved-templates-btn:hover {
+        background-color: #ff2c4f;
+      }
       /* end for game animation */
     </style>
   </head>
@@ -565,18 +584,20 @@
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
-          <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+          <li>
+            <a href="playground.html" style="white-space: nowrap"
+              >Hover-Effects</a
+            >
+          </li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
-          <!-- cursor toggle switch -->
           <li>
             <label class="switch" title="Toggle Snake Cursor">
               <input type="checkbox" id="cursorToggle" />
               <span class="slider round"></span>
             </label>
           </li>
-          <!-- github icon -->
           <li>
             <a
               href="https://github.com/itsAnimation/AnimateItNow"
@@ -593,18 +614,7 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
                 />
               </svg>
             </a>
@@ -618,7 +628,12 @@
       </div>
     </nav>
     <main class="templates-main">
-      <h1>Templates Gallery</h1>
+      <div class="templates-header">
+        <h1>Templates Gallery</h1>
+        <a href="saved-templates.html" class="saved-templates-btn"
+          >View Saved Templates</a
+        >
+      </div>
       <div
         style="display: flex; justify-content: center; margin-bottom: 1.5rem"
       >
@@ -640,48 +655,65 @@
           aria-label="Search templates"
         />
       </div>
-       <div class="no-results">
-  No Templates Found.
-</div>
+      <div class="no-results">No Templates Found.</div>
       <section class="templates-grid">
-        <a class="template-card" href="templates/LoginFormGlassMorphism.html">
+        <a
+          class="template-card"
+          href="templates/LoginFormGlassMorphism.html"
+          data-id="login-form-glassmorphism"
+        >
           <h2>Login Form with Glassmorphism.</h2>
           <button class="favorite-btn" title="Add to Favorites">
-  <i class="fas fa-heart"></i>
-</button>
+            <i class="fas fa-heart"></i>
+          </button>
           <div class="template-preview login-preview">
             <div class="page link"></div>
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/login.html">
+        <a
+          class="template-card"
+          href="templates/login.html"
+          data-id="login-page-ui"
+        >
           <h2>Login Page UI</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview login-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/button.html">
+        <a
+          class="template-card"
+          href="templates/button.html"
+          data-id="hover-button-effects"
+        >
           <h2>Hover Button Effects</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview button-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/loader.html">
+        <a
+          class="template-card"
+          href="templates/loader.html"
+          data-id="loaders"
+        >
           <h2>Loaders</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview loader-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- aading texts effects -->
-        <a class="template-card" href="templates/text_effects_anim.html">
+        <a
+          class="template-card"
+          href="templates/text_effects_anim.html"
+          data-id="text-animation-effects"
+        >
           <h2>Text Animation Effects</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview text-preview">
@@ -689,35 +721,42 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/modal.html">
+        <a class="template-card" href="templates/modal.html" data-id="popup-templates">
           <h2>Popup Templates</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview modal-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/glassmorphism.html">
+        <a
+          class="template-card"
+          href="templates/glassmorphism.html"
+          data-id="glassmorphism-profile-card"
+        >
           <h2>Glassmorphism profile card</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview modal-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- adding code Playground -->
-        <a class="template-card" href="templates/code_playground.html">
+        <a
+          class="template-card"
+          href="templates/code_playground.html"
+          data-id="code-playground"
+        >
           <h2>Code PlayGround</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview code-play-preview">Write Code</div>
           <button class="template-btn">View Template</button>
         </a>
 
-        <a class="template-card" href="templates/feature.html">
+        <a class="template-card" href="templates/feature.html" data-id="feature-cards-ui">
           <h2>Feature Cards UI</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview feature-preview">
@@ -727,9 +766,13 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/hero.html">
+        <a
+          class="template-card"
+          href="templates/hero.html"
+          data-id="hero-section-template"
+        >
           <h2>Hero Section Template</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview hero-preview">
@@ -739,9 +782,12 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <article class="template-card">
+        <article
+          class="template-card"
+          data-id="animated-button"
+        >
           <h2>Animated Button</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview button-preview"></div>
@@ -749,9 +795,13 @@
             >View Template</a
           >
         </article>
-        <a class="template-card" href="templates/social-share-buttons.html">
+        <a
+          class="template-card"
+          href="templates/social-share-buttons.html"
+          data-id="animated-social-share-buttons"
+        >
           <h2>Animated Social Share Buttons</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview social-share-preview">
@@ -761,10 +811,9 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- CORRECTED TOOLTIP COMPONENT -->
-        <a class="template-card" href="templates/tooltip.html">
+        <a class="template-card" href="templates/tooltip.html" data-id="tooltip-ui-component">
           <h2>Tooltip UI Component</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview">
@@ -772,10 +821,13 @@
           </div>
           <span class="template-btn">View Template</span>
         </a>
-        <!-- Responsive Card Carousel -->
-        <a class="template-card" href="templates/carousel.html">
+        <a
+          class="template-card"
+          href="templates/carousel.html"
+          data-id="responsive-card-carousel"
+        >
           <h2>Responsive Card Carousel</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview carousel-preview">
@@ -785,10 +837,13 @@
           </div>
           <span class="template-btn">View Template</span>
         </a>
-        <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
-        <a class="template-card" href="templates/toggles-and-checkboxes.html">
+        <a
+          class="template-card"
+          href="templates/toggles-and-checkboxes.html"
+          data-id="animated-toggles"
+        >
           <h2>Animated Toggles</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview toggles-preview">
@@ -801,17 +856,21 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/neumorphic.html">
+        <a
+          class="template-card"
+          href="templates/neumorphic.html"
+          data-id="neumorphic-button-effects"
+        >
           <h2>Neumorphic Button Effects</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview neumorphic-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/navbar.html">
+        <a class="template-card" href="templates/navbar.html" data-id="navbar-variants">
           <h2>Navbar Variants</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview navbar-preview">
@@ -821,9 +880,13 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/display.html">
+        <a
+          class="template-card"
+          href="templates/display.html"
+          data-id="display-properties"
+        >
           <h2>Display Properties</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview display-preview">
@@ -833,9 +896,13 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/CardHoverEffects.html">
+        <a
+          class="template-card"
+          href="templates/CardHoverEffects.html"
+          data-id="3d-card-hover-effects"
+        >
           <h2>3D Card Hover Effects</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview navbar-preview">
@@ -843,9 +910,13 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/page_not_found_template.html">
+        <a
+          class="template-card"
+          href="templates/page_not_found_template.html"
+          data-id="404-page-not-found"
+        >
           <h2>404 Page not found</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview 404-preview">
@@ -853,19 +924,30 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <a class="template-card" href="templates/contact.html">
-        <h2>Contact Us Template</h2>
-         <button class="favorite-btn" title="Add to Favorites">
+        <a
+          class="template-card"
+          href="templates/contact.html"
+          data-id="contact-us-template"
+        >
+          <h2>Contact Us Template</h2>
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="template-btn">View Template</button>
-      </a>
-        <a class="template-card" href="templates/accordian.html">
+          <div class="template-preview navbar-preview">
+            <div
+              class="fas fa-envelope"
+              style="font-size: 40px; color: white"
+            ></div>
+          </div>
+          <button class="template-btn">View Template</button>
+        </a>
+        <a
+          class="template-card"
+          href="templates/accordian.html"
+          data-id="accordian-template"
+        >
           <h2>Accordian Template</h2>
-           <button class="favorite-btn" title="Add to Favorites">
+          <button class="favorite-btn" title="Add to Favorites">
             <i class="fas fa-heart"></i>
           </button>
           <div class="template-preview 404-preview">
@@ -922,13 +1004,10 @@
         </div>
       </footer>
     </div>
-    <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
-    <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
     <script>
-      //  This script now ONLY contains functionality specific to templates.html
+      //  This script now ONLY contains functionality specific to templates.html
       // Theme toggle and cursor logic are handled by script.js
       // Theme toggle functionality
       const themeToggle = document.getElementById("theme-toggle");
@@ -997,10 +1076,8 @@
         });
 
         if (noResultsMsg) {
-
-          noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+          noResultsMsg.style.display = visibleCount === 0 ? "block" : "none";
         }
-     
       }
       searchBar.addEventListener("input", filterTemplates);
 
@@ -1052,35 +1129,34 @@
       typeLoop(); // start animation
 
       // =============================
-// Favorites Functionality
-// =============================
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      // Favorites Functionality
+      // =============================
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-document.querySelectorAll(".favorite-btn").forEach(button => {
-  const card = button.closest(".template-card");
-  const templateId = card.getAttribute("data-id");
+      document.querySelectorAll(".favorite-btn").forEach((button) => {
+        const card = button.closest(".template-card");
+        const templateId = card.getAttribute("data-id");
 
-  // Initial state
-  if (favorites.includes(templateId)) {
-    button.classList.add("active");
-  }
+        // Initial state
+        if (favorites.includes(templateId)) {
+          button.classList.add("active");
+        }
 
-  // Toggle on click
-  button.addEventListener("click", (e) => {
-    e.preventDefault(); // prevent <a> from redirecting immediately
+        // Toggle on click
+        button.addEventListener("click", (e) => {
+          e.preventDefault(); // prevent <a> from redirecting immediately
 
-    if (favorites.includes(templateId)) {
-      favorites = favorites.filter(id => id !== templateId);
-      button.classList.remove("active");
-    } else {
-      favorites.push(templateId);
-      button.classList.add("active");
-    }
+          if (favorites.includes(templateId)) {
+            favorites = favorites.filter((id) => id !== templateId);
+            button.classList.remove("active");
+          } else {
+            favorites.push(templateId);
+            button.classList.add("active");
+          }
 
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  });
-});
-
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+        });
+      });
     </script>
   </body>
 </html>
