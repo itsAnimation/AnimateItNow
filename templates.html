@@ -532,6 +532,58 @@
       }
 
       /* end for game animation */
+
+      /* ⭐ Bookmark button inside cards */
+.template-card {
+  position: relative;
+}
+.bookmark-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  z-index: 2;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.bookmark-btn:hover {
+  color: gold;
+}
+.bookmark-btn.filled i {
+  color: gold;
+}
+body.dark .bookmark-btn i {
+  color: #bbb;
+}
+body.dark .bookmark-btn.filled i {
+  color: gold;
+}
+/* ⭐ Bookmark button */
+.template-card {
+  position: relative;
+}
+.bookmark-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+}
+.bookmark-btn.filled i {
+  color: gold;
+}
+body.dark .bookmark-btn i {
+  color: #aaa;
+}
+body.dark .bookmark-btn.filled i {
+  color: gold;
+}
     </style>
   </head>
   <body class="dark">
@@ -549,7 +601,6 @@
           <li><a href="about.html">About</a></li>
           <li><a href="editor.html" target="_blank">Editor</a></li>
           <li><a href="templates.html" class="active">Templates</a></li>
-          <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
@@ -627,173 +678,237 @@
        <div class="no-results">
   No Templates Found.
 </div>
-      <section class="templates-grid">
-        <a class="template-card" href="templates/LoginFormGlassMorphism.html">
-          <h2>Login Form with Glassmorphism.</h2>
-          <div class="template-preview login-preview">
-            <div class="page link"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/login.html">
-          <h2>Login Page UI</h2>
-          <div class="template-preview login-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/button.html">
-          <h2>Hover Button Effects</h2>
-          <div class="template-preview button-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/loader.html">
-          <h2>Loaders</h2>
-          <div class="template-preview loader-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <!-- aading texts effects -->
-        <a class="template-card" href="templates/text_effects_anim.html">
-          <h2>Text Animation Effects</h2>
-          <div class="template-preview text-preview">
-            <h2 id="textTarget"></h2>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/modal.html">
-          <h2>Popup Templates</h2>
-          <div class="template-preview modal-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/glassmorphism.html">
-          <h2>Glassmorphism profile card</h2>
-          <div class="template-preview modal-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <!-- adding code Playground -->
-        <a class="template-card" href="templates/code_playground.html">
-          <h2>Code PlayGround</h2>
-          <div class="template-preview code-play-preview">Write Code</div>
-          <button class="template-btn">View Template</button>
-        </a>
+     <section class="templates-grid">
 
-        <a class="template-card" href="templates/feature.html">
-          <h2>Feature Cards UI</h2>
-          <div class="template-preview feature-preview">
-            <div class="mini-card">Card1</div>
-            <div class="mini-card">Card2</div>
-            <div class="mini-card">Card3</div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/hero.html">
-          <h2>Hero Section Template</h2>
-          <div class="template-preview hero-preview">
-            <div class="hero-image"></div>
-            <div class="hero-text-line"></div>
-            <div class="hero-text-line short"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <article class="template-card">
-          <h2>Animated Button</h2>
-          <div class="template-preview button-preview"></div>
-          <a class="template-btn" href="templates/animated-btn.html"
-            >View Template</a
-          >
-        </article>
-        <a class="template-card" href="templates/social-share-buttons.html">
-          <h2>Animated Social Share Buttons</h2>
-          <div class="template-preview social-share-preview">
-            <i class="fab fa-facebook-f social-icon-preview"></i>
-            <i class="fab fa-twitter social-icon-preview"></i>
-            <i class="fab fa-instagram social-icon-preview"></i>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <!-- CORRECTED TOOLTIP COMPONENT -->
-        <a class="template-card" href="templates/tooltip.html">
-          <h2>Tooltip UI Component</h2>
-          <div class="template-preview">
-            <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
-          </div>
-          <span class="template-btn">View Template</span>
-        </a>
-        <!-- Responsive Card Carousel -->
-        <a class="template-card" href="templates/carousel.html">
-          <h2>Responsive Card Carousel</h2>
-          <div class="template-preview carousel-preview">
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-          </div>
-          <span class="template-btn">View Template</span>
-        </a>
-        <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
-        <a class="template-card" href="templates/toggles-and-checkboxes.html">
-          <h2>Animated Toggles</h2>
-          <div class="template-preview toggles-preview">
-            <div class="mini-toggle off">
-              <div class="mini-handle"></div>
-            </div>
-            <div class="mini-toggle on">
-              <div class="mini-handle"></div>
-            </div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/neumorphic.html">
-          <h2>Neumorphic Button Effects</h2>
-          <div class="template-preview neumorphic-preview"></div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/navbar.html">
-          <h2>Navbar Variants</h2>
-          <div class="template-preview navbar-preview">
-            <div class="navbar-line logo"></div>
-            <div class="navbar-line link"></div>
-            <div class="navbar-line link short"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/display.html">
-          <h2>Display Properties</h2>
-          <div class="template-preview display-preview">
-            <div class="display-box box1"></div>
-            <div class="display-box box2"></div>
-            <div class="display-box box3"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/CardHoverEffects.html">
-          <h2>3D Card Hover Effects</h2>
-          <div class="template-preview navbar-preview">
-            <div class="navbar-line link"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/page_not_found_template.html">
-          <h2>404 Page not found</h2>
-          <div class="template-preview 404-preview">
-            <div class="page link"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-        <a class="template-card" href="templates/contact.html">
-        <h2>Contact Us Template</h2>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="template-btn">View Template</button>
-      </a>
-        <a class="template-card" href="templates/accordian.html">
-          <h2>Accordian Template</h2>
-          <div class="template-preview 404-preview">
-            <div class="page link"></div>
-          </div>
-          <button class="template-btn">View Template</button>
-        </a>
-      </section>
+  <a class="template-card" data-title="Login Form with Glassmorphism" href="templates/LoginFormGlassMorphism.html">
+    <h2>Login Form with Glassmorphism</h2>
+    <div class="template-preview login-preview"><div class="page link"></div></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Login Page UI" href="templates/login.html">
+    <h2>Login Page UI</h2>
+    <div class="template-preview login-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Hover Button Effects" href="templates/button.html">
+    <h2>Hover Button Effects</h2>
+    <div class="template-preview button-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Loaders" href="templates/loader.html">
+    <h2>Loaders</h2>
+    <div class="template-preview loader-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Text Animation Effects" href="templates/text_effects_anim.html">
+    <h2>Text Animation Effects</h2>
+    <div class="template-preview text-preview"><h2 id="textTarget"></h2></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Popup Templates" href="templates/modal.html">
+    <h2>Popup Templates</h2>
+    <div class="template-preview modal-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Glassmorphism Profile Card" href="templates/glassmorphism.html">
+    <h2>Glassmorphism Profile Card</h2>
+    <div class="template-preview modal-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Code Playground" href="templates/code_playground.html">
+    <h2>Code Playground</h2>
+    <div class="template-preview code-play-preview">Write Code</div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Feature Cards UI" href="templates/feature.html">
+    <h2>Feature Cards UI</h2>
+    <div class="template-preview feature-preview">
+      <div class="mini-card">Card1</div>
+      <div class="mini-card">Card2</div>
+      <div class="mini-card">Card3</div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Hero Section Template" href="templates/hero.html">
+    <h2>Hero Section Template</h2>
+    <div class="template-preview hero-preview">
+      <div class="hero-image"></div>
+      <div class="hero-text-line"></div>
+      <div class="hero-text-line short"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Animated Button" href="templates/animated-btn.html">
+    <h2>Animated Button</h2>
+    <div class="template-preview button-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Animated Social Share Buttons" href="templates/social-share-buttons.html">
+    <h2>Animated Social Share Buttons</h2>
+    <div class="template-preview social-share-preview">
+      <i class="fab fa-facebook-f social-icon-preview"></i>
+      <i class="fab fa-twitter social-icon-preview"></i>
+      <i class="fab fa-instagram social-icon-preview"></i>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Tooltip UI Component" href="templates/tooltip.html">
+    <h2>Tooltip UI Component</h2>
+    <div class="template-preview">
+      <button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Responsive Card Carousel" href="templates/carousel.html">
+    <h2>Responsive Card Carousel</h2>
+    <div class="template-preview carousel-preview">
+      <div class="mini-card"></div>
+      <div class="mini-card"></div>
+      <div class="mini-card"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Animated Toggles" href="templates/toggles-and-checkboxes.html">
+    <h2>Animated Toggles</h2>
+    <div class="template-preview toggles-preview">
+      <div class="mini-toggle off"><div class="mini-handle"></div></div>
+      <div class="mini-toggle on"><div class="mini-handle"></div></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Neumorphic Button Effects" href="templates/neumorphic.html">
+    <h2>Neumorphic Button Effects</h2>
+    <div class="template-preview neumorphic-preview"></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Navbar Variants" href="templates/navbar.html">
+    <h2>Navbar Variants</h2>
+    <div class="template-preview navbar-preview">
+      <div class="navbar-line logo"></div>
+      <div class="navbar-line link"></div>
+      <div class="navbar-line link short"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Display Properties" href="templates/display.html">
+    <h2>Display Properties</h2>
+    <div class="template-preview display-preview">
+      <div class="display-box box1"></div>
+      <div class="display-box box2"></div>
+      <div class="display-box box3"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="3D Card Hover Effects" href="templates/CardHoverEffects.html">
+    <h2>3D Card Hover Effects</h2>
+    <div class="template-preview navbar-preview">
+      <div class="navbar-line link"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="404 Page Not Found" href="templates/page_not_found_template.html">
+    <h2>404 Page Not Found</h2>
+    <div class="template-preview 404-preview"><div class="page link"></div></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Contact Us Template" href="templates/contact.html">
+    <h2>Contact Us Template</h2>
+    <div class="template-preview navbar-preview">
+      <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+  <a class="template-card" data-title="Accordion Template" href="templates/accordian.html">
+    <h2>Accordion Template</h2>
+    <div class="template-preview 404-preview"><div class="page link"></div></div>
+    <button class="template-btn">View Template</button>
+    <button class="bookmark-btn" title="Save Template"><i class="fa-regular fa-star"></i></button>
+  </a>
+
+    <a class="template-card" href="templates/hamburger-menu.html" data-title="Mobile Hamburger Menu">
+  <h2>Mobile Hamburger Menu</h2>
+  <div class="template-preview navbar-preview">
+    <div class="navbar-line logo"></div>
+    <div class="navbar-line link"></div>
+    <div class="navbar-line link short"></div>
+  </div>
+  <button class="template-btn">View Template</button>
+  <button class="bookmark-btn" title="Save Template">
+    <i class="fa-regular fa-star"></i>
+  </button>
+</a>
+</section>
+
+
+     <h2 style="text-align: center; margin-top: 3rem;">Saved Templates</h2>
+<section id="saved-templates-section" class="templates-grid"></section>
+
+<div style="text-align: center; margin-top: 1rem;">
+  <button id="show-saved-code-btn" class="template-btn" onclick="toggleSavedCode()">Show Code</button>
+</div>
+
+<pre id="saved-code-box" class="code-box" style="display: none; background-color: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; max-width: 95%; margin: 1rem auto;">
+// Bookmarked templates
+const saved = JSON.parse(localStorage.getItem('bookmarkedTemplates')) || [];
+const container = document.getElementById('saved-templates-section');
+
+saved.forEach(title => {
+  const match = [...document.querySelectorAll('.template-card')].find(card =>
+    card.dataset.title === title
+  );
+  if (match) container.appendChild(match.cloneNode(true));
+});
+</pre>
     </main>
 
+<script>
+  function toggleCode() {
+    const codeBox = document.getElementById('code-snippet');
+    codeBox.style.display = codeBox.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
     <div id="container">
       <footer class="footer scroll-fade">
         <div class="footer-content">
@@ -968,6 +1083,83 @@
         setTimeout(typeLoop, isDelete ? speed / 2 : speed);
       }
       typeLoop(); // start animation
+
+// ⭐ Bookmark Logic
+const allCards = document.querySelectorAll(".template-card");
+const savedSection = document.getElementById("saved-templates-section");
+let savedBookmarks = JSON.parse(localStorage.getItem("bookmarkedTemplates")) || [];
+
+function saveBookmarksToStorage() {
+  localStorage.setItem("bookmarkedTemplates", JSON.stringify(savedBookmarks));
+}
+
+function updateBookmarkIcons() {
+  allCards.forEach(card => {
+    const title = card.dataset.title;
+    const btn = card.querySelector(".bookmark-btn");
+    if (!btn) return;
+    const icon = btn.querySelector("i");
+
+    if (savedBookmarks.includes(title)) {
+      btn.classList.add("filled");
+      icon.classList.remove("fa-regular");
+      icon.classList.add("fa-solid");
+    } else {
+      btn.classList.remove("filled");
+      icon.classList.remove("fa-solid");
+      icon.classList.add("fa-regular");
+    }
+  });
+}
+
+function renderSavedTemplates() {
+  savedSection.innerHTML = ""; // clear before re-rendering
+  const savedCards = Array.from(allCards).filter(card =>
+    savedBookmarks.includes(card.dataset.title)
+  );
+  savedCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.querySelector(".bookmark-btn")?.remove(); // hide star in saved section
+    savedSection.appendChild(clone);
+  });
+}
+
+allCards.forEach(card => {
+  const title = card.dataset.title;
+  const btn = card.querySelector(".bookmark-btn");
+  if (!btn) return;
+
+  btn.addEventListener("click", e => {
+    e.preventDefault(); // stop from following <a href>
+    e.stopPropagation(); // don’t trigger outer click
+    const index = savedBookmarks.indexOf(title);
+    if (index === -1) {
+      savedBookmarks.push(title);
+    } else {
+      savedBookmarks.splice(index, 1);
+    }
+    saveBookmarksToStorage();
+    updateBookmarkIcons();
+    renderSavedTemplates();
+  });
+});
+
+// Show/hide code snippet
+function toggleSavedCode() {
+  const codeBox = document.getElementById("saved-code-box");
+  const btn = document.getElementById("show-saved-code-btn");
+  if (codeBox.style.display === "none") {
+    codeBox.style.display = "block";
+    btn.textContent = "Hide Code";
+  } else {
+    codeBox.style.display = "none";
+    btn.textContent = "Show Code";
+  }
+}
+
+// Initial load
+updateBookmarkIcons();
+renderSavedTemplates();
     </script>
   </body>
 </html>
