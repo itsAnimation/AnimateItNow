@@ -133,7 +133,7 @@
         padding: 8px 14px;
         border: none;
         border-radius: 8px;
-        background: #0ff;
+        /* background: #0ff; */
         color: #000;
         font-weight: bold;
         cursor: pointer;
@@ -179,7 +179,7 @@
         top: 50%;
         transform: translateY(-50%);
         padding: 8px 16px;
-        background-color: #007bff;
+        background-color: #ff4d6d;
         color: white;
         border: none;
         border-radius: 8px;
@@ -188,7 +188,7 @@
         transition: background-color 0.3s ease;
       }
       .back-to-templates-btn:hover {
-        background-color: #0056b3;
+        background-color: #ff2c4f;
       }
       /* Hiding the heart icon on this page */
       .favorite-btn {
@@ -200,16 +200,16 @@
         margin-top: 10px;
         padding: 8px 14px;
         border: none;
-        border-radius: 20px;
+        border-radius: 8px; /* FIX: Changed from 20px to 8px */
         background: #ff4d6d;
         color: white;
         font-weight: bold;
         cursor: pointer;
         text-align: center;
         text-decoration: none;
-        position: relative; /* To position it correctly with the button */
-        left: 5px;
-        transition: color 0.3s ease, background-color 0.3s ease;
+        transition: background-color 0.3s ease;
+        margin-left: 5px;
+
       }
       .remove-btn:hover {
         background-color: #ff2c4f;
@@ -236,6 +236,18 @@
         .templates-grid {
           grid-template-columns: 1fr;
         }
+      }
+      /* New style for the template title on saved page for consistency */
+      .templates-main h1 {
+        background: linear-gradient(
+          to right,
+          #67e8f9,
+          #3b82f6
+        ); /*bright neon cyan-blue */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
       }
     </style>
   </head>
