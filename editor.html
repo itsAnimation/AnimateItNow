@@ -6,43 +6,54 @@
     <title>AnimateItNow - Live Editor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="editor.css" />
-
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
   </head>
 
-  <body class="bg-gray-50 text-gray-900 min-h-screen">
-    
-    <header id="header-section" class="bg-[#020d2f] shadow p-4 flex items-center justify-between">
+  <body class="bg-gray-50 text-gray-900 min-h-screen transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+    <header
+      id="header-section"
+      class="bg-[#020d2f] shadow p-4 flex items-center justify-between dark:bg-gray-800"
+    >
       <!-- logo -->
       <nav class="navbar scroll-fade">
         <div class="nav-left">
-            <a href="/" class="logo-link">
-              <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-              <span class="site-name">Animate It Now</span>
-            </a>
+          <a href="/" class="logo-link flex items-center gap-2">
+            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo h-8" />
+            <span class="site-name font-bold text-white">Animate It Now</span>
+          </a>
         </div>
-        </nav>
+      </nav>
 
-      <div class="flex gap-2">
+      <div class="flex gap-2 items-center">
+        <!-- Dark Mode Toggle -->
+        <button
+          id="themeToggle"
+          class="text-yellow-400 hover:text-yellow-300 text-xl px-3 py-2 rounded-full transition"
+          title="Toggle Dark Mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
         <button
           id="resetBtn"
-          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2"
+          class="text-blue-600 hover:text-blue-800 text-2xl font-bold px-4 py-2 dark:text-blue-400 dark:hover:text-blue-300"
           title="Reset"
         >
           &#x21bb;
         </button>
         <button
           id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold dark:bg-blue-500 dark:hover:bg-blue-400"
         >
           Run
         </button>
       </div>
     </header>
-    
 
     <main class="p-6 space-y-6">
       <div class="flex flex-row gap-4">
@@ -82,12 +93,36 @@
         <h2 class="Output-line">Output</h2>
         <iframe
           id="output"
-          class="w-full h-[300px] border border-gray-300 rounded bg-white"
+          class="w-full h-[300px] border border-gray-300 rounded bg-white dark:bg-gray-800 dark:border-gray-600"
         ></iframe>
       </div>
     </main>
 
     <script src="editor.js"></script>
+    <script>
+      // Dark Mode Toggle Logic
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
+
+      // Load preference
+      if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+          localStorage.setItem("theme", "dark");
+          themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+          themeToggle.classList.remove("text-yellow-400");
+          themeToggle.classList.add("text-orange-400");
+        } else {
+          localStorage.setItem("theme", "light");
+          themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+          themeToggle.classList.remove("text-orange-400");
+          themeToggle.classList.add("text-yellow-400");
+        }
+      });
+    </script>
   </body>
 </html>
-
