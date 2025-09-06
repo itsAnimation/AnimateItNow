@@ -90,20 +90,61 @@
     <link rel="stylesheet" href="templates.css" />
 
     <style>
-      /* Keeping some specific styles for this page */
-      .container {
-        max-width: 1200px;
-        margin: 30px auto;
-        padding: 0 20px;
+      /* Remove margins to prevent light-space bleed */
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
       }
 
-      .templates-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+      /* Navbar fixes */
+      .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+      }
+      .nav-right {
+        display: flex;
+        gap: 1.5rem;
+      }
+      a {
+        text-decoration: none;
       }
 
-      /* Card and button styles for dark mode from templates.html */
+      /* Dark Mode Global Styles */
+      body.dark {
+        background-color: #121212;
+        color: #f5f5f5;
+        background: url(images/bgdark.png) no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Navbar dark mode */
+      body.dark .navbar,
+      body.dark .nav-links a,
+      body.dark .site-name {
+        background-color: #1a1a1a;
+        color: #ffffff;
+      }
+      body.dark .nav-links a:hover {
+        color: #90caf9;
+      }
+
+      /* Headings dark mode */
+      body.dark .templates-main h1 {
+        background: linear-gradient(to right, #67e8f9, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+      }
+
+      /* Template card dark mode */
       body.dark .template-card {
         background-color: rgba(30, 41, 59, 0.6);
         border: 1px solid rgba(59, 130, 246, 0.15);
@@ -124,6 +165,35 @@
         background-color: #444;
         color: #ffffff;
       }
+
+      /* Dark mode template preview */
+      body.dark .template-preview {
+        background-color: #2a2a2a;
+        box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+      }
+
+      /* Smooth transitions */
+      .templates-main h1,
+      .template-card h2,
+      .template-btn,
+      .navbar,
+      .nav-links a {
+        transition: color 0.3s ease, background-color 0.3s ease;
+      }
+
+      /* Keeping specific styles for this page */
+      .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .templates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
       .template-card:hover {
         transform: scale(1.05);
       }
@@ -132,17 +202,14 @@
         margin-top: 10px;
         padding: 8px 14px;
         border: none;
-        border-radius: 8px;
-        /* background: #0ff; */
+        border-radius: 40px;
         color: #000;
         font-weight: bold;
         cursor: pointer;
         text-align: center;
         text-decoration: none;
       }
-      a {
-        text-decoration: none;
-      }
+
       /* FIX: Removed underline on card titles */
       a.template-card h2 {
         text-decoration: none;
@@ -154,11 +221,17 @@
         font-size: 1.3rem;
         color: #bbb;
       }
+
       /* Ensure the page title is styled correctly */
       .templates-main h1 {
         text-align: center;
         margin-bottom: 2rem;
+        background: linear-gradient(to right, #007bff, #0056b3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
+
       /* New CSS for the button and header container */
       .saved-templates-header {
         display: flex;
@@ -190,17 +263,20 @@
       .back-to-templates-btn:hover {
         background-color: #ff2c4f;
       }
+
       /* Hiding the heart icon on this page */
       .favorite-btn {
         display: none !important;
       }
+
       /* New style for the remove button */
       .remove-btn {
         display: inline-block;
         margin-top: 10px;
+        margin-left: 10px;
         padding: 8px 14px;
         border: none;
-        border-radius: 8px; /* FIX: Changed from 20px to 8px */
+        border-radius: 40px;
         background: #ff4d6d;
         color: white;
         font-weight: bold;
@@ -208,8 +284,7 @@
         text-align: center;
         text-decoration: none;
         transition: background-color 0.3s ease;
-        margin-left: 5px;
-
+        position: relative;
       }
       .remove-btn:hover {
         background-color: #ff2c4f;
@@ -237,21 +312,263 @@
           grid-template-columns: 1fr;
         }
       }
-      /* New style for the template title on saved page for consistency */
-      .templates-main h1 {
-        background: linear-gradient(
-          to right,
-          #67e8f9,
-          #3b82f6
-        ); /*bright neon cyan-blue */
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+
+      /* Logo link styling */
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .logo-link img.logo {
+        height: 40px;
+        width: auto;
+      }
+
+      .site-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        pointer-events: none;
+      }
+
+      .logo-link:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      /* Base preview style */
+      .template-preview {
+        height: 90px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        background-color: #f0f0f0;
+        box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      /* Feature Cards Preview */
+      .feature-preview {
+        background-color: #4f8cff;
+        padding: 12px;
+        gap: 10px;
+      }
+      .feature-preview .mini-card {
+        background-color: white;
+        flex: 1;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #555;
+        font-weight: 600;
+      }
+
+      /* Hero Section Preview */
+      .hero-preview {
+        background-color: #4f8cff;
+        flex-direction: column;
+        padding: 14px;
+        gap: 8px;
+      }
+      .hero-preview .hero-image {
+        background-color: white;
+        border-radius: 8px;
+        width: 100%;
+        height: 50px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+      .hero-preview .hero-text-line {
+        background-color: white;
+        border-radius: 5px;
+        height: 8px;
+        width: 80%;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      }
+      .hero-preview .hero-text-line.short {
+        width: 50%;
+      }
+
+      /* Social Share Preview */
+      .social-share-preview {
+        background-color: #4f8cff;
+        gap: 15px;
+        font-size: 28px;
+        color: white;
+      }
+      .social-share-preview .social-icon-preview {
+        transition: transform 0.2s ease-in-out;
+      }
+      .social-share-preview:hover .social-icon-preview {
+        transform: scale(1.1);
+      }
+
+      /* Navbar Preview */
+      .navbar-preview {
+        background-color: #4f8cff;
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px;
+        gap: 8px;
+      }
+      .navbar-line {
+        height: 10px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .navbar-line.logo {
+        width: 40%;
+      }
+      .navbar-line.link {
+        width: 70%;
+      }
+      .navbar-line.link.short {
+        width: 50%;
+      }
+
+      /* Animated Toggles Preview */
+      .toggles-preview {
+        background-color: #4f8cff;
+        gap: 20px;
+      }
+      .mini-toggle {
+        width: 50px;
+        height: 25px;
+        background-color: #ccc;
+        border-radius: 25px;
+        position: relative;
+        padding: 3px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .mini-handle {
+        width: 19px;
+        height: 19px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        transition: transform 0.3s ease;
+      }
+      .mini-toggle.off .mini-handle {
+        transform: translateX(0);
+      }
+      .mini-toggle.on {
+        background-color: #25d366;
+      }
+      .mini-toggle.on .mini-handle {
+        transform: translateX(25px);
+      }
+
+      /* Display Properties Preview */
+      .display-preview {
+        background-color: #4f8cff;
+        height: 90px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .display-box {
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .display-box.box1 {
+        width: 24px;
+        height: 24px;
+        background-color: #bbdefb;
+      }
+      .display-box.box2 {
+        width: 24px;
+        height: 32px;
+        background-color: #90caf9;
+      }
+      .display-box.box3 {
+        width: 24px;
+        height: 28px;
+        background-color: #64b5f6;
+      }
+
+      .code-play-preview {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      /* Dark Theme Support for previews */
+      body.dark .display-preview {
+        background-color: #2a2a2a;
+        box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Switch component for cursor toggle */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+      }
+
+      input:checked + .slider {
+        background-color: #007bff;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #007bff;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
       }
     </style>
   </head>
-  <body>
+  <body class="dark">
     <nav class="navbar scroll-fade">
       <div class="nav-left">
         <a href="index.html" class="logo-link">
@@ -320,7 +637,7 @@
       <div class="container">
         <div id="favorites-container" class="templates-grid"></div>
         <p id="no-favorites" class="no-favorites" style="display: none">
-          You haven’t saved any templates yet.
+          You haven't saved any templates yet.
         </p>
       </div>
     </main>
@@ -438,7 +755,7 @@
         "tooltip-ui-component": {
           title: "Tooltip UI Component",
           link: "templates/tooltip.html",
-          preview: `<div class="template-preview"><button class="tooltip" data-tooltip="I’m a tooltip!">Hover</button></div>`,
+          preview: `<div class="template-preview"><button class="tooltip" data-tooltip="I'm a tooltip!">Hover</button></div>`,
         },
         "responsive-card-carousel": {
           title: "Responsive Card Carousel",
@@ -511,29 +828,21 @@
               container.appendChild(card);
             }
           });
-          attachEventListeners();
         }
       }
 
-      function attachEventListeners() {
-        // Event listener for the remove button
-        document.querySelectorAll(".remove-btn").forEach((button) => {
-          button.addEventListener("click", (e) => {
-            e.preventDefault();
-            const templateId = button.getAttribute("data-id");
-            favorites = favorites.filter((id) => id !== templateId);
-            localStorage.setItem("favorites", JSON.stringify(favorites));
-            renderFavoriteCards(); // Re-render the cards after removal
-          });
-        });
+      // Function to handle removing a favorite template
+      function handleRemoveFavorite(e) {
+        if (e.target.classList.contains("remove-btn")) {
+          e.preventDefault();
+          const templateId = e.target.getAttribute("data-id");
+          favorites = favorites.filter((id) => id !== templateId);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          renderFavoriteCards();
+        }
       }
 
-      // Initial render
-      renderFavoriteCards();
-
-      // =============================
-      // Theme Toggle Functionality
-      // =============================
+      // Theme toggle functionality
       const themeToggle = document.getElementById("theme-toggle");
       const body = document.body;
 
@@ -541,20 +850,31 @@
         const newIcon = isDark ? "sun" : "moon";
         body.classList.toggle("dark", isDark);
         localStorage.setItem("theme", isDark ? "dark" : "light");
+
         if (themeToggle) {
           themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
           lucide.createIcons();
         }
       }
+
+      // Initialize theme based on saved preference or system preference
       const savedTheme = localStorage.getItem("theme");
       const prefersDark =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
       setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
+
+      // Add click event listener to theme toggle button
       themeToggle?.addEventListener("click", () => {
         setTheme(!body.classList.contains("dark"));
       });
-      lucide.createIcons();
+      
+      // Initial render and event listener setup
+      document.addEventListener("DOMContentLoaded", () => {
+        renderFavoriteCards();
+        container.addEventListener("click", handleRemoveFavorite);
+        lucide.createIcons(); // Initialize Lucide icons on page load
+      });
     </script>
   </body>
 </html>
