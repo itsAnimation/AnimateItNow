@@ -7,40 +7,18 @@
   <title>Animated Social Share Buttons | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --nav-text: #222;
+      --nav-text: #333;
       --accent: #007bff;
       --background: #f5f5f5;
-      --text-color: #222;
+      --text-color: #333;
       --transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
@@ -70,67 +48,18 @@
       padding-top: 80px;
     }
 
-    /* --- UNIFIED NAVBAR STYLES --- */
+    /* Navbar */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--nav-text);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      transition: background 0.3s ease, color 0.3s ease;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 1000 !important;
+      height: 60px !important;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      width: 36px;
-      height: 36px;
-      margin-right: 0.75rem;
-      object-fit: contain;
-      background: var(--accent);
-      border-radius: 6px;
-    }
-
-    .site-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 0.5px;
-      color: var(--nav-text);
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--nav-text);
-      font-weight: 500;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a.active,
-    .nav-links a:hover {
-      color: var(--accent);
+    body {
+      padding-top: 60px !important;
     }
 
     #theme-toggle {
@@ -143,10 +72,10 @@
       transition: color 0.3s ease;
     }
 
-    body.dark-theme .navbar {
+    /* body.dark-theme .navbar {
       background: rgba(26, 26, 26, 0.6);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    } */
 
     /* --- PAGE CONTENT STYLES --- */
     section {
@@ -451,19 +380,65 @@
 </head>
 
 <body>
-  <nav class="navbar" id="navbar">
-    <div class="nav-left">
-      <img src="../images/logo.png" alt="Logo" class="logo" />
-      <span class="site-name">AnimateItNow</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../templates.html" class="active">Templates</a></li>
-      <li><a href="../contributors.html">Contributors</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-  </nav>
+  <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html" >Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle dark/light mode"><i data-lucide="moon"></i></button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  
 
   <!-- Social Button Variants -->
   <section>
@@ -669,7 +644,6 @@
     applyTheme();
   </script>
 
-
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body></html>
+  <div id="cursor-snake"></div>
+    <script src="../script.js"></script>
+  </body></html>
