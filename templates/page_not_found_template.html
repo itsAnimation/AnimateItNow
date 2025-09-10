@@ -3,34 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="stylesheet" href="../styles.css" />
+   <script src="https://unpkg.com/lucide@latest"></script>
   <title>404 - Page Not Found</title>
+
+  <!-- PWA Meta Tags -->
+<meta name="theme-color" content="#ff6b6b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+<meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+<meta name="msapplication-TileColor" content="#ff6b6b" />
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="../manifest.json" />
+
+<!-- PWA Icons -->
+<link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
+<link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
+<link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
+<link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
+
+
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <style>
@@ -40,7 +45,81 @@
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
-    body, html {
+    
+    /* Dark theme toggle */
+    .theme-toggle {
+      position: fixed !important;
+      top: 20px !important;
+      right: 20px !important;
+      background: #ffffff !important;
+      border: 2px solid #218cfa !important;
+      border-radius: 25px !important;
+      padding: 10px 18px !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #333 !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.2) !important;
+      backdrop-filter: blur(10px) !important;
+      z-index: 99999 !important;
+      user-select: none !important;
+      min-width: 80px !important;
+      justify-content: center !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      font-family: 'Poppins', sans-serif !important;
+    }
+    .theme-toggle:hover {
+      background: #f8f9ff !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.3) !important;
+    }
+    .theme-toggle:active {
+      transform: translateY(0px) !important;
+    }
+    
+    /* Dark theme styles */
+    [data-theme="dark"] {
+      background: #1a1a2e;
+      color: #eee;
+    }
+    [data-theme="dark"] .container {
+      background: #16213e;
+      box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 6px 6px rgba(0, 0, 0, 0.2);
+    }
+    [data-theme="dark"] .error-msg {
+      color: #ddd;
+    }
+    [data-theme="dark"] .error-desc {
+      color: #bbb;
+    }
+    [data-theme="dark"] .footer-note {
+      color: #888;
+    }
+    [data-theme="dark"] .theme-toggle {
+      background: #16213e !important;
+      border-color: #218cfa !important;
+      color: #eee !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+    [data-theme="dark"] .theme-toggle:hover {
+      background: #1a2542 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    [data-theme="dark"] .circle {
+      background: rgba(33, 140, 250, 0.1);
+    }
+    [data-theme="dark"] .icon-robot circle {
+      fill: #1e3a5f;
+    }
+    body {
+      width: 100%;
       height: 100%;
       font-family: 'Poppins', sans-serif;
       background: #f0f5ff;
@@ -65,7 +144,58 @@
         0 10px 20px rgba(33, 140, 250, 0.15),
         0 6px 6px rgba(33, 140, 250, 0.1);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
+    }
+
+  /*navbar*/
+      .navbar{
+      width: 100%;
+      margin-bottom: 1%;
+    }
+
+    
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+    /* Theme toggle button inside card */
+    .card-theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #218cfa;
+      border: 2px solid white;
+      border-radius: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(33, 140, 250, 0.3);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .card-theme-toggle:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(33, 140, 250, 0.4);
+    }
+
+    /* Dark theme styles for card button */
+    [data-theme="dark"] .card-theme-toggle {
+      background: #ff6b6b;
+      color: white;
+      border-color: white;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    [data-theme="dark"] .card-theme-toggle:hover {
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     }
 
     /* Big 404 text */
@@ -195,11 +325,92 @@
         padding: 12px 28px;
         font-size: 1rem;
       }
+      .theme-toggle {
+        top: 15px !important;
+        right: 15px !important;
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+        min-width: 70px !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
+
+ <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
   <main class="container" role="main" aria-labelledby="error-title">
+    <!-- Theme Toggle Button inside card - Very visible -->
+    <div class="card-theme-toggle" onclick="toggleTheme()" id="card-theme-button">
+      🌙 Dark Mode
+    </div>
+    
     <!-- Minimal robot head SVG for a friendly vibe -->
     <svg aria-hidden="true" class="icon-robot" viewBox="0 0 64 64" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Friendly robot head icon" >
       <circle cx="32" cy="32" r="30" stroke="#218cfa" stroke-width="4" fill="#d6eaff"/>
@@ -210,7 +421,7 @@
     </svg>
 
     <h1 id="error-title" class="error-code">404</h1>
-    <p class="error-msg">Uh oh — seems like you’ve hit a dead end!</p>
+    <p class="error-msg">Uh oh — seems like you’ve hit a end!</p>
     <p class="error-desc">The page you’re looking for can’t be found. But don’t worry, let’s get you back on track.</p>
     <button type="button" class="btn-go-back" onclick="window.history.back()" aria-label="Go back to previous page">
       👈 Go Back
@@ -224,7 +435,44 @@
     <div class="circle one"></div>
     <div class="circle two"></div>
   </main>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body>
+  
+  <!-- Dark Theme Toggle Script -->
+  <script>
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const cardButton = document.getElementById('card-theme-button');
+      
+      document.body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      if (newTheme === 'dark') {
+        if (cardButton) {
+          cardButton.innerHTML = '☀️ Light Mode';
+        }
+      } else {
+        if (cardButton) {
+          cardButton.innerHTML = '🌙 Dark Mode';
+        }
+      }
+    }
+    
+    // Load saved theme on page load
+    window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const cardButton = document.getElementById('card-theme-button');
+      
+      document.body.setAttribute('data-theme', savedTheme);
+      
+      if (savedTheme === 'dark') {
+        if (cardButton) {
+          cardButton.innerHTML = '☀️ Light Mode';
+        }
+      }
+    });
+  </script>
+  
+   <div id="cursor-snake"></div>
+    <script src="../script.js"></script>
+  </body>
 </html>

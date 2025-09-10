@@ -258,7 +258,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user1.jpg" alt="">
+                    <img src="images/img1.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
@@ -272,7 +272,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user2.jpg" alt="">
+                    <img src="images/img2.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
@@ -286,7 +286,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user3.jpg" alt="">
+                    <img src="images/img3.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
@@ -300,7 +300,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user4.jpg" alt="">
+                    <img src="images/img4.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
@@ -314,7 +314,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user5.jpg" alt="">
+                    <img src="images/img5.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
@@ -328,7 +328,7 @@
               <li class="swiper-slide">
                 <div class="wrapper">
                   <div class="thumbnail">
-                    <img src="images/user6.jpg" alt="">
+                    <img src="images/img6.jpg" alt="">
                   </div>
                   <div class="aside">
                     <p>It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
@@ -351,7 +351,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper('.swiper', {
+      window.swiper = new Swiper('.swiper', {
         autoHeight: true,
         loop: true,
 
@@ -398,6 +398,588 @@
   <script src="script.js"></script>
   <!-- PWA Support -->
   <script src="pwa.js"></script>
+
+  <!-- testimonials-effect-animations -->
+   <!-- GSSOC'25 Contributor : 6vam4arya -->
+  <style>
+    .testi {
+  animation: fadeIn 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Header animations with 3D text effect */
+.testi .head h3 {
+  animation: flipInX 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  text-shadow: 2px 2px 0 rgba(29, 197, 200, 0.2);
+  position: relative;
+}
+
+.testi .head p {
+  animation: flipInY 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
+  animation-fill-mode: both;
+}
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotateX(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateX(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotateX(-5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(400px) rotateY(-20deg);
+  }
+  60% {
+    transform: perspective(400px) rotateY(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: perspective(400px) rotateY(-5deg);
+  }
+  to {
+    transform: perspective(400px);
+  }
+}
+
+/* Cool neon glow effect for headings */
+.testi .head h3::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: transparent;
+  text-shadow: 0 0 10px #1dc5c8, 0 0 20px #1dc5c8, 0 0 30px #1dc5c8;
+  filter: blur(10px);
+  opacity: 0;
+  animation: neonPulse 2s ease-in-out infinite alternate, fadeIn 1s ease-out 1.5s forwards;
+}
+
+@keyframes neonPulse {
+  from { filter: blur(10px); }
+  to { filter: blur(15px); }
+}
+
+/* Holographic wrapper effect */
+.testi .wrapper {
+  transition: all 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 15px;
+}
+
+.testi .wrapper::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.02) 25%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.02) 75%,
+    rgba(255,255,255,0) 100%
+  );
+  top: -50%;
+  left: -50%;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease-out;
+  opacity: 0;
+}
+
+.testi .swiper-slide-active .wrapper::before {
+  opacity: 1;
+  animation: holographicShift 8s linear infinite;
+}
+
+@keyframes holographicShift {
+  0% { transform: rotate(45deg) translateY(-100%); }
+  100% { transform: rotate(45deg) translateY(100%); }
+}
+
+/* 3D flip card effect for thumbnail */
+.testi .thumbnail {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.testi .swiper-slide-active .thumbnail {
+  animation: floatAndRotate 5s ease-in-out infinite;
+}
+
+@keyframes floatAndRotate {
+  0%, 100% { transform: translateY(0) rotateY(0); }
+  25% { transform: translateY(-10px) rotateY(5deg); }
+  50% { transform: translateY(0) rotateY(0); }
+  75% { transform: translateY(10px) rotateY(-5deg); }
+}
+
+.testi .thumbnail img {
+  filter: contrast(110%) brightness(105%);
+  transition: all 0.8s ease-out;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.testi .swiper-slide-active .thumbnail img {
+  filter: contrast(110%) brightness(105%);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced thumbnail hover with glitch effect */
+.testi .swiper-slide-active .thumbnail:hover img {
+  animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(-5px, -5px); }
+  60% { transform: translate(5px, 5px); }
+  80% { transform: translate(5px, -5px); }
+  100% { transform: translate(0); }
+}
+
+/* Fancy liquid blob shape for thumbnail background */
+.testi .thumbnail::before {
+  transition: all 0.8s ease-out;
+  background-color: #1dc5c8;
+}
+
+.testi .swiper-slide-active .thumbnail::before {
+  animation: liquidBlob 10s ease-in-out infinite;
+}
+
+@keyframes liquidBlob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 70%; }
+  75% { border-radius: 40% 30% 70% 30% / 70% 50% 40% 60%; }
+}
+
+/* Text content animations with typewriter effect */
+.testi .aside {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s ease-out;
+}
+
+.testi .swiper-slide-active .aside {
+  opacity: 1;
+  transform: translateX(0);
+  animation: slideInRight 0.8s forwards 0.3s;
+}
+
+.testi .swiper-slide-active .aside > p {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid transparent;
+  width: 0;
+  animation: typing 2s steps(40, end) forwards 0.5s,
+             cursorBlink 1s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; white-space: nowrap; }
+  to { width: 100%; white-space: normal; }
+}
+
+@keyframes cursorBlink {
+  from, to { border-color: transparent; }
+  50% { border-color: #1dc5c8; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Quote marks with particle effect */
+.testi .aside > p::before,
+.testi .aside > p::after {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.testi .swiper-slide-active .aside > p::before {
+  opacity: 0.3;
+  animation: particleFloat 5s ease-in-out infinite;
+}
+
+.testi .swiper-slide-active .aside > p::after {
+  opacity: 0.3;
+  animation: particleFloat 5.5s ease-in-out infinite reverse;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) rotate(0); opacity: 0.3; }
+  50% { transform: translateY(-15px) rotate(5deg); opacity: 0.6; }
+  100% { transform: translateY(0) rotate(0); opacity: 0.3; }
+}
+
+/* Name section with 3D text effect */
+.testi .aside .name {
+  opacity: 0;
+  transform: perspective(500px) rotateX(45deg);
+  transform-origin: center bottom;
+  transition: all 0.5s ease-out;
+}
+
+.testi .swiper-slide-active .aside .name {
+  opacity: 1;
+  transform: perspective(500px) rotateX(0);
+  animation: flipUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
+}
+
+@keyframes flipUp {
+  from {
+    opacity: 0;
+    transform: perspective(500px) rotateX(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(500px) rotateX(0);
+  }
+}
+
+/* Cool neon text effect for name */
+.testi .aside .name h4 {
+  position: relative;
+  display: inline-block;
+  color: #1dc5c8;
+  text-shadow: 0 0 5px rgba(29, 197, 200, 0.5);
+  animation: neonText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonText {
+  from {
+    text-shadow: 0 0 5px rgba(29, 197, 200, 0.5), 
+                0 0 10px rgba(29, 197, 200, 0.3), 
+                0 0 15px rgba(29, 197, 200, 0.2);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(29, 197, 200, 0.8), 
+                0 0 20px rgba(29, 197, 200, 0.5), 
+                0 0 30px rgba(29, 197, 200, 0.3);
+  }
+}
+
+/* Cool hover effect with rainbow gradient underline */
+.testi .swiper-slide-active .aside .name h4::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background: linear-gradient(90deg, #1dc5c8, #9c27b0, #ff7043, #1dc5c8);
+  background-size: 300% 100%;
+  animation: lineGrow 0.5s forwards 1.5s, gradientShift 3s ease infinite;
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navigation buttons with futuristic glow effect */
+.testi :is(.swiper-button-next, .swiper-button-prev) {
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev):hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(29, 197, 200, 0.7), 
+              0 0 30px rgba(29, 197, 200, 0.4), 
+              0 0 45px rgba(29, 197, 200, 0.2);
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev)::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(29, 197, 200, 0.8) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev):hover::before {
+  opacity: 0.5;
+  animation: pulseButton 1s infinite alternate;
+}
+
+@keyframes pulseButton {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Pagination bullets with shooting star effect */
+.testi .swiper-pagination span {
+  transition: all 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.testi .swiper-pagination span:hover {
+  transform: scale(1.5);
+}
+
+.testi .swiper-pagination .swiper-pagination-bullet-active {
+  position: relative;
+}
+
+.testi .swiper-pagination .swiper-pagination-bullet-active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 300%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: shootingStar 2s linear infinite;
+}
+
+@keyframes shootingStar {
+  0% { left: -100%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Slide transition with matrix effect */
+.swiper-slide {
+  opacity: 0.4;
+  transform: scale(0.85) translateY(30px);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: blur(2px);
+  position: relative;
+}
+
+.swiper-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 197, 200, 0.1) 0%,
+    rgba(0, 0, 0, 0) 20%,
+    rgba(0, 0, 0, 0) 80%,
+    rgba(29, 197, 200, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+}
+
+.swiper-slide-active::before {
+  opacity: 1;
+  animation: matrixRain 10s linear infinite;
+}
+
+@keyframes matrixRain {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* Cool entrance animation with shatter effect */
+.swiper-slide-active .wrapper {
+  animation: shatterIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes shatterIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+  30% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Prism light effect across slides */
+.swiper-slide-active .wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(29, 197, 200, 0.2),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: prismLight 7s ease-in-out infinite;
+}
+
+@keyframes prismLight {
+  0% { left: -150%; }
+  20%, 100% { left: 150%; }
+}
+
+/* Background cosmic particles effect */
+.site::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 20%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 50%, rgba(29, 197, 200, 0.3) 0%, transparent 100%);
+  background-size: 200% 200%;
+  animation: cosmicParticles 20s ease infinite;
+  z-index: -2;
+}
+
+@keyframes cosmicParticles {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Media queries - preserve responsive design with enhanced desktop effects */
+@media screen and (min-width: 768px) {
+  .testi .wrapper {
+    flex-direction: row;
+    padding: 30px 100px;
+  }
+  
+  .testi .thumbnail {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .testi :is(.swiper-button-next, .swiper-button-prev) {
+    top: 50%;
+  }
+  
+  /* Enhanced desktop 3D perspective effect */
+  .swiper-slide-active .wrapper {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: desktopReveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  @keyframes desktopReveal {
+    from {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-10deg) translateZ(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0) translateZ(0);
+    }
+  }
+  
+  /* Desktop-only parallax effect */
+  .testi .aside {
+    transform: translateZ(20px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .thumbnail {
+    transform: translateZ(40px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .swiper-slide-active:hover .thumbnail {
+    transform: translateZ(60px);
+  }
+  
+  .testi .swiper-slide-active:hover .aside {
+    transform: translateZ(30px);
+  }
+}
+
+/* Additional cool zoom hover effect for mobile */
+@media screen and (max-width: 767px) {
+  .testi .swiper-slide-active .wrapper {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .testi .swiper-slide-active .wrapper:active {
+    transform: scale(0.95);
+  }
+}
+  </style>
+
+  
 </body>
 
 </html>

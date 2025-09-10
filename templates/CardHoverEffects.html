@@ -7,31 +7,7 @@
     <title>3D Card Hover Effect | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
     <link rel="stylesheet" href="../styles.css">
@@ -387,8 +363,115 @@
             line-height: 1.6;
         }
 
+        /* Navbar Styles */
+        /* .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-self: start;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .site-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+            align-items: center;
+            justify-self: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+        } */
+
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .nav-left {
+                justify-self: center;
+                grid-row: 1;
+            }
+            
+            .nav-links {
+                justify-self: center;
+                gap: 1rem;
+                grid-row: 2;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .site-name {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                height: 35px;
+            }
+            
+            /* Adjust body padding for taller mobile navbar */
+            body {
+                padding-top: 120px;
+            }
+            
             .header-section h1 {
                 font-size: 2rem;
             }
@@ -407,25 +490,177 @@
                 padding: 1rem;
             }
         }
+
+        @media (min-width: 769px) {
+            body {
+                padding-top: 80px;
+            }
+        }
+
+        /* Dark Theme Toggle Button */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 50px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        #theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Dark Theme Styles */
+        [data-theme="dark"] {
+            background: #1a1a2e;
+            color: #eee;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(26, 26, 46, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .site-name {
+            background: linear-gradient(135deg, #a8b5ff 0%, #c8a8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-theme="dark"] .nav-links a {
+            color: #e2e8f0;
+        }
+
+        [data-theme="dark"] .nav-links a:hover {
+            color: #a8b5ff;
+            background: rgba(168, 181, 255, 0.1);
+        }
+
+        [data-theme="dark"] .nav-links a.active {
+            color: #a8b5ff;
+            background: rgba(168, 181, 255, 0.15);
+        }
+
+        [data-theme="dark"] #theme-toggle {
+            background: #16213e;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .header-section h1 {
+            background: linear-gradient(135deg, #a8b5ff 0%, #c8a8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-theme="dark"] .header-section p,
+        [data-theme="dark"] .effect-title,
+        [data-theme="dark"] .effect-description {
+            color: #ccc;
+        }
+
+        [data-theme="dark"] .card {
+            background: #2d3748;
+            border-color: #4a5568;
+        }
+
+        [data-theme="dark"] .card h3 {
+            color: #e2e8f0;
+        }
+
+        [data-theme="dark"] .card p {
+            color: #a0aec0;
+        }
     </style>
 </head>
 
 <body>
     <!-- ───────── NAVBAR ───────── -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="../images/logo.png" alt="Logo" class="logo" />
-            <span class="site-name">AnimateItNow</span>
-        </div>
+    <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </div>
 
+      <div class="nav-right">
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../templates.html" class="active">Templates</a></li>
-            <li><a href="../contributors.html">Contributors</a></li>
-            <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <!--leaderboard linkup> -->
+          <!-- cursor toggle switch -->
+          <!-- <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li> -->
+          <!-- github icon -->
+          <li>
+            <a
+              href="https://github.com/itsAnimation/AnimateItNow"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repo"
+              class="github-icon"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                width="24"
+                height="24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                ></path>
+              </svg>
+            </a>
+          </li>
+          <!-- <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li> -->
         </ul>
-        <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
     </nav>
+
+    <!-- Dark Theme Toggle Button -->
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        🌙 Dark Mode
+    </button>
 
     <div class="container">
         <div class="header-section">
@@ -631,8 +866,37 @@
             });
         });
     </script>
-  <!-- PWA Support -->
-  <script src="../pwa.js"></script>
-</body>
+
+    <!-- Dark Theme Toggle Script -->
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const button = document.getElementById('theme-toggle');
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                button.innerHTML = '☀️ Light Mode';
+            } else {
+                button.innerHTML = '🌙 Dark Mode';
+            }
+        }
+        
+        // Load saved theme on page load
+        window.addEventListener('load', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const button = document.getElementById('theme-toggle');
+            
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            if (savedTheme === 'dark') {
+                button.innerHTML = '☀️ Light Mode';
+            }
+        });
+    </script>
+
+  </body>
 
 </html>

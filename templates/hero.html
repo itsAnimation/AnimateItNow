@@ -1,477 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hero Section Variants with Expandable Code</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="../images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="../images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="../images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="../images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="../images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../images/icons/icon-512x512.png" />
-  
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero Section Variants with Expandable Code</title>
+  <meta name="description"
+    content="A comprehensive collection of CSS animation templates and effects for web developers" />
+
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="../images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="../images/icons/icon-192x192.png" />
-  
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="../images/logo.png" />
-    <style>
-      :root {
-        --nav-text: #222;
-        --accent: #007bff;
-        --transition: 0.3s ease;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        background: #f5f5f5;
-        margin: 0;
-        padding: 0;
-        color: #222;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        padding-top: 64px; /* offset for fixed navbar */
-      }
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    :root {
+      --nav-text: #222;
+      --accent: #007bff;
+      --transition: 0.3s ease;
+    }
 
-      /* Navbar */
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 64px;
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--nav-text);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 2rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        z-index: 1000;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        transition: background var(--transition), color var(--transition);
-      }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding-top: 64px;
+      /* offset for fixed navbar */
+    }
 
-      .nav-left {
-        display: flex;
-        align-items: center;
-      }
-      .logo {
-        width: 36px;
-        height: 36px;
-        margin-right: 0.75rem;
-        object-fit: contain;
-      }
-      .site-name {
-        font-weight: 700;
-        font-size: 1.2rem;
-        letter-spacing: 0.5px;
-      }
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        margin: 0; /* reset default */
-        padding: 0;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--nav-text);
-        font-weight: 500;
-        transition: color var(--transition);
-        position: relative;
-      }
-      .nav-links a.active,
-      .nav-links a:hover {
-        color: var(--accent);
-      }
-      #theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-left: 1.5rem;
-        color: var(--nav-text);
-        transition: color var(--transition);
-      }
+    /* Navbar */
+    .navbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 1000 !important;
+      height: 60px !important;
+    }
 
-      section {
-        max-width: 1100px;
-        margin: 2rem auto 3rem;
-        padding: 20px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+    body {
+      padding-top: 60px !important;
+    }
 
-      h2 {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 10px;
-      }
+    section {
+      max-width: 1100px;
+      margin: 2rem auto 3rem;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-      .subtitle {
-        text-align: center;
-        color: #555;
-        margin-bottom: 30px;
-        transition: color 0.3s ease;
-      }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
 
-      /* Hero base and variants */
-      .hero {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 40px 20px;
-        border-radius: 12px;
-        background: #e9f1ff;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      transition: color 0.3s ease;
+    }
 
-      .hero-1 .hero-text {
-        flex: 1 1 400px;
-      }
-      .hero-1 .hero-image {
-        flex: 1 1 400px;
-        text-align: center;
-      }
-      .hero-1 img {
-        max-width: 100%;
-        border-radius: 12px;
-        transition: filter 0.3s ease;
-      }
-      .hero-1 button {
-        padding: 12px 28px;
-        background-color: var(--accent);
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
-        margin-top: 20px;
-        transition: background-color 0.3s ease;
-      }
-      .hero-1 button:hover {
-        background-color: #0056b3;
-      }
+    /* Hero base and variants */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 40px 20px;
+      border-radius: 12px;
+      background: #e9f1ff;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-      .hero-2 {
+    .hero-1 .hero-text {
+      flex: 1 1 400px;
+    }
+
+    .hero-1 .hero-image {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .hero-1 img {
+      max-width: 100%;
+      border-radius: 12px;
+      transition: filter 0.3s ease;
+    }
+
+    .hero-1 button {
+      padding: 12px 28px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-1 button:hover {
+      background-color: #0056b3;
+    }
+
+    .hero-2 {
+      flex-direction: column;
+      text-align: center;
+      background: #f0f8ff;
+    }
+
+    .hero-2 h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: #003366;
+    }
+
+    .hero-2 p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .hero-2 button {
+      background: var(--accent);
+      border: none;
+      padding: 12px 28px;
+      color: white;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-2 button:hover {
+      background: #0056b3;
+    }
+
+    .hero-3 {
+      position: relative;
+      color: white;
+      height: 320px;
+      border-radius: 12px;
+      background: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-3::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+    }
+
+    .hero-3 .content {
+      position: relative;
+      max-width: 700px;
+      z-index: 1;
+    }
+
+    .hero-3 h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-3 p {
+      font-size: 1.3rem;
+    }
+
+    .hero-4 {
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .hero-4 .left,
+    .hero-4 .right {
+      flex: 1 1 400px;
+      padding: 40px 30px;
+    }
+
+    .hero-4 .left {
+      background: var(--accent);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .hero-4 .left h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-4 .left p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-4 .left button {
+      padding: 12px 28px;
+      border: none;
+      background: white;
+      color: var(--accent);
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      width: fit-content;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-4 .left button:hover {
+      background: #e6e6e6;
+    }
+
+    .hero-4 .right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 12px 12px 0;
+      transition: filter 0.3s ease;
+    }
+
+    .expand-btn {
+      display: block;
+      margin: 25px auto 10px;
+      padding: 8px 18px;
+      background-color: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .expand-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .code-block {
+      display: none;
+      background: #222;
+      color: #ddd;
+      padding: 20px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+
+      .hero-1,
+      .hero-4 {
         flex-direction: column;
         text-align: center;
-        background: #f0f8ff;
-      }
-      .hero-2 h1 {
-        font-size: 2.8rem;
-        margin-bottom: 15px;
-        color: #003366;
-      }
-      .hero-2 p {
-        font-size: 1.2rem;
-        color: #555;
-        margin-bottom: 25px;
-      }
-      .hero-2 button {
-        background: var(--accent);
-        border: none;
-        padding: 12px 28px;
-        color: white;
-        border-radius: 6px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      .hero-2 button:hover {
-        background: #0056b3;
       }
 
-      .hero-3 {
-        position: relative;
-        color: white;
-        height: 320px;
-        border-radius: 12px;
-        background: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80")
-          no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      .hero-3::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 12px;
-      }
-      .hero-3 .content {
-        position: relative;
-        max-width: 700px;
-        z-index: 1;
-      }
-      .hero-3 h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-      }
-      .hero-3 p {
-        font-size: 1.3rem;
-      }
-
-      .hero-4 {
-        display: flex;
-        flex-wrap: wrap;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+      .hero-1 .hero-text,
+      .hero-1 .hero-image,
       .hero-4 .left,
       .hero-4 .right {
-        flex: 1 1 400px;
-        padding: 40px 30px;
-      }
-      .hero-4 .left {
-        background: var(--accent);
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-radius: 12px 0 0 12px;
-      }
-      .hero-4 .left h1 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-      }
-      .hero-4 .left p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-      }
-      .hero-4 .left button {
-        padding: 12px 28px;
-        border: none;
-        background: white;
-        color: var(--accent);
-        font-weight: bold;
-        border-radius: 6px;
-        cursor: pointer;
-        width: fit-content;
-        transition: background-color 0.3s ease;
-      }
-      .hero-4 .left button:hover {
-        background: #e6e6e6;
-      }
-      .hero-4 .right img {
+        flex: unset;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0 12px 12px 0;
-        transition: filter 0.3s ease;
+        border-radius: 12px !important;
       }
 
-      .expand-btn {
-        display: block;
-        margin: 25px auto 10px;
-        padding: 8px 18px;
-        background-color: var(--accent);
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      .hero-4 .right img {
+        border-radius: 0 0 12px 12px !important;
+        height: auto;
       }
-      .expand-btn:hover {
-        background-color: #0056b3;
-      }
+    }
 
-      .code-block {
-        display: none;
-        background: #222;
-        color: #ddd;
-        padding: 20px;
-        font-size: 0.85rem;
-        border-radius: 8px;
-        margin-top: 10px;
-        white-space: pre-wrap;
-        overflow-x: auto;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+    /* Dark mode variables */
+    body.dark-theme {
+      --nav-text: #eee;
+      --accent: #90caf9;
+      background-color: #121212;
+      color: #eee;
+    }
 
-      @media (max-width: 768px) {
-        .hero-1,
-        .hero-4 {
-          flex-direction: column;
-          text-align: center;
-        }
-        .hero-1 .hero-text,
-        .hero-1 .hero-image,
-        .hero-4 .left,
-        .hero-4 .right {
-          flex: unset;
-          width: 100%;
-          border-radius: 12px !important;
-        }
-        .hero-4 .right img {
-          border-radius: 0 0 12px 12px !important;
-          height: auto;
-        }
-      }
+    body.dark-theme .navbar {
+      background: rgba(40, 40, 40, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
 
-      /* Dark mode variables */
-      body.dark-theme {
-        --nav-text: #eee;
-        --accent: #90caf9;
-        background-color: #121212;
-        color: #eee;
-      }
+    body.dark-theme .nav-links a {
+      color: var(--nav-text);
+    }
 
-      body.dark-theme .navbar {
-        background: rgba(40, 40, 40, 0.6);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: none;
-      }
+    body.dark-theme .nav-links a.active,
+    body.dark-theme .nav-links a:hover {
+      color: var(--accent);
+    }
 
-      body.dark-theme .nav-links a {
-        color: var(--nav-text);
-      }
-      body.dark-theme .nav-links a.active,
-      body.dark-theme .nav-links a:hover {
-        color: var(--accent);
-      }
-      body.dark-theme #theme-toggle {
-        color: var(--nav-text);
-      }
+    body.dark-theme #theme-toggle {
+      color: var(--nav-text);
+    }
 
-      body.dark-theme section {
-        background-color: #1f1f1f;
-        box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
-      }
+    body.dark-theme section {
+      background-color: #1f1f1f;
+      box-shadow: 0 0 20px rgb(255 255 255 / 0.1);
+    }
 
-      body.dark-theme .subtitle {
-        color: #bbb;
-      }
+    body.dark-theme .subtitle {
+      color: #bbb;
+    }
 
-      body.dark-theme .hero {
-        background-color: #283048;
-        color: #eee;
-      }
-      body.dark-theme .hero-1 button,
-      body.dark-theme .hero-2 button,
-      body.dark-theme .hero-4 .left button,
-      body.dark-theme .expand-btn {
-        background-color: #0056b3;
-        color: #eee;
-      }
-      body.dark-theme .hero-1 button:hover,
-      body.dark-theme .hero-2 button:hover,
-      body.dark-theme .hero-4 .left button:hover,
-      body.dark-theme .expand-btn:hover {
-        background-color: #003865;
-        color: #ddd;
-      }
-      body.dark-theme .hero-4 .left {
-        background-color: #004080;
-        color: #eee;
-      }
-      body.dark-theme .hero-3::before {
-        background: rgba(0, 0, 0, 0.7);
-      }
-      body.dark-theme .hero-3 h1,
-      body.dark-theme .hero-3 p {
-        color: #eee;
-      }
-      body.dark-theme .hero-1 img,
-      body.dark-theme .hero-4 .right img {
-        filter: brightness(0.8);
-      }
+    body.dark-theme .hero {
+      background-color: #283048;
+      color: #eee;
+    }
 
-      body.dark-theme .code-block {
-        background-color: #111;
-        color: #ddd;
-      }
+    body.dark-theme .hero-1 button,
+    body.dark-theme .hero-2 button,
+    body.dark-theme .hero-4 .left button,
+    body.dark-theme .expand-btn {
+      background-color: #0056b3;
+      color: #eee;
+    }
 
-      .copy-btn {
-        display: block;
-        margin: 25px auto 10px; /* same top/right/left/bottom as expand-btn */
-        padding: 8px 18px;
-        font-size: 0.9rem;
-        border: none;
-        border-radius: 4px;
-        background-color: var(--accent);
-        color: #fff;
-        cursor: pointer;
-        transition: transform 0.1s ease;
-        font-size: 1rem;
-      }
-      .copy-btn:hover {
-        background-color: #0056b3; 
-      }
-      .copy-btn:active {
-        transform: scale(0.95);
-      }
-      .copy-btn:disabled {
-        opacity: 0.6;
-        cursor: default;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
+    body.dark-theme .hero-1 button:hover,
+    body.dark-theme .hero-2 button:hover,
+    body.dark-theme .hero-4 .left button:hover,
+    body.dark-theme .expand-btn:hover {
+      background-color: #003865;
+      color: #ddd;
+    }
+
+    body.dark-theme .hero-4 .left {
+      background-color: #004080;
+      color: #eee;
+    }
+
+    body.dark-theme .hero-3::before {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark-theme .hero-3 h1,
+    body.dark-theme .hero-3 p {
+      color: #eee;
+    }
+
+    body.dark-theme .hero-1 img,
+    body.dark-theme .hero-4 .right img {
+      filter: brightness(0.8);
+    }
+
+    body.dark-theme .code-block {
+      background-color: #111;
+      color: #ddd;
+    }
+
+    .copy-btn {
+      display: block;
+      margin: 25px auto 10px;
+      /* same top/right/left/bottom as expand-btn */
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      font-size: 1rem;
+    }
+
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.95);
+    }
+
+    .copy-btn:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+    <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../index.html" >Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../templates.html">Templates</a></li>
         <li><a href="../contributors.html">Contributors</a></li>
         <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <!--leaderboard linkup> -->
+        <!-- cursor toggle switch -->
+        <!-- <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li> -->
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
+               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
+               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
+               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
+               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+        </li>
+        <!-- <li>
+            <button
+              id="theme-toggle"
+              class="ripple btn-press"
+              aria-label="Toggle Theme"
+            >
+              <i data-lucide="moon"></i>
+            </button> 
+          </li> -->
       </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
+    </div>
+  </nav>
 
-    <section>
-      <h2>1. Hero Variant: Text Left, Image Right</h2>
-      <p class="subtitle">Classic split layout with text and image</p>
+  <section>
+    <h2>1. Hero Variant: Text Left, Image Right</h2>
+    <p class="subtitle">Classic split layout with text and image</p>
 
-      <div class="hero hero-1">
-        <div class="hero-text">
-          <h1>Welcome to Our Platform</h1>
-          <p>
-            Discover features, tools, and support to grow your business online.
-          </p>
-          <button>Get Started</button>
-        </div>
-        <div class="hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80"
-            alt="Business growth"
-          />
-        </div>
+    <div class="hero hero-1">
+      <div class="hero-text">
+        <h1>Welcome to Our Platform</h1>
+        <p>
+          Discover features, tools, and support to grow your business online.
+        </p>
+        <button>Get Started</button>
       </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80"
+          alt="Business growth" />
+      </div>
+    </div>
 
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
 &lt;div class="hero hero-1"&gt;
   &lt;div class="hero-text"&gt;
     &lt;h1&gt;Welcome to Our Platform&lt;/h1&gt;
@@ -518,27 +518,26 @@
   }
 }
 &lt;/style&gt;
-  </pre
-      >
-      <button class="copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
+  </pre>
+    <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-    <section>
-      <h2>2. Hero Variant: Centered Text Only</h2>
-      <p class="subtitle">
-        Minimal hero with centered headline and call to action
+  <section>
+    <h2>2. Hero Variant: Centered Text Only</h2>
+    <p class="subtitle">
+      Minimal hero with centered headline and call to action
+    </p>
+
+    <div class="hero hero-2">
+      <h1>Empower Your Business Today</h1>
+      <p>
+        Join thousands of businesses using our platform to accelerate growth.
       </p>
+      <button>Learn More</button>
+    </div>
 
-      <div class="hero hero-2">
-        <h1>Empower Your Business Today</h1>
-        <p>
-          Join thousands of businesses using our platform to accelerate growth.
-        </p>
-        <button>Learn More</button>
-      </div>
-
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
 &lt;div class="hero hero-2"&gt;
   &lt;h1&gt;Empower Your Business Today&lt;/h1&gt;
   &lt;p&gt;Join thousands of businesses using our platform to accelerate growth.&lt;/p&gt;
@@ -579,24 +578,23 @@
   background: #0056b3;
 }
 &lt;/style&gt;
-  </pre
-      >
-      <button class="copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
+  </pre>
+    <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-    <section>
-      <h2>3. Hero Variant: Background Image with Overlay Text</h2>
-      <p class="subtitle">Text overlay on a full-width background image</p>
+  <section>
+    <h2>3. Hero Variant: Background Image with Overlay Text</h2>
+    <p class="subtitle">Text overlay on a full-width background image</p>
 
-      <div class="hero hero-3">
-        <div class="content">
-          <h1>Grow Your Brand With Us</h1>
-          <p>We deliver solutions tailored to your needs.</p>
-        </div>
+    <div class="hero hero-3">
+      <div class="content">
+        <h1>Grow Your Brand With Us</h1>
+        <p>We deliver solutions tailored to your needs.</p>
       </div>
+    </div>
 
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
 &lt;div class="hero hero-3"&gt;
   &lt;div class="content"&gt;
     &lt;h1&gt;Grow Your Brand With Us&lt;/h1&gt;
@@ -636,31 +634,28 @@
   font-size: 1.3rem;
 }
 &lt;/style&gt;
-  </pre
-      >
-      <button class="copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
+  </pre>
+    <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-    <section>
-      <h2>4. Hero Variant: Split Vertical with Text and Image</h2>
-      <p class="subtitle">Split layout with colored text area and image</p>
+  <section>
+    <h2>4. Hero Variant: Split Vertical with Text and Image</h2>
+    <p class="subtitle">Split layout with colored text area and image</p>
 
-      <div class="hero hero-4">
-        <div class="left">
-          <h1>Join Our Community</h1>
-          <p>Be part of a vibrant network of professionals worldwide.</p>
-          <button>Sign Up</button>
-        </div>
-        <div class="right">
-          <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-            alt="Community"
-          />
-        </div>
+    <div class="hero hero-4">
+      <div class="left">
+        <h1>Join Our Community</h1>
+        <p>Be part of a vibrant network of professionals worldwide.</p>
+        <button>Sign Up</button>
       </div>
+      <div class="right">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+          alt="Community" />
+      </div>
+    </div>
 
-      <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
-      <pre class="code-block">
+    <button class="expand-btn" onclick="toggleCode(this)">Show Code</button>
+    <pre class="code-block">
 &lt;div class="hero hero-4"&gt;
   &lt;div class="left"&gt;
     &lt;h1&gt;Join Our Community&lt;/h1&gt;
@@ -721,52 +716,50 @@
   border-radius: 0 12px 12px 0;
 }
 &lt;/style&gt;
-  </pre
-      >
-      <button class="copy-btn" aria-label="Copy code">Copy Code</button>
-    </section>
+  </pre>
+    <button class="copy-btn" aria-label="Copy code">Copy Code</button>
+  </section>
 
-    <script>
-      // Toggle code block visibility
-      function toggleCode(button) {
-        const code = button.nextElementSibling;
-        const isVisible = code.style.display === "block";
-        code.style.display = isVisible ? "none" : "block";
-        button.textContent = isVisible ? "Show Code" : "Hide Code";
-      }
+  <script>
+    // Toggle code block visibility
+    function toggleCode(button) {
+      const code = button.nextElementSibling;
+      const isVisible = code.style.display === "block";
+      code.style.display = isVisible ? "none" : "block";
+      button.textContent = isVisible ? "Show Code" : "Hide Code";
+    }
 
-      document.querySelectorAll(".copy-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const codeBlock = btn.previousElementSibling;
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const codeBlock = btn.previousElementSibling;
 
-          try {
-            await navigator.clipboard.writeText(codeBlock.innerText);
-            btn.textContent = "Copied!";
-            btn.disabled = true;
-            setTimeout(() => {
-              btn.textContent = "Copy Code";
-              btn.disabled = false;
-            }, 1500);
-          } catch (err) {
-            console.error("Copy failed:", err);
-          }
-        });
-      });
-
-      // Dark mode toggle
-      const themeToggleBtn = document.getElementById("theme-toggle");
-      themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-theme");
-        if (document.body.classList.contains("dark-theme")) {
-          themeToggleBtn.textContent = "☀️";
-          themeToggleBtn.setAttribute("aria-label", "Toggle light mode");
-        } else {
-          themeToggleBtn.textContent = "🌙";
-          themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
+        try {
+          await navigator.clipboard.writeText(codeBlock.innerText);
+          btn.textContent = "Copied!";
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.textContent = "Copy Code";
+            btn.disabled = false;
+          }, 1500);
+        } catch (err) {
+          console.error("Copy failed:", err);
         }
       });
-    </script>
-    <!-- PWA Support -->
-  <script src="../pwa.js"></script>
+    });
+
+    // Dark mode toggle
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    themeToggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-theme");
+      if (document.body.classList.contains("dark-theme")) {
+        themeToggleBtn.textContent = "☀️";
+        themeToggleBtn.setAttribute("aria-label", "Toggle light mode");
+      } else {
+        themeToggleBtn.textContent = "🌙";
+        themeToggleBtn.setAttribute("aria-label", "Toggle dark mode");
+      }
+    });
+  </script>
 </body>
+
 </html>
