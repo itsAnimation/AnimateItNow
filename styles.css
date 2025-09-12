@@ -1,3 +1,153 @@
+/* Feedback Section Styling */
+.feedback-section {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #111;
+    padding: 35px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    max-width: 800px;
+    margin: 60px auto;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode adaptation */
+body.dark .feedback-section {
+    background: rgba(28, 28, 28, 0.2);
+    color: #f1f1f1;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feedback-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.feedback-section p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    opacity: 0.85;
+}
+
+/* Form layout */
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feedback-form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #111;
+    transition: all 0.3s ease;
+}
+
+.feedback-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Dark mode inputs */
+body.dark .feedback-form input,
+body.dark .feedback-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f1f1f1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feedback-form input::placeholder,
+.feedback-form textarea::placeholder {
+    opacity: 0.7;
+    color: inherit;
+}
+
+/* Input focus effect */
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59,130,246,0.3);
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Button styling */
+.feedback-form button {
+    display: inline-block;
+    margin: 10px auto 0;
+    padding: 12px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feedback-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(159, 93, 226, 0.3);
+}
+
+.feedback-form button:active {
+    transform: translateY(0);
+}
+
+/* Success message - initially hidden */
+.feedback-success {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(22, 163, 74, 0.15);
+    color: #16a34a;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: none; /* Hidden by default */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.dark .feedback-success {
+    background: rgba(22, 163, 74, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .feedback-section {
+        padding: 25px 15px;
+        margin: 40px 15px;
+    }
+    
+    .feedback-form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
