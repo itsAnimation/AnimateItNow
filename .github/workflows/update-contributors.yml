@@ -1,0 +1,18 @@
+name: Update Contributors
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'   # Runs weekly on Sunday
+  workflow_dispatch:      # Allows manual run
+
+jobs:
+  update-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate contributors list
+        uses: akhilmhdh/contributors-readme-action@v2.3.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
