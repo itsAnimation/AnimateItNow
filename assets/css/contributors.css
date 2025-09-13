@@ -1,0 +1,49 @@
+/* assets/css/contributors.css */
+.top-contributors {
+  padding: 2rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.top-contributors h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+.contributor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg, #fff);
+  padding: 0.6rem;
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contributor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.contributor-card img {
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+}
+.meta {
+  text-align: center;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+.meta .name {
+  font-weight: 600;
+}
+.meta .count {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
