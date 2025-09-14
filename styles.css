@@ -1665,36 +1665,38 @@ body.dark .contributor-card:hover {
   font-size: 3rem;
   font-weight: 800;
   text-align: center; 
-  background: linear-gradient(to right, red,blue); 
+  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: transparent; 
  
  -webkit-background-clip: text;
   background-clip: text;
  -webkit-text-fill-color: transparent;  
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
-               0 4px 8px rgba(79, 140, 255, 0.25);
+  text-shadow: 0 2px 4px #5d6ae2;
+               
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .contact-container {
- background: conic-gradient(from -90deg,
-  rgba(85, 131, 181, 0.5),  /* gentle blue */
-  rgba(76, 165, 150, 0.5),   /* jade mint */
-  rgba(212, 178, 219, 0.5),  /* soft moss */
-  rgba(255, 255, 255, 0.5),  /* whitewash */
-  rgba(85, 131, 181, 0.5)   /* soft moss again */
+ background: linear-gradient(
+   135deg,
+  rgba(52, 34, 211, 0.211),   /* light purple */
+  rgba(180, 20, 135, 0.25),   /* light pink */
+  rgba(139, 23, 181, 0.25),    /* light cyan/blue */
+  rgba(86, 96, 189, 0.4),   /* soft white highlight */
+  rgba(193, 99, 219, 0.25)    /* back to light purple */
 );
 
  /* Translucent background */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Light, semi-transparent border */
+  border: 1px solid rgba(24, 92, 148, 0.414); /* Light, semi-transparent border */
   border-radius: 16px; /* Rounded corners for the glass effect */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(138, 180, 248, 0.4);
+ 
   border-radius: 20px;
   padding: 2.5rem;
   animation:  flowingNeonLite 3s ease-in-out infinite;
   transition: all 0.4s ease;
+  color: #5d6ae2;
 }
 
 .contact-container:hover {
@@ -1706,13 +1708,14 @@ body.dark .contributor-card:hover {
 
 .form-group {
   margin-bottom: 1.8rem;
+  
 }
 
 .form-group label {
   display: block;
   margin-bottom: 0.6rem;
   font-weight: 500;
-  color: var(--primary-text);
+  color: #240855;
   font-size: 0.95rem;
 }
 
@@ -1720,14 +1723,20 @@ body.dark .contributor-card:hover {
 .form-group textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid rgba(14, 5, 5, 0.15);
+  border: 1px solid rgba(24, 92, 148, 0.414);
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
   background: rgba(255, 255, 255, 0.30);
-  color: var(--primary-text);
+  color: #240855;
   transition: border 0.2s ease;
   box-shadow: 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+/* chnage the color of placeholder to match with rest of form  */
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+  color: #240855;
 }
 
 .form-group input:focus,
@@ -1749,10 +1758,23 @@ body.dark .contributor-card:hover {
 }
 
 
+/* changed the styling of submit button  */
+.submit-btn-style{
+  border: 1px solid rgba(24, 92, 148, 0.414);
+  color: #240855;
+  font-weight: bold;
+  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4)
+}
+
+.submit-btn-style:hover{
+  transform: scale(1.03);
+  box-shadow: 0 0 3px rgba(168, 74, 176, 0.437);
+}
+
  #submit{
   cursor: pointer;
   padding: 0.85rem 2rem;
-  background: linear-gradient(135deg, #4e927f, #a8d5c4);
+ 
   font-weight:600px;
   font-size: 1rem;
   border-radius: 95px  8px;
@@ -1795,7 +1817,9 @@ body.dark .contributor-card {
 }
 
 body.dark .form-group input,
-body.dark .form-group textarea {
+body.dark .form-group textarea
+
+{
   background-color: rgba(68, 57, 57, 0.42); 
   border: 1px solid rgb(31, 114, 110);
   color: #ffffff;
@@ -1804,6 +1828,12 @@ body.dark .form-group textarea {
   font-size: 1rem;
 }
 
+/* change the label color in dark mode  */
+body.dark .form-group label{
+  color: #fff;
+}
+
+/* change the color of placeholder in dark mode  */
 body.dark .form-group input::placeholder,
 body.dark .form-group textarea::placeholder {
   color: #bbbbbb;
@@ -1825,16 +1855,7 @@ body.dark .contact-main h1 {
   0 0 20px rgba(138, 180, 248, 0.1);  
 }
 
-.contact-main h1 {
-  background: linear-gradient(to right, rgb(80, 12, 80), rgb(143, 220, 160));
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow:
-    0 0 4px rgba(138, 180, 248, 0.4),  
-    0 0 10px rgba(138, 180, 248, 0.2),  
-    0 0 20px rgba(138, 180, 248, 0.1);  
-}
+
 
 body.dark .animated-btn-section h1 {
   color: #ffffff;
@@ -1885,6 +1906,9 @@ body.dark .form-group textarea:focus {
   outline: none;
 }
 
+body.dark .contact-form .contact-button .submit-btn-style{
+  background: linear-gradient(135deg,rgb(130, 224, 255),rgb(0, 174, 255),rgb(55, 55, 185));
+}
 
 /* Tab responsive */
 @media (max-width: 700px) {
