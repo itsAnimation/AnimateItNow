@@ -1,15 +1,15 @@
 
 // Function for displaying FAQ categories
-function displaycategory(category){
-  const general=document.getElementById('general-faq');
-  const technical=document.getElementById('technical-faq');
-  if(category==='general'){
-    general.style.display='block';
-    technical.style.display='none';
+function displaycategory(category) {
+  const general = document.getElementById('general-faq');
+  const technical = document.getElementById('technical-faq');
+  if (category === 'general') {
+    general.style.display = 'block';
+    technical.style.display = 'none';
   }
-  else if(category==='technical'){
-    general.style.display='none';
-    technical.style.display='block';
+  else if (category === 'technical') {
+    general.style.display = 'none';
+    technical.style.display = 'block';
   }
 }
 // Service worker registration removed to fix 404 error
@@ -36,21 +36,21 @@ function displaycategory(category){
 //   });
 // }
 
-function typewriter(){
-  const el=document.getElementById("modify");
-  if(!el)return;
-  const text=el.textContent;
-  el.textContent='';
-  let index=0;
-  let interval=setInterval(()=>{
-    if(index<text.length){
-      el.textContent+=text.charAt(index);
+function typewriter() {
+  const el = document.getElementById("modify");
+  if (!el) return;
+  const text = el.textContent;
+  el.textContent = '';
+  let index = 0;
+  let interval = setInterval(() => {
+    if (index < text.length) {
+      el.textContent += text.charAt(index);
       index++;
     }
-    else{
+    else {
       clearInterval(interval);
-      }
-  },100);
+    }
+  }, 100);
 }
 typewriter();
 
@@ -259,7 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault()
       const allValid = checkFormValidity()
       if (allValid) {
-       showToast("Message sent successfully!");
+        showToast("Message sent successfully!");
         contactForm.reset()
       } else {
         alert("Please fill in all fields correctly. Fields cannot be empty or contain only spaces.")
@@ -274,21 +274,21 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
 
- function showToast(message) {
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.textContent = message;
-  document.body.appendChild(toast);
+  function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
 
-  // Trigger fade-in
-  setTimeout(() => toast.classList.add("show"), 100);
+    // Trigger fade-in
+    setTimeout(() => toast.classList.add("show"), 100);
 
-  // Fade out and remove
-  setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300); // Wait for transition to finish
-  }, 3000);
-}
+    // Fade out and remove
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 300); // Wait for transition to finish
+    }, 3000);
+  }
 
 
 
@@ -340,7 +340,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 // Scroll to top button functionality
-  // Show button when scrolled down
+// Show button when scrolled down
 window.onscroll = function () {
   const btn = document.getElementById("scrollBtn");
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -355,5 +355,25 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+//function to go back to top
 
+const toTop = document.getElementById("back-to-top")
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 200) {
+    toTop.style.opacity = 1;
+    toTop.style.scale = 1;
+  }
+  else {
+    toTop.style.opacity = 0;
+    toTop.style.scale = 0;
+  }
+})
+
+toTop.addEventListener("click",()=>{
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+});
 
