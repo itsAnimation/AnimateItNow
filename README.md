@@ -166,6 +166,7 @@ AnimateItNow now includes these interactive hover effects to make UI elements mo
 - Example:
 ```html
 <button class="bounce fade">Hover me</button>
+```
 Check the demo for visual examples of all effects.
 
 
