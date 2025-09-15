@@ -37,3 +37,27 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
 
+// Copy to clipboard functionality
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const targetId = e.target.getAttribute('data-target');
+    const textarea = document.getElementById(targetId);
+    const tooltip = e.target.parentElement.querySelector('.copy-tooltip');
+    
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
+    } catch (err) {
+      // Fallback for older browsers
+      textarea.select();
+      document.execCommand('copy');
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
+    }
+  });
+});
