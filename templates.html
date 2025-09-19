@@ -98,7 +98,7 @@
     />
 
     <style>
-      /*  Removed conflicting navbar CSS, relying on styles.css */
+      /* Removed conflicting navbar CSS, relying on styles.css */
       .navbar {
         display: flex;
         flex-direction: row;
@@ -115,7 +115,7 @@
         text-decoration: none;
       }
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+      /* Changed 'dark-theme' to 'dark' to match script.js and other pages */
       body.dark {
         background-color: #121212;
         color: #f5f5f5;
@@ -235,7 +235,7 @@
         box-sizing: border-box;
       }
       /* Dark mode support */
-      /*  Changed 'dark-theme' to 'dark' */
+      /* Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
@@ -321,8 +321,8 @@
       }
       /* Make the link a flex container to align items */
       .logo-link {
-        display: flex;          /* Aligns logo and text horizontally */
-        align-items: center;   /* Centers them vertically */
+        display: flex;         /* Aligns logo and text horizontally */
+        align-items: center;  /* Centers them vertically */
         gap: 10px;            /* Adds space between logo and text */
         text-decoration: none; /* Removes underline */
         color: inherit;       /* Inherits text color (if needed) */
@@ -330,7 +330,7 @@
 
       /* Ensure the logo image stays aligned */
       .logo-link img.logo {
-        height: 40px;         /* Adjust as needed */
+        height: 40px;          /* Adjust as needed */
         width: auto;          /* Maintains aspect ratio */
       }
 
@@ -418,7 +418,7 @@
         box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
       }
 
-      /*  start for game animation */
+      /* start for game animation */
 
       h1 {
         text-align: center;
@@ -532,6 +532,46 @@
       }
 
       /* end for game animation */
+      /* NEW: CSS Snippet Generator Preview */
+      .generator-preview {
+        background-color: #4f8cff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .generator-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .generator-box.box-shadow-preview {
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .generator-box.gradient-preview {
+        background: linear-gradient(45deg, #ff6b6b, #4f8cff);
+      }
+
+      .generator-box.border-radius-preview {
+        background-color: white;
+        border-radius: 50%;
+      }
+
+      body.dark .generator-box.box-shadow-preview {
+        background-color: #333;
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      body.dark .generator-box.border-radius-preview {
+        background-color: #333;
+      }
     </style>
   </head>
   <body class="dark">
@@ -553,6 +593,7 @@
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="generator.html">Generator</a></li>
           <!-- cursor toggle switch -->
           <li>
             <label class="switch" title="Toggle Snake Cursor">
@@ -581,14 +622,14 @@
                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                 -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
                 />
               </svg>
             </a>
@@ -624,7 +665,7 @@
           aria-label="Search templates"
         />
       </div>
-       <div class="no-results">
+        <div class="no-results">
   No Templates Found.
 </div>
       <section class="templates-grid">
@@ -791,6 +832,16 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
+        <!-- NEW CARD: CSS Snippet Generator -->
+        <a class="template-card" href="generator.html">
+            <h2>CSS Snippet Generator</h2>
+            <div class="template-preview generator-preview">
+                <div class="generator-box box-shadow-preview"></div>
+                <div class="generator-box gradient-preview"></div>
+                <div class="generator-box border-radius-preview"></div>
+            </div>
+            <button class="template-btn">View Template</button>
+        </a>
       </section>
     </main>
 
@@ -918,7 +969,7 @@
 
           noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
         }
-     
+      
       }
       searchBar.addEventListener("input", filterTemplates);
 
