@@ -90,7 +90,9 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
     <link rel="stylesheet" href="../styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <style>
       :root {
         --nav-text: #222;
@@ -179,6 +181,7 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         transition: transform 0.3s ease;
         position: relative;
+        cursor: pointer;
       }
 
       .card::before {
@@ -379,6 +382,66 @@
       body.dark p {
         color: #fff;
       }
+      .code-block {
+        margin-top: 15px;
+        background: #222;
+        padding: 10px;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        font-size: 0.9rem;
+        overflow-x: auto;
+      }
+      .card.active .code-block {
+        display: block;
+      }
+
+      /* Popup Styles */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .popup-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        max-width: 80%;
+        max-height: 80%;
+        overflow-y: auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      #popup-code {
+        color: white;
+      }
+      #popup-code .code-block {
+        display: block;
+      }
+      #copy-code-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        padding: 8px 12px;
+        cursor: pointer;
+        z-index: 1100;
+        transition: background 0.3s ease;
+      }
+      #copy-code-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
     </style>
   </head>
 
@@ -453,48 +516,234 @@
     <!-- text effect section -->
     <div class="container">
       <!-- Typing effect -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="typing">Typing Effect</h2>
         <p>Simulates a typewriter effect character by character.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.typing {
+  font-family: monospace;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(20) 1s infinite,
+    blink 0.7s infinite step-end alternate;
+}
+@keyframes typing {
+  to {
+    width: 12ch;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}</code></pre></div>
       </div>
       <!-- glitch effect -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="glitch" data-text="Glitch Text">Glitch Text</h2>
         <p>Distorted glitch effect with offset pseudo-elements.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.glitch {
+  position: relative;
+  color: white;
+  font-weight: bold;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.glitch::before {
+  animation: glitchTop 1s infinite linear alternate-reverse;
+  color: #0ff;
+  top: -2px;
+}
+.glitch::after {
+  animation: glitchBottom 1s infinite linear alternate-reverse;
+  color: #f0f;
+  top: 2px;
+}
+@keyframes glitchTop {
+  0% {
+    clip-path: inset(0 0 80% 0);
+  }
+  100% {
+    clip-path: inset(0 0 20% 0);
+  }
+}
+@keyframes glitchBottom {
+  0% {
+    clip-path: inset(80% 0 0 0);
+  }
+  100% {
+    clip-path: inset(20% 0 0 0);
+  }
+}</code></pre></div>
       </div>
       <!-- typing one another -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="typing-sequence" id="typeTarget"></h2>
         <p>Header text which Type one after in Loop</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-javascript">const texts = [
+  "Happy Coding 💖",
+  "Grow YourSelf ✌",
+  "Consistency Streak 🔥",
+];
+let currentIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const speed = 100;
+const pauseTime = 1000;
+const target = document.getElementById("typeTarget");
+
+function typeLoop() {
+  const currentText = texts[currentIndex];
+
+  if (isDeleting) {
+    target.textContent = currentText.substring(0, charIndex--);
+  } else {
+    target.textContent = currentText.substring(0, charIndex++);
+  }
+
+  if (!isDeleting && charIndex === currentText.length + 1) {
+    setTimeout(() => {
+      isDeleting = true;
+      typeLoop();
+    }, pauseTime);
+    return;
+  }
+
+  if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    currentIndex = (currentIndex + 1) % texts.length;
+  }
+
+  setTimeout(typeLoop, isDeleting ? speed / 2 : speed);
+}
+
+typeLoop();</code></pre></div>
       </div>
       <!-- Neon GLow -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="neon">Neon Glow</h2>
         <p>Bright glowing text perfect for dark themes.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.neon {
+  color: #fff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+}</code></pre></div>
       </div>
 
       <!-- Gradient Text -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="gradient">Gradient Text</h2>
         <p>Animated gradient color effect using background clip.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.gradient {
+  /* background: linear-gradient(90deg, #ff6ec4, #7873f5); */
+  background: linear-gradient(-45deg, #bd4f06, #4a59e0, #23a6d5, #07eb8c);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientAnim 10s ease infinite;
+}
+@keyframes gradientAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}</code></pre></div>
       </div>
       <!-- wavy effect -->
-      <div class="card wave">
+      <div class="card wave" onclick="showPopup(this)">
         <h2>
           <span>W</span><span>a</span><span>v</span><span>e</span><span> </span
           ><span>T</span><span>e</span><span>x</span><span>t</span>
         </h2>
         <p>Characters bounce in a wave animation.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.wave span {
+  display: inline-block;
+  animation: wave 1.5s infinite;
+}
+.wave span:nth-child(even) {
+  animation-delay: 0.1s;
+}
+.wave span:nth-child(odd) {
+  animation-delay: 0.2s;
+}
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}</code></pre></div>
       </div>
       <!-- flicker text -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="flicker">Flicker Text</h2>
         <p>Random flickering text for a spooky or retro vibe.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.flicker {
+  color: #fffc;
+  animation: flicker 2s infinite;
+}
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff0;
+  }
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}</code></pre></div>
       </div>
       <!-- stretch text -->
-      <div class="card">
+      <div class="card" onclick="showPopup(this)">
         <h2 class="stretch">Stretch Text</h2>
         <p>Text stretches and shrinks in a smooth motion.</p>
+        <div class="code-data" style="display: none;"><pre class="code-block"><code class="language-css">.stretch {
+  display: inline-block;
+  animation: stretch 2s infinite ease-in-out;
+}
+@keyframes stretch {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.5);
+  }
+}</code></pre></div>
+      </div>
+    </div>
+    <!-- Popup Modal -->
+    <div id="code-popup" class="popup-overlay" onclick="closePopup()">
+      <div class="popup-content" onclick="event.stopPropagation()">
+      <div id="popup-code">
+        <button id="copy-code-btn" title="Copy code" onclick="copyCode()" title="Copy code">
+          Copy
+        </button>
+      </div>
       </div>
     </div>
     <footer>
@@ -540,6 +789,39 @@
       }
 
       typeLoop(); // Start animation
+
+      function showPopup(card) {
+        const codeData = card.querySelector('.code-data');
+        const popupCode = document.getElementById('popup-code');
+        // Preserve the copy button and add code content
+        const copyButtonHtml = document.getElementById('copy-code-btn').outerHTML;
+        popupCode.innerHTML = copyButtonHtml + codeData.innerHTML;
+        document.getElementById('code-popup').style.display = 'flex';
+        // Re-highlight the code in the popup
+        Prism.highlightAll();
+      }
+
+      function copyCode() {
+        const codeElement = document.querySelector('#popup-code pre code');
+        if (!codeElement) return;
+        const text = codeElement.innerText;
+        const button = document.getElementById('copy-code-btn');
+        navigator.clipboard.writeText(text).then(() => {
+          button.textContent = 'Copied';
+          setTimeout(() => {
+            button.textContent = 'Copy';
+          }, 2000);
+        }).catch(() => {
+          button.textContent = 'Failed';
+          setTimeout(() => {
+            button.textContent = 'Copy';
+          }, 2000);
+        });
+      }
+
+      function closePopup() {
+        document.getElementById('code-popup').style.display = 'none';
+      }
 
       // Dark mode toggle
       // const themeToggleBtn = document.getElementById("theme-toggle");
