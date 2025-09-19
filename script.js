@@ -354,6 +354,48 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
+//feedback
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('feedbackForm');
+    const successMessage = document.getElementById('successMessage');
+    const stars = document.querySelectorAll('.rating-star');
+    let currentRating = 0;
+    
+    // Star rating functionality
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            currentRating = rating;
+            
+            stars.forEach(s => {
+                if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show success message
+        successMessage.style.display = 'block';
+        
+        // Reset form after 3 seconds
+        setTimeout(function() {
+            form.reset();
+            successMessage.style.display = 'none';
+            
+            // Reset stars
+            stars.forEach(star => {
+                star.classList.remove('active');
+            });
+            currentRating = 0;
+        }, 3000);
+    });
+});
 
 
