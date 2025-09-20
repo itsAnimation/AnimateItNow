@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <title>Pomodoro Timer - AnimateItNow</title>
+  <meta name="description" content="A stylish and functional Pomodoro timer for better productivity" />
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+</head>
+<body>
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.67 7.67 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="section-title">Pomodoro Timer</h1>
+    <div class="pomodoro-wrapper">
+      <div class="pomodoro-container">
+        <h2>Pomodoro Timer</h2>
+        <div class="pomodoro-timer" id="pomodoro-timer">25:00</div>
+        <div class="pomodoro-controls">
+          <button id="pomodoro-toggle" class="control-button">
+            <span class="button-icon">▶</span>
+            <span class="button-text">Start</span>
+          </button>
+          <button id="pomodoro-reset" class="control-button">
+            <span class="button-icon">↺</span>
+            <span class="button-text">Reset</span>
+          </button>
+        </div>
+        <div class="pomodoro-session" id="pomodoro-session">Work Session</div>
+        <div class="pomodoro-settings">
+          <button id="pomodoro-settings-toggle" class="settings-toggle">⚙️ Settings</button>
+          <div id="settings-panel" class="settings-panel">
+            <div class="settings-group">
+              <label for="work-duration">Work Duration (minutes):</label>
+              <input type="number" id="work-duration" min="1" max="60" value="25">
+            </div>
+            <div class="settings-group">
+              <label for="break-duration">Break Duration (minutes):</label>
+              <input type="number" id="break-duration" min="1" max="30" value="5">
+            </div>
+            <button id="save-settings">Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="pomodoro-audio" preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa1c82.mp3" type="audio/mp3">
+    <!-- Fallback audio source -->
+    <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568.wav" type="audio/wav">
+  </audio>
+  <div id="cursor-snake"></div>
+  <script src="../script.js"></script>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  min-height: 100vh;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section-title {
+  color: white;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.pomodoro-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 2rem 0;
+}
+
+.pomodoro-container {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 32px 24px;
+  text-align: center;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pomodoro-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+.pomodoro-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.pomodoro-container:hover::before {
+  left: 100%;
+}
+
+.pomodoro-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: -1;
+}
+
+/* Add Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+.pomodoro-timer {
+  font-size: 4.5rem;
+  font-weight: 600;
+  margin: 24px 0 16px 0;
+  background: linear-gradient(135deg, #1dc5c8, #18b7ba);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 30px 0;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pomodoro-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.pomodoro-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1dc5c8, #18b7ba);
+  border-radius: 2px;
+}
+.pomodoro-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.control-button {
+  background: #1dc5c8;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(29, 197, 200, 0.2);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+.control-button:hover {
+  background: #18b7ba;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 197, 200, 0.3);
+}
+
+.control-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(29, 197, 200, 0.2);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.button-text {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+#pomodoro-toggle {
+  background: #1dc5c8;
+  position: relative;
+}
+
+#pomodoro-toggle:hover {
+  background: #18b7ba;
+}
+
+#pomodoro-toggle.running {
+  background: #ff6b6b;
+}
+
+#pomodoro-toggle.running:hover {
+  background: #ff5252;
+}
+
+#pomodoro-toggle.running .button-icon {
+  transform: scale(1.2);
+}
+
+#pomodoro-reset {
+  background: #868e96;
+}
+
+#pomodoro-reset:hover {
+  background: #495057;
+}
+
+/* Button ripple effect */
+.control-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.3s;
+}
+
+.control-button:active::after {
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 0;
+}
+.pomodoro-session {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: rgba(29, 197, 200, 0.1);
+  border-radius: 20px;
+  display: inline-block;
+  border: 2px solid rgba(29, 197, 200, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(29, 197, 200, 0.1);
+}
+
+/* Notification Animations */
+.notification-active {
+  animation: pulseNotification 0.5s ease-in-out;
+  background: rgba(29, 197, 200, 0.2);
+  border-color: rgba(29, 197, 200, 0.6);
+  color: #1dc5c8;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(29, 197, 200, 0.3);
+}
+
+@keyframes pulseNotification {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Timer ending soon animation */
+.ending-soon {
+  animation: flashTimer 1s ease-in-out infinite;
+}
+
+@keyframes flashTimer {
+  0%, 100% {
+    color: #1dc5c8;
+  }
+  50% {
+    color: #ff6b6b;
+  }
+}
+
+.pomodoro-session:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 197, 200, 0.15);
+  border-color: rgba(29, 197, 200, 0.5);
+}
+
+.pomodoro-settings {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.settings-toggle {
+  background: rgba(29, 197, 200, 0.1) !important;
+  color: #2c3e50 !important;
+  border: 2px solid rgba(29, 197, 200, 0.3) !important;
+  padding: 10px 24px !important;
+  font-size: 0.95rem !important;
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(29, 197, 200, 0.1) !important;
+}
+
+.settings-toggle:hover {
+  background: rgba(29, 197, 200, 0.15) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(29, 197, 200, 0.15) !important;
+  border-color: rgba(29, 197, 200, 0.5) !important;
+}
+.settings-panel {
+  display: none;
+  margin-top: 20px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  border: 2px solid rgba(29, 197, 200, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.settings-panel.visible {
+  display: block;
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-group {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.settings-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.settings-group input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(29, 197, 200, 0.2);
+  border-radius: 12px;
+  color: #2c3e50;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.settings-group input:hover {
+  border-color: rgba(29, 197, 200, 0.4);
+}
+
+.settings-group input:focus {
+  outline: none;
+  border-color: rgba(29, 197, 200, 0.6);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.05),
+    0 0 0 3px rgba(29, 197, 200, 0.1);
+  background: white;
+}
+
+#save-settings {
+  background: linear-gradient(135deg, #1dc5c8, #18b7ba);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(29, 197, 200, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+#save-settings:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 197, 200, 0.3);
+}
+
+#save-settings:active {
+  transform: translateY(1px);
+}
+
+#save-settings::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+#save-settings:hover::after {
+  animation: shimmer 1s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 500px) {
+  .pomodoro-container {
+    padding: 24px 16px;
+    max-width: 95vw;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.98);
+  }
+  .pomodoro-timer {
+    font-size: 3.2rem;
+    padding: 15px 0;
+    margin: 15px 0;
+  }
+  .control-button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    min-width: 120px;
+  }
+  
+  .pomodoro-controls {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pomodoro-session {
+    font-size: 1.1rem;
+    padding: 6px 14px;
+    background: white;
+  }
+  .settings-panel {
+    padding: 15px;
+    background: white;
+  }
+  .settings-group input {
+    padding: 8px;
+    background: white;
+  }
+}
+</style>
+<script>
+(function() {
+  // Request notification permission when page loads
+  if ("Notification" in window) {
+    Notification.requestPermission();
+  }
+
+  let settings = JSON.parse(localStorage.getItem('pomodoroSettings')) || {
+    workDuration: 25,
+    breakDuration: 5
+  };
+  
+  let timer = settings.workDuration * 60;
+  let interval = null;
+  let isRunning = false;
+  let isWorkSession = true;
+
+  // Initialize DOM elements
+  const timerDisplay = document.getElementById('pomodoro-timer');
+  const toggleBtn = document.getElementById('pomodoro-toggle');
+  const toggleIcon = toggleBtn.querySelector('.button-icon');
+  const toggleText = toggleBtn.querySelector('.button-text');
+  const resetBtn = document.getElementById('pomodoro-reset');
+  const sessionDisplay = document.getElementById('pomodoro-session');
+  const audio = document.getElementById('pomodoro-audio');
+  
+  // Audio system setup
+  let audioInitialized = false;
+  const audioSystem = {
+    async init() {
+      try {
+        await audio.load();
+        audio.volume = 0.7;
+        
+        // Add error handler
+        audio.addEventListener('error', (e) => {
+          console.error('Audio error:', e);
+          if (audio.firstChild.nextElementSibling) {
+            audio.firstChild.remove();
+            audio.load();
+          }
+        });
+
+        // Test audio on first user interaction
+        const testAudio = async () => {
+          try {
+            await audio.play();
+            audio.pause();
+            audio.currentTime = 0;
+            audioInitialized = true;
+            console.log('Audio system initialized successfully');
+          } catch (error) {
+            console.error('Audio test failed:', error);
+          }
+        };
+
+        // Setup test on first click
+        document.addEventListener('click', testAudio, { once: true });
+        
+      } catch (error) {
+        console.error('Error initializing audio:', error);
+      }
+    },
+
+    async play() {
+      try {
+        if (!audioInitialized) {
+          console.warn('Audio not yet initialized - waiting for user interaction');
+          return;
+        }
+
+        audio.currentTime = 0;
+        await audio.play();
+        console.log('Audio played successfully');
+      } catch (error) {
+        console.error('Error playing audio:', error);
+        this.playFallbackBeep();
+      }
+    },
+
+    playFallbackBeep() {
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.1);
+      } catch (error) {
+        console.error('Fallback audio failed:', error);
+      }
+    }
+  };
+
+  // Initialize audio system
+  audioSystem.init();
+
+  function updateDisplay() {
+    const min = String(Math.floor(timer / 60)).padStart(2, '0');
+    const sec = String(timer % 60).padStart(2, '0');
+    timerDisplay.textContent = `${min}:${sec}`;
+    sessionDisplay.textContent = isWorkSession ? 'Work Session' : 'Break Session';
+    updateToggleButton();
+  }
+
+  function updateToggleButton() {
+    if (isRunning) {
+      toggleBtn.classList.add('running');
+      toggleIcon.textContent = '⏸';
+      toggleText.textContent = 'Pause';
+    } else {
+      toggleBtn.classList.remove('running');
+      toggleIcon.textContent = '▶';
+      toggleText.textContent = 'Start';
+    }
+  }
+
+  function showNotification(message, options = {}) {
+    // Visual notification
+    sessionDisplay.textContent = message;
+    sessionDisplay.classList.add('notification-active');
+    setTimeout(() => {
+      sessionDisplay.classList.remove('notification-active');
+      updateDisplay();
+    }, 3000);
+
+    // Browser notification
+    if ("Notification" in window && Notification.permission === "granted") {
+      const notificationTitle = options.title || "Pomodoro Timer";
+      const notificationOptions = {
+        body: message,
+        icon: "../images/logo.png",
+        badge: "../images/logo.png",
+        ...options
+      };
+      new Notification(notificationTitle, notificationOptions);
+    }
+
+    // Sound notification
+    if (!options.silent) {
+      audioSystem.play();
+    }
+  }
+
+  function toggleTimer() {
+    if (isRunning) {
+      // Pause the timer
+      if (interval) clearInterval(interval);
+      isRunning = false;
+    } else {
+      // Start the timer
+      isRunning = true;
+      interval = setInterval(() => {
+        if (timer > 0) {
+          timer--;
+          updateDisplay();
+          // Flash warning when less than 10 seconds remain
+          if (timer <= 10) {
+            timerDisplay.classList.add('ending-soon');
+          }
+        } else {
+          clearInterval(interval);
+          isRunning = false;
+          // Switch session
+          isWorkSession = !isWorkSession;
+          timer = isWorkSession ? settings.workDuration * 60 : settings.breakDuration * 60;
+          updateDisplay();
+          // Remove ending soon animation
+          timerDisplay.classList.remove('ending-soon');
+          
+          // Show appropriate notification with sound and browser alert
+          if (isWorkSession) {
+            showNotification('🎯 Work Session Started!', {
+              title: 'Time to Focus!',
+              body: `Get ready for a ${settings.workDuration} minute work session`,
+              vibrate: [100, 50, 100]
+            });
+          } else {
+            showNotification('☕ Break Time!', {
+              title: 'Time for a Break!',
+              body: `Take a ${settings.breakDuration} minute break`,
+              vibrate: [100, 50, 100]
+            });
+          }
+        }
+      }, 1000);
+    }
+    updateToggleButton();
+  }
+
+  function resetTimer() {
+    if (interval) clearInterval(interval);
+    isRunning = false;
+    timer = isWorkSession ? settings.workDuration * 60 : settings.breakDuration * 60;
+    updateDisplay();
+    updateToggleButton();
+  }
+
+  toggleBtn.addEventListener('click', toggleTimer);
+  resetBtn.addEventListener('click', resetTimer);
+
+  // Settings functionality
+  const settingsToggle = document.getElementById('pomodoro-settings-toggle');
+  const settingsPanel = document.getElementById('settings-panel');
+  const workDurationInput = document.getElementById('work-duration');
+  const breakDurationInput = document.getElementById('break-duration');
+  const saveSettingsBtn = document.getElementById('save-settings');
+
+  // Initialize settings inputs
+  workDurationInput.value = settings.workDuration;
+  breakDurationInput.value = settings.breakDuration;
+
+  settingsToggle.addEventListener('click', () => {
+    settingsPanel.classList.toggle('visible');
+  });
+
+  saveSettingsBtn.addEventListener('click', () => {
+    const newWorkDuration = parseInt(workDurationInput.value);
+    const newBreakDuration = parseInt(breakDurationInput.value);
+    
+    if (newWorkDuration < 1 || newWorkDuration > 60 || newBreakDuration < 1 || newBreakDuration > 30) {
+      alert('Please enter valid durations (Work: 1-60 minutes, Break: 1-30 minutes)');
+      return;
+    }
+
+    settings = {
+      workDuration: newWorkDuration,
+      breakDuration: newBreakDuration
+    };
+    
+    localStorage.setItem('pomodoroSettings', JSON.stringify(settings));
+    
+    // Update current timer if not running
+    if (!isRunning) {
+      timer = isWorkSession ? settings.workDuration * 60 : settings.breakDuration * 60;
+      updateDisplay();
+    }
+    
+    settingsPanel.classList.remove('visible');
+  });
+
+  // Responsive: reset on session switch
+  updateDisplay();
+})();
+</script>
