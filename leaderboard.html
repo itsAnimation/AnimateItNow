@@ -1202,40 +1202,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //Download Excel functionality
 function downloadExcel() {
-  const table = document.createElement("table"); /*  */
-  table.innerHTML = `<thead><tr>        <th>Rank</th>        <th>Contributor</th>        <th>Merged PRs</th>        <th>Total Points</th>      </tr></thead><tbody></tbody>`; /*  */
+    try {
+        // Check if the XLSX object is available.
+        if (typeof XLSX === 'undefined') {
+            throw new Error("XLSX library not found. Please check the CDN link.");
+        }
+
+        const table = document.createElement("table");
+        table.innerHTML = `<thead><tr><th>Rank</th><th>Contributor</th><th>Merged PRs</th><th>Total Points</th></tr></thead><tbody></tbody>`;
+
+        const tbody = table.querySelector("tbody");
+
+        let dataToExport = contributorsData;
+        if (filteredData) {
+            dataToExport = filteredData;
+        } else if (weekFilteredData) {
+            dataToExport = weekFilteredData;
+        }
+
+        if (!dataToExport || dataToExport.length === 0) {
+            alert("No data available to export.");
+            return;
+        }
+
+        dataToExport.forEach(([user, userData], idx) => {
+            const prList = userData.prs.map(pr => {
+                const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
+                return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)${weekInfo}`;
+            }).join('; ');
+
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${idx + 1}</td><td>${user}</td><td>${prList}</td><td>${userData.total}</td>`;
+            tbody.appendChild(row);
+        });
+
+        // Generate filename based on current filter
+        let filename = "AnimateItnow_Contributors";
+        if (currentWeekFilter && currentWeekFilter !== 'all') {
+            filename += `_${currentWeekFilter.replace('-', '_')}`;
+        }
+        filename += ".xlsx";
+
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
+        XLSX.writeFile(wb, filename);
         
-  const tbody = table.querySelector("tbody"); /*  */
-  
-  // Use the currently displayed data (filtered or original)
-  let dataToExport = contributorsData;
-  if (filteredData) {
-    dataToExport = filteredData;
-  } else if (weekFilteredData) {
-    dataToExport = weekFilteredData;
-  }
-  
-  dataToExport.forEach(([user, userData], idx) => {
-    const prList = userData.prs.map(pr => {
-      //  Updated points display format for Excel with week information
-      const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
-      return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)${weekInfo}`; /*  */
-    }).join('; '); /*  */
-          
-    const row = document.createElement("tr"); /*  */
-    row.innerHTML = `          <td>${idx + 1}</td>          <td>${user}</td>          <td>${prList}</td>          <td>${userData.total}</td>        `; /*  */
-    tbody.appendChild(row); /*  */
-  });
-  
-  // Generate filename based on current filter
-  let filename = "AnimateItnow_Contributors";
-  if (currentWeekFilter !== 'all') {
-    filename += `_${currentWeekFilter.replace('-', '_')}`;
-  }
-  filename += ".xlsx";
-  
-  const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" }); /*  */
-  XLSX.writeFile(wb, filename); /*  */
+        console.log("Excel file generated and downloaded successfully.");
+
+    } catch (error) {
+        console.error('Error during Excel download:', error);
+        alert(`Failed to download Excel file. Reason: ${error.message}. Please try again later.`);
+    }
 }
 //Initialize leaderboard with error handling and dummy data fallback
 async function init() {
