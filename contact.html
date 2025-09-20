@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   </head>
  
  
@@ -76,7 +77,7 @@
     </nav>
 
     <main class="main-section scroll-fade">
-      <div class="contact-main">
+      <div data-aos="fade-up" class="contact-main">
         <h1 class="fade-in mob-res">Get in Touch</h1>
         <div class="contact-container scroll-fade">
           <form class="contact-form">
@@ -137,17 +138,37 @@
     <footer class="footer scroll-fade">
     <div class="footer-content">
       <div class="footer-left">
+
+       <a href="index.html" style="text-decoration: none; color: inherit;">
+   <h2 data-aos="fade-up">AnimateItNow</h2>
+</a>
+<p data-aos="fade-up">Creating impactful web animations and templates for everyone.</p>
+
+<div class="footer-about-section">
+   <h3 data-aos="fade-up">Know us more</h3>
+   <a data-aos="fade-up" href="index.html">Home</a>
+   <a data-aos="fade-up" href="about.html">About</a>
+   <a data-aos="fade-up" href="contributors.html">Contributors</a>
+   <a data-aos="fade-up" href="contact.html">Contact</a>
+   <a data-aos="fade-up" href="leaderboard.html">Leaderboard</a>
+   <a data-aos="fade-up" href="templates.html">Templates</a>
+   <a data-aos="fade-up" href="playground.html">Hover-Effects</a>
+   <a data-aos="fade-up" href="editor.html" target="_blank">Editor</a>
+</div>
+
+
         <h2>AnimateItNow</h2>
         <p>Creating impactful web animations and templates for everyone.</p>
       </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
 
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+      <div class="footer-right">
+        <h4 data-aos="fade-up">Connect With Us</h4>
+        <ul>
+          <li data-aos="fade-up"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
+
+          <li data-aos="fade-up"><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
           
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+          <li data-aos="fade-up"><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
         </ul>
       </div>
     </div>
@@ -158,7 +179,14 @@
     <div id="cursor-snake"></div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({
+        once: true,
+        easing: 'ease-in-out', 
+        duration: 800,
+    });
+</script>
 
 </body>
   <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
