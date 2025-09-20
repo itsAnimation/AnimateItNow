@@ -1,4 +1,4 @@
-
+﻿
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -170,6 +170,15 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+  initScrollReveal()
+  window.addEventListener('pageshow', () => { initScrollReveal() })
+  window.addEventListener('pagehide', () => { if (window.scrollRevealManager) { window.scrollRevealManager.disconnect() } })
+  
+   window.addEventListener('pagehide', () => {
+     if (window.scrollRevealManager) { 
+      window.scrollRevealManager.disconnect() 
+    } 
+  })
   const savedTheme = localStorage.getItem("theme")
   setTheme(savedTheme === "dark")
   themeToggle?.addEventListener("click", () => {
@@ -354,6 +363,30 @@ window.onscroll = function () {
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  if (!logo) return;
 
+  // Remove any previous animation class just in case
+  logo.classList.remove('animate-once');
 
+  // Force reflow so browser restarts the animation
+  void logo.offsetWidth;
 
+  // Add class to start animation
+  logo.classList.add('animate-once');
+
+  // Remove after animation ends (so next refresh works again)
+  logo.addEventListener('animationend', () => {
+    logo.classList.remove('animate-once');
+  }, { once: true });
+});
+
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-right");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+  document.body.classList.toggle("menu-open");
+});
