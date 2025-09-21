@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Recording Studio - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="recording-studio.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html">Builder</a></li>
+        <li><a href="ai-generator.html">AI Generator</a></li>
+        <li><a href="playground-enhanced.html">Playground</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="export.html">Export</a></li>
+        <li><a href="recording-studio.html" class="active">🎥 Studio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="studio-container">
+    <div class="studio-header">
+      <h1>🎥 Animation Recording Studio</h1>
+      <p>Record, edit, and share your animations professionally</p>
+    </div>
+
+    <div class="studio-main">
+      <!-- Recording Controls -->
+      <div class="recording-panel">
+        <div class="recording-header">
+          <h3>Recording Controls</h3>
+          <div class="recording-status" id="recording-status">Ready to Record</div>
+        </div>
+
+        <div class="recording-controls">
+          <button id="start-recording" class="record-btn">
+            <span class="btn-icon">🔴</span>
+            <span class="btn-text">Start Recording</span>
+          </button>
+          
+          <button id="pause-recording" class="record-btn" disabled>
+            <span class="btn-icon">⏸️</span>
+            <span class="btn-text">Pause</span>
+          </button>
+          
+          <button id="stop-recording" class="record-btn" disabled>
+            <span class="btn-icon">⏹️</span>
+            <span class="btn-text">Stop</span>
+          </button>
+
+          <button id="start-voiceover" class="record-btn">
+            <span class="btn-icon">🎙️</span>
+            <span class="btn-text">Voice Over</span>
+          </button>
+        </div>
+
+        <div class="recording-settings">
+          <div class="setting-group">
+            <label>Recording Quality:</label>
+            <select id="recording-quality">
+              <option value="720p">720p (HD)</option>
+              <option value="1080p" selected>1080p (Full HD)</option>
+              <option value="4k">4K (Ultra HD)</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label>Frame Rate:</label>
+            <select id="frame-rate">
+              <option value="15">15 FPS</option>
+              <option value="30" selected>30 FPS</option>
+              <option value="60">60 FPS</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label>Audio Input:</label>
+            <select id="audio-input">
+              <option value="none">No Audio</option>
+              <option value="microphone" selected>Microphone</option>
+              <option value="system">System Audio</option>
+              <option value="both">Both</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="recording-timer">
+          <div class="timer-display" id="timer-display">00:00</div>
+          <div class="recording-indicator" id="recording-indicator"></div>
+        </div>
+      </div>
+
+      <!-- Preview Area -->
+      <div class="preview-panel">
+        <div class="preview-header">
+          <h3>Animation Preview</h3>
+          <div class="preview-controls">
+            <button id="fullscreen-preview" class="control-btn">🔍 Fullscreen</button>
+            <button id="grid-overlay" class="control-btn">📐 Grid</button>
+            <button id="mouse-highlight" class="control-btn">🖱️ Highlight</button>
+          </div>
+        </div>
+
+        <div class="preview-area" id="preview-area">
+          <div class="animation-canvas" id="animation-canvas">
+            <!-- Sample animation for demo -->
+            <div class="demo-element bounce">Sample Animation</div>
+          </div>
+          
+          <div class="grid-overlay" id="grid-overlay-element" style="display: none;"></div>
+          <div class="mouse-cursor" id="mouse-cursor" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline & Storyboard -->
+    <div class="timeline-section">
+      <div class="timeline-header">
+        <h3>Timeline & Storyboard</h3>
+        <div class="timeline-controls">
+          <button id="add-keyframe" class="timeline-btn">➕ Add Keyframe</button>
+          <button id="delete-keyframe" class="timeline-btn">🗑️ Delete</button>
+          <button id="timeline-zoom-in" class="timeline-btn">🔍+</button>
+          <button id="timeline-zoom-out" class="timeline-btn">🔍-</button>
+        </div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-ruler" id="timeline-ruler"></div>
+        <div class="timeline-track" id="timeline-track">
+          <div class="keyframe" data-time="0" style="left: 0%;">
+            <div class="keyframe-thumbnail">
+              <div class="thumbnail-preview">Start</div>
+            </div>
+            <div class="keyframe-time">0:00</div>
+          </div>
+          
+          <div class="keyframe" data-time="2" style="left: 33%;">
+            <div class="keyframe-thumbnail">
+              <div class="thumbnail-preview">Mid</div>
+            </div>
+            <div class="keyframe-time">0:02</div>
+          </div>
+          
+          <div class="keyframe" data-time="4" style="left: 66%;">
+            <div class="keyframe-thumbnail">
+              <div class="thumbnail-preview">End</div>
+            </div>
+            <div class="keyframe-time">0:04</div>
+          </div>
+        </div>
+        
+        <div class="playhead" id="playhead" style="left: 0%;"></div>
+      </div>
+
+      <div class="timeline-scrubber">
+        <input type="range" id="timeline-scrubber" min="0" max="100" value="0" class="scrubber-input">
+        <div class="scrubber-labels">
+          <span>0:00</span>
+          <span id="current-time">0:00</span>
+          <span id="total-time">0:06</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Panel -->
+    <div class="export-panel">
+      <div class="export-header">
+        <h3>Export & Share</h3>
+        <div class="export-status" id="export-status">Ready to Export</div>
+      </div>
+
+      <div class="export-options">
+        <div class="export-format">
+          <h4>Export Format</h4>
+          <div class="format-buttons">
+            <button class="format-btn active" data-format="gif">
+              <span class="format-icon">🎞️</span>
+              <span class="format-name">GIF</span>
+              <span class="format-desc">Animated, Small Size</span>
+            </button>
+            
+            <button class="format-btn" data-format="mp4">
+              <span class="format-icon">🎬</span>
+              <span class="format-name">MP4</span>
+              <span class="format-desc">High Quality Video</span>
+            </button>
+            
+            <button class="format-btn" data-format="webm">
+              <span class="format-icon">🌐</span>
+              <span class="format-name">WebM</span>
+              <span class="format-desc">Web Optimized</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="export-settings">
+          <div class="setting-row">
+            <div class="setting-group">
+              <label>Output Quality:</label>
+              <select id="export-quality">
+                <option value="low">Low (Fast Export)</option>
+                <option value="medium" selected>Medium (Balanced)</option>
+                <option value="high">High (Best Quality)</option>
+              </select>
+            </div>
+
+            <div class="setting-group">
+              <label>Loop Count:</label>
+              <select id="loop-count">
+                <option value="infinite" selected>Infinite</option>
+                <option value="1">Once</option>
+                <option value="3">3 Times</option>
+                <option value="5">5 Times</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-group">
+              <label>Dimensions:</label>
+              <select id="export-dimensions">
+                <option value="original" selected>Original Size</option>
+                <option value="720p">720p (1280x720)</option>
+                <option value="1080p">1080p (1920x1080)</option>
+                <option value="square">Square (1080x1080)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <div class="setting-group">
+              <label>Compression:</label>
+              <input type="range" id="compression" min="1" max="10" value="7">
+              <span id="compression-value">70%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="export-actions">
+          <button id="preview-export" class="export-btn secondary">👁️ Preview</button>
+          <button id="start-export" class="export-btn primary">
+            <span class="btn-text">🚀 Export Animation</span>
+            <div class="export-progress" style="display: none;">
+              <div class="progress-bar">
+                <div class="progress-fill" id="export-progress-fill"></div>
+              </div>
+              <span class="progress-text" id="export-progress-text">0%</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Recordings -->
+    <div class="recordings-history">
+      <div class="history-header">
+        <h3>Recent Recordings</h3>
+        <button id="clear-history" class="clear-btn">🗑️ Clear All</button>
+      </div>
+      
+      <div class="recordings-grid" id="recordings-grid">
+        <!-- Sample recordings -->
+        <div class="recording-item">
+          <div class="recording-thumbnail">
+            <div class="thumbnail-placeholder">🎬</div>
+            <div class="recording-duration">0:05</div>
+          </div>
+          <div class="recording-info">
+            <h4>Button Animation Demo</h4>
+            <p>Created 2 hours ago</p>
+            <div class="recording-actions">
+              <button class="action-btn">▶️ Play</button>
+              <button class="action-btn">📤 Export</button>
+              <button class="action-btn">🗑️ Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="recording-item">
+          <div class="recording-thumbnail">
+            <div class="thumbnail-placeholder">🎞️</div>
+            <div class="recording-duration">0:12</div>
+          </div>
+          <div class="recording-info">
+            <h4>Card Hover Effects</h4>
+            <p>Created yesterday</p>
+            <div class="recording-actions">
+              <button class="action-btn">▶️ Play</button>
+              <button class="action-btn">📤 Export</button>
+              <button class="action-btn">🗑️ Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recording Preview Modal -->
+  <div id="recording-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Recording Preview</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <video id="recording-preview" controls style="width: 100%; max-height: 400px;"></video>
+        <div class="preview-actions">
+          <button id="save-recording" class="modal-btn primary">💾 Save Recording</button>
+          <button id="discard-recording" class="modal-btn secondary">🗑️ Discard</button>
+          <button id="export-now" class="modal-btn">🚀 Export Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="recording-studio.js"></script>
+</body>
+</html>
