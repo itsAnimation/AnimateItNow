@@ -98,3 +98,164 @@ border: 2px solid #94a3b8; /* slate-400 */
   
 }
 
+/* Dark theme variables */
+      :root {
+        --bg-primary: #f9fafb;
+        --bg-secondary: #ffffff;
+        --text-primary: #111827;
+        --text-secondary: #374151;
+        --border-color: #d1d5db;
+        --editor-bg: rgba(255, 255, 255, 0.654);
+        --output-bg: linear-gradient(to bottom, #f1f5f9, #ffffff);
+      }
+
+      .dark-theme {
+        --bg-primary: #111827;
+        --bg-secondary: #1f2937;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --border-color: #374151;
+        --editor-bg: #1e293b;
+        --output-bg: linear-gradient(to bottom, #1e293b, #0f172a);
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .editor-label {
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        background-size: 600% 600%;
+        color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.5px;
+        font-size: 1rem;
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+
+      .html-label {
+        background: linear-gradient(270deg, #c976ea, #6366f1, #3f8f9b);
+        font-size: 1.3rem;
+        color: #ffffff;
+      }
+
+      .css-label {
+        background: linear-gradient(270deg, #2be90e, #6366f1, #22ebee);
+        font-size: 1.3rem;
+        color: #ffffff;
+      }
+
+      .js-label {
+        background: linear-gradient(270deg, #e9e90e, #6366f1, #22d3ee);
+        font-size: 1.3rem;
+        color: #ffffff;
+      }
+
+      .editor-area {
+        width: 100%;
+        height: 16rem;
+        padding: 0.75rem;
+        font-family: monospace;
+        font-size: 0.875rem;
+        background-color: var(--editor-bg);
+        border-radius: 0 0 0.5rem 0.5rem;
+        border: 2px solid var(--border-color);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.508);
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+      }
+
+      .editor-area:hover {
+        transform: scale(1.01);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+      }
+
+      #output {
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 2px solid var(--border-color);
+        background: var(--output-bg);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.677);
+      }
+
+      #output:hover {
+        transform: scale(1.01);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+      }
+
+      .Output-line {
+        font-size: 1.75rem;
+        font-weight: 800;
+        padding: 0.75rem 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 0.75rem;
+        background: rgba(254, 254, 254, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: 7px solid #220149;
+        text-align: left;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 20px rgba(150, 140, 160, 0.3);
+      }
+
+      /* Theme toggle switch */
+      .theme-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .theme-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .theme-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 15px;
+        color: var(--text-primary);
+      }
+
