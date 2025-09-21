@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Playground - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="playground-enhanced.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html">Builder</a></li>
+        <li><a href="ai-generator.html">AI Generator</a></li>
+        <li><a href="playground-enhanced.html" class="active">Playground</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="export.html">Export</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="playground-container">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <button id="new-project" class="toolbar-btn">📄 New</button>
+        <button id="save-project" class="toolbar-btn">💾 Save</button>
+        <button id="fork-project" class="toolbar-btn">🍴 Fork</button>
+        <button id="share-project" class="toolbar-btn">🔗 Share</button>
+      </div>
+      
+      <div class="toolbar-center">
+        <input type="text" id="project-title" placeholder="Untitled Animation" class="project-title-input">
+      </div>
+      
+      <div class="toolbar-right">
+        <button id="run-code" class="toolbar-btn primary">▶️ Run</button>
+        <button id="fullscreen" class="toolbar-btn">🔍 Fullscreen</button>
+        <button id="settings" class="toolbar-btn">⚙️ Settings</button>
+      </div>
+    </div>
+
+    <!-- Main Editor Area -->
+    <div class="editor-container">
+      <!-- Code Editors -->
+      <div class="editors-panel">
+        <div class="editor-tabs">
+          <button class="editor-tab active" data-editor="html">HTML</button>
+          <button class="editor-tab" data-editor="css">CSS</button>
+          <button class="editor-tab" data-editor="js">JavaScript</button>
+        </div>
+        
+        <div class="editor-content">
+          <div id="html-editor" class="editor-pane active">
+            <textarea id="html-code" placeholder="Enter your HTML here..."></textarea>
+          </div>
+          <div id="css-editor" class="editor-pane">
+            <textarea id="css-code" placeholder="Enter your CSS here..."></textarea>
+          </div>
+          <div id="js-editor" class="editor-pane">
+            <textarea id="js-code" placeholder="Enter your JavaScript here..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Panel -->
+      <div class="preview-panel">
+        <div class="preview-header">
+          <h3>Live Preview</h3>
+          <div class="preview-controls">
+            <button id="refresh-preview" class="control-btn">🔄</button>
+            <button id="toggle-console" class="control-btn">📋 Console</button>
+            <button id="responsive-toggle" class="control-btn">📱 Responsive</button>
+          </div>
+        </div>
+        
+        <div class="preview-content">
+          <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+        
+        <div id="console-panel" class="console-panel">
+          <div class="console-header">
+            <span>Console</span>
+            <button id="clear-console" class="console-btn">Clear</button>
+          </div>
+          <div id="console-output" class="console-output"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community Panel -->
+    <div class="community-panel">
+      <div class="community-header">
+        <h3>Community Creations</h3>
+        <div class="community-filters">
+          <button class="filter-btn active" data-filter="recent">Recent</button>
+          <button class="filter-btn" data-filter="popular">Popular</button>
+          <button class="filter-btn" data-filter="featured">Featured</button>
+        </div>
+      </div>
+      
+      <div id="community-grid" class="community-grid">
+        <!-- Community projects will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Editor Settings</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-group">
+          <label>Theme:</label>
+          <select id="editor-theme">
+            <option value="default">Default</option>
+            <option value="dracula">Dracula</option>
+            <option value="monokai">Monokai</option>
+            <option value="material">Material</option>
+          </select>
+        </div>
+        
+        <div class="setting-group">
+          <label>Font Size:</label>
+          <input type="range" id="font-size" min="12" max="24" value="14">
+          <span id="font-size-value">14px</span>
+        </div>
+        
+        <div class="setting-group">
+          <label>Auto-run:</label>
+          <input type="checkbox" id="auto-run" checked>
+          <span>Run code automatically on changes</span>
+        </div>
+        
+        <div class="setting-group">
+          <label>Line Numbers:</label>
+          <input type="checkbox" id="line-numbers" checked>
+          <span>Show line numbers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="share-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Share Your Creation</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="share-options">
+          <div class="share-option">
+            <h4>Public Link</h4>
+            <div class="share-input-group">
+              <input type="text" id="share-url" readonly>
+              <button id="copy-share-url" class="copy-btn">Copy</button>
+            </div>
+          </div>
+          
+          <div class="share-option">
+            <h4>Embed Code</h4>
+            <div class="share-input-group">
+              <textarea id="embed-code" readonly></textarea>
+              <button id="copy-embed-code" class="copy-btn">Copy</button>
+            </div>
+          </div>
+          
+          <div class="share-social">
+            <h4>Share on Social Media</h4>
+            <div class="social-buttons">
+              <button class="social-btn twitter">🐦 Twitter</button>
+              <button class="social-btn facebook">📘 Facebook</button>
+              <button class="social-btn linkedin">💼 LinkedIn</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="playground-enhanced.js"></script>
+</body>
+</html>

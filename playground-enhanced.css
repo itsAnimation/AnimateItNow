@@ -1,0 +1,515 @@
+/* Enhanced Playground Styles */
+.playground-container {
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-bg);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--card-bg);
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toolbar-left, .toolbar-right {
+  display: flex;
+  gap: 10px;
+}
+
+.toolbar-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.toolbar-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.project-title-input {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  min-width: 200px;
+  text-align: center;
+}
+
+.editor-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #e0e0e0;
+}
+
+.editors-panel {
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-tabs {
+  display: flex;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.editor-tab {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.editor-tab.active {
+  background: var(--accent);
+  color: white;
+}
+
+.editor-content {
+  flex: 1;
+  position: relative;
+}
+
+.editor-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+
+.editor-pane.active {
+  display: block;
+}
+
+.editor-pane textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 15px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  background: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.preview-panel {
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.preview-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.preview-content {
+  flex: 1;
+  position: relative;
+}
+
+#preview-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+.console-panel {
+  height: 0;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-top: 1px solid #333;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+.console-panel.open {
+  height: 200px;
+}
+
+.console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #333;
+}
+
+.console-btn {
+  padding: 4px 8px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.console-output {
+  padding: 10px 15px;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.console-log {
+  margin: 2px 0;
+  padding: 2px 0;
+}
+
+.console-error {
+  color: #ff6b6b;
+}
+
+.console-warn {
+  color: #feca57;
+}
+
+.console-info {
+  color: #48cae4;
+}
+
+.community-panel {
+  position: fixed;
+  right: -300px;
+  top: 80px;
+  width: 300px;
+  height: calc(100vh - 80px);
+  background: var(--card-bg);
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.community-panel.open {
+  right: 0;
+}
+
+.community-header {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.community-filters {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.community-grid {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: calc(100% - 120px);
+  overflow-y: auto;
+}
+
+.community-item {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.community-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: var(--accent);
+}
+
+.community-item h4 {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--primary-text);
+}
+
+.community-item p {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.community-item .meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #999;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.setting-group {
+  margin-bottom: 20px;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.setting-group input, .setting-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.setting-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+.setting-group input[type="range"] {
+  width: calc(100% - 60px);
+  margin-right: 10px;
+}
+
+.share-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.share-option h4 {
+  margin-bottom: 10px;
+  color: var(--primary-text);
+}
+
+.share-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.share-input-group input,
+.share-input-group textarea {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.share-input-group textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.copy-btn {
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.social-btn.twitter {
+  background: #1da1f2;
+  color: white;
+}
+
+.social-btn.facebook {
+  background: #4267b2;
+  color: white;
+}
+
+.social-btn.linkedin {
+  background: #0077b5;
+  color: white;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .editor-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .toolbar-center {
+    order: 3;
+    width: 100%;
+  }
+  
+  .project-title-input {
+    width: 100%;
+  }
+  
+  .community-panel {
+    width: 100%;
+    right: -100%;
+  }
+}
+
+/* Dark mode */
+body.dark .toolbar,
+body.dark .editors-panel,
+body.dark .preview-panel,
+body.dark .community-panel {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+body.dark .toolbar-btn,
+body.dark .control-btn,
+body.dark .filter-btn {
+  background: #333;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark .modal-content {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+body.dark .community-item {
+  background: #333;
+}
