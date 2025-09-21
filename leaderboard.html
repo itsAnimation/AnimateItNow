@@ -106,6 +106,130 @@
   transform: translateY(-2px); /*  */
   box-shadow: 0 6px 20px rgba(0,123,255,0.3); /*  */
 }
+/*Week filter container styling */
+.week-filter-container {
+  display: flex; /*  */
+  justify-content: center; /*  */
+  align-items: center; /*  */
+  margin: 30px auto; /*  */
+  gap: 15px; /*  */
+  flex-wrap: wrap; /*  */
+  max-width: 800px; /*  */
+  padding: 20px; /*  */
+  background: rgba(255,255,255,0.1); /*  */
+  border-radius: 16px; /*  */
+  backdrop-filter: blur(10px); /*  */
+  border: 1px solid rgba(255,255,255,0.2); /*  */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /*  */
+}
+/*Dark mode for week filter container */
+.dark .week-filter-container {
+  background: rgba(255,255,255,0.05); /*  */
+  border: 1px solid rgba(255,255,255,0.1); /*  */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /*  */
+}
+.week-filter-label {
+  font-weight: 600; /*  */
+  color: #333; /*  */
+  font-size: 1.1rem; /*  */
+  margin-right: 10px; /*  */
+}
+/*Dark mode for week filter label */
+.dark .week-filter-label {
+  color: #ffffff; /*  */
+}
+.week-range-select {
+  padding: 12px 16px; /*  */
+  font-size: 1rem; /*  */
+  border-radius: 8px; /*  */
+  border: 2px solid #e0e0e0; /*  */
+  background: #ffffff; /*  */
+  color: #333; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+  min-width: 200px; /*  */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /*  */
+}
+.week-range-select:focus {
+  border-color: #007bff; /*  */
+  box-shadow: 0 4px 12px rgba(0,123,255,0.2); /*  */
+  outline: none; /*  */
+}
+/*Dark mode for week range select */
+.dark .week-range-select {
+  background: #2d2d2d; /*  */
+  color: #ffffff; /*  */
+  border-color: #404040; /*  */
+}
+.dark .week-range-select:focus {
+  border-color: #4dabf7; /*  */
+  box-shadow: 0 4px 12px rgba(77,171,247,0.3); /*  */
+}
+/*Custom range container styling */
+.custom-range-container {
+  display: flex; /*  */
+  align-items: center; /*  */
+  gap: 10px; /*  */
+  margin-top: 15px; /*  */
+  padding: 15px; /*  */
+  background: rgba(255,255,255,0.05); /*  */
+  border-radius: 12px; /*  */
+  border: 1px solid rgba(255,255,255,0.1); /*  */
+}
+/*Dark mode for custom range container */
+.dark .custom-range-container {
+  background: rgba(255,255,255,0.02); /*  */
+  border: 1px solid rgba(255,255,255,0.05); /*  */
+}
+.custom-range-container label {
+  font-weight: 500; /*  */
+  color: #555; /*  */
+  font-size: 0.9rem; /*  */
+}
+/*Dark mode for custom range labels */
+.dark .custom-range-container label {
+  color: #ccc; /*  */
+}
+.week-select {
+  padding: 8px 12px; /*  */
+  font-size: 0.9rem; /*  */
+  border-radius: 6px; /*  */
+  border: 1px solid #e0e0e0; /*  */
+  background: #ffffff; /*  */
+  color: #333; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+}
+.week-select:focus {
+  border-color: #007bff; /*  */
+  outline: none; /*  */
+}
+/*Dark mode for week select */
+.dark .week-select {
+  background: #2d2d2d; /*  */
+  color: #ffffff; /*  */
+  border-color: #404040; /*  */
+}
+.dark .week-select:focus {
+  border-color: #4dabf7; /*  */
+}
+.apply-custom-btn {
+  padding: 8px 16px; /*  */
+  font-size: 0.9rem; /*  */
+  border-radius: 6px; /*  */
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%); /*  */
+  color: white; /*  */
+  border: none; /*  */
+  font-weight: 600; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+  box-shadow: 0 2px 8px rgba(40,167,69,0.2); /*  */
+}
+.apply-custom-btn:hover {
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%); /*  */
+  transform: translateY(-1px); /*  */
+  box-shadow: 0 4px 12px rgba(40,167,69,0.3); /*  */
+}
 /*Table container - only white background for table area */
 .table-container {
   width: 100%; /*  */
@@ -417,6 +541,31 @@
     border-radius: 0 0 12px 12px; /*  */
     border-top: none; /*  */
   }
+  .week-filter-container {
+    margin: 20px auto; /*  */
+    padding: 15px; /*  */
+    flex-direction: column; /*  */
+    gap: 10px; /*  */
+  }
+  .week-filter-label {
+    margin-right: 0; /*  */
+    margin-bottom: 5px; /*  */
+  }
+  .week-range-select {
+    min-width: 100%; /*  */
+    width: 100%; /*  */
+  }
+  .custom-range-container {
+    flex-direction: column; /*  */
+    align-items: stretch; /*  */
+    gap: 8px; /*  */
+  }
+  .custom-range-container label {
+    margin-bottom: 5px; /*  */
+  }
+  .week-select {
+    width: 100%; /*  */
+  }
   .table-container {
     margin: 0 -15px 30px -15px; /*  */
     border-radius: 0; /*  */
@@ -611,6 +760,39 @@
   <button id="searchBtn" class="search-btn">
     🔍 Search      </button>
 </div>
+<!-- Week Range Filter Container -->
+<div class="week-filter-container">
+  <label for="weekRangeSelect" class="week-filter-label">📅 Filter by Week Range:</label>
+  <select id="weekRangeSelect" class="week-range-select">
+    <option value="all">📊 Overall Data</option>
+    <option value="week1-2">Week 1 & 2</option>
+    <option value="week3-4">Week 3 & 4</option>
+    <option value="week1-3">Week 1 to 3</option>
+    <option value="week2-4">Week 2 to 4</option>
+    <option value="week1">Week 1 Only</option>
+    <option value="week2">Week 2 Only</option>
+    <option value="week3">Week 3 Only</option>
+    <option value="week4">Week 4 Only</option>
+    <option value="custom">Custom Range</option>
+  </select>
+  <div id="customRangeContainer" class="custom-range-container" style="display: none;">
+    <label for="startWeek">From Week:</label>
+    <select id="startWeek" class="week-select">
+      <option value="1">Week 1</option>
+      <option value="2">Week 2</option>
+      <option value="3">Week 3</option>
+      <option value="4">Week 4</option>
+    </select>
+    <label for="endWeek">To Week:</label>
+    <select id="endWeek" class="week-select">
+      <option value="1">Week 1</option>
+      <option value="2">Week 2</option>
+      <option value="3">Week 3</option>
+      <option value="4">Week 4</option>
+    </select>
+    <button id="applyCustomRange" class="apply-custom-btn">Apply</button>
+  </div>
+</div>
 <!--Table container - always visible, no loading effect -->
 <div class="table-container">
   <table id="pointsTable" class="leaderboard-table">
@@ -669,8 +851,59 @@ const pointsPerLevel = { /*  */
   "level3": 10 /*  */
 };
 let contributorsData = []; /*  */
+let allPRsData = []; /* Store all PRs with week information */
 let currentPage = 1; /*  */
 const perPage = 20; /*  */
+let currentWeekFilter = 'all'; /* Current week filter selection */
+
+// Function to calculate week number based on merged date
+function getWeekNumber(mergedDate) {
+  if (!mergedDate) return 0;
+  
+  const date = new Date(mergedDate);
+  const now = new Date();
+  
+  // Calculate weeks since the start of the current month
+  const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const daysDiff = Math.floor((date - startOfMonth) / (1000 * 60 * 60 * 24));
+  const weekNumber = Math.ceil((daysDiff + 1) / 7);
+  
+  // Ensure week number is between 1 and 4
+  return Math.min(Math.max(weekNumber, 1), 4);
+}
+
+// Function to check if a PR falls within the specified week range
+function isPRInWeekRange(pr, weekRange) {
+  if (weekRange === 'all') return true;
+  
+  const weekNumber = getWeekNumber(pr.merged_at);
+  
+  switch (weekRange) {
+    case 'week1':
+      return weekNumber === 1;
+    case 'week2':
+      return weekNumber === 2;
+    case 'week3':
+      return weekNumber === 3;
+    case 'week4':
+      return weekNumber === 4;
+    case 'week1-2':
+      return weekNumber >= 1 && weekNumber <= 2;
+    case 'week3-4':
+      return weekNumber >= 3 && weekNumber <= 4;
+    case 'week1-3':
+      return weekNumber >= 1 && weekNumber <= 3;
+    case 'week2-4':
+      return weekNumber >= 2 && weekNumber <= 4;
+    case 'custom':
+      const startWeek = parseInt(document.getElementById('startWeek')?.value || 1);
+      const endWeek = parseInt(document.getElementById('endWeek')?.value || 4);
+      return weekNumber >= startWeek && weekNumber <= endWeek;
+    default:
+      return true;
+  }
+}
+
 //Fetch merged PRs with error handling
 async function fetchMergedPRs(page = 1, allPRs = []) {
   try {
@@ -711,21 +944,61 @@ function calculateContributorData(prs) {
     const labels = pr.labels.map(label => label.name.toLowerCase()); /*  */
     const level = labels.find(l => l.startsWith("level")) || "none"; /*  */
     const points = pointsPerLevel[level] || 0; /*  */
+    const weekNumber = getWeekNumber(pr.merged_at); /*  */
             
     if (!data[user]) { /*  */
       data[user] = { prs: [], total: 0, avatar }; /*  */
     }
-    data[user].prs.push({ title, url: prUrl, level }); /*  */
+    data[user].prs.push({ title, url: prUrl, level, weekNumber, mergedAt: pr.merged_at }); /*  */
     data[user].total += points; /*  */
   });
   return data; /*  */
 }
+
+// Function to filter contributor data by week range
+function filterContributorsByWeek(contributorsData, weekRange) {
+  if (weekRange === 'all') return contributorsData;
+  
+  const filteredData = [];
+  
+  contributorsData.forEach(([user, userData]) => {
+    const filteredPRs = userData.prs.filter(pr => isPRInWeekRange({ merged_at: pr.mergedAt }, weekRange));
+    
+    if (filteredPRs.length > 0) {
+      const filteredUserData = {
+        ...userData,
+        prs: filteredPRs,
+        total: filteredPRs.reduce((sum, pr) => sum + (pointsPerLevel[pr.level] || 0), 0)
+      };
+      filteredData.push([user, filteredUserData]);
+    }
+  });
+  
+  return filteredData.sort((a, b) => b[1].total - a[1].total);
+}
 let filteredData = null; /*  */
+let weekFilteredData = null; /*  */
+
+// Function to apply week filter and update display
+function applyWeekFilter(weekRange) {
+  currentWeekFilter = weekRange;
+  weekFilteredData = filterContributorsByWeek(contributorsData, weekRange);
+  currentPage = 1;
+  renderTablePage(currentPage);
+}
+
 //Render table page with proper styling
 function renderTablePage(page) {
   const tbody = document.querySelector("#pointsTable tbody"); /*  */
   tbody.innerHTML = ""; //Clear any previous messages/loading /*  */
-  const dataToShow = filteredData || contributorsData; /*  */
+  
+  // Determine which data to show: search filtered, week filtered, or original
+  let dataToShow = contributorsData;
+  if (filteredData) {
+    dataToShow = filteredData;
+  } else if (weekFilteredData) {
+    dataToShow = weekFilteredData;
+  }
   const startIdx = (page - 1) * perPage; /*  */
   const endIdx = startIdx + perPage; /*  */
   let pageData = dataToShow.slice(startIdx, endIdx); /*  */
@@ -733,8 +1006,9 @@ function renderTablePage(page) {
   const createPrsCell = (userData) => {
     const prsTd = document.createElement("td"); /*  */
     const prListHtml = userData.prs.map(pr => {
-      //  Updated points display format
-      return `<li><a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level} = ${pointsPerLevel[pr.level]} points</strong></li>`; /*  */
+      //  Updated points display format with week information
+      const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
+      return `<li><a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level} = ${pointsPerLevel[pr.level]} points${weekInfo}</strong></li>`; /*  */
     }).join(""); /*  */
 
     const detailsElement = document.createElement("details"); /*  */
@@ -869,7 +1143,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!val) { /*  */
       filteredData = null; /*  */
     } else { /*  */
-      filteredData = contributorsData.filter(([user]) => user.toLowerCase().includes(val)); /*  */
+      // Search in the appropriate dataset (week filtered or original)
+      const searchInData = weekFilteredData || contributorsData;
+      filteredData = searchInData.filter(([user]) => user.toLowerCase().includes(val)); /*  */
     }
     currentPage = 1; /*  */
     renderTablePage(currentPage); /*  */
@@ -891,6 +1167,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Week filter functionality
+  const weekRangeSelect = document.getElementById('weekRangeSelect');
+  const customRangeContainer = document.getElementById('customRangeContainer');
+  const applyCustomRangeBtn = document.getElementById('applyCustomRange');
+
+  if (weekRangeSelect) {
+    weekRangeSelect.addEventListener('change', function() {
+      const selectedValue = this.value;
+      
+      if (selectedValue === 'custom') {
+        customRangeContainer.style.display = 'flex';
+      } else {
+        customRangeContainer.style.display = 'none';
+        applyWeekFilter(selectedValue);
+      }
+    });
+  }
+
+  if (applyCustomRangeBtn) {
+    applyCustomRangeBtn.addEventListener('click', function() {
+      const startWeek = document.getElementById('startWeek').value;
+      const endWeek = document.getElementById('endWeek').value;
+      
+      if (parseInt(startWeek) > parseInt(endWeek)) {
+        alert('Start week cannot be greater than end week!');
+        return;
+      }
+      
+      applyWeekFilter('custom');
+    });
+  }
 });
 //Download Excel functionality
 function downloadExcel() {
@@ -898,33 +1206,52 @@ function downloadExcel() {
   table.innerHTML = `<thead><tr>        <th>Rank</th>        <th>Contributor</th>        <th>Merged PRs</th>        <th>Total Points</th>      </tr></thead><tbody></tbody>`; /*  */
         
   const tbody = table.querySelector("tbody"); /*  */
-  contributorsData.forEach(([user, userData], idx) => {
+  
+  // Use the currently displayed data (filtered or original)
+  let dataToExport = contributorsData;
+  if (filteredData) {
+    dataToExport = filteredData;
+  } else if (weekFilteredData) {
+    dataToExport = weekFilteredData;
+  }
+  
+  dataToExport.forEach(([user, userData], idx) => {
     const prList = userData.prs.map(pr => {
-      //  Updated points display format for Excel
-      return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)`; /*  */
+      //  Updated points display format for Excel with week information
+      const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
+      return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)${weekInfo}`; /*  */
     }).join('; '); /*  */
           
     const row = document.createElement("tr"); /*  */
     row.innerHTML = `          <td>${idx + 1}</td>          <td>${user}</td>          <td>${prList}</td>          <td>${userData.total}</td>        `; /*  */
     tbody.appendChild(row); /*  */
   });
+  
+  // Generate filename based on current filter
+  let filename = "AnimateItnow_Contributors";
+  if (currentWeekFilter !== 'all') {
+    filename += `_${currentWeekFilter.replace('-', '_')}`;
+  }
+  filename += ".xlsx";
+  
   const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" }); /*  */
-  XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx"); /*  */
+  XLSX.writeFile(wb, filename); /*  */
 }
 //Initialize leaderboard with error handling and dummy data fallback
 async function init() {
   try {
     const prs = await fetchMergedPRs(); /*  */
+    allPRsData = prs; /* Store all PRs for reference */
     let fetchedContributors = Object.entries(calculateContributorData(prs)).sort((a, b) => b[1].total - a[1].total); /*  */
     //If no data fetched (e.g., due to API limits or no token), use dummy data for demonstration /*  */
     if (fetchedContributors.length === 0) { /*  */
       console.warn("No data fetched from GitHub. Using dummy data for demonstration."); /*  */
       fetchedContributors = [
-        ['user1', { prs: [{ title: 'Dummy PR 1', url: '/placeholder.svg?height=40&width=40', level: 'level1' }], total: 10, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user2', { prs: [{ title: 'Dummy PR 2', url: '/placeholder.svg?height=40&width=40', level: 'level2' }], total: 20, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user3', { prs: [{ title: 'Dummy PR 3', url: '/placeholder.svg?height=40&width=40', level: 'level3' }], total: 30, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user4', { prs: [{ title: 'Dummy PR 4', url: '/placeholder.svg?height=40&width=40', level: 'level1' }], total: 15, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user5', { prs: [{ title: 'Dummy PR 5', url: '/placeholder.svg?height=40&width=40', level: 'level2' }], total: 25, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+        ['user1', { prs: [{ title: 'Dummy PR 1', url: '/placeholder.svg?height=40&width=40', level: 'level1', weekNumber: 1, mergedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString() }], total: 10, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+        ['user2', { prs: [{ title: 'Dummy PR 2', url: '/placeholder.svg?height=40&width=40', level: 'level2', weekNumber: 2, mergedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString() }], total: 20, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+        ['user3', { prs: [{ title: 'Dummy PR 3', url: '/placeholder.svg?height=40&width=40', level: 'level3', weekNumber: 3, mergedAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString() }], total: 30, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+        ['user4', { prs: [{ title: 'Dummy PR 4', url: '/placeholder.svg?height=40&width=40', level: 'level1', weekNumber: 1, mergedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString() }], total: 15, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+        ['user5', { prs: [{ title: 'Dummy PR 5', url: '/placeholder.svg?height=40&width=40', level: 'level2', weekNumber: 4, mergedAt: new Date(Date.now() - 28 * 24 * 60 * 60 * 1000).toISOString() }], total: 25, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
       ].sort((a, b) => b[1].total - a[1].total); // Sort dummy data too /*  */
     }
             
