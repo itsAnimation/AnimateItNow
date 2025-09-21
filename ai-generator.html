@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Animation Generator - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ai-generator.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html">Builder</a></li>
+        <li><a href="ai-generator.html" class="active">AI Generator</a></li>
+        <li><a href="playground.html">Playground</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="export.html">Export</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="ai-container">
+    <div class="ai-header">
+      <h1>🤖 AI Animation Generator</h1>
+      <p>Describe your animation in natural language and watch AI create it for you!</p>
+    </div>
+
+    <div class="ai-main">
+      <div class="input-section">
+        <div class="prompt-area">
+          <textarea id="ai-prompt" placeholder="Describe your animation... 
+Examples:
+• Create a bouncing blue button with a glow effect
+• Make a card that slides in from the left and fades in
+• Design a loading spinner with rainbow colors
+• Build a text that types itself out character by character"></textarea>
+          
+          <div class="prompt-suggestions">
+            <h4>Quick Suggestions:</h4>
+            <div class="suggestion-tags">
+              <span class="tag" onclick="setPrompt('Create a bouncing button with hover effect')">Bouncing Button</span>
+              <span class="tag" onclick="setPrompt('Make a card flip animation on hover')">Card Flip</span>
+              <span class="tag" onclick="setPrompt('Design a pulsing loading indicator')">Loading Pulse</span>
+              <span class="tag" onclick="setPrompt('Build a sliding menu animation')">Sliding Menu</span>
+              <span class="tag" onclick="setPrompt('Create a typewriter text effect')">Typewriter Text</span>
+              <span class="tag" onclick="setPrompt('Make a floating icon with shadow')">Floating Icon</span>
+            </div>
+          </div>
+
+          <div class="generation-controls">
+            <div class="control-group">
+              <label>Animation Style:</label>
+              <select id="animation-style">
+                <option value="modern">Modern</option>
+                <option value="playful">Playful</option>
+                <option value="elegant">Elegant</option>
+                <option value="minimal">Minimal</option>
+                <option value="bold">Bold</option>
+              </select>
+            </div>
+            
+            <div class="control-group">
+              <label>Duration:</label>
+              <select id="duration-preset">
+                <option value="fast">Fast (0.3s)</option>
+                <option value="normal" selected>Normal (1s)</option>
+                <option value="slow">Slow (2s)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <button id="generate-btn" class="generate-btn">
+              <span class="btn-text">✨ Generate Animation</span>
+              <div class="loading-spinner" style="display: none;"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-section">
+        <div class="preview-area">
+          <h3>Preview</h3>
+          <div id="animation-preview" class="preview-container">
+            <div class="preview-placeholder">
+              <div class="placeholder-icon">🎬</div>
+              <p>Your AI-generated animation will appear here</p>
+            </div>
+          </div>
+          
+          <div class="preview-controls">
+            <button id="play-pause" class="control-btn" disabled>▶️ Play</button>
+            <button id="restart" class="control-btn" disabled>🔄 Restart</button>
+            <button id="edit-code" class="control-btn" disabled>📝 Edit Code</button>
+          </div>
+        </div>
+
+        <div class="code-area">
+          <div class="code-tabs">
+            <button class="tab-btn active" data-tab="css">CSS</button>
+            <button class="tab-btn" data-tab="html">HTML</button>
+            <button class="tab-btn" data-tab="js">JavaScript</button>
+          </div>
+          
+          <div class="code-content">
+            <div id="css-code" class="code-panel active">
+              <pre><code>/* Your generated CSS will appear here */</code></pre>
+            </div>
+            <div id="html-code" class="code-panel">
+              <pre><code><!-- Your generated HTML will appear here --></code></pre>
+            </div>
+            <div id="js-code" class="code-panel">
+              <pre><code>// Your generated JavaScript will appear here</code></pre>
+            </div>
+          </div>
+
+          <div class="code-actions">
+            <button id="copy-code" class="action-btn">📋 Copy Code</button>
+            <button id="download-code" class="action-btn">💾 Download</button>
+            <button id="save-to-library" class="action-btn">💖 Save to Library</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-history">
+      <h3>Recent Generations</h3>
+      <div id="generation-history" class="history-grid">
+        <!-- Generated animations will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="ai-generator.js"></script>
+</body>
+</html>
