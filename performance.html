@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Analyzer - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="performance.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html">Builder</a></li>
+        <li><a href="ai-generator.html">AI Generator</a></li>
+        <li><a href="playground-enhanced.html">Playground</a></li>
+        <li><a href="performance.html" class="active">Performance</a></li>
+        <li><a href="export.html">Export</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="performance-container">
+    <div class="performance-header">
+      <h1>🚀 Animation Performance Analyzer</h1>
+      <p>Test and optimize your animations for the best user experience</p>
+    </div>
+
+    <div class="analyzer-main">
+      <!-- Input Section -->
+      <div class="input-section">
+        <div class="input-tabs">
+          <button class="input-tab active" data-tab="code">Code Input</button>
+          <button class="input-tab" data-tab="url">URL Test</button>
+          <button class="input-tab" data-tab="file">File Upload</button>
+        </div>
+
+        <div class="input-content">
+          <div id="code-input" class="input-panel active">
+            <div class="code-editors">
+              <div class="editor-section">
+                <h4>HTML</h4>
+                <textarea id="html-input" placeholder="Paste your HTML here..."></textarea>
+              </div>
+              <div class="editor-section">
+                <h4>CSS</h4>
+                <textarea id="css-input" placeholder="Paste your CSS animations here..."></textarea>
+              </div>
+              <div class="editor-section">
+                <h4>JavaScript</h4>
+                <textarea id="js-input" placeholder="Paste your JavaScript here..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div id="url-input" class="input-panel">
+            <div class="url-section">
+              <label>Website URL:</label>
+              <input type="url" id="test-url" placeholder="https://example.com">
+              <button id="load-url" class="btn">Load & Analyze</button>
+            </div>
+          </div>
+
+          <div id="file-input" class="input-panel">
+            <div class="file-section">
+              <div class="file-drop-zone" id="file-drop">
+                <div class="drop-icon">📁</div>
+                <p>Drop HTML/CSS files here or click to browse</p>
+                <input type="file" id="file-picker" multiple accept=".html,.css,.js">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-controls">
+          <div class="device-selector">
+            <label>Test Device:</label>
+            <select id="device-type">
+              <option value="desktop">Desktop (High-end)</option>
+              <option value="laptop">Laptop (Mid-range)</option>
+              <option value="tablet">Tablet</option>
+              <option value="mobile">Mobile (Low-end)</option>
+            </select>
+          </div>
+
+          <div class="test-options">
+            <label><input type="checkbox" id="test-fps" checked> FPS Monitoring</label>
+            <label><input type="checkbox" id="test-cpu" checked> CPU Usage</label>
+            <label><input type="checkbox" id="test-memory" checked> Memory Usage</label>
+            <label><input type="checkbox" id="test-battery" checked> Battery Impact</label>
+          </div>
+
+          <button id="start-analysis" class="analyze-btn">
+            <span class="btn-text">🔍 Start Analysis</span>
+            <div class="loading-spinner" style="display: none;"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section">
+        <div class="results-header">
+          <h3>Performance Results</h3>
+          <div class="results-actions">
+            <button id="export-report" class="action-btn" disabled>📊 Export Report</button>
+            <button id="share-results" class="action-btn" disabled>🔗 Share Results</button>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <!-- Overall Score -->
+          <div class="metric-card score-card">
+            <div class="metric-header">
+              <h4>Performance Score</h4>
+              <div class="score-badge" id="overall-score">--</div>
+            </div>
+            <div class="score-breakdown">
+              <div class="score-item">
+                <span>Smoothness</span>
+                <div class="score-bar"><div class="score-fill" data-metric="smoothness"></div></div>
+                <span id="smoothness-score">--</span>
+              </div>
+              <div class="score-item">
+                <span>Efficiency</span>
+                <div class="score-bar"><div class="score-fill" data-metric="efficiency"></div></div>
+                <span id="efficiency-score">--</span>
+              </div>
+              <div class="score-item">
+                <span>Compatibility</span>
+                <div class="score-bar"><div class="score-fill" data-metric="compatibility"></div></div>
+                <span id="compatibility-score">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- FPS Monitor -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <h4>Frame Rate (FPS)</h4>
+              <div class="metric-value" id="fps-value">--</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="fps-chart" width="300" height="150"></canvas>
+            </div>
+            <div class="metric-details">
+              <span>Target: 60 FPS</span>
+              <span id="fps-status" class="status-indicator">Monitoring...</span>
+            </div>
+          </div>
+
+          <!-- CPU Usage -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <h4>CPU Usage</h4>
+              <div class="metric-value" id="cpu-value">--%</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="cpu-chart" width="300" height="150"></canvas>
+            </div>
+            <div class="metric-details">
+              <span>Threshold: &lt;50%</span>
+              <span id="cpu-status" class="status-indicator">Monitoring...</span>
+            </div>
+          </div>
+
+          <!-- Memory Usage -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <h4>Memory Usage</h4>
+              <div class="metric-value" id="memory-value">-- MB</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="memory-chart" width="300" height="150"></canvas>
+            </div>
+            <div class="metric-details">
+              <span>Available: <span id="total-memory">--</span> MB</span>
+              <span id="memory-status" class="status-indicator">Monitoring...</span>
+            </div>
+          </div>
+
+          <!-- Battery Impact -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <h4>Battery Impact</h4>
+              <div class="metric-value" id="battery-value">--</div>
+            </div>
+            <div class="battery-indicator">
+              <div class="battery-level" id="battery-level"></div>
+            </div>
+            <div class="metric-details">
+              <span>Impact Level</span>
+              <span id="battery-status" class="status-indicator">Calculating...</span>
+            </div>
+          </div>
+
+          <!-- Animation Timeline -->
+          <div class="metric-card timeline-card">
+            <div class="metric-header">
+              <h4>Animation Timeline</h4>
+              <div class="timeline-controls">
+                <button id="play-timeline" class="timeline-btn">▶️</button>
+                <button id="pause-timeline" class="timeline-btn">⏸️</button>
+                <button id="reset-timeline" class="timeline-btn">🔄</button>
+              </div>
+            </div>
+            <div class="timeline-container">
+              <canvas id="timeline-chart" width="600" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recommendations-section">
+          <h3>🎯 Optimization Recommendations</h3>
+          <div id="recommendations-list" class="recommendations-list">
+            <div class="recommendation-placeholder">
+              <div class="placeholder-icon">💡</div>
+              <p>Run analysis to get personalized optimization recommendations</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Report -->
+        <div class="detailed-report">
+          <h3>📋 Detailed Analysis Report</h3>
+          <div class="report-tabs">
+            <button class="report-tab active" data-tab="summary">Summary</button>
+            <button class="report-tab" data-tab="issues">Issues</button>
+            <button class="report-tab" data-tab="suggestions">Suggestions</button>
+            <button class="report-tab" data-tab="code">Optimized Code</button>
+          </div>
+
+          <div class="report-content">
+            <div id="summary-report" class="report-panel active">
+              <div class="report-placeholder">Analysis results will appear here</div>
+            </div>
+            <div id="issues-report" class="report-panel">
+              <div class="report-placeholder">Performance issues will be listed here</div>
+            </div>
+            <div id="suggestions-report" class="report-panel">
+              <div class="report-placeholder">Optimization suggestions will appear here</div>
+            </div>
+            <div id="code-report" class="report-panel">
+              <div class="report-placeholder">Optimized code will be generated here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="performance.js"></script>
+</body>
+</html>
