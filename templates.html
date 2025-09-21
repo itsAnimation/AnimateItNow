@@ -9,7 +9,6 @@
       content="A comprehensive collection of CSS animation templates and effects for web developers"
     />
 
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ff6b6b" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -20,10 +19,8 @@
     />
     <meta name="msapplication-TileColor" content="#ff6b6b" />
 
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
 
-    <!-- PWA Icons -->
     <link
       rel="icon"
       type="image/png"
@@ -73,7 +70,6 @@
       href="images/icons/icon-512x512.png"
     />
 
-    <!-- Apple Touch Icons -->
     <link
       rel="apple-touch-icon"
       sizes="152x152"
@@ -85,7 +81,6 @@
       href="images/icons/icon-192x192.png"
     />
 
-    <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="styles.css" />
     <link
@@ -95,6 +90,10 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
     />
 
     <style>
@@ -412,6 +411,13 @@
         font-size: 1rem;
         font-weight: bold;
       }
+      .checkbox-preview {
+        background-color: #3b82f6;
+        color: #e0f2fe;
+      }
+      .checkbox-preview .ri-checkbox-fill {
+        font-size: 2rem;
+      }
       /* 🌙 Dark Theme Support */
       body.dark .display-preview {
         background-color: #2a2a2a;
@@ -594,14 +600,12 @@
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
           <li><a href="generator.html">Generator</a></li>
-          <!-- cursor toggle switch -->
           <li>
             <label class="switch" title="Toggle Snake Cursor">
               <input type="checkbox" id="cursorToggle" />
               <span class="slider round"></span>
             </label>
           </li>
-          <!-- github icon -->
           <li>
             <a
               href="https://github.com/itsAnimation/AnimateItNow"
@@ -691,7 +695,6 @@
           <div class="template-preview loader-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- aading texts effects -->
         <a class="template-card" href="templates/text_effects_anim.html">
           <h2>Text Animation Effects</h2>
           <div class="template-preview text-preview">
@@ -709,7 +712,6 @@
           <div class="template-preview modal-preview"></div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- adding code Playground -->
         <a class="template-card" href="templates/code_playground.html">
           <h2>Code PlayGround</h2>
           <div class="template-preview code-play-preview">Write Code</div>
@@ -750,7 +752,6 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- CORRECTED TOOLTIP COMPONENT -->
         <a class="template-card" href="templates/tooltip.html">
           <h2>Tooltip UI Component</h2>
           <div class="template-preview">
@@ -758,7 +759,6 @@
           </div>
           <span class="template-btn">View Template</span>
         </a>
-        <!-- Responsive Card Carousel -->
         <a class="template-card" href="templates/carousel.html">
           <h2>Responsive Card Carousel</h2>
           <div class="template-preview carousel-preview">
@@ -768,7 +768,6 @@
           </div>
           <span class="template-btn">View Template</span>
         </a>
-        <!-- NEWLY ADDED ANIMATED TOGGLES CARD -->
         <a class="template-card" href="templates/toggles-and-checkboxes.html">
           <h2>Animated Toggles</h2>
           <div class="template-preview toggles-preview">
@@ -832,15 +831,12 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
-        <!-- NEW CARD: CSS Snippet Generator -->
-        <a class="template-card" href="generator.html">
-            <h2>CSS Snippet Generator</h2>
-            <div class="template-preview generator-preview">
-                <div class="generator-box box-shadow-preview"></div>
-                <div class="generator-box gradient-preview"></div>
-                <div class="generator-box border-radius-preview"></div>
-            </div>
-            <button class="template-btn">View Template</button>
+        <a class="template-card" href="pomodoro.html">
+          <h2>Pomodoro Timer</h2>
+          <div class="template-preview">
+            <div class="fas fa-clock" style="font-size: 40px; color: white;"></div>
+          </div>
+          <button class="template-btn">View Template</button>
         </a>
       </section>
     </main>
@@ -891,10 +887,7 @@
         </div>
       </footer>
     </div>
-    <!--  Removed the hardcoded cursor-snake div. script.js creates it dynamically. -->
-    <!-- <div id="cursor-snake"></div> -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!--  Added link to your shared script.js -->
     <script src="script.js"></script>
     <script>
       //  This script now ONLY contains functionality specific to templates.html
@@ -920,10 +913,6 @@
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
       setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
-
-      themeToggle?.addEventListener("click", () => {
-        setTheme(!body.classList.contains("dark-theme"));
-      });
 
       lucide.createIcons();
 
