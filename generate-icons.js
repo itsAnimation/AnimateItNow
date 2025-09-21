@@ -223,3 +223,4 @@ try {
   console.error('❌ Error during setup:', error);
   process.exit(1);
 }
+
