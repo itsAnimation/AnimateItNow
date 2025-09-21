@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framework Export Hub - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="export.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html">Builder</a></li>
+        <li><a href="ai-generator.html">AI Generator</a></li>
+        <li><a href="playground-enhanced.html">Playground</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="export.html" class="active">Export</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="export-container">
+    <div class="export-header">
+      <h1>🚀 Framework Export Hub</h1>
+      <p>Export your animations to any framework or platform with one click</p>
+    </div>
+
+    <div class="export-main">
+      <!-- Input Section -->
+      <div class="input-section">
+        <div class="animation-input">
+          <h3>Animation Source</h3>
+          <div class="input-tabs">
+            <button class="input-tab active" data-tab="paste">Paste Code</button>
+            <button class="input-tab" data-tab="import">Import File</button>
+            <button class="input-tab" data-tab="library">From Library</button>
+          </div>
+
+          <div class="input-content">
+            <div id="paste-input" class="input-panel active">
+              <div class="code-input-group">
+                <label>HTML:</label>
+                <textarea id="source-html" placeholder="Paste your HTML here..."></textarea>
+              </div>
+              <div class="code-input-group">
+                <label>CSS:</label>
+                <textarea id="source-css" placeholder="Paste your CSS animations here..."></textarea>
+              </div>
+              <div class="code-input-group">
+                <label>JavaScript:</label>
+                <textarea id="source-js" placeholder="Paste your JavaScript here..."></textarea>
+              </div>
+            </div>
+
+            <div id="import-input" class="input-panel">
+              <div class="file-import-zone">
+                <div class="import-icon">📁</div>
+                <p>Drop files here or click to browse</p>
+                <input type="file" id="file-import" multiple accept=".html,.css,.js,.json">
+              </div>
+            </div>
+
+            <div id="library-input" class="input-panel">
+              <div class="library-grid" id="library-animations">
+                <!-- Library animations will be loaded here -->
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-section">
+            <h4>Preview</h4>
+            <div id="animation-preview" class="preview-container">
+              <div class="preview-placeholder">
+                <div class="placeholder-icon">🎬</div>
+                <p>Your animation preview will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Options -->
+      <div class="export-section">
+        <div class="framework-selector">
+          <h3>Choose Your Framework</h3>
+          <div class="framework-grid">
+            <div class="framework-card" data-framework="react">
+              <div class="framework-icon">⚛️</div>
+              <h4>React</h4>
+              <p>JSX Components with hooks</p>
+            </div>
+            <div class="framework-card" data-framework="vue">
+              <div class="framework-icon">💚</div>
+              <h4>Vue.js</h4>
+              <p>Single File Components</p>
+            </div>
+            <div class="framework-card" data-framework="angular">
+              <div class="framework-icon">🅰️</div>
+              <h4>Angular</h4>
+              <p>TypeScript Components</p>
+            </div>
+            <div class="framework-card" data-framework="svelte">
+              <div class="framework-icon">🧡</div>
+              <h4>Svelte</h4>
+              <p>Compiled Components</p>
+            </div>
+            <div class="framework-card" data-framework="tailwind">
+              <div class="framework-icon">🎨</div>
+              <h4>Tailwind CSS</h4>
+              <p>Utility Classes</p>
+            </div>
+            <div class="framework-card" data-framework="scss">
+              <div class="framework-icon">💎</div>
+              <h4>SCSS/Sass</h4>
+              <p>Mixins & Functions</p>
+            </div>
+            <div class="framework-card" data-framework="vanilla">
+              <div class="framework-icon">🍦</div>
+              <h4>Vanilla JS</h4>
+              <p>Pure JavaScript</p>
+            </div>
+            <div class="framework-card" data-framework="css">
+              <div class="framework-icon">🎭</div>
+              <h4>Pure CSS</h4>
+              <p>CSS Only Animations</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="export-options">
+          <h3>Export Configuration</h3>
+          <div class="config-grid">
+            <div class="config-group">
+              <label>Component Name:</label>
+              <input type="text" id="component-name" value="AnimatedComponent" placeholder="ComponentName">
+            </div>
+            
+            <div class="config-group">
+              <label>Animation Duration:</label>
+              <select id="duration-config">
+                <option value="keep">Keep Original</option>
+                <option value="fast">Fast (0.3s)</option>
+                <option value="normal">Normal (1s)</option>
+                <option value="slow">Slow (2s)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <div class="config-group">
+              <label>CSS Prefix:</label>
+              <input type="text" id="css-prefix" placeholder="my-animation" value="">
+            </div>
+
+            <div class="config-group">
+              <label>Include TypeScript:</label>
+              <input type="checkbox" id="include-typescript">
+            </div>
+
+            <div class="config-group">
+              <label>Include Tests:</label>
+              <input type="checkbox" id="include-tests">
+            </div>
+
+            <div class="config-group">
+              <label>Include Documentation:</label>
+              <input type="checkbox" id="include-docs" checked>
+            </div>
+          </div>
+
+          <button id="generate-export" class="export-btn">
+            <span class="btn-text">✨ Generate Export</span>
+            <div class="loading-spinner" style="display: none;"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section" id="export-results" style="display: none;">
+      <div class="results-header">
+        <h3>Generated Code</h3>
+        <div class="results-actions">
+          <button id="download-zip" class="action-btn">📦 Download ZIP</button>
+          <button id="copy-all" class="action-btn">📋 Copy All</button>
+          <button id="save-to-library" class="action-btn">💾 Save to Library</button>
+        </div>
+      </div>
+
+      <div class="code-tabs-container">
+        <div class="code-tabs" id="export-tabs">
+          <!-- Tabs will be generated dynamically -->
+        </div>
+        
+        <div class="code-content" id="export-code-content">
+          <!-- Code panels will be generated dynamically -->
+        </div>
+      </div>
+
+      <div class="installation-guide">
+        <h3>📚 Installation Guide</h3>
+        <div id="installation-steps" class="installation-steps">
+          <!-- Installation steps will be generated based on framework -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Export History -->
+    <div class="history-section">
+      <h3>📜 Export History</h3>
+      <div id="export-history" class="history-grid">
+        <!-- Export history will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="export.js"></script>
+</body>
+</html>
