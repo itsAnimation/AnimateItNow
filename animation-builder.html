@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Builder - AnimateItNow</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animation-builder.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+      <span class="site-name">Animate It Now</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="animation-builder.html" class="active">Builder</a></li>
+        <li><a href="ai-generator.html">AI Generator</a></li>
+        <li><a href="playground.html">Playground</a></li>
+        <li><a href="performance.html">Performance</a></li>
+        <li><a href="export.html">Export</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="builder-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Elements</h3>
+      <div class="element-palette">
+        <div class="element-item" draggable="true" data-type="box">📦 Box</div>
+        <div class="element-item" draggable="true" data-type="circle">⭕ Circle</div>
+        <div class="element-item" draggable="true" data-type="text">📝 Text</div>
+        <div class="element-item" draggable="true" data-type="button">🔘 Button</div>
+      </div>
+
+      <h3>Animations</h3>
+      <div class="animation-palette">
+        <div class="animation-item" data-animation="bounce">Bounce</div>
+        <div class="animation-item" data-animation="fade">Fade</div>
+        <div class="animation-item" data-animation="slide">Slide</div>
+        <div class="animation-item" data-animation="rotate">Rotate</div>
+        <div class="animation-item" data-animation="scale">Scale</div>
+      </div>
+    </div>
+
+    <!-- Main Canvas -->
+    <div class="canvas-area">
+      <div class="canvas" id="canvas">
+        <div class="canvas-placeholder">Drop elements here to start building</div>
+      </div>
+    </div>
+
+    <!-- Properties Panel -->
+    <div class="properties-panel">
+      <h3>Properties</h3>
+      <div id="element-properties">
+        <p>Select an element to edit properties</p>
+      </div>
+
+      <div class="animation-controls">
+        <h4>Animation Settings</h4>
+        <label>Duration: <input type="range" id="duration" min="0.1" max="5" step="0.1" value="1"> <span id="duration-value">1s</span></label>
+        <label>Delay: <input type="range" id="delay" min="0" max="3" step="0.1" value="0"> <span id="delay-value">0s</span></label>
+        <label>Easing: 
+          <select id="easing">
+            <option value="ease">ease</option>
+            <option value="ease-in">ease-in</option>
+            <option value="ease-out">ease-out</option>
+            <option value="ease-in-out">ease-in-out</option>
+            <option value="linear">linear</option>
+          </select>
+        </label>
+        <label>Iterations: <input type="number" id="iterations" min="1" max="10" value="1"></label>
+      </div>
+
+      <div class="export-section">
+        <h4>Export</h4>
+        <button id="export-css" class="btn">Export CSS</button>
+        <button id="export-react" class="btn">Export React</button>
+        <button id="preview" class="btn btn-primary">Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="animation-builder.js"></script>
+</body>
+</html>

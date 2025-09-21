@@ -1,0 +1,222 @@
+/* Animation Builder Styles */
+.builder-container {
+  display: flex;
+  height: calc(100vh - 80px);
+  background: var(--primary-bg);
+}
+
+.sidebar {
+  width: 250px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  color: var(--primary-text);
+  font-size: 1.1rem;
+}
+
+.element-palette, .animation-palette {
+  margin-bottom: 30px;
+}
+
+.element-item, .animation-item {
+  padding: 10px;
+  margin: 5px 0;
+  background: #f8f9fa;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.element-item:hover, .animation-item:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateX(5px);
+}
+
+.canvas-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+  position: relative;
+}
+
+.canvas {
+  width: 80%;
+  height: 80%;
+  background: white;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.canvas.drag-over {
+  border-color: var(--accent);
+  background: rgba(79, 140, 255, 0.05);
+}
+
+.properties-panel {
+  width: 300px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-left: 1px solid #e0e0e0;
+  overflow-y: auto;
+}
+
+.animation-controls {
+  margin: 20px 0;
+}
+
+.animation-controls label {
+  display: block;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+
+.animation-controls input, .animation-controls select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.export-section {
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 8px 16px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+/* Canvas Elements */
+.canvas-element {
+  position: absolute;
+  cursor: move;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.canvas-element:hover {
+  border-color: var(--accent);
+}
+
+.canvas-element.selected {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3);
+}
+
+.element-box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+}
+
+.element-circle {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 50%;
+}
+
+.element-text {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.element-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Animation Classes */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes slideLeftRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scaleUpDown {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.animate-bounce { animation: bounce var(--duration, 1s) var(--easing, ease) var(--delay, 0s) var(--iterations, infinite); }
+.animate-fade { animation: fadeInOut var(--duration, 1s) var(--easing, ease) var(--delay, 0s) var(--iterations, infinite); }
+.animate-slide { animation: slideLeftRight var(--duration, 1s) var(--easing, ease) var(--delay, 0s) var(--iterations, infinite); }
+.animate-rotate { animation: rotate360 var(--duration, 1s) var(--easing, ease) var(--delay, 0s) var(--iterations, infinite); }
+.animate-scale { animation: scaleUpDown var(--duration, 1s) var(--easing, ease) var(--delay, 0s) var(--iterations, infinite); }
+
+/* Dark mode */
+body.dark .sidebar,
+body.dark .properties-panel {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+body.dark .canvas {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+body.dark .element-item,
+body.dark .animation-item {
+  background: #333;
+  color: #fff;
+}
