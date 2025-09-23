@@ -9,8 +9,21 @@
   </head>
 
   <body class="bg-gray-50 text-gray-900 min-h-screen">
-    <header id="header-section" class="bg-white shadow p-4 flex items-center justify-between">
-      <h1 class="text-2xl font-bold text-blue-600">AnimateItNow</h1>
+    <header class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span>Animate It Now</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contributors.html">Contributors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="editor.html" class="active">Editor</a></li>
+        </ul>
+      </nav>
       <div class="flex gap-2">
         <button
           id="resetBtn"
@@ -21,17 +34,23 @@
         </button>
         <button
           id="runBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-sm font-semibold"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-[6px] rounded-md text-lg font-semibold"
         >
           Run
         </button>
       </div>
+      <div class="scroll-indicator"></div>
+    </header>
+
+    <header class="editor-header">
+      <h1 class="typing-text">AnimateItNow Code Playground</h1>
+      <p>Write, Run, and Test your HTML, CSS & JavaScript in real time!</p>
     </header>
 
     <main class="p-6 space-y-6">
       <div class="flex flex-row gap-4">
         <!-- HTML Editor -->
-        <div class="flex-1">
+        <div class="flex-1 editor-card">
           <div class="editor-label html-label">
             <span>HTML</span>
             <button class="copy-btn" data-target="htmlCode" title="Copy HTML">
@@ -47,7 +66,7 @@
         </div>
 
         <!-- CSS Editor -->
-        <div class="flex-1">
+        <div class="flex-1 editor-card">
           <div class="editor-label css-label">
             <span>CSS</span>
             <button class="copy-btn" data-target="cssCode" title="Copy CSS">
@@ -63,10 +82,14 @@
         </div>
 
         <!-- JS Editor -->
-        <div class="flex-1">
+        <div class="flex-1 editor-card">
           <div class="editor-label js-label">
             <span>JavaScript</span>
-            <button class="copy-btn" data-target="jsCode" title="Copy JavaScript">
+            <button
+              class="copy-btn"
+              data-target="jsCode"
+              title="Copy JavaScript"
+            >
               📋
             </button>
             <div class="copy-tooltip">Copied!</div>
@@ -88,6 +111,52 @@
         ></iframe>
       </div>
     </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                ><i class="fab fa-github fa-beat"></i> GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                ><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a
+              >
+            </li>
+            <li>
+              <a href="mailto:contact@animateitnow.com"
+                ><i class="fas fa-envelope fa-beat"></i> Email Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with <span class="heart">❤️</span> by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 
     <script src="editor.js"></script>
   </body>

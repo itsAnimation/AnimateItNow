@@ -36,7 +36,13 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   jsEditor.value = "";
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
-
+ 
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.querySelector(".scroll-indicator").style.width = scrollPercent + "%";
+}); 
 // Copy to clipboard functionality
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', async (e) => {
@@ -60,4 +66,4 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
       }, 1500);
     }
   });
-});
+}); 
