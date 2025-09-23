@@ -7,8 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatBox = document.getElementById('chat-box');
     const voiceInputBtn = document.getElementById('voice-input-btn');
 
-    // PASTE YOUR DATASET HERE
-   const chatbotData = {
+    // Load chatbot data from JSON file
+    let chatbotData = {};
+    let dataLoaded = false;
+
+    // Function to load chatbot data
+    function loadChatbotData() {
+        // Correct path to the JSON file (relative to the script location)
+        return fetch('chatbot-data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                chatbotData = data;
+                dataLoaded = true;
+                console.log('Chatbot data loaded successfully');
+                return data;
+            })
+            .catch(error => {
+                console.error('Error loading chatbot data:', error);
+                // Fallback to hardcoded data if JSON fails to load
+                chatbotData = {
     "hi, how are you doing?": "i'm fine. how about yourself?",
     "i'm fine. how about yourself?": "i'm pretty good. thanks for asking.",
     "i'm pretty good. thanks for asking.": "no problem. so how have you been?",
@@ -105,38 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "i love most how it is at night after it rains.": "how come?",
     "how come?": "you can see the stars so much more clearly after it rains.",
     "you can see the stars so much more clearly after it rains.": "i would love for it to rain today.",
-    "i really want to go to the beach this weekend.": "that sounds like fun. what's the weather going to be like?",
-    "that sounds like fun. what's the weather going to be like?": "i heard that it's going to be warm this weekend.",
-    "i heard that it's going to be warm this weekend.": "is it going to be perfect beach weather?",
-    "is it going to be perfect beach weather?": "i believe so.",
-    "i believe so.": "good. i hope it doesn't cool off this weekend.",
-    "good. i hope it doesn't cool off this weekend.": "i know. i really want to go to the beach.",
-    "i know. i really want to go to the beach.": "but you know that california weather is really unpredictable.",
-    "but you know that california weather is really unpredictable.": "you're right. one minute it's hot, and then the next minute it's cold.",
-    "you're right. one minute it's hot, and then the next minute it's cold.": "i really wish the weather would just stay the same.",
-    "i really wish the weather would just stay the same.": "i do too. that way we can have our activities planned ahead of time.",
-    "i do too. that way we can have our activities planned ahead of time.": "yeah, that would make things a lot easier.",
-    "i would like to take a trip to the beach this weekend.": "a trip to the beach would be fun. how is the weather going to be?",
-    "a trip to the beach would be fun. how is the weather going to be?": "the forecast says that it will be warm on the weekend.",
-    "the forecast says that it will be warm on the weekend.": "so do you think it'll be perfect weather for the beach?",
-    "so do you think it'll be perfect weather for the beach?": "it sounds like it will be.",
-    "it sounds like it will be.": "i really hope it doesn't get cold.",
-    "i really hope it doesn't get cold.": "that would ruin things, i want to go so badly.",
-    "that would ruin things, i want to go so badly.": "the weather in california is unpredictable, so you never know.",
-    "the weather in california is unpredictable, so you never know.": "that is true. the weather is constantly changing.",
-    "that is true. the weather is constantly changing.": "it would be nice if the weather would never change.",
-    "it would be nice if the weather would never change.": "that would be great, then we could plan things sooner.",
-    "that would be great, then we could plan things sooner.": "true. predictable weather would make life easier.",
-    "it would be nice to go to the beach sometime this weekend.": "what's the weather going to be like? i may want to go too.",
-    "what's the weather going to be like? i may want to go too.": "the weather this weekend is supposed to be warm.",
-    "the weather this weekend is supposed to be warm.": "will it be good beach weather?",
-    "will it be good beach weather?": "i think it will be.",
-    "i think it will be.": "it wouldn't be good if it got cold this weekend.",
-    "it wouldn't be good if it got cold this weekend.": "i want this trip to be perfect, i hope it stays warm.",
-    "i want this trip to be perfect, i hope it stays warm.": "this california weather is so uncertain, it's impossible to know what'll happen.",
-    "this california weather is so uncertain, it's impossible to know what'll happen.": "i know. every day the weather seems different.",
-    "i know. every day the weather seems different.": "i would love it if it wasn't always so unpredictable.",
-    "i would love it if it wasn't always so unpredictable.": "that would make it easier for us to make plans.",
     "hello, may i speak to alice please?": "this is she. how's it going?",
     "this is she. how's it going?": "i've been trying to call you all day.",
     "i've been trying to call you all day.": "sorry about that. i was cleaning up.",
@@ -300,8 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
     "i see that you're pretty talented.": "thank you very much.",
     "thank you very much.": "i wish i had a talent like that.",
     "i wish i had a talent like that.": "i'm sure you have a talent. it's just hidden.",
-    "what kinds of things do you like to do?": "i've always liked to draw and paint.",
-    "i've always liked to draw and paint.": "i didn't know you knew how to draw and paint.",
+    "what kinds of things do you like to do?": "i've always liked to draw and painting.",
+    "i've always liked to draw and painting.": "i didn't know you knew how to draw and paint.",
     "i didn't know you knew how to draw and paint.": "i do it every once in a while.",
     "i do it every once in a while.": "how long have you known how to do that?",
     "how long have you known how to do that?": "i first learned how to do it in high school.",
@@ -354,8 +344,15 @@ document.addEventListener('DOMContentLoaded', () => {
     "i was laughing hysterically the whole time; my stomach muscles hurt afterwards.": "that's exactly how i felt.",
     "that's exactly how i felt.": "i got the movie when it came out on dvd, do you want to come over?",
     "what type of music do you like to listen to?": "i like listening to different kinds of music.",
-    "i like listening to different kinds of music.": "what kinds of music do you like?",
-    };
+    "i like listening to different kinds of music.": "what kinds of music do you like?"
+};
+                dataLoaded = true;
+                return data;
+            });
+    }
+
+    // Load the chatbot data when the page loads
+    loadChatbotData();
 
     // Toggle the chat window
     chatLogo.addEventListener('click', () => {
@@ -407,6 +404,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function searchDataset(message) {
         const normalizedMessage = message.toLowerCase().trim();
         let botResponse;
+
+        // Check if data is loaded before searching
+        if (!dataLoaded) {
+            // If data isn't loaded yet, wait a bit and try again
+            appendMessage('...', 'bot-message');
+            setTimeout(() => {
+                if (dataLoaded) {
+                    // Data is now loaded, search again
+                    searchDataset(message);
+                } else {
+                    // Still not loaded, show error
+                    const thinkingMessage = chatBox.lastElementChild;
+                    if (thinkingMessage && thinkingMessage.textContent === '...') {
+                        thinkingMessage.textContent = "I'm still loading my data. Please try again in a moment.";
+                    } else {
+                        appendMessage("I'm still loading my data. Please try again in a moment.", 'bot-message');
+                    }
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            }, 500);
+            return;
+        }
 
         // Find an exact match in the dataset
         if (chatbotData[normalizedMessage]) {
