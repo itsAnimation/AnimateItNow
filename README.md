@@ -148,7 +148,29 @@ Open source empowers everyone to learn, share, and build together. AnimateItNow 
   animation: bounce 1.2s infinite alternate;
 }
 ```
+## 🔹 New Hover Effects
 
+AnimateItNow now includes these interactive hover effects to make UI elements more engaging:
+
+- **Blur** – Applies a subtle blur on hover.
+- **Skew** – Skews the element along the X-axis for a dynamic look.
+- **Fade / Opacity** – Smoothly reduces the element’s opacity on hover.
+- **Shadow Pulse** – Adds a pulsating shadow for a glowing effect.
+- **Text Shadow** – Animates subtle shadows for text elements.
+- **Bounce** – Adds a playful bounce movement on hover.
+
+**Implementation Notes:**
+
+- Effects use CSS transitions, transforms, and keyframes for smooth animations.
+- Multiple effects can be combined by adding multiple classes to an element.
+- Example:
+```html
+<button class="bounce fade">Hover me</button>
+```
+Check the demo for visual examples of all effects.
+
+
+---
 ## 📬 Contact
 
 For questions, suggestions, or collaboration, reach out via [LinkedIn](https://www.linkedin.com/in/anujshrivastava1/) or [open an issue](https://github.com/itsAnimation/AnimateItNow/issues)!

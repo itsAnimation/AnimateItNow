@@ -1,5 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates | AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /*  Removed conflicting navbar CSS, relying on styles.css */
+    .navbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+    }
+    .nav-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+    a {
+      text-decoration: none;
+    }
+    /* 🌒 DARK MODE GLOBAL TEXT FIXES */
+    /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+    body.dark {
+      background-color: #121212;
+      color: #f5f5f5;
+      background: url(images/bgdark.png) no-repeat center center fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    /* ✅ Heading fix */
+    body.dark .templates-main h1 {
+       background: linear-gradient(to right, #67e8f9, #3b82f6); /* bright neon cyan-blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+    }
+    /* ✅ Template card titles */
+    body.dark .template-card h2 {
+      color: #e0f2fe;
+      text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+    }
+    /* ✅ Button text */
+    body.dark .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #fff;
+    }
+    /* ✅ Navbar items */
+    body.dark .navbar,
+    body.dark .nav-links a,
+    body.dark .site-name {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    body.dark .nav-links a:hover {
+      color: #90caf9;
+    }
+    /* 🧼 Remove margins to prevent light-space bleed */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    /* 💡 Smooth transitions */
+    .templates-main h1,
+    .template-card h2,
+    .template-btn,
+    .navbar,
+    .nav-links a {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    /* ✨ Make text inside template cards fully visible */
+    body.dark .template-card h2,
+    body.dark .template-btn,
+    body.dark .template-card {
+      color: #ffffff;
+    }
+    /* 🎯 Bonus: ensure buttons look clickable and clean */
+    body.dark .template-btn {
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
+    /* 🔧 Template card container */
+    body.dark .template-card {
+      background-color: rgba(30, 41, 59, 0.6); 
+     border: 1px solid rgba(59, 130, 246, 0.15);
+        box-shadow:
+    0 0 6px rgba(59, 130, 246, 0.25),
+    0 0 12px rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+      animation: darkNeonPulse 4s ease-in-out infinite;
+    }
+    /* 🖋 Titles inside cards */
+    body.dark .template-card h2 {
+      color: #ffffff;
+    }
+    /* 🔘 Buttons */
+    body.dark .template-btn {
+      color: #ffffff;
+      background-color: #333;
+      border: 1px solid #555;
+    }
+    /* 🖱 Hover effect for buttons */
+    body.dark .template-btn:hover {
+      background-color: #444;
+      color: #ffffff;
+    }
+    /* 🪄 Smooth transitions */
+    .template-card h2,
+    .template-btn {
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    /* Base preview style */
+    .template-preview {
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    /* Dark mode support */
+    /*  Changed 'dark-theme' to 'dark' */
+    body.dark .template-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+    }
+    /* Feature Cards Preview */
+    .feature-preview {
+      background-color: #4f8cff;
+      padding: 12px;
+      gap: 10px;
+    }
+    .feature-preview .mini-card {
+      background-color: white;
+      flex: 1;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #555;
+      font-weight: 600;
+    }
+    /* Hero Section Preview */
+    .hero-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      padding: 14px;
+      gap: 8px;
+    }
+    .hero-preview .hero-image {
+      background-color: white;
+      border-radius: 8px;
+      width: 100%;
+      height: 50px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+    .hero-preview .hero-text-line {
+      background-color: white;
+      border-radius: 5px;
+      height: 8px;
+      width: 80%;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .hero-preview .hero-text-line.short {
+      width: 50%;
+    }
+    /* Social Share Preview */
+    .social-share-preview {
+      background-color: #4f8cff;
+      gap: 15px;
+      font-size: 28px;
+      color: white;
+    }
+    .social-share-preview .social-icon-preview {
+      transition: transform 0.2s ease-in-out;
+    }
+    .social-share-preview:hover .social-icon-preview {
+      transform: scale(1.1);
+    }
+    /* Navbar Preview */
+    .navbar-preview {
+      background-color: #4f8cff;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      gap: 8px;
+    }
+    .navbar-line {
+      height: 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-line.logo {
+      width: 40%;
+    }
+    .navbar-line.link {
+      width: 70%;
+    }
+    .navbar-line.link.short {
+      width: 50%;
+    }
+    /* ADDED: Animated Toggles Preview CSS */
+    .toggles-preview {
+      background-color: #4f8cff;
+      gap: 20px;
+    }
+    .mini-toggle {
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      position: relative;
+      padding: 3px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .mini-handle {
+      width: 19px;
+      height: 19px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
+    .mini-toggle.off .mini-handle {
+      transform: translateX(0);
+    }
+    .mini-toggle.on {
+      background-color: #25d366; /* A nice 'on' color */
+    }
+    .mini-toggle.on .mini-handle {
+      transform: translateX(25px);
+    }
+    /*Display Properties Preview */
+    .display-preview {
+      background-color: #4f8cff;
+      height: 90px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .display-box {
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .display-box.box1 {
+      width: 24px;
+      height: 24px;
+      background-color: #bbdefb;
+    }
+    .display-box.box2 {
+      width: 24px;
+      height: 32px;
+      background-color: #90caf9;
+    }
+    .display-box.box3 {
+      width: 24px;
+      height: 28px;
+      background-color: #64b5f6;
+    }
+    /* 🌙 Dark Theme Support */
+    body.dark .display-preview {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="dark">
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+     <a href="index.html" class="home-link"> <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span></a>
+      
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <!-- template class must be active when we click on it -->
+        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
+                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,9 +453,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
 
     <style>
-      /*  Removed conflicting navbar CSS, relying on styles.css */
+      /* Removed conflicting navbar CSS, relying on styles.css */
       .navbar {
         display: flex;
         flex-direction: row;
@@ -115,7 +476,7 @@
         text-decoration: none;
       }
       /* 🌒 DARK MODE GLOBAL TEXT FIXES */
-      /*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+      /* Changed 'dark-theme' to 'dark' to match script.js and other pages */
       body.dark {
         background-color: #121212;
         color: #f5f5f5;
@@ -235,7 +596,7 @@
         box-sizing: border-box;
       }
       /* Dark mode support */
-      /*  Changed 'dark-theme' to 'dark' */
+      /* Changed 'dark-theme' to 'dark' */
       body.dark .template-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
@@ -321,8 +682,8 @@
       }
       /* Make the link a flex container to align items */
       .logo-link {
-        display: flex;          /* Aligns logo and text horizontally */
-        align-items: center;   /* Centers them vertically */
+        display: flex;         /* Aligns logo and text horizontally */
+        align-items: center;  /* Centers them vertically */
         gap: 10px;            /* Adds space between logo and text */
         text-decoration: none; /* Removes underline */
         color: inherit;       /* Inherits text color (if needed) */
@@ -330,7 +691,7 @@
 
       /* Ensure the logo image stays aligned */
       .logo-link img.logo {
-        height: 40px;         /* Adjust as needed */
+        height: 40px;          /* Adjust as needed */
         width: auto;          /* Maintains aspect ratio */
       }
 
@@ -412,13 +773,20 @@
         font-size: 1rem;
         font-weight: bold;
       }
+      .checkbox-preview {
+        background-color: #3b82f6;
+        color: #e0f2fe;
+      }
+      .checkbox-preview .ri-checkbox-fill {
+        font-size: 2rem;
+      }
       /* 🌙 Dark Theme Support */
       body.dark .display-preview {
         background-color: #2a2a2a;
         box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
       }
 
-      /*  start for game animation */
+      /* start for game animation */
 
       h1 {
         text-align: center;
@@ -532,6 +900,46 @@
       }
 
       /* end for game animation */
+      /* NEW: CSS Snippet Generator Preview */
+      .generator-preview {
+        background-color: #4f8cff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .generator-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .generator-box.box-shadow-preview {
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .generator-box.gradient-preview {
+        background: linear-gradient(45deg, #ff6b6b, #4f8cff);
+      }
+
+      .generator-box.border-radius-preview {
+        background-color: white;
+        border-radius: 50%;
+      }
+
+      body.dark .generator-box.box-shadow-preview {
+        background-color: #333;
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      body.dark .generator-box.border-radius-preview {
+        background-color: #333;
+      }
     </style>
   </head>
   <body class="dark">
@@ -553,6 +961,7 @@
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="generator.html">Generator</a></li>
           <!-- cursor toggle switch -->
           <li>
             <label class="switch" title="Toggle Snake Cursor">
@@ -579,16 +988,17 @@
                 <path
                   d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+
                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                 -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
                 />
               </svg>
             </a>
@@ -624,7 +1034,7 @@
           aria-label="Search templates"
         />
       </div>
-       <div class="no-results">
+        <div class="no-results">
   No Templates Found.
 </div>
       <section class="templates-grid">
@@ -791,6 +1201,14 @@
           </div>
           <button class="template-btn">View Template</button>
         </a>
+<a class="template-card" href="templates/Coming_Soon_Landing_Page.html">
+    <h2>Coming Soon Landing Page Template</h2>
+    <div class="template-preview navbar-preview">
+        <div class="fas fa-hourglass-half" style="font-size: 40px; color: white;"></div>
+    </div>
+    <button class="template-btn">View Template</button>
+</a>
+        </a>
       </section>
     </main>
 
@@ -918,7 +1336,7 @@
 
           noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
         }
-     
+      
       }
       searchBar.addEventListener("input", filterTemplates);
 

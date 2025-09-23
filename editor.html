@@ -41,7 +41,7 @@
       </div>
       <div class="scroll-indicator"></div>
     </header>
- 
+
     <header class="editor-header">
       <h1 class="typing-text">AnimateItNow Code Playground</h1>
       <p>Write, Run, and Test your HTML, CSS & JavaScript in real time!</p>
@@ -51,7 +51,13 @@
       <div class="flex flex-row gap-4">
         <!-- HTML Editor -->
         <div class="flex-1 editor-card">
-          <div class="editor-label html-label">HTML</div>
+          <div class="editor-label html-label">
+            <span>HTML</span>
+            <button class="copy-btn" data-target="htmlCode" title="Copy HTML">
+              📋
+            </button>
+            <div class="copy-tooltip">Copied!</div>
+          </div>
           <textarea
             id="htmlCode"
             class="editor-area html-area"
@@ -61,7 +67,13 @@
 
         <!-- CSS Editor -->
         <div class="flex-1 editor-card">
-          <div class="editor-label css-label">CSS</div>
+          <div class="editor-label css-label">
+            <span>CSS</span>
+            <button class="copy-btn" data-target="cssCode" title="Copy CSS">
+              📋
+            </button>
+            <div class="copy-tooltip">Copied!</div>
+          </div>
           <textarea
             id="cssCode"
             class="editor-area css-area"
@@ -71,7 +83,17 @@
 
         <!-- JS Editor -->
         <div class="flex-1 editor-card">
-          <div class="editor-label js-label">JavaScript</div>
+          <div class="editor-label js-label">
+            <span>JavaScript</span>
+            <button
+              class="copy-btn"
+              data-target="jsCode"
+              title="Copy JavaScript"
+            >
+              📋
+            </button>
+            <div class="copy-tooltip">Copied!</div>
+          </div>
           <textarea
             id="jsCode"
             class="editor-area js-area"
@@ -101,10 +123,18 @@
           <h4>Connect With Us</h4>
           <ul>
             <li>
-              <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank"><i class="fab fa-github fa-beat"></i> GitHub</a>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                ><i class="fab fa-github fa-beat"></i> GitHub</a
+              >
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                ><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a
+              >
             </li>
             <li>
               <a href="mailto:contact@animateitnow.com"

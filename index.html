@@ -8,7 +8,8 @@
       name="description"
       content="A comprehensive collection of CSS animation templates and effects for web developers"
     />
-
+    <!-- AI Assistant CSS Links -->
+    <link rel="stylesheet" href="ai-assistant/styles.css" />
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ff6b6b" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -108,8 +109,10 @@
     <!-- ───────── NAVBAR ───────── -->
     <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
+        <a href="index.html" class="home-link">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <span class="site-name">Animate It Now</span>
+        </a>
       </div>
 
       <div class="nav-right">
@@ -1284,5 +1287,30 @@
         }
       }
     </style>
+    <!-- Chat Logo -->
+    <div class="chat-logo" id="chat-logo">🤖</div>
+
+    <div class="chat-container" id="chat-container">
+      <div class="chat-header">
+        <h3>AI Assistant</h3>
+        <span class="close-btn" id="close-btn">&times;</span>
+      </div>
+      <div class="chat-box" id="chat-box">
+        <div class="message bot-message">Hello! How can I help you today?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="voice-input-btn">
+          <img
+            src="https://img.icons8.com/material-outlined/24/000000/microphone.png"
+            alt="Voice Input"
+          />
+        </button>
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+    <!-- Chat Logo Section Ends-->
+    <!-- AI Assistant JS Links -->
+    <script src="ai-assistant/script.js"></script>
   </body>
 </html>
