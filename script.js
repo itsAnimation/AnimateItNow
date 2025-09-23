@@ -355,5 +355,75 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-
-
+// Enhanced animation functions for the about page
+document.addEventListener('DOMContentLoaded', function() {
+  // Add parallax effect to floating elements
+  const floatingElements = document.querySelectorAll('.floating-element');
+  
+  window.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth - e.pageX) / 50;
+    const y = (window.innerHeight - e.pageY) / 50;
+    
+    floatingElements.forEach((el, index) => {
+      const speed = (index + 1) * 0.5;
+      el.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${x * speed}deg)`;
+    });
+  });
+  
+  // Add click animation to tech items
+  const techItems = document.querySelectorAll('.about-tech-item');
+  techItems.forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.add('animate__animated', 'animate__rubberBand');
+      setTimeout(() => {
+        this.classList.remove('animate__animated', 'animate__rubberBand');
+      }, 1000);
+    });
+  });
+  
+  // Add hover effect to audience items
+  const audienceItems = document.querySelectorAll('.about-audience-item');
+  audienceItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.classList.add('animate__animated', 'animate__headShake');
+      setTimeout(() => {
+        this.classList.remove('animate__animated', 'animate__headShake');
+      }, 1000);
+    });
+  });
+  
+  // Add counter animation for stats
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const animateCounter = (element) => {
+    const target = +element.getAttribute('data-count');
+    const increment = target / 100;
+    let current = 0;
+    
+    const updateCounter = () => {
+      if (current < target) {
+        current += increment;
+        element.innerText = Math.ceil(current);
+        setTimeout(updateCounter, 20);
+      } else {
+        element.innerText = target;
+      }
+    };
+    
+    updateCounter();
+  };
+  
+  // Trigger counter animation when stats section is in view
+  const statsSection = document.querySelector('.stats-container');
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statNumbers.forEach(num => animateCounter(num));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(statsSection);
+  }
+});
