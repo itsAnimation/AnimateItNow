@@ -40,6 +40,7 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
 
+
 // Theme functionality
 if (localStorage.getItem('theme') === 'dark' || 
     (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme'))) {
@@ -56,3 +57,35 @@ themeToggle.addEventListener('change', function() {
     localStorage.setItem('theme', 'light');
   }
 });
+ 
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.querySelector(".scroll-indicator").style.width = scrollPercent + "%";
+}); 
+// Copy to clipboard functionality
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const targetId = e.target.getAttribute('data-target');
+    const textarea = document.getElementById(targetId);
+    const tooltip = e.target.parentElement.querySelector('.copy-tooltip');
+    
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
+    } catch (err) {
+      // Fallback for older browsers
+      textarea.select();
+      document.execCommand('copy');
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
+    }
+  });
+}); 
+
