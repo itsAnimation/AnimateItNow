@@ -79,20 +79,19 @@
   }
 }
 
-
 /* Ripple effect for buttons and interactive elements */
 .ripple {
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
 }
+
 .home-link {
   display: flex;
   align-items: center;
   text-decoration: none; /* removes underline */
   color: inherit; /* keeps original text color */
 }
-
 
 .ripple::before {
   content: '';
@@ -119,6 +118,7 @@
 body.dark .ripple::before {
   background: var(--ripple-color-dark);
 }
+
 .no-results {
   display: none;
   text-align: center;
@@ -131,6 +131,7 @@ body.dark-theme .no-results,
 body.dark .no-results {
   color: #fff;         /* White for dark mode */
 }
+
 /* Enhanced button press feedback */
 .btn-press {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -202,35 +203,176 @@ body.dark .no-results {
     width: 200px;
     height: 200px;
   }
-  
-  .card-lift:hover {
-    transform: translateY(-4px);
+}
+
+/* Templates Main Section */
+.templates-main {
+  padding-top: 100px;
+  min-height: calc(100vh - 200px);
+}
+
+.templates-main h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Template Card Styles */
+.template-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--primary-text);
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.template-card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+}
+
+.template-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.template-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Dark mode adjustments */
+body.dark .template-card {
+  background: rgba(30, 41, 59, 0.8);
+  color: #f5f5f5;
+}
+
+body.dark .template-card:hover {
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+}
+
+/* Footer Styles */
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 3rem 1rem 1.5rem;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-left h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #64b5f6;
+}
+
+.footer-left p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.footer-right h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #64b5f6;
+}
+
+.footer-right ul {
+  list-style: none;
+}
+
+.footer-right li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-right a {
+  color: #ccc;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-right a:hover {
+  color: #64b5f6;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #aaa;
+}
+
+.footer-bottom .highlight {
+  color: #64b5f6;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .templates-main {
+    padding-top: 80px;
   }
   
-  .interactive:hover {
-    transform: translateY(-1px);
+  .templates-main h1 {
+    font-size: 2rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .footer-left h2,
+  .footer-right h4 {
+    font-size: 1.5rem;
   }
 }
 
-/* Ripple effect animation */
-.ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--ripple-color);
-  transform: scale(0);
-  animation: ripple-animation 0.6s linear;
-  pointer-events: none;
-  z-index: 1;
-}
-
-body.dark .ripple-effect {
-  background: var(--ripple-color-dark);
-}
-
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
+@media (max-width: 480px) {
+  .templates-main {
+    padding-top: 70px;
+  }
+  
+  .templates-main h1 {
+    font-size: 1.75rem;
+  }
+  
+  .template-card {
+    padding: 1rem;
   }
 }
 
