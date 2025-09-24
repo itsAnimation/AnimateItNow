@@ -268,6 +268,17 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // FAQ Section Enhancement - Add event listeners for better accessibility
+  const faqHeaders = document.querySelectorAll('.faq-question-header');
+  faqHeaders.forEach(header => {
+    // Add keyboard accessibility
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFAQ(header);
+      }
+    });
+  });
 
  function showToast(message) {
   const toast = document.createElement("div");
@@ -284,8 +295,6 @@ window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => toast.remove(), 300); // Wait for transition to finish
   }, 3000);
 }
-
-
 
   // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
