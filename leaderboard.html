@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contributor Points - AnimateItnow</title>
+<title>Contributor Points - AnimateItNow</title>
 <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
 <!-- Apple Touch Icons -->
 <!-- Fallback icon -->
@@ -105,6 +105,130 @@
   background: linear-gradient(135deg, #0056b3 0%, #004085 100%); /*  */
   transform: translateY(-2px); /*  */
   box-shadow: 0 6px 20px rgba(0,123,255,0.3); /*  */
+}
+/*Week filter container styling */
+.week-filter-container {
+  display: flex; /*  */
+  justify-content: center; /*  */
+  align-items: center; /*  */
+  margin: 30px auto; /*  */
+  gap: 15px; /*  */
+  flex-wrap: wrap; /*  */
+  max-width: 800px; /*  */
+  padding: 20px; /*  */
+  background: rgba(255,255,255,0.1); /*  */
+  border-radius: 16px; /*  */
+  backdrop-filter: blur(10px); /*  */
+  border: 1px solid rgba(255,255,255,0.2); /*  */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /*  */
+}
+/*Dark mode for week filter container */
+.dark .week-filter-container {
+  background: rgba(255,255,255,0.05); /*  */
+  border: 1px solid rgba(255,255,255,0.1); /*  */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /*  */
+}
+.week-filter-label {
+  font-weight: 600; /*  */
+  color: #333; /*  */
+  font-size: 1.1rem; /*  */
+  margin-right: 10px; /*  */
+}
+/*Dark mode for week filter label */
+.dark .week-filter-label {
+  color: #ffffff; /*  */
+}
+.week-range-select {
+  padding: 12px 16px; /*  */
+  font-size: 1rem; /*  */
+  border-radius: 8px; /*  */
+  border: 2px solid #e0e0e0; /*  */
+  background: #ffffff; /*  */
+  color: #333; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+  min-width: 200px; /*  */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /*  */
+}
+.week-range-select:focus {
+  border-color: #007bff; /*  */
+  box-shadow: 0 4px 12px rgba(0,123,255,0.2); /*  */
+  outline: none; /*  */
+}
+/*Dark mode for week range select */
+.dark .week-range-select {
+  background: #2d2d2d; /*  */
+  color: #ffffff; /*  */
+  border-color: #404040; /*  */
+}
+.dark .week-range-select:focus {
+  border-color: #4dabf7; /*  */
+  box-shadow: 0 4px 12px rgba(77,171,247,0.3); /*  */
+}
+/*Custom range container styling */
+.custom-range-container {
+  display: flex; /*  */
+  align-items: center; /*  */
+  gap: 10px; /*  */
+  margin-top: 15px; /*  */
+  padding: 15px; /*  */
+  background: rgba(255,255,255,0.05); /*  */
+  border-radius: 12px; /*  */
+  border: 1px solid rgba(255,255,255,0.1); /*  */
+}
+/*Dark mode for custom range container */
+.dark .custom-range-container {
+  background: rgba(255,255,255,0.02); /*  */
+  border: 1px solid rgba(255,255,255,0.05); /*  */
+}
+.custom-range-container label {
+  font-weight: 500; /*  */
+  color: #555; /*  */
+  font-size: 0.9rem; /*  */
+}
+/*Dark mode for custom range labels */
+.dark .custom-range-container label {
+  color: #ccc; /*  */
+}
+.week-select {
+  padding: 8px 12px; /*  */
+  font-size: 0.9rem; /*  */
+  border-radius: 6px; /*  */
+  border: 1px solid #e0e0e0; /*  */
+  background: #ffffff; /*  */
+  color: #333; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+}
+.week-select:focus {
+  border-color: #007bff; /*  */
+  outline: none; /*  */
+}
+/*Dark mode for week select */
+.dark .week-select {
+  background: #2d2d2d; /*  */
+  color: #ffffff; /*  */
+  border-color: #404040; /*  */
+}
+.dark .week-select:focus {
+  border-color: #4dabf7; /*  */
+}
+.apply-custom-btn {
+  padding: 8px 16px; /*  */
+  font-size: 0.9rem; /*  */
+  border-radius: 6px; /*  */
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%); /*  */
+  color: white; /*  */
+  border: none; /*  */
+  font-weight: 600; /*  */
+  cursor: pointer; /*  */
+  transition: all 0.3s ease; /*  */
+  box-shadow: 0 2px 8px rgba(40,167,69,0.2); /*  */
+}
+.apply-custom-btn:hover {
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%); /*  */
+  transform: translateY(-1px); /*  */
+  box-shadow: 0 4px 12px rgba(40,167,69,0.3); /*  */
 }
 /*Table container - only white background for table area */
 .table-container {
@@ -417,6 +541,31 @@
     border-radius: 0 0 12px 12px; /*  */
     border-top: none; /*  */
   }
+  .week-filter-container {
+    margin: 20px auto; /*  */
+    padding: 15px; /*  */
+    flex-direction: column; /*  */
+    gap: 10px; /*  */
+  }
+  .week-filter-label {
+    margin-right: 0; /*  */
+    margin-bottom: 5px; /*  */
+  }
+  .week-range-select {
+    min-width: 100%; /*  */
+    width: 100%; /*  */
+  }
+  .custom-range-container {
+    flex-direction: column; /*  */
+    align-items: stretch; /*  */
+    gap: 8px; /*  */
+  }
+  .custom-range-container label {
+    margin-bottom: 5px; /*  */
+  }
+  .week-select {
+    width: 100%; /*  */
+  }
   .table-container {
     margin: 0 -15px 30px -15px; /*  */
     border-radius: 0; /*  */
@@ -542,422 +691,914 @@
   from { opacity: 0.7; } /*  */
   to { opacity: 1; } /*  */
 }
+
+/* Enhanced UI Improvements */
+.leaderboard-stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0 30px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 15px 20px;
+  text-align: center;
+  min-width: 150px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dark .stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.dark .stat-value {
+  color: #4dabf7;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.dark .stat-label {
+  color: #ccc;
+}
+
+.top-contributor-badge {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.medal-icon {
+  font-size: 1.2rem;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.gold-medal {
+  color: #ffd700;
+}
+
+.silver-medal {
+  color: #c0c0c0;
+}
+
+.bronze-medal {
+  color: #cd7f32;
+}
+
+/* Enhanced table row styling for top contributors */
+.leaderboard-table tbody tr:nth-child(1) {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.leaderboard-table tbody tr:nth-child(2) {
+  background: rgba(192, 192, 192, 0.1);
+}
+
+.leaderboard-table tbody tr:nth-child(3) {
+  background: rgba(205, 127, 50, 0.1);
+}
+
+.dark .leaderboard-table tbody tr:nth-child(1) {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.dark .leaderboard-table tbody tr:nth-child(2) {
+  background: rgba(192, 192, 192, 0.05);
+}
+
+.dark .leaderboard-table tbody tr:nth-child(3) {
+  background: rgba(205, 127, 50, 0.05);
+}
+
+/* Enhanced search styling */
+.search-container {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 110px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+.search-input {
+  padding-left: 45px;
+  min-width: 300px;
+}
+
+/* Enhanced filter styling */
+.filter-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark .filter-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.filter-title {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.dark .filter-title {
+  color: #fff;
+}
+
+.filter-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dark .filter-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Enhanced download button */
+.download-section {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.download-button {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+.download-button:hover {
+  background: linear-gradient(135deg, #20c997, #17a2b8);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .leaderboard-stats {
+    gap: 10px;
+  }
+  
+  .stat-card {
+    min-width: 120px;
+    padding: 12px 15px;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .filter-options {
+    gap: 10px;
+  }
+  
+  .filter-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaderboard-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-card {
+    width: 80%;
+  }
+  
+  .filter-section {
+    padding: 15px;
+  }
+  
+  .filter-options {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 80%;
+  }
+}
 </style>
 </head>
 <body>
-<!--Using EXACT navbar structure - NO custom navbar CSS -->
-<nav class="navbar scroll-fade">
 
-<div class="nav-left">
-  <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-  <span class="site-name">Animate It Now</span>
-</div>
-<div class="nav-right">
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="templates.html">Templates</a></li>
-    <li><a href="contributors.html">Contributors</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
-    <!--cursor toggle exactly like other pages -->
-    <li class="snakeList">
-      <label class="switch" title="Toggle Snake Cursor">
-        <input type="checkbox" id="cursorToggle">
-        <span class="slider round"></span>
-      </label>
-      <span class="snakeLabel">Snake Cursor</span>
-    </li>
-    <!--github icon exactly like other pages -->
-    <li>
-      <a href="https://github.com/itsAnimation/AnimateItNow"
-         target="_blank"
-         rel="noopener noreferrer"
-         aria-label="GitHub Repo"
-         class="github-icon">
-        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
-             7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-            -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-           .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-          -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-          .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-          1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-          .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-          .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-          0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-        </svg>
+  <!--Using EXACT navbar structure - NO custom navbar CSS -->
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <a href="index.html" class="home-link">
+         <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
       </a>
-    </li>
-    <li>
-      <button id="theme-toggle" aria-label="Toggle Theme">
-        <i data-lucide="moon"></i>
-      </button>
-    </li>
-  </ul>
-</div>
+     
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="editor.html">Editor</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="playground.html">Hover-Effects</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+        <!--cursor toggle exactly like other pages -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!--github icon exactly like other pages -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
+                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-</nav>
-<!--Main leaderboard container with NO background to let page background show -->
-<div class="leaderboard-container">
-<div class="glass-heading">
-  🚀 Contributor Points Dashboard – <i>AnimateItnow</i>
-</div>
-      <div class="search-container">
-  <input         type="text"         id="searchUser"         class="search-input"
-    placeholder="Search by username..."       />
-  <button id="searchBtn" class="search-btn">
-    🔍 Search      </button>
-</div>
-<!--Table container - always visible, no loading effect -->
-<div class="table-container">
-  <table id="pointsTable" class="leaderboard-table">
-    <thead>
-      <tr>
-          <th>Rank</th>
-          <th>Contributor</th>
-          <th>Merged PRs</th>
-          <th>Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!--  Replaced loading text with spinner and text HTML -->
-      <tr><td colspan="4" style="text-align: center;"><div class="loading-state-content"><div class="loader"></div><p class="loading-text">Fetching data from GitHub...</p></div></td></tr>
-    </tbody>
-  </table>
-</div>
-<div id="pagination" class="pagination-container"></div>
-<button class="download-button" onclick="downloadExcel()">
-  📥 Download as Excel
-</button>
-</div>
-<!--Footer exactly like other pages -->
-
-<footer class="footer scroll-fade">
-<div class="footer-content">
-  <div class="footer-left">
-    <h2>AnimateItNow</h2>
-    <p>Creating impactful web animations and templates for everyone.</p>
-  </div>
-  <div class="footer-right">
-    <h4>Connect With Us</h4>
-    <ul>
-      <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-      <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-    </ul>
-  </div>
-</div>
-<div class="footer-bottom">
-  <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-</div>
-</footer>
-
-<!--Cursor snake div for consistency -->
-<!--  Note: The script.js dynamically creates the cursor-snake div. This hardcoded div might cause issues. -->
-<div id="cursor-snake"></div>
-<script>
-//Enhanced leaderboard JavaScript
-const owner = "itsAnimation"; /*  */
-const repo = "AnimateItnow"; /*  */
-const token = "";     /*  */
-const pointsPerLevel = { /*  */
-  "level1": 3, /*  */
-  "level2": 7, /*  */
-  "level3": 10 /*  */
-};
-let contributorsData = []; /*  */
-let currentPage = 1; /*  */
-const perPage = 20; /*  */
-//Fetch merged PRs with error handling
-async function fetchMergedPRs(page = 1, allPRs = []) {
-  try {
-    const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}`; /*  */
-    const headers = token ? { Authorization: `token ${token}` } : {}; /*  */
-    const res = await fetch(url, { headers }); /*  */
-            
-    if (!res.ok) { /*  */
-      //Provide more specific error for API issues /*  */
-      const errorText = await res.text(); /*  */
-      throw new Error(`GitHub API error! Status: ${res.status}. Message: ${errorText}`); /*  */
-    }
-            
-    const prs = await res.json(); /*  */
-    if (!Array.isArray(prs)) return allPRs; /*  */
-            
-    const merged = prs.filter(pr => pr.merged_at); /*  */
-    allPRs = allPRs.concat(merged); /*  */
-            
-    if (prs.length === 100) { /*  */
-      return fetchMergedPRs(page + 1, allPRs); /*  */
-    } else { /*  */
-      return allPRs; /*  */
-    }
-  } catch (error) {
-    console.error('Error fetching PRs:', error); /*  */
-    throw error; // Re-throw to be caught by init() /*  */
-  }
-}
-//Calculate contributor data from PRs
-function calculateContributorData(prs) {
-  const data = {}; /*  */
-  prs.forEach(pr => {
-    const user = pr.user.login; /*  */
-    const avatar = pr.user.avatar_url; /*  */
-    const prUrl = pr.html_url; /*  */
-    const title = pr.title; /*  */
-    const labels = pr.labels.map(label => label.name.toLowerCase()); /*  */
-    const level = labels.find(l => l.startsWith("level")) || "none"; /*  */
-    const points = pointsPerLevel[level] || 0; /*  */
-            
-    if (!data[user]) { /*  */
-      data[user] = { prs: [], total: 0, avatar }; /*  */
-    }
-    data[user].prs.push({ title, url: prUrl, level }); /*  */
-    data[user].total += points; /*  */
-  });
-  return data; /*  */
-}
-let filteredData = null; /*  */
-//Render table page with proper styling
-function renderTablePage(page) {
-  const tbody = document.querySelector("#pointsTable tbody"); /*  */
-  tbody.innerHTML = ""; //Clear any previous messages/loading /*  */
-  const dataToShow = filteredData || contributorsData; /*  */
-  const startIdx = (page - 1) * perPage; /*  */
-  const endIdx = startIdx + perPage; /*  */
-  let pageData = dataToShow.slice(startIdx, endIdx); /*  */
-
-  const createPrsCell = (userData) => {
-    const prsTd = document.createElement("td"); /*  */
-    const prListHtml = userData.prs.map(pr => {
-      //  Updated points display format
-      return `<li><a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level} = ${pointsPerLevel[pr.level]} points</strong></li>`; /*  */
-    }).join(""); /*  */
-
-    const detailsElement = document.createElement("details"); /*  */
-    detailsElement.className = "pr-details"; /*  */
-
-    const summaryElement = document.createElement("summary"); /*  */
-    summaryElement.className = "pr-summary"; /*  */
-    summaryElement.textContent = `Show PRs (${userData.prs.length})`; /*  */
+  <!--Main leaderboard container with NO background to let page background show -->
+  <div class="leaderboard-container">
+    <div class="glass-heading">
+      🏆 Contributor Leaderboard – <i>AnimateItNow</i>
+    </div>
     
-    //  Prevent default summary toggle, so only the TD click controls it
-    summaryElement.addEventListener('click', (e) => { /*  */
-      e.preventDefault(); /*  */
-    }); /*  */
-
-    const prListUl = document.createElement("ul"); /*  */
-    prListUl.className = "pr-list"; /*  */
-    prListUl.innerHTML = prListHtml; /*  */
-
-    detailsElement.appendChild(summaryElement); /*  */
-    detailsElement.appendChild(prListUl); /*  */
-    prsTd.appendChild(detailsElement); /*  */
-
-    //  Make the whole cell clickable to toggle details
-    prsTd.addEventListener('click', () => { /*  */
-      detailsElement.open = !detailsElement.open; /*  */
-    }); /*  */
-    return prsTd; /*  */
-  };
+    <!-- Stats Section -->
+    <div class="leaderboard-stats">
+      <div class="stat-card">
+        <div class="stat-value" id="totalContributors">0</div>
+        <div class="stat-label">Contributors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="totalPRs">0</div>
+        <div class="stat-label">Merged PRs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="totalPoints">0</div>
+        <div class="stat-label">Total Points</div>
+      </div>
+    </div>
+    
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="text" 
+        id="searchUser" 
+        class="search-input"
+        placeholder="Search contributors..." 
+      />
+      <button id="searchBtn" class="search-btn">
+        Search
+      </button>
+    </div>
+    
+    <!-- Enhanced Filter Section -->
+    <div class="filter-section">
+      <div class="filter-title">Filter by Time Period</div>
+      <div class="filter-options">
+        <button class="filter-btn active" data-filter="all">All Time</button>
+        <button class="filter-btn" data-filter="week1-2">Weeks 1-2</button>
+        <button class="filter-btn" data-filter="week3-4">Weeks 3-4</button>
+        <button class="filter-btn" data-filter="month">This Month</button>
+      </div>
+    </div>
+    
+    <!--Table container - always visible, no loading effect -->
+    <div class="table-container">
+      <table id="pointsTable" class="leaderboard-table">
+        <thead>
+          <tr>
+              <th>Rank</th>
+              <th>Contributor</th>
+              <th>Merged PRs</th>
+              <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--  Replaced loading text with spinner and text HTML -->
+          <tr><td colspan="4" style="text-align: center;"><div class="loading-state-content"><div class="loader"></div><p class="loading-text">Fetching data from GitHub...</p></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="pagination" class="pagination-container"></div>
+    
+    <div class="download-section">
+      <button class="download-button" onclick="downloadExcel()">
+        <i class="fas fa-download"></i> Download as Excel
+      </button>
+    </div>
+  </div>
   
-  if (filteredData) {
-    //Handle filtered data with original rankings /*  */
-    pageData = pageData.map(([user, userData]) => {
-      const originalIdx = contributorsData.findIndex(([u]) => u === user); /*  */
-      return { user, userData, originalIdx }; /*  */
-    });
-            
-    pageData.forEach(({ user, userData, originalIdx }) => {
-      const row = document.createElement("tr"); /*  */
+  <!--Footer exactly like other pages -->
+  <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
+          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </div>
+  </footer>
+
+  <!--Cursor snake div for consistency -->
+  <!--  Note: The script.js dynamically creates the cursor-snake div. This hardcoded div might cause issues. -->
+  <div id="cursor-snake"></div>
+  
+  <script>
+    //Enhanced leaderboard JavaScript
+    const owner = "itsAnimation"; /*  */
+    const repo = "AnimateItnow"; /*  */
+    const token = "";     /*  */
+    const pointsPerLevel = { /*  */
+      "level1": 3, /*  */
+      "level2": 7, /*  */
+      "level3": 10 /*  */
+    };
+    let contributorsData = []; /*  */
+    let allPRsData = []; /* Store all PRs with week information */
+    let currentPage = 1; /*  */
+    const perPage = 20; /*  */
+    let currentWeekFilter = 'all'; /* Current week filter selection */
+    let filteredData = null; /*  */
+    let weekFilteredData = null; /*  */
+
+    // Function to calculate week number based on merged date
+    function getWeekNumber(mergedDate) {
+      if (!mergedDate) return 0;
       
-      const rankTd = document.createElement("td"); /*  */
-      rankTd.textContent = originalIdx + 1; /*  */
-      row.appendChild(rankTd); /*  */
-
-      const contributorTd = document.createElement("td"); /*  */
-      contributorTd.innerHTML = `
-        <a href="https://github.com/${user}" target="_blank" class="contributor-link">
-          <img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar">
-          ${user}
-        </a>
-      `; /*  */
-      row.appendChild(contributorTd); /*  */
-
-      row.appendChild(createPrsCell(userData)); //  Use the new function /*  */
-
-      const pointsTd = document.createElement("td"); /*  */
-      pointsTd.textContent = userData.total; /*  */
-      row.appendChild(pointsTd); /*  */
-
-      tbody.appendChild(row); /*  */
-    });
-  } else {
-    //Handle normal data display /*  */
-    pageData.forEach(([user, userData], idx) => {
-      const row = document.createElement("tr"); /*  */
-
-      const rankTd = document.createElement("td"); /*  */
-      rankTd.textContent = startIdx + idx + 1; /*  */
-      row.appendChild(rankTd); /*  */
-
-      const contributorTd = document.createElement("td"); /*  */
-      contributorTd.innerHTML = `
-        <a href="https://github.com/${user}" target="_blank" class="contributor-link">
-          <img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar">
-          ${user}
-        </a>
-      `; /*  */
-      row.appendChild(contributorTd); /*  */
-
-      row.appendChild(createPrsCell(userData)); //  Use the new function /*  */
-
-      const pointsTd = document.createElement("td"); /*  */
-      pointsTd.textContent = userData.total; /*  */
-      row.appendChild(pointsTd); /*  */
-
-      tbody.appendChild(row); /*  */
-    });
-  }
-  renderPagination(); /*  */
-}
-//Render pagination controls
-function renderPagination() {
-  const dataToShow = filteredData || contributorsData; /*  */
-  const totalPages = Math.ceil(dataToShow.length / perPage); /*  */
-  const pagination = document.getElementById("pagination"); /*  */
-  pagination.innerHTML = ""; /*  */
-        
-  if (totalPages <= 1) return; /*  */
-  const prevBtn = document.createElement("button"); /*  */
-  prevBtn.textContent = "← Previous"; /*  */
-  prevBtn.className = "pagination-btn"; /*  */
-  prevBtn.disabled = currentPage === 1; /*  */
-  prevBtn.onclick = () => {
-    if (currentPage > 1) { /*  */
-      currentPage--; /*  */
-      renderTablePage(currentPage); /*  */
+      const date = new Date(mergedDate);
+      const now = new Date();
+      
+      // Calculate weeks since the start of the current month
+      const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+      const daysDiff = Math.floor((date - startOfMonth) / (1000 * 60 * 60 * 24));
+      const weekNumber = Math.ceil((daysDiff + 1) / 7);
+      
+      // Ensure week number is between 1 and 4
+      return Math.min(Math.max(weekNumber, 1), 4);
     }
-  };
-  const nextBtn = document.createElement("button"); /*  */
-  nextBtn.textContent = "Next →"; /*  */
-  nextBtn.className = "pagination-btn"; /*  */
-  nextBtn.disabled = currentPage === totalPages; /*  */
-  nextBtn.onclick = () => {
-    if (currentPage < totalPages) { /*  */
-      currentPage++; /*  */
-      renderTablePage(currentPage); /*  */
-    }
-  };
-  const pageInfo = document.createElement("span"); /*  */
-  pageInfo.className = "pagination-info"; /*  */
-  pageInfo.textContent = `Page ${currentPage} of ${totalPages}`; /*  */
-  pagination.appendChild(prevBtn); /*  */
-  pagination.appendChild(pageInfo); /*  */
-  pagination.appendChild(nextBtn); /*  */
-}
-//Enhanced search functionality with better UX
-document.addEventListener('DOMContentLoaded', function() {
-  const searchBtn = document.getElementById('searchBtn'); /*  */
-  const searchInput = document.getElementById('searchUser'); /*  */
-        
-  function performSearch() {
-    const val = searchInput.value.trim().toLowerCase(); /*  */
-    if (!val) { /*  */
-      filteredData = null; /*  */
-    } else { /*  */
-      filteredData = contributorsData.filter(([user]) => user.toLowerCase().includes(val)); /*  */
-    }
-    currentPage = 1; /*  */
-    renderTablePage(currentPage); /*  */
-  }
-        
-  if (searchBtn && searchInput) { /*  */
-    searchBtn.addEventListener('click', performSearch); /*  */
-            
-    searchInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') { /*  */
-        performSearch(); /*  */
+
+    // Function to check if a PR falls within the specified week range
+    function isPRInWeekRange(pr, weekRange) {
+      if (weekRange === 'all') return true;
+      
+      const weekNumber = getWeekNumber(pr.merged_at);
+      
+      switch (weekRange) {
+        case 'week1':
+          return weekNumber === 1;
+        case 'week2':
+          return weekNumber === 2;
+        case 'week3':
+          return weekNumber === 3;
+        case 'week4':
+          return weekNumber === 4;
+        case 'week1-2':
+          return weekNumber >= 1 && weekNumber <= 2;
+        case 'week3-4':
+          return weekNumber >= 3 && weekNumber <= 4;
+        case 'week1-3':
+          return weekNumber >= 1 && weekNumber <= 3;
+        case 'week2-4':
+          return weekNumber >= 2 && weekNumber <= 4;
+        case 'month':
+          const now = new Date();
+          const prDate = new Date(pr.merged_at);
+          return prDate.getMonth() === now.getMonth() && prDate.getFullYear() === now.getFullYear();
+        case 'custom':
+          const startWeek = parseInt(document.getElementById('startWeek')?.value || 1);
+          const endWeek = parseInt(document.getElementById('endWeek')?.value || 4);
+          return weekNumber >= startWeek && weekNumber <= endWeek;
+        default:
+          return true;
       }
-    });
-    //Clear search on escape key /*  */
-    searchInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') { /*  */
-        searchInput.value = ''; /*  */
-        performSearch(); /*  */
+    }
+
+    //Fetch merged PRs with error handling
+    async function fetchMergedPRs(page = 1, allPRs = []) {
+      try {
+        const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}`; /*  */
+        const headers = token ? { Authorization: `token ${token}` } : {}; /*  */
+        const res = await fetch(url, { headers }); /*  */
+                
+        if (!res.ok) { /*  */
+          //Provide more specific error for API issues /*  */
+          const errorText = await res.text(); /*  */
+          throw new Error(`GitHub API error! Status: ${res.status}. Message: ${errorText}`); /*  */
+        }
+                
+        const prs = await res.json(); /*  */
+        if (!Array.isArray(prs)) return allPRs; /*  */
+                
+        const merged = prs.filter(pr => pr.merged_at); /*  */
+        allPRs = allPRs.concat(merged); /*  */
+                
+        if (prs.length === 100) { /*  */
+          return fetchMergedPRs(page + 1, allPRs); /*  */
+        } else { /*  */
+          return allPRs; /*  */
+        }
+      } catch (error) {
+        console.error('Error fetching PRs:', error); /*  */
+        throw error; // Re-throw to be caught by init() /*  */
       }
-    });
-  }
-});
-//Download Excel functionality
-function downloadExcel() {
-  const table = document.createElement("table"); /*  */
-  table.innerHTML = `<thead><tr>        <th>Rank</th>        <th>Contributor</th>        <th>Merged PRs</th>        <th>Total Points</th>      </tr></thead><tbody></tbody>`; /*  */
+    }
+    
+    //Calculate contributor data from PRs
+    function calculateContributorData(prs) {
+      const data = {}; /*  */
+      prs.forEach(pr => {
+        const user = pr.user.login; /*  */
+        const avatar = pr.user.avatar_url; /*  */
+        const prUrl = pr.html_url; /*  */
+        const title = pr.title; /*  */
+        const labels = pr.labels.map(label => label.name.toLowerCase()); /*  */
+        const level = labels.find(l => l.startsWith("level")) || "none"; /*  */
+        const points = pointsPerLevel[level] || 0; /*  */
+        const weekNumber = getWeekNumber(pr.merged_at); /*  */
+                
+        if (!data[user]) { /*  */
+          data[user] = { prs: [], total: 0, avatar }; /*  */
+        }
+        data[user].prs.push({ title, url: prUrl, level, weekNumber, mergedAt: pr.merged_at }); /*  */
+        data[user].total += points; /*  */
+      });
+      return data; /*  */
+    }
+
+    // Function to filter contributor data by week range
+    function filterContributorsByWeek(contributorsData, weekRange) {
+      if (weekRange === 'all') return contributorsData;
+      
+      const filteredData = [];
+      
+      contributorsData.forEach(([user, userData]) => {
+        const filteredPRs = userData.prs.filter(pr => isPRInWeekRange({ merged_at: pr.mergedAt }, weekRange));
         
-  const tbody = table.querySelector("tbody"); /*  */
-  contributorsData.forEach(([user, userData], idx) => {
-    const prList = userData.prs.map(pr => {
-      //  Updated points display format for Excel
-      return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)`; /*  */
-    }).join('; '); /*  */
+        if (filteredPRs.length > 0) {
+          const filteredUserData = {
+            ...userData,
+            prs: filteredPRs,
+            total: filteredPRs.reduce((sum, pr) => sum + (pointsPerLevel[pr.level] || 0), 0)
+          };
+          filteredData.push([user, filteredUserData]);
+        }
+      });
+      
+      return filteredData.sort((a, b) => b[1].total - a[1].total);
+    }
+
+    // Function to apply week filter and update display
+    function applyWeekFilter(weekRange) {
+      currentWeekFilter = weekRange;
+      weekFilteredData = filterContributorsByWeek(contributorsData, weekRange);
+      currentPage = 1;
+      renderTablePage(currentPage);
+      updateFilterButtons(weekRange);
+    }
+
+    // Update active filter button
+    function updateFilterButtons(activeFilter) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === activeFilter) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Function to update stats
+    function updateStats() {
+      const dataToShow = filteredData || weekFilteredData || contributorsData;
+      
+      // Total contributors
+      const totalContributors = dataToShow.length;
+      document.getElementById('totalContributors').textContent = totalContributors;
+      
+      // Total PRs
+      let totalPRs = 0;
+      dataToShow.forEach(([user, userData]) => {
+        totalPRs += userData.prs.length;
+      });
+      document.getElementById('totalPRs').textContent = totalPRs;
+      
+      // Total points
+      let totalPoints = 0;
+      dataToShow.forEach(([user, userData]) => {
+        totalPoints += userData.total;
+      });
+      document.getElementById('totalPoints').textContent = totalPoints;
+    }
+
+    //Render table page with proper styling
+    function renderTablePage(page) {
+      const tbody = document.querySelector("#pointsTable tbody"); /*  */
+      tbody.innerHTML = ""; //Clear any previous messages/loading /*  */
+      
+      // Determine which data to show: search filtered, week filtered, or original
+      let dataToShow = contributorsData;
+      if (filteredData) {
+        dataToShow = filteredData;
+      } else if (weekFilteredData) {
+        dataToShow = weekFilteredData;
+      }
+      
+      const startIdx = (page - 1) * perPage; /*  */
+      const endIdx = startIdx + perPage; /*  */
+      let pageData = dataToShow.slice(startIdx, endIdx); /*  */
+
+      const createPrsCell = (userData) => {
+        const prsTd = document.createElement("td"); /*  */
+        const prListHtml = userData.prs.map(pr => {
+          //  Updated points display format with week information
+          const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
+          return `<li><a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level} = ${pointsPerLevel[pr.level]} points${weekInfo}</strong></li>`; /*  */
+        }).join(""); /*  */
+
+        const detailsElement = document.createElement("details"); /*  */
+        detailsElement.className = "pr-details"; /*  */
+
+        const summaryElement = document.createElement("summary"); /*  */
+        summaryElement.className = "pr-summary"; /*  */
+        summaryElement.textContent = `Show PRs (${userData.prs.length})`; /*  */
+        
+        //  Prevent default summary toggle, so only the TD click controls it
+        summaryElement.addEventListener('click', (e) => { /*  */
+          e.preventDefault(); /*  */
+        }); /*  */
+
+        const prListUl = document.createElement("ul"); /*  */
+        prListUl.className = "pr-list"; /*  */
+        prListUl.innerHTML = prListHtml; /*  */
+
+        detailsElement.appendChild(summaryElement); /*  */
+        detailsElement.appendChild(prListUl); /*  */
+        prsTd.appendChild(detailsElement); /*  */
+
+        //  Make the whole cell clickable to toggle details
+        prsTd.addEventListener('click', () => { /*  */
+          detailsElement.open = !detailsElement.open; /*  */
+        }); /*  */
+        return prsTd; /*  */
+      };
+      
+      if (filteredData) {
+        //Handle filtered data with original rankings /*  */
+        pageData = pageData.map(([user, userData]) => {
+          const originalIdx = contributorsData.findIndex(([u]) => u === user); /*  */
+          return { user, userData, originalIdx }; /*  */
+        });
+                
+        pageData.forEach(({ user, userData, originalIdx }) => {
+          const row = document.createElement("tr"); /*  */
           
-    const row = document.createElement("tr"); /*  */
-    row.innerHTML = `          <td>${idx + 1}</td>          <td>${user}</td>          <td>${prList}</td>          <td>${userData.total}</td>        `; /*  */
-    tbody.appendChild(row); /*  */
-  });
-  const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" }); /*  */
-  XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx"); /*  */
-}
-//Initialize leaderboard with error handling and dummy data fallback
-async function init() {
-  try {
-    const prs = await fetchMergedPRs(); /*  */
-    let fetchedContributors = Object.entries(calculateContributorData(prs)).sort((a, b) => b[1].total - a[1].total); /*  */
-    //If no data fetched (e.g., due to API limits or no token), use dummy data for demonstration /*  */
-    if (fetchedContributors.length === 0) { /*  */
-      console.warn("No data fetched from GitHub. Using dummy data for demonstration."); /*  */
-      fetchedContributors = [
-        ['user1', { prs: [{ title: 'Dummy PR 1', url: '/placeholder.svg?height=40&width=40', level: 'level1' }], total: 10, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user2', { prs: [{ title: 'Dummy PR 2', url: '/placeholder.svg?height=40&width=40', level: 'level2' }], total: 20, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user3', { prs: [{ title: 'Dummy PR 3', url: '/placeholder.svg?height=40&width=40', level: 'level3' }], total: 30, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user4', { prs: [{ title: 'Dummy PR 4', url: '/placeholder.svg?height=40&width=40', level: 'level1' }], total: 15, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-        ['user5', { prs: [{ title: 'Dummy PR 5', url: '/placeholder.svg?height=40&width=40', level: 'level2' }], total: 25, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
-      ].sort((a, b) => b[1].total - a[1].total); // Sort dummy data too /*  */
+          const rankTd = document.createElement("td"); /*  */
+          // Add medal icons for top 3
+          if (originalIdx + 1 === 1) {
+            rankTd.innerHTML = `<span class="medal-icon gold-medal">🥇</span> ${originalIdx + 1}`;
+          } else if (originalIdx + 1 === 2) {
+            rankTd.innerHTML = `<span class="medal-icon silver-medal">🥈</span> ${originalIdx + 1}`;
+          } else if (originalIdx + 1 === 3) {
+            rankTd.innerHTML = `<span class="medal-icon bronze-medal">🥉</span> ${originalIdx + 1}`;
+          } else {
+            rankTd.textContent = originalIdx + 1;
+          }
+          row.appendChild(rankTd); /*  */
+
+          const contributorTd = document.createElement("td"); /*  */
+          // Add top contributor badge for #1
+          const topContributorBadge = (originalIdx + 1 === 1) ? '<span class="top-contributor-badge">TOP</span>' : '';
+          contributorTd.innerHTML = `
+            <a href="https://github.com/${user}" target="_blank" class="contributor-link">
+              <img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar">
+              ${user}${topContributorBadge}
+            </a>
+          `; /*  */
+          row.appendChild(contributorTd); /*  */
+
+          row.appendChild(createPrsCell(userData)); //  Use the new function /*  */
+
+          const pointsTd = document.createElement("td"); /*  */
+          pointsTd.textContent = userData.total; /*  */
+          row.appendChild(pointsTd); /*  */
+
+          tbody.appendChild(row); /*  */
+        });
+      } else {
+        //Handle normal data display /*  */
+        pageData.forEach(([user, userData], idx) => {
+          const row = document.createElement("tr"); /*  */
+
+          const rankTd = document.createElement("td"); /*  */
+          const actualRank = startIdx + idx + 1;
+          // Add medal icons for top 3
+          if (actualRank === 1) {
+            rankTd.innerHTML = `<span class="medal-icon gold-medal">🥇</span> ${actualRank}`;
+          } else if (actualRank === 2) {
+            rankTd.innerHTML = `<span class="medal-icon silver-medal">🥈</span> ${actualRank}`;
+          } else if (actualRank === 3) {
+            rankTd.innerHTML = `<span class="medal-icon bronze-medal">🥉</span> ${actualRank}`;
+          } else {
+            rankTd.textContent = actualRank;
+          }
+          row.appendChild(rankTd); /*  */
+
+          const contributorTd = document.createElement("td"); /*  */
+          // Add top contributor badge for #1
+          const topContributorBadge = (actualRank === 1) ? '<span class="top-contributor-badge">TOP</span>' : '';
+          contributorTd.innerHTML = `
+            <a href="https://github.com/${user}" target="_blank" class="contributor-link">
+              <img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar">
+              ${user}${topContributorBadge}
+            </a>
+          `; /*  */
+          row.appendChild(contributorTd); /*  */
+
+          row.appendChild(createPrsCell(userData)); //  Use the new function /*  */
+
+          const pointsTd = document.createElement("td"); /*  */
+          pointsTd.textContent = userData.total; /*  */
+          row.appendChild(pointsTd); /*  */
+
+          tbody.appendChild(row); /*  */
+        });
+      }
+      renderPagination(); /*  */
+      updateStats(); // Update stats after rendering
     }
+    
+    //Render pagination controls
+    function renderPagination() {
+      const dataToShow = filteredData || contributorsData; /*  */
+      const totalPages = Math.ceil(dataToShow.length / perPage); /*  */
+      const pagination = document.getElementById("pagination"); /*  */
+      pagination.innerHTML = ""; /*  */
+          
+      if (totalPages <= 1) return; /*  */
+      const prevBtn = document.createElement("button"); /*  */
+      prevBtn.textContent = "← Previous"; /*  */
+      prevBtn.className = "pagination-btn"; /*  */
+      prevBtn.disabled = currentPage === 1; /*  */
+      prevBtn.onclick = () => {
+        if (currentPage > 1) { /*  */
+          currentPage--; /*  */
+          renderTablePage(currentPage); /*  */
+        }
+      };
+      const nextBtn = document.createElement("button"); /*  */
+      nextBtn.textContent = "Next →"; /*  */
+      nextBtn.className = "pagination-btn"; /*  */
+      nextBtn.disabled = currentPage === totalPages; /*  */
+      nextBtn.onclick = () => {
+        if (currentPage < totalPages) { /*  */
+          currentPage++; /*  */
+          renderTablePage(currentPage); /*  */
+        }
+      };
+      const pageInfo = document.createElement("span"); /*  */
+      pageInfo.className = "pagination-info"; /*  */
+      pageInfo.textContent = `Page ${currentPage} of ${totalPages}`; /*  */
+      pagination.appendChild(prevBtn); /*  */
+      pagination.appendChild(pageInfo); /*  */
+      pagination.appendChild(nextBtn); /*  */
+    }
+    
+    //Enhanced search functionality with better UX
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchBtn = document.getElementById('searchBtn'); /*  */
+      const searchInput = document.getElementById('searchUser'); /*  */
+          
+      function performSearch() {
+        const val = searchInput.value.trim().toLowerCase(); /*  */
+        if (!val) { /*  */
+          filteredData = null; /*  */
+        } else { /*  */
+          // Search in the appropriate dataset (week filtered or original)
+          const searchInData = weekFilteredData || contributorsData;
+          filteredData = searchInData.filter(([user]) => user.toLowerCase().includes(val)); /*  */
+        }
+        currentPage = 1; /*  */
+        renderTablePage(currentPage); /*  */
+      }
+          
+      if (searchBtn && searchInput) { /*  */
+        searchBtn.addEventListener('click', performSearch); /*  */
+                
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') { /*  */
+            performSearch(); /*  */
+          }
+        });
+        //Clear search on escape key /*  */
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { /*  */
+            searchInput.value = ''; /*  */
+            performSearch(); /*  */
+          }
+        });
+      }
+
+      // Filter button functionality
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filterValue = this.dataset.filter;
+          applyWeekFilter(filterValue);
+        });
+      });
+    });
+    
+    //Download Excel functionality
+    function downloadExcel() {
+      const table = document.createElement("table"); /*  */
+      table.innerHTML = `<thead><tr>        <th>Rank</th>        <th>Contributor</th>        <th>Merged PRs</th>        <th>Total Points</th>      </tr></thead><tbody></tbody>`; /*  */
+          
+      const tbody = table.querySelector("tbody"); /*  */
+      
+      // Use the currently displayed data (filtered or original)
+      let dataToExport = contributorsData;
+      if (filteredData) {
+        dataToExport = filteredData;
+      } else if (weekFilteredData) {
+        dataToExport = weekFilteredData;
+      }
+      
+      dataToExport.forEach(([user, userData], idx) => {
+        const prList = userData.prs.map(pr => {
+          //  Updated points display format for Excel with week information
+          const weekInfo = pr.weekNumber ? ` (Week ${pr.weekNumber})` : '';
+          return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)${weekInfo}`; /*  */
+        }).join('; '); /*  */
             
-    contributorsData = fetchedContributors; /*  */
-    currentPage = 1; /*  */
-    renderTablePage(currentPage); /*  */
-            
-  } catch (error) {
-    console.error('Error loading leaderboard data:', error); /*  */
-            
-    //Display error message in table if fetch fails /*  */
-    const tbody = document.querySelector("#pointsTable tbody"); /*  */
-    tbody.innerHTML = `          <tr>            <td colspan="4" style="text-align: center; padding: 40px;">              <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #dc3545;">                Error Loading Data              </div>              <div style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">                Unable to fetch contributor data. This might be due to GitHub API rate limits or missing authentication.                Please ensure a valid GitHub Personal Access Token is provided in the 'token' variable if you encounter this frequently.              </div>              <button onclick="location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">                Retry              </button>            </td>          </tr>        `; /*  */
-  }
-}
-//Start initialization
-init(); /*  */
-</script>
-<!--Required scripts for icons and functionality -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="script.js"></script>
-<!-- PWA Support -->
-<!--  Confetti effect on page load script is outside the body, moved it inside. -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
-window.onload = function () {
-  confetti({
-    particleCount: 150, /*  */
-    spread: 100, /*  */
-    origin: { y: 0.6 }, /*  */
-  });
-};
-</script>
+        const row = document.createElement("tr"); /*  */
+        row.innerHTML = `          <td>${idx + 1}</td>          <td>${user}</td>          <td>${prList}</td>          <td>${userData.total}</td>        `; /*  */
+        tbody.appendChild(row); /*  */
+      });
+      
+      // Generate filename based on current filter
+      let filename = "AnimateItnow_Contributors";
+      if (currentWeekFilter !== 'all') {
+        filename += `_${currentWeekFilter.replace('-', '_')}`;
+      }
+      filename += ".xlsx";
+      
+      const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" }); /*  */
+      XLSX.writeFile(wb, filename); /*  */
+    }
+    
+    //Initialize leaderboard with error handling and dummy data fallback
+    async function init() {
+      try {
+        const prs = await fetchMergedPRs(); /*  */
+        allPRsData = prs; /* Store all PRs for reference */
+        let fetchedContributors = Object.entries(calculateContributorData(prs)).sort((a, b) => b[1].total - a[1].total); /*  */
+        //If no data fetched (e.g., due to API limits or no token), use dummy data for demonstration /*  */
+        if (fetchedContributors.length === 0) { /*  */
+          console.warn("No data fetched from GitHub. Using dummy data for demonstration."); /*  */
+          fetchedContributors = [
+            ['user1', { prs: [{ title: 'Dummy PR 1', url: '/placeholder.svg?height=40&width=40', level: 'level1', weekNumber: 1, mergedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString() }], total: 10, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+            ['user2', { prs: [{ title: 'Dummy PR 2', url: '/placeholder.svg?height=40&width=40', level: 'level2', weekNumber: 2, mergedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString() }], total: 20, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+            ['user3', { prs: [{ title: 'Dummy PR 3', url: '/placeholder.svg?height=40&width=40', level: 'level3', weekNumber: 3, mergedAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString() }], total: 30, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+            ['user4', { prs: [{ title: 'Dummy PR 4', url: '/placeholder.svg?height=40&width=40', level: 'level1', weekNumber: 1, mergedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString() }], total: 15, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+            ['user5', { prs: [{ title: 'Dummy PR 5', url: '/placeholder.svg?height=40&width=40', level: 'level2', weekNumber: 4, mergedAt: new Date(Date.now() - 28 * 24 * 60 * 60 * 1000).toISOString() }], total: 25, avatar: '/placeholder.svg?height=40&width=40' }], /*  */
+          ].sort((a, b) => b[1].total - a[1].total); // Sort dummy data too /*  */
+        }
+                
+        contributorsData = fetchedContributors; /*  */
+        currentPage = 1; /*  */
+        renderTablePage(currentPage); /*  */
+                
+      } catch (error) {
+        console.error('Error loading leaderboard data:', error); /*  */
+                
+        //Display error message in table if fetch fails /*  */
+        const tbody = document.querySelector("#pointsTable tbody"); /*  */
+        tbody.innerHTML = `          <tr>            <td colspan="4" style="text-align: center; padding: 40px;">              <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #dc3545;">                Error Loading Data              </div>              <div style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">                Unable to fetch contributor data. This might be due to GitHub API rate limits or missing authentication.                Please ensure a valid GitHub Personal Access Token is provided in the 'token' variable if you encounter this frequently.              </div>              <button onclick="location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer;">                Retry              </button>            </td>          </tr>        `; /*  */
+      }
+    }
+    
+    //Start initialization
+    init(); /*  */
+  </script>
+  
+  <!--Required scripts for icons and functionality -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+  
+  <!-- PWA Support -->
+  <!--  Confetti effect on page load script is outside the body, moved it inside. -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    window.onload = function () {
+      confetti({
+        particleCount: 150, /*  */
+        spread: 100, /*  */
+        origin: { y: 0.6 }, /*  */
+      });
+    };
+  </script>
 </body>
 <!--  Moved scrollBtn to inside the body for valid HTML structure. -->
 <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>

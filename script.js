@@ -1,4 +1,3 @@
-
 // Function for displaying FAQ categories
 function displaycategory(category) {
   const general = document.getElementById('general-faq');
@@ -56,23 +55,19 @@ typewriter();
 
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
-  if (!document.querySelector(".faq-item")) return
-  const faqItem = element.closest(".faq-item") //to make sure we can click anywhere
-  const isActive = faqItem.classList.contains("active")
-
-  // Close all other FAQ items
-  document.querySelectorAll(".faq-item.active").forEach((item) => {
-    if (item !== faqItem) {
-      item.classList.remove("active")
-    }
-  })
-
-  // Toggle current item
-  faqItem.classList.toggle("active", !isActive)
+  // Ensure we have a valid element
+  if (!element || !document.querySelector(".faq-item")) return;
+  
+  // Find the closest FAQ item container
+  const faqItem = element.closest(".faq-item");
+  if (!faqItem) return;
+  
+  // Toggle the active class on this specific FAQ item
+  faqItem.classList.toggle("active");
 }
 
 // Make toggleFAQ globally accessible
-window.toggleFAQ = toggleFAQ
+window.toggleFAQ = toggleFAQ;
 
 // Global (or module-level) variables to store animation and listener references for snake cursor
 let currentAnimationId = null
@@ -88,7 +83,7 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches
 
 function enableSnakeCursor() {
   // Always ensure a clean slate before enabling.
-  // This is crucial for persistence across page navigations (especially with bfcache).
+  // This is crucial for persistence across page navigations (especially with bfcache)
   disableSnakeCursor()
 
   snakeContainerElement = document.createElement("div") // Assign to global variable
@@ -273,6 +268,17 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // FAQ Section Enhancement - Add event listeners for better accessibility
+  const faqHeaders = document.querySelectorAll('.faq-question-header');
+  faqHeaders.forEach(header => {
+    // Add keyboard accessibility
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFAQ(header);
+      }
+    });
+  });
 
   function showToast(message) {
     const toast = document.createElement("div");
@@ -289,8 +295,6 @@ window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => toast.remove(), 300); // Wait for transition to finish
     }, 3000);
   }
-
-
 
   // Snake cursor initialization and state management
   const cursorToggle = document.getElementById("cursorToggle")
@@ -375,5 +379,117 @@ toTop.addEventListener("click",()=>{
     top:0,
     behavior:"smooth"
   });
+});
+
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+});
+
+// Enhanced animation functions for the about page
+document.addEventListener('DOMContentLoaded', function() {
+  // Add parallax effect to floating elements
+  const floatingElements = document.querySelectorAll('.floating-element');
+  
+  window.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth - e.pageX) / 50;
+    const y = (window.innerHeight - e.pageY) / 50;
+    
+    floatingElements.forEach((el, index) => {
+      const speed = (index + 1) * 0.5;
+      el.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${x * speed}deg)`;
+    });
+  });
+  
+  // Add click animation to tech items
+  const techItems = document.querySelectorAll('.about-tech-item');
+  techItems.forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.add('animate__animated', 'animate__rubberBand');
+      setTimeout(() => {
+        this.classList.remove('animate__animated', 'animate__rubberBand');
+      }, 1000);
+    });
+  });
+  
+  // Add hover effect to audience items
+  const audienceItems = document.querySelectorAll('.about-audience-item');
+  audienceItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      this.classList.add('animate__animated', 'animate__headShake');
+      setTimeout(() => {
+        this.classList.remove('animate__animated', 'animate__headShake');
+      }, 1000);
+    });
+  });
+  
+  // Add counter animation for stats
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const animateCounter = (element) => {
+    const target = +element.getAttribute('data-count');
+    const increment = target / 100;
+    let current = 0;
+    
+    const updateCounter = () => {
+      if (current < target) {
+        current += increment;
+        element.innerText = Math.ceil(current);
+        setTimeout(updateCounter, 20);
+      } else {
+        element.innerText = target;
+      }
+    };
+    
+    updateCounter();
+  };
+  
+  // Trigger counter animation when stats section is in view
+  const statsSection = document.querySelector('.stats-container');
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statNumbers.forEach(num => animateCounter(num));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(statsSection);
+  }
+});
+
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburgerMenu = document.querySelector('.hamburger-menu');
+  const navRight = document.querySelector('.nav-right');
+  
+  if (hamburgerMenu && navRight) {
+    hamburgerMenu.addEventListener('click', function() {
+      hamburgerMenu.classList.toggle('active');
+      navRight.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerMenu.classList.remove('active');
+        navRight.classList.remove('active');
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!navRight.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        hamburgerMenu.classList.remove('active');
+        navRight.classList.remove('active');
+      }
+    });
+  }
 });
 

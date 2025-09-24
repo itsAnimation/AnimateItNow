@@ -184,692 +184,6 @@
             word-wrap: break-word;
         }
 
-        /* BUTTON STYLES */
-
-        /* 1. Liquid Fill Button */
-        .liquid-fill-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #00d4ff;
-            background: transparent;
-            color: #00d4ff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            transition: color 0.3s;
-            border-radius: 30px;
-        }
-
-        .liquid-fill-btn::before {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #00d4ff;
-            transition: top 0.5s;
-            border-radius: 30px;
-        }
-
-        .liquid-fill-btn:hover::before {
-            top: 0;
-        }
-
-        .liquid-fill-btn:hover {
-            color: #000;
-        }
-
-        .liquid-fill-btn span {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* 2. Glitch Button */
-        .glitch-btn {
-            padding: 15px 40px;
-            border: none;
-            background: #ff0080;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-        }
-
-        .glitch-btn:hover {
-            animation: glitch 0.3s infinite;
-        }
-
-        @keyframes glitch {
-            0% {
-                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
-                    0.025em 0.05em 0 #fffc00;
-            }
-
-            15% {
-                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff,
-                    0.025em 0.05em 0 #fffc00;
-            }
-
-            16% {
-                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
-                    -0.05em -0.05em 0 #fffc00;
-            }
-
-            49% {
-                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff,
-                    -0.05em -0.05em 0 #fffc00;
-            }
-
-            50% {
-                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
-                    0 -0.05em 0 #fffc00;
-            }
-
-            99% {
-                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff,
-                    0 -0.05em 0 #fffc00;
-            }
-
-            100% {
-                text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff,
-                    -0.025em -0.05em 0 #fffc00;
-            }
-        }
-
-        /* 3. Morphing Button */
-        .morph-btn {
-            padding: 15px 40px;
-            border: none;
-            background: #667eea;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .morph-btn:hover {
-            border-radius: 50px;
-            background: #764ba2;
-            transform: scale(1.1);
-        }
-
-        /* 4. 3D Rotate Button */
-        .rotate-3d-btn {
-            padding: 15px 40px;
-            border: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-        }
-
-        .rotate-3d-btn:hover {
-            transform: rotateY(180deg);
-        }
-
-        /* 5. Particle Button */
-        .particle-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #fff;
-            background: transparent;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .particle-btn:hover {
-            color: #000;
-            background: #fff;
-        }
-
-        .particle-btn:active {
-            transform: scale(0.95);
-        }
-
-        .particle {
-            position: absolute;
-            background: #fff;
-            pointer-events: none;
-            border-radius: 50%;
-            animation: particleAnimation 1s ease-out forwards;
-        }
-
-        @keyframes particleAnimation {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--x), var(--y)) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* 6. Elastic Button */
-        .elastic-btn {
-            padding: 15px 40px;
-            border: none;
-            background: #4CAF50;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .elastic-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .elastic-btn:active {
-            transform: scale(0.9);
-        }
-
-        /* 7. Neon Button */
-        .neon-btn {
-            padding: 15px 40px;
-            border: 2px solid #0ff;
-            background: transparent;
-            color: #0ff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s;
-            text-transform: uppercase;
-        }
-
-        .neon-btn:hover {
-            color: #000;
-            background: #0ff;
-            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff,
-                inset 0 0 10px #0ff;
-        }
-
-        /* 8. Split Button */
-        .split-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: #ef6e6e;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .split-btn span {
-            position: relative;
-            z-index: 3;
-        }
-
-        .split-btn::before,
-        .split-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            background: #e5324d;
-            transition: transform 0.3s;
-            z-index: 2;
-        }
-
-        .split-btn::before {
-            left: 0;
-            transform: translateX(-100%);
-        }
-
-        .split-btn::after {
-            right: 0;
-            transform: translateX(100%);
-        }
-
-        .split-btn:hover::before {
-            transform: translateX(0);
-        }
-
-        .split-btn:hover::after {
-            transform: translateX(0);
-        }
-
-        /* 9. Border Animation Button */
-        .border-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: transparent;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .border-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid transparent;
-            border-image: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
-            border-image-slice: 1;
-            animation: borderRotate 3s linear infinite;
-        }
-
-        @keyframes borderRotate {
-            0% {
-                border-image-source: linear-gradient(45deg, #ff0080, #00d4ff, #ff0080);
-            }
-
-            100% {
-                border-image-source: linear-gradient(405deg, #ff0080, #00d4ff, #ff0080);
-            }
-        }
-
-        /* 10. Magnetic Button */
-        .magnetic-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #fff;
-            background: transparent;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        /* 11. Wave Button */
-        .wave-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: #3498db;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 30px;
-        }
-
-        .wave-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .wave-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* 12. Slide Text Button */
-        .slide-text-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #e74c3c;
-            background: transparent;
-            color: #e74c3c;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            transition: color 0.3s;
-        }
-
-        .slide-text-btn span {
-            display: inline-block;
-            transition: transform 0.3s;
-            position: relative;
-            z-index: 2;
-        }
-
-        .slide-text-btn::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, 150%);
-            color: #fff;
-            transition: transform 0.3s;
-            font-weight: 600;
-            z-index: 2;
-        }
-
-        .slide-text-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #e74c3c;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-            z-index: 1;
-        }
-
-        .slide-text-btn:hover {
-            color: #fff;
-        }
-
-        .slide-text-btn:hover span {
-            transform: translateY(-200%);
-        }
-
-        .slide-text-btn:hover::before {
-            transform: translate(-50%, -50%);
-        }
-
-        .slide-text-btn:hover::after {
-            transform: translateY(0);
-        }
-
-        /* 13. Gradient Border Button */
-        .gradient-border-btn {
-            position: relative;
-            padding: 15px 40px;
-            background: #000;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            border-radius: 30px;
-            z-index: 1;
-        }
-
-        .gradient-border-btn::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #ff0080);
-            background-size: 400%;
-            border-radius: 30px;
-            z-index: -1;
-            animation: gradientMove 3s ease infinite;
-        }
-
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* 14. Icon Morph Button */
-        .icon-morph-btn {
-            position: relative;
-            padding: 15px 20px;
-            border: none;
-            background: #9b59b6;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-
-        .icon-morph-btn .icon {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.3s;
-        }
-
-        .icon-morph-btn:hover {
-            background: #8e44ad;
-            padding-right: 30px;
-        }
-
-        .icon-morph-btn:hover .icon {
-            transform: translateX(10px);
-        }
-
-        /* 15. Ripple Effect Button */
-        .ripple-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: #2ecc71;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(0);
-            animation: rippleEffect 0.6s ease-out;
-        }
-
-        @keyframes rippleEffect {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* 16. Shiny Button */
-        .shiny-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: linear-gradient(45deg, #f39c12, #f1c40f);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 30px;
-            overflow: hidden;
-        }
-
-        .shiny-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .shiny-btn:hover::before {
-            left: 100%;
-        }
-
-        /* 17. Pulse Shadow Button */
-        .pulse-shadow-btn {
-            padding: 15px 40px;
-            border: none;
-            background: #e74c3c;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 30px;
-            animation: pulseShadow 2s infinite;
-        }
-
-        @keyframes pulseShadow {
-            0% {
-                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
-            }
-        }
-
-        /* 18. Fold Button */
-        .fold-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #34495e;
-            background: transparent;
-            color: #34495e;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-            transition: color 0.3s;
-        }
-
-        .fold-btn::before,
-        .fold-btn::after {
-            content: '';
-            position: absolute;
-            background: #34495e;
-            transition: transform 0.3s;
-        }
-
-        .fold-btn::before {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            transform-origin: top;
-            transform: scaleY(0);
-        }
-
-        .fold-btn::after {
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            transform-origin: bottom;
-            transform: scaleY(0);
-        }
-
-        .fold-btn:hover {
-            color: #fff;
-        }
-
-        .fold-btn:hover::before,
-        .fold-btn:hover::after {
-            transform: scaleY(1);
-        }
-
-        /* 19. Typewriter Button */
-        .typewriter-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: 2px solid #16a085;
-            background: transparent;
-            color: #16a085;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .typewriter-btn span {
-            display: inline-block;
-        }
-
-        .typewriter-btn:hover span {
-            animation: typewriter 0.5s steps(10);
-        }
-
-        @keyframes typewriter {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 20. Bubble Button */
-        .bubble-btn {
-            position: relative;
-            padding: 15px 40px;
-            border: none;
-            background: #3498db;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 30px;
-            overflow: hidden;
-        }
-
-        .bubble {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: bubbleFloat 2s ease-in-out infinite;
-        }
-
-        @keyframes bubbleFloat {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px) scale(0);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 
@@ -952,7 +266,7 @@
             <div class="button-card">
                 <h3>Liquid Fill Effect</h3>
                 <div class="button-wrapper">
-                    <button class="liquid-fill-btn">
+                    <button class="btn btn-primary">
                         <span>Hover Me</span>
                     </button>
                 </div>
@@ -970,7 +284,7 @@
                         <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
                     </div>
                     <div class="code-content active" data-lang="html">
-                        <pre>&lt;button class="liquid-fill-btn"&gt;
+                        <pre>&lt;button class="btn btn-primary"&gt;
     &lt;span&gt;Hover Me&lt;/span&gt;
 &lt;/button&gt;</pre>
                     </div>
@@ -1021,7 +335,7 @@
             <div class="button-card">
                 <h3>Glitch Effect</h3>
                 <div class="button-wrapper">
-                    <button class="glitch-btn">GLITCH</button>
+                    <button class="btn btn-danger">GLITCH</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1037,7 +351,7 @@
                         <button class="code-tab" onclick="switchTab(this, 'css')">CSS</button>
                     </div>
                     <div class="code-content active" data-lang="html">
-                        <pre>&lt;button class="glitch-btn"&gt;GLITCH&lt;/button&gt;</pre>
+                        <pre>&lt;button class="btn btn-danger"&gt;GLITCH&lt;/button&gt;</pre>
                     </div>
                     <div class="code-content" data-lang="css">
                         <pre>.glitch-btn {
@@ -1095,7 +409,7 @@
             <div class="button-card">
                 <h3>Shape Morph</h3>
                 <div class="button-wrapper">
-                    <button class="morph-btn">Transform</button>
+                    <button class="btn btn-primary btn-3d">Transform</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1141,7 +455,7 @@
             <div class="button-card">
                 <h3>3D Rotate</h3>
                 <div class="button-wrapper">
-                    <button class="rotate-3d-btn">3D Flip</button>
+                    <button class="btn btn-gradient btn-3d">3D Flip</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1184,7 +498,7 @@
             <div class="button-card">
                 <h3>Particle Burst</h3>
                 <div class="button-wrapper">
-                    <button class="particle-btn" id="particleBtn">Click Me</button>
+                    <button class="btn btn-success" id="particleBtn">Click Me</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1280,7 +594,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Elastic Bounce</h3>
                 <div class="button-wrapper">
-                    <button class="elastic-btn">Bounce</button>
+                    <button class="btn btn-warning btn-pulse">Bounce</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1326,7 +640,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Neon Glow</h3>
                 <div class="button-wrapper">
-                    <button class="neon-btn">NEON</button>
+                    <button class="btn btn-neon">NEON</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1372,7 +686,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Split Effect</h3>
                 <div class="button-wrapper">
-                    <button class="split-btn">
+                    <button class="btn btn-primary btn-slide">
                         <span>Split</span>
                     </button>
                 </div>
