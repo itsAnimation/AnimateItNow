@@ -359,6 +359,17 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+});
+
 // Enhanced animation functions for the about page
 document.addEventListener('DOMContentLoaded', function() {
   // Add parallax effect to floating elements
@@ -461,3 +472,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
