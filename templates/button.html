@@ -11,168 +11,6 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Original button styles */
-    .hover-btn {
-      background: #4f8cff;
-      color: #fff;
-      padding: 1em 2em;
-      border: none;
-      border-radius: 2em;
-      font-weight: 600;
-      box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hover-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
-    }
-    
-    .hover-btn.glow:hover {
-      background: #2563eb;
-      box-shadow: 0 0 30px rgba(79, 140, 255, 0.6);
-    }
-
-    .hover-btn.outline {
-      background: transparent;
-      color: #4f8cff;
-      border: 2px solid #4f8cff;
-    }
-
-    .hover-btn.outline:hover {
-      background: #4f8cff;
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
-    }
-
-    .hover-btn.gradient {
-      background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
-    }
-
-    .hover-btn.gradient:hover {
-      background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
-    }
-
-    /* Rainbow glow button */
-    .btn-rainbow {
-      color: #fff;
-      padding: 1em 2em;
-      border: none;
-      border-radius: 2em;
-      font-weight: 600;
-      cursor: pointer;
-      position: relative;
-      z-index: 1;
-      background: #333;
-      transition: all 0.3s ease;
-    }
-
-    .btn-rainbow::after {
-      content: "";
-      z-index: -1;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: #333;
-      left: 0;
-      top: 0;
-      border-radius: 2em;
-    }
-
-    .btn-rainbow::before {
-      content: "";
-      background: linear-gradient(45deg, #ff1616, #e4d20a, #6adf0a, #10cd8b, #09c2df, #371ddd, #dc13a9, #de1212);
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      background-size: 600%;
-      z-index: -1;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      filter: blur(1em);
-      animation: rainbow-glow 20s linear infinite;
-      border-radius: 2em;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    @keyframes rainbow-glow {
-      0% { background-position: 0 0; }
-      50% { background-position: 400% 0; }
-      100% { background-position: 0 0; }
-    }
-
-    .btn-rainbow:hover {
-      transform: scale(1.08);
-    }
-
-    .btn-rainbow:hover::before {
-      opacity: 1;
-    }
-
-    .btn-rainbow:active::after {
-      background: transparent;
-    }
-
-    .btn-rainbow:active {
-      color: #000;
-      font-weight: bold;
-    }
-
-    /* Pulse effect */
-    .btn-pulse {
-      background: #ff6b6b;
-      color: white;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-    }
-
-    /* Slide effect */
-    .btn-slide {
-      background: #10b981;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-slide::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn-slide:hover::before {
-      left: 100%;
-    }
-
-    /* Neon effect */
-    .btn-neon {
-      background: transparent;
-      border: 2px solid #00ffff;
-      color: #00ffff;
-      text-shadow: 0 0 5px #00ffff;
-      box-shadow: inset 0 0 5px #00ffff, 0 0 5px #00ffff;
-    }
-
-    .btn-neon:hover {
-      background: #00ffff;
-      color: #000;
-      text-shadow: none;
-      box-shadow: inset 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
-    }
-
     /* Button showcase grid */
     .button-showcase {
       display: grid;
@@ -341,18 +179,24 @@
 <body>
   <nav class="navbar scroll-fade">
     <div class="nav-left">
-      <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
+      <a href="../index.html" class="home-link">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </a>
     </div>
 
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="../about.html">About</a></li>
+        <li><a href="../editor.html">Editor</a></li>
         <li><a href="../templates.html" class="active">Templates</a></li>
+        <li><a href="../playground.html">Hover-Effects</a></li>
         <li><a href="../contributors.html">Contributors</a></li>
         <li><a href="../contact.html">Contact</a></li>
         <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <li><a href="../loginpage.html">Login</a></li>
+        <li><a href="../signup.html">Sign Up</a></li>
         <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle" />
@@ -387,7 +231,7 @@
       <div class="button-card">
         <h3>✨ Glow Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn glow">Hover Me</button>
+          <button class="btn btn-primary btn-glow">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('glow-code')">
           📋 Show Code
@@ -397,25 +241,8 @@
             <span>CSS + HTML</span>
             <button class="copy-btn" onclick="copyCode('glow-css')">Copy</button>
           </div>
-          <pre id="glow-css">.glow-btn {
-  background: #4f8cff;
-  color: #fff;
-  padding: 1em 2em;
-  border: none;
-  border-radius: 2em;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.glow-btn:hover {
-  transform: scale(1.08);
-  background: #2563eb;
-  box-shadow: 0 0 30px rgba(79, 140, 255, 0.6);
-}
-
-&lt;button class="glow-btn"&gt;Hover Me&lt;/button&gt;</pre>
+          <pre id="glow-css">/* No additional CSS needed - using standardized btn classes */
+&lt;button class="btn btn-primary btn-glow"&gt;Hover Me&lt;/button&gt;</pre>
         </div>
       </div>
 
@@ -423,7 +250,7 @@
       <div class="button-card">
         <h3>🔲 Outline Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn outline">Hover Me</button>
+          <button class="btn btn-outline">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('outline-code')">
           📋 Show Code
@@ -433,26 +260,8 @@
             <span>CSS + HTML</span>
             <button class="copy-btn" onclick="copyCode('outline-css')">Copy</button>
           </div>
-          <pre id="outline-css">.outline-btn {
-  background: transparent;
-  color: #4f8cff;
-  padding: 1em 2em;
-  border: 2px solid #4f8cff;
-  border-radius: 2em;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.outline-btn:hover {
-  background: #4f8cff;
-  color: #fff;
-  transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
-}
-
-&lt;button class="outline-btn"&gt;Hover Me&lt;/button&gt;</pre>
+          <pre id="outline-css">/* No additional CSS needed - using standardized btn classes */
+&lt;button class="btn btn-outline"&gt;Hover Me&lt;/button&gt;</pre>
         </div>
       </div>
 
@@ -460,7 +269,7 @@
       <div class="button-card">
         <h3>🌈 Gradient Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn gradient">Hover Me</button>
+          <button class="btn btn-gradient">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('gradient-code')">
           📋 Show Code
@@ -470,25 +279,8 @@
             <span>CSS + HTML</span>
             <button class="copy-btn" onclick="copyCode('gradient-css')">Copy</button>
           </div>
-          <pre id="gradient-css">.gradient-btn {
-  background: linear-gradient(90deg, #4f8cff 0%, #2563eb 100%);
-  color: #fff;
-  padding: 1em 2em;
-  border: none;
-  border-radius: 2em;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.12);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.gradient-btn:hover {
-  background: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
-  transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(79, 140, 255, 0.25);
-}
-
-&lt;button class="gradient-btn"&gt;Hover Me&lt;/button&gt;</pre>
+          <pre id="gradient-css">/* No additional CSS needed - using standardized btn classes */
+&lt;button class="btn btn-gradient"&gt;Hover Me&lt;/button&gt;</pre>
         </div>
       </div>
 
@@ -496,7 +288,7 @@
       <div class="button-card">
         <h3>🎆 Rainbow Glow</h3>
         <div class="button-demo">
-          <button class="btn-rainbow">Hover Me</button>
+          <button class="btn btn-rainbow">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('rainbow-code')">
           📋 Show Code
@@ -506,63 +298,8 @@
             <span>CSS + HTML</span>
             <button class="copy-btn" onclick="copyCode('rainbow-css')">Copy</button>
           </div>
-          <pre id="rainbow-css">.rainbow-btn {
-  color: #fff;
-  padding: 1em 2em;
-  border: none;
-  border-radius: 2em;
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  background: #333;
-  transition: all 0.3s ease;
-}
-
-.rainbow-btn::after {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #333;
-  left: 0;
-  top: 0;
-  border-radius: 2em;
-}
-
-.rainbow-btn::before {
-  content: "";
-  background: linear-gradient(45deg, #ff1616, #e4d20a, #6adf0a, #10cd8b, #09c2df, #371ddd, #dc13a9, #de1212);
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 600%;
-  z-index: -1;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  filter: blur(1em);
-  animation: rainbow-glow 20s linear infinite;
-  border-radius: 2em;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-@keyframes rainbow-glow {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
-}
-
-.rainbow-btn:hover {
-  transform: scale(1.08);
-}
-
-.rainbow-btn:hover::before {
-  opacity: 1;
-}
-
-&lt;button class="rainbow-btn"&gt;Hover Me&lt;/button&gt;</pre>
+          <pre id="rainbow-css">/* No additional CSS needed - using standardized btn classes */
+&lt;button class="btn btn-rainbow"&gt;Hover Me&lt;/button&gt;</pre>
         </div>
       </div>
 
@@ -570,7 +307,7 @@
       <div class="button-card">
         <h3>💓 Pulse Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn btn-pulse">Hover Me</button>
+          <button class="btn btn-primary btn-pulse">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('pulse-code')">
           📋 Show Code
@@ -610,7 +347,7 @@
       <div class="button-card">
         <h3>⚡ Slide Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn btn-slide">Hover Me</button>
+          <button class="btn btn-primary btn-slide">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('slide-code')">
           📋 Show Code
@@ -660,7 +397,7 @@
       <div class="button-card">
         <h3>💡 Neon Effect</h3>
         <div class="button-demo">
-          <button class="hover-btn btn-neon">Hover Me</button>
+          <button class="btn btn-neon">Hover Me</button>
         </div>
         <button class="show-code-btn" onclick="toggleCode('neon-code')">
           📋 Show Code
