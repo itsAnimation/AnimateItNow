@@ -69,7 +69,7 @@ Click “Create pull request”.
 Once your PR is successfully merged, you will get points as per the GSSOC level labels:
 
 - Level 1 : 3 Points.
-- Level 2 : 5 Points (May vary).
+- Level 2 : 7 Points (May vary).
 - Level 3 : 10 Points.
 
 These points will be added to your name on the GSSOC Contributor Leaderboard(On the offcial website).

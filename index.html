@@ -117,14 +117,55 @@
         
       </div>
 
+      <!-- Hamburger Menu Button -->
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+
+    <div class="nav-right">
+        <button class="hamburger" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
+        <!-- cursor toggle switch -->
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <!-- github icon -->
+        <li>
+
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repo" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="editor.html">Editor</a></li>
           <li><a href="templates.html">Templates</a></li>
+          <li><a href="playground.html">Hover-Effects</a></li>
           <li><a href="contributors.html">Contributors</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="leaderboard.html">Leaderboard</a></li>
+          <li><a href="loginpage.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
           <!--leaderboard linkup> -->
           <!-- cursor toggle switch -->
           <li class="snakeList">
@@ -152,6 +193,7 @@
               >
                 <path
                   d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+
                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
                -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
                -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
@@ -207,24 +249,21 @@
 
           <div class="faq-list">
             <!-- 01 -->
-            <div class="faq-item glow-wrap">
-              <div class="faq-question-header" onclick="toggleFAQ(this)">
-                <h3>What is this project?</h3>
-                <div class="faq-icon-static">
-                  <i class="fas fa-question"></i>
-                </div>
-              </div>
-              <div class="faq-answer-content">
-                <p>
-                  AnimateItNow is an open-source platform that helps beginners
-                  learn web development by building and exploring simple
-                  animations using HTML, CSS, and JavaScript. It offers a
-                  collaborative space for contributors to create, improve, and
-                  share animation templates while gaining hands-on coding
-                  experience.
-                </p>
-              </div>
-            </div>
+          <div class="faq-item glow-wrap">
+  <button class="faq-question-header" onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq1">
+    <h3>How to contribute?</h3>
+    <div class="faq-icon-static">
+      <i class="fas fa-code-branch"></i>
+    </div>
+  </button>
+  <div class="faq-answer-content" id="faq1" hidden>
+    <ul>
+      <li>Fork this repository to your own GitHub account.</li>
+      <li>Add your unique and creative web components or improvements.</li>
+    </ul>
+  </div>
+</div>
+
 
             <!-- 02 -->
             <div class="faq-item glow-wrap">
@@ -235,23 +274,11 @@
                 </div>
               </div>
               <div class="faq-answer-content">
-                <p>
-                  <li>Fork this repository to your own GitHub account.</li>
-                  <li>
-                    Add your unique and creative web components or improvements.
-                  </li>
-                  <li>
-                    All skill levels are welcome — whether you're a beginner or
-                    a pro!
-                  </li>
-                  <li>
-                    Submit a Pull Request with a short description of your
-                    changes.
-                  </li>
-                  <li>
-                    Need ideas? Check out our Templates page for inspiration!
-                  </li>
-                </p>
+                <p>Fork this repository to your own GitHub account.</p>
+                <p>Add your unique and creative web components or improvements.</p>
+                <p>All skill levels are welcome — whether you're a beginner or a pro!</p>
+                <p>Submit a Pull Request with a short description of your changes.</p>
+                <p>Need ideas? Check out our Templates page for inspiration!</p>
               </div>
             </div>
 
@@ -413,16 +440,17 @@
                 <li class="swiper-slide">
                   <div class="wrapper">
                     <div class="thumbnail">
-                      <img src="images/img1.jpg" alt="" />
+                      <img src="images/amn.jpg" alt="" />
                     </div>
                     <div class="aside">
                       <p>
-                        AnimateItNow turned our static UI into something
-                        delightful. The ease of integration is mind-blowing
+                         AnimateItNow transformed my full stack projects, making them dynamic and engaging. 
+                         Integrating it was effortless and truly enhanced the user experience.
                       </p>
                       <div class="name">
-                        <h4>Priya Verma</h4>
-                        <p>UI/UX Designer at PixelCraft</p>
+                        <h4>Aman Singh</h4>
+                        <div></div>
+                        <p>Full Stack Developer</p>
                       </div>
                     </div>
                   </div>
@@ -550,6 +578,7 @@
         </div>
 
         <div class="footer-right">
+          <div class="footer-box">
           <h4>Connect With Us</h4>
           <ul>
             <li class="github">
@@ -573,7 +602,32 @@
               >
             </li>
           </ul>
+          </div>
+          <div class="footer-box">
+          <h4>Quick Links</h4>
+          <br>
+          <ul>
+            <li>
+              <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </li>
+            <li>
+              <a href="templates.html"><i class="fas fa-code"></i> Templates</a>
+            </li>
+            <li>
+              <a href="contributors.html"><i class="fas fa-users"></i> Contributors</a>
+            </li>
+            <li>
+              <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            </li>
+            <li>
+              <a href="playground.html"><i class="fas fa-play-circle"></i> Playground</a>
+            </li>
+            <li>
+              <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+          </ul>
         </div>
+      </div>
       </div>
 
       <div class="footer-bottom">
@@ -589,7 +643,7 @@
 
     <script src="script.js"></script>
     <!-- PWA Support -->
-    <script src="pwa.js"></script>
+    <!-- <script src="pwa.js"></script> -->
 
     <!-- testimonials-effect-animations -->
     <!-- GSSOC'25 Contributor : 6vam4arya -->

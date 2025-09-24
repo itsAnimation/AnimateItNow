@@ -1,0 +1,766 @@
+/*  Removed conflicting navbar CSS, relying on styles.css */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+.nav-right {
+  display: flex;
+  gap: 1.5rem;
+}
+a {
+  text-decoration: none;
+}
+/* 🌒 DARK MODE GLOBAL TEXT FIXES */
+/*  Changed 'dark-theme' to 'dark' to match script.js and other pages */
+body.dark {
+  background-color: #121212;
+  color: #f5f5f5;
+  background: url(images/bgdark.png) no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+/* ✅ Heading fix */
+body.dark .templates-main h1 {
+  background: linear-gradient(
+    to right,
+    #67e8f9,
+    #3b82f6
+  ); /* bright neon cyan-blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+}
+/* ✅ Template card titles */
+body.dark .template-card h2 {
+  color: #e0f2fe;
+  text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+}
+/* ✅ Button text */
+body.dark .template-btn {
+  color: #ffffff;
+  background-color: #333;
+  border: 1px solid #555;
+}
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #fff;
+}
+/* ✅ Navbar items */
+body.dark .navbar,
+body.dark .nav-links a,
+body.dark .site-name {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+body.dark .nav-links a:hover {
+  color: #90caf9;
+}
+/* 🧼 Remove margins to prevent light-space bleed */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+/* 💡 Smooth transitions */
+.templates-main h1,
+.template-card h2,
+.template-btn,
+.navbar,
+.nav-links a {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+/* ✨ Make text inside template cards fully visible */
+body.dark .template-card h2,
+body.dark .template-btn,
+body.dark .template-card {
+  color: #ffffff;
+}
+/* 🎯 Bonus: ensure buttons look clickable and clean */
+body.dark .template-btn {
+  background-color: #333;
+  border: 1px solid #555;
+}
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #ffffff;
+}
+/* 🔧 Template card container */
+body.dark .template-card {
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.25), 0 0 12px rgba(56, 189, 248, 0.3);
+  color: #ffffff;
+  animation: darkNeonPulse 4s ease-in-out infinite;
+}
+/* 🖋 Titles inside cards */
+body.dark .template-card h2 {
+  color: #ffffff;
+}
+/* 🔘 Buttons */
+body.dark .template-btn {
+  color: #ffffff;
+  background-color: #333;
+  border: 1px solid #555;
+}
+/* 🖱 Hover effect for buttons */
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #ffffff;
+}
+/* 🪄 Smooth transitions */
+.template-card h2,
+.template-btn {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+/* Base preview style */
+.template-preview {
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* Dark mode support */
+/*  Changed 'dark-theme' to 'dark' */
+body.dark .template-preview {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+}
+/* Feature Cards Preview */
+.feature-preview {
+  background-color: #4f8cff;
+  padding: 12px;
+  gap: 10px;
+}
+.feature-preview .mini-card {
+  background-color: white;
+  flex: 1;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;
+}
+/* Hero Section Preview */
+.hero-preview {
+  background-color: #4f8cff;
+  flex-direction: column;
+  padding: 14px;
+  gap: 8px;
+}
+.hero-preview .hero-image {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.hero-preview .hero-text-line {
+  background-color: white;
+  border-radius: 5px;
+  height: 8px;
+  width: 80%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.hero-preview .hero-text-line.short {
+  width: 50%;
+}
+/* Social Share Preview */
+.social-share-preview {
+  background-color: #4f8cff;
+  gap: 15px;
+  font-size: 28px;
+  color: white;
+}
+.social-share-preview .social-icon-preview {
+  transition: transform 0.2s ease-in-out;
+}
+.social-share-preview:hover .social-icon-preview {
+  transform: scale(1.1);
+}
+/* Navbar Preview */
+.navbar-preview {
+  background-color: #4f8cff;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+  gap: 8px;
+}
+.navbar-line {
+  height: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.navbar-line.logo {
+  width: 40%;
+}
+.navbar-line.link {
+  width: 70%;
+}
+.navbar-line.link.short {
+  width: 50%;
+}
+/* ADDED: Animated Toggles Preview CSS */
+.toggles-preview {
+  background-color: #4f8cff;
+  gap: 20px;
+}
+.mini-toggle {
+  width: 50px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 25px;
+  position: relative;
+  padding: 3px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.mini-handle {
+  width: 19px;
+  height: 19px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+.mini-toggle.off .mini-handle {
+  transform: translateX(0);
+}
+.mini-toggle.on {
+  background-color: #25d366; /* A nice 'on' color */
+}
+.mini-toggle.on .mini-handle {
+  transform: translateX(25px);
+}
+/*Display Properties Preview */
+.display-preview {
+  background-color: #4f8cff;
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.display-box {
+  border-radius: 4px;
+  display: inline-block;
+}
+.display-box.box1 {
+  width: 24px;
+  height: 24px;
+  background-color: #bbdefb;
+}
+.display-box.box2 {
+  width: 24px;
+  height: 32px;
+  background-color: #90caf9;
+}
+.display-box.box3 {
+  width: 24px;
+  height: 28px;
+  background-color: #64b5f6;
+}
+/* 🌙 Dark Theme Support */
+body.dark .display-preview {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+/* Removed conflicting navbar CSS, relying on styles.css */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+.nav-right {
+  display: flex;
+  gap: 1.5rem;
+}
+a {
+  text-decoration: none;
+}
+/* 🌒 DARK MODE GLOBAL TEXT FIXES */
+/* Changed 'dark-theme' to 'dark' to match script.js and other pages */
+body.dark {
+  background-color: #121212;
+  color: #f5f5f5;
+  background: url(images/bgdark.png) no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+/* ✅ Heading fix */
+body.dark .templates-main h1 {
+  background: linear-gradient(
+    to right,
+    #67e8f9,
+    #3b82f6
+  ); /*bright neon cyan-blue */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+}
+/* ✅ Template card titles */
+body.dark .template-card h2 {
+  color: #e0f2fe;
+  text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+}
+/* ✅ Button text */
+body.dark .template-btn {
+  color: #ffffff;
+  background-color: #333;
+  border: 1px solid #555;
+}
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #fff;
+}
+/* ✅ Navbar items */
+body.dark .navbar,
+body.dark .nav-links a,
+body.dark .site-name {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+body.dark .nav-links a:hover {
+  color: #90caf9;
+}
+/* 🧼 Remove margins to prevent light-space bleed */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+/* 💡 Smooth transitions */
+.templates-main h1,
+.template-card h2,
+.template-btn,
+.navbar,
+.nav-links a {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+/* ✨ Make text inside template cards fully visible */
+body.dark .template-card h2,
+body.dark .template-btn,
+body.dark .template-card {
+  color: #ffffff;
+}
+/* 🎯 Bonus: ensure buttons look clickable and clean */
+body.dark .template-btn {
+  background-color: #333;
+  border: 1px solid #555;
+}
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #ffffff;
+}
+/* 🔧 Template card container */
+body.dark .template-card {
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.25), 0 0 12px rgba(56, 189, 248, 0.3);
+  color: #ffffff;
+  animation: darkNeonPulse 4s ease-in-out infinite;
+}
+/* 🖋 Titles inside cards */
+body.dark .template-card h2 {
+  color: #ffffff;
+}
+/* 🔘 Buttons */
+body.dark .template-btn {
+  color: #ffffff;
+  background-color: #333;
+  border: 1px solid #555;
+}
+/* 🖱 Hover effect for buttons */
+body.dark .template-btn:hover {
+  background-color: #444;
+  color: #ffffff;
+}
+/* 🪄 Smooth transitions */
+.template-card h2,
+.template-btn {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+/* Base preview style */
+.template-preview {
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* Dark mode support */
+/* Changed 'dark-theme' to 'dark' */
+body.dark .template-preview {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+}
+/* Feature Cards Preview */
+.feature-preview {
+  background-color: #4f8cff;
+  padding: 12px;
+  gap: 10px;
+}
+.feature-preview .mini-card {
+  background-color: white;
+  flex: 1;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #555;
+  font-weight: 600;
+}
+/* Hero Section Preview */
+.hero-preview {
+  background-color: #4f8cff;
+  flex-direction: column;
+  padding: 14px;
+  gap: 8px;
+}
+.hero-preview .hero-image {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.hero-preview .hero-text-line {
+  background-color: white;
+  border-radius: 5px;
+  height: 8px;
+  width: 80%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.hero-preview .hero-text-line.short {
+  width: 50%;
+}
+/* Social Share Preview */
+.social-share-preview {
+  background-color: #4f8cff;
+  gap: 15px;
+  font-size: 28px;
+  color: white;
+}
+.social-share-preview .social-icon-preview {
+  transition: transform 0.2s ease-in-out;
+}
+.social-share-preview:hover .social-icon-preview {
+  transform: scale(1.1);
+}
+/* Navbar Preview */
+.navbar-preview {
+  background-color: #4f8cff;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+  gap: 8px;
+}
+.navbar-line {
+  height: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.navbar-line.logo {
+  width: 40%;
+}
+.navbar-line.link {
+  width: 70%;
+}
+.navbar-line.link.short {
+  width: 50%;
+}
+/* Make the link a flex container to align items */
+.logo-link {
+  display: flex; /* Aligns logo and text horizontally */
+  align-items: center; /* Centers them vertically */
+  gap: 10px; /* Adds space between logo and text */
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits text color (if needed) */
+}
+
+/* Ensure the logo image stays aligned */
+.logo-link img.logo {
+  height: 40px; /* Adjust as needed */
+  width: auto; /* Maintains aspect ratio */
+}
+
+/* Style the text (optional) */
+.site-name {
+  font-size: 1.2rem; /* Adjust size */
+  font-weight: bold; /* Optional: Bold text */
+  pointer-events: none; /* Ensures clicks pass to parent <a> */
+}
+
+/* Hover effect (optional) */
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* ADDED: Animated Toggles Preview CSS */
+.toggles-preview {
+  background-color: #4f8cff;
+  gap: 20px;
+}
+.mini-toggle {
+  width: 50px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 25px;
+  position: relative;
+  padding: 3px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.mini-handle {
+  width: 19px;
+  height: 19px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+.mini-toggle.off .mini-handle {
+  transform: translateX(0);
+}
+.mini-toggle.on {
+  background-color: #25d366; /* A nice 'on' color */
+}
+.mini-toggle.on .mini-handle {
+  transform: translateX(25px);
+}
+/*Display Properties Preview */
+.display-preview {
+  background-color: #4f8cff;
+  height: 90px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.display-box {
+  border-radius: 4px;
+  display: inline-block;
+}
+.display-box.box1 {
+  width: 24px;
+  height: 24px;
+  background-color: #bbdefb;
+}
+.display-box.box2 {
+  width: 24px;
+  height: 32px;
+  background-color: #90caf9;
+}
+.display-box.box3 {
+  width: 24px;
+  height: 28px;
+  background-color: #64b5f6;
+}
+.code-play-preview {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.checkbox-preview {
+  background-color: #3b82f6;
+  color: #e0f2fe;
+}
+.checkbox-preview .ri-checkbox-fill {
+  font-size: 2rem;
+}
+/* 🌙 Dark Theme Support */
+body.dark .display-preview {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* start for game animation */
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.nav button {
+  padding: 0.75rem 1.5rem;
+  margin: 0 0.5rem;
+  border: none;
+  background: #0b5ed7;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.nav button:hover {
+  background: #084bb3;
+}
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  margin: 2rem auto;
+}
+.snippets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.snippet {
+  background: #fff;
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  width: 250px;
+  cursor: grab;
+  user-select: none;
+}
+.dropzone {
+  border: 2px solid #0b5ed7;
+  min-height: 60px;
+  padding: 1rem;
+  background: #e7f1ff;
+  margin-top: 1rem;
+}
+.button {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.75rem 2rem;
+  background: #0b5ed7;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.button:hover {
+  background: #084bb3;
+}
+.code-block {
+  background: #f8f8f8;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Speed Fix styles */
+.fix-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.code-area,
+.fix-input {
+  background: #eef;
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+.fix-input {
+  height: 200px;
+  border: 1px solid #ccc;
+}
+.timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: red;
+  margin-bottom: 1rem;
+}
+.result {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* end for game animation */
+/* NEW: CSS Snippet Generator Preview */
+.generator-preview {
+  background-color: #4f8cff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.generator-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.generator-box.box-shadow-preview {
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.generator-box.gradient-preview {
+  background: linear-gradient(45deg, #ff6b6b, #4f8cff);
+}
+
+.generator-box.border-radius-preview {
+  background-color: white;
+  border-radius: 50%;
+}
+
+body.dark .generator-box.box-shadow-preview {
+  background-color: #333;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .generator-box.border-radius-preview {
+  background-color: #333;
+}
