@@ -23,6 +23,25 @@
     @keyframes l4 { to { transform: rotate(1turn); } }
     @keyframes l26 { 100% { transform: rotate(1turn); } }
 
+        @keyframes cMoveSmall{
+        0%,33%   { opacity: 0; }
+        34%      { opacity: 1; transform: translate(-50%, -50%) rotate(360deg); }
+        66%      { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+        67%,100% { opacity: 0; }
+    }
+    
+   
+    @keyframes cMoveBig1{
+        0%   { transform: rotate(0deg);   opacity: 1; }
+        33%  { transform: rotate(180deg); opacity: 1; }
+        34%  { opacity: 0; }
+        100% { opacity: 0; }
+    }
+    @keyframes cMoveBig2{
+        0%,66%   { opacity: 0; }
+        67%      { opacity: 1; transform: rotate(180deg); }
+        100%     { opacity: 1; transform: rotate(360deg); }
+    }
     /*  Loader Container */
     .loader-container {
       display: flex;
@@ -138,6 +157,66 @@
     .loader-l5::after {
       transform: rotate(60deg);
     }
+    .ring_small{
+        height:50px;
+        width:50px;
+        aspect-ratio: 1/1;
+        border:5px solid lightskyblue;
+        border-radius:50%;
+        display:inline-block;
+        flex-shrink:0;
+        box-sizing:border-box;
+        position:relative;
+    }
+    .ring_big{
+        height:100px;
+        width:100px;
+        aspect-ratio: 1/1;
+        border-radius:50%;
+        border: 5px solid lightskyblue;
+        display:inline-block;
+        flex-shrink:0;
+        box-sizing:border-box;
+        position:relative;
+        
+    }
+    .container{
+        display:flex;
+        align-items: center;
+        
+    }
+    .circle {
+      width: 20px;
+      height: 20px;
+      background: black;
+      border-radius: 50%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    .circle-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+    }
+        .circle-wrapper.cMoveBig1{
+        animation: cMoveBig1 4s linear infinite;
+    }
+    .circle-wrapper.cMoveSmall{
+        transform:translate(-50%,-50%);
+        animation: cMoveSmall 4s linear infinite;
+    }
+    .circle-wrapper.cMoveBig2{
+        animation: cMoveBig2 4s linear infinite;
+    }
+    .circle.big{
+        transform:none; /*transform: translateX(40px);*/
+    }
+    .circle.small{
+        transform:none; /*transform: translateX(17px);*/
+    }
 
     .loader-cards {
       display: flex;
@@ -218,13 +297,17 @@
     /* Loader hover animation */
     #loader-preview .loader-spinner,
     #loader-preview .loader-dots,
-    #loader-preview .loader-bars {
+    #loader-preview .loader-bars,
+    #loader-preview .ring_small,
+    #loader-preview .ring_big {
       transition: box-shadow 0.2s, transform 0.2s, border-top-color 0.2s, animation-duration 0.2s;
       cursor: pointer;
     }
     #loader-preview .loader-spinner:hover,
     #loader-preview .loader-dots:hover,
-    #loader-preview .loader-bars:hover {
+    #loader-preview .loader-bars:hover,
+    #loader-preview .ring_small:hover,
+    #loader-preview .ring_big:hover {
       box-shadow: 0 0 0 4px #4f8cff33, 0 2px 16px #4f8cff22;
       transform: scale(1.08) rotate(8deg);
       border-top-color: #2563eb !important;
@@ -320,6 +403,22 @@
 </head>
 <body>
   <!-- Navigation -->
+
+  <nav class="navbar">
+    <div class="nav-left">
+     <a href="/index.html" class="home-link"> <img src="../images/logo.png" alt="Logo" class="logo" />
+      <h1 class="site-name">Animate It Now</h1></a>
+     
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../templates.html" class="active">Templates</a></li>
+      <li><a href="../contributors.html">Contributors</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+  </nav>
+
  <nav class="navbar scroll-fade">
       <div class="nav-left">
         <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
@@ -384,6 +483,7 @@
       </div>
     </nav>
 
+
   <!-- Main Section -->
   <main class="templates-main">
     <h1>Loaders</h1>
@@ -393,6 +493,7 @@
       <div class="loader-card active" data-type="spinner">Spinner</div>
       <div class="loader-card"        data-type="dots">Dots</div>
       <div class="loader-card"        data-type="bars">Bars</div>
+      <div class="loader-card"        data-type="infinity">Infinity Symbol</div>
     </section>
 
        <!-- Controls & Preview Playground -->
@@ -428,6 +529,16 @@
       <div class="loader-l3"></div>
       <div class="loader-l4"></div>
       <div class="loader-l5"></div>
+      <div class="ring_small"></div>
+      <div class="ring_big"></div>
+      <div class="container"></div>
+      <div class="circle"></div>
+      <div class="circle-wrapper"></div>
+      <div class="circle-wrapper cMoveBig1"></div>
+      <div class="circle-wrapper cMoveBig2"></div>
+      <div class="circle-wrapper cMoveSmall"></div>
+      <div class="circle big"></div>
+      <div class="circle small"></div>
     </div>
   </main>
 
@@ -450,7 +561,25 @@
     const loaders = {
       spinner: () => '<div class="loader-spinner"></div>',
       dots:    () => '<div class="loader-dots"><div></div><div></div><div></div></div>',
-      bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>'
+      bars:    () => '<div class="loader-bars"><div></div><div></div><div></div><div></div></div>',
+      infinity: () => `
+<div class="container">
+  <div class="ring_small">
+    <div class="circle-wrapper cMoveSmall">
+      <div class="circle small"></div>
+    </div>
+  </div>
+  <div class="ring_big">
+    <div class="circle-wrapper cMoveBig1">
+      <div class="circle big"></div>
+    </div>
+    <div class="circle-wrapper cMoveBig2">
+      <div class="circle big"></div>
+    </div>
+  </div>
+</div>
+`
+
     };
 
     function renderLoader() {
@@ -481,7 +610,7 @@
           dot.style.animationDuration = speed;
           dot.style.background = color;
         });
-      } else {
+      } else if (currentType === 'bars') {
         el.querySelectorAll('div').forEach(bar => {
           bar.style.width            = size / 8 + 'px';
           bar.style.height           = size + 'px';
@@ -489,6 +618,46 @@
           bar.style.animationDuration = speed;
           bar.style.background = color;
         });
+      }else if (currentType === 'infinity'){
+        const ringSmall = el.querySelector('.ring_small');
+        const ringBig   = el.querySelector('.ring_big');
+        const circles   = el.querySelectorAll('.circle');
+        const wrappers  = el.querySelectorAll('.circle-wrapper');
+
+        // Size scaling (rings)
+        const smallSize = size * 0.5;   // half of main size
+        const bigSize   = size;         // full main size
+        ringSmall.style.width  = smallSize + 'px';
+        ringSmall.style.height = smallSize + 'px';
+        ringBig.style.width    = bigSize + 'px';
+        ringBig.style.height   = bigSize + 'px';
+
+        // Border thickness
+        const border = Math.max(2, size / 20) + 'px';
+        ringSmall.style.border = border + ' solid ' + color;
+        ringBig.style.border   = border + ' solid ' + color;
+
+        // Circle dots
+        const circleSize = size / 5;
+        circles.forEach(c => {
+        c.style.background = color;
+        c.style.width = circleSize + 'px';
+        c.style.height = circleSize + 'px';
+        });
+        const smallRadius = smallSize / 2 - circleSize / 2;
+        const bigRadius   = bigSize / 2 - circleSize / 2;
+        el.querySelectorAll('.circle.small').forEach(c => {
+        c.style.transform = `translateX(${smallRadius}px)`;
+        });
+        el.querySelectorAll('.circle.big').forEach(c => {
+        c.style.transform = `translateX(${bigRadius}px)`;
+        });
+
+        // Animation speed
+        wrappers.forEach(w => {
+          w.style.animationDuration = speed;
+        });
+        
       }
 
       updateCodeSnippet();
@@ -530,7 +699,7 @@
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1.0); }
 }`.trim();
-      } else {
+      } else if (currentType === 'bars') {
         css = `
 .loader-bars {
   color: ${color};
@@ -552,11 +721,48 @@
   50% { transform: scaleY(0.3); }
   100% { transform: scaleY(1); }
 }`.trim();
+      }else if (currentType === 'infinity') {
+        css = `
+.container { display: flex; align-items: center; }
+.ring_small {
+  width: ${size}; height: ${size};
+  border: ${Math.max(2, parseInt(size)/16)}px solid ${color};
+  border-radius: 50%;
+  position: relative;
+}
+.ring_big {
+  width: ${size}; height: ${size};
+  border: ${Math.max(2, parseInt(size)/16)}px solid ${color};
+  border-radius: 50%;
+  position: relative;
+}
+.circle {
+  width: calc(${size}/5);
+  height: calc(${size}/5);
+  background: ${color};
+  border-radius: 50%;
+  position: absolute;
+}
+@keyframes cMoveSmall{
+  0%,33%   { opacity: 0; }
+  34%      { opacity: 1; transform: translate(-50%, -50%) rotate(360deg); }
+  66%      { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+  67%,100% { opacity: 0; }
+}
+@keyframes cMoveBig1{
+  0%   { transform: rotate(0deg);   opacity: 1; }
+  33%  { transform: rotate(180deg); opacity: 1; }
+  34%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes cMoveBig2{
+  0%,66%   { opacity: 0; }
+  67%      { opacity: 1; transform: rotate(180deg); }
+  100%     { opacity: 1; transform: rotate(360deg); }
+}`.trim();
       }
-
-      codeBlock.textContent = `<!-- HTML -->\n${loaders[currentType]().trim()}\n\n<!-- CSS -->\n${css}`;
-    }
-
+codeBlock.textContent = `<!-- HTML -->\n${loaders[currentType]().trim()}\n\n<!-- CSS -->\n${css}`;
+}
     cards.forEach(c => {
       c.addEventListener('click', () => {
         cards.forEach(x => x.classList.remove('active'));
@@ -575,6 +781,7 @@
       copyBtn.textContent = 'Copied!';
       setTimeout(() => copyBtn.textContent = 'Copy Code', 1200);
     });
+  
 
     // Initialize
     renderLoader();

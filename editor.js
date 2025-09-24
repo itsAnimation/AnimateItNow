@@ -36,22 +36,34 @@ document.getElementById("resetBtn").addEventListener("click", () => {
   jsEditor.value = "";
   output.srcdoc = "<!DOCTYPE html><html><body></body></html>";
 });
-
-const toggleSwitch = document.getElementById("theme-toggle");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    const savedTheme = localStorage.getItem("theme");
-
-    // Apply saved or preferred theme
-    if (savedTheme) {
-      document.documentElement.setAttribute("data-theme", savedTheme);
-      toggleSwitch.checked = savedTheme === "dark";
-    } else if (prefersDark.matches) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      toggleSwitch.checked = true;
+ 
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.querySelector(".scroll-indicator").style.width = scrollPercent + "%";
+}); 
+// Copy to clipboard functionality
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    const targetId = e.target.getAttribute('data-target');
+    const textarea = document.getElementById(targetId);
+    const tooltip = e.target.parentElement.querySelector('.copy-tooltip');
+    
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
+    } catch (err) {
+      // Fallback for older browsers
+      textarea.select();
+      document.execCommand('copy');
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 1500);
     }
-
-    toggleSwitch.addEventListener("change", () => {
-      const theme = toggleSwitch.checked ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-    });
+  });
+}); 

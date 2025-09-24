@@ -12,29 +12,30 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  
+  <!-- Add animation library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
   <nav class="navbar scroll-fade">
     <div class="nav-left">
-        <a href="/" class="logo-link">
-          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-          <span class="site-name">Animate It Now</span>
-        </a>
+      <a href="index.html" class="home-link">
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </a>
     </div>
 
     <div class="nav-right">
       <ul class="nav-links">
-        <!-- remove active from Home -->
         <li><a href="index.html">Home</a></li>
-        <!-- make active to About as you are in about -->
         <li><a href="about.html" class="active">About</a></li>
+        <li><a href="editor.html" target="_blank">Editor</a></li>
         <li><a href="templates.html">Templates</a></li>
         <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="leaderboard.html">Leaderboard</a></li>
         <!-- cursor toggle switch -->
-         
         <li class="snakeList">
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle">
@@ -66,7 +67,7 @@
           </a>
         </li>
         <li>
-          <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+          <button id="theme-toggle" aria-label="Toggle Theme">
             <i data-lucide="moon"></i>
           </button>
         </li>
@@ -74,132 +75,177 @@
     </div>
   </nav>
 
+  <!-- Animated background elements -->
+  <div class="animated-background">
+    <div class="floating-element floating-element-1"></div>
+    <div class="floating-element floating-element-2"></div>
+    <div class="floating-element floating-element-3"></div>
+  </div>
+
   <main class="about-main">
-    <section class="about-header fade-in">
-      <h1 class="about-title">About <span>AnimateItNow</span></h1>
-      <p class="about-subtitle">A creative platform for beautiful web animations</p>
+    <section class="about-header animate__animated animate__fadeInDown" role="banner" aria-label="About AnimateItNow Header">
+      <h1 class="about-title">
+        About <span class="animate-text">AnimateItNow</span>
+        <span class="underline-accent" aria-hidden="true"></span>
+      </h1>
+      <p class="about-subtitle animate__animated animate__fadeInUp animate__delay-1s">A creative platform for beautiful web animations</p>
     </section>
 
-    <section class="about-section scroll-fade">
-      <div class="about-icon">🎯</div>
+    <section class="about-section scroll-fade animate-section">
+      <div class="about-icon animate__animated animate__bounceIn">🎯</div>
       <div class="about-content">
-        <h2>Our Mission</h2>
-        <p>
-          We provide easy-to-use animation templates for web developers of all skill levels to make their projects more interactive and engaging.
-        <br /><br />
-          This project is a collaborative, open-source platform for sharing and discovering stunning web UI components. Join us to contribute, learn, and inspire others!
+        <h2 class="animate__animated animate__fadeInLeft">Our Mission</h2>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">
+          At <strong>AnimateItNow</strong>, we empower web developers of all skill levels by providing <em>easy-to-use animation templates</em> that bring projects to life with interactivity and style.
         </p>
+        <p class="animate__animated animate__fadeInUp animate__delay-2s">
+          This open-source platform fosters collaboration and creativity, offering a vibrant community where you can share, discover, and contribute stunning web UI components. Join us to build, learn, and inspire!
+        </p>
+        <!-- Interactive counter elements -->
+        <div class="stats-container animate__animated animate__fadeInUp animate__delay-3s">
+          <div class="stat-item">
+            <span class="stat-number" data-count="1000">0</span>
+            <span class="stat-label">Animations</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="500">0</span>
+            <span class="stat-label">Contributors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="50000">0</span>
+            <span class="stat-label">Users</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="about-section scroll-fade">
-      <div class="about-icon">💻</div>
+    <section class="about-section scroll-fade animate-section">
+      <div class="about-icon animate__animated animate__bounceIn">💻</div>
       <div class="about-content">
-        <h2>Technologies</h2>
+        <h2 class="animate__animated animate__fadeInLeft">Technologies <span>We Use</span></h2>
         <div class="about-tech-list">
-          <div class="about-tech-item">
+          <div class="about-tech-item animate__animated animate__fadeInUp" data-animate-delay="0">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="tech-icon" />
             <span>HTML5</span>
           </div>
-          <div class="about-tech-item">
+          <div class="about-tech-item animate__animated animate__fadeInUp" data-animate-delay="1">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="tech-icon" />
             <span>CSS3</span>
           </div>
-          <div class="about-tech-item">
+          <div class="about-tech-item animate__animated animate__fadeInUp" data-animate-delay="2">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon" />
             <span>JavaScript</span>
           </div>
-          <div class="about-tech-item">
+          <div class="about-tech-item animate__animated animate__fadeInUp" data-animate-delay="3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="tech-icon" />
             <span>Git</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about-section scroll-fade">
-      <div class="about-icon">&commat;</div>
+    <section class="about-section scroll-fade animate-section">
+      <div class="about-icon animate__animated animate__bounceIn">📢</div>
       <div class="about-content">
-        <h2>For Everyone</h2>
+        <h2 class="animate__animated animate__fadeInLeft">For <span>Everyone</span></h2>
         <div class="about-audience">
-          <div class="about-audience-item">
-            <h3>Beginners</h3>
-            <p>Learn with simple, well-documented examples</p>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="0">
+            <h3>👶 Beginners</h3>
+            <p>Learn confidently with clear, simple, and well-documented examples that guide you step-by-step.</p>
           </div>
-          <div class="about-audience-item">
-            <h3>Developers</h3>
-            <p>Production-ready components to save time</p>
+          
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="1">
+            <h3>💻 Developers</h3>
+            <p>Utilize production-ready, modular components designed to save you time and streamline your workflow.</p>
           </div>
-          <div class="about-audience-item">
-            <h3>Designers</h3>
-            <p>Inspiration for your next project</p>
+          
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="2">
+            <h3>🎨 Designers</h3>
+            <p>Find fresh inspiration and beautifully crafted animations for your next creative project.</p>
+          </div>
+          
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="3">
+            <h3>🧠 Content Creators</h3>
+            <p>Bring your ideas to life with engaging animations for videos, websites, and interactive media.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about-section scroll-fade">
-      <div class="about-icon">🚀</div>
+    <section class="about-section scroll-fade animate-section">
+      <div class="about-icon animate__animated animate__bounceIn">🚀</div>
       <div class="about-content">
-        <h2>Why Choose <span>AnimateItNow?</span></h2>
+        <h2 class="animate__animated animate__fadeInLeft">Why Choose <span>AnimateItNow?</span></h2>
+        <p class="intro-text animate__animated animate__fadeInUp animate__delay-1s">
+          AnimateItNow empowers you with cutting-edge, easy-to-use animation tools designed to accelerate your development workflow and elevate your web projects with stunning visuals.
+        </p>
         <div class="about-audience">
-          <div class="about-audience-item">
-            <h3>Super Fast Templates</h3>
-            <p>Pre-built animations ready to use in seconds.</p>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="0">
+            <h3>⚡ Lightning-Fast Integration</h3>
+            <p>Drop animations into your project in seconds — no setup, no dependencies, just pure CSS and JavaScript magic ready to go. Build faster, ship sooner.</p>
           </div>
-          <div class="about-audience-item">
-            <h3> Beginner Friendly</h3>
-            <p>Learn with simple, well-documented examples.</p>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="1">
+            <h3>🧑‍💻 Friendly for All Skill Levels</h3>
+            <p>Whether you're a beginner learning the ropes or a seasoned dev under deadline, our intuitive templates and detailed docs let you focus on building — not debugging.</p>
           </div>
-          <div class="about-audience-item">
-            <h3>Modern UI Components</h3>
-            <p>Designed to inspire and speed up your workflow.</p>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="2">
+            <h3>🎨 Pixel-Perfect & Responsive UI</h3>
+            <p>Modern, responsive animation components crafted for today's web — fluid across devices, smooth across browsers, and delightful to users.</p>
+          </div>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="3">
+            <h3>🛠️ Built for Real Projects</h3>
+            <p>Every animation is modular, scalable, and production-ready — perfect for portfolios, landing pages, dashboards, and everything in between.</p>
+          </div>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="4">
+            <h3>🌍 Open-Source & Community Powered</h3>
+            <p>Join hundreds of contributors shaping the future of web animation. Collaborate, learn, and inspire — one pull request at a time.</p>
+          </div>
+          <div class="about-audience-item animate__animated animate__fadeInUp" data-animate-delay="5">
+            <h3>🚀 Continuous Innovation & Updates</h3>
+            <p>We're committed to evolving with the web. Expect regular updates, new animation effects, and cutting-edge features driven by community feedback and modern web trends.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about-cta scale-in">
-      <h2>Ready to contribute?</h2>
-      <p>Join our open-source community!</p>
-      <a href="https://github.com/itsAnimation/AnimateItNow/" target="_blank" class="about-button pulse">View on GitHub</a>
+    <section class="about-cta scale-in animate__animated animate__pulse animate__infinite">
+      <h2 class="animate__animated animate__fadeInUp">🌟 Ready to <span>Contribute?</span></h2>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Collaborate, learn, and build with a passionate community of developers and designers. From bug fixes to full-blown features — every contribution counts!
+      </p>
+      <a href="https://github.com/itsAnimation/AnimateItNow/" target="_blank" rel="noopener noreferrer" class="about-button pulse animate__animated animate__bounceIn animate__delay-2s" aria-label="Join AnimateItNow on GitHub">
+        🚀 Join Us on GitHub
+      </a>
+      <!-- Additional interactive element -->
+      <div class="cta-extra animate__animated animate__fadeInUp animate__delay-3s">
+        <p>Or try our <a href="editor.html" class="editor-link">Animation Editor</a> to create your own animations!</p>
+      </div>
     </section>
   </main>
 
   <footer class="footer scroll-fade">
     <div class="footer-content">
       <div class="footer-left">
-        <a href="index.html" style="text-decoration: none; color: inherit;">
-          <h2>AnimateItNow</h2>
-        </a>
+        <h2>AnimateItNow</h2>
         <p>Creating impactful web animations and templates for everyone.</p>
-      </div>
-      <div class="footer-about-section">
-        <h3>Know us more</h3>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contributors.html">Contributors</a>
-          <a href="contact.html">Contact</a>
-          <a href="leaderboard.html">Leaderboard</a>
-          <a href="templates.html">Templates</a>
-          <a href="playground.html">Hover-Effects</a>
-          <a href="editor.html" target="_blank">Editor</a>
       </div>
       <div class="footer-right">
         <h4>Connect With Us</h4>
         <ul>
           <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
-
           <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-          
           <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© <script>document.write(new Date().getFullYear())</script> AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
     </div>
   </footer>
+  
   <div id="cursor-snake"></div>
   <script src="https://unpkg.com/lucide@latest"></script>
-
-<script>
+  <script>
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -221,7 +267,6 @@
 
     themeToggle?.addEventListener('click', () => {
       setTheme(!body.classList.contains('dark-theme'));
-      
     });
 
     // Load lucide icons after DOM is ready
@@ -230,10 +275,45 @@
         lucide.createIcons();
       }
     });
+    
+    // Custom animation handling
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add staggered animations to tech items
+      const techItems = document.querySelectorAll('.about-tech-item');
+      techItems.forEach((item, index) => {
+        const delay = index * 0.2;
+        item.style.animationDelay = `${delay}s`;
+      });
+      
+      // Add staggered animations to audience items
+      const audienceItems = document.querySelectorAll('.about-audience-item');
+      audienceItems.forEach((item, index) => {
+        const delay = index * 0.1;
+        item.style.animationDelay = `${delay}s`;
+      });
+      
+      // Add scroll-triggered animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated');
+            
+            // Add specific animations based on data attributes
+            const delay = entry.target.dataset.animateDelay;
+            if (delay !== undefined) {
+              entry.target.style.animationDelay = `${delay * 0.2}s`;
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Observe elements with data-animate-delay
+      document.querySelectorAll('[data-animate-delay]').forEach(el => {
+        observer.observe(el);
+      });
+    });
   </script>
   <script src="script.js"></script>
-  </body>
-
+</body>
 <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
-
 </html>
