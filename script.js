@@ -1,4 +1,3 @@
-
 // Function for displaying FAQ categories
 function displaycategory(category){
   const general=document.getElementById('general-faq');
@@ -56,23 +55,19 @@ typewriter();
 
 // Function to make the FAQ collapsible
 function toggleFAQ(element) {
-  if (!document.querySelector(".faq-item")) return
-  const faqItem = element.closest(".faq-item") //to make sure we can click anywhere
-  const isActive = faqItem.classList.contains("active")
-
-  // Close all other FAQ items
-  document.querySelectorAll(".faq-item.active").forEach((item) => {
-    if (item !== faqItem) {
-      item.classList.remove("active")
-    }
-  })
-
-  // Toggle current item
-  faqItem.classList.toggle("active", !isActive)
+  // Ensure we have a valid element
+  if (!element || !document.querySelector(".faq-item")) return;
+  
+  // Find the closest FAQ item container
+  const faqItem = element.closest(".faq-item");
+  if (!faqItem) return;
+  
+  // Toggle the active class on this specific FAQ item
+  faqItem.classList.toggle("active");
 }
 
 // Make toggleFAQ globally accessible
-window.toggleFAQ = toggleFAQ
+window.toggleFAQ = toggleFAQ;
 
 // Global (or module-level) variables to store animation and listener references for snake cursor
 let currentAnimationId = null
@@ -88,7 +83,7 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches
 
 function enableSnakeCursor() {
   // Always ensure a clean slate before enabling.
-  // This is crucial for persistence across page navigations (especially with bfcache).
+  // This is crucial for persistence across page navigations (especially with bfcache)
   disableSnakeCursor()
 
   snakeContainerElement = document.createElement("div") // Assign to global variable
