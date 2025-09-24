@@ -123,6 +123,62 @@
       </div>
 
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
+  <!-- styles & external resources -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Google Fonts for hero section -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="fair">
+  <!-- ProgressBar -->
+  <div id="progress-bar"></div>
+  <!-- ProgressBar Ends -->
+
+  <!-- ───────── NAVBAR ───────── -->
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+
     <div class="nav-right">
         <button class="hamburger" aria-label="Toggle Menu">
     <span></span>
@@ -210,28 +266,57 @@
             >
               <i data-lucide="moon"></i>
             </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <!-- ───────── HERO ───────── -->
-    <header class="landing-section">
-      <h1 class="fade-in">Welcome to <span>AnimateItNow</span></h1>
-      <h2 class="fade-in delay-1">
-        A creative space where contributors build beautiful web components.
-      </h2>
-      <p class="fade-in delay-2">
-        This project is a collaborative, open-source platform for sharing and
-        discovering stunning web UI components. Join us to contribute, learn,
-        and inspire others!
-      </p>
-      <a
-        href="#faq"
-        class="cta-btn bounce ripple btn-press"
-        onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });"
-      >
-        Get Started
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ───────── HERO ───────── -->
+  <header class="landing-section">
+    <style>
+      .hero-title {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #fff;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      }
+      .hero-title span {
+        font-style: italic;
+        color: #ff6a00;
+        
+      }
+      .hero-subtitle {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #f3f3f3;
+        text-align: center;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      }
+      
+    </style>
+    <h1 class="animated fade-slide-up delay-0 hero-title">Welcome to <span>AnimateItNow</span></h1>
+    <h2 class="animated fade-slide-up delay-1 hero-subtitle">
+      A creative space where contributors build beautiful web components.
+    </h2>
+    <p class="animated fade-slide-up delay-2" style="color: white;">
+      This project is a collaborative, open-source platform for sharing and discovering stunning web UI components. Join us to contribute, learn, and inspire others!
+    </p>
+
+    
+    <div class="hero-buttons animated delay-3">
+      <a href="#faq" class="cta-btn ripple btn-press">Get Started</a>
+      <a href="editor.html" target="_blank" class="editor-btn ripple btn-press" rel="noopener noreferrer">
+        <i class="fas fa-code"></i> Code Editor
+
       </a>
     </header>
 
@@ -422,51 +507,73 @@
               </div>
             </div>
           </div>
-          <!-- /faq-list -->
-        </div>
-        <!-- /faq-container -->
-      </section>
-      <div id="page" class="site">
-        <div class="container">
-          <div class="testi">
-            <div class="head">
-              <h3>Testmonials</h3>
-              <p>See What People are saying...</p>
-            </div>
-            <div class="body swiper">
-              <ul class="swiper-wrapper">
-                <li class="swiper-slide">
-                  <div class="wrapper">
-                    <div class="thumbnail">
-                      <img src="images/amn.jpg" alt="" />
-                    </div>
-                    <div class="aside">
-                      <p>
-                         AnimateItNow transformed my full stack projects, making them dynamic and engaging. 
-                         Integrating it was effortless and truly enhanced the user experience.
-                      </p>
-                      <div class="name">
-                        <h4>Aman Singh</h4>
-                        <div></div>
-                        <p>Full Stack Developer</p>
-                      </div>
+
+
+        </div><!-- /faq-list -->
+      </div><!-- /faq-container -->
+    </section>
+    <div id="page" class="site">
+      <div class="container">
+        <div class="testi">
+          <div class="head">
+            <h3 style="color: white;">Testmonials</h3>
+            <p style="color: white;">See What People are saying...</p>
+          </div>
+          <div class="body swiper">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img1.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p style="color: white;">AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
+                    <div class="name">
+                      <h4>Priya Verma</h4>
+                      <p>UI/UX Designer at PixelCraft</p>
                     </div>
                   </div>
-                </li>
-                <li class="swiper-slide">
-                  <div class="wrapper">
-                    <div class="thumbnail">
-                      <img src="images/img2.jpg" alt="" />
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img2.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p style="color: white;">It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
+                    <div class="name">
+                      <h4>Rohan Malhotra</h4>
+                      <p>Freelance Web Developer</p>
                     </div>
-                    <div class="aside">
-                      <p>
-                        It’s the fastest way I’ve ever added beautiful
-                        animations to a site. My clients love the results!
-                      </p>
-                      <div class="name">
-                        <h4>Rohan Malhotra</h4>
-                        <p>Freelance Web Developer</p>
-                      </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img3.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p style="color: white;">Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
+                    <div class="name">
+                      <h4>Alisha Singh</h4>
+                      <p>Frontend Engineer at DevNest</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="wrapper">
+                  <div class="thumbnail">
+                    <img src="images/img4.jpg" alt="">
+                  </div>
+                  <div class="aside">
+                    <p style="color: white;">The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
+                    <div class="name">
+                      <h4>David Kim</h4>
+                      <p>Product Engineer at Innovix</p>
+
                     </div>
                   </div>
                 </li>
@@ -486,21 +593,13 @@
                       </div>
                     </div>
                   </div>
-                </li>
-                <li class="swiper-slide">
-                  <div class="wrapper">
-                    <div class="thumbnail">
-                      <img src="images/img4.jpg" alt="" />
-                    </div>
-                    <div class="aside">
-                      <p>
-                        The lightweight design and modularity of AnimateItNow
-                        makes it perfect for modern frontend teams.
-                      </p>
-                      <div class="name">
-                        <h4>David Kim</h4>
-                        <p>Product Engineer at Innovix</p>
-                      </div>
+
+                  <div class="aside">
+                    <p style="color: white;">I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
+                    <div class="name">
+                      <h4>Zoya Khan</h4>
+                      <p>Creative Director at StudioZ</p>
+
                     </div>
                   </div>
                 </li>
@@ -520,21 +619,13 @@
                       </div>
                     </div>
                   </div>
-                </li>
-                <li class="swiper-slide">
-                  <div class="wrapper">
-                    <div class="thumbnail">
-                      <img src="images/img6.jpg" alt="" />
-                    </div>
-                    <div class="aside">
-                      <p>
-                        It blends so seamlessly with Tailwind and modern
-                        frameworks. A must-have for every frontend dev!
-                      </p>
-                      <div class="name">
-                        <h4>Anuj Mehta</h4>
-                        <p>Full Stack Developer</p>
-                      </div>
+
+                  <div class="aside">
+                    <p style="color: white;">It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
+                    <div class="name">
+                      <h4>Anuj Mehta</h4>
+                      <p>Full Stack Developer</p>
+
                     </div>
                   </div>
                 </li>
