@@ -290,12 +290,13 @@ body {
 .nav-left {
   display: flex;
   align-items: center;
-  width: 25ch;
   position: relative;
   gap: 12px;
-  color:#00d1ff
+  color: #00d1ff;
+  white-space: nowrap; /* prevent text wrapping */
+  min-width: 0;        /* allow flex shrinking */
+  overflow: hidden;    /* ensures no overflow glitch */
 }
-
 .logo {
   height: 36px;
   width: 36px;
@@ -333,12 +334,10 @@ body {
   font-weight: 700;
   font-size: 1.3rem;
   letter-spacing: 0.5px;
-  cursor: pointer;
   border-right: 2px solid var(--white);
-  white-space: nowrap;
+  white-space: nowrap; /* force single line */
   overflow: hidden;
   width: 0;
-  /* Add animation in website Name */
   animation: typing 3s steps(14) 1s infinite,
     blink 0.6s infinite step-end alternate;
 }
