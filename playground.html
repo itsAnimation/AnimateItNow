@@ -6,174 +6,879 @@
     <title>Hover Effects | AnimateItNow</title>
     <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-</head>
-<body class="dark">
-<nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
-    </div>
-
-    <div class="nav-right">
-      <ul class="nav-links">
-        <!-- remove active from Home -->
-        <li><a href="index.html">Home</a></li>
-        <!-- make active to About as you are in about -->
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>
-        <!-- cursor toggle switch -->
-         
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <!-- github icon -->
-        <li>
-          <a href="https://github.com/itsAnimation/AnimateItNow"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             aria-label="GitHub Repo"
-             class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-          </a>
-        </li>
-        <li><button id="theme-toggle" aria-label="Toggle Theme">
-              <i data-lucide="moon"></i>
-            </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <main class="playground-main">
-    <section class="playground-section ">
-        <h1 class="fade-in">Live Transition Playground</h1>
-        <div class="para-box fade-in"><p>Hover over the boxes to experience different CSS style effects!</p></div>
-        <div class="effects">
-            <div class="box scale">Scale</div>
-            <div class="box translate">Translate</div>
-            <div class="box rotate">Rotate</div>
-            <div class="box Box-Shadow">Box-Shadow</div>
-            <div class="box Background-Color">Background-Color</div>
-            <div class="box Color">Color</div>
-            <div class="box blur">Blur</div>
-            <div class="box skew">Skew</div>
-            <div class="box fade">Fade</div>
-            <div class="box bounce">Bounce</div>
-            <div class="box text-shadow">Text Shadow</div>
-        </div>
-    </section>
-  </main>
-
-  <footer class="footer scroll-fade">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
-      </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
-
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-          
-          <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-    </div>
-  </footer>
-  <div id="cursor-snake"></div>
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-<script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    function setTheme(isDark) {
-      const newIcon = isDark ? 'sun' : 'moon';
-      body.classList.toggle('dark-theme', isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      
-      if (themeToggle) {
-        themeToggle.innerHTML = `<i data-lucide="${newIcon}"></i>`;
-        lucide.createIcons();
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
-
-    themeToggle?.addEventListener('click', () => {
-      setTheme(!body.classList.contains('dark-theme'));
-      
-    });
-
-    // Load lucide icons after DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-    });
-  </script>
-  <script src="script.js"></script>
-  <!-- PWA Support -->
-  <!-- <script src="pwa.js"></script> -->
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6c63ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#6c63ff" />
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            --primary: #6c63ff;
+            --primary-light: #8a84ff;
+            --primary-dark: #554fd8;
+            --secondary: #ff6584;
+            --accent: #36d1dc;
+            --text: #2a2a3c;
+            --text-light: #6c757d;
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --border: #dee2e6;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        /* Dark Mode Variables */
+        .dark-theme {
+            --primary: #8a84ff;
+            --primary-light: #a8a4ff;
+            --primary-dark: #6c63ff;
+            --secondary: #ff8fa3;
+            --accent: #4dd0e1;
+            --text: #f8f9fa;
+            --text-light: #a0a0a0;
+            --bg: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #2a2a2a;
+            --border: #404040;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* Header/Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .dark-theme .navbar {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled {
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .dark-theme .navbar.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Snake cursor toggle */
+        .snakeList {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-tertiary);
+            transition: var(--transition);
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .snakeLabel {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .github-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .github-icon:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        #theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        /* Playground Main */
+        .playground-main {
+            padding-top: var(--header-height);
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
+        }
+
+        .playground-section {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .playground-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .playground-title span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .playground-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Effects Grid */
+        .effects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .box {
+            height: 200px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .box span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Scale Effect */
+        .scale:hover {
+            transform: scale(1.1);
+        }
+
+        /* Translate Effect */
+        .translate:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Rotate Effect */
+        .rotate:hover {
+            transform: rotate(15deg);
+        }
+
+        /* Box Shadow Effect */
+        .Box-Shadow:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Background Color Effect */
+        .Background-Color:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Color Effect */
+        .Color:hover {
+            color: var(--primary);
+        }
+
+        /* Blur Effect */
+        .blur:hover {
+            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Skew Effect */
+        .skew:hover {
+            transform: skewX(-10deg);
+        }
+
+        /* Fade Effect */
+        .fade:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Bounce Effect */
+        .bounce:hover {
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Text Shadow Effect */
+        .text-shadow:hover {
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Code Display */
+        .code-display {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-top: 60px;
+            text-align: left;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .code-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .code-content {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-left h2 {
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-right h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-right ul {
+            list-style: none;
+        }
+
+        .footer-right li {
+            margin-bottom: 10px;
+        }
+
+        .footer-right a {
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: var(--primary);
+        }
+
+        .footer-right a i {
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .playground-title {
+                font-size: 2.8rem;
+            }
+            
+            .effects {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .playground-title {
+                font-size: 2.2rem;
+            }
+            
+            .playground-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .effects {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .playground-title {
+                font-size: 1.8rem;
+            }
+            
+            .box {
+                height: 150px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation for fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="https://via.placeholder.com/40x40/6c63ff/ffffff?text=AI" alt="AnimateItNow Logo" class="logo" />
+            <span class="site-name">Animate It Now</span>
+        </div>
+
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="playground.html" class="active" style="white-space: nowrap">Hover-Effects</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <!-- cursor toggle switch -->
+                <li class="snakeList">
+                    <label class="switch" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="snakeLabel">Snake Cursor</span>
+                </li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow"
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="GitHub Repo"
+                       class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Playground Main -->
+    <main class="playground-main">
+        <section class="playground-section">
+            <div class="container">
+                <h1 class="playground-title fade-in">Live Transition Playground</h1>
+                <p class="playground-subtitle fade-in">Hover over the boxes to experience different CSS hover effects!</p>
+                
+                <div class="effects">
+                    <div class="box scale fade-in"><span>Scale</span></div>
+                    <div class="box translate fade-in"><span>Translate</span></div>
+                    <div class="box rotate fade-in"><span>Rotate</span></div>
+                    <div class="box Box-Shadow fade-in"><span>Box Shadow</span></div>
+                    <div class="box Background-Color fade-in"><span>Background Color</span></div>
+                    <div class="box Color fade-in"><span>Text Color</span></div>
+                    <div class="box blur fade-in"><span>Blur</span></div>
+                    <div class="box skew fade-in"><span>Skew</span></div>
+                    <div class="box fade fade-in"><span>Fade</span></div>
+                    <div class="box bounce fade-in"><span>Bounce</span></div>
+                    <div class="box text-shadow fade-in"><span>Text Shadow</span></div>
+                </div>
+
+                <!-- Code Display -->
+                <div class="code-display fade-in">
+                    <div class="code-header">
+                        <h3 class="code-title">CSS Code for Hover Effects</h3>
+                        <button class="copy-btn" id="copyCssBtn">
+                            <i class="fas fa-copy"></i> Copy CSS
+                        </button>
+                    </div>
+                    <div class="code-content">
+                        <pre id="cssCode">/* Scale Effect */
+.scale:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Translate Effect */
+.translate:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+}
+
+/* Rotate Effect */
+.rotate:hover {
+    transform: rotate(15deg);
+    transition: transform 0.3s ease;
+}
+
+/* Box Shadow Effect */
+.Box-Shadow:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Background Color Effect */
+.Background-Color:hover {
+    background: #6c63ff;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Color Effect */
+.Color:hover {
+    color: #6c63ff;
+    transition: color 0.3s ease;
+}
+
+/* Blur Effect */
+.blur:hover {
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Skew Effect */
+.skew:hover {
+    transform: skewX(-10deg);
+    transition: transform 0.3s ease;
+}
+
+/* Fade Effect */
+.fade::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6c63ff, #36d1dc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.fade:hover::before {
+    opacity: 0.1;
+}
+
+/* Bounce Effect */
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    80% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce:hover {
+    animation: bounce 0.5s;
+}
+
+/* Text Shadow Effect */
+.text-shadow:hover {
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: text-shadow 0.3s ease;
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h2>AnimateItNow</h2>
+                    <p>Creating impactful web animations and templates for everyone.</p>
+                </div>
+                <div class="footer-right">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        function setTheme(isDark) {
+            const icon = themeToggle.querySelector('i');
+            body.classList.toggle('dark-theme', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            if (icon) {
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(!body.classList.contains('dark-theme'));
+        });
+
+        // Copy CSS code functionality
+        const copyCssBtn = document.getElementById('copyCssBtn');
+        const cssCode = document.getElementById('cssCode');
+
+        copyCssBtn.addEventListener('click', () => {
+            const textArea = document.createElement('textarea');
+            textArea.value = cssCode.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show feedback
+            const originalText = copyCssBtn.innerHTML;
+            copyCssBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            
+            setTimeout(() => {
+                copyCssBtn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Snake cursor functionality (placeholder)
+        const cursorToggle = document.getElementById('cursorToggle');
+        if (cursorToggle) {
+            cursorToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.style.cursor = 'none';
+                    // Add snake cursor implementation here
+                } else {
+                    document.body.style.cursor = 'default';
+                }
+            });
+        }
+
+        // Add fade-in animation to elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for fade-in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsToAnimate = document.querySelectorAll('.box, .code-display');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
