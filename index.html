@@ -1,985 +1,1509 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimateItNow - CSS Animation Templates & Effects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- styles & external resources -->
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        /* CSS Variables for Theming */
+        :root {
+            --primary: #6c63ff;
+            --primary-light: #8a84ff;
+            --primary-dark: #554fd8;
+            --secondary: #ff6584;
+            --accent: #36d1dc;
+            --text: #2a2a3c;
+            --text-light: #6c757d;
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --border: #dee2e6;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary: #8a84ff;
+            --primary-light: #a8a4ff;
+            --primary-dark: #6c63ff;
+            --secondary: #ff8fa3;
+            --accent: #4dd0e1;
+            --text: #f8f9fa;
+            --text-light: #a0a0a0;
+            --bg: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #2a2a2a;
+            --border: #404040;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3, h4, h5 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e05574;
+            box-shadow: 0 10px 20px rgba(255, 101, 132, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Header/Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .header {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header.scrolled {
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="dark"] .header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 2px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(108, 99, 255, 0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(108, 99, 255, 0.2);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-light);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-animation {
+            margin-top: 80px;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><path fill="%236c63ff" fill-opacity="0.1" d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,186.7C672,192,768,192,864,181.3C960,171,1056,149,1152,133.3C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            animation: wave 10s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Templates Showcase */
+        .templates-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .templates-showcase .section-title h2,
+        .templates-showcase .section-title p {
+            color: white;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .template-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .template-info {
+            padding: 20px;
+        }
+
+        .template-info h3 {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .template-info p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--bg-secondary);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .step-content {
+            padding: 0 15px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--bg);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: var(--bg-secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        [data-theme="dark"] .testimonials {
+            background: linear-gradient(135deg, #1a2a3a 0%, #3a1a2a 100%);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonial-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .testimonial-nav button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-nav button.active {
+            background-color: var(--primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-buttons .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta-buttons .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-buttons .btn-outline {
+            background: transparent;
+            border-color: white;
+            color: white;
+        }
+
+        .cta-buttons .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 80px 0 30px;
+            position: relative;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after,
+        .footer-social h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .newsletter {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .newsletter h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-light);
+        }
+
+        .newsletter-form button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .step-number {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                border-top: 1px solid var(--border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-buttons,
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn,
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body data-theme="light">
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
 
-  <!-- ProgressBar -->
-  <div id="progress-bar"></div>
-  <!-- ProgressBar Ends -->
-
-  <!-- ───────── NAVBAR ───────── -->
-  <nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-      <span class="site-name">Animate It Now</span>
-    </div>
-
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  <!--leaderboard linkup> -->
-        <!-- cursor toggle switch -->
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <!-- github icon -->
-        <li>
-
-          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
-            aria-label="GitHub Repo" class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-               -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2
-               -3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67
-               7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51
-               .56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-               2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-            </svg>
-          </a>
-        </li>
-        <li><button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
-              <i data-lucide="moon"></i>
-            </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ───────── HERO ───────── -->
-  <header class="landing-section">
-    <h1 class="fade-in">Welcome to <span>AnimateItNow</span></h1>
-    <h2 class="fade-in delay-1">
-      A creative space where contributors build beautiful web components.
-    </h2>
-    <p class="fade-in delay-2">
-      This project is a collaborative, open-source platform for sharing and
-      discovering stunning web UI components. Join us to contribute, learn,
-      and inspire others!
-    </p>
-    <a href="#faq" class="cta-btn bounce ripple btn-press"
-   onclick="event.preventDefault(); const el = document.getElementById('faq'); window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });">
-   Get Started
-</a>
-
-  </header>
-
-  <!-- ───────── MAIN ───────── -->
-  <main>
-    <!-- ─────── OUR SINGLE STATIC FAQ ─────── -->
-    <section id="faq" class="faq-section info-section scroll-fade">
-      <div class="faq-container">
-        <h2 class="faq-title">Frequently Asked Questions</h2>
-        <p class="faq-subtitle">Everything you need to know about AnimateItNow</p>
-
-        <div class="faq-list">
-          <!-- 01 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>What is this project?</h3>
-              <div class="faq-icon-static"><i class="fas fa-question"></i></div>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <span class="site-name">AnimateItNow</span>
             </div>
-            <div class="faq-answer-content">
-              <p>AnimateItNow is an open-source platform that helps beginners learn web development by building and exploring simple animations using HTML, CSS, and JavaScript. It offers a collaborative space for contributors to create, improve, and share animation templates while gaining hands-on coding experience.</p>
-            </div>
-          </div>
-
-          <!-- 02 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header"onclick="toggleFAQ(this)">
-              <h3>How to contribute?</h3>
-              <div class="faq-icon-static"><i class="fas fa-code-branch"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>
-                <li>Fork this repository to your own GitHub account.</li>
-                <li> Add your unique and creative web components or improvements.</li>
-                <li>All skill levels are welcome — whether you're a beginner or a pro!</li>
-                <li>Submit a Pull Request with a short description of your changes.</li>
-                <li>Need ideas? Check out our Templates page for inspiration!</li>
-              </p>
-            </div>
-          </div>
-
-          <!-- 03 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header"onclick="toggleFAQ(this)">
-              <h3>Why open source?</h3>
-              <div class="faq-icon-static"><i class="fas fa-users"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Open source is more than just code — it's about collaboration, learning, and community.
-              It empowers developers from all backgrounds to contribute, share knowledge, and grow together. By working openly, we drive innovation, improve transparency, and build real-world solutions that benefit everyone.</p>
-            </div>
-          </div>
-
-          <!-- 04 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header"onclick="toggleFAQ(this)">
-              <h3>HTML Basics</h3>
-              <div class="faq-icon-static"><i class="fas fa-code"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Learning HTML, especially semantic HTML, is the foundation of web development. It helps you create structured and meaningful web pages that are not only easier to maintain but also accessible to all users, including those using screen readers. Semantic tags improve readability, and ensure that your websites follow modern best practices.</p>
-            </div>
-          </div>
-
-          <!-- 05 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>CSS Styling</h3>
-              <div class="faq-icon-static"><i class="fas fa-paint-brush"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>CSS is what brings your web pages to life. While HTML gives your site structure, CSS adds the design — colors, layouts, animations, responsiveness, and overall look and feel. It allows developers to create visually appealing and user-friendly websites that work well across different devices and screen sizes.</p>
-            </div>
-          </div>
-
-          <!-- 06 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>JavaScript Logic</h3>
-              <div class="faq-icon-static"><i class="fas fa-microchip"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>JavaScript is the programming language of the web. It adds interactivity and dynamic behavior to your web pages — like sliders, buttons that respond to clicks, form validation, animations, and real-time updates. Without JavaScript, a website would be static and unresponsive. It's essential for building modern, interactive user experiences..</p>
-            </div>
-          </div>
-
-          <!-- 07 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>Animations</h3>
-              <div class="faq-icon-static"><i class="fas fa-wave-square"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Create smooth, engaging animations that not only delight users but also enhance usability and guide user interaction. Well-designed animations can make interfaces feel more responsive, intuitive, and modern.</p>
-            </div>
-          </div>
-
-          <!-- 08 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>Open Source Contributors</h3>
-              <div class="faq-icon-static"><i class="fas fa-heart"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Join our welcoming community and collaborate on fun, creative, and impactful web development projects.
-                Whether you're just starting out or an experienced dev, there's a place for you here!</p>
-            </div>
-          </div>
-
-          <!-- 9 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>Is AnimateItNow responsive on all devices?</h3>
-              <div class="faq-icon-static"><i class="fa-solid fa-mobile-screen"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Absolutely! All components are designed with responsiveness in mind. Feel free to report issues if any
-                component breaks on smaller screens.</p>
-            </div>
-          </div>
-        
-
-          
-
-          <!-- 10 -->
-          <div class="faq-item glow-wrap">
-            <div class="faq-question-header" onclick="toggleFAQ(this)">
-              <h3>How do I preview my changes locally?</h3>
-              <div class="faq-icon-static"><i class="fas fa-desktop"></i></div>
-            </div>
-            <div class="faq-answer-content">
-              <p>Open index.html in a browser or use VS Code's Live Server extension for live preview.</p>
-            </div>
-          </div>
-
-        </div><!-- /faq-list -->
-      </div><!-- /faq-container -->
-    </section>
-    <div id="page" class="site">
-      <div class="container">
-        <div class="testi">
-          <div class="head">
-            <h3>Testmonials</h3>
-            <p>See What People are saying...</p>
-          </div>
-          <div class="body swiper">
-            <ul class="swiper-wrapper">
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img1.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>AnimateItNow turned our static UI into something delightful. The ease of integration is mind-blowing</p>
-                    <div class="name">
-                      <h4>Priya Verma</h4>
-                      <p>UI/UX Designer at PixelCraft</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img2.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>It’s the fastest way I’ve ever added beautiful animations to a site. My clients love the results!</p>
-                    <div class="name">
-                      <h4>Rohan Malhotra</h4>
-                      <p>Freelance Web Developer</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img3.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>Animations were once a pain. Now with AnimateItNow, it feels like magic with every scroll!</p>
-                    <div class="name">
-                      <h4>Alisha Singh</h4>
-                      <p>Frontend Engineer at DevNest</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img4.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>The lightweight design and modularity of AnimateItNow makes it perfect for modern frontend teams.</p>
-                    <div class="name">
-                      <h4>David Kim</h4>
-                      <p>Product Engineer at Innovix</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img5.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>I use AnimateItNow in every prototype I deliver. It brings life to design without slowing things down.</p>
-                    <div class="name">
-                      <h4>Zoya Khan</h4>
-                      <p>Creative Director at StudioZ</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="swiper-slide">
-                <div class="wrapper">
-                  <div class="thumbnail">
-                    <img src="images/img6.jpg" alt="">
-                  </div>
-                  <div class="aside">
-                    <p>It blends so seamlessly with Tailwind and modern frameworks. A must-have for every frontend dev!</p>
-                    <div class="name">
-                      <h4>Anuj Mehta</h4>
-                      <p>Full Stack Developer</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="playground.html">Hover Effects</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                
             </ul>
-            <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
+            
+            <div class="nav-actions">
+                <a href="loginpage.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn">Sign Up</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Create Stunning <span>CSS Animations</span></h1>
+            <p>A comprehensive collection of CSS animation templates and effects for web developers. Join our community to contribute, learn, and inspire others!</p>
+            <div class="hero-buttons">
+                <a href="templates.html" class="btn">Explore Templates</a>
+                <a href="editor.html" class="btn btn-secondary">Try Our Editor</a>
+            </div>
+            <div class="hero-animation"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose AnimateItNow</h2>
+                <p>Discover the features that make our platform the best choice for CSS animations</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Beautiful Templates</h3>
+                    <p>Handcrafted animation templates designed to make your website stand out.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Easy to Use</h3>
+                    <p>Copy-paste ready code snippets that work seamlessly with your projects.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Driven</h3>
+                    <p>Join a vibrant community of developers sharing and improving animations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>All animations are optimized to work perfectly on any device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Lightweight</h3>
+                    <p>Performance-optimized animations that won't slow down your website.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Regular Updates</h3>
+                    <p>New templates and improvements added regularly by our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Showcase -->
+    <section class="templates-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Animation Templates</h2>
+                <p>Explore our most loved animation templates created by the community</p>
+            </div>
+            
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-preview">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Loading Spinners</h3>
+                        <p>10+ creative loading animations for better user experience.</p>
+                        <a href="templates.html" class="btn btn-outline">View Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Hover Effects</h3>
+                        <p>Interactive hover animations for buttons, cards, and images.</p>
+                        <a href="playground.html" class="btn btn-outline">View Template</a>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Scroll Animations</h3>
+                        <p>Reveal content with beautiful scroll-triggered animations.</p>
+                        <a href="templates.html" class="btn btn-outline">View Template</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="templates.html" class="btn">View All Templates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Get started with AnimateItNow in just a few simple steps</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Browse Templates</h3>
+                        <p>Explore our collection of animation templates and find the perfect one for your project.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Copy Code</h3>
+                        <p>Copy the HTML, CSS, and JavaScript code with a single click.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Implement</h3>
+                        <p>Paste the code into your project and customize it to fit your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about AnimateItNow</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I contribute to AnimateItNow?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Fork our repository on GitHub, add your unique animations or improvements, and submit a pull request. All skill levels are welcome!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are the animations responsive?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all animations are designed to be fully responsive and work perfectly on all device sizes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I use these animations in commercial projects?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! All animations are open source and free to use in personal and commercial projects.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How often are new templates added?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>New templates are added regularly by our community of contributors. Check back often for new animations!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Hear from developers who have transformed their projects with AnimateItNow</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Aman Singh">
+                    </div>
+                    <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
+                    <div class="testimonial-author">Aman Singh</div>
+                    <div class="testimonial-role">Full Stack Developer</div>
+                </div>
+                
+                <div class="testimonial-nav">
+                    <button class="active"></button>
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Animate Your Website?</h2>
+            <p>Join thousands of developers who are already creating stunning animations with AnimateItNow</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="btn">Get Started Free</a>
+                <a href="templates.html" class="btn btn-outline">Browse Templates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://via.placeholder.com/40x40/6c63ff/ffffff?text=AI" alt="AnimateItNow Logo" />
+                        <span>AnimateItNow</span>
+                    </div>
+                    <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                    
+                    <div class="newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Get the latest templates and updates directly to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="templates.html"><i class="fas fa-palette"></i> Templates</a></li>
+                        <li><a href="editor.html"><i class="fas fa-code"></i> Editor</a></li>
+                        <li><a href="playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
+                        <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+                        <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Our Location</h3>
+                    <p style="color: var(--text-light); margin-top: 10px;">
+                        <i class="fas fa-map-marker-alt"></i> 123 Animation Street<br>
+                        Web City, Design State 12345
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-      window.swiper = new Swiper('.swiper', {
-        autoHeight: true,
-        loop: true,
-
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      });
+        // Theme Toggle - Perfect Implementation
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const body = document.body;
+        
+        // Function to set theme
+        function setTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update icon
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+        
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (systemPrefersDark) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+        
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Testimonial Navigation
+        const testimonialNavButtons = document.querySelectorAll('.testimonial-nav button');
+        
+        testimonialNavButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                testimonialNavButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+            });
+        });
+        
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+            
+            // Header scroll effect
+            if (window.scrollY > 50) {
+                document.querySelector('.header').classList.add('scrolled');
+            } else {
+                document.querySelector('.header').classList.remove('scrolled');
+            }
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! We'll keep you updated.`);
+            this.reset();
+        });
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+        });
     </script>
-  </main>
-  <!-- ───────── FOOTER ───────── -->
-  <footer class="footer scroll-fade">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
-      </div>
-
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
-          <li class="github"><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank"><i class="fab fa-github fa-beat"></i> GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li> 
-          <!-- fa-beat class added in email for animation -->
-          <li><a href="mailto:contact@animateitnow.com"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li> 
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-    </div>
-  </footer>
-
-  <div id="cursor-snake"></div>
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script src="script.js"></script>
-  <!-- PWA Support -->
-  <script src="pwa.js"></script>
-
-  <!-- testimonials-effect-animations -->
-   <!-- GSSOC'25 Contributor : 6vam4arya -->
-  <style>
-    .testi {
-  animation: fadeIn 1s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Header animations with 3D text effect */
-.testi .head h3 {
-  animation: flipInX 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  text-shadow: 2px 2px 0 rgba(29, 197, 200, 0.2);
-  position: relative;
-}
-
-.testi .head p {
-  animation: flipInY 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
-  animation-fill-mode: both;
-}
-
-@keyframes flipInX {
-  from {
-    transform: perspective(400px) rotateX(90deg);
-    opacity: 0;
-  }
-  40% {
-    transform: perspective(400px) rotateX(-20deg);
-  }
-  60% {
-    transform: perspective(400px) rotateX(10deg);
-    opacity: 1;
-  }
-  80% {
-    transform: perspective(400px) rotateX(-5deg);
-  }
-  to {
-    transform: perspective(400px);
-  }
-}
-
-@keyframes flipInY {
-  from {
-    transform: perspective(400px) rotateY(90deg);
-    opacity: 0;
-  }
-  40% {
-    transform: perspective(400px) rotateY(-20deg);
-  }
-  60% {
-    transform: perspective(400px) rotateY(10deg);
-    opacity: 1;
-  }
-  80% {
-    transform: perspective(400px) rotateY(-5deg);
-  }
-  to {
-    transform: perspective(400px);
-  }
-}
-
-/* Cool neon glow effect for headings */
-.testi .head h3::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  color: transparent;
-  text-shadow: 0 0 10px #1dc5c8, 0 0 20px #1dc5c8, 0 0 30px #1dc5c8;
-  filter: blur(10px);
-  opacity: 0;
-  animation: neonPulse 2s ease-in-out infinite alternate, fadeIn 1s ease-out 1.5s forwards;
-}
-
-@keyframes neonPulse {
-  from { filter: blur(10px); }
-  to { filter: blur(15px); }
-}
-
-/* Holographic wrapper effect */
-.testi .wrapper {
-  transition: all 0.5s ease-out;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-radius: 15px;
-}
-
-.testi .wrapper::before {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.02) 25%,
-    rgba(255,255,255,0.05) 50%,
-    rgba(255,255,255,0.02) 75%,
-    rgba(255,255,255,0) 100%
-  );
-  top: -50%;
-  left: -50%;
-  transform: rotate(45deg);
-  transition: transform 0.5s ease-out;
-  opacity: 0;
-}
-
-.testi .swiper-slide-active .wrapper::before {
-  opacity: 1;
-  animation: holographicShift 8s linear infinite;
-}
-
-@keyframes holographicShift {
-  0% { transform: rotate(45deg) translateY(-100%); }
-  100% { transform: rotate(45deg) translateY(100%); }
-}
-
-/* 3D flip card effect for thumbnail */
-.testi .thumbnail {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.testi .swiper-slide-active .thumbnail {
-  animation: floatAndRotate 5s ease-in-out infinite;
-}
-
-@keyframes floatAndRotate {
-  0%, 100% { transform: translateY(0) rotateY(0); }
-  25% { transform: translateY(-10px) rotateY(5deg); }
-  50% { transform: translateY(0) rotateY(0); }
-  75% { transform: translateY(10px) rotateY(-5deg); }
-}
-
-.testi .thumbnail img {
-  filter: contrast(110%) brightness(105%);
-  transition: all 0.8s ease-out;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.testi .swiper-slide-active .thumbnail img {
-  filter: contrast(110%) brightness(105%);
-  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes popIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Enhanced thumbnail hover with glitch effect */
-.testi .swiper-slide-active .thumbnail:hover img {
-  animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-5px, 5px); }
-  40% { transform: translate(-5px, -5px); }
-  60% { transform: translate(5px, 5px); }
-  80% { transform: translate(5px, -5px); }
-  100% { transform: translate(0); }
-}
-
-/* Fancy liquid blob shape for thumbnail background */
-.testi .thumbnail::before {
-  transition: all 0.8s ease-out;
-  background-color: #1dc5c8;
-}
-
-.testi .swiper-slide-active .thumbnail::before {
-  animation: liquidBlob 10s ease-in-out infinite;
-}
-
-@keyframes liquidBlob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 70%; }
-  75% { border-radius: 40% 30% 70% 30% / 70% 50% 40% 60%; }
-}
-
-/* Text content animations with typewriter effect */
-.testi .aside {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.8s ease-out;
-}
-
-.testi .swiper-slide-active .aside {
-  opacity: 1;
-  transform: translateX(0);
-  animation: slideInRight 0.8s forwards 0.3s;
-}
-
-.testi .swiper-slide-active .aside > p {
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid transparent;
-  width: 0;
-  animation: typing 2s steps(40, end) forwards 0.5s,
-             cursorBlink 1s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; white-space: nowrap; }
-  to { width: 100%; white-space: normal; }
-}
-
-@keyframes cursorBlink {
-  from, to { border-color: transparent; }
-  50% { border-color: #1dc5c8; }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Quote marks with particle effect */
-.testi .aside > p::before,
-.testi .aside > p::after {
-  opacity: 0;
-  transition: all 0.8s ease-out;
-}
-
-.testi .swiper-slide-active .aside > p::before {
-  opacity: 0.3;
-  animation: particleFloat 5s ease-in-out infinite;
-}
-
-.testi .swiper-slide-active .aside > p::after {
-  opacity: 0.3;
-  animation: particleFloat 5.5s ease-in-out infinite reverse;
-}
-
-@keyframes particleFloat {
-  0% { transform: translateY(0) rotate(0); opacity: 0.3; }
-  50% { transform: translateY(-15px) rotate(5deg); opacity: 0.6; }
-  100% { transform: translateY(0) rotate(0); opacity: 0.3; }
-}
-
-/* Name section with 3D text effect */
-.testi .aside .name {
-  opacity: 0;
-  transform: perspective(500px) rotateX(45deg);
-  transform-origin: center bottom;
-  transition: all 0.5s ease-out;
-}
-
-.testi .swiper-slide-active .aside .name {
-  opacity: 1;
-  transform: perspective(500px) rotateX(0);
-  animation: flipUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1s;
-}
-
-@keyframes flipUp {
-  from {
-    opacity: 0;
-    transform: perspective(500px) rotateX(45deg);
-  }
-  to {
-    opacity: 1;
-    transform: perspective(500px) rotateX(0);
-  }
-}
-
-/* Cool neon text effect for name */
-.testi .aside .name h4 {
-  position: relative;
-  display: inline-block;
-  color: #1dc5c8;
-  text-shadow: 0 0 5px rgba(29, 197, 200, 0.5);
-  animation: neonText 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes neonText {
-  from {
-    text-shadow: 0 0 5px rgba(29, 197, 200, 0.5), 
-                0 0 10px rgba(29, 197, 200, 0.3), 
-                0 0 15px rgba(29, 197, 200, 0.2);
-  }
-  to {
-    text-shadow: 0 0 10px rgba(29, 197, 200, 0.8), 
-                0 0 20px rgba(29, 197, 200, 0.5), 
-                0 0 30px rgba(29, 197, 200, 0.3);
-  }
-}
-
-/* Cool hover effect with rainbow gradient underline */
-.testi .swiper-slide-active .aside .name h4::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: -5px;
-  left: 0;
-  background: linear-gradient(90deg, #1dc5c8, #9c27b0, #ff7043, #1dc5c8);
-  background-size: 300% 100%;
-  animation: lineGrow 0.5s forwards 1.5s, gradientShift 3s ease infinite;
-}
-
-@keyframes lineGrow {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Navigation buttons with futuristic glow effect */
-.testi :is(.swiper-button-next, .swiper-button-prev) {
-  transition: all 0.3s ease-out;
-  overflow: hidden;
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev):hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(29, 197, 200, 0.7), 
-              0 0 30px rgba(29, 197, 200, 0.4), 
-              0 0 45px rgba(29, 197, 200, 0.2);
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev)::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(29, 197, 200, 0.8) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.testi :is(.swiper-button-next, .swiper-button-prev):hover::before {
-  opacity: 0.5;
-  animation: pulseButton 1s infinite alternate;
-}
-
-@keyframes pulseButton {
-  from { opacity: 0.3; transform: scale(0.8); }
-  to { opacity: 0.6; transform: scale(1.2); }
-}
-
-/* Pagination bullets with shooting star effect */
-.testi .swiper-pagination span {
-  transition: all 0.3s ease-out;
-  position: relative;
-  overflow: hidden;
-}
-
-.testi .swiper-pagination span:hover {
-  transform: scale(1.5);
-}
-
-.testi .swiper-pagination .swiper-pagination-bullet-active {
-  position: relative;
-}
-
-.testi .swiper-pagination .swiper-pagination-bullet-active::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -100%;
-  width: 300%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #fff, transparent);
-  animation: shootingStar 2s linear infinite;
-}
-
-@keyframes shootingStar {
-  0% { left: -100%; opacity: 0; }
-  50% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-/* Slide transition with matrix effect */
-.swiper-slide {
-  opacity: 0.4;
-  transform: scale(0.85) translateY(30px);
-  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  filter: blur(2px);
-  position: relative;
-}
-
-.swiper-slide::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(29, 197, 200, 0.1) 0%,
-    rgba(0, 0, 0, 0) 20%,
-    rgba(0, 0, 0, 0) 80%,
-    rgba(29, 197, 200, 0.1) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.swiper-slide-active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  filter: blur(0);
-}
-
-.swiper-slide-active::before {
-  opacity: 1;
-  animation: matrixRain 10s linear infinite;
-}
-
-@keyframes matrixRain {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100%; }
-}
-
-/* Cool entrance animation with shatter effect */
-.swiper-slide-active .wrapper {
-  animation: shatterIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-@keyframes shatterIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-  }
-  30% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    transform: scale(0.7);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-
-/* Prism light effect across slides */
-.swiper-slide-active .wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.2),
-    rgba(29, 197, 200, 0.2),
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: prismLight 7s ease-in-out infinite;
-}
-
-@keyframes prismLight {
-  0% { left: -150%; }
-  20%, 100% { left: 150%; }
-}
-
-/* Background cosmic particles effect */
-.site::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(1px 1px at 20% 30%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 70%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 20%, rgba(29, 197, 200, 0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 50%, rgba(29, 197, 200, 0.3) 0%, transparent 100%);
-  background-size: 200% 200%;
-  animation: cosmicParticles 20s ease infinite;
-  z-index: -2;
-}
-
-@keyframes cosmicParticles {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-/* Media queries - preserve responsive design with enhanced desktop effects */
-@media screen and (min-width: 768px) {
-  .testi .wrapper {
-    flex-direction: row;
-    padding: 30px 100px;
-  }
-  
-  .testi .thumbnail {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .testi :is(.swiper-button-next, .swiper-button-prev) {
-    top: 50%;
-  }
-  
-  /* Enhanced desktop 3D perspective effect */
-  .swiper-slide-active .wrapper {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    animation: desktopReveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-  
-  @keyframes desktopReveal {
-    from {
-      opacity: 0;
-      transform: perspective(1000px) rotateY(-10deg) translateZ(-100px);
-    }
-    to {
-      opacity: 1;
-      transform: perspective(1000px) rotateY(0) translateZ(0);
-    }
-  }
-  
-  /* Desktop-only parallax effect */
-  .testi .aside {
-    transform: translateZ(20px);
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .thumbnail {
-    transform: translateZ(40px);
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .swiper-slide-active:hover .thumbnail {
-    transform: translateZ(60px);
-  }
-  
-  .testi .swiper-slide-active:hover .aside {
-    transform: translateZ(30px);
-  }
-}
-
-/* Additional cool zoom hover effect for mobile */
-@media screen and (max-width: 767px) {
-  .testi .swiper-slide-active .wrapper {
-    transition: transform 0.3s ease-out;
-  }
-  
-  .testi .swiper-slide-active .wrapper:active {
-    transform: scale(0.95);
-  }
-}
-  </style>
-
-  
 </body>
-
 </html>
