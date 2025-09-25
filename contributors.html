@@ -870,7 +870,6 @@
   <!-- Scroll to top button -->
   <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
-
   <script>
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
@@ -1136,98 +1135,5 @@
     // Start initialization
     init();
   </script>
-  <script>
-  // ---- Snake Cursor Toggle ----
-  let currentAnimationId = null;
-  let currentMousemoveListener = null;
-  let snakeContainerElement = null;
-
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  function enableSnakeCursor() {
-    disableSnakeCursor(); // clean slate
-
-    snakeContainerElement = document.createElement("div");
-    snakeContainerElement.id = "cursor-snake";
-    document.body.appendChild(snakeContainerElement);
-
-    const dots = [];
-    const dotCount = 20;
-    for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement("div");
-      dot.className = "snake-dot";
-      snakeContainerElement.appendChild(dot);
-      dots.push({ el: dot, x: 0, y: 0 });
-    }
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-
-    currentMousemoveListener = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-    document.addEventListener("mousemove", currentMousemoveListener);
-
-    function animateSnake() {
-      let x = mouseX, y = mouseY;
-      dots.forEach((dot, i) => {
-        dot.x += (x - dot.x) * 0.2;
-        dot.y += (y - dot.y) * 0.2;
-        dot.el.style.left = dot.x + "px";
-        dot.el.style.top = dot.y + "px";
-        dot.el.style.transform = `scale(${1 - i / dotCount})`;
-        x = dot.x;
-        y = dot.y;
-      });
-      currentAnimationId = requestAnimationFrame(animateSnake);
-    }
-    animateSnake();
-  }
-
-  function disableSnakeCursor() {
-    if (snakeContainerElement) {
-      if (currentAnimationId) {
-        cancelAnimationFrame(currentAnimationId);
-        currentAnimationId = null;
-      }
-      if (currentMousemoveListener) {
-        document.removeEventListener("mousemove", currentMousemoveListener);
-        currentMousemoveListener = null;
-      }
-      snakeContainerElement.remove();
-      snakeContainerElement = null;
-    }
-  }
-
-  window.addEventListener("pagehide", () => {
-    disableSnakeCursor();
-  });
-
-  // Initialize Snake Toggle checkbox
-  window.addEventListener("DOMContentLoaded", () => {
-    const cursorToggle = document.getElementById("cursorToggle");
-    if (!isMobile && cursorToggle) {
-      const savedState = localStorage.getItem("cursorEnabled");
-      const initialEnabled = savedState !== null ? JSON.parse(savedState) : false;
-      cursorToggle.checked = initialEnabled;
-
-      if (initialEnabled) enableSnakeCursor();
-      else disableSnakeCursor();
-
-      cursorToggle.addEventListener("change", function () {
-        if (this.checked) {
-          enableSnakeCursor();
-          localStorage.setItem("cursorEnabled", "true");
-        } else {
-          disableSnakeCursor();
-          localStorage.setItem("cursorEnabled", "false");
-        }
-      });
-    }
-  });
-</script>
-  <script src="script.js"></script>
-
 </body>
 </html>
