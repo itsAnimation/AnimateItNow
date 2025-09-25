@@ -34,10 +34,513 @@
   
   <!-- Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="templates.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* CSS Variables for Theme */
+    :root {
+      --primary-color: #ff6b6b;
+      --primary-hover: #ff5252;
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --card-bg: #f8f9fa;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #f1f3f5;
+      --border-color: #e9ecef;
+      --input-bg: #ffffff;
+      --input-text: #333333;
+      --filter-bg: #f1f3f5;
+      --filter-active: #ff6b6b;
+      --filter-text: #495057;
+      --transition: all 0.3s ease;
+    }
 
+    /* Dark Mode Variables */
+    .dark {
+      --primary-color: #ff6b6b;
+      --primary-hover: #ff5252;
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+      --nav-bg: rgba(30, 30, 30, 0.95);
+      --footer-bg: #1a1a1a;
+      --border-color: #333333;
+      --input-bg: #2d2d2d;
+      --input-text: #e0e0e0;
+      --filter-bg: #2d2d2d;
+      --filter-active: #ff6b6b;
+      --filter-text: #e0e0e0;
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px var(--card-shadow);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .site-name {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+
+    /* Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: var(--transition);
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: var(--transition);
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    /* Theme Toggle Button */
+    #theme-toggle {
+      background: none;
+      color: var(--text-color);
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    #theme-toggle:hover {
+      background-color: var(--card-bg);
+      transform: rotate(15deg);
+    }
+
+    /* GitHub Icon */
+    .github-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .github-icon:hover {
+      background-color: var(--card-bg);
+      transform: scale(1.1);
+    }
+
+    /* Main Content */
+    .templates-main {
+      margin-top: 80px;
+      padding: 2rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .templates-main h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+
+    /* Search and Filter Section */
+    .search-filter-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      background-color: var(--input-bg);
+      color: var(--input-text);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    #search-bar:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      background-color: var(--filter-bg);
+      color: var(--filter-text);
+      font-weight: 500;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    /* Templates Grid */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .template-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px var(--card-shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .template-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--card-shadow);
+    }
+
+    .template-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-color), #ff8e8e);
+      color: white;
+      font-size: 3rem;
+    }
+
+    .template-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .template-card h2 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      color: var(--text-color);
+    }
+
+    .template-card p {
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .template-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .template-tag {
+      padding: 0.25rem 0.5rem;
+      background-color: var(--filter-bg);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--filter-text);
+    }
+
+    .template-btn {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .template-btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--footer-bg);
+      padding: 3rem 2rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-left h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .footer-right h4 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-right ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-right a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .footer-right a:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: var(--text-color);
+      font-size: 1.5rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .templates-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 5px 10px var(--card-shadow);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .templates-main {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .templates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-filter-container {
+        gap: 1rem;
+      }
+
+      .filter-container {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 
 <body class="dark">
@@ -48,8 +551,13 @@
         <span class="site-name">Animate It Now</span>
       </a>
     </div>
+    
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
     <div class="nav-right">
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="editor.html" target="_blank">Editor</a></li>
@@ -73,25 +581,12 @@
              rel="noopener noreferrer"
              aria-label="GitHub Repo"
              class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-
-                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
-            </svg>
+            <i class="fab fa-github"></i>
           </a>
         </li>
         <li>
           <button id="theme-toggle" aria-label="Toggle Theme">
-            <i data-lucide="moon"></i>
+            <i class="fas fa-moon"></i>
           </button>
         </li>
       </ul>
@@ -112,67 +607,305 @@
         />
         <i class="fas fa-search search-icon"></i>
       </div>
-
-        <h2>Contact Us Template</h2>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-envelope" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="btn btn-primary">View Template</button>
-      </a>
-
-
-        </div>
-        <button class="template-btn">View Template</button>
-      </a>
       
-      <a class="template-card" href="templates/Coming_Soon_Landing_Page.html" data-category="other">
-        <h2>Coming Soon Landing Page</h2>
-        <div class="template-preview navbar-preview">
-          <div class="fas fa-hourglass-half" style="font-size: 40px; color: white;"></div>
-        </div>
-        <button class="template-btn">View Template</button>
-      </a>
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Templates</button>
+        <button class="filter-btn" data-filter="navbar">Navigation</button>
+        <button class="filter-btn" data-filter="button">Buttons</button>
+        <button class="filter-btn" data-filter="card">Cards</button>
+        <button class="filter-btn" data-filter="form">Forms</button>
+        <button class="filter-btn" data-filter="landing">Landing Pages</button>
+        <button class="filter-btn" data-filter="other">Other</button>
+      </div>
+    </div>
+    
+    <!-- Templates Grid -->
+    <section class="templates-grid" id="templatesGrid">
+      <!-- Template Cards will be dynamically generated by JavaScript -->
     </section>
   </main>
 
-  <div id="container">
-    <footer class="footer scroll-fade">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
-        </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li>
-              <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github fa-beat"></i> GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-linkedin fa-beat"></i> LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">
-                <i class="fas fa-envelope fa-beat"></i> Email Us
-              </a>
-            </li>
-          </ul>
-        </div>
+  <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
       </div>
-      <div class="footer-bottom">
-        <p>
-          © 2025 AnimateItNow. Made with ❤️ by
-          <span class="highlight">Anuj</span> and Contributors.
-        </p>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">
+              <i class="fas fa-envelope"></i> Email Us
+            </a>
+          </li>
+        </ul>
       </div>
-    </footer>
-  </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        © 2025 AnimateItNow. Made with ❤️ by
+        <span class="highlight">Anuj</span> and Contributors.
+      </p>
+    </div>
+  </footer>
 
-  <script src="script.js"></script>
-  <script src="templates.js"></script>
+  <script>
+    // Template data
+    const templates = [
+      {
+        id: 1,
+        title: "Animated Navigation Bar",
+        description: "A sleek navigation bar with smooth hover animations and dropdown effects.",
+        category: "navbar",
+        icon: "fas fa-bars",
+        link: "templates/animated-navbar.html"
+      },
+      {
+        id: 2,
+        title: "Contact Us Template",
+        description: "A responsive contact form with animated inputs and validation.",
+        category: "form",
+        icon: "fas fa-envelope",
+        link: "templates/contact-form.html"
+      },
+      {
+        id: 3,
+        title: "Coming Soon Landing Page",
+        description: "An engaging coming soon page with countdown timer and newsletter signup.",
+        category: "landing",
+        icon: "fas fa-hourglass-half",
+        link: "templates/coming-soon.html"
+      },
+      {
+        id: 4,
+        title: "Animated Button Collection",
+        description: "A variety of creative button animations for different interactions.",
+        category: "button",
+        icon: "fas fa-hand-pointer",
+        link: "templates/animated-buttons.html"
+      },
+      {
+        id: 5,
+        title: "Product Card Showcase",
+        description: "Interactive product cards with hover effects and quick view options.",
+        category: "card",
+        icon: "fas fa-shopping-cart",
+        link: "templates/product-cards.html"
+      },
+      {
+        id: 6,
+        title: "Login/Signup Form",
+        description: "Beautiful authentication forms with smooth transitions between states.",
+        category: "form",
+        icon: "fas fa-user",
+        link: "templates/auth-forms.html"
+      },
+      {
+        id: 7,
+        title: "Pricing Table",
+        description: "Animated pricing tables with hover effects and selection animations.",
+        category: "card",
+        icon: "fas fa-tags",
+        link: "templates/pricing-table.html"
+      },
+      {
+        id: 8,
+        title: "Testimonial Slider",
+        description: "A responsive testimonial slider with smooth transitions.",
+        category: "other",
+        icon: "fas fa-comments",
+        link: "templates/testimonial-slider.html"
+      },
+      {
+        id: 9,
+        title: "Hero Section",
+        description: "An eye-catching hero section with animated text and call-to-action.",
+        category: "landing",
+        icon: "fas fa-star",
+        link: "templates/hero-section.html"
+      },
+      {
+        id: 10,
+        title: "FAQ Accordion",
+        description: "An animated FAQ section with smooth expand/collapse transitions.",
+        category: "other",
+        icon: "fas fa-question-circle",
+        link: "templates/faq-accordion.html"
+      },
+      {
+        id: 11,
+        title: "Image Gallery",
+        description: "A responsive image gallery with lightbox and hover effects.",
+        category: "other",
+        icon: "fas fa-images",
+        link: "templates/image-gallery.html"
+      },
+      {
+        id: 12,
+        title: "Progress Bars",
+        description: "Animated progress bars with different styles and loading effects.",
+        category: "other",
+        icon: "fas fa-chart-bar",
+        link: "templates/progress-bars.html"
+      }
+    ];
+
+    // DOM Elements
+    const templatesGrid = document.getElementById('templatesGrid');
+    const searchBar = document.getElementById('search-bar');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const themeToggle = document.getElementById('theme-toggle');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderTemplates(templates);
+      setupEventListeners();
+      checkThemePreference();
+    });
+
+    // Render templates to the grid
+    function renderTemplates(templatesToRender) {
+      templatesGrid.innerHTML = '';
+      
+      if (templatesToRender.length === 0) {
+        templatesGrid.innerHTML = `
+          <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <h3>No templates found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+          </div>
+        `;
+        return;
+      }
+      
+      templatesToRender.forEach(template => {
+        const templateCard = document.createElement('a');
+        templateCard.href = template.link;
+        templateCard.className = 'template-card';
+        templateCard.setAttribute('data-category', template.category);
+        
+        templateCard.innerHTML = `
+          <div class="template-preview">
+            <i class="${template.icon}"></i>
+          </div>
+          <div class="template-content">
+            <h2>${template.title}</h2>
+            <p>${template.description}</p>
+            <div class="template-tags">
+              <span class="template-tag">${template.category}</span>
+            </div>
+            <div class="template-btn">View Template</div>
+          </div>
+        `;
+        
+        templatesGrid.appendChild(templateCard);
+      });
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Search functionality
+      searchBar.addEventListener('input', filterTemplates);
+      
+      // Filter buttons
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+          filterTemplates();
+        });
+      });
+      
+      // Theme toggle
+      themeToggle.addEventListener('click', toggleTheme);
+      
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        const icon = this.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+      
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('active');
+          menuToggle.querySelector('i').classList.remove('fa-times');
+          menuToggle.querySelector('i').classList.add('fa-bars');
+        });
+      });
+    }
+
+    // Filter templates based on search and category
+    function filterTemplates() {
+      const searchTerm = searchBar.value.toLowerCase();
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      
+      const filteredTemplates = templates.filter(template => {
+        const matchesSearch = template.title.toLowerCase().includes(searchTerm) || 
+                             template.description.toLowerCase().includes(searchTerm);
+        const matchesCategory = activeFilter === 'all' || template.category === activeFilter;
+        
+        return matchesSearch && matchesCategory;
+      });
+      
+      renderTemplates(filteredTemplates);
+    }
+
+    // Theme toggle functionality
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = themeToggle.querySelector('i');
+      
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Check for saved theme preference
+    function checkThemePreference() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        document.body.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
+  </script>
 </body>
 </html>
