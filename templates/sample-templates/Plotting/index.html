@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyHub - Buy, Sell & Find Your Dream Property</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #059669;
+            --accent-color: #f59e0b;
+            --danger-color: #dc2626;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --border-color: #e5e7eb;
+            --text-muted: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            transition: color 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Search Container */
+        .search-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .form-group label {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .search-btn {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Filter Pills */
+        .filter-container {
+            margin-top: 20px;
+        }
+
+        .filter-pill {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .filter-pill:hover, .filter-pill.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Property Cards */
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-image {
+            height: 220px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .property-badge.sale {
+            background: var(--secondary-color);
+        }
+
+        .property-badge.rent {
+            background: var(--primary-color);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .favorite-btn:hover, .favorite-btn.active {
+            color: var(--danger-color);
+            background: white;
+        }
+
+        .property-body {
+            padding: 20px;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .property-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .property-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .property-features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--light-color);
+            padding: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Selling Form */
+        .sell-property-form {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .property-image {
+                height: 180px;
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading and No Results */
+        .loading, .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        .loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-home"></i> PropertyHub</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#properties">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#buy">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sell">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#agents">Agents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <a href="#sell-property" class="btn btn-outline-custom me-2">List Property</a>
+                    <a href="#browse" class="btn btn-primary-custom">Browse Properties</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4 fade-in-up">Find Your Dream Property</h1>
+                    <p class="lead mb-4 fade-in-up">Discover the perfect home, apartment, or commercial space with our comprehensive property search platform.</p>
+                    
+                    <!-- Advanced Search -->
+                    <div class="search-container fade-in-up">
+                        <form class="search-form" onsubmit="searchProperties(event)">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" class="form-control" id="locationSearch" placeholder="City, area, or zip code">
+                            </div>
+                            <div class="form-group">
+                                <label>Property Type</label>
+                                <select class="form-control" id="propertyType">
+                                    <option value="">All Types</option>
+                                    <option value="house">House</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="condo">Condo</option>
+                                    <option value="townhouse">Townhouse</option>
+                                    <option value="commercial">Commercial</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Price Range</label>
+                                <select class="form-control" id="priceRange">
+                                    <option value="">Any Price</option>
+                                    <option value="0-100000">Under $100K</option>
+                                    <option value="100000-300000">$100K - $300K</option>
+                                    <option value="300000-500000">$300K - $500K</option>
+                                    <option value="500000-1000000">$500K - $1M</option>
+                                    <option value="1000000-99999999">Over $1M</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="search-btn">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Quick Filters -->
+                    <div class="filter-container fade-in-up">
+                        <p class="mb-2">Quick Filters: </p>
+                        <span class="filter-pill active" onclick="filterProperties('all')">All</span>
+                        <span class="filter-pill" onclick="filterProperties('sale')">For Sale</span>
+                        <span class="filter-pill" onclick="filterProperties('rent')">For Rent</span>
+                        <span class="filter-pill" onclick="filterProperties('new')">New Listings</span>
+                        <span class="filter-pill" onclick="filterProperties('luxury')">Luxury</span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="hero-illustration">
+                        <i class="fas fa-city" style="font-size: 15rem; opacity: 0.1;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">25K+</div>
+                        <div class="stat-label">Properties Listed</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">15K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Expert Agents</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Featured Properties</h2>
+                <p class="text-muted">Discover our most popular and recently added properties</p>
+            </div>
+            
+            <div class="row" id="propertyContainer">
+                <!-- Property 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="house" data-status="sale" data-price="450000" data-location="manhattan">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="property-badge sale">For Sale</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$450,000</div>
+                            <h5 class="property-title">Modern Family House</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Manhattan, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-rulers"></i> 2,400 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Modern Family House')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="apartment" data-status="rent" data-price="2500" data-location="brooklyn">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="property-badge rent">For Rent</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$2,500/month</div>
+                            <h5 class="property-title">Luxury Apartment Downtown</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Brooklyn, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-rulers"></i> 1,200 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Luxury Apartment Downtown')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="condo" data-status="sale" data-price="650000" data-location="queens">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="property-badge sale">For Sale</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$650,000</div>
+                            <h5 class="property-title">Spacious Condo with View</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Queens, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-rulers"></i> 1,800 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Spacious Condo with View')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 4 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="townhouse" data-status="sale" data-price="750000" data-location="bronx">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="property-badge sale">For Sale</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$750,000</div>
+                            <h5 class="property-title">Beautiful Townhouse</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Bronx, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-rulers"></i> 2,200 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Beautiful Townhouse')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 5 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="apartment" data-status="rent" data-price="1800" data-location="staten-island">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="property-badge rent">For Rent</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$1,800/month</div>
+                            <h5 class="property-title">Cozy Studio Apartment</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Staten Island, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 Bed</span>
+                                <span><i class="fas fa-bath"></i> 1 Bath</span>
+                                <span><i class="fas fa-rulers"></i> 800 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Cozy Studio Apartment')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 6 -->
+                <div class="col-lg-4 col-md-6 mb-4 property-item" data-type="commercial" data-status="sale" data-price="1200000" data-location="manhattan">
+                    <div class="property-card">
+                        <div class="property-image">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="property-badge sale">For Sale</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <div class="property-body">
+                            <div class="property-price">$1,200,000</div>
+                            <h5 class="property-title">Prime Commercial Space</h5>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Manhattan, New York</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-store"></i> Retail</span>
+                                <span><i class="fas fa-parking"></i> Parking</span>
+                                <span><i class="fas fa-rulers"></i> 3,500 sq ft</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-primary-custom flex-fill" onclick="contactAgent('Prime Commercial Space')">Contact Agent</a>
+                                <a href="#" class="btn btn-outline-custom">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading and No Results -->
+            <div class="loading" id="loadingMessage">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p class="mt-3">Searching properties...</p>
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-home fa-3x mb-3"></i>
+                <h4>No Properties Found</h4>
+                <p>Try adjusting your search criteria or filters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sell Property Section -->
+    <section id="sell-property" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">List Your Property</h2>
+                <p class="text-muted">Sell or rent your property with our professional platform</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="sell-property-form">
+                        <form onsubmit="submitProperty(event)">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Property Title *</label>
+                                    <input type="text" class="form-control" required placeholder="e.g. Modern Family House">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Property Type *</label>
+                                    <select class="form-control" required>
+                                        <option value="">Select Type</option>
+                                        <option value="house">House</option>
+                                        <option value="apartment">Apartment</option>
+                                        <option value="condo">Condo</option>
+                                        <option value="townhouse">Townhouse</option>
+                                        <option value="commercial">Commercial</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Listing Type *</label>
+                                    <select class="form-control" required>
+                                        <option value="">Select Option</option>
+                                        <option value="sale">For Sale</option>
+                                        <option value="rent">For Rent</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Price *</label>
+                                    <input type="number" class="form-control" required placeholder="Enter price">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Bedrooms</label>
+                                    <select class="form-control">
+                                        <option value="">Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5+</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Bathrooms</label>
+                                    <select class="form-control">
+                                        <option value="">Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5+</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Square Footage</label>
+                                    <input type="number" class="form-control" placeholder="sq ft">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Location *</label>
+                                    <input type="text" class="form-control" required placeholder="Full address or area">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" rows="4" placeholder="Describe your property..."></textarea>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Property Images</label>
+                                    <input type="file" class="form-control" multiple accept="image/*">
+                                    <small class="text-muted">Upload up to 10 images (JPG, PNG)</small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Your Name *</label>
+                                    <input type="text" class="form-control" required placeholder="Full name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Contact Number *</label>
+                                    <input type="tel" class="form-control" required placeholder="Phone number">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" required placeholder="email@example.com">
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary-custom btn-lg">
+                                    <i class="fas fa-upload"></i> List Property
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-home"></i> PropertyHub</h5>
+                    <p>Your trusted partner in finding and selling properties. We connect buyers, sellers, and renters with the perfect real estate solutions.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#buy">Buy</a></li>
+                        <li><a href="#sell">Sell</a></li>
+                        <li><a href="#agents">Agents</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Property Types</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Houses</a></li>
+                        <li><a href="#">Apartments</a></li>
+                        <li><a href="#">Condos</a></li>
+                        <li><a href="#">Commercial</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@propertyhub.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Real Estate St, NY</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 PropertyHub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Made with <i class="fas fa-heart text-danger"></i> for property enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Search functionality
+        function searchProperties(event) {
+            event.preventDefault();
+            
+            const location = document.getElementById('locationSearch').value.toLowerCase();
+            const propertyType = document.getElementById('propertyType').value;
+            const priceRange = document.getElementById('priceRange').value;
+            
+            showLoading();
+            
+            setTimeout(() => {
+                const properties = document.querySelectorAll('.property-item');
+                let visibleCount = 0;
+                
+                properties.forEach(property => {
+                    const propertyLocation = property.dataset.location || '';
+                    const propertyTypeData = property.dataset.type || '';
+                    const propertyPrice = parseInt(property.dataset.price) || 0;
+                    
+                    let showProperty = true;
+                    
+                    // Filter by location
+                    if (location && !propertyLocation.includes(location)) {
+                        showProperty = false;
+                    }
+                    
+                    // Filter by property type
+                    if (propertyType && propertyTypeData !== propertyType) {
+                        showProperty = false;
+                    }
+                    
+                    // Filter by price range
+                    if (priceRange) {
+                        const [minPrice, maxPrice] = priceRange.split('-').map(Number);
+                        if (propertyPrice < minPrice || propertyPrice > maxPrice) {
+                            showProperty = false;
+                        }
+                    }
+                    
+                    if (showProperty) {
+                        property.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        property.style.display = 'none';
+                    }
+                });
+                
+                hideLoading();
+                
+                if (visibleCount === 0) {
+                    document.getElementById('noResults').style.display = 'block';
+                } else {
+                    document.getElementById('noResults').style.display = 'none';
+                }
+            }, 1000);
+        }
+
+        // Filter properties by category
+        function filterProperties(category) {
+            // Update active filter pill
+            document.querySelectorAll('.filter-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            showLoading();
+            
+            setTimeout(() => {
+                const properties = document.querySelectorAll('.property-item');
+                let visibleCount = 0;
+                
+                properties.forEach(property => {
+                    const status = property.dataset.status;
+                    const type = property.dataset.type;
+                    const price = parseInt(property.dataset.price);
+                    
+                    let showProperty = false;
+                    
+                    switch(category) {
+                        case 'all':
+                            showProperty = true;
+                            break;
+                        case 'sale':
+                            showProperty = status === 'sale';
+                            break;
+                        case 'rent':
+                            showProperty = status === 'rent';
+                            break;
+                        case 'new':
+                            showProperty = Math.random() > 0.5; // Simulate new listings
+                            break;
+                        case 'luxury':
+                            showProperty = price > 500000;
+                            break;
+                    }
+                    
+                    if (showProperty) {
+                        property.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        property.style.display = 'none';
+                    }
+                });
+                
+                hideLoading();
+                
+                if (visibleCount === 0) {
+                    document.getElementById('noResults').style.display = 'block';
+                } else {
+                    document.getElementById('noResults').style.display = 'none';
+                }
+            }, 500);
+        }
+
+        // Toggle favorite
+        function toggleFavorite(button) {
+            const icon = button.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.classList.add('active');
+                showNotification('Added to favorites!', 'success');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.classList.remove('active');
+                showNotification('Removed from favorites!', 'info');
+            }
+        }
+
+        // Contact agent
+        function contactAgent(propertyName) {
+            showNotification(`Connecting you with an agent for "${propertyName}"...`, 'info');
+            setTimeout(() => {
+                showNotification('Agent contact form would open here in a real application.', 'success');
+            }, 1500);
+        }
+
+        // Submit property listing
+        function submitProperty(event) {
+            event.preventDefault();
+            showNotification('Property listing submitted successfully!', 'success');
+            setTimeout(() => {
+                showNotification('Our team will review and publish your listing within 24 hours.', 'info');
+                event.target.reset();
+            }, 2000);
+        }
+
+        // Loading functions
+        function showLoading() {
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingMessage').style.display = 'none';
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'info'} position-fixed`;
+            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close ms-2" onclick="this.parentElement.remove()"></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.property-card, .stat-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
