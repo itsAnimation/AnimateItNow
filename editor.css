@@ -446,3 +446,49 @@ button:hover {
 .copy-tooltip.show {
   opacity: 1;
 } 
+
+/* Play/Pause Toggle Button */
+.circle-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #222;       /* Circle background */
+  border: 2px solid #edd;       /* Outer border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.circle-toggle:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+/* Play icon (triangle) */
+.circle-toggle .icon.play {
+  width: 0;
+  height: 0;
+  border-left: 16px solid #edd;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* Pause icon (two bars) */
+.circle-toggle .icon.pause {
+  width: 16px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.circle-toggle .icon.pause::before,
+.circle-toggle .icon.pause::after {
+  content: "";
+  width: 5px;
+  height: 100%;
+  background-color: #edd;
+  display: block;
+}

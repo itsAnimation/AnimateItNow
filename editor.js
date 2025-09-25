@@ -67,3 +67,26 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     }
   });
 }); 
+
+// Play/Pause Toggle
+const toggleBtn = document.querySelector('#toggleBtn');
+const outputIframe = document.querySelector('#output');
+
+toggleBtn.addEventListener('click', () => {
+  const icon = toggleBtn.querySelector('.icon');
+
+  // Toggle icon class
+  icon.classList.toggle('play');
+  icon.classList.toggle('pause');
+
+  // Pause/resume all animations inside iframe (CSS only)
+  if (outputIframe.contentWindow) {
+    const allElements = outputIframe.contentWindow.document.querySelectorAll('*');
+    const isPaused = icon.classList.contains('pause');
+    allElements.forEach(el => {
+      el.style.animationPlayState = isPaused ? 'paused' : 'running';
+    });
+  }
+});
+
+
