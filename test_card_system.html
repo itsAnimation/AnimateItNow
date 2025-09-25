@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card System Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Unified Card System Test</h1>
+        <p style="text-align: center;">Testing all card variants and effects</p>
+        
+        <div class="cards-grid">
+            <!-- Vertical Card -->
+            <article class="card-system card-vertical">
+                <div style="background: #4f8cff; height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Vertical Card</h2>
+                    <p class="card-text">This is a basic vertical card using the unified system.</p>
+                    <a href="#" class="card-btn">Action</a>
+                </div>
+            </article>
+            
+            <!-- Horizontal Card -->
+            <article class="card-system card-horizontal">
+                <div class="card-img-container">
+                    <div style="background: #ff6b6b; height: 100%;"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h2 class="card-title">Horizontal Card</h2>
+                        <p class="card-text">This is a horizontal card layout.</p>
+                        <a href="#" class="card-btn">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Tilt Effect Card -->
+            <article class="card-system card-vertical card-tilt">
+                <div style="background: #667eea; height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Tilt Effect</h2>
+                    <p class="card-text">This card has a 3D tilt effect on hover.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Float Effect Card -->
+            <article class="card-system card-vertical card-float">
+                <div style="background: #764ba2; height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Float Effect</h2>
+                    <p class="card-text">This card floats gently and animates on hover.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Glow Effect Card -->
+            <article class="card-system card-vertical card-glow">
+                <div style="background: #25d366; height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Glow Effect</h2>
+                    <p class="card-text">This card glows on hover with a shadow effect.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Morph Effect Card -->
+            <article class="card-system card-vertical card-morph">
+                <div style="background: #ff9500; height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Morph Effect</h2>
+                    <p class="card-text">This card morphs its shape on hover.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+        </div>
+        
+        <h2 style="margin-top: 3rem;">Flip Card Test</h2>
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+            <!-- Flip Card -->
+            <article class="card-system card-vertical card-flip" style="height: 300px; width: 300px;">
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <h2 class="card-title">Flip Card</h2>
+                            <p class="card-text">Hover to see the flip effect!</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-back" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px;">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <h2 class="card-title">Back Side</h2>
+                            <p class="card-text">This is the back of the card!</p>
+                            <a href="#" class="card-btn" style="background: white; color: #667eea;">Action</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

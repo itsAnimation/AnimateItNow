@@ -1,0 +1,484 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const chatLogo = document.getElementById('chat-logo');
+    const chatContainer = document.getElementById('chat-container');
+    const closeBtn = document.getElementById('close-btn');
+    const sendBtn = document.getElementById('send-btn');
+    const userInput = document.getElementById('user-input');
+    const chatBox = document.getElementById('chat-box');
+    const voiceInputBtn = document.getElementById('voice-input-btn');
+
+    // Load chatbot data from JSON file
+    let chatbotData = {};
+    let dataLoaded = false;
+
+    // Function to load chatbot data
+    function loadChatbotData() {
+        // Correct path to the JSON file (relative to the script location)
+        return fetch('chatbot-data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                chatbotData = data;
+                dataLoaded = true;
+                console.log('Chatbot data loaded successfully');
+                return data;
+            })
+            .catch(error => {
+                console.error('Error loading chatbot data:', error);
+                // Fallback to hardcoded data if JSON fails to load
+                chatbotData = {
+    "hi, how are you doing?": "i'm fine. how about yourself?",
+    "i'm fine. how about yourself?": "i'm pretty good. thanks for asking.",
+    "i'm pretty good. thanks for asking.": "no problem. so how have you been?",
+    "no problem. so how have you been?": "i've been great. what about you?",
+    "i've been great. what about you?": "i've been good. i'm in school right now.",
+    "i've been good. i'm in school right now.": "what school do you go to?",
+    "what school do you go to?": "i go to pcc.",
+    "i go to pcc.": "do you like it there?",
+    "do you like it there?": "it's okay. it's a really big campus.",
+    "it's okay. it's a really big campus.": "good luck with school.",
+    "good luck with school.": "thank you very much.",
+    "how's it going?": "i'm doing well. how about you?",
+    "i'm doing well. how about you?": "never better, thanks.",
+    "never better, thanks.": "so how have you been lately?",
+    "so how have you been lately?": "i've actually been pretty good. you?",
+    "i've actually been pretty good. you?": "i'm actually in school right now.",
+    "i'm actually in school right now.": "which school do you attend?",
+    "which school do you attend?": "i'm attending pcc right now.",
+    "i'm attending pcc right now.": "are you enjoying it there?",
+    "are you enjoying it there?": "it's not bad. there are a lot of people there.",
+    "it's not bad. there are a lot of people there.": "good luck with that.",
+    "good luck with that.": "thanks.",
+    "how are you doing today?": "i'm doing great. what about you?",
+    "i'm doing great. what about you?": "i'm absolutely lovely, thank you.",
+    "i'm absolutely lovely, thank you.": "everything's been good with you?",
+    "everything's been good with you?": "i haven't been better. how about yourself?",
+    "i haven't been better. how about yourself?": "i started school recently.",
+    "i started school recently.": "where are you going to school?",
+    "where are you going to school?": "i'm going to pcc.",
+    "i'm going to pcc.": "how do you like it so far?",
+    "how do you like it so far?": "i like it so far. my classes are pretty good right now.",
+    "i like it so far. my classes are pretty good right now.": "i wish you luck.",
+    "it's an ugly day today.": "i know. i think it may rain.",
+    "i know. i think it may rain.": "it's the middle of summer, it shouldn't rain today.",
+    "it's the middle of summer, it shouldn't rain today.": "that would be weird.",
+    "that would be weird.": "yeah, especially since it's ninety degrees outside.",
+    "yeah, especially since it's ninety degrees outside.": "i know, it would be horrible if it rained and it was hot outside.",
+    "i know, it would be horrible if it rained and it was hot outside.": "yes, it would be. ",
+    "yes, it would be. ": "i really wish it wasn't so hot every day.",
+    "i really wish it wasn't so hot every day. ": "me too. i can't wait until winter.",
+    "me too. i can't wait until winter.": "i like winter too, but sometimes it gets too cold.",
+    "i like winter too, but sometimes it gets too cold.": "i'd rather be cold than hot.",
+    "i'd rather be cold than hot.": "me too.",
+    "it doesn't look very nice outside today.": "you're right. i think it's going to rain later.",
+    "you're right. i think it's going to rain later.": "in the middle of the summer, it shouldn't be raining.",
+    "in the middle of the summer, it shouldn't be raining.": "that wouldn't seem right.",
+    "that wouldn't seem right.": "considering that it's over ninety degrees outside, that would be weird.",
+    "considering that it's over ninety degrees outside, that would be weird.": "exactly, it wouldn't be nice if it started raining. it's too hot.",
+    "exactly, it wouldn't be nice if it started raining. it's too hot.": "i know, you're absolutely right.",
+    "i know, you're absolutely right.": "i wish it would cool off one day.",
+    "i wish it would cool off one day.": "that's how i feel, i want winter to come soon.",
+    "that's how i feel, i want winter to come soon.": "i enjoy the winter, but it gets really cold sometimes.",
+    "i enjoy the winter, but it gets really cold sometimes.": "i know what you mean, but i'd rather be cold than hot.",
+    "i know what you mean, but i'd rather be cold than hot.": "that's exactly how i feel.",
+    "i wish it was a nicer day today.": "that is true. i hope it doesn't rain.",
+    "that is true. i hope it doesn't rain.": "it wouldn't rain in the middle of the summer.",
+    "it wouldn't rain in the middle of the summer.": "it wouldn't seem right if it started raining right now.",
+    "it wouldn't seem right if it started raining right now.": "it would be weird if it started raining in ninety degree weather.",
+    "it would be weird if it started raining in ninety degree weather.": "any rain right now would be pointless.",
+    "any rain right now would be pointless.": "that's right, it really would be.",
+    "that's right, it really would be.": "i want it to cool down some.",
+    "i want it to cool down some.": "i know what you mean, i can't wait until it's winter.",
+    "i know what you mean, i can't wait until it's winter.": "winter is great. i wish it didn't get so cold sometimes though.",
+    "winter is great. i wish it didn't get so cold sometimes though.": "i would rather deal with the winter than the summer.",
+    "it's such a nice day.": "yes, it is.",
+    "yes, it is.": "it looks like it may rain soon.",
+    "it looks like it may rain soon.": "yes, and i hope that it does.",
+    "yes, and i hope that it does.": "why is that?",
+    "why is that?": "i really love how rain clears the air.",
+    "i really love how rain clears the air.": "me too. it always smells so fresh after it rains.",
+    "me too. it always smells so fresh after it rains.": "yes, but i love the night air after it rains.",
+    "yes, but i love the night air after it rains.": "really? why is it?",
+    "really? why is it?": "because you can see the stars perfectly.",
+    "because you can see the stars perfectly.": "i really hope it rains today.",
+    "i really hope it rains today.": "yeah, me too.",
+    "isn't it a nice day?": "it really is.",
+    "it really is.": "it seems that it may rain today.",
+    "it seems that it may rain today.": "hopefully it will.",
+    "hopefully it will.": "how come?",
+    "how come?": "i like how clear the sky gets after it rains.",
+    "i like how clear the sky gets after it rains.": "i feel the same way. it smells so good after it rains.",
+    "i feel the same way. it smells so good after it rains.": "i especially love the night air when it rains.",
+    "i especially love the night air when it rains.": "really? why?",
+    "really? why?": "the stars look so much closer after it rains.",
+    "the stars look so much closer after it rains.": "i really want it to rain today.",
+    "i really want it to rain today.": "yeah, so do i.",
+    "don't you think it's nice out?": "yes, i think so too.",
+    "yes, i think so too.": "i think that it's going to rain.",
+    "i think that it's going to rain.": "i hope that it does rain.",
+    "i hope that it does rain.": "you like the rain?",
+    "you like the rain?": "the sky looks so clean after it rains. i love it.",
+    "the sky looks so clean after it rains. i love it.": "i understand. rain does make it smell cleaner.",
+    "i understand. rain does make it smell cleaner.": "i love most how it is at night after it rains.",
+    "i love most how it is at night after it rains.": "how come?",
+    "how come?": "you can see the stars so much more clearly after it rains.",
+    "you can see the stars so much more clearly after it rains.": "i would love for it to rain today.",
+    "hello, may i speak to alice please?": "this is she. how's it going?",
+    "this is she. how's it going?": "i've been trying to call you all day.",
+    "i've been trying to call you all day.": "sorry about that. i was cleaning up.",
+    "sorry about that. i was cleaning up.": "it's okay.",
+    "it's okay.": "so what were you calling me about?",
+    "so what were you calling me about?": "oh, i just wanted to see if you wanted to hang out tomorrow.",
+    "oh, i just wanted to see if you wanted to hang out tomorrow.": "sure, what did you want to do?",
+    "sure, what did you want to do?": "maybe we can go see a movie or something.",
+    "maybe we can go see a movie or something.": "that sounds like fun. let's do it.",
+    "that sounds like fun. let's do it.": "i'll see you tomorrow then.",
+    "i'll see you tomorrow then.": "see you then. goodbye.",
+    "hi, how are you. is alice there?": "speaking. what's up?",
+    "speaking. what's up?": "why haven't you answered the phone?",
+    "why haven't you answered the phone?": "my bad, i had chores to do.",
+    "my bad, i had chores to do.": "that's all right.",
+    "that's all right.": "what was the reason for your call?",
+    "what was the reason for your call?": "i want to do something tomorrow with you.",
+    "i want to do something tomorrow with you.": "sounds good. what did you have in mind?",
+    "sounds good. what did you have in mind?": "i was thinking about seeing a movie.",
+    "i was thinking about seeing a movie.": "okay, let's go see a movie.",
+    "okay, let's go see a movie.": "until then.",
+    "until then.": "talk to you later.",
+    "is alice available?": "you're talking to her.",
+    "you're talking to her.": "i've called you a hundred times today.",
+    "i've called you a hundred times today.": "i was busy doing something. i apologize.",
+    "i was busy doing something. i apologize.": "no problem.",
+    "no problem.": "did you need something?",
+    "did you need something?": "do you want to do something tomorrow?",
+    "do you want to do something tomorrow?": "is there somewhere special you wanted to go?",
+    "is there somewhere special you wanted to go?": "how about a movie?",
+    "how about a movie?": "a movie sounds good.",
+    "a movie sounds good.": "call me tomorrow then.",
+    "have you seen the new girl in school?": "no, i haven't.",
+    "no, i haven't.": "she's really pretty.",
+    "she's really pretty.": "describe her to me.",
+    "describe her to me.": "she's not too tall.",
+    "she's not too tall.": "well, how tall is she?",
+    "well, how tall is she?": "she's about five feet even.",
+    "she's about five feet even.": "what does she look like, though?",
+    "what does she look like, though?": "she has pretty light brown eyes.",
+    "she has pretty light brown eyes.": "i may know which girl you're talking about.",
+    "i may know which girl you're talking about.": "so you have seen her around?",
+    "so you have seen her around?": "yes, i have.",
+    "there's a new girl in school, have you seen her yet?": "i haven't seen her yet.",
+    "i haven't seen her yet.": "i think that she is very pretty.",
+    "i think that she is very pretty.": "tell me how she looks.",
+    "tell me how she looks.": "she's kind of short.",
+    "she's kind of short.": "what height is she?",
+    "what height is she?": "she's probably about five feet.",
+    "she's probably about five feet.": "that's nice, but tell me what she looks like.",
+    "that's nice, but tell me what she looks like.": "the first thing i noticed was her beautiful brown eyes.",
+    "the first thing i noticed was her beautiful brown eyes.": "i think i might've bumped into her before.",
+    "i think i might've bumped into her before.": "are you telling me that you've seen her before?",
+    "are you telling me that you've seen her before?": "i believe so.",
+    "have you met the new girl?": "no. have you?",
+    "no. have you?": "she's one of the prettiest girls at the school.",
+    "she's one of the prettiest girls at the school.": "what does she look like?",
+    "what does she look like?": "well, she's quite short.",
+    "well, she's quite short.": "how tall would you say that she is?",
+    "how tall would you say that she is?": "i would say she's only five feet.",
+    "i would say she's only five feet.": "what about her facial features?",
+    "what about her facial features?": "she has light brown eyes, absolutely beautiful.",
+    "she has light brown eyes, absolutely beautiful.": "i think i know who you're talking about.",
+    "i think i know who you're talking about.": "have you seen her?",
+    "why weren't you at school yesterday?": "i wasn't really feeling well.",
+    "i wasn't really feeling well.": "what was wrong with you?",
+    "what was wrong with you?": "my stomach was upset.",
+    "my stomach was upset.": "do you feel better now?",
+    "do you feel better now?": "i don't really feel too well yet.",
+    "i don't really feel too well yet.": "do you want anything to make you feel better?",
+    "do you want anything to make you feel better?": "no, thanks. i already took some medicine.",
+    "no, thanks. i already took some medicine.": "i hope you feel better.",
+    "i hope you feel better.": "thank you.",
+    "what reason do you have for missing school?": "i was sick.",
+    "i was sick.": "how were you sick?",
+    "how were you sick?": "i had a stomachache.",
+    "i had a stomachache.": "did it get any better?",
+    "did it get any better?": "i'm still feeling under the weather.",
+    "i'm still feeling under the weather.": "would you like anything for your stomach?",
+    "would you like anything for your stomach?": "i took something earlier.",
+    "i took something earlier.": "get better.",
+    "get better.": "thanks a lot.",
+    "why didn't you go to school yesterday?": "i stayed home because i wasn't feeling well.",
+    "i stayed home because i wasn't feeling well.": "what was your problem?",
+    "what was your problem?": "my stomach was bothering me.",
+    "my stomach was bothering me.": "are you feeling any better?",
+    "are you feeling any better?": "i'm still feeling a little sick.",
+    "i'm still feeling a little sick.": "i'm going to the store, would you like any pepto bismol?",
+    "i'm going to the store, would you like any pepto bismol?": "that's okay.",
+    "that's okay.": "i hope you feel better.",
+    "did you hear the good news?": "no, i haven't.",
+    "no, i haven't.": "i got a promotion at my job.",
+    "i got a promotion at my job.": "did you really?",
+    "did you really?": "seriously, i am so excited.",
+    "seriously, i am so excited.": "well, congratulations.",
+    "well, congratulations.": "thank you.",
+    "thank you.": "i'm so happy for you.",
+    "i'm so happy for you.": "really?",
+    "really?": "yes. you really deserved this.",
+    "yes. you really deserved this.": "you think so?",
+    "you think so?": "yes. good for you.",
+    "have you heard my good news?": "you haven't told me anything yet.",
+    "you haven't told me anything yet.": "i got a promotion at work earlier this week.",
+    "i got a promotion at work earlier this week.": "is that right?",
+    "is that right?": "it's the truth. i am really happy.",
+    "it's the truth. i am really happy.": "congratulations on your promotion.",
+    "congratulations on your promotion.": "thank you very much.",
+    "thank you very much.": "i am really excited for you.",
+    "i am really excited for you.": "are you really?",
+    "are you really?": "i'm serious. you deserved this promotion.",
+    "i'm serious. you deserved this promotion.": "is that what you really think?",
+    "is that what you really think?": "yes, i do.",
+    "i haven't told you what happened yet, have i?": "i haven't heard anything.",
+    "i haven't heard anything.": "my boss offered me a promotion, and i took it.",
+    "my boss offered me a promotion, and i took it.": "are you serious?",
+    "are you serious?": "yes, i am really excited.",
+    "yes, i am really excited.": "that's great. congratulations.",
+    "that's great. congratulations.": "i appreciate that.",
+    "i appreciate that.": "you have no idea how happy i am for you.",
+    "you have no idea how happy i am for you.": "for real?",
+    "you look really nice today. ": "thank you. i just got this outfit the other day.",
+    "thank you. i just got this outfit the other day.": "really, where did you get it?",
+    "really, where did you get it?": "i got it from macy's.",
+    "i got it from macy's.": "it's really nice.",
+    "it's really nice.": "thanks again. you look nice today, too.",
+    "thanks again. you look nice today, too.": "thank you. i just got these shoes today.",
+    "thank you. i just got these shoes today.": "really? what kind of shoes are they?",
+    "really? what kind of shoes are they?": "these are called all star chuck taylors.",
+    "these are called all star chuck taylors.": "i really like those. how much did they cost?",
+    "i really like those. how much did they cost?": "they were about forty dollars.",
+    "they were about forty dollars.": "i think i'm going to go buy myself a pair.",
+    "i absolutely love what you're wearing today.": "you do? i just bought this outfit a couple days ago.",
+    "you do? i just bought this outfit a couple days ago.": "seriously, it looks really nice on you. where did you buy it from?",
+    "seriously, it looks really nice on you. where did you buy it from?": "i bought it from the macy's at the santa anita mall.",
+    "i bought it from the macy's at the santa anita mall.": "i really like that outfit.",
+    "i really like that outfit.": "thanks. i think you look nice today, too.",
+    "thanks. i think you look nice today, too.": "thank you. i just bought these new shoes earlier today.",
+    "thank you. i just bought these new shoes earlier today.": "those are nice. what are they?",
+    "those are nice. what are they?": "these are some chucks.",
+    "these are some chucks.": "those are great. how much were they?",
+    "those are great. how much were they?": "i got them for forty.",
+    "i got them for forty.": "i think i might go and find me my own pair of chucks.",
+    "i think that you look very cute today.": "is that right? this is a brand new outfit.",
+    "is that right? this is a brand new outfit.": "what store did you get it from?",
+    "what store did you get it from?": "i went to macy's and picked it out.",
+    "i went to macy's and picked it out.": "i love your outfit right now.",
+    "i love your outfit right now.": "well, i think you look nice today too.",
+    "well, i think you look nice today too.": "thanks. i found these new shoes earlier at the store.",
+    "thanks. i found these new shoes earlier at the store.": "i think that those are some really nice shoes. what kind are they?",
+    "i think that those are some really nice shoes. what kind are they?": "these are chucks.",
+    "these are chucks.": "your shoes look really nice. how much did you get them for?",
+    "your shoes look really nice. how much did you get them for?": "they only cost me about forty dollars.",
+    "tell me, what do you enjoy doing in your spare time?": "i enjoy drawing and painting.",
+    "i enjoy drawing and painting.": "you know how to draw and paint?",
+    "you know how to draw and paint?": "yes, i do.",
+    "yes, i do.": "when did you learn how to do that?",
+    "when did you learn how to do that?": "i learned back in high school.",
+    "i learned back in high school.": "oh, so you took an art class?",
+    "oh, so you took an art class?": "yeah, i loved that class.",
+    "yeah, i loved that class.": "i see that you're pretty talented.",
+    "i see that you're pretty talented.": "thank you very much.",
+    "thank you very much.": "i wish i had a talent like that.",
+    "i wish i had a talent like that.": "i'm sure you have a talent. it's just hidden.",
+    "what kinds of things do you like to do?": "i've always liked to draw and painting.",
+    "i've always liked to draw and painting.": "i didn't know you knew how to draw and paint.",
+    "i didn't know you knew how to draw and paint.": "i do it every once in a while.",
+    "i do it every once in a while.": "how long have you known how to do that?",
+    "how long have you known how to do that?": "i first learned how to do it in high school.",
+    "i first learned how to do it in high school.": "did you take some sort of art class or something?",
+    "did you take some sort of art class or something?": "that was my favorite class.",
+    "that was my favorite class.": "you have got to be talented.",
+    "you have got to be talented.": "thanks.",
+    "thanks.": "if only i was talented.",
+    "if only i was talented.": "you have a talent. you just don't know what it is yet.",
+    "are there any hobbies you do?": "when i have time, i sometimes draw and paint.",
+    "when i have time, i sometimes draw and paint.": "oh, you actually do that?",
+    "oh, you actually do that?": "every so often, i do.",
+    "every so often, i do.": "did you always know how to draw and paint?",
+    "did you always know how to draw and paint?": "i was taught in high school how to draw and paint.",
+    "i was taught in high school how to draw and paint.": "you had an art class?",
+    "you had an art class?": "exactly, it was my favorite class.",
+    "exactly, it was my favorite class.": "well, it's good that you're so talented.",
+    "well, it's good that you're so talented.": "i appreciate that.",
+    "i appreciate that.": "talent is a great thing, i wish i had one.",
+    "what's your favorite movie?": "my favorite movie is superbad.",
+    "my favorite movie is superbad.": "oh, why is that?",
+    "oh, why is that?": "it's the funniest movie that i've ever seen.",
+    "it's the funniest movie that i've ever seen.": "that's true. it is a very funny movie.",
+    "that's true. it is a very funny movie.": "you've seen it before? ",
+    "you've seen it before? ": "yes, i saw that movie the first day it came out in theaters.",
+    "yes, i saw that movie the first day it came out in theaters.": "didn't you laugh through the whole movie? i did.",
+    "didn't you laugh through the whole movie? i did.": "me too. that movie brought tears to my eyes.",
+    "me too. that movie brought tears to my eyes.": "mine too.",
+    "mine too.": "i have it on dvd at my house if you want to come over and watch it.",
+    "i have it on dvd at my house if you want to come over and watch it.": "sure, let's go.",
+    "which movie is your favorite to watch?": "i have to say, my favorite movie is superbad.",
+    "i have to say, my favorite movie is superbad.": "is that right? why?",
+    "is that right? why?": "honestly, it is one of the funniest movies i've seen in a long time.",
+    "honestly, it is one of the funniest movies i've seen in a long time.": "you're right. that movie is hilarious.",
+    "you're right. that movie is hilarious.": "i didn't think you saw that movie.",
+    "i didn't think you saw that movie.": "i went to see it the day it came out.",
+    "i went to see it the day it came out.": "i was laughing through the whole movie.",
+    "i was laughing through the whole movie.": "i couldn't help laughing, either. ",
+    "i couldn't help laughing, either. ": "same here.",
+    "same here.": "i bought the movie. would you like to come to my house and watch it?",
+    "i bought the movie. would you like to come to my house and watch it?": "of course.",
+    "out of every movie that you've seen, which one is your favorite?": "i'm going to have to say that superbad is the best movie ever.",
+    "i'm going to have to say that superbad is the best movie ever.": "you think so, how come?",
+    "you think so, how come?": "well, superbad is super funny.",
+    "well, superbad is super funny.": "you're not lying, i found that movie absolutely hilarious.",
+    "you're not lying, i found that movie absolutely hilarious.": "i didn't know that you saw superbad before.",
+    "i didn't know that you saw superbad before.": "i made sure to be in line to see it the first day it came out.",
+    "i made sure to be in line to see it the first day it came out.": "i couldn't keep from laughing throughout the whole movie.",
+    "i couldn't keep from laughing throughout the whole movie.": "i was laughing hysterically the whole time; my stomach muscles hurt afterwards.",
+    "i was laughing hysterically the whole time; my stomach muscles hurt afterwards.": "that's exactly how i felt.",
+    "that's exactly how i felt.": "i got the movie when it came out on dvd, do you want to come over?",
+    "what type of music do you like to listen to?": "i like listening to different kinds of music.",
+    "i like listening to different kinds of music.": "what kinds of music do you like?"
+};
+                dataLoaded = true;
+                return data;
+            });
+    }
+
+    // Load the chatbot data when the page loads
+    loadChatbotData();
+
+    // Toggle the chat window
+    chatLogo.addEventListener('click', () => {
+        chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Close the chat window
+    closeBtn.addEventListener('click', () => {
+        chatContainer.style.display = 'none';
+    });
+
+    // Handle sending a message when the Send button is clicked
+    sendBtn.addEventListener('click', () => {
+        sendMessage();
+    });
+    
+    // Handle voice input button click
+    voiceInputBtn.addEventListener('click', () => {
+        startVoiceRecognition();
+    });
+
+    // Handle 'Enter' key press
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const userMessage = userInput.value.trim();
+        if (userMessage === '') return;
+
+        appendMessage(userMessage, 'user-message');
+        userInput.value = '';
+
+        // Call the function to get a response from the local dataset
+        searchDataset(userMessage);
+    }
+
+    function appendMessage(message, className) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', className);
+        messageDiv.textContent = message;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // This is the function that searches your dataset for a response
+    function searchDataset(message) {
+        const normalizedMessage = message.toLowerCase().trim();
+        let botResponse;
+
+        // Check if data is loaded before searching
+        if (!dataLoaded) {
+            // If data isn't loaded yet, wait a bit and try again
+            appendMessage('...', 'bot-message');
+            setTimeout(() => {
+                if (dataLoaded) {
+                    // Data is now loaded, search again
+                    searchDataset(message);
+                } else {
+                    // Still not loaded, show error
+                    const thinkingMessage = chatBox.lastElementChild;
+                    if (thinkingMessage && thinkingMessage.textContent === '...') {
+                        thinkingMessage.textContent = "I'm still loading my data. Please try again in a moment.";
+                    } else {
+                        appendMessage("I'm still loading my data. Please try again in a moment.", 'bot-message');
+                    }
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }
+            }, 500);
+            return;
+        }
+
+        // Find an exact match in the dataset
+        if (chatbotData[normalizedMessage]) {
+            botResponse = chatbotData[normalizedMessage];
+        } else {
+            botResponse = "I'm sorry, I don't have an answer for that. Please try rephrasing your question.";
+        }
+
+        // Simulate a delay to make it feel more conversational
+        appendMessage('...', 'bot-message');
+        setTimeout(() => {
+            const thinkingMessage = chatBox.lastElementChild;
+            if (thinkingMessage && thinkingMessage.textContent === '...') {
+                thinkingMessage.textContent = botResponse;
+            } else {
+                appendMessage(botResponse, 'bot-message');
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 800);
+    }
+    
+    // Web Speech API for voice input
+    function startVoiceRecognition() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert('Your browser does not support voice input. Please use a modern browser like Chrome or Edge.');
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US'; 
+        recognition.interimResults = false; 
+        recognition.maxAlternatives = 1; 
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            userInput.value = transcript;
+            sendMessage();
+        };
+
+        recognition.onstart = () => {
+            console.log('Voice recognition started...');
+        };
+
+        recognition.onend = () => {
+            console.log('Voice recognition ended.');
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            alert('Error: ' + event.error);
+        };
+
+        recognition.start();
+    }
+});

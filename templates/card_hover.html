@@ -19,130 +19,33 @@
         --text-secondary: #aaaaaa;
       }
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        background: var(--card-bg);
-        border-radius: 20px;
-        box-shadow: 0 8px 24px var(--card-shadow);
-        margin-bottom: 60px;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 0.8s ease-out forwards;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 32px var(--card-shadow-hover);
-      }
-
-      .card:nth-of-type(2) {
-        animation-delay: 0.2s;
-      }
-
-      .card-vertical .template-preview {
-        flex: 0 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-
-      .card-vertical {
-        flex-direction: column;
-        width: 300px;
-        justify-content: center;
-        height: 400px;
-        max-width: 100%;
-      }
-      .card-vertical .template-preview img {
-        height: 180px;
-        width: 100%;
-        object-fit: cover;
-      }
       .templates-main {
-        
         display: flex;
         flex-direction: row;
         justify-content: center;
         padding: 6rem 1rem 2rem 1rem;
-      }
-      .template-card {
-        align-items: stretch;
-      }
-
-      .template-preview {
-        flex: 1.2;
-        min-width: 300px;
+        flex-wrap: wrap;
+        gap: 2rem;
       }
 
-      .template-preview img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-      }
-
-      .card:hover .template-preview img {
-        transform: scale(1.05);
-      }
-
-      .template-info {
-        flex: 1;
-        min-width: 300px;
-        padding: 10px 30px;
+      .links {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-
       }
 
-      .template-info h2 {
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-size: 1.8rem;
-        color: var(--text-primary);
-      }
-
-      .template-info p {
-        font-size: 1rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin-bottom: 20px;
-      }
-
-      .btn {
-        display: inline-block;
+      .button {
+        display: flex;
         background-color: var(--accent);
         color: #fff;
-        padding: 12px 24px;
+        padding: 10px 8px;
         border-radius: 8px;
+        margin: 3px;
         text-decoration: none;
         font-weight: bold;
         transition: background-color 0.3s ease, transform 0.2s ease;
-        align-self: flex-start;
       }
-      .btn:hover {
+
+      .button:hover {
         background-color: #2f75f7;
-      }
-
-      
-
-      
-
-      @keyframes fadeInUp {
-        from {
-          transform: translateY(30px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
       }
 
       @media (max-width: 700px) {
@@ -160,85 +63,120 @@
           align-self: flex-start !important;
         }
       }
-
-      .links{
-        display: flex;
-        
-      }
-      .button{
-       display: flex;
-       
-        background-color: var(--accent);
-        color: #fff;
-        padding: 10px 8px;
-        border-radius: 8px;
-        margin: 3px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        
-      }
-
-      .button:hover {
-        background-color: #2f75f7;
-      }
-
     </style>
   </head>
   <body>
-    <nav class="navbar">
+    <nav class="navbar scroll-fade">
       <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
+        <a href="../index.html" class="home-link">
+          <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <span class="site-name">Animate It Now</span>
+        </a>
       </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../editor.html">Editor</a></li>
+          <li><a href="../templates.html" class="active">Templates</a></li>
+          <li><a href="../playground.html">Hover-Effects</a></li>
+          <li><a href="../contributors.html">Contributors</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../leaderboard.html">Leaderboard</a></li>
+          <li><a href="../loginpage.html">Login</a></li>
+          <li><a href="../signup.html">Sign Up</a></li>
+          <li class="snakeList">
+            <label class="switch" title="Toggle Snake Cursor">
+              <input type="checkbox" id="cursorToggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="snakeLabel">Snake Cursor</span>
+          </li>
+          <li>
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+              <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67 7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+              <i data-lucide="moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
 
-    <main class="templates-main" >
-      
-        <article class="card card-vertical">
-          <div class="template-preview">
-            <img
-              src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg"
-              alt="Vertical Card Preview"
-            />
-          </div>
-          <div class="template-info">
-            <h2>Card Title</h2>
-            <p>
-              This is some quick example text to build on the card title and
-              make up the bulk of the card's content.
-            </p>
-            <a href="#" class="btn">Go Somewhere</a>
-          </div>
-        </article>
+    <main class="templates-main">
+      <!-- Vertical Card with Image -->
+      <article class="card-system card-vertical card-tilt">
+        <img src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg" alt="Card Preview" class="card-img-top">
+        <div class="card-body">
+          <h2 class="card-title">Card Title</h2>
+          <p class="card-text">
+            This is some quick example text to build on the card title and
+            make up the bulk of the card's content.
+          </p>
+          <a href="#" class="card-btn">Go Somewhere</a>
+        </div>
+      </article>
 
-        <article class="card card-vertical">
-          <div style="width: 300px; height: 100px; "></div>
-          <div class="template-info">
-            <h2 style="margin-bottom: 0; padding-bottom: 0;">Card Title</h2>
-            <h4 style="color:var(--text-secondary);">Sub Title</h4>
-            <p>
-              This is some quick example text to build on the card title and
-              make up the bulk of the card's content.
+      <!-- Vertical Card with Links -->
+      <article class="card-system card-vertical card-float">
+        <div style="width: 100%; height: 100px;"></div>
+        <div class="card-body">
+          <h2 class="card-title" style="margin-bottom: 0; padding-bottom: 0;">Card Title</h2>
+          <h4 class="card-subtitle">Sub Title</h4>
+          <p class="card-text">
+            This is some quick example text to build on the card title and
+            make up the bulk of the card's content.
+          </p>
+          <div class="card-actions links">
+            <a href="#" class="button">Card Link</a>
+            <a href="#" class="button">Another Link</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Horizontal Card -->
+      <article class="card-system card-horizontal card-glow">
+        <div class="card-img-container">
+          <img src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg" alt="Horizontal Card Preview" class="card-img-top">
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <h2 class="card-title">Horizontal Card</h2>
+            <p class="card-text">
+              This is a horizontal card layout with an image on the left and content on the right.
             </p>
-            <div class="links">
-                <a href="#" class="button">Card Link</a>
-                <a href="#" class="button">Another Link</a>
+            <a href="#" class="card-btn">Learn More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Flip Card -->
+      <article class="card-system card-vertical card-flip" style="height: 400px;">
+        <div class="card-flip-inner">
+          <div class="card-flip-front">
+            <div class="card-body">
+              <h2 class="card-title">Flip Card</h2>
+              <p class="card-text">
+                Hover over this card to see it flip and reveal content on the back.
+              </p>
             </div>
-            
           </div>
-        </article>
-
-
-
-      
+          <div class="card-flip-back" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <div class="card-body">
+              <h2 class="card-title">Back Side</h2>
+              <p class="card-text">
+                This is the back of the flip card. You can put any content here!
+              </p>
+              <a href="#" class="card-btn" style="background: white; color: #667eea;">Action</a>
+            </div>
+          </div>
+        </div>
+      </article>
     </main>
 
     <footer>
@@ -246,5 +184,5 @@
     </footer>
 
     <script src="../script.js"></script>
-    </body>
+  </body>
 </html>

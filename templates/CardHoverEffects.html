@@ -71,57 +71,12 @@
             line-height: 1.5;
         }
 
-        /* Base Card Styles */
+        /* Base Card Styles - Using unified system */
         .card-container {
             perspective: 1000px;
             width: 300px;
             height: 400px;
             margin: 0 auto;
-        }
-
-        .card {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-            transform-style: preserve-3d;
-            cursor: pointer;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-content {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            z-index: 2;
-        }
-
-        .card-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.9;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .card-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            opacity: 0.9;
         }
 
         /* Effect 1: Tilt and Glow */
@@ -362,76 +317,6 @@
             color: #666;
             line-height: 1.6;
         }
-
-        /* Navbar Styles */
-        /* .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            z-index: 999;
-            transition: all 0.3s ease;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            justify-self: start;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
-        }
-
-        .site-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 2rem;
-            align-items: center;
-            justify-self: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .nav-links a.active {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.15);
-        } */
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -675,9 +560,9 @@
                 <h3 class="effect-title">🎯 Tilt & Glow</h3>
                 <p class="effect-description">Card tilts in 3D space with a beautiful glow effect on hover</p>
                 <div class="card-container">
-                    <div class="card tilt-glow">
-                        <div class="card-content">
-                            <i class="fas fa-rocket card-icon"></i>
+                    <div class="card-system card-tilt tilt-glow">
+                        <div class="card-body">
+                            <i class="fas fa-rocket card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                             <h3 class="card-title">Innovation</h3>
                             <p class="card-text">Pushing boundaries with cutting-edge technology and creative solutions.
                             </p>
@@ -691,17 +576,17 @@
                 <h3 class="effect-title">🔄 Flip Card</h3>
                 <p class="effect-description">Card flips to reveal hidden content on the back side</p>
                 <div class="card-container">
-                    <div class="card flip-card">
+                    <div class="card-system flip-card">
                         <div class="card-front">
-                            <div class="card-content">
-                                <i class="fas fa-palette card-icon"></i>
+                            <div class="card-body">
+                                <i class="fas fa-palette card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                                 <h3 class="card-title">Design</h3>
                                 <p class="card-text">Beautiful aesthetics meet functional design principles.</p>
                             </div>
                         </div>
                         <div class="card-back">
-                            <div class="card-content">
-                                <i class="fas fa-lightbulb card-icon"></i>
+                            <div class="card-body">
+                                <i class="fas fa-lightbulb card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                                 <h3 class="card-title">Creativity</h3>
                                 <p class="card-text">Where imagination transforms into digital reality through
                                     innovative design.</p>
@@ -716,9 +601,9 @@
                 <h3 class="effect-title">🌊 Float & Rotate</h3>
                 <p class="effect-description">Gentle floating animation with rotation on hover</p>
                 <div class="card-container">
-                    <div class="card float-rotate">
-                        <div class="card-content">
-                            <i class="fas fa-code card-icon"></i>
+                    <div class="card-system float-rotate">
+                        <div class="card-body">
+                            <i class="fas fa-code card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                             <h3 class="card-title">Development</h3>
                             <p class="card-text">Clean code architecture with modern development practices.</p>
                         </div>
@@ -731,9 +616,9 @@
                 <h3 class="effect-title">🔮 Morphing Shape</h3>
                 <p class="effect-description">Card morphs its shape and adds inner glow on hover</p>
                 <div class="card-container">
-                    <div class="card morph-card">
-                        <div class="card-content">
-                            <i class="fas fa-star card-icon"></i>
+                    <div class="card-system morph-card">
+                        <div class="card-body">
+                            <i class="fas fa-star card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                             <h3 class="card-title">Excellence</h3>
                             <p class="card-text">Striving for perfection in every detail and interaction.</p>
                         </div>
@@ -746,9 +631,9 @@
                 <h3 class="effect-title">⚡ Slice Effect</h3>
                 <p class="effect-description">Light beam sweeps across with subtle skew transformation</p>
                 <div class="card-container">
-                    <div class="card slice-card">
-                        <div class="card-content">
-                            <i class="fas fa-bolt card-icon"></i>
+                    <div class="card-system slice-card">
+                        <div class="card-body">
+                            <i class="fas fa-bolt card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                             <h3 class="card-title">Performance</h3>
                             <p class="card-text">Lightning-fast loading with optimized user experience.</p>
                         </div>
@@ -761,9 +646,9 @@
                 <h3 class="effect-title">📚 Layered Depth</h3>
                 <p class="effect-description">Multiple layers create depth with 3D transformation</p>
                 <div class="card-container">
-                    <div class="card layered-depth">
-                        <div class="card-content">
-                            <i class="fas fa-gem card-icon"></i>
+                    <div class="card-system layered-depth">
+                        <div class="card-body">
+                            <i class="fas fa-gem card-icon" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
                             <h3 class="card-title">Premium</h3>
                             <p class="card-text">High-quality components with attention to every detail.</p>
                         </div>
@@ -784,8 +669,8 @@
             <div class="code-block" id="html-tab">
                 <button class="copy-btn" onclick="copyCode('html-code')">Copy</button>
                 <pre id="html-code">&lt;div class="card-container"&gt;
-    &lt;div class="card tilt-glow"&gt;
-        &lt;div class="card-content"&gt;
+    &lt;div class="card-system tilt-glow"&gt;
+        &lt;div class="card-body"&gt;
             &lt;i class="fas fa-rocket card-icon"&gt;&lt;/i&gt;
             &lt;h3 class="card-title"&gt;Innovation&lt;/h3&gt;
             &lt;p class="card-text"&gt;Your amazing content here&lt;/p&gt;
@@ -802,7 +687,7 @@
     height: 400px;
 }
 
-.card {
+.card-system {
     width: 100%;
     height: 100%;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
@@ -857,7 +742,7 @@
         }
 
         // Add click effects to cards
-        document.querySelectorAll('.card').forEach(card => {
+        document.querySelectorAll('.card-system').forEach(card => {
             card.addEventListener('click', () => {
                 card.style.transform = card.style.transform + ' scale(0.98)';
                 setTimeout(() => {
