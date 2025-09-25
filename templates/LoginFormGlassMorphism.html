@@ -357,12 +357,12 @@
               <div class="forget">
                 <label> <input type="checkbox" /> Remember me </label>
                 <label>
-                  <a href="#">Forgot password?</a>
+                  <a href="#" id="forgotPassword">Forgot password?</a>
                 </label>
               </div>
               <button>Log in</button>
               <div class="register">
-                <p>Don't have a account ? <a href="#">Register</a></p>
+                <p>Don't have a account ? <a href="#" id="registerLink">Register</a></p>
               </div>
             </form>
           </div>
@@ -726,6 +726,16 @@
           }, 500);
         }, 2000); // 1.5 seconds delay - adjust as needed
       });
+       //forgot-password
+      document.getElementById("forgotPassword").addEventListener("click",function(e){
+        e.preventDefault();
+        window.location.href="forgot-password.html";
+      })
+      //register
+      document.getElementById("registerLink").addEventListener("click",function(e){
+        e.preventDefault();
+        window.location.href="register.html";
+      })
     </script>
 
     <div id="cursor-snake"></div>
