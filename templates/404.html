@@ -1,100 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - Page Not Found</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
-  <link rel="stylesheet" href="../styles.css" />
-</head>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page Not Found</title>
+  <style>
     body {
-  height: 100vh;
-  background: linear-gradient(135deg, var(--primary), #e6f0ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-}
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-.container {
-  text-align: center;
-  padding: 20px;
-}
+    .error-box {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 400px;
+    }
 
-.error-code {
-  font-size: 10rem;
-  font-weight: bold;
-  color: var(--white);
-  animation: float 3s ease-in-out infinite;
-}
+    .error-box h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: #ef4444;
+    }
 
-.message {
-  font-size: 1.5rem;
-  margin: 20px 0;
-  color: var(--white);
-}
+    .error-box p {
+      margin: 10px 0 20px;
+      font-size: 1.2rem;
+      color: #374151;
+    }
 
-.home-btn {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 1rem;
-  color: var(--primary);
-  background-color: var(--white);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
+    .error-box a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3b82f6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
 
-.home-btn:hover {
-  background-color: #d6e8ff;
-  transform: scale(1.05);
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .error-code {
-    font-size: 6rem;
-  }
-  .message {
-    font-size: 1.2rem;
-  }
-}
-</style>
+    .error-box a:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
 <body>
-
-    <nav class="navbar">
-      <div class="nav-left">
-        <img src="../images/logo.png" alt="Logo" class="logo" />
-        <span class="site-name">AnimateItNow</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../templates.html" class="active">Templates</a></li>
-        <li><a href="../contributors.html">Contributors</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </nav>
-  <div class="container">
-    <div class="error-code">404</div>
-    <p class="message">Oops! Page not found.</p>
-    <a href="../index.html" class="home-btn">Go Back Home</a>
+  <div class="error-box">
+    <h1>404</h1>
+    <p>Page Not Found</p>
+    <a href="/">Go Home</a>
   </div>
-
-  <script src="script.js"></script>
-  </body>
+</body>
 </html>
