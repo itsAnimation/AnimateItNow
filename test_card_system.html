@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card System Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f8cff;
+            --secondary: #ff6b6b;
+            --accent: #667eea;
+            --success: #25d366;
+            --warning: #ff9500;
+            --purple: #764ba2;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border-radius: 16px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.6rem 1.2rem;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover, .control-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Card System Base Styles */
+        .card-system {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card-vertical {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-horizontal {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card-img-container {
+            flex: 0 0 40%;
+            overflow: hidden;
+        }
+
+        .card-img-container div {
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .card-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .card-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 140, 255, 0.3);
+        }
+
+        /* Tilt Effect */
+        .card-tilt {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-tilt:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Float Effect */
+        .card-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-float:hover {
+            animation: none;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Glow Effect */
+        .card-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: var(--transition);
+        }
+
+        .card-glow:hover::before {
+            left: 100%;
+        }
+
+        .card-glow:hover {
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Morph Effect */
+        .card-morph {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-morph:hover {
+            border-radius: 30px;
+            transform: scale(1.03);
+        }
+
+        /* Flip Card */
+        .card-flip {
+            height: 300px;
+            perspective: 1000px;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .card-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card-flip:hover .card-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-flip-front, .card-flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .card-flip-back {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-flip-back .card-title,
+        .card-flip-back .card-text {
+            color: white;
+        }
+
+        .card-flip-back .card-btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .card-flip-back .card-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            display: inline-block;
+            background: white;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-horizontal {
+                flex-direction: column;
+            }
+            
+            .card-img-container {
+                flex: 0 0 200px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-btn {
+                width: 200px;
+            }
+        }
+
+        /* Card Badges */
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --dark: #f8f9fa;
+                --light: #2c3e50;
+                --gray: #adb5bd;
+            }
+            
+            body {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                color: var(--dark);
+            }
+            
+            .card-system {
+                background: #34495e;
+                color: var(--dark);
+            }
+            
+            .card-title {
+                color: var(--dark);
+            }
+            
+            .control-btn {
+                background: #34495e;
+                color: var(--dark);
+            }
+            
+            .section-header h2 {
+                background: #34495e;
+                color: var(--dark);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <header>
+            <h1>Unified Card System Test</h1>
+            <p class="subtitle">Explore different card layouts and interactive effects. Hover over cards to see animations.</p>
+            
+            <div class="controls">
+                <button class="control-btn active" data-filter="all">All Cards</button>
+                <button class="control-btn" data-filter="vertical">Vertical</button>
+                <button class="control-btn" data-filter="horizontal">Horizontal</button>
+                <button class="control-btn" data-filter="effect">With Effects</button>
+                <button class="control-btn" data-filter="flip">Flip Cards</button>
+            </div>
+        </header>
+        
+        <div class="cards-grid">
+            <!-- Vertical Card -->
+            <article class="card-system card-vertical" data-category="vertical">
+                <span class="card-badge">Vertical</span>
+                <div style="background: linear-gradient(135deg, var(--primary), #6fa3ff); height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Vertical Card</h2>
+                    <p class="card-text">This is a basic vertical card using the unified system. Perfect for displaying content in a straightforward, top-to-bottom layout.</p>
+                    <a href="#" class="card-btn">Action</a>
+                </div>
+            </article>
+            
+            <!-- Horizontal Card -->
+            <article class="card-system card-horizontal" data-category="horizontal">
+                <span class="card-badge">Horizontal</span>
+                <div class="card-img-container">
+                    <div style="background: linear-gradient(135deg, var(--secondary), #ff8a8a); height: 100%;"></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h2 class="card-title">Horizontal Card</h2>
+                        <p class="card-text">This is a horizontal card layout, ideal for displaying image-content combinations side by side.</p>
+                        <a href="#" class="card-btn">Learn More</a>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Tilt Effect Card -->
+            <article class="card-system card-vertical card-tilt" data-category="effect">
+                <span class="card-badge">Tilt Effect</span>
+                <div style="background: linear-gradient(135deg, var(--accent), #829dff); height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Tilt Effect</h2>
+                    <p class="card-text">This card has a 3D tilt effect on hover. Move your cursor over the card to see the perspective shift.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Float Effect Card -->
+            <article class="card-system card-vertical card-float" data-category="effect">
+                <span class="card-badge">Float Effect</span>
+                <div style="background: linear-gradient(135deg, var(--purple), #8d67b0); height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Float Effect</h2>
+                    <p class="card-text">This card floats gently and animates on hover. It has a continuous floating animation when idle.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Glow Effect Card -->
+            <article class="card-system card-vertical card-glow" data-category="effect">
+                <span class="card-badge">Glow Effect</span>
+                <div style="background: linear-gradient(135deg, var(--success), #4ade80); height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Glow Effect</h2>
+                    <p class="card-text">This card glows on hover with a subtle shine effect. Watch for the light sweep across the surface.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+            
+            <!-- Morph Effect Card -->
+            <article class="card-system card-vertical card-morph" data-category="effect">
+                <span class="card-badge">Morph Effect</span>
+                <div style="background: linear-gradient(135deg, var(--warning), #ffb143); height: 150px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title">Morph Effect</h2>
+                    <p class="card-text">This card morphs its shape on hover, changing its border radius and scaling slightly.</p>
+                    <a href="#" class="card-btn">Try Me</a>
+                </div>
+            </article>
+        </div>
+        
+        <div class="section-header">
+            <h2>Flip Card Test</h2>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- Flip Card -->
+            <article class="card-system card-flip" data-category="flip">
+                <span class="card-badge">Flip Effect</span>
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <i class="fas fa-sync-alt" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent);"></i>
+                            <h2 class="card-title">Flip Card</h2>
+                            <p class="card-text">Hover to see the flip effect!</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-back">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h2 class="card-title">Back Side</h2>
+                            <p class="card-text">This is the back of the card with different content!</p>
+                            <a href="#" class="card-btn">Action</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Another Flip Card -->
+            <article class="card-system card-flip" data-category="flip">
+                <span class="card-badge">Flip Effect</span>
+                <div class="card-flip-inner">
+                    <div class="card-flip-front">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <i class="fas fa-question-circle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--secondary);"></i>
+                            <h2 class="card-title">Question Card</h2>
+                            <p class="card-text">Hover to reveal the answer!</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-back" style="background: linear-gradient(135deg, var(--secondary), #ff8a8a);">
+                        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                            <i class="fas fa-lightbulb" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h2 class="card-title">Answer</h2>
+                            <p class="card-text">This is the solution to your question!</p>
+                            <a href="#" class="card-btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.control-btn');
+            const cards = document.querySelectorAll('.card-system');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    cards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'flex';
+                        } else {
+                            if (card.getAttribute('data-category') === filter) {
+                                card.style.display = 'flex';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Add click effects to buttons
+            const buttons = document.querySelectorAll('.card-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size/2;
+                    const y = e.clientY - rect.top - size/2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

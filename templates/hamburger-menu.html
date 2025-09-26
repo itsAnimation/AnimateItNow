@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Hamburger Menu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f172a, #1e293b);
+      color: white;
+      scroll-behavior: smooth;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1f2937;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: #60a5fa;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: #60a5fa;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        overflow: hidden;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #1e293b;
+        max-height: 0;
+      }
+
+      .nav-links.active {
+        max-height: 400px;
+        padding: 1rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+
+
+    .playground {
+      margin: 3rem auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #home { background: #0f172a; }
+    #templates { background: #1e293b; }
+    #about { background: #111827; }
+    #contact { background: #0f172a; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">AnimateItNow</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#home">Home</a>
+      <a href="../templates.html">Templates</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h2>Home</h2>
+      <p>Welcome to the interactive hamburger menu demo. Scroll or use the menu.</p>
+
+      <div class="playground">
+        <h3>1. Change Hamburger Color</h3>
+        <input id="colorInput" type="text" placeholder="e.g. red or #60a5fa"><br><br>
+        <button class="btn btn-primary" onclick="applyColor()">Apply Here</button>
+      </div>
+
+      <div class="playground">
+        <h3>2. Change Navbar Alignment</h3>
+        <input id="alignInput" type="text" placeholder="e.g. flex-start, center, flex-end"><br><br>
+        <button class="btn btn-primary" onclick="applyAlign()">Apply Here</button>
+      </div>
+
+      <div class="playground">
+        <h3>3. Change Hamburger Size</h3>
+        <input id="sizeInput" type="text" placeholder="e.g. 20px, 40px"><br><br>
+        <button class="btn btn-primary" onclick="applySize()">Apply Here</button>
+      </div>
+
+      <div class="playground">
+        <h3>4. Change Border Radius</h3>
+        <input id="radiusInput" type="text" placeholder="e.g. 0px, 10px"><br><br>
+        <button class="btn btn-primary" onclick="applyRadius()">Apply Here</button>
+      </div>
+
+      <div class="playground">
+        <h3>Combined Playground</h3>
+        <input id="comboColor" type="text" placeholder="Color"><br><br>
+        <input id="comboAlign" type="text" placeholder="Alignment"><br><br>
+        <input id="comboSize" type="text" placeholder="Size"><br><br>
+        <input id="comboRadius" type="text" placeholder="Border Radius"><br><br>
+        <button class="btn btn-primary" onclick="applyCombo()">Apply All</button>
+      </div>
+    </section>
+
+    <section id="templates">
+      <h2>Templates</h2>
+      <p>Click below to go to the original Templates section on index.html.</p>
+      <a href="../templates.html"><button class="btn btn-primary">Go to Templates Section</button></a>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>Click below to go to the original About section on index.html.</p>
+      <a href="../about.html"><button class="btn btn-primary">Go to About Section</button></a>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Click below to go to the original Contact section on index.html.</p>
+      <a href="../contact.html"><button class="btn btn-primary">Go to Contact Section</button></a>
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    function applyColor() {
+      const val = document.getElementById('colorInput').value;
+      if (val) document.querySelectorAll('.hamburger span').forEach(span => span.style.backgroundColor = val);
+    }
+    function applyAlign() {
+      const val = document.getElementById('alignInput').value;
+      if (val) document.querySelector('nav').style.justifyContent = val;
+    }
+    function applySize() {
+      const val = document.getElementById('sizeInput').value;
+      if (val) document.querySelectorAll('.hamburger span').forEach(span => span.style.width = val);
+    }
+    function applyRadius() {
+      const val = document.getElementById('radiusInput').value;
+      if (val) document.querySelectorAll('.hamburger span').forEach(span => span.style.borderRadius = val);
+    }
+    function applyCombo() {
+      const color = document.getElementById('comboColor').value;
+      const align = document.getElementById('comboAlign').value;
+      const size = document.getElementById('comboSize').value;
+      const radius = document.getElementById('comboRadius').value;
+      if (color) document.querySelectorAll('.hamburger span').forEach(span => span.style.backgroundColor = color);
+      if (align) document.querySelector('nav').style.justifyContent = align;
+      if (size) document.querySelectorAll('.hamburger span').forEach(span => span.style.width = size);
+      if (radius) document.querySelectorAll('.hamburger span').forEach(span => span.style.borderRadius = radius);
+    }
+  </script>
+</body>
+</html>
