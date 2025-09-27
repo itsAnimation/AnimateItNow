@@ -1,61 +1,1077 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 Page Not Found</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates | AnimateItNow</title>
+  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="../../images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="../../manifest.json" />
+  
+  <!-- PWA Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="../../images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="../../images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="../../images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../../images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="../../images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="../../images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="../../images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="../../images/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="../../images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="../../images/icons/icon-192x192.png" />
+  
+  <!-- Fallback icon -->
+  <link rel="icon" type="image/png" href="../../images/logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../templates.css">
+</head>
+
+<body class="dark">
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <a href="../../index.html" class="home-link">
+        <img src="../../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </a>
+    </div>
+    
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../editor.html" target="_blank">Editor</a></li>
+        <li><a href="../../templates.html">Templates</a></li>
+        <li><a href="../../playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+        <li><a href="../../contributors.html">Contributors</a></li>
+        <li><a href="../../contact.html">Contact</a></li>
+        <li><a href="../../leaderboard.html">Leaderboard</a></li>
+        <li><a href="../../generator.html">Generator</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 404 Ping Pong Game -->
+  <main class="main-content">
+    <div class="pong-container">
+      <canvas id="pongCanvas"></canvas>
+      
+      <div class="game-overlay">
+        <div class="error-display">
+          <div class="pixel-404">404</div>
+          <div class="error-message">
+            <h2>Oops! Looks Like</h2>
+            <h2>You Are Lost</h2>
+          </div>
+          <a href="../../index.html" class="home-button">Home</a>
+        </div>
+      </div>
+      
+      <!-- Dotted center line -->
+      <div class="center-line"></div>
+    </div>
+
+
+    <style>
+      .pong-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #pongCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .game-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .pixel-404 {
+        font-family: 'Courier New', monospace;
+        font-size: clamp(4rem, 15vw, 12rem);
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 
+          2px 2px 0px #333,
+          4px 4px 0px #666;
+        margin-bottom: 1rem;
+        letter-spacing: 0.2em;
+        animation: pixelFlicker 2s infinite alternate;
+      }
+
+      .error-message {
+        margin-bottom: 2rem;
+      }
+
+      .error-message h2 {
+        font-family: 'Arial', sans-serif;
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        color: #fff;
+        margin: 0.5rem 0;
+        font-weight: normal;
+      }
+
+      .home-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #fff;
+        color: #000;
+        text-decoration: none;
+        border-radius: 25px;
+        font-family: 'Arial', sans-serif;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        pointer-events: auto;
+        border: 2px solid #fff;
+      }
+
+      .home-button:hover {
+        background: transparent;
+        color: #fff;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      .center-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 4px;
+        height: 100%;
+        background: repeating-linear-gradient(
+          to bottom,
+          #333 0,
+          #333 20px,
+          transparent 20px,
+          transparent 40px
+        );
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+
+      @keyframes pixelFlicker {
+        0%, 100% { 
+          opacity: 1;
+          text-shadow: 
+            2px 2px 0px #333,
+            4px 4px 0px #666;
+        }
+        50% { 
+          opacity: 0.8;
+          text-shadow: 
+            2px 2px 0px #555,
+            4px 4px 0px #888;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pixel-404 {
+          font-size: clamp(3rem, 20vw, 8rem);
+        }
+        
+        .error-message h2 {
+          font-size: clamp(0.9rem, 4vw, 1.2rem);
+        }
+        
+        .home-button {
+          padding: 10px 25px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+
+
+    <!-- Ping Pong Game Script -->
+    <script>
+      // Game variables
+      const canvas = document.getElementById('pongCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Game objects
+      let ball = {
+        x: 0,
+        y: 0,
+        radius: 8,
+        velocityX: 5,
+        velocityY: 3,
+        color: '#fff'
+      };
+
+      let leftPaddle = {
+        x: 30,
+        y: 0,
+        width: 12,
+        height: 80,
+        velocityY: 4,
+        color: '#00ccff'
+      };
+
+      let rightPaddle = {
+        x: 0,
+        y: 0,
+        width: 12,
+        height: 80,
+        velocityY: 4,
+        color: '#00ccff'
+      };
+
+      // Resize canvas
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Reset positions
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        
+        leftPaddle.y = canvas.height / 2 - leftPaddle.height / 2;
+        rightPaddle.x = canvas.width - rightPaddle.width - 30;
+        rightPaddle.y = canvas.height / 2 - rightPaddle.height / 2;
+      }
+
+      // Draw rectangle
+      function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+      }
+
+      // Draw circle
+      function drawCircle(x, y, radius, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // Update ball position
+      function updateBall() {
+        ball.x += ball.velocityX;
+        ball.y += ball.velocityY;
+
+        // Ball collision with top and bottom walls
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+          ball.velocityY = -ball.velocityY;
+        }
+
+        // Ball collision with paddles
+        if (ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
+            ball.y > leftPaddle.y && ball.y < leftPaddle.y + leftPaddle.height) {
+          ball.velocityX = -ball.velocityX;
+          ball.x = leftPaddle.x + leftPaddle.width + ball.radius;
+        }
+
+        if (ball.x + ball.radius > rightPaddle.x &&
+            ball.y > rightPaddle.y && ball.y < rightPaddle.y + rightPaddle.height) {
+          ball.velocityX = -ball.velocityX;
+          ball.x = rightPaddle.x - ball.radius;
+        }
+
+        // Reset ball if it goes off screen
+        if (ball.x < 0 || ball.x > canvas.width) {
+          ball.x = canvas.width / 2;
+          ball.y = canvas.height / 2;
+          ball.velocityX = -ball.velocityX;
+        }
+      }
+
+      // AI for paddles
+      function updatePaddles() {
+        // Left paddle AI
+        const leftPaddleCenter = leftPaddle.y + leftPaddle.height / 2;
+        if (leftPaddleCenter < ball.y - 35) {
+          leftPaddle.y += leftPaddle.velocityY;
+        } else if (leftPaddleCenter > ball.y + 35) {
+          leftPaddle.y -= leftPaddle.velocityY;
+        }
+
+        // Right paddle AI
+        const rightPaddleCenter = rightPaddle.y + rightPaddle.height / 2;
+        if (rightPaddleCenter < ball.y - 35) {
+          rightPaddle.y += rightPaddle.velocityY;
+        } else if (rightPaddleCenter > ball.y + 35) {
+          rightPaddle.y -= rightPaddle.velocityY;
+        }
+
+        // Keep paddles within canvas bounds
+        if (leftPaddle.y < 0) leftPaddle.y = 0;
+        if (leftPaddle.y + leftPaddle.height > canvas.height) {
+          leftPaddle.y = canvas.height - leftPaddle.height;
+        }
+        if (rightPaddle.y < 0) rightPaddle.y = 0;
+        if (rightPaddle.y + rightPaddle.height > canvas.height) {
+          rightPaddle.y = canvas.height - rightPaddle.height;
+        }
+      }
+
+      // Render game
+      function render() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw paddles
+        drawRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height, leftPaddle.color);
+        drawRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height, rightPaddle.color);
+
+        // Draw ball
+        drawCircle(ball.x, ball.y, ball.radius, ball.color);
+      }
+
+      // Game loop
+      function gameLoop() {
+        updateBall();
+        updatePaddles();
+        render();
+        requestAnimationFrame(gameLoop);
+      }
+
+      // Initialize game
+      function initGame() {
+        resizeCanvas();
+        gameLoop();
+      }
+
+      // Event listeners
+      window.addEventListener('resize', resizeCanvas);
+      window.addEventListener('load', initGame);
+
+      // Start game immediately if DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGame);
+      } else {
+        initGame();
+      }
+    </script>
+  </main>
+
+  <!-- Code Section -->
+  <section class="code-section">
+    <div class="code-container">
+      <div class="code-header">
+        <h2>Code</h2>
+        <p>Behind the scenes of this 404 ping pong game</p>
+      </div>
+      
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="html">HTML</button>
+        <button class="code-tab" data-tab="css">CSS</button>
+        <button class="code-tab" data-tab="js">JavaScript</button>
+        <button class="code-tab" data-tab="implement">Implement</button>
+      </div>
+      
+      <div class="code-content">
+        <div class="code-panel active" data-panel="html">
+          <pre><code>&lt;div class="pong-container"&gt;
+  &lt;canvas id="pongCanvas"&gt;&lt;/canvas&gt;
+  
+  &lt;div class="game-overlay"&gt;
+    &lt;div class="error-display"&gt;
+      &lt;div class="pixel-404"&gt;404&lt;/div&gt;
+      &lt;div class="error-message"&gt;
+        &lt;h2&gt;Oops! Looks Like&lt;/h2&gt;
+        &lt;h2&gt;You Are Lost&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;a href="../../index.html" class="home-button"&gt;Home&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="center-line"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        
+        <div class="code-panel" data-panel="css">
+          <pre><code>.pong-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pongCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.pixel-404 {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 0px #333, 4px 4px 0px #666;
+  margin-bottom: 1rem;
+  letter-spacing: 0.2em;
+  animation: pixelFlicker 2s infinite alternate;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}</code></pre>
+        </div>
+        
+        <div class="code-panel" data-panel="js">
+          <pre><code>// Initialize canvas and context
+const canvas = document.getElementById('pongCanvas');
+const ctx = canvas.getContext('2d');
+
+// Game objects
+let ball = {
+  x: 0,
+  y: 0,
+  radius: 8,
+  velocityX: 5,
+  velocityY: 3,
+  color: '#fff'
+};
+
+let leftPaddle = {
+  x: 30,
+  y: 0,
+  width: 12,
+  height: 80,
+  velocityY: 4,
+  color: '#00ccff'
+};
+
+// Update ball position
+function updateBall() {
+  ball.x += ball.velocityX;
+  ball.y += ball.velocityY;
+  
+  // Wall collision
+  if (ball.y + ball.radius > canvas.height || 
+      ball.y - ball.radius < 0) {
+    ball.velocityY = -ball.velocityY;
+  }
+  
+  // Paddle collision
+  if (ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
+      ball.y > leftPaddle.y && 
+      ball.y < leftPaddle.y + leftPaddle.height) {
+    ball.velocityX = -ball.velocityX;
+  }
+}</code></pre>
+        </div>
+        
+        <div class="code-panel" data-panel="implement">
+          <div class="implementation-guide">
+            <h3><i class="fas fa-rocket"></i> How to Implement This 404 Ping Pong Game</h3>
+            
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Create the HTML Structure</h4>
+                <p>Start by creating a basic HTML file with the pong container and canvas element:</p>
+                <ul>
+                  <li>Add a <code>&lt;canvas&gt;</code> element for the game rendering</li>
+                  <li>Create overlay divs for the 404 text and home button</li>
+                  <li>Include a center line div for the classic pong look</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Style with CSS</h4>
+                <p>Apply the visual styling to create the retro game aesthetic:</p>
+                <ul>
+                  <li>Set the container to full viewport dimensions (100vw × 100vh)</li>
+                  <li>Position the canvas absolutely to fill the entire screen</li>
+                  <li>Style the 404 text with pixelated fonts and flickering animation</li>
+                  <li>Create the dotted center line using CSS gradients</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Add Game Logic</h4>
+                <p>Implement the ping pong game mechanics with JavaScript:</p>
+                <ul>
+                  <li>Initialize canvas context and game objects (ball, paddles)</li>
+                  <li>Create physics for ball movement and collision detection</li>
+                  <li>Add AI logic for automatic paddle movement</li>
+                  <li>Set up the main game loop using <code>requestAnimationFrame</code></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Make it Responsive</h4>
+                <p>Ensure the game works on all devices and screen sizes:</p>
+                <ul>
+                  <li>Add window resize event listeners</li>
+                  <li>Use clamp() CSS functions for responsive text sizing</li>
+                  <li>Implement mobile-friendly touch interactions</li>
+                  <li>Test across different browsers and devices</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h4>Deploy & Test</h4>
+                <p>Final steps to get your 404 page live:</p>
+                <ul>
+                  <li>Save the file as <code>404.html</code> in your website's root directory</li>
+                  <li>Configure your web server to serve this file for 404 errors</li>
+                  <li>Test the error page by visiting a non-existent URL</li>
+                  <li>Verify the game runs smoothly across different browsers</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="tips-section">
+              <h4><i class="fas fa-lightbulb"></i> Pro Tips</h4>
+              <div class="tips">
+                <div class="tip">
+                  <strong>Performance:</strong> Use <code>requestAnimationFrame</code> instead of <code>setInterval</code> for smooth 60fps animation.
+                </div>
+                <div class="tip">
+                  <strong>Accessibility:</strong> Add keyboard controls and screen reader support for better accessibility.
+                </div>
+                <div class="tip">
+                  <strong>Customization:</strong> Modify ball speed, paddle size, and colors to match your website's theme.
+                </div>
+                <div class="tip">
+                  <strong>SEO:</strong> Include proper meta tags and alt text even on your 404 page for better SEO.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-actions">
+        <button class="copy-btn" onclick="copyCode()">
+          <i class="fas fa-copy"></i>
+          Copy Code
+        </button>
+        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" class="github-btn">
+          <i class="fab fa-github"></i>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f4f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    .code-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 4rem 2rem;
+      color: #fff;
     }
 
-    .error-box {
-      background: white;
-      padding: 40px 60px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    .code-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .code-header {
       text-align: center;
-      max-width: 400px;
+      margin-bottom: 3rem;
     }
 
-    .error-box h1 {
-      font-size: 4rem;
-      margin: 0;
-      color: #ef4444;
+    .code-header h2 {
+      font-size: 3rem;
+      color: #00ccff;
+      margin-bottom: 0.5rem;
     }
 
-    .error-box p {
-      margin: 10px 0 20px;
+    .code-header p {
       font-size: 1.2rem;
-      color: #374151;
+      color: #ccc;
     }
 
-    .error-box a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #3b82f6;
-      color: white;
-      text-decoration: none;
+    .code-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .code-tab {
+      padding: 0.8rem 2rem;
+      background: #333;
+      color: #ccc;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .code-tab.active {
+      background: #00ccff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .code-tab:hover:not(.active) {
+      background: #444;
+      color: #fff;
+    }
+
+    .code-content {
+      background: #1e1e1e;
       border-radius: 8px;
-      transition: background 0.3s ease;
+      padding: 2rem;
+      position: relative;
+      min-height: 400px;
     }
 
-    .error-box a:hover {
-      background-color: #2563eb;
+    .code-panel {
+      display: none;
+    }
+
+    .code-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .code-panel pre {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      color: #d4d4d4;
+    }
+
+    .code-panel code {
+      color: #d4d4d4;
+    }
+
+    .code-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+
+    .copy-btn, .github-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn {
+      background: #00ccff;
+      color: #000;
+    }
+
+    .copy-btn:hover {
+      background: #00aadd;
+      transform: translateY(-2px);
+    }
+
+    .github-btn {
+      background: #333;
+      color: #fff;
+    }
+
+    .github-btn:hover {
+      background: #444;
+      transform: translateY(-2px);
+    }
+
+    .implementation-guide {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .implementation-guide h3 {
+      color: #00ccff;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border-left: 4px solid #00ccff;
+    }
+
+    .step-number {
+      background: #00ccff;
+      color: #000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      color: #ccc;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .step-content ul {
+      color: #ddd;
+      padding-left: 1.5rem;
+    }
+
+    .step-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .step-content code {
+      background: rgba(0, 204, 255, 0.2);
+      color: #00ccff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .tips-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(0, 204, 255, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 204, 255, 0.3);
+    }
+
+    .tips-section h4 {
+      color: #00ccff;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      border-left: 3px solid #ffd700;
+    }
+
+    .tip strong {
+      color: #ffd700;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .tip:last-child {
+      margin-bottom: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .code-header h2 {
+        font-size: 2rem;
+      }
+
+      .code-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .code-tab {
+        width: 200px;
+        border-radius: 6px;
+      }
+
+      .code-content {
+        padding: 1rem;
+      }
+
+      .code-panel pre {
+        font-size: 0.85rem;
+      }
+
+      .code-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .step {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .step-number {
+        align-self: center;
+      }
+
+      .implementation-guide h3 {
+        font-size: 1.2rem;
+      }
+
+      .tips-section {
+        padding: 1rem;
+      }
     }
   </style>
-</head>
-<body>
-  <div class="error-box">
-    <h1>404</h1>
-    <p>Page Not Found</p>
-    <a href="/">Go Home</a>
-  </div>
+
+  <script>
+    // Code section functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.code-tab');
+      const panels = document.querySelectorAll('.code-panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const targetPanel = this.dataset.tab;
+
+          // Remove active class from all tabs and panels
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => p.classList.remove('active'));
+
+          // Add active class to clicked tab and corresponding panel
+          this.classList.add('active');
+          document.querySelector(`[data-panel="${targetPanel}"]`).classList.add('active');
+        });
+      });
+    });
+
+    // Copy code functionality
+    function copyCode() {
+      const activePanel = document.querySelector('.code-panel.active code');
+      const text = activePanel.textContent;
+      
+      navigator.clipboard.writeText(text).then(function() {
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        copyBtn.style.background = '#28a745';
+        
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+          copyBtn.style.background = '#00ccff';
+        }, 2000);
+      }).catch(function() {
+        alert('Failed to copy code. Please copy manually.');
+      });
+    }
+  </script>
+
+   <!-- Footer -->
+   <footer class="footer scroll-fade">
+    <div class="footer-content">
+      <div class="footer-left">
+        <h2>AnimateItNow</h2>
+        <p>Creating impactful web animations and templates for everyone.</p>
+      </div>
+      <div class="footer-right">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">
+              <i class="fas fa-envelope"></i> Email Us
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        © 2025 AnimateItNow. Made with ❤️ by
+        <span class="highlight">Anuj</span> and Contributors.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const themeToggle = document.getElementById('theme-toggle');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      setupEventListeners();
+      checkThemePreference();
+    });
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Theme toggle
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+      }
+      
+      // Mobile menu toggle
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+          const icon = this.querySelector('i');
+          if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      }
+      
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (navLinks) navLinks.classList.remove('active');
+          if (menuToggle) {
+            menuToggle.querySelector('i').classList.remove('fa-times');
+            menuToggle.querySelector('i').classList.add('fa-bars');
+          }
+        });
+      });
+    }
+
+    // Theme toggle functionality
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = themeToggle.querySelector('i');
+      
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Check for saved theme preference
+    function checkThemePreference() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+      
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        if (themeIcon) {
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+        }
+      } else {
+        document.body.classList.remove('dark');
+        if (themeIcon) {
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+        }
+      }
+    }
+  </script>
 </body>
 </html>
