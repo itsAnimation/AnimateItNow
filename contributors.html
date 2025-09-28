@@ -1,769 +1,810 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contributors | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  
-  <style>
-    /* CSS Variables for Theming */
-    :root {
-      --primary: #6c63ff;
-      --primary-light: #8a84ff;
-      --primary-dark: #554fd8;
-      --secondary: #ff6584;
-      --accent: #36d1dc;
-      --text: #2a2a3c;
-      --text-light: #6c757d;
-      --bg: #ffffff;
-      --bg-secondary: #f8f9fa;
-      --bg-tertiary: #e9ecef;
-      --border: #dee2e6;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      --radius: 12px;
-      --transition: all 0.3s ease;
-      --header-height: 80px;
-    }
-
-    /* Dark Mode Variables */
-    .dark-theme {
-      --primary: #8a84ff;
-      --primary-light: #a8a4ff;
-      --primary-dark: #6c63ff;
-      --secondary: #ff8fa3;
-      --accent: #4dd0e1;
-      --text: #f8f9fa;
-      --text-light: #a0a0a0;
-      --bg: #121212;
-      --bg-secondary: #1e1e1e;
-      --bg-tertiary: #2a2a2a;
-      --border: #404040;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background-color: var(--bg);
-      transition: var(--transition);
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    section {
-      padding: 100px 0;
-    }
-
-    h1, h2, h3, h4, h5 {
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-    }
-
-    h3 {
-      font-size: 1.8rem;
-    }
-
-    p {
-      margin-bottom: 1.5rem;
-      color: var(--text-light);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition);
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background-color: var(--primary);
-      color: white;
-      border-radius: var(--radius);
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: var(--transition);
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
-    }
-
-    /* Header/Navigation */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: var(--header-height);
-      background-color: var(--bg);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-      z-index: 999;
-      transition: var(--transition);
-    }
-
-    .dark-theme .navbar {
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .navbar.scrolled {
-      height: 70px;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-    }
-
-    .dark-theme .navbar.scrolled {
-      background-color: rgba(18, 18, 18, 0.95);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 100%;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .site-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav-links li {
-      margin-left: 30px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      font-weight: 500;
-      position: relative;
-      padding: 5px 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    /* Snake cursor toggle */
-    .snakeList {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--bg-tertiary);
-      transition: var(--transition);
-      border-radius: 24px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: var(--transition);
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--primary);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .snakeLabel {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-
-    .github-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      transition: var(--transition);
-    }
-
-    .github-icon:hover {
-      background-color: var(--bg-tertiary);
-    }
-
-    #theme-toggle {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--text);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-
-    #theme-toggle:hover {
-      background-color: var(--bg-tertiary);
-    }
-
-    /* Contributors Page Styles */
-    .contributors-main {
-      padding-top: var(--header-height);
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
-    }
-
-    .contributors-header {
-      text-align: center;
-      padding: 100px 0 60px;
-    }
-
-    .contributors-title {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .contributors-title span {
-      color: var(--primary);
-      position: relative;
-    }
-
-    .contributors-subtitle {
-      font-size: 1.3rem;
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Stats Section */
-    .contributors-stats {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .stat-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 25px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border: 1px solid var(--border);
-      min-width: 200px;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-
-    .stat-label {
-      font-size: 1rem;
-      color: var(--text-light);
-      font-weight: 600;
-    }
-
-    /* Search Section */
-    .search-section {
-      background: var(--bg);
-      border-radius: var(--radius);
-      padding: 30px;
-      margin: 40px auto;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      max-width: 800px;
-    }
-
-    .search-container {
-      display: flex;
-      position: relative;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 15px 20px;
-      font-size: 1.1rem;
-      border-radius: var(--radius) 0 0 var(--radius);
-      border: 2px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
-    }
-
-    .search-btn {
-      padding: 15px 25px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 0 var(--radius) var(--radius) 0;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .search-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Contributors Grid */
-    .contributors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
-    }
-
-    .contributor-card {
-      background: var(--bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: var(--transition);
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .contributor-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .contributor-header {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      padding: 30px 20px;
-      color: white;
-    }
-
-    .contributor-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      margin-bottom: 15px;
-    }
-
-    .contributor-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .contributor-login {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    .contributor-body {
-      padding: 25px 20px;
-    }
-
-    .contributor-stats {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-    }
-
-    .contributor-stat {
-      text-align: center;
-    }
-
-    .contributor-stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .contributor-stat-label {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-
-    .contributor-bio {
-      margin-bottom: 20px;
-      color: var(--text-light);
-      font-style: italic;
-    }
-
-    .contributor-link {
-      display: inline-block;
-      padding: 10px 20px;
-      background: var(--primary);
-      color: white;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .contributor-link:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    /* Loading State */
-    .loading-state {
-      text-align: center;
-      padding: 60px 20px;
-      grid-column: 1 / -1;
-    }
-
-    .loader {
-      border: 6px solid var(--border);
-      border-top: 6px solid var(--primary);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1.2s linear infinite;
-      margin: 0 auto 20px;
-    }
-
-    .loading-text {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text-light);
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--bg-secondary);
-      color: var(--text);
-      padding: 60px 0 30px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 40px;
-    }
-
-    .footer-left h2 {
-      margin-bottom: 15px;
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-right h4 {
-      margin-bottom: 20px;
-    }
-
-    .footer-right ul {
-      list-style: none;
-    }
-
-    .footer-right li {
-      margin-bottom: 10px;
-    }
-
-    .footer-right a {
-      color: var(--text-light);
-      transition: var(--transition);
-    }
-
-    .footer-right a:hover {
-      color: var(--primary);
-    }
-
-    .footer-right a i {
-      margin-right: 10px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid var(--border);
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
-
-    .footer-bottom .highlight {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    /* Scroll to top button */
-    #scrollBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      border: none;
-      outline: none;
-      background-color: var(--primary);
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      width: 50px;
-      height: 50px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    #scrollBtn:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-3px);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .contributors-title {
-        font-size: 2.8rem;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contributors | AnimateItNow</title>
+    <meta
+      name="description"
+      content="A comprehensive collection of CSS animation templates and effects for web developers"
+    />
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS Variables for Theming */
+      :root {
+        --primary: #6c63ff;
+        --primary-light: #8a84ff;
+        --primary-dark: #554fd8;
+        --secondary: #ff6584;
+        --accent: #36d1dc;
+        --text: #2a2a3c;
+        --text-light: #6c757d;
+        --bg: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-tertiary: #e9ecef;
+        --border: #dee2e6;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --radius: 12px;
+        --transition: all 0.3s ease;
+        --header-height: 80px;
       }
-      
-      .contributors-stats {
-        gap: 20px;
-      }
-      
-      .stat-card {
-        min-width: 160px;
-      }
-      
-      .contributors-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
-    }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      /* Dark Mode Variables */
+      .dark-theme {
+        --primary: #8a84ff;
+        --primary-light: #a8a4ff;
+        --primary-dark: #6c63ff;
+        --secondary: #ff8fa3;
+        --accent: #4dd0e1;
+        --text: #f8f9fa;
+        --text-light: #a0a0a0;
+        --bg: #121212;
+        --bg-secondary: #1e1e1e;
+        --bg-tertiary: #2a2a2a;
+        --border: #404040;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
-      
-      .contributors-title {
-        font-size: 2.2rem;
-      }
-      
-      .contributors-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .search-section {
-        padding: 20px;
-      }
-      
-      .search-container {
-        flex-direction: column;
-      }
-      
-      .search-input {
-        border-radius: var(--radius) var(--radius) 0 0;
-      }
-      
-      .search-btn {
-        border-radius: 0 0 var(--radius) var(--radius);
-      }
-      
-      .contributors-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-    }
 
-    @media (max-width: 576px) {
-      .contributors-title {
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--bg);
+        transition: var(--transition);
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      h3 {
         font-size: 1.8rem;
       }
-      
-      .contributors-stats {
-        flex-direction: column;
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: var(--transition);
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+      }
+
+      /* Header/Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background-color: var(--bg);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transition: var(--transition);
+      }
+
+      .dark-theme .navbar {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar.scrolled {
+        height: 70px;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .dark-theme .navbar.scrolled {
+        background-color: rgba(18, 18, 18, 0.95);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+      }
+
+      /* .nav-left {
+      display: flex;
+      align-items: center;
+    } */
+      .home-link {
+        display: flex;
         align-items: center;
       }
-      
-      .stat-card {
+
+      .logo {
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .site-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 16px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        font-weight: 500;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
         width: 100%;
-        max-width: 300px;
       }
-      
-      .contributor-header {
-        padding: 20px 15px;
+
+      /* Snake cursor toggle */
+      .snakeList {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
-      
-      .contributor-avatar {
-        width: 80px;
-        height: 80px;
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
       }
-      
-      .contributor-name {
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bg-tertiary);
+        transition: var(--transition);
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: var(--transition);
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: var(--primary);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .snakeLabel {
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+
+      .github-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .github-icon:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      #theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      #theme-toggle:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      /* Contributors Page Styles */
+      .contributors-main {
+        padding-top: var(--header-height);
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--bg-secondary) 0%,
+          var(--bg) 100%
+        );
+      }
+
+      .contributors-header {
+        text-align: center;
+        padding: 100px 0 60px;
+      }
+
+      .contributors-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .contributors-title span {
+        color: var(--primary);
+        position: relative;
+      }
+
+      .contributors-subtitle {
         font-size: 1.3rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <div class="nav-left">
-        <a href="index.html" class="home-link">
-          <img src="https://via.placeholder.com/40x40/6c63ff/ffffff?text=AI" alt="AnimateItNow Logo" class="logo" />
-          <span class="site-name">Animate It Now</span>
-        </a>
-      </div>
+      /* Stats Section */
+      .contributors-stats {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 40px 0;
+        flex-wrap: wrap;
+      }
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="editor.html">Editor</a></li>
-          <li><a href="templates.html">Templates</a></li>
-          <li><a href="playground.html">Hover-Effects</a></li>
-          <li><a href="contributors.html" class="active">Contributors</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="leaderboard.html">Leaderboard</a></li>
-          <!-- cursor toggle switch -->
-          <li class="snakeList">
-            <label class="switch" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle">
-              <span class="slider round"></span>
-            </label>
-            <span class="snakeLabel">Snake Cursor</span>
-          </li>
-          <!-- github icon -->
-          <li>
-            <a href="https://github.com/itsAnimation/AnimateItNow"
-               target="_blank" 
-               rel="noopener noreferrer" 
-               aria-label="GitHub Repo"
-               class="github-icon">
-              <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+      .stat-card {
+        background: var(--bg);
+        border-radius: var(--radius);
+        padding: 25px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        min-width: 200px;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        color: var(--text-light);
+        font-weight: 600;
+      }
+
+      /* Search Section */
+      .search-section {
+        padding: 30px;
+        margin: 40px auto;
+        max-width: 800px;
+      }
+
+      .search-container {
+        display: flex;
+        position: relative;
+      }
+
+      .search-input {
+        flex: 1;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        border-radius: var(--radius) 0 0 var(--radius);
+        border: 2px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+        transition: var(--transition);
+      }
+
+      .search-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+      }
+
+      .search-btn {
+        padding: 15px 25px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .search-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Contributors Grid */
+      .contributors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 60px 25px;
+      }
+
+      .contributor-card {
+        background: var(--bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .contributor-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .contributor-header {
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        padding: 30px 20px;
+        color: white;
+      }
+
+      .contributor-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        margin-bottom: 15px;
+      }
+
+      .contributor-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .contributor-login {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .contributor-body {
+        padding: 25px 20px;
+        display: flex; /* make body a column flex container */
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+      }
+
+      .contributor-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .contributor-stat {
+        text-align: center;
+      }
+
+      .contributor-stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .contributor-stat-label {
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+
+      .contributor-bio {
+        margin-bottom: 20px;
+        color: var(--text-light);
+        font-style: italic;
+        min-height: 3em;
+      }
+
+      .contributor-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--primary);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 600;
+        transition: var(--transition);
+        margin-top: auto;
+        width: auto;
+      }
+
+      .contributor-link:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      /* Loading State */
+      .loading-state {
+        text-align: center;
+        padding: 60px 20px;
+        grid-column: 1 / -1;
+      }
+
+      .loader {
+        border: 6px solid var(--border);
+        border-top: 6px solid var(--primary);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1.2s linear infinite;
+        margin: 0 auto 20px;
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-light);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--bg-secondary);
+        color: var(--text);
+        padding: 60px 0 30px;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+
+      .footer-left h2 {
+        margin-bottom: 15px;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .footer-right h4 {
+        margin-bottom: 20px;
+      }
+
+      .footer-right ul {
+        list-style: none;
+      }
+
+      .footer-right li {
+        margin-bottom: 10px;
+      }
+
+      .footer-right a {
+        color: var(--text-light);
+        transition: var(--transition);
+      }
+
+      .footer-right a:hover {
+        color: var(--primary);
+      }
+
+      .footer-right a i {
+        margin-right: 10px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid var(--border);
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom .highlight {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* Scroll to top button */
+      #scrollBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: var(--primary);
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 18px;
+        width: 50px;
+        height: 50px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      #scrollBtn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .contributors-title {
+          font-size: 2.8rem;
+        }
+
+        .contributors-stats {
+          gap: 20px;
+        }
+
+        .stat-card {
+          min-width: 160px;
+        }
+
+        .contributors-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .contributors-title {
+          font-size: 2.2rem;
+        }
+
+        .contributors-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .search-section {
+          padding: 20px;
+        }
+
+        .search-container {
+          flex-direction: column;
+        }
+
+        .search-input {
+          border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .search-btn {
+          border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        .contributors-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .contributors-title {
+          font-size: 1.8rem;
+        }
+
+        .contributors-stats {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .stat-card {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .contributor-header {
+          padding: 20px 15px;
+        }
+
+        .contributor-avatar {
+          width: 80px;
+          height: 80px;
+        }
+
+        .contributor-name {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container nav-container">
+        <div class="nav-left">
+          <a href="index.html" class="home-link">
+            <img src="images/logo.png" alt="Website Logo" class="logo" />
+            <span class="site-name">AnimateIt Now</span>
+          </a>
+        </div>
+
+        <div class="nav-right">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="editor.html">Editor</a></li>
+            <li><a href="templates.html">Templates</a></li>
+            <li><a href="playground.html">Hover-Effects</a></li>
+            <li><a href="contributors.html" class="active">Contributors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <!-- cursor toggle switch -->
+            <li class="snakeList">
+              <label class="switch" title="Toggle Snake Cursor">
+                <input type="checkbox" id="cursorToggle" />
+                <span class="slider round"></span>
+              </label>
+              <span class="snakeLabel">Snake Cursor</span>
+            </li>
+            <!-- github icon -->
+            <li>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Repo"
+                class="github-icon"
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
                   7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
                   -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                   -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
@@ -774,365 +815,432 @@
                 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
                 .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
                 .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <button id="theme-toggle" aria-label="Toggle Theme">
-              <i class="fas fa-moon"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Contributors Main Content -->
-  <main class="contributors-main">
-    <section class="contributors-header">
-      <div class="container">
-        <h1 class="contributors-title">
-          Meet Our <span>Contributors</span>
-        </h1>
-        <p class="contributors-subtitle">
-          The amazing people who make AnimateItNow possible through their contributions
-        </p>
-      </div>
-    </section>
-
-    <section class="container">
-      <!-- Stats Section -->
-      <div class="contributors-stats">
-        <div class="stat-card">
-          <div class="stat-value" id="totalContributors">0</div>
-          <div class="stat-label">Total Contributors</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="totalCommits">0</div>
-          <div class="stat-label">Total Commits</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="totalPRs">0</div>
-          <div class="stat-label">Pull Requests</div>
-        </div>
-      </div>
-
-      <!-- Search Section -->
-      <div class="search-section">
-        <div class="search-container">
-          <input 
-            type="text" 
-            id="searchContributors" 
-            class="search-input"
-            placeholder="Search contributors by name..." 
-          />
-          <button id="searchBtn" class="search-btn">
-            Search
-          </button>
-        </div>
-      </div>
-
-      <!-- Contributors Grid -->
-      <div id="contributors-grid" class="contributors-grid">
-        <div class="loading-state">
-          <div class="loader"></div>
-          <p class="loading-text">Loading contributors...</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>AnimateItNow</h2>
-          <p>Creating impactful web animations and templates for everyone.</p>
-        </div>
-        <div class="footer-right">
-          <h4>Connect With Us</h4>
-          <ul>
-            <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-            <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
+                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+    </nav>
+
+    <!-- Contributors Main Content -->
+    <main class="contributors-main">
+      <section class="contributors-header">
+        <div class="container">
+          <h1 class="contributors-title">Meet Our <span>Contributors</span></h1>
+          <p class="contributors-subtitle">
+            The amazing people who make AnimateItNow possible through their
+            contributions
+          </p>
+        </div>
+      </section>
+
+      <section class="container">
+        <!-- Stats Section -->
+        <div class="contributors-stats">
+          <div class="stat-card">
+            <div class="stat-value" id="totalContributors">0</div>
+            <div class="stat-label">Total Contributors</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="totalCommits">0</div>
+            <div class="stat-label">Total Commits</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="totalPRs">0</div>
+            <div class="stat-label">Pull Requests</div>
+          </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchContributors"
+              class="search-input"
+              placeholder="Search contributors by name..."
+            />
+            <button id="searchBtn" class="search-btn">Search</button>
+          </div>
+        </div>
+
+        <!-- Contributors Grid -->
+        <div id="contributors-grid" class="contributors-grid">
+          <div class="loading-state">
+            <div class="loader"></div>
+            <p class="loading-text">Loading contributors...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <h2>AnimateItNow</h2>
+            <p>Creating impactful web animations and templates for everyone.</p>
+          </div>
+          <div class="footer-right">
+            <h4>Connect With Us</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/itsAnimation/AnimateItNow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="fab fa-github"></i> GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/anujshrivastava1/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="fab fa-linkedin"></i> LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="mailto:contact@animateitnow.com"
+                  rel="noopener noreferrer"
+                  ><i class="fas fa-envelope"></i> Email Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2025 AnimateItNow. Made with ❤️ by
+            <span class="highlight">Anuj</span> and Contributors.
+          </p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Scroll to top button -->
-  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
+    <!-- Scroll to top button -->
+    <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
-  <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const body = document.body;
 
-    function setTheme(isDark) {
-      const icon = themeToggle.querySelector('i');
-      body.classList.toggle('dark-theme', isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      
-      if (icon) {
-        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-      }
-    }
+      function setTheme(isDark) {
+        const icon = themeToggle.querySelector("i");
+        body.classList.toggle("dark-theme", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
 
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
-
-    themeToggle?.addEventListener('click', () => {
-      setTheme(!body.classList.contains('dark-theme'));
-    });
-
-    // Scroll to top functionality
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    window.onscroll = function() {
-      const scrollBtn = document.getElementById("scrollBtn");
-      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollBtn.style.display = "block";
-      } else {
-        scrollBtn.style.display = "none";
-      }
-    };
-
-    // Contributors data
-    const owner = "itsAnimation";
-    const repo = "AnimateItNow";
-    let contributorsData = [];
-    let filteredContributors = [];
-
-    // Fetch contributors from GitHub API
-    async function fetchContributors() {
-      try {
-        const url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          throw new Error(`GitHub API error! Status: ${response.status}`);
+        if (icon) {
+          icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
         }
-        
-        const contributors = await response.json();
-        
-        // If no data fetched, use dummy data for demonstration
-        if (!Array.isArray(contributors) || contributors.length === 0) {
-          console.warn("No data fetched from GitHub. Using dummy data for demonstration.");
+      }
+
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
+
+      themeToggle?.addEventListener("click", () => {
+        setTheme(!body.classList.contains("dark-theme"));
+      });
+
+      // Scroll to top functionality
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      window.onscroll = function () {
+        const scrollBtn = document.getElementById("scrollBtn");
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          scrollBtn.style.display = "block";
+        } else {
+          scrollBtn.style.display = "none";
+        }
+      };
+
+      // Contributors data
+      const owner = "itsAnimation";
+      const repo = "AnimateItNow";
+      let contributorsData = [];
+      let filteredContributors = [];
+
+      // Fetch contributors from GitHub API
+      async function fetchContributors() {
+        try {
+          const url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            throw new Error(`GitHub API error! Status: ${response.status}`);
+          }
+
+          const contributors = await response.json();
+
+          // If no data fetched, use dummy data for demonstration
+          if (!Array.isArray(contributors) || contributors.length === 0) {
+            console.warn(
+              "No data fetched from GitHub. Using dummy data for demonstration."
+            );
+            return getDummyContributors();
+          }
+
+          return contributors;
+        } catch (error) {
+          console.error("Error fetching contributors:", error);
+          // Return dummy data if fetch fails
           return getDummyContributors();
         }
-        
-        return contributors;
-      } catch (error) {
-        console.error('Error fetching contributors:', error);
-        // Return dummy data if fetch fails
-        return getDummyContributors();
       }
-    }
 
-    // Get dummy contributors for demonstration
-    function getDummyContributors() {
-      return [
-        {
-          login: "anuj",
-          id: 1,
-          avatar_url: "https://via.placeholder.com/100/6c63ff/ffffff?text=A",
-          html_url: "https://github.com/anuj",
-          contributions: 150,
-          type: "User"
-        },
-        {
-          login: "alice",
-          id: 2,
-          avatar_url: "https://via.placeholder.com/100/ff6584/ffffff?text=A",
-          html_url: "https://github.com/alice",
-          contributions: 89,
-          type: "User"
-        },
-        {
-          login: "bob",
-          id: 3,
-          avatar_url: "https://via.placeholder.com/100/36d1dc/ffffff?text=B",
-          html_url: "https://github.com/bob",
-          contributions: 76,
-          type: "User"
-        },
-        {
-          login: "charlie",
-          id: 4,
-          avatar_url: "https://via.placeholder.com/100/8a84ff/ffffff?text=C",
-          html_url: "https://github.com/charlie",
-          contributions: 64,
-          type: "User"
-        },
-        {
-          login: "diana",
-          id: 5,
-          avatar_url: "https://via.placeholder.com/100/ff8fa3/ffffff?text=D",
-          html_url: "https://github.com/diana",
-          contributions: 52,
-          type: "User"
-        },
-        {
-          login: "emma",
-          id: 6,
-          avatar_url: "https://via.placeholder.com/100/4dd0e1/ffffff?text=E",
-          html_url: "https://github.com/emma",
-          contributions: 41,
-          type: "User"
-        },
-        {
-          login: "frank",
-          id: 7,
-          avatar_url: "https://via.placeholder.com/100/554fd8/ffffff?text=F",
-          html_url: "https://github.com/frank",
-          contributions: 35,
-          type: "User"
-        },
-        {
-          login: "grace",
-          id: 8,
-          avatar_url: "https://via.placeholder.com/100/a8a4ff/ffffff?text=G",
-          html_url: "https://github.com/grace",
-          contributions: 28,
-          type: "User"
-        }
-      ];
-    }
+      // Get dummy contributors for demonstration
+      function getDummyContributors() {
+        return [
+          {
+            login: "anuj",
+            id: 1,
+            avatar_url: "https://via.placeholder.com/100/6c63ff/ffffff?text=A",
+            html_url: "https://github.com/anuj",
+            contributions: 150,
+            type: "User",
+          },
+          {
+            login: "alice",
+            id: 2,
+            avatar_url: "https://via.placeholder.com/100/ff6584/ffffff?text=A",
+            html_url: "https://github.com/alice",
+            contributions: 89,
+            type: "User",
+          },
+          {
+            login: "bob",
+            id: 3,
+            avatar_url: "https://via.placeholder.com/100/36d1dc/ffffff?text=B",
+            html_url: "https://github.com/bob",
+            contributions: 76,
+            type: "User",
+          },
+          {
+            login: "charlie",
+            id: 4,
+            avatar_url: "https://via.placeholder.com/100/8a84ff/ffffff?text=C",
+            html_url: "https://github.com/charlie",
+            contributions: 64,
+            type: "User",
+          },
+          {
+            login: "diana",
+            id: 5,
+            avatar_url: "https://via.placeholder.com/100/ff8fa3/ffffff?text=D",
+            html_url: "https://github.com/diana",
+            contributions: 52,
+            type: "User",
+          },
+          {
+            login: "emma",
+            id: 6,
+            avatar_url: "https://via.placeholder.com/100/4dd0e1/ffffff?text=E",
+            html_url: "https://github.com/emma",
+            contributions: 41,
+            type: "User",
+          },
+          {
+            login: "frank",
+            id: 7,
+            avatar_url: "https://via.placeholder.com/100/554fd8/ffffff?text=F",
+            html_url: "https://github.com/frank",
+            contributions: 35,
+            type: "User",
+          },
+          {
+            login: "grace",
+            id: 8,
+            avatar_url: "https://via.placeholder.com/100/a8a4ff/ffffff?text=G",
+            html_url: "https://github.com/grace",
+            contributions: 28,
+            type: "User",
+          },
+        ];
+      }
 
-    // Fetch additional user details
-    async function fetchUserDetails(login) {
-      try {
-        const url = `https://api.github.com/users/${login}`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
+      // Fetch additional user details
+      async function fetchUserDetails(login) {
+        try {
+          const url = `https://api.github.com/users/${login}`;
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            return null;
+          }
+
+          return await response.json();
+        } catch (error) {
+          console.error(`Error fetching user details for ${login}:`, error);
           return null;
         }
-        
-        return await response.json();
-      } catch (error) {
-        console.error(`Error fetching user details for ${login}:`, error);
-        return null;
       }
-    }
 
-    // Render contributors grid
-    function renderContributors(contributors) {
-      const grid = document.getElementById('contributors-grid');
-      
-      if (contributors.length === 0) {
-        grid.innerHTML = `
+      // Render contributors grid
+      function renderContributors(contributors) {
+        const grid = document.getElementById("contributors-grid");
+
+        if (contributors.length === 0) {
+          grid.innerHTML = `
           <div class="loading-state">
             <p class="loading-text">No contributors found matching your search.</p>
           </div>
         `;
-        return;
-      }
-      
-      grid.innerHTML = contributors.map(contributor => `
+          return;
+        }
+
+        grid.innerHTML = contributors
+          .map(
+            (contributor) => `
         <div class="contributor-card">
           <div class="contributor-header">
-            <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
-            <h3 class="contributor-name">${contributor.name || contributor.login}</h3>
+            <img src="${contributor.avatar_url}" alt="${
+              contributor.login
+            }" class="contributor-avatar">
+            <h3 class="contributor-name">${
+              contributor.name || contributor.login
+            }</h3>
             <p class="contributor-login">@${contributor.login}</p>
           </div>
           <div class="contributor-body">
             <div class="contributor-stats">
               <div class="contributor-stat">
-                <div class="contributor-stat-value">${contributor.contributions}</div>
+                <div class="contributor-stat-value">${
+                  contributor.contributions
+                }</div>
                 <div class="contributor-stat-label">Contributions</div>
               </div>
               <div class="contributor-stat">
-                <div class="contributor-stat-value">${contributor.public_repos || 'N/A'}</div>
+                <div class="contributor-stat-value">${
+                  contributor.public_repos || "N/A"
+                }</div>
                 <div class="contributor-stat-label">Repos</div>
               </div>
               <div class="contributor-stat">
-                <div class="contributor-stat-value">${contributor.followers || 'N/A'}</div>
+                <div class="contributor-stat-value">${
+                  contributor.followers || "N/A"
+                }</div>
                 <div class="contributor-stat-label">Followers</div>
               </div>
             </div>
-            ${contributor.bio ? `<p class="contributor-bio">"${contributor.bio}"</p>` : ''}
-            <a href="${contributor.html_url}" target="_blank" class="contributor-link">
+            ${
+              contributor.bio
+                ? `<p class="contributor-bio">"${contributor.bio}"</p>`
+                : ""
+            }
+            <a href="${
+              contributor.html_url
+            }" target="_blank" class="contributor-link">
               View Profile
             </a>
           </div>
         </div>
-      `).join('');
-    }
-
-    // Update stats
-    function updateStats(contributors) {
-      const totalContributors = contributors.length;
-      const totalCommits = contributors.reduce((sum, contributor) => sum + contributor.contributions, 0);
-      const totalPRs = Math.floor(totalCommits * 0.7); // Estimate PRs as 70% of commits
-      
-      document.getElementById('totalContributors').textContent = totalContributors;
-      document.getElementById('totalCommits').textContent = totalCommits.toLocaleString();
-      document.getElementById('totalPRs').textContent = totalPRs.toLocaleString();
-    }
-
-    // Search functionality
-    function performSearch() {
-      const searchTerm = document.getElementById('searchContributors').value.trim().toLowerCase();
-      
-      if (!searchTerm) {
-        filteredContributors = [...contributorsData];
-      } else {
-        filteredContributors = contributorsData.filter(contributor => 
-          contributor.login.toLowerCase().includes(searchTerm) || 
-          (contributor.name && contributor.name.toLowerCase().includes(searchTerm))
-        );
+      `
+          )
+          .join("");
       }
-      
-      renderContributors(filteredContributors);
-    }
 
-    // Initialize contributors page
-    async function init() {
-      const contributors = await fetchContributors();
-      
-      // Fetch additional details for each contributor
-      const contributorsWithDetails = await Promise.all(
-        contributors.map(async contributor => {
-          const userDetails = await fetchUserDetails(contributor.login);
-          return { ...contributor, ...userDetails };
-        })
-      );
-      
-      contributorsData = contributorsWithDetails.sort((a, b) => b.contributions - a.contributions);
-      filteredContributors = [...contributorsData];
-      
-      updateStats(contributorsData);
-      renderContributors(filteredContributors);
-      
-      // Set up search functionality
-      document.getElementById('searchBtn').addEventListener('click', performSearch);
-      document.getElementById('searchContributors').addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-          performSearch();
-        }
-      });
-      
-      // Clear search on escape key
-      document.getElementById('searchContributors').addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          this.value = '';
-          performSearch();
-        }
-      });
-    }
+      // Update stats
+      function updateStats(contributors) {
+        const totalContributors = contributors.length;
+        const totalCommits = contributors.reduce(
+          (sum, contributor) => sum + contributor.contributions,
+          0
+        );
+        const totalPRs = Math.floor(totalCommits * 0.7); // Estimate PRs as 70% of commits
 
-    // Start initialization
-    init();
-  </script>
-</body>
+        document.getElementById("totalContributors").textContent =
+          totalContributors;
+        document.getElementById("totalCommits").textContent =
+          totalCommits.toLocaleString();
+        document.getElementById("totalPRs").textContent =
+          totalPRs.toLocaleString();
+      }
+
+      // Search functionality
+      function performSearch() {
+        const searchTerm = document
+          .getElementById("searchContributors")
+          .value.trim()
+          .toLowerCase();
+
+        if (!searchTerm) {
+          filteredContributors = [...contributorsData];
+        } else {
+          filteredContributors = contributorsData.filter(
+            (contributor) =>
+              contributor.login.toLowerCase().includes(searchTerm) ||
+              (contributor.name &&
+                contributor.name.toLowerCase().includes(searchTerm))
+          );
+        }
+
+        renderContributors(filteredContributors);
+      }
+
+      // Initialize contributors page
+      async function init() {
+        const contributors = await fetchContributors();
+
+        // Fetch additional details for each contributor
+        const contributorsWithDetails = await Promise.all(
+          contributors.map(async (contributor) => {
+            const userDetails = await fetchUserDetails(contributor.login);
+            return { ...contributor, ...userDetails };
+          })
+        );
+
+        contributorsData = contributorsWithDetails.sort(
+          (a, b) => b.contributions - a.contributions
+        );
+        filteredContributors = [...contributorsData];
+
+        updateStats(contributorsData);
+        renderContributors(filteredContributors);
+
+        // Set up search functionality
+        document
+          .getElementById("searchBtn")
+          .addEventListener("click", performSearch);
+        document
+          .getElementById("searchContributors")
+          .addEventListener("keyup", function (e) {
+            if (e.key === "Enter") {
+              performSearch();
+            }
+          });
+
+        // Clear search on escape key
+        document
+          .getElementById("searchContributors")
+          .addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+              this.value = "";
+              performSearch();
+            }
+          });
+      }
+
+      // Start initialization
+      init();
+    </script>
+  </body>
 </html>
