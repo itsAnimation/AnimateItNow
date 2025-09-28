@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Footer Template</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .footer {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 50px 20px 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer h2.logo {
+      color: #3b82f6;
+      margin-bottom: 15px;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 15px;
+      color: #f8fafc;
+      font-size: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #94a3b8;
+      transition: color 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #3b82f6;
+    }
+
+    .newsletter input {
+      padding: 10px;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      outline: none;
+      width: 70%;
+    }
+
+    .newsletter button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      background: #3b82f6;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #2563eb;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      margin-top: 30px;
+      padding-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .footer-social a {
+      margin: 0 10px;
+      font-size: 1.3rem;
+      color: #e2e8f0;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: #3b82f6;
+    }
+  </style>
+  <!-- FontAwesome Icons -->
+  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="content">
+    <!-- Page Content Dummy -->
+    <h1 style="text-align:center; margin:50px 0;">Demo Page Content</h1>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Company Info -->
+      <div class="footer-col">
+        <h2 class="logo">DevGallery</h2>
+        <p>Open source templates to speed up your development.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Templates</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Issues</a></li>
+          <li><a href="#">Contribute</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-col newsletter">
+        <h3>Stay Updated</h3>
+        <form id="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> DevGallery. Made with ❤️ by Contributors.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic Year Update
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+
+    // Dummy Newsletter Alert
+    document.getElementById("newsletter-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you for subscribing!");
+    });
+  </script>
+</body>
+</html>
