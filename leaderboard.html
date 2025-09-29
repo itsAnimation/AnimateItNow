@@ -332,6 +332,27 @@
       background-color: var(--bg-tertiary);
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      margin-left: 15px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 2px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
     /* Leaderboard Styles */
     .leaderboard-main {
       padding-top: var(--header-height);
@@ -785,7 +806,48 @@
 
     @media (max-width: 768px) {
       .nav-links {
-        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background-color: var(--bg);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        transition: left var(--transition);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 998;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .nav-links li {
+        margin: 20px 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
       }
       
       .leaderboard-title {
@@ -921,6 +983,11 @@
             </button>
           </li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -1095,6 +1162,23 @@
 
     themeToggle?.addEventListener('click', () => {
       setTheme(!body.classList.contains('dark-theme'));
+    });
+
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
     });
 
     // Scroll to top functionality

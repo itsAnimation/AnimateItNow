@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Dev Quote Generator</title>
+    <style>
+        /* CSS for beautiful styling */
+        :root {
+            --primary-color: #007bff; /* Blue - Modern Tech Look */
+            --secondary-color: #28a745; /* Green - Success/Go Look */
+            --background-color: #f8f9fa; /* Off-White */
+            --card-background: #ffffff;
+            --text-color: #343a40; /* Dark Gray */
+            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text-color);
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .quote-box {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .quote-box::before {
+            content: '</>'; /* A subtle developer-themed icon */
+            font-size: 4em;
+            color: var(--secondary-color);
+            opacity: 0.1;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            z-index: 0;
+            font-family: monospace;
+        }
+
+        .quote-text {
+            font-size: 1.5em;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .quote-author {
+            font-size: 1em;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(0, 123, 255, 0.3);
+            transition: opacity 0.5s ease;
+            font-style: italic;
+        }
+
+        .new-quote-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 6px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .new-quote-btn:hover {
+            background-color: #0056b3; /* Darker Blue */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .new-quote-btn:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="container">
+        <h1>Dev Quote Generator 💻</h1>
+        <div class="quote-box">
+            <div class="quote-text" id="quote">Welcome! Click 'Generate Quote' to see some code wisdom.</div>
+            <div class="quote-author" id="author">A Helpful AI</div>
+        </div>
+        <button class="new-quote-btn" onclick="generateQuote()">Generate New Quote</button>
+    </div>
+
+    <script>
+        // The JSON data is stored directly as a JavaScript array of objects
+        const quotes = [
+            { quote: "The best error message is the one that never shows up.", author: "Thomas Fuchs" },
+            { quote: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
+            { quote: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+            { quote: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde" },
+            { quote: "Code is like humor. When you have to explain it, it’s bad.", author: "Cory House" },
+            { quote: "Walking on water and developing software from a specification are easy if both are frozen.", author: "Edward V Berard" },
+            { quote: "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", author: "Bill Gates" },
+            { quote: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+            { quote: "The most important property of a program is whether it accomplishes the intention of its user.", author: "C.A.R. Hoare" },
+            { quote: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+            { quote: "Premature optimization is the root of all evil.", author: "Donald Knuth" },
+            { quote: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson" },
+            { quote: "The trouble with programmers is that you can never tell what a programmer is doing until it’s too late.", author: "Seymour Cray" },
+            { quote: "Debugging is twice as hard as writing the code in the first place.", author: "Brian W. Kernighan" },
+            { quote: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+            { quote: "If you optimize everything, you will always be unhappy.", author: "Donald Knuth" },
+            { quote: "Don't comment bad code—rewrite it.", author: "Brian W. Kernighan" },
+            { quote: "The function of a good software engineer is to make the complex simple.", author: "Grady Booch" },
+            { quote: "There are only two hard things in computer science: cache invalidation and naming things.", author: "Phil Karlton" },
+            { quote: "Before software can be reusable it first has to be usable.", author: "Ralph Johnson" },
+            { quote: "The computer does not make mistakes, but those who program it do.", author: "Unknown" },
+            { quote: "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.", author: "John Woods" },
+            { quote: "Good code is its own best documentation.", author: "Steve McConnell" },
+            { quote: "Software undergoes a transformation. It does not wear out; it gets better, then obsolete.", author: "C. Jones" },
+            { quote: "The key to performance is elegance, not complexity.", author: "Jon Bentley" },
+            { quote: "You should name a variable using the same care with which you name a first-born child.", author: "Robert C. Martin" },
+            { quote: "In programming, the hard part is deciding what to put in, not what to leave out.", author: "Scott Adams" },
+            { quote: "When to use a class? When you can't figure out how to solve the problem without one.", author: "Sandu Popa" },
+            { quote: "Programming is the art of telling another human being what one wants the computer to do.", author: "Donald Knuth" },
+            { quote: "The most damaging phrase in the language is, 'It's always been done this way.'", author: "Grace Hopper" },
+            { quote: "Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.", author: "Antoine de Saint-Exupéry" },
+            { quote: "The cheapest, fastest, and most reliable components are those that aren't there.", author: "Gordon Bell" },
+            { quote: "One man's constant is another man's variable.", author: "Alan Perlis" },
+            { quote: "A good programmer is someone who always looks both ways before crossing a one-way street.", author: "Doug Linder" },
+            { quote: "Hofstadter’s Law: It always takes longer than you expect, even when you take into account Hofstadter’s Law.", author: "Douglas Hofstadter" },
+            { quote: "In theory, there is no difference between theory and practice. But in practice, there is.", author: "Jan L.A. van de Snepscheut" },
+            { quote: "Testing can show the presence of bugs, but not their absence.", author: "Edsger W. Dijkstra" },
+            { quote: "It’s not a bug – it’s an undocumented feature.", author: "Unknown" },
+            { quote: "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it.", author: "Edsger W. Dijkstra" },
+            { quote: "The most important skill a programmer can have is the ability to read code.", author: "Chris Pine" },
+            { quote: "Write code every day, even if it's just a little bit.", author: "Unknown" },
+            { quote: "Success in life is a matter not so much of talent and opportunity as of concentration and perseverance.", author: "C. H. Spurgeon" },
+            { quote: "If you're good at it, never do it for free.", author: "The Joker (The Dark Knight)" },
+            { quote: "No one in the brief history of computing has written a piece of software that performed as specified, first time out.", author: "W. David Gardner" },
+            { quote: "Code review is the most important practice in software development.", author: "Joel Spolsky" },
+            { quote: "Get rid of the bloat.", author: "Bjarne Stroustrup" },
+            { quote: "Java is to JavaScript what car is to carpet.", author: "Chris Heilmann" },
+            { quote: "Every good work of software starts by scratching a developer's personal itch.", author: "Eric S. Raymond" },
+            { quote: "If we want to go fast, we have to go slow.", author: "Robert C. Martin" },
+            { quote: "Don't repeat yourself. (DRY)", author: "The Pragmatic Programmers" },
+            { quote: "KISS: Keep It Simple, Stupid.", author: "Clarence 'Kelly' Johnson" },
+            { quote: "The programmer is an artist, and the computer is merely a dumb assistant.", author: "Unknown" },
+            { quote: "It's hard enough to find an error in your code when you're looking for it; it's even harder when you assume your code is error-free.", author: "Steve McConnell" },
+            { quote: "The best programs are the ones that work.", author: "Unknown" },
+            { quote: "What one programmer can do in one month, two programmers can do in two months.", author: "Fred Brooks" },
+            { quote: "Programming is thinking, not typing.", author: "Casey Patton" },
+            { quote: "The bearing of a child takes nine months, no matter how many women are assigned.", author: "Fred Brooks" },
+            { quote: "Computers are good at following instructions, but not at reading your mind.", author: "Donald Knuth" },
+            { quote: "Deleted code is debugged code.", author: "Ashleigh Brilliant" },
+            { quote: "The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.", author: "Brian W. Kernighan" },
+            { quote: "Always use the right tool for the job.", author: "Unknown" },
+            { quote: "The only difference between a good programmer and a bad programmer is that the good programmer makes smaller mistakes.", author: "Unknown" },
+            { quote: "You can't have great software without a great team, and most great teams are small.", author: "Unknown" },
+            { quote: "If at first you don't succeed, call it version 1.0.", author: "Unknown" },
+            { quote: "Failure is not the opposite of success, it’s a stepping stone to success.", author: "Arianna Huffington" },
+            { quote: "The question of whether a computer can think is no more interesting than the question of whether a submarine can swim.", author: "Edsger W. Dijkstra" },
+            { quote: "Programmers are tools for converting caffeine into code.", author: "Unknown" },
+            { quote: "Write tests, not too many, mostly integration.", author: "Guillermo Rauch" },
+            { quote: "The best performance improvement is the transition from the nonworking state to the working state.", author: "J. L. van Vliet" },
+            { quote: "Always write things down. Your memory is a sieve.", author: "Unknown" },
+            { quote: "Elegance is not a dispensable luxury but a factor that determines how well the software works.", author: "Edsger W. Dijkstra" },
+            { quote: "The programmer who writes a million lines of code a year is the one who deletes a million lines of code a year.", author: "Unknown" },
+            { quote: "The structure of a system is a function of the organization that built it.", author: "Melvin Conway" },
+            { quote: "If you don't iterate fast, you're not going to succeed.", author: "Mark Zuckerberg" },
+            { quote: "Code should look like it was all written by a single person, no matter how many people contributed.", author: "Unknown" },
+            { quote: "The limits of my language mean the limits of my world.", author: "Ludwig Wittgenstein" },
+            { quote: "We are trying to change the world with technology.", author: "Bill Gates" },
+            { quote: "The only way to learn a new programming language is by writing programs in it.", author: "Bjarne Stroustrup" },
+            { quote: "Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test.", author: "Ray Ozzie" },
+            { quote: "Debugging is like being the detective in a crime movie where you are also the murderer.", author: "Filipe Fortes" },
+            { quote: "Great software is not written, it's rewritten.", author: "Unknown" },
+            { quote: "Optimism is an occupational hazard of programming: feedback is the treatment.", author: "Kent Beck" },
+            { quote: "Low quality code is more expensive than you think.", author: "Unknown" },
+            { quote: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code.", author: "Dan Salomon" },
+            { quote: "Give a man a program, frustrate him for a day. Teach a man to program, frustrate him for a lifetime.", author: "Unknown" },
+            { quote: "The best way to predict the future is to implement it.", author: "David Heinemeier Hansson" },
+            { quote: "Get to the point.", author: "Bjarne Stroustrup" },
+            { quote: "An API is a user interface for developers.", author: "Unknown" },
+            { quote: "Always code and design with the maintainer in mind.", author: "Unknown" },
+            { quote: "Adding manpower to a late software project makes it later.", author: "Fred Brooks" },
+            { quote: "Continuous delivery is a crucial component of any successful software company.", author: "Martin Fowler" },
+            { quote: "Don’t write code for performance—write it for clarity—unless it’s a proven bottleneck.", author: "Unknown" },
+            { quote: "The goal is to do your work on the best possible level, always.", author: "Linus Torvalds" },
+            { quote: "Learning to code is learning to create and innovate.", author: "Unknown" },
+            { quote: "Good design is good business.", author: "Thomas Watson Jr." },
+            { quote: "A successful team is a group of many hands and one mind.", author: "Bill Bethel" },
+            { quote: "Software development is a team sport.", author: "Unknown" },
+            { quote: "Mastery requires patience and dedication.", author: "Unknown" },
+            { quote: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
+            { quote: "The best programming language is the one you know the best.", author: "Unknown" },
+            { quote: "The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise.", author: "Edsger W. Dijkstra" },
+            { quote: "If the code and the comments disagree, then both are probably wrong.", author: "Norm Schryer" },
+            { quote: "The sooner you start to code, the longer the program will take.", author: "Unknown" },
+            { quote: "If it works, don't fix it.", author: "Unknown" }
+        ];
+
+        const quoteElement = document.getElementById('quote');
+        const authorElement = document.getElementById('author');
+        let lastIndex = -1;
+
+        function generateQuote() {
+            // Find a random index that is different from the last one
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * quotes.length);
+            } while (newIndex === lastIndex && quotes.length > 1);
+            
+            lastIndex = newIndex;
+            const randomQuote = quotes[newIndex];
+
+            // Animation: Fade out, change content, fade in
+            quoteElement.style.opacity = 0;
+            authorElement.style.opacity = 0;
+
+            setTimeout(() => {
+                quoteElement.textContent = randomQuote.quote;
+                authorElement.textContent = `- ${randomQuote.author}`; // Add a dash for style
+                quoteElement.style.opacity = 1;
+                authorElement.style.opacity = 1;
+            }, 500);
+            
+            // Optional: Change background color slightly for more dynamic feel
+            const randomHue = Math.floor(Math.random() * 360);
+            document.body.style.backgroundColor = `hsl(${randomHue}, 15%, 95%)`;
+        }
+
+        // Generate a quote on page load
+        document.addEventListener('DOMContentLoaded', generateQuote);
+
+    </script>
+
+</body>
+</html>
