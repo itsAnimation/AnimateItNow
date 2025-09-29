@@ -1,332 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Templates | AnimateItNow</title>
+    <meta
+      name="description"
+      content="A comprehensive collection of CSS animation templates and effects for web developers"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Templates | AnimateItNow</title>
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#ff6b6b" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
-  <meta name="msapplication-TileColor" content="#ff6b6b" />
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
-  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
-  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
-  
-  <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
-  
-  <!-- Fallback icon -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="templates.css">
-</head>
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ff6b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+    <meta
+      name="msapplication-TileImage"
+      content="images/icons/icon-144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#ff6b6b" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" /> 
 
-<body class="dark">
-  <nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <a href="index.html" class="home-link">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </a>
-    </div>
-    
-    <button class="menu-toggle" id="menuToggle">
-      <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="nav-right">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="editor.html" target="_blank">Editor</a></li>
-        <li><a href="templates.html" class="active">Templates</a></li>
-        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>
-        <li><a href="generator.html">Generator</a></li>
-        <li><a href="pomodoro.html">Pomodoro</a></li>
-        <li><a href="quotes.html">Quote Generator</a></li>
-        <!-- cursor toggle switch -->
-        <li>
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle" />
-            <span class="slider round"></span>
-          </label>
-        </li>
-        <!-- github icon -->
-        <li>
-          <a href="https://github.com/itsAnimation/AnimateItNow"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="GitHub Repo"
-             class="github-icon">
-            <i class="fab fa-github"></i>
-          </a>
-        </li>
-        <li>
-          <button id="theme-toggle" aria-label="Toggle Theme">
-            <i class="fas fa-moon"></i>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <main class="templates-main">
-    <h1>Templates Gallery</h1>
-    
-    <!-- Search and Filter Section -->
-    <div class="search-filter-container">
-      <div class="search-container">
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Search templates..."
-          aria-label="Search templates"
-        />
-        <i class="fas fa-search search-icon"></i>
-      </div>
-      
-      <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">All Templates</button>
-        <button class="filter-btn" data-filter="navbar">Navigation</button>
-        <button class="filter-btn" data-filter="button">Buttons</button>
-        <button class="filter-btn" data-filter="card">Cards</button>
-        <button class="filter-btn" data-filter="form">Forms</button>
-        <button class="filter-btn" data-filter="landing">Landing Pages</button>
-        <button class="filter-btn" data-filter="other">Other</button>
-      </div>
-    </div>
-    
-    <!-- Templates Grid -->
-    <section class="templates-grid" id="templatesGrid">
-      <!-- Template Cards will be dynamically generated by JavaScript -->
-    </section>
-  </main>
+    <!-- PWA Icons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="72x72"
+      href="images/icons/icon-72x72.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="images/icons/icon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="images/icons/icon-128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="144x144"
+      href="images/icons/icon-144x144.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="152x152"
+      href="images/icons/icon-152x152.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="images/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="384x384"
+      href="images/icons/icon-384x384.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="images/icons/icon-512x512.png"
+    />
 
-  <footer class="footer scroll-fade">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h2>AnimateItNow</h2>
-        <p>Creating impactful web animations and templates for everyone.</p>
+    <!-- Apple Touch Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="images/icons/icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="images/icons/icon-192x192.png"
+    />
+
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="templates.css" />
+  </head>
+
+  <body class="dark">
+    <nav class="navbar scroll-fade">
+      <div class="nav-left">
+        <a href="index.html" class="home-link">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <span class="site-name">Animate It Now</span>
+        </a>
       </div>
-      <div class="footer-right">
-        <h4>Connect With Us</h4>
-        <ul>
+
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="editor.html" target="_blank">Editor</a></li>
+          <li><a href="templates.html" class="active">Templates</a></li>
+          <!-- desktop-nav for tools -->
+          <div class="desktop-nav">
+            <li>
+              <a href="playground.html" style="white-space: nowrap"
+                >Hover-Effects</a
+              >
+            </li>
+            <li><a href="generator.html">Generator</a></li>
+            <li><a href="pomodoro.html">Pomodoro</a></li>
+          </div>
+          <!-- mobile-nav for themes -->
+          <div class="dropdown mobile-nav">
+            <div class="dropdown-btn">Tools ▾</div>
+            <div class="dropdown-content">
+              <li>
+                <a href="playground.html" style="white-space: nowrap"
+                  >Hover-Effects</a
+                >
+              </li>
+              <li><a href="generator.html">Generator</a></li>
+              <li><a href="pomodoro.html">Pomodoro</a></li>
+            </div>
+          </div>
+
+          <!-- make drop down for about , contact , leaderBoard and contributor -->
+          <div class="dropdown">
+            <button class="dropdown-btn">Explore ▾</button>
+            <div class="dropdown-content">
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="leaderboard.html">Leaderboard</a></li>
+              <li><a href="contributors.html">Contributors</a></li>
+            </div>
+          </div>
+
+          <!-- desktop-nav for themes -->
+          <div class="desktop-nav">
+            <!-- cursor toggle switch -->
+            <li>
+              <label class="switch" title="Toggle Snake Cursor">
+                <input type="checkbox" id="cursorToggle" />
+                <span class="slider round"></span>
+              </label>
+            </li>
+            <!-- github icon -->
+            <li>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Repo"
+                class="github-icon"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </div>
+          <!-- mobile-nav for themes -->
+          <div class="dropdown mobile-nav">
+            <div class="dropdown-btn">Effects ▾</div>
+            <div class="dropdown-content">
+              <!-- cursor toggle switch -->
+              <li>
+                <label class="switch" title="Toggle Snake Cursor">
+                  <input type="checkbox" id="cursorToggle" />
+                  <span class="slider round"></span>
+                </label>
+              </li>
+              <!-- github icon -->
+              <li>
+                <a
+                  href="https://github.com/itsAnimation/AnimateItNow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Repo"
+                  class="github-icon"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </div>
+          </div>
           <li>
-            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href="mailto:contact@animateitnow.com" rel="noopener noreferrer">
-              <i class="fas fa-envelope"></i> Email Us
-            </a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+              <i class="fas fa-moon"></i>
+            </button>
           </li>
         </ul>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>
-        © 2025 AnimateItNow. Made with ❤️ by
-        <span class="highlight">Anuj</span> and Contributors.
-      </p>
-    </div>
-  </footer>
+    </nav>
+    <main class="templates-main">
+      <h1>Templates Gallery</h1> 
 
-  <script>
-    // Template data
-    const templates = [
-      {
-        id: 1,
-        title: "Animated Navigation Bar",
-        description: "A sleek navigation bar with smooth hover animations and dropdown effects.",
-        category: "navbar",
-        icon: "fas fa-bars",
-        link: "templates/navbar.html"
-      },
-      {
-        id: 2,
-        title: "Contact Us Template",
-        description: "A responsive contact form with animated inputs and validation.",
-        category: "form",
-        icon: "fas fa-envelope",
-        link: "templates/contact.html"
-      },
-      {
-        id: 3,
-        title: "Coming Soon Landing Page",
-        description: "An engaging coming soon page with countdown timer and newsletter signup.",
-        category: "landing",
-        icon: "fas fa-hourglass-half",
-        link: "templates/Coming_Soon_Landing_Page.html"
-      },
-      {
-        id: 4,
-        title: "Animated Button Collection",
-        description: "A variety of creative button animations for different interactions.",
-        category: "button",
-        icon: "fas fa-hand-pointer",
-        link: "templates/animated-btn.html"
-      },
-      {
-        id: 5,
-        title: "Product Card Showcase",
-        description: "Interactive product cards with hover effects and quick view options.",
-        category: "card",
-        icon: "fas fa-shopping-cart",
-        link: "templates/card_hover.html"
-      },
-      {
-        id: 6,
-        title: "Login/Signup Form",
-        description: "Beautiful authentication forms with smooth transitions between states.",
-        category: "form",
-        icon: "fas fa-user",
-        link: "templates/LoginFormGlassMorphism.html"
-      },
-      {
-        id: 7,
-        title: "Pricing Table",
-        description: "Animated pricing tables with hover effects and selection animations.",
-        category: "card",
-        icon: "fas fa-tags",
-        link: "templates/price_plan.html"
-      },
-      {
-        id: 8,
-        title: "Testimonial Slider",
-        description: "A responsive testimonial slider with smooth transitions.",
-        category: "other",
-        icon: "fas fa-comments",
-        link: "templates/Testinomials_Sliders.html"
-      },
-      {
-        id: 9,
-        title: "Hero Section",
-        description: "An eye-catching hero section with animated text and call-to-action.",
-        category: "landing",
-        icon: "fas fa-star",
-        link: "templates/hero.html"
-      },
-      {
-        id: 10,
-        title: "FAQ Accordion",
-        description: "An animated FAQ section with smooth expand/collapse transitions.",
-        category: "other",
-        icon: "fas fa-question-circle",
-        link: "templates/accordian.html"
-      },
-      {
-        id: 11,
-        title: "Image Gallery",
-        description: "A responsive image gallery with lightbox and hover effects.",
-        category: "other",
-        icon: "fas fa-images",
-        link: "templates/carousel.html"
-      },
-      {
-        id: 12,
-        title: "Progress Bars",
-        description: "Animated progress bars with different styles and loading effects.",
-        category: "other",
-        icon: "fas fa-chart-bar",
-        link: "templates/loader.html"
-      },
-      {
-        id: 13,
-        title: "404 Page",
-        description: "A responsive 404 error page template for websites.",
-        category: "other",
-        icon: "fas fa-exclamation-triangle",
-        link: "templates/404.html"
-     },  
-      {
-        id: 14,
-        title: "CSS Snippet Generator",
-        description: "Generate code for custom CSS styling",
-        category: "other",
-        icon: "fas fa-hand-pointer",
-        link: "generator.html"
-     },
-     {
-        id: 15,
-        title: "Pomodoro Timer",
-        description: "Your all in one Stopwatch.",
-        category: "other",
-        icon: "fas fa-hourglass-half",
-        link: "pomodoro.html"
-     },  
-    {
-        id: 16,
-        title: "Quote Generator",
-        description: "A stylish app to generate inspirational development and life quotes.",
-        category: "other",
-        icon: "fas fa-quote-right",
-        link: "templates/quotes.html" 
-     }
-    ];
+      <!-- Search and Filter Section -->
+      <div class="search-filter-container">
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search templates..."
+            aria-label="Search templates"
+          />
+          <i class="fas fa-search search-icon"></i>
+        </div>
 
-    // DOM Elements
-    const templatesGrid = document.getElementById('templatesGrid');
-    const searchBar = document.getElementById('search-bar');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const themeToggle = document.getElementById('theme-toggle');
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+        <div class="filter-container">
+          <button class="filter-btn active" data-filter="all">
+            All Templates
+          </button>
+          <button class="filter-btn" data-filter="navbar">Navigation</button>
+          <button class="filter-btn" data-filter="button">Buttons</button>
+          <button class="filter-btn" data-filter="card">Cards</button>
+          <button class="filter-btn" data-filter="form">Forms</button>
+          <button class="filter-btn" data-filter="landing">
+            Landing Pages
+          </button>
+          <button class="filter-btn" data-filter="other">Other</button>
+        </div>
+      </div>
 
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      renderTemplates(templates);
-      setupEventListeners();
-      checkThemePreference();
-    });
+      <!-- Templates Grid -->
+      <section class="templates-grid" id="templatesGrid">
+        <!-- Template Cards will be dynamically generated by JavaScript -->
+      </section>
+    </main>
 
-    // Render templates to the grid
-    function renderTemplates(templatesToRender) {
-      templatesGrid.innerHTML = '';
-      
-      if (templatesToRender.length === 0) {
-        templatesGrid.innerHTML = `
+    <footer class="footer scroll-fade">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>AnimateItNow</h2>
+          <p>Creating impactful web animations and templates for everyone.</p>
+        </div>
+        <div class="footer-right">
+          <h4>Connect With Us</h4>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-linkedin"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:contact@animateitnow.com"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-envelope"></i> Email Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Template data
+      const templates = [
+        {
+          id: 1,
+          title: "Animated Navigation Bar",
+          description:
+            "A sleek navigation bar with smooth hover animations and dropdown effects.",
+          category: "navbar",
+          icon: "fas fa-bars",
+          link: "templates/navbar.html",
+        },
+        {
+          id: 2,
+          title: "Contact Us Template",
+          description:
+            "A responsive contact form with animated inputs and validation.",
+          category: "form",
+          icon: "fas fa-envelope",
+          link: "templates/contact.html",
+        },
+        {
+          id: 3,
+          title: "Coming Soon Landing Page",
+          description:
+            "An engaging coming soon page with countdown timer and newsletter signup.",
+          category: "landing",
+          icon: "fas fa-hourglass-half",
+          link: "templates/Coming_Soon_Landing_Page.html",
+        },
+        {
+          id: 4,
+          title: "Animated Button Collection",
+          description:
+            "A variety of creative button animations for different interactions.",
+          category: "button",
+          icon: "fas fa-hand-pointer",
+          link: "templates/animated-btn.html",
+        },
+        {
+          id: 5,
+          title: "Product Card Showcase",
+          description:
+            "Interactive product cards with hover effects and quick view options.",
+          category: "card",
+          icon: "fas fa-shopping-cart",
+          link: "templates/card_hover.html",
+        },
+        {
+          id: 6,
+          title: "Login/Signup Form",
+          description:
+            "Beautiful authentication forms with smooth transitions between states.",
+          category: "form",
+          icon: "fas fa-user",
+          link: "templates/LoginFormGlassMorphism.html",
+        },
+        {
+          id: 7,
+          title: "Pricing Table",
+          description:
+            "Animated pricing tables with hover effects and selection animations.",
+          category: "card",
+          icon: "fas fa-tags",
+          link: "templates/price_plan.html",
+        },
+        {
+          id: 8,
+          title: "Testimonial Slider",
+          description:
+            "A responsive testimonial slider with smooth transitions.",
+          category: "other",
+          icon: "fas fa-comments",
+          link: "templates/Testinomials_Sliders.html",
+        },
+        {
+          id: 9,
+          title: "Hero Section",
+          description:
+            "An eye-catching hero section with animated text and call-to-action.",
+          category: "landing",
+          icon: "fas fa-star",
+          link: "templates/hero.html",
+        },
+        {
+          id: 10,
+          title: "FAQ Accordion",
+          description:
+            "An animated FAQ section with smooth expand/collapse transitions.",
+          category: "other",
+          icon: "fas fa-question-circle",
+          link: "templates/faq_acc.html",
+        },
+        {
+          id: 11,
+          title: "Image Gallery",
+          description:
+            "A responsive image gallery with lightbox and hover effects.",
+          category: "other",
+          icon: "fas fa-images",
+          link: "templates/carousel.html",
+        },
+        {
+          id: 12,
+          title: "Progress Bars",
+          description:
+            "Animated progress bars with different styles and loading effects.",
+          category: "other",
+          icon: "fas fa-chart-bar",
+          link: "templates/loader.html",
+        },
+        {
+          id: 13,
+          title: "404 Page",
+          description: "A responsive 404 error page template for websites.",
+          category: "other",
+          icon: "fas fa-exclamation-triangle",
+          link: "templates/404.html",
+        },
+        {
+          id: 14,
+          title: "CSS Snippet Generator",
+          description: "Generate code for custom CSS styling",
+          category: "other",
+          icon: "fas fa-hand-pointer",
+          link: "generator.html",
+        },
+        {
+          id: 15,
+          title: "Pomodoro Timer",
+          description: "Your all in one Stopwatch.",
+          category: "other",
+          icon: "fas fa-hourglass-half",
+          link: "pomodoro.html",
+        },
+      ];
+
+      // DOM Elements
+      const templatesGrid = document.getElementById("templatesGrid");
+      const searchBar = document.getElementById("search-bar");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const themeToggle = document.getElementById("theme-toggle");
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", function () {
+        renderTemplates(templates);
+        setupEventListeners();
+        checkThemePreference();
+      });
+
+      // Render templates to the grid
+      function renderTemplates(templatesToRender) {
+        templatesGrid.innerHTML = "";
+
+        if (templatesToRender.length === 0) {
+          templatesGrid.innerHTML = `
           <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
             <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
             <h3>No templates found</h3>
             <p>Try adjusting your search or filter criteria</p>
           </div>
         `;
-        return;
-      }
-      
-      templatesToRender.forEach(template => {
-        const templateCard = document.createElement('a');
-        templateCard.href = template.link;
-        templateCard.className = 'template-card';
-        templateCard.setAttribute('data-category', template.category);
-        
-        templateCard.innerHTML = `
+          return;
+        }
+
+        templatesToRender.forEach((template) => {
+          const templateCard = document.createElement("a");
+          templateCard.href = template.link;
+          templateCard.className = "template-card";
+          templateCard.setAttribute("data-category", template.category);
+
+          templateCard.innerHTML = `
           <div class="template-preview">
             <i class="${template.icon}"></i>
           </div>
@@ -339,102 +469,105 @@
             <div class="template-btn">View Template</div>
           </div>
         `;
-        
-        templatesGrid.appendChild(templateCard);
-      });
-    }
 
-    // Setup event listeners
-    function setupEventListeners() {
-      // Search functionality
-      searchBar.addEventListener('input', filterTemplates);
-      
-      // Filter buttons
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          // Remove active class from all buttons
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          // Add active class to clicked button
-          this.classList.add('active');
-          filterTemplates();
+          templatesGrid.appendChild(templateCard);
         });
-      });
-      
-      // Theme toggle
-      themeToggle.addEventListener('click', toggleTheme);
-      
-      // Mobile menu toggle
-      menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        const icon = this.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        // Search functionality
+        searchBar.addEventListener("input", filterTemplates);
+
+        // Filter buttons
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            // Add active class to clicked button
+            this.classList.add("active");
+            filterTemplates();
+          });
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener("click", toggleTheme);
+
+        // Mobile menu toggle
+        menuToggle.addEventListener("click", function () {
+          navLinks.classList.toggle("active");
+          const icon = this.querySelector("i");
+          if (navLinks.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+          } else {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", function () {
+            navLinks.classList.remove("active");
+            menuToggle.querySelector("i").classList.remove("fa-times");
+            menuToggle.querySelector("i").classList.add("fa-bars");
+          });
+        });
+      }
+
+      // Filter templates based on search and category
+      function filterTemplates() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const activeFilter =
+          document.querySelector(".filter-btn.active").dataset.filter;
+
+        const filteredTemplates = templates.filter((template) => {
+          const matchesSearch =
+            template.title.toLowerCase().includes(searchTerm) ||
+            template.description.toLowerCase().includes(searchTerm);
+          const matchesCategory =
+            activeFilter === "all" || template.category === activeFilter;
+
+          return matchesSearch && matchesCategory;
+        });
+
+        renderTemplates(filteredTemplates);
+      }
+
+      // Theme toggle functionality
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector("i");
+
+        if (body.classList.contains("dark")) {
+          body.classList.remove("dark");
+          themeIcon.classList.remove("fa-sun");
+          themeIcon.classList.add("fa-moon");
+          localStorage.setItem("theme", "light");
         } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
+          body.classList.add("dark");
+          themeIcon.classList.remove("fa-moon");
+          themeIcon.classList.add("fa-sun");
+          localStorage.setItem("theme", "dark");
         }
-      });
-      
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-          navLinks.classList.remove('active');
-          menuToggle.querySelector('i').classList.remove('fa-times');
-          menuToggle.querySelector('i').classList.add('fa-bars');
-        });
-      });
-    }
-
-    // Filter templates based on search and category
-    function filterTemplates() {
-      const searchTerm = searchBar.value.toLowerCase();
-      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-      
-      const filteredTemplates = templates.filter(template => {
-        const matchesSearch = template.title.toLowerCase().includes(searchTerm) || 
-                             template.description.toLowerCase().includes(searchTerm);
-        const matchesCategory = activeFilter === 'all' || template.category === activeFilter;
-        
-        return matchesSearch && matchesCategory;
-      });
-      
-      renderTemplates(filteredTemplates);
-    }
-
-    // Theme toggle functionality
-    function toggleTheme() {
-      const body = document.body;
-      const themeIcon = themeToggle.querySelector('i');
-      
-      if (body.classList.contains('dark')) {
-        body.classList.remove('dark');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.add('dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark');
       }
-    }
 
-    // Check for saved theme preference
-    function checkThemePreference() {
-      const savedTheme = localStorage.getItem('theme');
-      const themeIcon = themeToggle.querySelector('i');
-      
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      } else {
-        document.body.classList.remove('dark');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
+      // Check for saved theme preference
+      function checkThemePreference() {
+        const savedTheme = localStorage.getItem("theme");
+        const themeIcon = themeToggle.querySelector("i");
+
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark");
+          themeIcon.classList.remove("fa-moon");
+          themeIcon.classList.add("fa-sun");
+        } else {
+          document.body.classList.remove("dark");
+          themeIcon.classList.remove("fa-sun");
+          themeIcon.classList.add("fa-moon");
+        }
       }
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
