@@ -96,7 +96,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            /* max-width: 1200px; */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -302,6 +302,207 @@
         #theme-toggle:hover {
             background-color: var(--bg-tertiary);
         }
+
+        .btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: var(--transition);
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+      }
+
+      .btn-secondary {
+        background-color: var(--secondary);
+      }
+
+      .btn-secondary:hover {
+        background-color: #e05574;
+        box-shadow: 0 10px 20px rgba(255, 101, 132, 0.3);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      /* Header/Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background-color: var(--bg);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transition: var(--transition);
+        /* border:1px solid black; */
+      }
+
+      .dark-theme .navbar {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar.scrolled {
+        height: 70px;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .dark-theme .navbar.scrolled {
+        background-color: rgba(18, 18, 18, 0.95);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        /* border: 1px solid black; */
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        height: 40px;
+        margin-right: 10px;
+      }
+
+       .logo-container {
+            display: flex;
+            align-items: center;
+      }    
+
+      .logo span, .site-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        /* border: 1px solid black; */
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        font-weight: 500;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        /* border:1px solid black; */
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .theme-toggle:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        justify-content: center;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text);
+        margin: 2px 0;
+        transition: var(--transition);
+        border-radius: 2px;
+      }
 
         /* Playground Main */
         .playground-main {
@@ -1154,61 +1355,86 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+     <nav class="navbar">
+      <div class="container nav-container">
         <div class="nav-left">
+          <div class="logo-container">
             <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
+            <a href="index.html" class="home-link">
+              <span class="site-name">Animate It Now</span>
+            </a>
+          </div>
         </div>
 
         <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="playground.html" class="active" style="white-space: nowrap">Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <!-- cursor toggle switch -->
-                <li class="snakeList">
-                    <label class="switch" title="Toggle Snake Cursor">
-                        <input type="checkbox" id="cursorToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="snakeLabel">Snake Cursor</span>
-                </li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <button id="theme-toggle" aria-label="Toggle Theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="editor.html" target="_blank">Editor</a></li>
+            <li><a href="templates.html">Templates</a></li>
+            <li>
+              <a href="playground.html" style="white-space: nowrap"
+                >Hover-Effects</a
+              >
+            </li>
+            <li><a href="contributors.html">Contributors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
 
+            
+          </ul>
+        </div>
+
+        <div class="nav-actions">
+          <a href="loginpage.html" class="btn btn-outline">Login</a>
+          <a href="signup.html" class="btn btn-outline">Sign Up</a>
+
+          <a
+            href="https://github.com/itsAnimation/AnimateItNow"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Repo"
+            class="github-icon"
+          >
+            <svg
+              viewBox="0 0 16 16"
+              width="24"
+              height="24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                  7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                  -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                  -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+          </a>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
         <!-- Playground Main -->
         <main class="playground-main">
             <section class="playground-section">
