@@ -86,9 +86,6 @@ Start Exploring!
 
 * Customize and experiment with effects
 
-Got it! Here's the improved and detailed **Setup & Usage** section for your README.md file.
-I’ve integrated the new info smoothly without removing or altering the rest of your original content:
-
 ---
 
 ## 🛠 Installation & Setup
