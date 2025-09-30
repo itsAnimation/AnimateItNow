@@ -149,7 +149,7 @@
         }
 
         .btn-outline {
-            background-color: rgb(231, 228, 228);
+            background-color: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
@@ -428,7 +428,7 @@
             gap: 30px;
         }
 
- .feature-card {
+        .feature-card {
             background: linear-gradient(145deg, var(--bg), var(--bg-secondary));
             border-radius: 24px;
             padding: 60px 40px 50px;
@@ -571,9 +571,6 @@
         .feature-card:hover p {
             opacity: 1;
         }
-        .feature-card h3 {
-            margin-bottom: 15px;
-        }
 
         /* Templates Showcase */
         .templates-showcase {
@@ -627,6 +624,7 @@
 
         .template-info p {
             color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
         }
 
         /* How It Works */
@@ -989,13 +987,13 @@
         }
 
         .newsletter {
-    background: var(--bg-tertiary);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid var(--border);
-    text-align: center;
-}
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
 
         .newsletter h4 {
             margin-bottom: 15px;
@@ -1005,7 +1003,6 @@
         .newsletter-form {
             display: flex;
             gap: 10px;
-             flex-direction: column;
         }
 
         .newsletter-form input {
@@ -1036,6 +1033,12 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.8rem;
@@ -1056,6 +1059,16 @@
             
             .step-number {
                 margin-bottom: 15px;
+            }
+
+            .feature-card {
+                padding: 40px 30px;
+            }
+
+            .feature-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
             }
         }
 
@@ -1113,6 +1126,31 @@
             .newsletter-form {
                 flex-direction: column;
             }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links h3::after,
+            .footer-social h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         @media (max-width: 576px) {
@@ -1136,6 +1174,72 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
+            .feature-card {
+                padding: 25px 15px;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-animation {
+                height: 200px;
+                margin-top: 50px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .template-preview {
+                height: 150px;
+                font-size: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .footer {
+                padding: 60px 0 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1148,7 +1252,7 @@
     <header class="header">
         <div class="container nav-container">
             <div class="logo-container">
-               <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
                 <span class="site-name">AnimateItNow</span>
             </div>
             
@@ -1159,7 +1263,6 @@
                 <li><a href="playground.html">Hover Effects</a></li>
                 <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
-                
             </ul>
             
             <div class="nav-actions">
@@ -1398,8 +1501,7 @@
             <div class="testimonial-slider">
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
-
-                         <img src="images/amn.jpg" alt="Aman">
+                        <img src="images/amn.jpg" alt="Aman">
                     </div>
                     <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
                     <div class="testimonial-author">Aman Singh</div>
@@ -1437,8 +1539,6 @@
                         <span>AnimateItNow</span>
                     </div>
                     <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
-                    
-                    
                 </div>
                 
                 <div class="footer-links">
@@ -1466,7 +1566,6 @@
                 </div>
                 
                 <div class="footer-social">
-                    
                     <div class="newsletter">
                         <h4>Stay Updated</h4>
                         <p>Get the latest templates and updates directly to your inbox.</p>
@@ -1475,7 +1574,7 @@
                             <button type="submit">Subscribe</button>
                         </form>
                     </div>
-                    <br></br>
+                    <br>
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1484,9 +1583,6 @@
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
             
