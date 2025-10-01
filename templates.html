@@ -8,7 +8,9 @@
       name="description"
       content="A comprehensive collection of CSS animation templates and effects for web developers"
     />
-
+     <!-- Font Awesome for icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+     <link rel="stylesheet" href="templates.css" />
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ff6b6b" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -542,6 +544,7 @@
             Landing Pages
           </button>
           <button class="filter-btn" data-filter="other">Other</button>
+          <button class="filter-btn" data-filter="favorites">⭐ Favorites</button>
         </div>
       </div>
 
@@ -765,7 +768,7 @@
         }
 
         templatesToRender.forEach((template) => {
-          const templateCard = document.createElement("a");
+          const templateCard = document.createElement("div");
           templateCard.href = template.link;
           templateCard.className = "template-card";
           templateCard.setAttribute("data-category", template.category);
@@ -773,6 +776,9 @@
           templateCard.innerHTML = `
           <div class="template-preview">
             <i class="${template.icon}"></i>
+             <button class="favorite-btn" data-id="${template.id}" title="Add to Favorites">
+             <i class="far fa-star"></i>
+           </button>
           </div>
           <div class="template-content">
             <h2>${template.title}</h2>
@@ -780,14 +786,55 @@
             <div class="template-tags">
               <span class="template-tag">${template.category}</span>
             </div>
-            <div class="template-btn">View Template</div>
+           <a href="${template.link}" class="template-btn">View Template</a>
           </div>
         `;
 
           templatesGrid.appendChild(templateCard);
         });
-      }
+        // Attach favorite button listeners
+        document.querySelectorAll(".favorite-btn").forEach((btn) => {
+                btn.addEventListener("click", toggleFavorite);
+            });
 
+            updateFavoriteUI();
+      }
+      // Load favorites from localStorage or initialize as empty array
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+// Function to toggle favorite
+function toggleFavorite(event) {
+    event.stopPropagation(); // Stop card click (if needed)
+    const templateId = parseInt(event.currentTarget.dataset.id);
+
+    if (favorites.includes(templateId)) {
+        favorites = favorites.filter((id) => id !== templateId);
+    } else {
+        favorites.push(templateId);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    updateFavoriteUI();
+}
+
+      function updateFavoriteUI() {
+            document.querySelectorAll(".favorite-btn").forEach((btn) => {
+                const templateId = parseInt(btn.dataset.id);
+                const icon = btn.querySelector("i");
+
+                if (favorites.includes(templateId)) {
+                    icon.classList.remove("far");
+                    icon.classList.add("fas");
+                    icon.style.color = "gold";
+                    btn.title = "Remove from Favorites";
+                } else {
+                    icon.classList.remove("fas");
+                    icon.classList.add("far");
+                    icon.style.color = "inherit";
+                    btn.title = "Add to Favorites";
+                }
+            });
+        }
       // Setup event listeners
       function setupEventListeners() {
         // Search functionality
@@ -840,8 +887,12 @@
           const matchesSearch =
             template.title.toLowerCase().includes(searchTerm) ||
             template.description.toLowerCase().includes(searchTerm);
-          const matchesCategory =
+          let matchesCategory =
             activeFilter === "all" || template.category === activeFilter;
+              // Check for favorites filter
+              if (activeFilter === "favorites") {
+                    matchesCategory = favorites.includes(template.id);
+                }
 
           return matchesSearch && matchesCategory;
         });

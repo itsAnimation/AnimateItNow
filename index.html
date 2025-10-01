@@ -581,7 +581,7 @@
             gap: 30px;
         }
 
- .feature-card {
+        .feature-card {
             background: linear-gradient(145deg, var(--bg), var(--bg-secondary));
             border-radius: 24px;
             padding: 60px 40px 50px;
@@ -724,9 +724,6 @@
         .feature-card:hover p {
             opacity: 1;
         }
-        .feature-card h3 {
-            margin-bottom: 15px;
-        }
 
         /* Templates Showcase */
         .templates-showcase {
@@ -780,6 +777,7 @@
 
         .template-info p {
             color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
         }
 
         /* How It Works */
@@ -1142,13 +1140,13 @@
         }
 
         .newsletter {
-    background: var(--bg-tertiary);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid var(--border);
-    text-align: center;
-}
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
 
         .newsletter h4 {
             margin-bottom: 15px;
@@ -1158,7 +1156,6 @@
         .newsletter-form {
             display: flex;
             gap: 10px;
-             flex-direction: column;
         }
 
         .newsletter-form input {
@@ -1187,8 +1184,39 @@
         .newsletter-form button:hover {
             background: var(--primary-dark);
         }
+        /* Scroll to Top Button */
+        #scrollBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+         #scrollBtn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+         }
+        
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.8rem;
@@ -1209,6 +1237,16 @@
             
             .step-number {
                 margin-bottom: 15px;
+            }
+
+            .feature-card {
+                padding: 40px 30px;
+            }
+
+            .feature-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
             }
         }
 
@@ -1266,6 +1304,31 @@
             .newsletter-form {
                 flex-direction: column;
             }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links h3::after,
+            .footer-social h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         @media (max-width: 576px) {
@@ -1289,6 +1352,72 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
+            .feature-card {
+                padding: 25px 15px;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-animation {
+                height: 200px;
+                margin-top: 50px;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .template-preview {
+                height: 150px;
+                font-size: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .footer {
+                padding: 60px 0 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1301,7 +1430,7 @@
     <!-- <header class="header">
         <div class="container nav-container">
             <div class="logo-container">
-               <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
                 <span class="site-name">AnimateItNow</span>
             </div>
             
@@ -1312,7 +1441,6 @@
                 <li><a href="playground.html">Hover Effects</a></li>
                 <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
-                
             </ul>
             
             <div class="nav-actions">
@@ -1580,42 +1708,42 @@
             </div>
             
             <div class="faq-container">
-                <div class="faq-item">
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-1">
                     <div class="faq-question">
                         <span>How can I contribute to AnimateItNow?</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-1">
                         <p>Fork our repository on GitHub, add your unique animations or improvements, and submit a pull request. All skill levels are welcome!</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-2">
                     <div class="faq-question">
                         <span>Are the animations responsive?</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-2">
                         <p>Yes, all animations are designed to be fully responsive and work perfectly on all device sizes.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-3">
                     <div class="faq-question">
                         <span>Can I use these animations in commercial projects?</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-3">
                         <p>Absolutely! All animations are open source and free to use in personal and commercial projects.</p>
                     </div>
                 </div>
                 
-                <div class="faq-item">
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-4">
                     <div class="faq-question">
                         <span>How often are new templates added?</span>
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="faq-answer">
+                    <div class="faq-answer" id="faq-answer-4">
                         <p>New templates are added regularly by our community of contributors. Check back often for new animations!</p>
                     </div>
                 </div>
@@ -1634,8 +1762,7 @@
             <div class="testimonial-slider">
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
-
-                         <img src="images/amn.jpg" alt="Aman">
+                        <img src="images/amn.jpg" alt="Aman">
                     </div>
                     <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
                     <div class="testimonial-author">Aman Singh</div>
@@ -1673,8 +1800,6 @@
                         <span>AnimateItNow</span>
                     </div>
                     <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
-                    
-                    
                 </div>
                 
                 <div class="footer-links">
@@ -1702,7 +1827,6 @@
                 </div>
                 
                 <div class="footer-social">
-                    
                     <div class="newsletter">
                         <h4>Stay Updated</h4>
                         <p>Get the latest templates and updates directly to your inbox.</p>
@@ -1711,7 +1835,7 @@
                             <button type="submit">Subscribe</button>
                         </form>
                     </div>
-                    <br></br>
+                    <br>
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1720,9 +1844,6 @@
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
             
@@ -1731,6 +1852,8 @@
             </div>
         </div>
     </footer>
+
+    <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
     <script>
         // Theme Toggle - Perfect Implementation
@@ -1855,6 +1978,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
         });
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onscroll = function() {
+            const scrollBtn = document.getElementById("scrollBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        };
     </script>
 </body>
 </html>
