@@ -574,13 +574,7 @@
 
         /* Templates Showcase */
         .templates-showcase {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .templates-showcase .section-title h2,
-        .templates-showcase .section-title p {
-            color: white;
+            background-color: var(--bg-secondary);
         }
 
         .templates-grid {
@@ -590,12 +584,12 @@
         }
 
         .template-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: var(--bg);
             border-radius: var(--radius);
             overflow: hidden;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
         .template-card:hover {
@@ -619,11 +613,11 @@
 
         .template-info h3 {
             margin-bottom: 10px;
-            color: white;
+            color: var(--text);
         }
 
         .template-info p {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-light);
             margin-bottom: 15px;
         }
 
@@ -733,17 +727,23 @@
 
         /* Testimonials */
         .testimonials {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
-        [data-theme="dark"] .testimonials {
-            background: linear-gradient(135deg, #1a2a3a 0%, #3a1a2a 100%);
+            background-color: var(--bg-secondary);
         }
 
         .testimonial-slider {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
+            padding: 0 80px;
+            overflow: hidden;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            transition: transform 0.6s ease;
         }
 
         .testimonial-card {
@@ -753,6 +753,53 @@
             box-shadow: var(--shadow);
             text-align: center;
             border: 1px solid var(--border);
+            width: 350px;
+            flex-shrink: 0;
+            transition: all 0.6s ease;
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15), var(--shadow);
+            border-color: var(--primary);
+            z-index: 2;
+        }
+        
+        .testimonial-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-arrows:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .arrow-left {
+            left: 20px;
+        }
+        
+        .arrow-right {
+            right: 20px;
         }
 
         .testimonial-avatar {
@@ -762,6 +809,7 @@
             margin: 0 auto 20px;
             overflow: hidden;
             border: 3px solid var(--primary);
+            transition: all 0.3s ease;
         }
 
         .testimonial-avatar img {
@@ -773,16 +821,20 @@
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .testimonial-author {
             font-weight: 600;
             color: var(--primary);
+            font-size: 1.1rem;
         }
 
         .testimonial-role {
             color: var(--text-light);
             font-size: 0.9rem;
+            margin-top: 5px;
         }
 
         .testimonial-nav {
@@ -808,21 +860,21 @@
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
+            background-color: var(--bg);
             text-align: center;
             padding: 100px 0;
+            border-top: 1px solid var(--border);
         }
 
         .cta-section h2 {
             margin-bottom: 20px;
+            color: var(--text);
         }
 
         .cta-section p {
             max-width: 700px;
             margin: 0 auto 40px;
-            opacity: 0.9;
-            color: white;
+            color: var(--text-light);
         }
 
         .cta-buttons {
@@ -832,23 +884,23 @@
         }
 
         .cta-buttons .btn {
-            background: white;
-            color: var(--primary);
+            background-color: var(--primary);
+            color: white;
         }
 
         .cta-buttons .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background-color: var(--primary-dark);
         }
 
         .cta-buttons .btn-outline {
             background: transparent;
-            border-color: white;
-            color: white;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .cta-buttons .btn-outline:hover {
-            background: white;
-            color: var(--primary);
+            background-color: var(--primary);
+            color: white;
         }
 
         /* Footer */
@@ -858,16 +910,6 @@
             padding: 80px 0 30px;
             position: relative;
             border-top: 1px solid var(--border);
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
         }
 
         .footer-content {
@@ -1098,6 +1140,29 @@
         }
 
         @media (max-width: 768px) {
+            .testimonial-slider {
+                padding: 0 60px;
+            }
+            
+            .testimonial-card {
+                width: 280px;
+                padding: 20px;
+            }
+            
+            .testimonial-arrows {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .arrow-left {
+                left: 10px;
+            }
+            
+            .arrow-right {
+                right: 10px;
+            }
+            
             .nav-links {
                 display: none;
                 position: absolute;
@@ -1179,6 +1244,24 @@
         }
 
         @media (max-width: 576px) {
+            .testimonial-slider {
+                padding: 0 50px;
+            }
+            
+            .testimonial-card {
+                width: 250px;
+                padding: 15px;
+            }
+            
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
             h1 {
                 font-size: 2.2rem;
             }
@@ -1524,19 +1607,67 @@
             </div>
             
             <div class="testimonial-slider">
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="images/amn.jpg" alt="Aman">
+                <button class="testimonial-arrows arrow-left" aria-label="Previous testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="testimonial-carousel">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-avatar">
+                            <img src="images/amn.jpg" alt="Aman">
+                        </div>
+                        <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
+                        <div class="testimonial-author">Aman Singh</div>
+                        <div class="testimonial-role">Full Stack Developer</div>
                     </div>
-                    <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
-                    <div class="testimonial-author">Aman Singh</div>
-                    <div class="testimonial-role">Full Stack Developer</div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img2.jpg" alt="Sarah">
+                        </div>
+                        <p class="testimonial-text">"As a UI/UX designer, I love how AnimateItNow bridges the gap between design and development. The animations are smooth, professional, and exactly what modern websites need."</p>
+                        <div class="testimonial-author">Sarah Chen</div>
+                        <div class="testimonial-role">UI/UX Designer</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img3.jpg" alt="Marcus">
+                        </div>
+                        <p class="testimonial-text">"The variety of animations and the ease of implementation is incredible. My clients are always impressed with the interactive elements I can now add to their websites."</p>
+                        <div class="testimonial-author">Marcus Johnson</div>
+                        <div class="testimonial-role">Freelance Developer</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img4.jpg" alt="Priya">
+                        </div>
+                        <p class="testimonial-text">"AnimateItNow saved me countless hours of development time. The ready-to-use templates are perfect for rapid prototyping and production projects alike."</p>
+                        <div class="testimonial-author">Priya Sharma</div>
+                        <div class="testimonial-role">Frontend Lead</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img5.jpg" alt="David">
+                        </div>
+                        <p class="testimonial-text">"The community-driven approach and open-source nature makes this platform amazing. Contributing new animations and seeing them used by others is incredibly rewarding."</p>
+                        <div class="testimonial-author">David Rodriguez</div>
+                        <div class="testimonial-role">Open Source Contributor</div>
+                    </div>
                 </div>
                 
+                <button class="testimonial-arrows arrow-right" aria-label="Next testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
                 <div class="testimonial-nav">
-                    <button class="active"></button>
-                    <button></button>
-                    <button></button>
+                    <button class="active" data-slide="0" aria-label="Testimonial 1" title="View testimonial from Aman Singh"></button>
+                    <button data-slide="1" aria-label="Testimonial 2" title="View testimonial from Sarah Chen"></button>
+                    <button data-slide="2" aria-label="Testimonial 3" title="View testimonial from Marcus Johnson"></button>
+                    <button data-slide="3" aria-label="Testimonial 4" title="View testimonial from Priya Sharma"></button>
+                    <button data-slide="4" aria-label="Testimonial 5" title="View testimonial from David Rodriguez"></button>
                 </div>
             </div>
         </div>
@@ -1703,17 +1834,84 @@
             });
         });
         
-        // Testimonial Navigation
+        // Testimonial Carousel Navigation
         const testimonialNavButtons = document.querySelectorAll('.testimonial-nav button');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialCarousel = document.querySelector('.testimonial-carousel');
+        const arrowLeft = document.querySelector('.arrow-left');
+        const arrowRight = document.querySelector('.arrow-right');
+        let currentTestimonial = 0;
         
+        function showTestimonial(index) {
+            // Ensure index is within bounds
+            if (index < 0) index = testimonialCards.length - 1;
+            if (index >= testimonialCards.length) index = 0;
+            
+            // Remove active class from all cards and buttons
+            testimonialCards.forEach(card => card.classList.remove('active'));
+            testimonialNavButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to current card and button
+            if (testimonialCards[index]) {
+                testimonialCards[index].classList.add('active');
+            }
+            if (testimonialNavButtons[index]) {
+                testimonialNavButtons[index].classList.add('active');
+            }
+            
+            // Calculate carousel position to center the active card
+            const cardWidth = 380; // card width + gap
+            const totalCards = testimonialCards.length;
+            const centerOffset = (totalCards - 1) * cardWidth / 2;
+            const offset = centerOffset - (index * cardWidth);
+            
+            if (testimonialCarousel) {
+                testimonialCarousel.style.transform = `translateX(${offset}px)`;
+            }
+            
+            currentTestimonial = index;
+        }
+        
+        // Navigation button handlers
         testimonialNavButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                testimonialNavButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
+                showTestimonial(index);
             });
         });
+        
+        // Arrow navigation handlers
+        if (arrowLeft) {
+            arrowLeft.addEventListener('click', () => {
+                showTestimonial(currentTestimonial - 1);
+            });
+        }
+        
+        if (arrowRight) {
+            arrowRight.addEventListener('click', () => {
+                showTestimonial(currentTestimonial + 1);
+            });
+        }
+        
+        // Auto-rotate testimonials every 6 seconds
+        function autoRotateTestimonials() {
+            const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
+            showTestimonial(nextIndex);
+        }
+        
+        // Start auto-rotation
+        let testimonialInterval = setInterval(autoRotateTestimonials, 6000);
+        
+        // Pause auto-rotation when user hovers over testimonials
+        const testimonialSection = document.querySelector('.testimonials');
+        if (testimonialSection) {
+            testimonialSection.addEventListener('mouseenter', () => {
+                clearInterval(testimonialInterval);
+            });
+            
+            testimonialSection.addEventListener('mouseleave', () => {
+                testimonialInterval = setInterval(autoRotateTestimonials, 6000);
+            });
+        }
         
         // Progress Bar
         window.addEventListener('scroll', () => {
