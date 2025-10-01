@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* ─────────────────────────────────────────────────────
+       Base Styles
+       ───────────────────────────────────────────────────── */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -15,16 +18,25 @@
       background: #f9f9f9;
       color: #333;
     }
+
+    /* ─────────────────────────────────────────────────────
+       Header Styles
+       ───────────────────────────────────────────────────── */
     header {
       text-align: center;
       padding: 2rem 1rem;
       background: #ff6b6b;
       color: white;
     }
+
     header h1 {
       margin: 0;
       font-size: 2rem;
     }
+
+    /* ─────────────────────────────────────────────────────
+       Main Content Grid
+       ───────────────────────────────────────────────────── */
     .loader-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -33,6 +45,7 @@
       max-width: 1200px;
       margin: auto;
     }
+
     .loader-card {
       background: #fff;
       padding: 2rem;
@@ -41,14 +54,20 @@
       text-align: center;
       transition: transform 0.3s ease;
     }
+
     .loader-card:hover {
       transform: translateY(-5px);
     }
+
     .loader-title {
       margin-top: 1rem;
       font-weight: 600;
       font-size: 1.1rem;
     }
+
+    /* ─────────────────────────────────────────────────────
+       Spinner Animations
+       ───────────────────────────────────────────────────── */
 
     /* Classic Spinner */
     .spinner {
@@ -72,6 +91,7 @@
       width: 60px;
       height: 60px;
     }
+
     .dual-ring:after {
       content: " ";
       display: block;
@@ -83,6 +103,7 @@
       border-color: #ff6b6b transparent #ff6b6b transparent;
       animation: dual-ring 1.2s linear infinite;
     }
+
     @keyframes dual-ring {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -94,6 +115,7 @@
       justify-content: center;
       gap: 8px;
     }
+
     .dot-bounce div {
       width: 12px;
       height: 12px;
@@ -101,8 +123,10 @@
       border-radius: 50%;
       animation: bounce 0.6s infinite alternate;
     }
+
     .dot-bounce div:nth-child(2) { animation-delay: 0.2s; }
     .dot-bounce div:nth-child(3) { animation-delay: 0.4s; }
+
     @keyframes bounce {
       to { transform: translateY(-15px); }
     }
@@ -116,6 +140,7 @@
       animation: pulse 1s ease-in-out infinite;
       margin: auto;
     }
+
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.4); opacity: 0.6; }
@@ -129,6 +154,7 @@
       animation: rotateSquare 1.2s linear infinite;
       margin: auto;
     }
+
     @keyframes rotateSquare {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -143,21 +169,27 @@
       height: 20px;
       margin: auto;
     }
+
     .bar-loader div {
       width: 8px;
       height: 100%;
       background-color: #ff6b6b;
       animation: bar 1s infinite;
     }
+
     .bar-loader div:nth-child(2) { animation-delay: 0.2s; }
     .bar-loader div:nth-child(3) { animation-delay: 0.4s; }
     .bar-loader div:nth-child(4) { animation-delay: 0.6s; }
     .bar-loader div:nth-child(5) { animation-delay: 0.8s; }
+
     @keyframes bar {
       0%, 100% { transform: scaleY(1); }
       50% { transform: scaleY(0.4); }
     }
 
+    /* ─────────────────────────────────────────────────────
+       Footer Styles
+       ───────────────────────────────────────────────────── */
     footer {
       text-align: center;
       padding: 2.75rem 2rem;
@@ -167,6 +199,7 @@
       font-size: 0.9rem;
       bottom: 0;
     }
+
     footer span { font-weight: 600; }
   </style>
 </head>
@@ -178,7 +211,6 @@
   </header>
 
   <main class="loader-grid">
-
     <div class="loader-card">
       <div class="spinner"></div>
       <div class="loader-title">Classic Spinner</div>
@@ -212,7 +244,6 @@
       </div>
       <div class="loader-title">Bar Loader</div>
     </div>
-
   </main>
 
   <footer>
