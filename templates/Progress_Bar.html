@@ -907,6 +907,31 @@
               </button>
             </div>
 
+            <!-- View More Card -->
+            <div class="progress-card view-more-card">
+              <div class="card-header">
+                <h3><i class="fas fa-plus-circle"></i> More Progress Bars</h3>
+                <p>Discover additional progress bar styles and animations</p>
+              </div>
+              <div class="progress-demo view-more-demo">
+                <div class="view-more-content">
+                  <div class="preview-grid">
+                    <div class="mini-progress mini-1"></div>
+                    <div class="mini-progress mini-2"></div>
+                    <div class="mini-progress mini-3"></div>
+                    <div class="mini-progress mini-4"></div>
+                  </div>
+                  <div class="more-stats">
+                    <span class="more-count">15+</span>
+                    <span class="more-label">Additional Styles</span>
+                  </div>
+                </div>
+              </div>
+              <button class="view-more-btn">
+                <i class="fas fa-arrow-right"></i> View More Progress Bars
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -1494,6 +1519,181 @@
             box-shadow: var(--shadow);
         }
 
+        /* View More Card Styles */
+        .view-more-card {
+            background: linear-gradient(135deg, 
+                rgba(108, 99, 255, 0.1) 0%, 
+                rgba(54, 209, 220, 0.1) 50%,
+                rgba(255, 101, 132, 0.1) 100%);
+            border: 2px dashed rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-more-card::before {
+            background: linear-gradient(135deg, 
+                rgba(108, 99, 255, 0.15) 0%, 
+                rgba(54, 209, 220, 0.15) 50%,
+                rgba(255, 101, 132, 0.15) 100%);
+        }
+
+        .view-more-card:hover {
+            border-color: var(--primary);
+            box-shadow: 
+                0 20px 60px rgba(108, 99, 255, 0.25),
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .view-more-demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .view-more-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-sm);
+            width: 120px;
+            height: 120px;
+        }
+
+        .mini-progress {
+            border-radius: var(--radius-sm);
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+        }
+
+        .mini-1 {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 60%, var(--bg-tertiary) 60%);
+            animation: miniProgress1 3s infinite;
+        }
+
+        .mini-2 {
+            background: conic-gradient(var(--accent) 0deg 216deg, var(--bg-tertiary) 216deg 360deg);
+            border-radius: 50%;
+            animation: miniProgress2 4s infinite;
+        }
+
+        .mini-3 {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary) 75%, var(--bg-tertiary) 75%);
+            animation: miniProgress3 2.5s infinite;
+        }
+
+        .mini-4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+        }
+
+        .mini-4::before {
+            content: '•••';
+            color: var(--primary);
+            font-size: 1.2rem;
+            animation: dotBlink 1.5s infinite;
+        }
+
+        .more-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .more-count {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .more-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .view-more-btn {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+            min-height: 48px;
+            text-decoration: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .view-more-btn:hover::before {
+            left: 100%;
+        }
+
+        .view-more-btn:focus {
+            outline: 2px solid var(--primary-light);
+            outline-offset: 2px;
+        }
+
+        .view-more-btn i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .view-more-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(108, 99, 255, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .view-more-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .view-more-btn:active {
+            transform: translateY(-1px) scale(1.01);
+        }
+
         /* Code Modal */
         .code-modal {
             position: fixed;
@@ -1749,6 +1949,51 @@
                 text-shadow: 
                     0 0 8px rgba(108, 99, 255, 0.4),
                     0 0 15px rgba(54, 209, 220, 0.2);
+            }
+        }
+
+        @keyframes miniProgress1 {
+            0% { 
+                background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 20%, var(--bg-tertiary) 20%);
+            }
+            50% { 
+                background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 80%, var(--bg-tertiary) 80%);
+            }
+            100% { 
+                background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 20%, var(--bg-tertiary) 20%);
+            }
+        }
+
+        @keyframes miniProgress2 {
+            0% { 
+                background: conic-gradient(var(--accent) 0deg 72deg, var(--bg-tertiary) 72deg 360deg);
+            }
+            50% { 
+                background: conic-gradient(var(--accent) 0deg 288deg, var(--bg-tertiary) 288deg 360deg);
+            }
+            100% { 
+                background: conic-gradient(var(--accent) 0deg 72deg, var(--bg-tertiary) 72deg 360deg);
+            }
+        }
+
+        @keyframes miniProgress3 {
+            0% { 
+                background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary) 30%, var(--bg-tertiary) 30%);
+            }
+            50% { 
+                background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary) 90%, var(--bg-tertiary) 90%);
+            }
+            100% { 
+                background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary) 30%, var(--bg-tertiary) 30%);
+            }
+        }
+
+        @keyframes dotBlink {
+            0%, 100% { 
+                opacity: 0.3;
+            }
+            50% { 
+                opacity: 1;
             }
         }
 
@@ -2881,6 +3126,40 @@ progressBar.style.strokeDashoffset = offset;`,
                 }
             });
         });
+
+        // View More button functionality
+        const viewMoreBtn = document.querySelector('.view-more-btn');
+        if (viewMoreBtn) {
+            viewMoreBtn.addEventListener('click', () => {
+                // You can customize this to navigate to a different page or show more content
+                // For now, it shows an alert with information
+                const moreProgressBars = [
+                    '🔥 Animated Fire Progress',
+                    '⚡ Lightning Bolt Progress',
+                    '🌊 Liquid Wave Advanced',
+                    '🎯 Target Circle Progress',
+                    '📊 Multi-Layer Progress',
+                    '🌈 Rainbow Spectrum Progress',
+                    '💫 Particle Effect Progress',
+                    '🔮 Crystal Ball Progress',
+                    '⭐ Star Rating Progress',
+                    '🎨 Paint Brush Progress',
+                    '🚀 Rocket Launch Progress',
+                    '💎 Diamond Shape Progress',
+                    '🌟 Glowing Neon Progress',
+                    '🔄 Infinity Loop Progress',
+                    '🎪 Carnival Striped Progress'
+                ];
+                
+                alert(`Coming Soon! 🚀\n\nMore amazing progress bars:\n\n${moreProgressBars.slice(0, 8).join('\n')}\n\n...and ${moreProgressBars.length - 8} more exciting styles!`);
+                
+                // Alternative: Navigate to templates page
+                // window.location.href = '../templates.html';
+                
+                // Alternative: Scroll to show hidden progress bars
+                // You could implement this to show more cards dynamically
+            });
+        }
 
         // Close modal
         function closeModalFunction() {
