@@ -63,11 +63,42 @@ function toggleFAQ(element) {
   if (!faqItem) return;
   
   // Toggle the active class on this specific FAQ item
+  const isActive = faqItem.classList.contains("active");
   faqItem.classList.toggle("active");
+  
+  // Update aria-expanded attribute for accessibility
+  const button = faqItem;
+  const answerId = button.getAttribute("aria-controls");
+  const answer = document.getElementById(answerId);
+  
+  if (answer) {
+    button.setAttribute("aria-expanded", !isActive);
+    answer.hidden = isActive;
+  }
 }
 
 // Make toggleFAQ globally accessible
 window.toggleFAQ = toggleFAQ;
+
+// Add keyboard support for FAQ items
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    // Add click event
+    item.addEventListener('click', function() {
+      toggleFAQ(this);
+    });
+    
+    // Add keyboard event
+    item.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFAQ(this);
+      }
+    });
+  });
+});
 
 // Global (or module-level) variables to store animation and listener references for snake cursor
 let currentAnimationId = null
