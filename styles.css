@@ -56,6 +56,71 @@
   line-height: 1.4;
 }
 
+/* FAQ Section Improvements */
+.faq-item {
+  margin-bottom: 15px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+}
+
+.faq-question {
+  padding: 20px;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.faq-question:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.faq-question i {
+  transition: var(--transition);
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 20px;
+  max-height: 500px;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+/* Focus styles for accessibility */
+.faq-item:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .faq-item {
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .faq-question {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .faq-question:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Mobile-optimized touch feedback */
 /* ✅ Show animation */
 .toast.show {
   opacity: 1;
