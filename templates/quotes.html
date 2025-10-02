@@ -3,117 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Dev Quote Generator</title>
+    <title>Dev Quote Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS for beautiful styling */
         :root {
-            --primary-color: #007bff; /* Blue - Modern Tech Look */
-            --secondary-color: #28a745; /* Green - Success/Go Look */
-            --background-color: #f8f9fa; /* Off-White */
-            --card-background: #ffffff;
-            --text-color: #343a40; /* Dark Gray */
-            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-stack);
-            background-color: var(--background-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            color: var(--text-color);
-            transition: background-color 0.5s ease;
+            padding: 20px;
+            line-height: 1.6;
         }
 
         .container {
-            width: 90%;
-            max-width: 700px;
-            padding: 30px;
+            width: 100%;
+            max-width: 800px;
             text-align: center;
         }
 
-        .quote-box {
-            background-color: var(--card-background);
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            border-left: 5px solid var(--primary-color);
+        header {
+            margin-bottom: 30px;
         }
 
-        .quote-box::before {
-            content: '</>'; /* A subtle developer-themed icon */
-            font-size: 4em;
-            color: var(--secondary-color);
-            opacity: 0.1;
-            position: absolute;
-            top: 5px;
-            right: 15px;
-            z-index: 0;
-            font-family: monospace;
+        h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .quote-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quote-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
 
         .quote-text {
-            font-size: 1.5em;
-            font-weight: 400;
+            font-size: 1.5rem;
+            font-weight: 500;
             line-height: 1.7;
             margin-bottom: 25px;
             position: relative;
-            z-index: 1;
-            min-height: 90px;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease;
+            transition: var(--transition);
         }
-        
+
         .quote-author {
-            font-size: 1em;
-            font-weight: 500;
-            color: var(--primary-color);
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px dashed rgba(0, 123, 255, 0.3);
-            transition: opacity 0.5s ease;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
             font-style: italic;
         }
 
-        .new-quote-btn {
-            background-color: var(--primary-color);
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1.1em;
+            padding: 14px 28px;
+            font-size: 1rem;
             font-weight: 600;
-            border-radius: 6px;
-            margin-top: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
         }
 
-        .new-quote-btn:hover {
-            background-color: #0056b3; /* Darker Blue */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
         }
 
-        .new-quote-btn:active {
-            transform: translateY(1px);
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quote-counter {
+            color: white;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Animation for quote change */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quote-text {
+                font-size: 1.3rem;
+            }
+            
+            .quote-box {
+                padding: 30px 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-
-    
     <div class="container">
-        <h1>Dev Quote Generator 💻</h1>
+        <header>
+            <h1><i class="fas fa-code"></i> Dev Quote Generator</h1>
+            <p class="subtitle">Inspirational quotes for developers and programmers</p>
+        </header>
+        
         <div class="quote-box">
+            <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+            </div>
             <div class="quote-text" id="quote">Welcome! Click 'Generate Quote' to see some code wisdom.</div>
             <div class="quote-author" id="author">A Helpful AI</div>
         </div>
-        <button class="new-quote-btn" onclick="generateQuote()">Generate New Quote</button>
+        
+        <div class="controls">
+            <button class="btn" onclick="generateQuote()">
+                <i class="fas fa-sync-alt"></i> Generate New Quote
+            </button>
+            <button class="btn btn-secondary" onclick="shareQuote()">
+                <i class="fas fa-share-alt"></i> Share Quote
+            </button>
+        </div>
+        
+        <div class="quote-counter">
+            <span id="counter">0</span> / <span id="total">100</span> Quotes
+        </div>
+        
+        <div class="footer">
+            Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> for developers
+        </div>
     </div>
 
     <script>
@@ -227,38 +353,82 @@
 
         const quoteElement = document.getElementById('quote');
         const authorElement = document.getElementById('author');
+        const counterElement = document.getElementById('counter');
+        const totalElement = document.getElementById('total');
         let lastIndex = -1;
+        let usedIndices = new Set();
+        
+        // Initialize total quotes count
+        totalElement.textContent = quotes.length;
 
         function generateQuote() {
-            // Find a random index that is different from the last one
+            // If we've shown all quotes, reset the used indices
+            if (usedIndices.size >= quotes.length) {
+                usedIndices.clear();
+            }
+            
+            // Find a random index that hasn't been used recently
             let newIndex;
             do {
                 newIndex = Math.floor(Math.random() * quotes.length);
-            } while (newIndex === lastIndex && quotes.length > 1);
+            } while (usedIndices.has(newIndex) && usedIndices.size < quotes.length);
             
+            usedIndices.add(newIndex);
             lastIndex = newIndex;
             const randomQuote = quotes[newIndex];
 
-            // Animation: Fade out, change content, fade in
-            quoteElement.style.opacity = 0;
-            authorElement.style.opacity = 0;
+            // Update counter
+            counterElement.textContent = usedIndices.size;
 
-            setTimeout(() => {
-                quoteElement.textContent = randomQuote.quote;
-                authorElement.textContent = `- ${randomQuote.author}`; // Add a dash for style
-                quoteElement.style.opacity = 1;
-                authorElement.style.opacity = 1;
-            }, 500);
+            // Remove fade-in class if it exists
+            quoteElement.classList.remove('fade-in');
+            authorElement.classList.remove('fade-in');
             
-            // Optional: Change background color slightly for more dynamic feel
-            const randomHue = Math.floor(Math.random() * 360);
-            document.body.style.backgroundColor = `hsl(${randomHue}, 15%, 95%)`;
+            // Force reflow to restart animation
+            void quoteElement.offsetWidth;
+            void authorElement.offsetWidth;
+            
+            // Update content and add animation class
+            quoteElement.textContent = randomQuote.quote;
+            authorElement.textContent = `— ${randomQuote.author}`;
+            quoteElement.classList.add('fade-in');
+            authorElement.classList.add('fade-in');
+        }
+
+        function shareQuote() {
+            const currentQuote = quotes[lastIndex];
+            const text = `"${currentQuote.quote}" - ${currentQuote.author}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Developer Quote',
+                    text: text,
+                    url: window.location.href
+                })
+                .catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare(text);
+                });
+            } else {
+                fallbackShare(text);
+            }
+        }
+
+        function fallbackShare(text) {
+            // Fallback for browsers that don't support Web Share API
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show a simple notification
+            alert('Quote copied to clipboard!');
         }
 
         // Generate a quote on page load
         document.addEventListener('DOMContentLoaded', generateQuote);
-
     </script>
-
 </body>
 </html>
