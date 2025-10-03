@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Documentation | AnimateItNow</title>
+    <meta name="description" content="Interactive component documentation with live examples, code snippets, and best practices">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="components.css">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body class="dark">
+    <!-- Navigation -->
+    <nav class="navbar scroll-fade">
+        <div class="nav-left">
+            <a href="index.html" class="home-link">
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo">
+                <span class="site-name">Animate It Now</span>
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-right">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="editor.html" target="_blank">Editor</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="components.html" class="active">Components</a></li>
+                
+                <!-- desktop-nav for tools -->
+                <div class="desktop-nav">
+                    <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+                    <li><a href="generator.html">Generator</a></li>
+                    <li><a href="pomodoro.html">Pomodoro</a></li>
+                </div>
+                
+                <!-- mobile-nav for tools -->
+                <div class="dropdown mobile-nav">
+                    <div class="dropdown-btn">Tools ▾</div>
+                    <div class="dropdown-content">
+                        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+                        <li><a href="generator.html">Generator</a></li>
+                        <li><a href="pomodoro.html">Pomodoro</a></li>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-btn">Explore ▾</button>
+                    <div class="dropdown-content">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="leaderboard.html">Leaderboard</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </div>
+                </div>
+
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header Section -->
+        <header class="docs-header">
+            <div class="header-content">
+                <h1 class="docs-title">
+                    <i class="fas fa-cube"></i>
+                    Component Documentation
+                </h1>
+                <p class="docs-subtitle">
+                    Interactive showcase of reusable UI components with live examples, 
+                    code snippets, and implementation guides
+                </p>
+            </div>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <section class="search-filter-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search components, categories, or features..."
+                        aria-label="Search components"
+                    >
+                    <button id="clearSearch" class="clear-btn" aria-label="Clear search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label class="filter-label">Category:</label>
+                    <div class="filter-buttons" id="categoryFilters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="navigation">Navigation</button>
+                        <button class="filter-btn" data-category="buttons">Buttons</button>
+                        <button class="filter-btn" data-category="cards">Cards</button>
+                        <button class="filter-btn" data-category="forms">Forms</button>
+                        <button class="filter-btn" data-category="animations">Animations</button>
+                        <button class="filter-btn" data-category="layouts">Layouts</button>
+                        <button class="filter-btn" data-category="effects">Effects</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Complexity:</label>
+                    <div class="filter-buttons" id="complexityFilters">
+                        <button class="filter-btn active" data-complexity="all">All</button>
+                        <button class="filter-btn" data-complexity="beginner">Beginner</button>
+                        <button class="filter-btn" data-complexity="intermediate">Intermediate</button>
+                        <button class="filter-btn" data-complexity="advanced">Advanced</button>
+                    </div>
+                </div>
+
+                <div class="view-toggle">
+                    <button id="gridView" class="view-btn active" aria-label="Grid view">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="listView" class="view-btn" aria-label="List view">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Grid -->
+        <section class="components-section">
+            <div class="components-grid" id="componentsGrid">
+                <!-- Components will be dynamically loaded here -->
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No components found</h3>
+                <p>Try adjusting your search terms or filters</p>
+            </div>
+        </section>
+
+        <!-- Component Detail Modal -->
+        <div class="modal-overlay" id="componentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Component Details</h2>
+                    <button class="modal-close" id="modalClose" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-tabs">
+                        <button class="tab-btn active" data-tab="preview">Preview</button>
+                        <button class="tab-btn" data-tab="code">Code</button>
+                        <button class="tab-btn" data-tab="usage">Usage</button>
+                        <button class="tab-btn" data-tab="customization">Customization</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="previewTab">
+                            <div class="component-preview" id="componentPreview">
+                                <!-- Live component preview -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="codeTab">
+                            <div class="code-section">
+                                <div class="code-header">
+                                    <span class="code-language">HTML</span>
+                                    <button class="copy-code-btn" data-code-type="html">
+                                        <i class="fas fa-copy"></i>
+                                        Copy HTML
+                                    </button>
+                                </div>
+                                <pre><code class="language-html" id="htmlCode"></code></pre>
+                            </div>
+
+                            <div class="code-section">
+                                <div class="code-header">
+                                    <span class="code-language">CSS</span>
+                                    <button class="copy-code-btn" data-code-type="css">
+                                        <i class="fas fa-copy"></i>
+                                        Copy CSS
+                                    </button>
+                                </div>
+                                <pre><code class="language-css" id="cssCode"></code></pre>
+                            </div>
+
+                            <div class="code-section" id="jsCodeSection" style="display: none;">
+                                <div class="code-header">
+                                    <span class="code-language">JavaScript</span>
+                                    <button class="copy-code-btn" data-code-type="js">
+                                        <i class="fas fa-copy"></i>
+                                        Copy JS
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript" id="jsCode"></code></pre>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="usageTab">
+                            <div class="usage-content" id="usageContent">
+                                <!-- Usage examples and best practices -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="customizationTab">
+                            <div class="customization-content" id="customizationContent">
+                                <!-- Customization options and variables -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h2>AnimateItNow</h2>
+                <p>Creating impactful web animations and components for everyone.</p>
+            </div>
+            <div class="footer-right">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="components.js"></script>
+</body>
+</html>
