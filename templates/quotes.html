@@ -425,41 +425,43 @@
 </head>
 <body>
     <!-- Navigation Header -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="index.html" class="home-link">
-                <div class="logo">A</div>
-                <span class="site-name">AnimateItNow</span>
-            </a>
-        </div>
-
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="nav-right">
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="editor.html">Editor</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="playground.html">Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <li><a href="generator.html">Generator</a></li>
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="github-icon"
-                       aria-label="GitHub Repository">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="editor.html" target="_blank">Editor</a></li>
+        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="playground.html">Hover-Effects</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="generator.html">Generator</a></li>
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" class="github-icon">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Theme">
+            <i data-lucide="moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
     <!-- Main Content -->
     <main>
