@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Quote Generator</title>
+    <title>Dev Quote Generator | AnimateItNow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -16,6 +16,9 @@
             --card-bg: rgba(255, 255, 255, 0.9);
             --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --nav-bg: #1a1d3d;
+            --footer-bg: #1a1d3d;
+            --border-color: #e9ecef;
         }
 
         * {
@@ -24,19 +27,122 @@
             box-sizing: border-box;
         }
 
-        /* ─────────────────────────────────────────────────────
-           Base Styles
-           ───────────────────────────────────────────────────── */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ─────────────────────────────────────────────────────
+           Header/Navigation Styles
+           ───────────────────────────────────────────────────── */
+        .navbar {
+            background-color: var(--nav-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .home-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #7c3aed;
+        }
+
+        .nav-links a.active {
+            color: #7c3aed;
+        }
+
+        .github-icon {
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .github-icon:hover {
+            color: #7c3aed;
+            transform: scale(1.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* ─────────────────────────────────────────────────────
+           Main Content Area
+           ───────────────────────────────────────────────────── */
+        main {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 2rem 1rem;
         }
 
         .container {
@@ -51,17 +157,16 @@
 
         h1 {
             font-size: 2.5rem;
-            color: white;
+            color: #000000;
             margin-bottom: 10px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-shadow: none;
         }
 
         .subtitle {
-            color: rgba(255, 255, 255, 0.8);
+            color: #333333;
             font-size: 1.1rem;
             margin-bottom: 20px;
         }
-
 
         .quote-box {
             background: var(--card-bg);
@@ -114,11 +219,11 @@
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .btn {
             background: var(--primary);
-
             color: white;
             border: none;
             padding: 14px 28px;
@@ -146,26 +251,92 @@
 
         .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
             box-shadow: none;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--primary);
+            color: white;
         }
 
         .quote-counter {
-            color: white;
+            color: #333333;
             margin-top: 20px;
             font-size: 0.9rem;
-            opacity: 0.8;
         }
 
+        /* ─────────────────────────────────────────────────────
+           Footer Styles
+           ───────────────────────────────────────────────────── */
         .footer {
-            margin-top: 40px;
+            background-color: var(--footer-bg);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-left h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .footer-left p {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            max-width: 400px;
+        }
+
+        .footer-right h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-right ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-right a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: #7c3aed;
+            transform: translateX(5px);
+        }
+
+        .footer-right i {
+            width: 20px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .highlight {
+            color: #7c3aed;
+            font-weight: 600;
         }
 
         /* Animation for quote change */
@@ -178,8 +349,37 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        /* Responsive adjustments */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
             h1 {
                 font-size: 2rem;
             }
@@ -201,6 +401,11 @@
                 width: 100%;
                 max-width: 300px;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -211,44 +416,121 @@
             .quote-text {
                 font-size: 1.2rem;
             }
+
+            .site-name {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-code"></i> Dev Quote Generator</h1>
-            <p class="subtitle">Inspirational quotes for developers and programmers</p>
-        </header>
-        
-        <div class="quote-box">
-            <div class="quote-icon">
-                <i class="fas fa-quote-left"></i>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="home-link">
+                <div class="logo">A</div>
+                <span class="site-name">AnimateItNow</span>
+            </a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-right">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="playground.html">Hover-Effects</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="generator.html">Generator</a></li>
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="github-icon"
+                       aria-label="GitHub Repository">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <header>
+                <h1><i class="fas fa-code"></i> Dev Quote Generator</h1>
+                <p class="subtitle">Inspirational quotes for developers and programmers</p>
+            </header>
+            
+            <div class="quote-box">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div class="quote-text" id="quote">Welcome! Click 'Generate Quote' to see some code wisdom.</div>
+                <div class="quote-author" id="author">A Helpful AI</div>
             </div>
-            <div class="quote-text" id="quote">Welcome! Click 'Generate Quote' to see some code wisdom.</div>
-            <div class="quote-author" id="author">A Helpful AI</div>
+            
+            <div class="controls">
+                <button class="btn" onclick="generateQuote()">
+                    <i class="fas fa-sync-alt"></i> Generate New Quote
+                </button>
+                <button class="btn btn-secondary" onclick="shareQuote()">
+                    <i class="fas fa-share-alt"></i> Share Quote
+                </button>
+            </div>
+            
+            <div class="quote-counter">
+                <span id="counter">0</span> / <span id="total">100</span> Quotes
+            </div>
         </div>
-        
-        <div class="controls">
-            <button class="btn" onclick="generateQuote()">
-                <i class="fas fa-sync-alt"></i> Generate New Quote
-            </button>
-            <button class="btn btn-secondary" onclick="shareQuote()">
-                <i class="fas fa-share-alt"></i> Share Quote
-            </button>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h2>AnimateItNow</h2>
+                <p>Creating impactful web animations and templates for everyone. Explore our collection of tools and resources to enhance your development workflow.</p>
+            </div>
+            <div class="footer-right">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li>
+                        <a href="https://github.com/itsAnimation/AnimateItNow" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:contact@animateitnow.com">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="quote-counter">
-            <span id="counter">0</span> / <span id="total">100</span> Quotes
+        <div class="footer-bottom">
+            <p>© 2025 AnimateItNow. Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> by <span class="highlight">Anuj</span> and Contributors.</p>
         </div>
-        
-        <div class="footer">
-            Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> for developers
-        </div>
-    </div>
+    </footer>
 
     <script>
-        // The JSON data is stored directly as a JavaScript array of objects
+        // Quote data array
         const quotes = [
             { quote: "The best error message is the one that never shows up.", author: "Thomas Fuchs" },
             { quote: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
@@ -262,117 +544,42 @@
             { quote: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
             { quote: "Premature optimization is the root of all evil.", author: "Donald Knuth" },
             { quote: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson" },
-            { quote: "The trouble with programmers is that you can never tell what a programmer is doing until it's too late.", author: "Seymour Cray" },
             { quote: "Debugging is twice as hard as writing the code in the first place.", author: "Brian W. Kernighan" },
             { quote: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
-            { quote: "If you optimize everything, you will always be unhappy.", author: "Donald Knuth" },
             { quote: "Don't comment bad code—rewrite it.", author: "Brian W. Kernighan" },
-            { quote: "The function of a good software engineer is to make the complex simple.", author: "Grady Booch" },
             { quote: "There are only two hard things in computer science: cache invalidation and naming things.", author: "Phil Karlton" },
             { quote: "Before software can be reusable it first has to be usable.", author: "Ralph Johnson" },
-            { quote: "The computer does not make mistakes, but those who program it do.", author: "Unknown" },
             { quote: "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.", author: "John Woods" },
             { quote: "Good code is its own best documentation.", author: "Steve McConnell" },
-            { quote: "Software undergoes a transformation. It does not wear out; it gets better, then obsolete.", author: "C. Jones" },
             { quote: "The key to performance is elegance, not complexity.", author: "Jon Bentley" },
             { quote: "You should name a variable using the same care with which you name a first-born child.", author: "Robert C. Martin" },
-            { quote: "In programming, the hard part is deciding what to put in, not what to leave out.", author: "Scott Adams" },
-            { quote: "When to use a class? When you can't figure out how to solve the problem without one.", author: "Sandu Popa" },
             { quote: "Programming is the art of telling another human being what one wants the computer to do.", author: "Donald Knuth" },
             { quote: "The most damaging phrase in the language is, 'It's always been done this way.'", author: "Grace Hopper" },
             { quote: "Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.", author: "Antoine de Saint-Exupéry" },
-            { quote: "The cheapest, fastest, and most reliable components are those that aren't there.", author: "Gordon Bell" },
-            { quote: "One man's constant is another man's variable.", author: "Alan Perlis" },
             { quote: "A good programmer is someone who always looks both ways before crossing a one-way street.", author: "Doug Linder" },
-            { quote: "Hofstadter's Law: It always takes longer than you expect, even when you take into account Hofstadter's Law.", author: "Douglas Hofstadter" },
-            { quote: "In theory, there is no difference between theory and practice. But in practice, there is.", author: "Jan L.A. van de Snepscheut" },
             { quote: "Testing can show the presence of bugs, but not their absence.", author: "Edsger W. Dijkstra" },
-            { quote: "It's not a bug – it's an undocumented feature.", author: "Unknown" },
-            { quote: "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it.", author: "Edsger W. Dijkstra" },
-            { quote: "The most important skill a programmer can have is the ability to read code.", author: "Chris Pine" },
-            { quote: "Write code every day, even if it's just a little bit.", author: "Unknown" },
-            { quote: "Success in life is a matter not so much of talent and opportunity as of concentration and perseverance.", author: "C. H. Spurgeon" },
-            { quote: "If you're good at it, never do it for free.", author: "The Joker (The Dark Knight)" },
-            { quote: "No one in the brief history of computing has written a piece of software that performed as specified, first time out.", author: "W. David Gardner" },
-            { quote: "Code review is the most important practice in software development.", author: "Joel Spolsky" },
-            { quote: "Get rid of the bloat.", author: "Bjarne Stroustrup" },
-            { quote: "Java is to JavaScript what car is to carpet.", author: "Chris Heilmann" },
-            { quote: "Every good work of software starts by scratching a developer's personal itch.", author: "Eric S. Raymond" },
-            { quote: "If we want to go fast, we have to go slow.", author: "Robert C. Martin" },
-            { quote: "Don't repeat yourself. (DRY)", author: "The Pragmatic Programmers" },
-            { quote: "KISS: Keep It Simple, Stupid.", author: "Clarence 'Kelly' Johnson" },
-            { quote: "The programmer is an artist, and the computer is merely a dumb assistant.", author: "Unknown" },
-            { quote: "It's hard enough to find an error in your code when you're looking for it; it's even harder when you assume your code is error-free.", author: "Steve McConnell" },
-            { quote: "The best programs are the ones that work.", author: "Unknown" },
-            { quote: "What one programmer can do in one month, two programmers can do in two months.", author: "Fred Brooks" },
-            { quote: "Programming is thinking, not typing.", author: "Casey Patton" },
-            { quote: "The bearing of a child takes nine months, no matter how many women are assigned.", author: "Fred Brooks" },
-            { quote: "Computers are good at following instructions, but not at reading your mind.", author: "Donald Knuth" },
-            { quote: "Deleted code is debugged code.", author: "Ashleigh Brilliant" },
-            { quote: "The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.", author: "Brian W. Kernighan" },
-            { quote: "Always use the right tool for the job.", author: "Unknown" },
-            { quote: "The only difference between a good programmer and a bad programmer is that the good programmer makes smaller mistakes.", author: "Unknown" },
-            { quote: "You can't have great software without a great team, and most great teams are small.", author: "Unknown" },
-            { quote: "If at first you don't succeed, call it version 1.0.", author: "Unknown" },
-            { quote: "Failure is not the opposite of success, it's a stepping stone to success.", author: "Arianna Huffington" },
-            { quote: "The question of whether a computer can think is no more interesting than the question of whether a submarine can swim.", author: "Edsger W. Dijkstra" },
-            { quote: "Programmers are tools for converting caffeine into code.", author: "Unknown" },
-            { quote: "Write tests, not too many, mostly integration.", author: "Guillermo Rauch" },
-            { quote: "The best performance improvement is the transition from the nonworking state to the working state.", author: "J. L. van Vliet" },
-            { quote: "Always write things down. Your memory is a sieve.", author: "Unknown" },
-            { quote: "Elegance is not a dispensable luxury but a factor that determines how well the software works.", author: "Edsger W. Dijkstra" },
-            { quote: "The programmer who writes a million lines of code a year is the one who deletes a million lines of code a year.", author: "Unknown" },
-            { quote: "The structure of a system is a function of the organization that built it.", author: "Melvin Conway" },
-            { quote: "If you don't iterate fast, you're not going to succeed.", author: "Mark Zuckerberg" },
-            { quote: "Code should look like it was all written by a single person, no matter how many people contributed.", author: "Unknown" },
-            { quote: "The limits of my language mean the limits of my world.", author: "Ludwig Wittgenstein" },
-            { quote: "We are trying to change the world with technology.", author: "Bill Gates" },
-            { quote: "The only way to learn a new programming language is by writing programs in it.", author: "Bjarne Stroustrup" },
-            { quote: "Complexity kills. It sucks the life out of developers, it makes products difficult to plan, build and test.", author: "Ray Ozzie" },
-            { quote: "Debugging is like being the detective in a crime movie where you are also the murderer.", author: "Filipe Fortes" },
-            { quote: "Great software is not written, it's rewritten.", author: "Unknown" },
-            { quote: "Optimism is an occupational hazard of programming: feedback is the treatment.", author: "Kent Beck" },
-            { quote: "Low quality code is more expensive than you think.", author: "Unknown" },
-            { quote: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.", author: "Dan Salomon" },
-            { quote: "Give a man a program, frustrate him for a day. Teach a man to program, frustrate him for a lifetime.", author: "Unknown" },
-            { quote: "The best way to predict the future is to implement it.", author: "David Heinemeier Hansson" },
-            { quote: "Get to the point.", author: "Bjarne Stroustrup" },
-            { quote: "An API is a user interface for developers.", author: "Unknown" },
-            { quote: "Always code and design with the maintainer in mind.", author: "Unknown" },
-            { quote: "Adding manpower to a late software project makes it later.", author: "Fred Brooks" },
-            { quote: "Continuous delivery is a crucial component of any successful software company.", author: "Martin Fowler" },
-            { quote: "Don't write code for performance—write it for clarity—unless it's a proven bottleneck.", author: "Unknown" },
-            { quote: "The goal is to do your work on the best possible level, always.", author: "Linus Torvalds" },
-            { quote: "Learning to code is learning to create and innovate.", author: "Unknown" },
-            { quote: "Good design is good business.", author: "Thomas Watson Jr." },
-            { quote: "A successful team is a group of many hands and one mind.", author: "Bill Bethel" },
-            { quote: "Software development is a team sport.", author: "Unknown" },
-            { quote: "Mastery requires patience and dedication.", author: "Unknown" },
-            { quote: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
-            { quote: "The best programming language is the one you know the best.", author: "Unknown" },
-            { quote: "The purpose of abstraction is not to be vague, but to create a new semantic level in which one can be absolutely precise.", author: "Edsger W. Dijkstra" },
-            { quote: "If the code and the comments disagree, then both are probably wrong.", author: "Norm Schryer" },
-            { quote: "The sooner you start to code, the longer the program will take.", author: "Unknown" },
-            { quote: "If it works, don't fix it.", author: "Unknown" }
+            { quote: "It's not a bug – it's an undocumented feature.", author: "Unknown" }
         ];
 
         const quoteElement = document.getElementById('quote');
         const authorElement = document.getElementById('author');
         const counterElement = document.getElementById('counter');
         const totalElement = document.getElementById('total');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
         let lastIndex = -1;
         let usedIndices = new Set();
         
         // Initialize total quotes count
         totalElement.textContent = quotes.length;
 
+        // Generate quote function
         function generateQuote() {
-            // If we've shown all quotes, reset the used indices
             if (usedIndices.size >= quotes.length) {
                 usedIndices.clear();
             }
             
-            // Find a random index that hasn't been used recently
             let newIndex;
             do {
                 newIndex = Math.floor(Math.random() * quotes.length);
@@ -382,24 +589,21 @@
             lastIndex = newIndex;
             const randomQuote = quotes[newIndex];
 
-            // Update counter
             counterElement.textContent = usedIndices.size;
 
-            // Remove fade-in class if it exists
             quoteElement.classList.remove('fade-in');
             authorElement.classList.remove('fade-in');
             
-            // Force reflow to restart animation
             void quoteElement.offsetWidth;
             void authorElement.offsetWidth;
             
-            // Update content and add animation class
             quoteElement.textContent = randomQuote.quote;
             authorElement.textContent = `— ${randomQuote.author}`;
             quoteElement.classList.add('fade-in');
             authorElement.classList.add('fade-in');
         }
 
+        // Share quote function
         function shareQuote() {
             const currentQuote = quotes[lastIndex];
             const text = `"${currentQuote.quote}" - ${currentQuote.author}`;
@@ -409,8 +613,7 @@
                     title: 'Developer Quote',
                     text: text,
                     url: window.location.href
-                })
-                .catch(err => {
+                }).catch(err => {
                     console.log('Error sharing:', err);
                     fallbackShare(text);
                 });
@@ -420,17 +623,27 @@
         }
 
         function fallbackShare(text) {
-            // Fallback for browsers that don't support Web Share API
             const textArea = document.createElement('textarea');
             textArea.value = text;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
-            
-            // Show a simple notification
             alert('Quote copied to clipboard!');
         }
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
 
         // Generate a quote on page load
         document.addEventListener('DOMContentLoaded', generateQuote);
