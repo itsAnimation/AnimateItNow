@@ -114,24 +114,78 @@
             color: #7c3aed;
         }
 
-        .github-icon {
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-actions .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            min-width: auto;
+        }
+
+        .nav-actions .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
             color: white;
-            font-size: 1.3rem;
+        }
+
+        .nav-actions .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
         }
 
-        .github-icon:hover {
-            color: #7c3aed;
-            transform: scale(1.1);
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .menu-toggle {
+        .hamburger {
             display: none;
+            flex-direction: column;
             background: none;
             border: none;
-            font-size: 1.5rem;
-            color: white;
             cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 2px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         /* ─────────────────────────────────────────────────────
@@ -440,24 +494,25 @@
         <div class="nav-right">
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="editor.html">Editor</a></li>
                 <li><a href="templates.html">Templates</a></li>
-                <li><a href="playground.html">Hover-Effects</a></li>
+                <li><a href="editor.html">Editor</a></li>
+                <li><a href="playground.html">Hover Effects</a></li>
                 <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
-                <li><a href="generator.html">Generator</a></li>
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="github-icon"
-                       aria-label="GitHub Repository">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
             </ul>
+            
+            <div class="nav-actions">
+                <a href="loginpage.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn">Sign Up</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger-menu" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -565,8 +620,8 @@
         const authorElement = document.getElementById('author');
         const counterElement = document.getElementById('counter');
         const totalElement = document.getElementById('total');
-        const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const hamburgerMenu = document.getElementById('hamburger-menu');
         
         let lastIndex = -1;
         let usedIndices = new Set();
@@ -633,15 +688,32 @@
         }
 
         // Mobile menu toggle
-        menuToggle.addEventListener('click', function() {
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        
+        hamburgerMenu.addEventListener('click', function() {
             navLinks.classList.toggle('active');
-            const icon = this.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+            this.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+            });
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', function() {
+            if (themeIcon.classList.contains('fa-moon')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
             }
         });
 
