@@ -169,10 +169,10 @@
   </script>
 
 </body>
-</html> -->
+</html> 
+ -->
 
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -290,42 +290,42 @@
     <div class="preview-box fade-in">A</div>
     <div class="animation-title">Fade In</div>
     <div class="animation-desc">Element smoothly fades in when scrolled into view.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=fade-in" class="template-btn">View Template</a>
   </div>
 
   <div class="animation-card">
     <div class="preview-box slide-left">L</div>
     <div class="animation-title">Slide Left</div>
     <div class="animation-desc">Element slides in from the left on scroll.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=slide-left" class="template-btn">View Template</a>
   </div>
 
   <div class="animation-card">
     <div class="preview-box slide-right">R</div>
     <div class="animation-title">Slide Right</div>
     <div class="animation-desc">Element slides in from the right on scroll.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=slide-right" class="template-btn">View Template</a>
   </div>
 
   <div class="animation-card">
     <div class="preview-box zoom-in">Z</div>
     <div class="animation-title">Zoom In</div>
     <div class="animation-desc">Element zooms in smoothly on scroll.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=zoom-in" class="template-btn">View Template</a>
   </div>
 
   <div class="animation-card">
     <div class="preview-box rotate-in">R</div>
     <div class="animation-title">Rotate In</div>
     <div class="animation-desc">Element rotates into place when scrolled.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=rotate-in" class="template-btn">View Template</a>
   </div>
 
   <div class="animation-card">
     <div class="preview-box scale-up">S</div>
     <div class="animation-title">Scale Up</div>
     <div class="animation-desc">Element scales up on scroll for emphasis.</div>
-    <a href="#" class="template-btn">View Template</a>
+    <a href="Animation.html?anim=scale-up" class="template-btn">View Template</a>
   </div>
 
 </main>
@@ -354,4 +354,104 @@
 </script>
 
 </body>
-</html>
+</html> 
+
+
+<!-- 
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scrolling Animations | AnimateItNow</title>
+  <meta name="description" content="Scroll-triggered animation templates with preview + code" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{--brand:#4e8cff;--muted:#f5f7fb;--card-shadow:0 6px 15px rgba(0,0,0,0.08)}
+    *{box-sizing:border-box} body{margin:0;font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;background:#f9f9f9;color:#222}
+    header{text-align:center;padding:2rem 1rem;background:var(--brand);color:#fff}
+    .animation-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1200px;margin:2rem auto;padding:0 1rem}
+    .animation-card{background:#fff;border-radius:12px;box-shadow:var(--card-shadow);padding:1.4rem;text-align:center;overflow:hidden;transition:transform .18s}
+    .animation-card:hover{transform:translateY(-6px)}
+    .preview-box{width:96px;height:96px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--brand);color:#fff;font-size:1.6rem;opacity:0}
+    .animation-title{font-weight:600;margin-bottom:6px}.animation-desc{color:#555;font-size:.95rem;margin-bottom:.8rem}
+    .template-btn{display:inline-block;padding:.45rem .85rem;background:var(--brand);color:#fff;border-radius:8px;text-decoration:none;font-weight:600}
+    .template-btn:hover{background:#3b6fd3} footer{text-align:center;padding:1.6rem 1rem;background:var(--brand);color:#fff;margin-top:2rem}
+    /* animations initial state */
+    .fade-in{opacity:0;transform:translateY(30px);transition:all .7s}
+    .slide-left{transform:translateX(-50px);opacity:0;transition:all .7s}
+    .slide-right{transform:translateX(50px);opacity:0;transition:all .7s}
+    .zoom-in{transform:scale(.72);opacity:0;transition:all .7s}
+    .rotate-in{transform:rotate(-20deg) translateY(6px);opacity:0;transition:all .7s;transform-origin:center}
+    .scale-up{transform:scale(.8);opacity:0;transition:all .7s}
+    .visible{opacity:1 !important;transform:none !important}
+    /* modal */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1200;align-items:center;justify-content:center;padding:20px}
+    .modal.open{display:flex}
+    .modal-content{width:100%;max-width:980px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25);display:flex;gap:0}
+    .modal-left{padding:1.6rem;width:46%;min-width:280px;background:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+    .modal-right{padding:1rem 1rem;width:54%;min-width:300px;display:flex;flex-direction:column;gap:10px}
+    .modal-title{font-weight:700;margin:0 0 4px 0}.modal-sub{color:#555;font-size:.95rem;margin-bottom:8px}
+    .demo-box{width:160px;height:160px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--brand);color:#fff;font-size:2.2rem;opacity:0}
+    .code-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between}
+    .small-btn{background:#eee;border:none;padding:6px 8px;border-radius:8px;cursor:pointer;font-weight:600}
+    .small-btn.primary{background:var(--brand);color:#fff}
+    .code-block{background:#0b1220;color:#e6f0ff;padding:10px;border-radius:8px;font-family:ui-monospace,monospace;font-size:.85rem;overflow:auto;max-height:320px;white-space:pre-wrap}
+    .code-label{font-size:.85rem;font-weight:700;color:#222;margin-bottom:6px}
+    @media (max-width:880px){ .modal-content{flex-direction:column} .modal-left,.modal-right{width:100%} .demo-box{width:140px;height:140px} }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Scrolling Animations Gallery</h1>
+    <p>Click "View Template" to open a live preview + code for each animation.</p>
+  </header> 
+
+   <main class="animation-grid">
+    <div class="animation-card">
+      <div class="preview-box fade-in">A</div>
+      <div class="animation-title">Fade In</div>
+      <div class="animation-desc">Element smoothly fades in when scrolled into view.</div>
+      <a class="template-btn" href="#" data-template="fade-in">View Template</a>
+    </div>
+
+    <div class="animation-card">
+      <div class="preview-box slide-left">L</div>
+      <div class="animation-title">Slide Left</div>
+      <div class="animation-desc">Slides in from the left.</div>
+      <a class="template-btn" href="#" data-template="slide-left">View Template</a>
+    </div>
+
+    <div class="animation-card">
+      <div class="preview-box slide-right">R</div>
+      <div class="animation-title">Slide Right</div>
+      <div class="animation-desc">Slides in from the right.</div>
+      <a class="template-btn" href="#" data-template="slide-right">View Template</a>
+    </div>
+
+    <div class="animation-card">
+      <div class="preview-box zoom-in">Z</div>
+      <div class="animation-title">Zoom In</div>
+      <div class="animation-desc">Zooms into place smoothly.</div>
+      <a class="template-btn" href="#" data-template="zoom-in">View Template</a>
+    </div>
+
+    <div class="animation-card">
+      <div class="preview-box rotate-in">R</div>
+      <div class="animation-title">Rotate In</div>
+      <div class="animation-desc">Rotates into place.</div>
+      <a class="template-btn" href="#" data-template="rotate-in">View Template</a>
+    </div>
+
+    <div class="animation-card">
+      <div class="preview-box scale-up">S</div>
+      <div class="animation-title">Scale Up</div>
+      <div class="animation-desc">Scales up to emphasize.</div>
+      <a class="template-btn" href="#" data-template="scale-up">View Template</a>
+    </div> 
+  </main>
+
+  <footer>© 2025 AnimateItNow · Made with ❤️</footer>
+
+  
+   -->

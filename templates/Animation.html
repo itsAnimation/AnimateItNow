@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Template | AnimateItNow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: #4e8cff;
+            color: white;
+            border-bottom: 5px solid #3b6fd3;
+        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin-top: 0.5rem; font-size: 1.1rem; opacity: 0.9; }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #4e8cff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .demo-section {
+            background: #fff;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+            min-height: 300px; /* Ensures space to scroll and see the effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .demo-box {
+            width: 150px;
+            height: 150px;
+            background: #4e8cff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 15px;
+        }
+
+        .code-section {
+            margin-bottom: 2rem;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .code-header h3 { margin: 0; font-size: 1.4rem; }
+        .copy-btn {
+            background: #eef2f9;
+            border: 1px solid #d8e0ed;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover { background: #d8e0ed; }
+        .copy-btn .fa-copy { margin-right: 0.5rem; }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+        code {
+            display: block;
+            white-space: pre;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #4e8cff;
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- Animation Styles (will be populated by JS) --- */
+        #css-code-block {
+            /* This will contain the specific animation styles */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="animation-title">Animation Title</h1>
+    <p id="animation-description">A brief description of the animation.</p>
+</header>
+
+<div class="container">
+    <a href="scrollingAnimations.html" class="back-link">&larr; Back to Gallery</a>
+
+    <h2>Live Demo</h2>
+    <div class="demo-section">
+        <div id="demo-box" class="demo-box">DEMO</div>
+    </div>
+    
+    <div class="code-section">
+        <div class="code-header">
+            <h3>HTML Code</h3>
+            <button class="copy-btn" data-target="html-code"><i class="fas fa-copy"></i>Copy</button>
+        </div>
+        <pre><code id="html-code"></code></pre>
+    </div>
+
+    <div class="code-section">
+        <div class="code-header">
+            <h3>CSS Code</h3>
+            <button class="copy-btn" data-target="css-code"><i class="fas fa-copy"></i>Copy</button>
+        </div>
+        <pre><code id="css-code"></code></pre>
+    </div>
+
+    <div class="code-section">
+        <div class="code-header">
+            <h3>JavaScript Code</h3>
+            <button class="copy-btn" data-target="js-code"><i class="fas fa-copy"></i>Copy</button>
+        </div>
+        <pre><code id="js-code"></code></pre>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 AnimateItNow
+</footer>
+
+<script src="Animation.js"></script>
+
+</body>
+</html>
