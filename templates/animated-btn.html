@@ -10,8 +10,107 @@
     <!-- Fallback icon -->
     <link rel="icon" type="image/png" href="../images/logo.png" />
     <link rel="stylesheet" href="../styles.css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
+        /* CSS Variables for Professional Theming */
+        :root {
+            --primary: #6c63ff;
+            --primary-light: #8a84ff;
+            --primary-dark: #554fd8;
+            --secondary: #ff6584;
+            --accent: #36d1dc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text: #ffffff;
+            --text-light: #cbd5e0;
+            --text-muted: #a0aec0;
+            --bg: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --bg-glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --shadow-active: 0 8px 25px rgba(108, 99, 255, 0.25);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-height: 80px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --text: #1a202c;
+            --text-light: #4a5568;
+            --text-muted: #718096;
+            --bg: #f7fafc;
+            --bg-secondary: #edf2f7;
+            --bg-tertiary: #e2e8f0;
+            --bg-glass: rgba(0, 0, 0, 0.05);
+            --border: rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,152 +118,264 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.6;
+            transition: var(--transition);
         }
         
         /* Header */
         .header {
             text-align: center;
-            padding: 50px 20px 30px;
+            padding: calc(var(--header-height) + var(--spacing-xl)) var(--spacing-lg) var(--spacing-xl);
             position: relative;
             z-index: 1;
+            background: linear-gradient(135deg, 
+                rgba(108, 99, 255, 0.05) 0%, 
+                rgba(54, 209, 220, 0.05) 100%);
+            border-bottom: 1px solid var(--border);
         }
 
         .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleGlow 2s ease-in-out infinite alternate;
+            animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes titleGlow {
             from {
-                filter: brightness(1);
+                filter: brightness(1) drop-shadow(0 0 20px rgba(108, 99, 255, 0.3));
             }
-
             to {
-                filter: brightness(1.2);
+                filter: brightness(1.2) drop-shadow(0 0 30px rgba(108, 99, 255, 0.5));
             }
         }
 
         .header p {
-            color: #888;
-            font-size: 1.1rem;
+            color: var(--text-light);
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
         }
 
         /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px 50px;
+            padding: 0 var(--spacing-lg) var(--spacing-xl);
         }
 
         /* Button Grid */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg) 0;
         }
 
         /* Button Card */
         .button-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .button-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(108, 99, 255, 0.05) 0%, 
+                rgba(54, 209, 220, 0.05) 50%,
+                rgba(255, 101, 132, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
         }
 
         .button-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+
+        .button-card:hover::before {
+            opacity: 1;
         }
 
         .button-card h3 {
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 1.2rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .button-wrapper {
-            min-height: 80px;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            position: relative;
+            z-index: 2;
         }
 
         /* Show Code Button */
         .show-code-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--text);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: var(--spacing-xs);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            min-height: 44px;
+        }
+
+        .show-code-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .show-code-btn:hover::before {
+            left: 100%;
         }
 
         .show-code-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        .show-code-btn:focus {
+            outline: 2px solid var(--primary-light);
+            outline-offset: 2px;
         }
 
         .show-code-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .show-code-btn:hover svg {
+            transform: rotate(180deg);
         }
 
         /* Code Display */
         .code-display {
             display: none;
-            margin-top: 20px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 20px;
+            margin-top: var(--spacing-lg);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
             position: relative;
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 2;
         }
 
         .code-display.active {
             display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .code-tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: var(--spacing-sm);
         }
 
         .code-tab {
             background: none;
             border: none;
-            color: #666;
-            padding: 5px 15px;
+            color: var(--text-muted);
+            padding: var(--spacing-xs) var(--spacing-md);
             cursor: pointer;
-            font-size: 14px;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+
+        .code-tab:hover {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .code-tab.active {
-            color: #fff;
-            border-bottom: 2px solid #667eea;
+            color: var(--primary);
+            background: rgba(108, 99, 255, 0.1);
+        }
+
+        .code-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
         .code-content {
@@ -176,14 +387,762 @@
         }
 
         .code-content pre {
-            color: #fff;
-            font-size: 14px;
-            line-height: 1.5;
+            color: var(--text);
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
         }
 
+        /* Footer Styles - Exact copy from index.html */
+        .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 80px 0 30px;
+            position: relative;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after,
+        .footer-social h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-tertiary);
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .newsletter {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .newsletter h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 3px 3px;
+            border: 3px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-light);
+        }
+
+        .newsletter-form button {
+            padding: 3px 3px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: calc(var(--header-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
+            }
+
+            .header h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
+            .header p {
+                font-size: 1.125rem;
+            }
+
+            .container {
+                padding: 0 var(--spacing-md) var(--spacing-xl);
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .button-card {
+                padding: var(--spacing-lg);
+            }
+
+            .button-wrapper {
+                min-height: 100px;
+                padding: var(--spacing-md);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: calc(var(--header-height) + var(--spacing-md)) var(--spacing-sm) var(--spacing-md);
+            }
+
+            .container {
+                padding: 0 var(--spacing-sm) var(--spacing-lg);
+            }
+
+            .button-grid {
+                gap: var(--spacing-md);
+            }
+
+            .button-card {
+                padding: var(--spacing-md);
+            }
+
+            .code-display {
+                max-height: 300px;
+            }
+        }
+
+        /* Demo Button Styles - Show effects automatically */
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Liquid Fill Effect - Always animated */
+        .btn-primary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+            border-radius: 30px;
+            animation: liquidFillDemo 3s ease-in-out infinite;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: #00d4ff;
+            transition: height 1.5s ease;
+            border-radius: 30px;
+            z-index: -1;
+            animation: liquidRise 3s ease-in-out infinite;
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+            animation: textColorChange 3s ease-in-out infinite;
+        }
+
+        @keyframes liquidRise {
+            0%, 100% { height: 0%; }
+            50% { height: 100%; }
+        }
+
+        @keyframes textColorChange {
+            0%, 100% { color: #00d4ff; }
+            50% { color: #000; }
+        }
+
+        @keyframes liquidFillDemo {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.02); }
+            75% { transform: scale(0.98); }
+        }
+
+        /* Glitch Effect - Always animated */
+        .btn-danger {
+            background: #ff0080;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: continuousGlitch 2s infinite;
+        }
+
+        @keyframes continuousGlitch {
+            0%, 100% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff, 0.025em 0.05em 0 #fffc00;
+                transform: translate(0);
+            }
+            10% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff, -0.05em -0.05em 0 #fffc00;
+                transform: translate(-2px, 1px);
+            }
+            20% {
+                text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff, 0 -0.05em 0 #fffc00;
+                transform: translate(1px, -1px);
+            }
+            30% {
+                text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff, -0.025em -0.05em 0 #fffc00;
+                transform: translate(1px, 1px);
+            }
+            50% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff, 0.025em 0.05em 0 #fffc00;
+                transform: translate(-1px, -1px);
+            }
+        }
+
+        /* Shape Morph - Always animated */
+        .btn-3d {
+            background: #667eea;
+            color: #fff;
+            border: none;
+            animation: morphShape 4s ease-in-out infinite;
+        }
+
+        @keyframes morphShape {
+            0%, 100% {
+                border-radius: 10px;
+                background: #667eea;
+                transform: scale(1);
+            }
+            33% {
+                border-radius: 25px;
+                background: #764ba2;
+                transform: scale(1.05);
+            }
+            66% {
+                border-radius: 50px;
+                background: #667eea;
+                transform: scale(0.95);
+            }
+        }
+
+        /* 3D Rotate - Always animated */
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            animation: rotate3D 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate3D {
+            0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
+            25% { transform: rotateY(90deg) rotateX(10deg); }
+            50% { transform: rotateY(180deg) rotateX(0deg); }
+            75% { transform: rotateY(270deg) rotateX(-10deg); }
+        }
+
+        /* Success Button - Particle effect simulation */
+        .btn-success {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            position: relative;
+            animation: particleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes particleGlow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 0 20px 5px rgba(255, 255, 255, 0.1),
+                    0 0 40px 10px rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Warning Button - Elastic bounce */
+        .btn-warning {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            animation: elasticBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes elasticBounce {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(2deg); }
+            50% { transform: scale(0.9) rotate(-2deg); }
+            75% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        /* Pulse Button */
+        .btn-pulse {
+            background: #4CAF50;
+            animation: elasticBounce 3s ease-in-out infinite;
+        }
+
+        /* Neon Button */
+        .btn-neon {
+            background: transparent;
+            color: #0ff;
+            border: 2px solid #0ff;
+            text-transform: uppercase;
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
+                text-shadow: 0 0 5px #0ff;
+            }
+            50% {
+                box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+                text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            }
+        }
+
+        /* Slide Button */
+        .btn-slide {
+            background: #ef6e6e;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #e5324d;
+            animation: slideEffect 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes slideEffect {
+            0%, 100% { left: -100%; }
+            50% { left: 0%; }
+        }
+
+        /* Border Button */
+        .border-btn {
+            background: transparent;
+            color: #fff;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00d4ff) 1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { border-image: linear-gradient(0deg, #ff0080, #00d4ff) 1; }
+            25% { border-image: linear-gradient(90deg, #ff0080, #00d4ff) 1; }
+            50% { border-image: linear-gradient(180deg, #ff0080, #00d4ff) 1; }
+            75% { border-image: linear-gradient(270deg, #ff0080, #00d4ff) 1; }
+            100% { border-image: linear-gradient(360deg, #ff0080, #00d4ff) 1; }
+        }
+
+        /* Magnetic Button */
+        .magnetic-btn {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            animation: magneticMove 4s ease-in-out infinite;
+        }
+
+        @keyframes magneticMove {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -5px); }
+            50% { transform: translate(-8px, 8px); }
+            75% { transform: translate(5px, -10px); }
+        }
+
+        /* Wave Button */
+        .wave-btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            animation: waveExpand 2s ease-in-out infinite;
+        }
+
+        @keyframes waveExpand {
+            0%, 100% { width: 0; height: 0; opacity: 1; }
+            50% { width: 200px; height: 200px; opacity: 0.2; }
+        }
+
+        /* Additional button styles for other effects */
+        .slide-text-btn {
+            background: transparent;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-text-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e74c3c;
+            transform: translateY(100%);
+            animation: slideUp 3s ease-in-out infinite;
+        }
+
+        @keyframes slideUp {
+            0%, 100% { transform: translateY(100%); }
+            50% { transform: translateY(0%); }
+        }
+
+        .gradient-border-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gradient-border-btn::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #ff0080);
+            background-size: 400%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: gradientRotate 3s ease infinite;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .icon-morph-btn {
+            background: #9b59b6;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            animation: iconMove 3s ease-in-out infinite;
+        }
+
+        .icon-morph-btn .icon {
+            transition: transform 0.3s;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes iconMove {
+            0%, 100% { padding-right: 20px; }
+            50% { padding-right: 40px; }
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+        }
+
+        .ripple-btn {
+            background: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            animation: rippleEffect 2s ease-in-out infinite;
+        }
+
+        @keyframes rippleEffect {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 200px; height: 200px; opacity: 0; }
+        }
+
+        .shiny-btn {
+            background: linear-gradient(45deg, #f39c12, #f1c40f);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shiny-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shineMove 2s ease-in-out infinite;
+        }
+
+        @keyframes shineMove {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+
+        .pulse-shadow-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            animation: pulseShadow 2s infinite;
+        }
+
+        @keyframes pulseShadow {
+            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(231, 76, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        .fold-btn {
+            background: transparent;
+            color: #34495e;
+            border: 2px solid #34495e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fold-btn::before,
+        .fold-btn::after {
+            content: '';
+            position: absolute;
+            background: #34495e;
+            width: 100%;
+            height: 50%;
+            left: 0;
+            animation: foldAnimation 3s ease-in-out infinite;
+        }
+
+        .fold-btn::before {
+            top: 0;
+            transform-origin: top;
+            animation-name: foldTop;
+        }
+
+        .fold-btn::after {
+            bottom: 0;
+            transform-origin: bottom;
+            animation-name: foldBottom;
+        }
+
+        @keyframes foldTop {
+            0%, 100% { transform: scaleY(0); }
+            50% { transform: scaleY(1); }
+        }
+
+        @keyframes foldBottom {
+            0%, 100% { transform: scaleY(0); }
+            50% { transform: scaleY(1); }
+        }
+
+        .typewriter-btn {
+            background: transparent;
+            color: #16a085;
+            border: 2px solid #16a085;
+        }
+
+        .typewriter-btn span {
+            display: inline-block;
+            animation: typewriter 2s steps(4, end) infinite;
+        }
+
+        @keyframes typewriter {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        .bubble-btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubble-btn::before {
+            content: '○○○';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            animation: bubbleFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes bubbleFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(-20px); opacity: 0.5; }
+        }
     </style>
 </head>
 
@@ -252,6 +1211,16 @@
       </div>
     </nav>
 
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
+
     <!-- Animated Button Section -->
     <div class="bg-animation"></div>
 
@@ -267,7 +1236,7 @@
                 <h3>Liquid Fill Effect</h3>
                 <div class="button-wrapper">
                     <button class="btn btn-primary">
-                        <span>Hover Me</span>
+                        <span>Liquid Fill</span>
                     </button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
@@ -335,7 +1304,7 @@
             <div class="button-card">
                 <h3>Glitch Effect</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-danger">GLITCH</button>
+                    <button class="btn btn-danger">DIGITAL CHAOS</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -409,7 +1378,7 @@
             <div class="button-card">
                 <h3>Shape Morph</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-primary btn-3d">Transform</button>
+                    <button class="btn btn-3d">Morphing Shape</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -455,7 +1424,7 @@
             <div class="button-card">
                 <h3>3D Rotate</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-gradient btn-3d">3D Flip</button>
+                    <button class="btn btn-gradient">3D Rotating</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -498,7 +1467,7 @@
             <div class="button-card">
                 <h3>Particle Burst</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-success" id="particleBtn">Click Me</button>
+                    <button class="btn btn-success" id="particleBtn">Glowing Aura</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -594,7 +1563,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Elastic Bounce</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-warning btn-pulse">Bounce</button>
+                    <button class="btn btn-warning btn-pulse">Elastic Motion</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -640,7 +1609,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Neon Glow</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-neon">NEON</button>
+                    <button class="btn btn-neon">NEON PULSE</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -686,8 +1655,8 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Split Effect</h3>
                 <div class="button-wrapper">
-                    <button class="btn btn-primary btn-slide">
-                        <span>Split</span>
+                    <button class="btn btn-slide">
+                        <span>Sliding Color</span>
                     </button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
@@ -762,7 +1731,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Animated Border</h3>
                 <div class="button-wrapper">
-                    <button class="border-btn">Border</button>
+                    <button class="border-btn">Rainbow Border</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -822,7 +1791,7 @@ function createParticle(x, y, button) {
             <div class="button-card">
                 <h3>Magnetic Effect</h3>
                 <div class="button-wrapper">
-                    <button class="magnetic-btn" id="magneticBtn">Magnetic</button>
+                    <button class="magnetic-btn" id="magneticBtn">Magnetic Pull</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -876,7 +1845,7 @@ magneticBtn.addEventListener('mouseleave', () => {
             <div class="button-card">
                 <h3>Wave Effect</h3>
                 <div class="button-wrapper">
-                    <button class="wave-btn">Wave</button>
+                    <button class="wave-btn">Ripple Wave</button>
                 </div>
                 <button class="show-code-btn" onclick="toggleCode(this)">
                     <svg fill="currentColor" viewBox="0 0 20 20">
@@ -1555,6 +2524,25 @@ magneticBtn.addEventListener('mouseleave', () => {
     </div>
 
      <script>
+        // Theme Toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        // Call initTheme on page load
+        document.addEventListener('DOMContentLoaded', initTheme);
+
         // Toggle code display
         function toggleCode(button) {
             const codeDisplay = button.nextElementSibling;
@@ -1690,5 +2678,69 @@ magneticBtn.addEventListener('mouseleave', () => {
             console.log('Animated Buttons Collection Loaded');
         });
     </script>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="../images/logo.png" alt="Website Logo" />
+                        <span>AnimateItNow</span>
+                    </div>
+                    <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="../templates.html"><i class="fas fa-palette"></i> Templates</a></li>
+                        <li><a href="../editor.html"><i class="fas fa-code"></i> Editor</a></li>
+                        <li><a href="../playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
+                        <li><a href="../contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+                        <li><a href="../leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="../about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <div class="newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Get the latest templates and updates directly to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                             <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                    <br>
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
+        </div>
+    </footer>
   </body>
 </html>
