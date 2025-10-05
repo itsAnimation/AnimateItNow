@@ -272,22 +272,40 @@
             font-weight: 500;
             position: relative;
             padding: 5px 0;
+            transition: all 0.3s ease-in-out; 
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
+            width: 100%;
+            height: 3px;
+            bottom: -5px;
             left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            transform: scaleX(0); /* Line starts hidden (zero width) */
+            transform-origin: left; /* Animation grows from the left */
+            transition: transform 0.3s ease-in-out;
+            border-radius: 2px;
+            
+        }
+
+        /* NEW CODE TO ADD */
+        .nav-links a:hover {
+        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6); 
+        background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
-            width: 100%;
+             transform: scaleX(1);
         }
 
         .nav-actions {
