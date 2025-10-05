@@ -6,6 +6,8 @@
     <title>AnimateItNow - CSS Animation Templates & Effects</title>
     <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <style>
         /* 🧹 CSS Reset */
         * {
@@ -1355,6 +1357,100 @@
                 font-size: 1rem;
             }
         }
+        /* --- Subscription Form Enhancement (#1445) --- */
+
+        /* Overrides the squished form style for the new structure */
+        .newsletter-form {
+            display: none; /* Hide the old form class */
+        }
+
+        .newsletter-pill-form {
+            /* Implement the joined pill shape using Flexbox */
+            display: flex;
+            gap: 0; /* Remove gap between input and button */
+            
+            /* Style the container like a large input field */
+            background: var(--bg);
+            border: 3px solid var(--border);
+            border-radius: 50px; /* Use a large radius for the pill effect */
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .newsletter-pill-form:focus-within {
+            border-color: var(--primary); /* Glowing border on focus-within */
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+        }
+
+        .newsletter-pill-form input {
+            flex-grow: 1;
+            /* Reset input defaults to fit the pill container */
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .newsletter-pill-form input::placeholder {
+            color: var(--text-darkgray);
+            opacity: 0.8;
+            text-align: justify;
+             font-size: 1.3rem;
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn {
+            /* Style the button */
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 11px; /* Adjust padding for a better size */
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            
+            /* Align icon and text */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+            
+            /* Match the height of the container */
+            border-radius: 0 50px 50px 0; 
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05); /* Subtle animation for AnimateItNow */
+        }
+
+        /* Ensure the submit button icon has the right size */
+        .newsletter-submit-btn i {
+            font-size: 1.3rem;
+            line-height: 1; /* Fix vertical alignment */
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 576px) {
+            .newsletter-pill-form {
+                flex-direction: column;
+                border-radius: var(--radius); /* Stack inputs on small screens */
+                border: none; /* Remove border from container */
+            }
+            .newsletter-pill-form input {
+                border: 3px solid var(--border);
+                border-radius: var(--radius);
+                margin-bottom: 10px;
+            }
+            .newsletter-pill-form .newsletter-submit-btn {
+                width: 100%;
+                padding: 12px;
+                border-radius: var(--radius);
+                justify-content: center;
+                transform: none; /* Reset button hover scale */
+            }
+        }
     </style>
     <link rel="stylesheet" href="./navbar_styles.css">
 </head>
@@ -1737,6 +1833,17 @@
                         <span>AnimateItNow</span>
                     </div>
                     <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                
+                    <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                 </div>
                 </div>
                 
                 <div class="footer-links">
@@ -1767,12 +1874,15 @@
                     <div class="newsletter">
                         <h4>Stay Updated</h4>
                         <p>Get the latest templates and updates directly to your inbox.</p>
-                        <form class="newsletter-form">
+                        <form class="newsletter-pill-form">
                             <input type="email" placeholder="Your email address" required>
-                             <button type="submit">Subscribe</button>
+                            <button type="submit" class="newsletter-submit-btn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Subscribe
+                            </button>
                         </form>
                     </div>
-                    <br>
+                    <!-- <br>
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1780,7 +1890,7 @@
                         <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             
