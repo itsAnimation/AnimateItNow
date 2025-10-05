@@ -1,7 +1,7 @@
-//  This script now ONLY contains functionality specific to templates.html
+// 📦 This script now ONLY contains functionality specific to templates.html
 // Theme toggle and cursor logic are handled by script.js
 
-// Search & Category Filter Functionality
+// 🔍 Search & Category Filter Functionality
 const searchBar = document.getElementById("search-bar");
 const templateCards = document.querySelectorAll(".template-card");
 const noResultsMsg = document.querySelector(".no-results");
@@ -9,23 +9,23 @@ const filterToggle = document.getElementById("filter-toggle");
 const categoryFilters = document.getElementById("category-filters");
 const categoryButtons = document.querySelectorAll(".category-btn");
 
-// Current active category
+// 🎯 Current active category
 let activeCategory = "all";
 
-// Toggle category filter visibility
+// 🔄 Toggle category filter visibility
 filterToggle.addEventListener("click", (e) => {
   e.stopPropagation();
   categoryFilters.classList.toggle("show");
 });
 
-// Close category filters when clicking outside
+// 🚪 Close category filters when clicking outside
 document.addEventListener("click", (e) => {
   if (!filterToggle.contains(e.target) && !categoryFilters.contains(e.target)) {
     categoryFilters.classList.remove("show");
   }
 });
 
-// Category filtering
+// 📂 Category filtering
 categoryButtons.forEach(button => {
   button.addEventListener("click", () => {
     // Update active button
@@ -43,7 +43,7 @@ categoryButtons.forEach(button => {
   });
 });
 
-// Search functionality
+// 🔎 Search functionality
 function filterTemplates() {
   const query = searchBar.value.trim().toLowerCase();
   let visibleCount = 0;
@@ -73,13 +73,13 @@ function filterTemplates() {
   }
 }
 
-// Add event listener to search bar
+// 🖱️ Add event listener to search bar
 searchBar.addEventListener("input", filterTemplates);
 
-// Initialize filtering
+// 🚀 Initialize filtering
 filterTemplates();
 
-// Script for animation type one after other
+// 🎬 Script for animation type one after other
 const texts = [
   "Typing Animation",
   "Gradient Text",
@@ -96,7 +96,14 @@ const speed = 100; //type/delete speed
 const pausTime = 1000; //pause time
 const target = document.getElementById("textTarget");
 
+// 🧠 Debug logging function for development
+function debugLog(message) {
+  // 📝 This is a placeholder for future debugging
+  // console.log(`[Templates Debug] ${message}`);
+}
+
 if (target) {
+  // 🔄 Animation loop for text typing effect
   function typeLoop() {
     const currentText = texts[currTextIdx];
 
@@ -128,4 +135,16 @@ if (target) {
   }
   
   typeLoop(); // start animation
+}
+
+// 🧪 Performance monitoring placeholder
+function monitorPerformance() {
+  // 📊 This is a placeholder for future performance monitoring
+  // console.log("Performance metrics:", performance.memory);
+}
+
+// 🧼 Cleanup function for memory management
+function cleanup() {
+  // 🧹 This is a placeholder for future cleanup operations
+  console.log("🧹 Templates cleanup completed");
 }

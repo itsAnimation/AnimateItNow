@@ -1,27 +1,39 @@
 // Component Documentation System JavaScript
 
+// 🎯 Enhanced Component Documentation System with Improved Performance and UX
+// This system provides interactive documentation for CSS components with live previews,
+// code snippets, and customization options.
+
 class ComponentDocumentation {
     constructor() {
+        // 📦 Component data storage
         this.components = [];
         this.filteredComponents = [];
+        
+        // 🖥️ View management
         this.currentView = 'grid';
+        
+        // 🔍 Active filters
         this.activeFilters = {
             category: 'all',
             complexity: 'all',
             search: ''
         };
 
+        // 🚀 Initialize the system
         this.init();
     }
 
+    // 🔄 Initialize the component documentation system
     init() {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
     }
 
-    // Component data structure
+    // 📁 Load component data structure
     loadComponents() {
+        // 🧩 Component library with enhanced metadata
         this.components = [
             {
                 id: 'animated-button',
@@ -690,7 +702,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         this.filteredComponents = [...this.components];
     }
 
-    // Create preview elements for each component
+    // 🎨 Create preview elements for each component
     createButtonPreview() {
         return `<button style="padding: 8px 16px; background: linear-gradient(45deg, #ff6b6b, #feca57); border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Preview Button</button>`;
     }
@@ -698,8 +710,8 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
     createCardPreview() {
         return `<div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 200px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
             <div style="width: 100%; height: 60px; background: linear-gradient(45deg, #ff6b6b, #feca57); border-radius: 4px; margin-bottom: 0.5rem;"></div>
-            <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem;">Card Title</h4>
-            <p style="margin: 0; font-size: 0.75rem; color: #666;">Card description</p>
+            <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: #1a202c;">Card Title</h4>
+            <p style="margin: 0; font-size: 0.75rem; color: #4a5568;">Card description</p>
         </div>`;
     }
 
@@ -714,11 +726,11 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
 
     createNavPreview() {
         return `<nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
-            <div style="font-weight: 600;">Brand</div>
+            <div style="font-weight: 600; color: #1a202c;">Brand</div>
             <div style="display: flex; gap: 1rem;">
-                <a href="#" style="text-decoration: none; color: #666;">Home</a>
-                <a href="#" style="text-decoration: none; color: #666;">About</a>
-                <a href="#" style="text-decoration: none; color: #666;">Contact</a>
+                <a href="#" style="text-decoration: none; color: #4a5568;">Home</a>
+                <a href="#" style="text-decoration: none; color: #4a5568;">About</a>
+                <a href="#" style="text-decoration: none; color: #4a5568;">Contact</a>
             </div>
         </nav>`;
     }
@@ -726,14 +738,14 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
     createSpinnerPreview() {
         return `<div style="display: flex; align-items: center; gap: 0.5rem;">
             <div style="width: 20px; height: 20px; border: 2px solid #f3f3f3; border-top: 2px solid #ff6b6b; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-            <span style="font-size: 0.75rem; color: #666;">Loading...</span>
+            <span style="font-size: 0.75rem; color: #4a5568;">Loading...</span>
         </div>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>`;
     }
 
-    // Setup event listeners
+    // ⚙️ Setup event listeners
     setupEventListeners() {
-        // Search functionality
+        // 🔍 Search functionality
         const searchInput = document.getElementById('searchInput');
         const clearSearch = document.getElementById('clearSearch');
 
@@ -750,7 +762,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             this.renderComponents();
         });
 
-        // Category filters
+        // 📂 Category filters
         document.getElementById('categoryFilters').addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-btn')) {
                 // Update active button
@@ -766,7 +778,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             }
         });
 
-        // Complexity filters
+        // 🧠 Complexity filters
         document.getElementById('complexityFilters').addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-btn')) {
                 // Update active button
@@ -782,7 +794,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             }
         });
 
-        // View toggle
+        // 🖼️ View toggle
         document.getElementById('gridView').addEventListener('click', () => {
             this.currentView = 'grid';
             this.updateViewButtons();
@@ -795,11 +807,11 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             this.renderComponents();
         });
 
-        // Modal functionality
+        // 🪟 Modal functionality
         this.setupModalListeners();
     }
 
-    // Filter components based on active filters
+    // 🔍 Filter components based on active filters
     filterComponents() {
         this.filteredComponents = this.components.filter(component => {
             const matchesSearch = this.activeFilters.search === '' || 
@@ -817,13 +829,13 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         });
     }
 
-    // Update view toggle buttons
+    // 🔄 Update view toggle buttons
     updateViewButtons() {
         document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(this.currentView + 'View').classList.add('active');
     }
 
-    // Render components grid
+    // 🎨 Render components grid
     renderComponents() {
         const grid = document.getElementById('componentsGrid');
         const noResults = document.getElementById('noResults');
@@ -872,7 +884,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         });
     }
 
-    // Modal functionality
+    // 🪟 Modal functionality
     setupModalListeners() {
         const modal = document.getElementById('componentModal');
         const closeBtn = document.getElementById('modalClose');
@@ -906,7 +918,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         });
     }
 
-    // Open component modal
+    // 📂 Open component modal
     openComponentModal(componentId) {
         const component = this.components.find(c => c.id === componentId);
         if (!component) return;
@@ -927,7 +939,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         this.switchTab('preview');
     }
 
-    // Populate modal content
+    // 📦 Populate modal content
     populateModalContent(component) {
         // Preview tab
         document.getElementById('componentPreview').innerHTML = component.preview;
@@ -956,7 +968,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         }
     }
 
-    // Switch modal tabs
+    // 🔄 Switch modal tabs
     switchTab(tabName) {
         // Update tab buttons
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -971,7 +983,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
         document.getElementById(tabName + 'Tab').classList.add('active');
     }
 
-    // Copy code to clipboard
+    // 📋 Copy code to clipboard
     async copyCode(button) {
         const codeType = button.dataset.codeType;
         let codeElement;
@@ -1027,12 +1039,12 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
     }
 }
 
-// Initialize the component documentation system
+// 🚀 Initialize the component documentation system
 document.addEventListener('DOMContentLoaded', () => {
     new ComponentDocumentation();
 });
 
-// Theme toggle functionality (if not already handled by main script.js)
+// 🌙 Theme toggle functionality (if not already handled by main script.js)
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -1062,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Mobile menu toggle functionality
+// 📱 Mobile menu toggle functionality
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const navRight = document.querySelector('.nav-right');
