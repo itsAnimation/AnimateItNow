@@ -6,6 +6,7 @@
     <title>AnimateItNow - Live Editor</title>
     <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
       /* 🎨 CSS Variables for Theming */
       :root {
@@ -585,15 +586,44 @@
       }
       </style>
       <link rel="stylesheet" href="./navbar_styles.css">
+
   </head>
 
   <body>
+    <!-- Progress Bar at Top -->
+    <div class="scroll-indicator"></div>
+    
     <!-- Navigation -->
-     <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="AnimateItNow Logo" />
+        <span>Animate It Now</span>
+      </div>
+      
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="editor.html" class="active">Editor</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button id="theme-toggle" class="action-btn" title="Toggle Theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="resetBtn" class="action-btn" title="Reset Code">
+          <i class="fas fa-redo"></i>
+        </button>
+        <button id="runBtn" class="run-btn">
+          <i class="fas fa-play"></i> Run Code
+        </button>
+      </div>
+    </nav>
+
 
         <div class="nav-right">
             <ul class="nav-links">
@@ -655,10 +685,8 @@
     
     <!-- Editor Header -->
     <header class="editor-header">
-      <div class="container">
-        <h1 class="editor-title typing-text">AnimateItNow Code Playground</h1>
-        <p class="editor-subtitle">Write, Run, and Test your HTML, CSS & JavaScript in real time!</p>
-      </div>
+      <h1 class="typing-text">AnimateItNow Code Playground</h1>
+      <p>Write, Run, and Test your HTML, CSS & JavaScript in real time!</p>
     </header>
     
    <div class="editor-buttons">
@@ -676,10 +704,11 @@
         <div class="editor-row">
           <!-- HTML Editor -->
           <div class="editor-card">
-            <div class="editor-label">
+            <div class="editor-label html-label">
               <span><i class="fab fa-html5"></i> HTML</span>
               <button class="copy-btn" data-target="htmlCode" title="Copy HTML">
                 <i class="fas fa-copy"></i>
+                <span class="copy-tooltip">Copied!</span>
               </button>
             </div>
             <textarea
@@ -703,10 +732,11 @@
 
           <!-- CSS Editor -->
           <div class="editor-card">
-            <div class="editor-label">
+            <div class="editor-label css-label">
               <span><i class="fab fa-css3-alt"></i> CSS</span>
               <button class="copy-btn" data-target="cssCode" title="Copy CSS">
                 <i class="fas fa-copy"></i>
+                <span class="copy-tooltip">Copied!</span>
               </button>
             </div>
             <textarea
@@ -771,10 +801,11 @@ button:hover {
         <div class="editor-row">
           <!-- JavaScript Editor -->
           <div class="editor-card">
-            <div class="editor-label">
+            <div class="editor-label js-label">
               <span><i class="fab fa-js"></i> JavaScript</span>
               <button class="copy-btn" data-target="jsCode" title="Copy JavaScript">
                 <i class="fas fa-copy"></i>
+                <span class="copy-tooltip">Copied!</span>
               </button>
             </div>
             <textarea
@@ -831,7 +862,7 @@ document.head.appendChild(style);</textarea>
         <!-- Output Section -->
         <div class="output-section">
           <div class="output-header">
-            <h2 class="output-title"><i class="fas fa-eye"></i> Output Preview</h2>
+            <h2 class="Output-line"><i class="fas fa-eye"></i> Output Preview</h2>
             <div class="output-actions">
               <button id="fullscreenBtn" class="action-btn" title="Toggle Fullscreen">
                 <i class="fas fa-expand"></i>
@@ -885,286 +916,11 @@ document.head.appendChild(style);</textarea>
     </footer>
 
     <!-- Scroll to top button -->
-     <button id="scrollBtn" title="Go to top">
+     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-
-      function setTheme(isDark) {
-        const icon = themeToggle.querySelector('i');
-        body.classList.toggle('dark-theme', isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        
-        if (icon) {
-          icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-      }
-
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
-
-      themeToggle?.addEventListener('click', () => {
-        setTheme(!body.classList.contains('dark-theme'));
-      });
-
-      // Scroll to top functionality
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      window.onscroll = function() {
-        const scrollBtn = document.getElementById("scrollBtn");
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-          scrollBtn.style.display = "block";
-        } else {
-          scrollBtn.style.display = "none";
-        }
-      };
-
-      // Editor functionality
-      const htmlCode = document.getElementById('htmlCode');
-      const cssCode = document.getElementById('cssCode');
-      const jsCode = document.getElementById('jsCode');
-      const output = document.getElementById('output');
-      const runBtn = document.getElementById('runBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const refreshBtn = document.getElementById('refreshBtn');
-      const fullscreenBtn = document.getElementById('fullscreenBtn');
-      const copyButtons = document.querySelectorAll('.copy-btn');
-
-      // Run code function
-      function runCode() {
-        const html = htmlCode.value;
-        const css = cssCode.value;
-        const js = jsCode.value;
-        
-        const outputDoc = output.contentDocument || output.contentWindow.document;
-        
-        outputDoc.open();
-        outputDoc.write(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <style>${css}</style>
-          </head>
-          <body>
-            ${html}
-            <script>${js}<\/script>
-          </body>
-          </html>
-        `);
-        outputDoc.close();
-      }
-
-      // Reset code function
-      function resetCode() {
-        if (confirm('Are you sure you want to reset all code?')) {
-          htmlCode.value = `<!DOCTYPE html>
-<html>
-<head>
-    <title>My Animation</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to AnimateItNow</h1>
-        <div class="box"></div>
-        <button id="animateBtn">Animate</button>
-    </div>
-</body>
-</html>`;
-          
-          cssCode.value = `body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, #6c63ff, #36d1dc);
-}
-
-.container {
-    text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-h1 {
-    color: #6c63ff;
-    margin-bottom: 20px;
-}
-
-.box {
-    width: 100px;
-    height: 100px;
-    background: #6c63ff;
-    margin: 20px auto;
-    border-radius: 8px;
-    transition: all 0.5s ease;
-}
-
-.box.animated {
-    transform: rotate(360deg) scale(1.2);
-    background: #ff6584;
-    border-radius: 50%;
-}
-
-button {
-    background: #6c63ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #554fd8;
-}`;
-          
-          jsCode.value = `document.getElementById('animateBtn').addEventListener('click', function() {
-    const box = document.querySelector('.box');
-    box.classList.toggle('animated');
-    
-    // Add some fun effects
-    if (box.classList.contains('animated')) {
-        this.textContent = 'Reset';
-        // Create particles
-        createParticles();
-    } else {
-        this.textContent = 'Animate';
-    }
-});
-
-function createParticles() {
-    const container = document.querySelector('.container');
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        particle.style.width = '10px';
-        particle.style.height = '10px';
-        particle.style.background = '#ff6584';
-        particle.style.borderRadius = '50%';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animation = \`float \${Math.random() * 2 + 1}s ease-in-out infinite\`;
-        container.appendChild(particle);
-        
-        // Remove particle after animation
-        setTimeout(() => {
-            particle.remove();
-        }, 3000);
-    }
-}
-
-// Add CSS for particle animation
-const style = document.createElement('style');
-style.textContent = \`
-@keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-20px) scale(1.2); opacity: 0.7; }
-}
-\`;
-document.head.appendChild(style);`;
-          
-          runCode();
-        }
-      }
-
-      // Copy code function
-      function copyCode(targetId) {
-        const textarea = document.getElementById(targetId);
-        textarea.select();
-        document.execCommand('copy');
-        
-        // Show feedback
-        const button = event.currentTarget;
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        
-        setTimeout(() => {
-          button.innerHTML = originalHTML;
-        }, 2000);
-      }
-
-      // Toggle fullscreen
-      function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-          output.requestFullscreen().catch(err => {
-            console.error(`Error attempting to enable fullscreen: ${err.message}`);
-          });
-          fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-        } else {
-          document.exitFullscreen();
-          fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-        }
-      }
-
-      // Event listeners
-      runBtn.addEventListener('click', runCode);
-      resetBtn.addEventListener('click', resetCode);
-      refreshBtn.addEventListener('click', runCode);
-      fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-      copyButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const target = this.getAttribute('data-target');
-          copyCode(target);
-        });
-      });
-
-      // Auto-run code on load
-      window.addEventListener('load', runCode);
-
-      // Auto-save code
-      function autoSave() {
-        const code = {
-          html: htmlCode.value,
-          css: cssCode.value,
-          js: jsCode.value
-        };
-        localStorage.setItem('animateItNowCode', JSON.stringify(code));
-      }
-
-      function autoLoad() {
-        const savedCode = localStorage.getItem('animateItNowCode');
-        if (savedCode) {
-          const code = JSON.parse(savedCode);
-          htmlCode.value = code.html;
-          cssCode.value = code.css;
-          jsCode.value = code.js;
-        }
-      }
-
-      // Set up auto-save
-      htmlCode.addEventListener('input', autoSave);
-      cssCode.addEventListener('input', autoSave);
-      jsCode.addEventListener('input', autoSave);
-
-      // Load saved code on page load
-      window.addEventListener('load', function() {
-        autoLoad();
-        runCode();
-      });
-
-      // Navbar scroll effect
-      window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      });
-    </script>
+    <script src="script.js"></script>
+    <script src="editor.js"></script>
   </body>
 </html>
