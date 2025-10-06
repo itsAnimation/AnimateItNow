@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
+  <!-- 🎯 Meta Information -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Templates | AnimateItNow</title>
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- PWA Meta Tags -->
+  <!-- 🎯 PWA Meta Tags -->
   <meta name="theme-color" content="#ff6b6b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -15,10 +16,10 @@
   <meta name="msapplication-TileImage" content="../../images/icons/icon-144x144.png" />
   <meta name="msapplication-TileColor" content="#ff6b6b" />
   
-  <!-- PWA Manifest -->
+  <!-- 🎯 PWA Manifest -->
   <link rel="manifest" href="../../manifest.json" />
   
-  <!-- PWA Icons -->
+  <!-- 🎯 PWA Icons -->
   <link rel="icon" type="image/png" sizes="72x72" href="../../images/icons/icon-72x72.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="../../images/icons/icon-96x96.png" />
   <link rel="icon" type="image/png" sizes="128x128" href="../../images/icons/icon-128x128.png" />
@@ -28,17 +29,20 @@
   <link rel="icon" type="image/png" sizes="384x384" href="../../images/icons/icon-384x384.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="../../images/icons/icon-512x512.png" />
   
-  <!-- Apple Touch Icons -->
+  <!-- 🎯 Apple Touch Icons -->
   <link rel="apple-touch-icon" sizes="152x152" href="../../images/icons/icon-152x152.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="../../images/icons/icon-192x192.png" />
   
-  <!-- Fallback icon -->
+  <!-- 🎯 Fallback icon -->
   <link rel="icon" type="image/png" href="../../images/logo.png" />
+  
+  <!-- 🎯 External Dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../../templates.css">
 </head>
 
 <body class="dark">
+  <!-- 🎯 Navigation Bar -->
   <nav class="navbar scroll-fade">
     <div class="nav-left">
       <a href="../../index.html" class="home-link">
@@ -47,7 +51,8 @@
       </a>
     </div>
     
-    <button class="menu-toggle" id="menuToggle">
+    <!-- 🎯 Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
       <i class="fas fa-bars"></i>
     </button>
     
@@ -62,25 +67,29 @@
         <li><a href="../../contact.html">Contact</a></li>
         <li><a href="../../leaderboard.html">Leaderboard</a></li>
         <li><a href="../../generator.html">Generator</a></li>
-        <!-- cursor toggle switch -->
+        
+        <!-- 🎯 Cursor Toggle Switch -->
         <li>
           <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle" />
+            <input type="checkbox" id="cursorToggle" aria-label="Toggle snake cursor effect" />
             <span class="slider round"></span>
           </label>
         </li>
-        <!-- github icon -->
+        
+        <!-- 🎯 GitHub Icon -->
         <li>
           <a href="https://github.com/itsAnimation/AnimateItNow"
              target="_blank"
              rel="noopener noreferrer"
-             aria-label="GitHub Repo"
+             aria-label="Visit our GitHub repository"
              class="github-icon">
             <i class="fab fa-github"></i>
           </a>
         </li>
+        
+        <!-- 🎯 Theme Toggle -->
         <li>
-          <button id="theme-toggle" aria-label="Toggle Theme">
+          <button id="theme-toggle" aria-label="Toggle between dark and light theme">
             <i class="fas fa-moon"></i>
           </button>
         </li>
@@ -88,28 +97,30 @@
     </div>
   </nav>
 
-  <!-- 404 Ping Pong Game -->
+  <!-- 🎯 404 Ping Pong Game Section -->
   <main class="main-content">
     <div class="pong-container">
-      <canvas id="pongCanvas"></canvas>
+      <!-- 🎯 Game Canvas -->
+      <canvas id="pongCanvas" aria-label="Ping Pong game canvas"></canvas>
       
+      <!-- 🎯 Error Message Overlay -->
       <div class="game-overlay">
         <div class="error-display">
-          <div class="pixel-404">404</div>
+          <div class="pixel-404" aria-label="404 error code">404</div>
           <div class="error-message">
             <h2>Oops! Looks Like</h2>
             <h2>You Are Lost</h2>
           </div>
-          <a href="../../index.html" class="home-button">Home</a>
+          <a href="../../index.html" class="home-button" aria-label="Return to home page">Home</a>
         </div>
       </div>
       
-      <!-- Dotted center line -->
-      <div class="center-line"></div>
+      <!-- 🎯 Dotted Center Line -->
+      <div class="center-line" aria-hidden="true"></div>
     </div>
 
-
     <style>
+      /* 🎯 Ping Pong Container Styles */
       .pong-container {
         position: relative;
         width: 100vw;
@@ -121,6 +132,7 @@
         justify-content: center;
       }
 
+      /* 🎯 Game Canvas */
       #pongCanvas {
         position: absolute;
         top: 0;
@@ -130,6 +142,7 @@
         z-index: 1;
       }
 
+      /* 🎯 Game Overlay */
       .game-overlay {
         position: absolute;
         top: 50%;
@@ -140,6 +153,7 @@
         pointer-events: none;
       }
 
+      /* 🎯 404 Text Styling */
       .pixel-404 {
         font-family: 'Courier New', monospace;
         font-size: clamp(4rem, 15vw, 12rem);
@@ -153,6 +167,7 @@
         animation: pixelFlicker 2s infinite alternate;
       }
 
+      /* 🎯 Error Message */
       .error-message {
         margin-bottom: 2rem;
       }
@@ -165,6 +180,7 @@
         font-weight: normal;
       }
 
+      /* 🎯 Home Button */
       .home-button {
         display: inline-block;
         padding: 12px 30px;
@@ -185,6 +201,7 @@
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
       }
 
+      /* 🎯 Center Line */
       .center-line {
         position: absolute;
         top: 0;
@@ -202,6 +219,7 @@
         z-index: 1;
       }
 
+      /* 🎯 Pixel Flicker Animation */
       @keyframes pixelFlicker {
         0%, 100% { 
           opacity: 1;
@@ -217,6 +235,7 @@
         }
       }
 
+      /* 🎯 Responsive Design */
       @media (max-width: 768px) {
         .pixel-404 {
           font-size: clamp(3rem, 20vw, 8rem);
@@ -233,14 +252,18 @@
       }
     </style>
 
-
-    <!-- Ping Pong Game Script -->
+    <!-- 🎯 Ping Pong Game Script -->
     <script>
-      // Game variables
+      /**
+       * 🎯 Ping Pong Game Implementation
+       * A retro-style ping pong game for 404 error pages
+       */
+
+      // 🎯 Game Variables
       const canvas = document.getElementById('pongCanvas');
       const ctx = canvas.getContext('2d');
 
-      // Game objects
+      // 🎯 Game Objects
       let ball = {
         x: 0,
         y: 0,
@@ -268,12 +291,14 @@
         color: '#00ccff'
       };
 
-      // Resize canvas
+      /**
+       * 🎯 Resize canvas to fit viewport
+       */
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        // Reset positions
+        // 🎯 Reset game object positions
         ball.x = canvas.width / 2;
         ball.y = canvas.height / 2;
         
@@ -282,13 +307,26 @@
         rightPaddle.y = canvas.height / 2 - rightPaddle.height / 2;
       }
 
-      // Draw rectangle
+      /**
+       * 🎯 Draw rectangle helper function
+       * @param {number} x - X coordinate
+       * @param {number} y - Y coordinate
+       * @param {number} w - Width
+       * @param {number} h - Height
+       * @param {string} color - Fill color
+       */
       function drawRect(x, y, w, h, color) {
         ctx.fillStyle = color;
         ctx.fillRect(x, y, w, h);
       }
 
-      // Draw circle
+      /**
+       * 🎯 Draw circle helper function
+       * @param {number} x - X coordinate
+       * @param {number} y - Y coordinate
+       * @param {number} radius - Circle radius
+       * @param {string} color - Fill color
+       */
       function drawCircle(x, y, radius, color) {
         ctx.fillStyle = color;
         ctx.beginPath();
@@ -297,30 +335,33 @@
         ctx.fill();
       }
 
-      // Update ball position
+      /**
+       * 🎯 Update ball position and handle collisions
+       */
       function updateBall() {
         ball.x += ball.velocityX;
         ball.y += ball.velocityY;
 
-        // Ball collision with top and bottom walls
+        // 🎯 Ball collision with top and bottom walls
         if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
           ball.velocityY = -ball.velocityY;
         }
 
-        // Ball collision with paddles
+        // 🎯 Ball collision with left paddle
         if (ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
             ball.y > leftPaddle.y && ball.y < leftPaddle.y + leftPaddle.height) {
           ball.velocityX = -ball.velocityX;
           ball.x = leftPaddle.x + leftPaddle.width + ball.radius;
         }
 
+        // 🎯 Ball collision with right paddle
         if (ball.x + ball.radius > rightPaddle.x &&
             ball.y > rightPaddle.y && ball.y < rightPaddle.y + rightPaddle.height) {
           ball.velocityX = -ball.velocityX;
           ball.x = rightPaddle.x - ball.radius;
         }
 
-        // Reset ball if it goes off screen
+        // 🎯 Reset ball if it goes off screen
         if (ball.x < 0 || ball.x > canvas.width) {
           ball.x = canvas.width / 2;
           ball.y = canvas.height / 2;
@@ -328,9 +369,11 @@
         }
       }
 
-      // AI for paddles
+      /**
+       * 🎯 Update paddle positions with AI logic
+       */
       function updatePaddles() {
-        // Left paddle AI
+        // 🎯 Left paddle AI
         const leftPaddleCenter = leftPaddle.y + leftPaddle.height / 2;
         if (leftPaddleCenter < ball.y - 35) {
           leftPaddle.y += leftPaddle.velocityY;
@@ -338,7 +381,7 @@
           leftPaddle.y -= leftPaddle.velocityY;
         }
 
-        // Right paddle AI
+        // 🎯 Right paddle AI
         const rightPaddleCenter = rightPaddle.y + rightPaddle.height / 2;
         if (rightPaddleCenter < ball.y - 35) {
           rightPaddle.y += rightPaddle.velocityY;
@@ -346,7 +389,7 @@
           rightPaddle.y -= rightPaddle.velocityY;
         }
 
-        // Keep paddles within canvas bounds
+        // 🎯 Keep paddles within canvas bounds
         if (leftPaddle.y < 0) leftPaddle.y = 0;
         if (leftPaddle.y + leftPaddle.height > canvas.height) {
           leftPaddle.y = canvas.height - leftPaddle.height;
@@ -357,20 +400,24 @@
         }
       }
 
-      // Render game
+      /**
+       * 🎯 Render game objects
+       */
       function render() {
-        // Clear canvas
+        // 🎯 Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw paddles
+        // 🎯 Draw paddles
         drawRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height, leftPaddle.color);
         drawRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height, rightPaddle.color);
 
-        // Draw ball
+        // 🎯 Draw ball
         drawCircle(ball.x, ball.y, ball.radius, ball.color);
       }
 
-      // Game loop
+      /**
+       * 🎯 Main game loop
+       */
       function gameLoop() {
         updateBall();
         updatePaddles();
@@ -378,17 +425,19 @@
         requestAnimationFrame(gameLoop);
       }
 
-      // Initialize game
+      /**
+       * 🎯 Initialize game
+       */
       function initGame() {
         resizeCanvas();
         gameLoop();
       }
 
-      // Event listeners
+      // 🎯 Event Listeners
       window.addEventListener('resize', resizeCanvas);
       window.addEventListener('load', initGame);
 
-      // Start game immediately if DOM is ready
+      // 🎯 Start game immediately if DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initGame);
       } else {
@@ -397,24 +446,27 @@
     </script>
   </main>
 
-  <!-- Code Section -->
+  <!-- 🎯 Code Documentation Section -->
   <section class="code-section">
     <div class="code-container">
       <div class="code-header">
-        <h2>Code</h2>
+        <h2>Code Documentation</h2>
         <p>Behind the scenes of this 404 ping pong game</p>
       </div>
       
+      <!-- 🎯 Code Tabs -->
       <div class="code-tabs">
         <button class="code-tab active" data-tab="html">HTML</button>
         <button class="code-tab" data-tab="css">CSS</button>
         <button class="code-tab" data-tab="js">JavaScript</button>
-        <button class="code-tab" data-tab="implement">Implement</button>
+        <button class="code-tab" data-tab="implement">Implementation Guide</button>
       </div>
       
+      <!-- 🎯 Code Content Panels -->
       <div class="code-content">
         <div class="code-panel active" data-panel="html">
-          <pre><code>&lt;div class="pong-container"&gt;
+          <pre><code>&lt;!-- 🎯 Ping Pong Game Structure --&gt;
+&lt;div class="pong-container"&gt;
   &lt;canvas id="pongCanvas"&gt;&lt;/canvas&gt;
   
   &lt;div class="game-overlay"&gt;
@@ -433,7 +485,8 @@
         </div>
         
         <div class="code-panel" data-panel="css">
-          <pre><code>.pong-container {
+          <pre><code>/* 🎯 Ping Pong Container */
+.pong-container {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -444,6 +497,7 @@
   justify-content: center;
 }
 
+/* 🎯 Game Canvas */
 #pongCanvas {
   position: absolute;
   top: 0;
@@ -453,6 +507,7 @@
   z-index: 1;
 }
 
+/* 🎯 404 Text Styling */
 .pixel-404 {
   font-family: 'Courier New', monospace;
   font-size: clamp(4rem, 15vw, 12rem);
@@ -464,6 +519,7 @@
   animation: pixelFlicker 2s infinite alternate;
 }
 
+/* 🎯 Game Overlay */
 .game-overlay {
   position: absolute;
   top: 50%;
@@ -476,11 +532,11 @@
         </div>
         
         <div class="code-panel" data-panel="js">
-          <pre><code>// Initialize canvas and context
+          <pre><code>// 🎯 Initialize canvas and context
 const canvas = document.getElementById('pongCanvas');
 const ctx = canvas.getContext('2d');
 
-// Game objects
+// 🎯 Game objects
 let ball = {
   x: 0,
   y: 0,
@@ -499,18 +555,18 @@ let leftPaddle = {
   color: '#00ccff'
 };
 
-// Update ball position
+// 🎯 Update ball position
 function updateBall() {
   ball.x += ball.velocityX;
   ball.y += ball.velocityY;
   
-  // Wall collision
+  // 🎯 Wall collision detection
   if (ball.y + ball.radius > canvas.height || 
       ball.y - ball.radius < 0) {
     ball.velocityY = -ball.velocityY;
   }
   
-  // Paddle collision
+  // 🎯 Paddle collision detection
   if (ball.x - ball.radius < leftPaddle.x + leftPaddle.width &&
       ball.y > leftPaddle.y && 
       ball.y < leftPaddle.y + leftPaddle.height) {
@@ -613,6 +669,7 @@ function updateBall() {
         </div>
       </div>
       
+      <!-- 🎯 Code Action Buttons -->
       <div class="code-actions">
         <button class="copy-btn" onclick="copyCode()">
           <i class="fas fa-copy"></i>
@@ -627,6 +684,7 @@ function updateBall() {
   </section>
 
   <style>
+    /* 🎯 Code Section Styles */
     .code-section {
       background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
       padding: 4rem 2rem;
@@ -912,27 +970,36 @@ function updateBall() {
   </style>
 
   <script>
-    // Code section functionality
+    /**
+     * 🎯 Code Section Functionality
+     * Handles tab switching and code copying
+     */
+
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.code-tab');
       const panels = document.querySelectorAll('.code-panel');
 
+      /**
+       * 🎯 Tab switching functionality
+       */
       tabs.forEach(tab => {
         tab.addEventListener('click', function() {
           const targetPanel = this.dataset.tab;
 
-          // Remove active class from all tabs and panels
+          // 🎯 Remove active class from all tabs and panels
           tabs.forEach(t => t.classList.remove('active'));
           panels.forEach(p => p.classList.remove('active'));
 
-          // Add active class to clicked tab and corresponding panel
+          // 🎯 Add active class to clicked tab and corresponding panel
           this.classList.add('active');
           document.querySelector(`[data-panel="${targetPanel}"]`).classList.add('active');
         });
       });
     });
 
-    // Copy code functionality
+    /**
+     * 🎯 Copy code to clipboard
+     */
     function copyCode() {
       const activePanel = document.querySelector('.code-panel.active code');
       const text = activePanel.textContent;
@@ -953,7 +1020,7 @@ function updateBall() {
     }
   </script>
 
-   <!-- Footer -->
+   <!-- 🎯 Footer Section -->
    <footer class="footer scroll-fade">
     <div class="footer-content">
       <div class="footer-left">
@@ -990,25 +1057,34 @@ function updateBall() {
   </footer>
 
   <script>
-    // DOM Elements
+    /**
+     * 🎯 Main Application Script
+     * Handles theme switching, mobile menu, and initialization
+     */
+
+    // 🎯 DOM Elements
     const themeToggle = document.getElementById('theme-toggle');
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
-    // Initialize the page
+    /**
+     * 🎯 Initialize the page
+     */
     document.addEventListener('DOMContentLoaded', function() {
       setupEventListeners();
       checkThemePreference();
     });
 
-    // Setup event listeners
+    /**
+     * 🎯 Setup event listeners
+     */
     function setupEventListeners() {
-      // Theme toggle
+      // 🎯 Theme toggle
       if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
       }
       
-      // Mobile menu toggle
+      // 🎯 Mobile menu toggle
       if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', function() {
           navLinks.classList.toggle('active');
@@ -1023,7 +1099,7 @@ function updateBall() {
         });
       }
       
-      // Close mobile menu when clicking on a link
+      // 🎯 Close mobile menu when clicking on a link
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', function() {
           if (navLinks) navLinks.classList.remove('active');
@@ -1035,7 +1111,9 @@ function updateBall() {
       });
     }
 
-    // Theme toggle functionality
+    /**
+     * 🎯 Theme toggle functionality
+     */
     function toggleTheme() {
       const body = document.body;
       const themeIcon = themeToggle.querySelector('i');
@@ -1053,7 +1131,9 @@ function updateBall() {
       }
     }
 
-    // Check for saved theme preference
+    /**
+     * 🎯 Check for saved theme preference
+     */
     function checkThemePreference() {
       const savedTheme = localStorage.getItem('theme');
       const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
