@@ -14,319 +14,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="styles.css" />
 
     <style>
-      /* CSS Variables for Theming */
-      :root {
-        --primary: #6c63ff;
-        --primary-light: #8a84ff;
-        --primary-dark: #554fd8;
-        --secondary: #ff6584;
-        --accent: #36d1dc;
-        --text: #2a2a3c;
-        --text-light: #6c757d;
-        --bg: #ffffff;
-        --bg-secondary: #f8f9fa;
-        --bg-tertiary: #e9ecef;
-        --border: #dee2e6;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        --radius: 12px;
-        --transition: all 0.3s ease;
-        --header-height: 80px;
-        --card-shadow: rgba(0, 0, 0, 0.1);
-        --nav-bg: rgba(255, 255, 255, 0.95);
-      }
-
-      /* Dark Mode Variables */
-      .dark-theme {
-        --primary: #8a84ff;
-        --primary-light: #a8a4ff;
-        --primary-dark: #6c63ff;
-        --secondary: #ff8fa3;
-        --accent: #4dd0e1;
-        --text: #f8f9fa;
-        --text-light: #a0a0a0;
-        --bg: #121212;
-        --bg-secondary: #1e1e1e;
-        --bg-tertiary: #2a2a2a;
-        --border: #404040;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        --card-shadow: rgba(0, 0, 0, 0.3);
-        --nav-bg: rgba(30, 30, 30, 0.95);
-      }
-
-      /* Base Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: "Inter", "Segoe UI", sans-serif;
-        line-height: 1.6;
-        color: var(--text);
-        background-color: var(--bg);
-        transition: var(--transition);
-        overflow-x: hidden;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      section {
-        padding: 100px 0;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-bottom: 1rem;
-        line-height: 1.2;
-        font-weight: 700;
-      }
-
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-      }
-
-      p {
-        margin-bottom: 1.5rem;
-        color: var(--text-light);
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-        transition: var(--transition);
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 14px 32px;
-        background-color: var(--primary);
-        color: white;
-        border-radius: var(--radius);
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: var(--transition);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: var(--transition);
-      }
-
-      .btn:hover::before {
-        left: 100%;
-      }
-
-      .btn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
-      }
-
-      /* Header/Navigation */
-      .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  padding:1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px var(--card-shadow);
-  z-index: 1000;
-  transition: var(--transition);
-}
-
-
-      /* .nav-left {
-      display: flex;
-      align-items: center;
-    } */
-    .home-link {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.logo {
- 
-  height: 40px;
-  width: auto;
-}
-
-.site-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-        }
-/* Update Styling */
-.nav-links {
-  display: flex;
-  align-items: center;
-}
-.nav-links li {
-  margin-left: 30px;
-  display: flex;
-  align-items: center;
-}
-
-.nav-links a {
-  font-weight: 500;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  padding: 5px 0;
-  transition: var(--transition);
-  position: relative;
-}
-
-.nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-      /* Snake cursor toggle */
-      
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 24px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-     background-color: #ccc;
-        transition: var(--transition);
-        border-radius: 24px;
-      }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 16px;
-        width: 16px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: var(--transition);
-        border-radius: 50%;
-      }
-
-      input:checked + .slider {
-        background-color: var(--primary);
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(26px);
-      }
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-     
-
-      .github-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: var(--transition);
-      }
-
-      .github-icon:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      #theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--text);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-
-      #theme-toggle:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      /* Contributors Page Styles */
+      /* Contributors Page Specific Styles */
       .contributors-main {
         padding-top: var(--header-height);
         min-height: 100vh;
@@ -346,11 +37,10 @@
         font-size: 3.5rem;
         margin-bottom: 20px;
         position: relative;
-      }
-
-      .contributors-title span {
-        color: var(--primary);
-        position: relative;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .contributors-subtitle {
@@ -370,11 +60,11 @@
       }
 
       .stat-card {
-        background: var(--bg);
+        background: var(--card-bg);
         border-radius: var(--radius);
         padding: 25px;
         text-align: center;
-        box-shadow: var(--shadow);
+        box-shadow: var(--card-shadow);
         transition: var(--transition);
         border: 1px solid var(--border);
         min-width: 200px;
@@ -416,7 +106,7 @@
         font-size: 1.1rem;
         border-radius: var(--radius) 0 0 var(--radius);
         border: 2px solid var(--border);
-        background: var(--bg);
+        background: var(--card-bg);
         color: var(--text);
         outline: none;
         transition: var(--transition);
@@ -424,7 +114,7 @@
 
       .search-input:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.1);
       }
 
       .search-btn {
@@ -451,9 +141,9 @@
       }
 
       .contributor-card {
-        background: var(--bg);
+        background: var(--card-bg);
         border-radius: var(--radius);
-        box-shadow: var(--shadow);
+        box-shadow: var(--card-shadow);
         overflow: hidden;
         transition: var(--transition);
         border: 1px solid var(--border);
@@ -496,7 +186,7 @@
 
       .contributor-body {
         padding: 25px 20px;
-        display: flex; /* make body a column flex container */
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
@@ -579,91 +269,6 @@
         }
       }
 
-      /* Footer */
-      .footer {
-        background-color: var(--bg-secondary);
-        color: var(--text);
-        padding: 60px 0 30px;
-        border-top: 1px solid var(--border);
-      }
-
-      .footer-content {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-      }
-
-      .footer-left h2 {
-        margin-bottom: 15px;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .footer-right h4 {
-        margin-bottom: 20px;
-      }
-
-      .footer-right ul {
-        list-style: none;
-      }
-
-      .footer-right li {
-        margin-bottom: 10px;
-      }
-
-      .footer-right a {
-        color: var(--text-light);
-        transition: var(--transition);
-      }
-
-      .footer-right a:hover {
-        color: var(--primary);
-      }
-
-      .footer-right a i {
-        margin-right: 10px;
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid var(--border);
-        color: var(--text-light);
-        font-size: 0.9rem;
-      }
-
-      .footer-bottom .highlight {
-        color: var(--primary);
-        font-weight: 600;
-      }
-
-      /* Scroll to top button */
-      #scrollBtn {
-        display: none;
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: var(--primary);
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 50%;
-        font-size: 18px;
-        width: 50px;
-        height: 50px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-      }
-
-      #scrollBtn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
-      }
-
       /* Responsive Design */
       @media (max-width: 992px) {
         .contributors-title {
@@ -684,10 +289,6 @@
       }
 
       @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-        }
-
         .contributors-title {
           font-size: 2.2rem;
         }
@@ -751,12 +352,12 @@
 
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar scroll-fade">
       
         <div class="nav-left">
           <a href="index.html" class="home-link">
             <img src="images/logo.png" alt="Website Logo" class="logo" />
-            <span class="site-name">AnimateItNow</span>
+            <span class="site-name">Animate It Now</span>
           </a>
         </div>
 
@@ -923,48 +524,8 @@
     <!-- Scroll to top button -->
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
+    <script src="script.js"></script>
     <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const body = document.body;
-
-      function setTheme(isDark) {
-        const icon = themeToggle.querySelector("i");
-        body.classList.toggle("dark-theme", isDark);
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-
-        if (icon) {
-          icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
-        }
-      }
-
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
-
-      themeToggle?.addEventListener("click", () => {
-        setTheme(!body.classList.contains("dark-theme"));
-      });
-
-      // Scroll to top functionality
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      window.onscroll = function () {
-        const scrollBtn = document.getElementById("scrollBtn");
-        if (
-          document.body.scrollTop > 300 ||
-          document.documentElement.scrollTop > 300
-        ) {
-          scrollBtn.style.display = "block";
-        } else {
-          scrollBtn.style.display = "none";
-        }
-      };
-
       // Contributors data
       const owner = "itsAnimation";
       const repo = "AnimateItNow";
@@ -1005,7 +566,7 @@
           {
             login: "anuj",
             id: 1,
-            avatar_url: "https://via.placeholder.com/100/6c63ff/ffffff?text=A",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=A",
             html_url: "https://github.com/anuj",
             contributions: 150,
             type: "User",
@@ -1013,7 +574,7 @@
           {
             login: "alice",
             id: 2,
-            avatar_url: "https://via.placeholder.com/100/ff6584/ffffff?text=A",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=A",
             html_url: "https://github.com/alice",
             contributions: 89,
             type: "User",
@@ -1021,7 +582,7 @@
           {
             login: "bob",
             id: 3,
-            avatar_url: "https://via.placeholder.com/100/36d1dc/ffffff?text=B",
+            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=B",
             html_url: "https://github.com/bob",
             contributions: 76,
             type: "User",
@@ -1029,7 +590,7 @@
           {
             login: "charlie",
             id: 4,
-            avatar_url: "https://via.placeholder.com/100/8a84ff/ffffff?text=C",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=C",
             html_url: "https://github.com/charlie",
             contributions: 64,
             type: "User",
@@ -1037,7 +598,7 @@
           {
             login: "diana",
             id: 5,
-            avatar_url: "https://via.placeholder.com/100/ff8fa3/ffffff?text=D",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=D",
             html_url: "https://github.com/diana",
             contributions: 52,
             type: "User",
@@ -1045,7 +606,7 @@
           {
             login: "emma",
             id: 6,
-            avatar_url: "https://via.placeholder.com/100/4dd0e1/ffffff?text=E",
+            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=E",
             html_url: "https://github.com/emma",
             contributions: 41,
             type: "User",
@@ -1053,7 +614,7 @@
           {
             login: "frank",
             id: 7,
-            avatar_url: "https://via.placeholder.com/100/554fd8/ffffff?text=F",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=F",
             html_url: "https://github.com/frank",
             contributions: 35,
             type: "User",
@@ -1061,7 +622,7 @@
           {
             login: "grace",
             id: 8,
-            avatar_url: "https://via.placeholder.com/100/a8a4ff/ffffff?text=G",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=G",
             html_url: "https://github.com/grace",
             contributions: 28,
             type: "User",
