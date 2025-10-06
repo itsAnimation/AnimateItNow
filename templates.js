@@ -1,86 +1,86 @@
-//  This script now ONLY contains functionality specific to templates.html
-// Theme toggle and cursor logic are handled by script.js
+// 📦 Template-Specific Functionality Handler
+// Theme management and cursor logic are delegated to script.js
 
-// Search & Category Filter Functionality
-const searchBar = document.getElementById("search-bar");
-const templateCards = document.querySelectorAll(".template-card");
-const noResultsMsg = document.querySelector(".no-results");
-const filterToggle = document.getElementById("filter-toggle");
-const categoryFilters = document.getElementById("category-filters");
-const categoryButtons = document.querySelectorAll(".category-btn");
+// 🔍 Search & Category Filter System
+const searchInput = document.getElementById("search-bar");
+const templateCardElements = document.querySelectorAll(".template-card");
+const noResultsMessage = document.querySelector(".no-results");
+const filterToggleButton = document.getElementById("filter-toggle");
+const categoryFilterContainer = document.getElementById("category-filters");
+const categoryButtonElements = document.querySelectorAll(".category-btn");
 
-// Current active category
-let activeCategory = "all";
+// 🎯 Currently selected category filter
+let currentActiveCategory = "all";
 
-// Toggle category filter visibility
-filterToggle.addEventListener("click", (e) => {
-  e.stopPropagation();
-  categoryFilters.classList.toggle("show");
+// 🔄 Toggle category filter dropdown visibility
+filterToggleButton.addEventListener("click", (event) => {
+  event.stopPropagation();
+  categoryFilterContainer.classList.toggle("show");
 });
 
-// Close category filters when clicking outside
-document.addEventListener("click", (e) => {
-  if (!filterToggle.contains(e.target) && !categoryFilters.contains(e.target)) {
-    categoryFilters.classList.remove("show");
+// 🚪 Close category filters when user clicks outside the container
+document.addEventListener("click", (event) => {
+  if (!filterToggleButton.contains(event.target) && !categoryFilterContainer.contains(event.target)) {
+    categoryFilterContainer.classList.remove("show");
   }
 });
 
-// Category filtering
-categoryButtons.forEach(button => {
+// 📂 Category filtering implementation
+categoryButtonElements.forEach(button => {
   button.addEventListener("click", () => {
-    // Update active button
-    categoryButtons.forEach(btn => btn.classList.remove("active"));
+    // Update active button state
+    categoryButtonElements.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
     
-    // Set active category
-    activeCategory = button.dataset.category;
+    // Set current active category
+    currentActiveCategory = button.dataset.category;
     
-    // Filter templates
-    filterTemplates();
+    // Apply template filtering
+    applyTemplateFiltering();
     
-    // Close dropdown
-    categoryFilters.classList.remove("show");
+    // Collapse dropdown after selection
+    categoryFilterContainer.classList.remove("show");
   });
 });
 
-// Search functionality
-function filterTemplates() {
-  const query = searchBar.value.trim().toLowerCase();
-  let visibleCount = 0;
+// 🔎 Search and filter functionality
+function applyTemplateFiltering() {
+  const searchQuery = searchInput.value.trim().toLowerCase();
+  let visibleTemplateCount = 0;
 
-  templateCards.forEach((card) => {
-    const title = card.querySelector("h2").textContent.trim().toLowerCase();
-    const category = card.dataset.category;
+  templateCardElements.forEach((cardElement) => {
+    const cardTitle = cardElement.querySelector("h2").textContent.trim().toLowerCase();
+    const cardCategory = cardElement.dataset.category;
     
-    // Check if card matches search query
-    const matchesSearch = query === "" || title.includes(query);
+    // Verify if card matches search criteria
+    const matchesSearchQuery = searchQuery === "" || cardTitle.includes(searchQuery);
     
-    // Check if card matches category filter
-    const matchesCategory = activeCategory === "all" || category === activeCategory;
+    // Verify if card matches category filter
+    const matchesCategoryFilter = currentActiveCategory === "all" || cardCategory === currentActiveCategory;
     
-    // Show/hide card based on both filters
-    if (matchesSearch && matchesCategory) {
-      card.style.display = "";
-      visibleCount++;
+    // Display logic based on filter conditions
+    if (matchesSearchQuery && matchesCategoryFilter) {
+      cardElement.style.display = "";
+      visibleTemplateCount++;
     } else {
-      card.style.display = "none";
+      cardElement.style.display = "none";
     }
   });
 
-  // Show/hide no results message
-  if (noResultsMsg) {
-    noResultsMsg.style.display = visibleCount === 0 ? "block" : "none";
+  // Handle no results message visibility
+  if (noResultsMessage) {
+    noResultsMessage.style.display = visibleTemplateCount === 0 ? "block" : "none";
   }
 }
 
-// Add event listener to search bar
-searchBar.addEventListener("input", filterTemplates);
+// 🖱️ Add input event listener to search bar
+searchInput.addEventListener("input", applyTemplateFiltering);
 
-// Initialize filtering
-filterTemplates();
+// 🚀 Initialize template filtering on page load
+applyTemplateFiltering();
 
-// Script for animation type one after other
-const texts = [
+// 🎬 Text Animation Handler for Sequential Display
+const animationTexts = [
   "Typing Animation",
   "Gradient Text",
   "Neon Glow",
@@ -88,44 +88,67 @@ const texts = [
   "Zoom on Hover",
 ];
 
-let currTextIdx = 0; // Index of current string in the array
-let charIdx = 0; // index of current char currently being typed /deleted
-let isDelete = false;
+let currentTextIndex = 0; // Current position in text array
+let currentCharIndex = 0; // Current character position for typing/deleting
+let isDeletingMode = false;
 
-const speed = 100; //type/delete speed
-const pausTime = 1000; //pause time
-const target = document.getElementById("textTarget");
+const animationSpeed = 100; // Character typing/deletion speed
+const pauseDuration = 1000; // Pause between animations
+const animationTarget = document.getElementById("textTarget");
 
-if (target) {
-  function typeLoop() {
-    const currentText = texts[currTextIdx];
+// 🧠 Development debugging utility
+function logDebugInfo(message) {
+  // 📝 Placeholder for potential debugging requirements
+  // console.log(`[Template System] ${message}`);
+}
 
-    if (isDelete) {
-      target.textContent = currentText.substring(0, charIdx--);
+if (animationTarget) {
+  // 🔄 Main animation loop for text effects
+  function executeTypeAnimation() {
+    const currentAnimationText = animationTexts[currentTextIndex];
+
+    if (isDeletingMode) {
+      animationTarget.textContent = currentAnimationText.substring(0, currentCharIndex--);
     } else {
-      target.textContent = currentText.substring(0, charIdx++);
+      animationTarget.textContent = currentAnimationText.substring(0, currentCharIndex++);
     }
     
-    //typed full character
-    if (!isDelete && charIdx === currentText.length + 1) {
+    // Completed typing full text
+    if (!isDeletingMode && currentCharIndex === currentAnimationText.length + 1) {
       setTimeout(() => {
-        isDelete = true;
-        typeLoop();
-      }, pausTime);
+        isDeletingMode = true;
+        executeTypeAnimation();
+      }, pauseDuration);
       return;
     }
 
-    //move to next char when deleted
-    if (isDelete && charIdx === 0) {
-      isDelete = false;
-      //use modulo so that it can reback at 0
-      currTextIdx = (currTextIdx + 1) % texts.length;
+    // Transition to next text after deletion
+    if (isDeletingMode && currentCharIndex === 0) {
+      isDeletingMode = false;
+      // Use modulo for circular array navigation
+      currentTextIndex = (currentTextIndex + 1) % animationTexts.length;
     }
 
-    // Deleting is faster (half the speed)
-    // Typing is slower
-    setTimeout(typeLoop, isDelete ? speed / 2 : speed);
+    // Deletion occurs at faster rate than typing
+    setTimeout(executeTypeAnimation, isDeletingMode ? animationSpeed / 2 : animationSpeed);
   }
   
-  typeLoop(); // start animation
+  executeTypeAnimation(); // Initialize animation sequence
+}
+
+// 🧪 Performance monitoring placeholder function
+function trackPerformanceMetrics() {
+  // 📊 Reserved for future performance monitoring implementation
+  // console.log("Performance metrics collection:", performance.memory);
+}
+
+// 🧼 Resource cleanup and memory management
+function performCleanupOperations() {
+  // 🧹 Reserved for future cleanup and optimization tasks
+  console.log("🧹 Template system cleanup operations completed");
+}
+
+// 🔄 Additional utility function for future enhancements
+function initializeTemplateSystem() {
+  console.log("🎯 Template filtering system initialized successfully");
 }

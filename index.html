@@ -6,15 +6,17 @@
     <title>AnimateItNow - CSS Animation Templates & Effects</title>
     <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
     <style>
-        /* CSS Reset */
+        /* 🧹 CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* CSS Variables for Theming */
+        /* 🎨 CSS Variables for Theming */
         :root {
             --primary: #6c63ff;
             --primary-light: #8a84ff;
@@ -31,9 +33,14 @@
             --radius: 12px;
             --transition: all 0.3s ease;
             --header-height: 80px;
+            
+            /* 🆕 Additional theme variables for enhanced customization */
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --spacing-unit: 1rem;
         }
 
-        /* Dark Mode Variables */
+        /* 🌙 Dark Mode Variables */
         [data-theme="dark"] {
             --primary: #8a84ff;
             --primary-light: #a8a4ff;
@@ -49,7 +56,7 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Base Styles */
+        /* 🏗️ Base Styles */
         html {
             scroll-behavior: smooth;
         }
@@ -58,7 +65,7 @@
             font-family: 'Inter', 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background-color: var(--bg);
+            background-color: transparent;
             transition: var(--transition);
             overflow-x: hidden;
         }
@@ -189,7 +196,7 @@
             margin: 0 auto;
         }
 
-        /* Progress Bar */
+        /* ⏳ Progress Bar */
         #progress-bar {
             position: fixed;
             top: 0;
@@ -201,7 +208,7 @@
             transition: width 0.3s ease;
         }
 
-        /* Header/Navigation */
+        /* 🧭 Header/Navigation */
         .header {
             position: fixed;
             top: 0;
@@ -256,7 +263,7 @@
         }
 
         .nav-links {
-            /* margin-right:10%; */
+            margin-right:10%;
             width:50%;
             /* border:1px solid black; */
             display: flex;
@@ -272,22 +279,40 @@
             font-weight: 500;
             position: relative;
             padding: 5px 0;
+            transition: all 0.3s ease-in-out; 
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
+            width: 100%;
+            height: 3px;
+            bottom: -5px;
             left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            transform: scaleX(0); /* Line starts hidden (zero width) */
+            transform-origin: left; /* Animation grows from the left */
+            transition: transform 0.3s ease-in-out;
+            border-radius: 2px;
+            
+        }
+
+        /* NEW CODE TO ADD */
+        .nav-links a:hover {
+        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6); 
+        background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
-            width: 100%;
+             transform: scaleX(1);
         }
 
         .nav-actions {
@@ -336,11 +361,11 @@
             border-radius: 2px;
         }
 
-        /* Hero Section */
+        /* 🦸 Hero Section */
         .hero {
             padding: 180px 0 120px;
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
+            /* background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); */
             position: relative;
             overflow: hidden;
         }
@@ -418,7 +443,7 @@
             }
         }
 
-        /* Features Section */
+        /* ✨ Features Section */
         .features {
             background-color: var(--bg);
         }
@@ -573,7 +598,7 @@
             opacity: 1;
         }
 
-        /* Templates Showcase */
+        /* 🖼️ Templates Showcase */
         .templates-showcase {
             background-color: var(--bg-secondary);
         }
@@ -632,6 +657,7 @@
             }
     }
         /* How It Works */
+        /* 🔄 How It Works */
         .how-it-works {
             background-color: var(--bg-secondary);
         }
@@ -682,7 +708,7 @@
             padding: 0 15px;
         }
 
-        /* FAQ Section */
+        /* ❓ FAQ Section */
         .faq-section {
             background-color: var(--bg);
         }
@@ -735,7 +761,7 @@
             transform: rotate(180deg);
         }
 
-        /* Testimonials */
+        /* 👥 Testimonials */
         .testimonials {
             background-color: var(--bg-secondary);
         }
@@ -868,7 +894,7 @@
             background-color: var(--primary);
         }
 
-        /* CTA Section */
+        /* 📣 CTA Section */
         .cta-section {
             background-color: var(--bg);
             text-align: center;
@@ -913,7 +939,7 @@
             color: white;
         }
 
-        /* Footer */
+        /* 🦶 Footer */
         .footer {
             background-color: var(--bg-secondary);
             color: var(--text);
@@ -1083,7 +1109,7 @@
         .newsletter-form button:hover {
             background: var(--primary-dark);
         }
-        /* Scroll to Top Button */
+        /* ⬆️ Scroll to Top Button */
         #scrollBtn {
             display: none;
             position: fixed;
@@ -1109,7 +1135,7 @@
          }
         
 
-        /* Responsive Design */
+        /* 📱 Responsive Design */
         @media (max-width: 1200px) {
             .container {
                 max-width: 960px;
@@ -1194,7 +1220,20 @@
             .nav-links li {
                 margin: 10px 0;
             }
+            .nav-actions .btn, .nav-actions .btn-outline {
+                display: none; 
+            }
+            .nav-actions {
+                display: flex; 
+                gap: 15px;
+            }
             
+            .nav-links {
+                
+                display: none;
+               
+            }
+
             .hamburger {
                 display: flex;
             }
@@ -1283,7 +1322,7 @@
             section {
                 padding: 60px 0;
             }
-            
+           
             .hero {
                 padding: 150px 0 80px;
             }
@@ -1359,31 +1398,256 @@
                 font-size: 1rem;
             }
         }
+
+         
+            /* Fluid Background Styles */
+        .fluid-background-wrapper {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             pointer-events: none; 
+             overflow: hidden;
+             z-index: -1; 
+             background-color: var(--bg);
+        }
+
+        .fluid-blob {
+           position: absolute;
+           border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
+           filter: blur(70px); /* Heavy blur for softness */
+           opacity: 0.4; 
+           transition: all 0.5s ease;
+           animation: blob-move 20s infinite alternate ease-in-out;
+           will-change: transform, opacity; /* Optimizes performance */
+        }
+
+        /* Animation Keyframes */
+        @keyframes blob-move {
+           0%, 100% {
+           transform: translate(0, 0) scale(1);
+          }
+          33% {
+           transform: translate(25vw, -15vh) scale(1.1);
+          }
+          66% {
+           transform: translate(-10vw, 10vh) scale(0.95);
+          }
+        }  
+
+        /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
+       @keyframes pulse {
+          0% { transform: scale(1); opacity: 0.8; }
+          50% { transform: scale(1.02); opacity: 1; }
+          100% { transform: scale(1); opacity: 0.8; }
+        }
+
+       /* Positioning and Initial Colors */
+       .blob-1 {
+          width: 350px; height: 350px;
+          top: 10%; left: 5%;
+          background: var(--primary); /* Deep Purple */
+          animation-duration: 24s;
+          animation-delay: -5s;
+        }
+
+       .blob-2 {
+           width: 250px; height: 250px;
+           bottom: 15%; right: 10%;
+           background: var(--secondary); /* Pink */
+           animation-duration: 20s;
+           animation-delay: -10s;
+        }
+
+       .blob-3 {
+          width: 450px; height: 450px;
+          top: 50%; left: 40%;
+          background: var(--accent); /* Cyan */
+          animation-duration: 22s;
+          animation-delay: -15s;
+       }
+
+       .blob-4 {
+          width: 180px; height: 180px;
+          bottom: 5%; left: 60%;
+          background: var(--primary-light); /* Lighter Purple */
+          animation-duration: 28s;
+          animation-delay: -8s;
+        }
+
+        /* ADD THIS NEW BLOCK: Mobile Optimization */
+       @media (max-width: 768px) {
+       .fluid-blob {
+           transform: scale(0.6); 
+          opacity: 0.3; 
+          filter: blur(60px); 
+        }
+    
+       /* Ensure only one or two large blobs are prominent */
+       .blob-3 {
+          display: none; /* Hide the largest blob on mobile */
+       }
+    }
+
+        /* --- Subscription Form Enhancement (#1445) --- */
+
+        /* Overrides the squished form style for the new structure */
+        .newsletter-form {
+            display: none; /* Hide the old form class */
+        }
+
+        .newsletter-pill-form {
+           
+            display: flex;
+            gap: 0; 
+            background: var(--bg);
+            border: 3px solid var(--border);
+            border-radius: 50px; /* Use a large radius for the pill effect */
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .newsletter-pill-form:focus-within {
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+        }
+
+        .newsletter-pill-form input {
+            flex-grow: 1;
+            /* Reset input defaults to fit the pill container */
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .newsletter-pill-form input::placeholder {
+            color: var(--text-darkgray);
+            opacity: 0.8;
+            text-align: justify;
+             font-size: 1.3rem;
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn {
+            /* Style the button */
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 11px; /* Adjust padding for a better size */
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            
+            /* Align icon and text */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+            
+            /* Match the height of the container */
+            border-radius: 0 50px 50px 0; 
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05); /* Subtle animation for AnimateItNow */
+        }
+
+        /* Ensure the submit button icon has the right size */
+        .newsletter-submit-btn i {
+            font-size: 1.3rem;
+            line-height: 1; /* Fix vertical alignment */
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 576px) {
+            .newsletter-pill-form {
+                flex-direction: column;
+                border-radius: var(--radius); /* Stack inputs on small screens */
+                border: none; /* Remove border from container */
+            }
+            .newsletter-pill-form input {
+                border: 3px solid var(--border);
+                border-radius: var(--radius);
+                margin-bottom: 10px;
+            }
+            .newsletter-pill-form .newsletter-submit-btn {
+                width: 100%;
+                padding: 12px;
+                border-radius: var(--radius);
+                justify-content: center;
+                transform: none; /* Reset button hover scale */
+            }
+        }
     </style>
+    <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 
 <body data-theme="light">
+    <div class="fluid-background-wrapper">
+        <div class="fluid-blob blob-1"></div>
+        <div class="fluid-blob blob-2"></div>
+        <div class="fluid-blob blob-3"></div>
+        <div class="fluid-blob blob-4"></div> 
+    </div>
     <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
+
     <!-- Header/Navigation -->
-    <header class="header">
-        <div class="container nav-container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-                <span class="site-name">AnimateItNow</span>
-            </div>
-            
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+            <span class="site-name">Animate It Now</span>
+        </div>
+
+        <div class="nav-right">
+
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active" style="white-space: nowrap">Home</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="templates.html">Templates</a></li>
                 <li><a href="components.html">Components</a></li>
-                <li><a href="editor.html">Editor</a></li>
-                <li><a href="playground.html">Hover Effects</a></li>
+                <li><a href="playground.html">Hover-Effects</a></li>
                 <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
+                <!-- cursor toggle switch -->
+                <li class="snakeList">
+                    <label class="switch" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="snakeLabel">Snake Cursor</span>
+                </li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow"
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="GitHub Repo"
+                       class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </li>
             </ul>
-            
+
             <div class="nav-actions">
                 <a href="loginpage.html" class="btn btn-outline">Login</a>
                 <a href="signup.html" class="btn">Sign Up</a>
@@ -1397,9 +1661,9 @@
                 </button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
+    <!-- 🦸 Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Create Stunning <span>CSS Animations</span></h1>
@@ -1412,7 +1676,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- ✨ Features Section -->
     <section class="features">
         <div class="container">
             <div class="section-title">
@@ -1472,7 +1736,7 @@
         </div>
     </section>
 
-    <!-- Templates Showcase -->
+    <!-- 🖼️ Templates Showcase -->
     <section class="templates-showcase">
         <div class="container">
             <div class="section-title">
@@ -1521,7 +1785,7 @@
         </div>
     </section>
 
-    <!-- How It Works -->
+    <!-- 🔄 How It Works -->
     <section class="how-it-works">
         <div class="container">
             <div class="section-title">
@@ -1557,7 +1821,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- ❓ FAQ Section -->
     <section class="faq-section">
         <div class="container">
             <div class="section-title">
@@ -1609,7 +1873,7 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- 👥 Testimonials -->
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
@@ -1684,7 +1948,7 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- 📣 CTA Section -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Animate Your Website?</h2>
@@ -1696,7 +1960,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 🦶 Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1706,6 +1970,17 @@
                         <span>AnimateItNow</span>
                     </div>
                     <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                
+                    <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                 </div>
                 </div>
                 
                 <div class="footer-links">
@@ -1736,12 +2011,15 @@
                     <div class="newsletter">
                         <h4>Stay Updated</h4>
                         <p>Get the latest templates and updates directly to your inbox.</p>
-                        <form class="newsletter-form">
+                        <form class="newsletter-pill-form">
                             <input type="email" placeholder="Your email address" required>
-                             <button type="submit">Subscribe</button>
+                            <button type="submit" class="newsletter-submit-btn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Subscribe
+                            </button>
                         </form>
                     </div>
-                    <br>
+                    <!-- <br>
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1749,7 +2027,7 @@
                         <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             
@@ -1762,7 +2040,7 @@
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
     <script>
-        // Theme Toggle - Perfect Implementation
+        // 🌗 Theme Toggle - Perfect Implementation
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         const body = document.body;
@@ -1809,7 +2087,7 @@
             }
         });
         
-        // Mobile Navigation Toggle
+        // 📱 Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.querySelector('.nav-links');
         
@@ -1826,7 +2104,7 @@
             });
         });
         
-        // FAQ Accordion
+        // ❓ FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
         
         faqItems.forEach(item => {
@@ -1845,7 +2123,7 @@
             });
         });
         
-        // Testimonial Carousel Navigation
+        // 👥 Testimonial Carousel Navigation
         const testimonialNavButtons = document.querySelectorAll('.testimonial-nav button');
         const testimonialCards = document.querySelectorAll('.testimonial-card');
         const testimonialCarousel = document.querySelector('.testimonial-carousel');
@@ -1924,7 +2202,7 @@
             });
         }
         
-        // Progress Bar
+        // ⏳ Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1939,7 +2217,7 @@
             }
         });
         
-        // Newsletter form submission
+        // 📧 Newsletter form submission
         document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = this.querySelector('input').value;
@@ -1947,12 +2225,12 @@
             this.reset();
         });
         
-        // Initialize everything when page loads
+        // 🚀 Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
         });
 
-        // Scroll to top functionality
+        // ⬆️ Scroll to top functionality
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

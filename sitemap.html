@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap - AnimateItNow</title>
+    <meta name="description" content="Complete sitemap of AnimateItNow - Explore all pages, templates, and features" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ff6b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#ff6b6b" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" href="images/logo.png" />
+
+    <!-- Styles & external resources -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="navbar_styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    
+    <style>
+        /* Sitemap specific styles */
+        .sitemap-main {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .sitemap-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .sitemap-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .sitemap-header p {
+            font-size: 1.2rem;
+            color: var(--primary-text);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .sitemap-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .sitemap-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(79, 140, 255, 0.15);
+        }
+
+        .section-title {
+            color: var(--accent);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(79, 140, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title i {
+            font-size: 1.3rem;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-card {
+            background: rgba(79, 140, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 140, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card:hover {
+            background: rgba(79, 140, 255, 0.1);
+            transform: translateX(8px);
+            border-color: var(--accent);
+        }
+
+        .link-card a {
+            color: var(--primary-text);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+
+        .link-card:hover a {
+            color: var(--accent);
+        }
+
+        .link-card a::after {
+            content: "→";
+            color: rgba(79, 140, 255, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover a::after {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .file-indicator {
+            font-size: 0.8rem;
+            color: rgba(79, 140, 255, 0.7);
+            margin-top: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-hover);
+        }
+
+        .breadcrumb span {
+            color: var(--secondary-text);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sitemap-main {
+                margin-top: 80px;
+                padding: 1rem 0.5rem 2rem;
+            }
+            
+            .sitemap-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .link-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sitemap-section {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Dark mode adjustments */
+        body.dark .link-card {
+            background: rgba(79, 140, 255, 0.08);
+            border-color: rgba(79, 140, 255, 0.15);
+        }
+
+        body.dark .link-card:hover {
+            background: rgba(79, 140, 255, 0.12);
+        }
+
+        body.dark .sitemap-section {
+            background: rgba(30, 30, 40, 0.8);
+            border-color: rgba(79, 140, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- ProgressBar -->
+    <div id="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar scroll-fade">
+        <div class="nav-left">
+            <a href="index.html" class="home-link">
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+                <span class="site-name">Animate It Now</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="contributors.html">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="sitemap.html" class="active">Sitemap</a></li>
+                <!-- cursor toggle switch -->
+                <li class="snakeList">
+                    <label class="switch" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle" />
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="snakeLabel">Snake Cursor</span>
+                </li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo" class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" aria-hidden="true">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.67 7.67 0 018 4.91a7.6 7.6 0 012.01.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <button id="theme-toggle" class="ripple btn-press" aria-label="Toggle Theme">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="sitemap-main">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> 
+            <span>›</span>
+            <span>Sitemap</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="sitemap-header">
+            <h1>AnimateItNow Sitemap</h1>
+            <p>Explore all pages, templates, and features of our animation platform</p>
+        </header>
+
+        <!-- Core Pages Section -->
+        <section class="sitemap-section">
+            <h2 class="section-title">
+                <i class="fas fa-home"></i>
+                Core Pages
+            </h2>
+            <div class="link-grid">
+                <div class="link-card">
+                    <a href="index.html">Home Page</a>
+                    <div class="file-indicator">index.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="about.html">About Us</a>
+                    <div class="file-indicator">about.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="contact.html">Contact Us</a>
+                    <div class="file-indicator">contact.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="contributors.html">Contributors</a>
+                    <div class="file-indicator">contributors.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="leaderboard.html">Leaderboard</a>
+                    <div class="file-indicator">leaderboard.html</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animation Tools Section -->
+        <section class="sitemap-section">
+            <h2 class="section-title">
+                <i class="fas fa-palette"></i>
+                Animation Tools & Templates
+            </h2>
+            <div class="link-grid">
+                <div class="link-card">
+                    <a href="templates.html">All Templates</a>
+                    <div class="file-indicator">templates.html</div>
+                </div>
+               
+                <div class="link-card">
+                    <a href="editor.html">Animation Editor</a>
+                    <div class="file-indicator">editor.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="generator.html">CSS Generator</a>
+                    <div class="file-indicator">generator.html</div>
+                </div>
+                <div class="link-card">
+                    <a href="playground.html">Code Playground</a>
+                    <div class="file-indicator">playground.html</div>
+                </div>
+                
+                <div class="link-card">
+                    <a href="opaque_hover.html">Opaque Hover Effects</a>
+                    <div class="file-indicator">opaque_hover.html</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section class="sitemap-section">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i>
+                Documentation & Resources
+            </h2>
+            <div class="link-grid">
+                <div class="link-card">
+                    <a href="README.md">Project README</a>
+                    <div class="file-indicator">README.md</div>
+                </div>
+                <div class="link-card">
+                    <a href="CONTRIBUTING.md">Contributing Guide</a>
+                    <div class="file-indicator">CONTRIBUTING.md</div>
+                </div>
+                <div class="link-card">
+                    <a href="CODE_OF_CONDUCT.md">Code of Conduct</a>
+                    <div class="file-indicator">CODE_OF_CONDUCT.md</div>
+                </div>
+                <div class="link-card">
+                    <a href="LEARN.md">Learning Resources</a>
+                    <div class="file-indicator">LEARN.md</div>
+                </div>
+                
+                <div class="link-card">
+                    <a href="LICENSE">License</a>
+                    <div class="file-indicator">LICENSE</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Directories Section -->
+        <section class="sitemap-section">
+            <h2 class="section-title">
+                <i class="fas fa-folder"></i>
+                Project Directories
+            </h2>
+            <div class="link-grid">
+                <div class="link-card">
+                    <a href="templates/">Animation Templates</a>
+                    <div class="file-indicator">/templates/ directory</div>
+                </div>
+                
+                <div class="link-card">
+                    <a href="ai-assistant/">AI Assistant</a>
+                    <div class="file-indicator">/ai-assistant/</div>
+                </div>
+                <div class="link-card">
+                    <a href="images/">Image Assets</a>
+                    <div class="file-indicator">/images/ directory</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer scroll-fade">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h2>AnimateItNow</h2>
+                <p>Creating impactful web animations and templates for everyone.</p>
+            </div>
+
+            <div class="footer-right">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li class="github">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank">
+                            <i class="fab fa-github fa-beat"></i> GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank">
+                            <i class="fab fa-linkedin fa-beat"></i> LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:contact@animateitnow.com">
+                            <i class="fas fa-envelope fa-beat"></i> Email Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sitemap.html">
+                            <i class="fas fa-sitemap fa-beat"></i> Sitemap
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2025 AnimateItNow. Made with ❤️ by
+                <span class="highlight">Anuj</span> and Contributors.
+            </p>
+        </div>
+    </footer>
+
+    <div id="cursor-snake"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+    <!-- PWA Support -->
+    <script src="pwa.js"></script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Add scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.sitemap-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
