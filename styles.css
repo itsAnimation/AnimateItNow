@@ -36,6 +36,24 @@
   --feedback-warning: #f59e0b;
 }
 
+/* Dark theme variables */
+[data-theme="dark"],
+.dark {
+  --primary-bg: #121212;
+  --primary-text: #f5f5f5;
+  --accent: #64b5f6;
+  --nav-bg: #1e1e1e;
+  --footer-bg: #1e1e1e;
+  --footer-text: #f5f5f5;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --light: #2a2a2a;
+  --test-color: #4dd0e1;
+  --light-color: #555555;
+  --dark-color: #f5f5f5;
+  --box-shadow: rgb(0 0 0 / 50%) 0px 20px 30px -10px;
+}
+
 /* ✅ Toast Notification Styles */
 .toast {
   position: fixed;
@@ -61,7 +79,7 @@
   margin-bottom: 15px;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: var(--card-shadow);
   border: 1px solid var(--border);
   background-color: var(--card-bg);
 }
@@ -415,7 +433,6 @@ body.dark .template-card:hover {
   .templates-main h1 {
     font-size: 2rem;
   }
-  
   .footer-content {
     grid-template-columns: 1fr;
     gap: 1.5rem;

@@ -18,6 +18,31 @@ class ComponentDocumentation {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
+        this.initializeTheme();
+    }
+
+    // Initialize theme based on saved preference or system preference
+    initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.body.classList.add('dark');
+            this.updateThemeToggleIcon();
+        }
+    }
+
+    // Update theme toggle icon based on current theme
+    updateThemeToggleIcon() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+        
+        const icon = themeToggle.querySelector('i');
+        if (document.body.classList.contains('dark')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
     }
 
     // Component data structure
@@ -795,6 +820,16 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             this.renderComponents();
         });
 
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                this.updateThemeToggleIcon();
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
         // Modal functionality
         this.setupModalListeners();
     }
@@ -1030,36 +1065,6 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
 // Initialize the component documentation system
 document.addEventListener('DOMContentLoaded', () => {
     new ComponentDocumentation();
-});
-
-// Theme toggle functionality (if not already handled by main script.js)
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            
-            // Update icon
-            const icon = themeToggle.querySelector('i');
-            if (body.classList.contains('dark')) {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
-
-            // Save preference
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            themeToggle.querySelector('i').className = 'fas fa-moon';
-        }
-    }
 });
 
 // Mobile menu toggle functionality
