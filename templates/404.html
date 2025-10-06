@@ -38,37 +38,34 @@
   
   <!-- 🎯 External Dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="../../templates.css">
+  <link rel="stylesheet" href="../templates.css">
 </head>
 
 <body class="dark">
   <!-- 🎯 Navigation Bar -->
   <nav class="navbar scroll-fade">
     <div class="nav-left">
-      <a href="../../index.html" class="home-link">
-        <img src="../../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <a href="../index.html" class="home-link">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
         <span class="site-name">Animate It Now</span>
       </a>
     </div>
     
-    <!-- 🎯 Mobile Menu Toggle -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-      <i class="fas fa-bars"></i>
-    </button>
-    
+<!-- 🎯 Cursor Toggle Switch -->
+=======
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
-        <li><a href="../../index.html">Home</a></li>
-        <li><a href="../../about.html">About</a></li>
-        <li><a href="../../editor.html" target="_blank">Editor</a></li>
-        <li><a href="../../templates.html">Templates</a></li>
-        <li><a href="../../playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-        <li><a href="../../contributors.html">Contributors</a></li>
-        <li><a href="../../contact.html">Contact</a></li>
-        <li><a href="../../leaderboard.html">Leaderboard</a></li>
-        <li><a href="../../generator.html">Generator</a></li>
-        
-        <!-- 🎯 Cursor Toggle Switch -->
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../editor.html" target="_blank">Editor</a></li>
+        <li><a href="../templates.html">Templates</a></li>
+        <li><a href="../playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <li><a href="../generator.html">Generator</a></li>
+        <!-- cursor toggle switch -->
+
         <li>
           <label class="switch" title="Toggle Snake Cursor">
             <input type="checkbox" id="cursorToggle" aria-label="Toggle snake cursor effect" />
@@ -967,6 +964,63 @@ function updateBall() {
         padding: 1rem;
       }
     }
+    .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-left h2 {
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-right h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-right ul {
+            list-style: none;
+        }
+
+        .footer-right li {
+            margin-bottom: 10px;
+        }
+
+        .footer-right a {
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: var(--primary);
+        }
+
+        .footer-right a i {
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
   </style>
 
   <script>
