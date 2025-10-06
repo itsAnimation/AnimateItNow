@@ -1,6 +1,13 @@
 // Component Documentation System JavaScript
 
+/**
+ * Main class for managing component documentation
+ * Handles loading, filtering, and displaying UI components
+ */
 class ComponentDocumentation {
+    /**
+     * Initialize the component documentation system
+     */
     constructor() {
         this.components = [];
         this.filteredComponents = [];
@@ -14,13 +21,20 @@ class ComponentDocumentation {
         this.init();
     }
 
+    /**
+     * Initialize the system
+     * Sets up components, event listeners, and renders initial view
+     */
     init() {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
     }
 
-    // Component data structure
+    /**
+     * Load all available components into the system
+     * Each component includes metadata, preview, and implementation details
+     */
     loadComponents() {
         this.components = [
             {
