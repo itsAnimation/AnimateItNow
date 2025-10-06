@@ -34,6 +34,31 @@ class ComponentDocumentation {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
+        this.initializeTheme();
+    }
+
+    // Initialize theme based on saved preference or system preference
+    initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.body.classList.add('dark');
+            this.updateThemeToggleIcon();
+        }
+    }
+
+    // Update theme toggle icon based on current theme
+    updateThemeToggleIcon() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+        
+        const icon = themeToggle.querySelector('i');
+        if (document.body.classList.contains('dark')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
     }
 
 
@@ -817,7 +842,19 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             this.renderComponents();
         });
 
-        // 🪟 Modal functionality
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                this.updateThemeToggleIcon();
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Modal functionality
+
         this.setupModalListeners();
     }
 
@@ -1054,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ComponentDocumentation();
 });
 
+
 // 🌙 Theme toggle functionality (if not already handled by main script.js)
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
@@ -1085,6 +1123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 📱 Mobile menu toggle functionality
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const navRight = document.querySelector('.nav-right');
