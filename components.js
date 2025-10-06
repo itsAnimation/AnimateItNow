@@ -1,10 +1,10 @@
 // Component Documentation System JavaScript
 
-// 🎯 Enhanced Component Documentation System with Improved Performance and UX
-// This system provides interactive documentation for CSS components with live previews,
-// code snippets, and customization options.
 
 class ComponentDocumentation {
+    /**
+     * Initialize the component documentation system
+     */
     constructor() {
         // 📦 Component data storage
         this.components = [];
@@ -24,14 +24,24 @@ class ComponentDocumentation {
         this.init();
     }
 
-    // 🔄 Initialize the component documentation system
+
+    /**
+     * Initialize the system
+     * Sets up components, event listeners, and renders initial view
+     */
+
     init() {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
     }
 
-    // 📁 Load component data structure
+
+    /**
+     * Load all available components into the system
+     * Each component includes metadata, preview, and implementation details
+     */
+
     loadComponents() {
         // 🧩 Component library with enhanced metadata
         this.components = [
