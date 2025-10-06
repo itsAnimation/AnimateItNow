@@ -1,813 +1,1745 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - Something Amazing Awaits</title>
-    <meta name="description" content="We're crafting an extraordinary experience that will revolutionize technology. Join our exclusive early access list and be the first to know when we launch.">
-    <meta name="author" content="Your Company">
-    <meta name="keywords" content="coming soon, launch, technology, innovation, early access">
-    
-    <meta property="og:title" content="Coming Soon - Something Amazing Awaits">
-    <meta property="og:description" content="We're crafting an extraordinary experience that will revolutionize technology. Join our exclusive early access list.">
-    <meta property="og:type" content="website">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>/* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon | AnimateItNow</title>
+    <link rel="icon" href="../favicon.png" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Something amazing is coming soon at AnimateItNow - Stay tuned for revolutionary animations and templates"
+    />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#ff6b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+    <meta
+      name="msapplication-TileImage"
+      content="../images/icons/icon-144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#ff6b6b" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json" /> 
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, hsl(245, 50%, 12%), hsl(260, 40%, 8%), hsl(280, 30%, 6%));
-    color: hsl(0, 0%, 98%);
-    min-height: 100vh;
-}
+    <!-- PWA Icons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="72x72"
+      href="../images/icons/icon-72x72.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="../images/icons/icon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="../images/icons/icon-128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="144x144"
+      href="../images/icons/icon-144x144.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="152x152"
+      href="../images/icons/icon-152x152.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../images/icons/icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="384x384"
+      href="../images/icons/icon-384x384.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../images/icons/icon-512x512.png"
+    />
 
-/* Main layout */
-.main-container {
-    position: relative;
-    z-index: 10;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-}
+    <!-- Apple Touch Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="../images/icons/icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="../images/icons/icon-192x192.png"
+    />
 
-.content-wrapper {
-    max-width: 64rem;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-}
+    <!-- Fallback icon -->
+    <link rel="icon" type="image/png" href="../images/logo.png" />
+    <link rel="stylesheet" href="../templates.css" />
+    <link rel="stylesheet" href="../navbar_styles.css">
+    <style>
+      /* Theme toggle button - now visible */
+      .theme-toggle {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+      
+      /* Reduce footer logo size */
+      .footer-logo img {
+        height: 90px !important;
+        width: auto !important;
+      }
+      
+      /* Main Content Styles */
+      .main-content {
+        min-height: calc(100vh - 120px);
+        padding: 2rem 0;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      }
+      
+      .animated-coming-soon {
+        padding: 3rem 0;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      
+      .content-wrapper {
+        text-align: center;
+        color: white;
+      }
+      
+      .animated-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+      
+      .description {
+        font-size: 1.3rem;
+        margin-bottom: 3rem;
+        opacity: 0.9;
+      }
 
-/* Floating particles */
-#particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.2;
-    background: linear-gradient(45deg, hsl(320, 100%, 75%), hsl(270, 100%, 70%));
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Hero section */
-.hero-section {
-    margin-bottom: 4rem;
-}
-
-.hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-}
-
-.hero-description {
-    font-size: clamp(1.125rem, 3vw, 1.5rem);
-    color: hsl(0, 0%, 70%);
-    max-width: 48rem;
-    margin: 0 auto;
-    line-height: 1.6;
-    animation-delay: 0.4s;
-}
-
-/* Gradient text effect */
-.gradient-text {
-    background: linear-gradient(135deg, hsl(270, 100%, 70%), hsl(280, 100%, 80%), hsl(190, 100%, 60%));
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradient-shift 3s ease-in-out infinite;
-}
-
-/* Countdown section */
-.countdown-section {
-    margin-bottom: 4rem;
-}
-
-.countdown-title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 600;
-    margin-bottom: 2rem;
-    color: hsl(0, 0%, 98%);
-}
-
-.countdown-timer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.countdown-item {
-    background: hsla(245, 15%, 15%, 0.3);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsla(0, 0%, 100%, 0.1);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    min-width: 80px;
-    box-shadow: 0 0 40px hsl(270, 100%, 70%, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.countdown-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 40px hsl(270, 100%, 70%, 0.3), 0 0 30px hsl(190, 100%, 60%, 0.3);
-}
-
-.countdown-value {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 800;
-    margin-bottom: 0.25rem;
-}
-
-.countdown-label {
-    font-size: 0.875rem;
-    color: hsl(0, 0%, 70%);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-}
-
-/* Email signup section */
-.signup-section {
-    margin-bottom: 4rem;
-    max-width: 28rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.signup-title {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: hsl(0, 0%, 98%);
-}
-
-.email-form {
-    width: 100%;
-}
-
-.input-wrapper {
-    position: relative;
-    margin-bottom: 1rem;
-}
-
-.input-icon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.25rem;
-    height: 1.25rem;
-    color: hsl(0, 0%, 70%);
-    z-index: 2;
-}
-
-.email-input {
-    width: 100%;
-    height: 3rem;
-    padding: 0 1rem 0 3rem;
-    background: hsla(245, 15%, 15%, 0.3);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsla(0, 0%, 100%, 0.2);
-    border-radius: 0.75rem;
-    color: hsl(0, 0%, 98%);
-    font-size: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.email-input::placeholder {
-    color: hsl(0, 0%, 70%);
-}
-
-.email-input:focus {
-    outline: none;
-    border-color: hsl(270, 100%, 70%);
-    box-shadow: 0 0 0 2px hsl(270, 100%, 70%, 0.2);
-}
-
-.email-input.error {
-    border-color: hsl(0, 84.2%, 60.2%);
-}
-
-.email-input.error:focus {
-    border-color: hsl(0, 84.2%, 60.2%);
-    box-shadow: 0 0 0 2px hsl(0, 84.2%, 60.2%, 0.2);
-}
-
-.error-message {
-    display: none;
-    color: hsl(0, 84.2%, 60.2%);
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-    animation: fade-in-up 0.6s ease-out forwards;
-}
-
-.error-message.show {
-    display: block;
-}
-
-.submit-btn {
-    width: 100%;
-    height: 3rem;
-    background: linear-gradient(135deg, hsl(270, 100%, 70%), hsl(280, 100%, 80%), hsl(190, 100%, 60%));
-    border: none;
-    border-radius: 0.75rem;
-    color: hsl(0, 0%, 98%);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 0 40px hsl(270, 100%, 70%, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 40px hsl(270, 100%, 70%, 0.3), 0 10px 20px hsl(270, 100%, 70%, 0.3);
-}
-
-.submit-btn:disabled {
-    cursor: not-allowed;
-    opacity: 0.8;
-}
-
-.submit-btn.success {
-    background: hsl(120, 60%, 50%);
-}
-
-.submit-btn.success:hover {
-    background: hsl(120, 60%, 50%);
-}
-
-.check-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
-/* Social section */
-.social-section {
-    margin-bottom: 3rem;
-}
-
-.social-description {
-    font-size: 1.125rem;
-    color: hsl(0, 0%, 70%);
-    margin-bottom: 1.5rem;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    background: hsla(245, 15%, 15%, 0.3);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsla(0, 0%, 100%, 0.2);
-    border-radius: 50%;
-    color: hsl(0, 0%, 98%);
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(0 0 30px hsl(190, 100%, 60%, 0.3));
-}
-
-.social-icon:hover {
-    transform: scale(1.1) translateY(-2px);
-    border-color: hsl(270, 100%, 70%, 0.5);
-    filter: drop-shadow(0 0 25px hsl(320, 100%, 75%, 0.3));
-}
-
-.social-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-/* Footer */
-.footer {
-    color: hsl(0, 0%, 70%);
-    font-size: 0.875rem;
-}
-
-/* Animations */
-@keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) rotate(120deg); }
-    66% { transform: translateY(10px) rotate(240deg); }
-}
-
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    opacity: 0;
-    animation: fade-in-up 0.6s ease-out forwards;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .countdown-timer {
-        gap: 0.75rem;
-    }
-    
-    .countdown-item {
-        padding: 1rem;
-        min-width: 70px;
-    }
-    
-    .countdown-value {
-        font-size: 1.75rem;
-    }
-    
-    .social-icons {
+      /* Countdown Styles */
+      .countdown-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 1rem;
-    }
-    
-    .social-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    
-    .social-icon svg {
-        width: 1.25rem;
-        height: 1.25rem;
-    }
-}
+        margin: 1.5rem 0 2.5rem;
+      }
+      .countdown-title {
+        color: #ffd166;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .countdown {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      }
+      .time-segment {
+        display: grid;
+        grid-template-rows: auto auto;
+        text-align: center;
+        min-width: 80px;
+      }
+      .time-segment .number {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1;
+        background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 8px rgba(69,183,209,0.35));
+      }
+      .time-segment .label {
+        font-size: 0.8rem;
+        opacity: 0.85;
+      }
+      .countdown .sep {
+        color: rgba(255,255,255,0.8);
+        font-weight: 700;
+        font-size: 1.6rem;
+        margin: 0 0.25rem;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      
+      /* Code Section Styles */
+      .code-section {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 1000px;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .code-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .tab-btn {
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+      
+      .tab-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+      
+      .tab-btn.active {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .code-content {
+        text-align: left;
+      }
+      
+      .tab-pane {
+        display: none;
+      }
+      
+      .tab-pane.active {
+        display: block;
+      }
+      
+      .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem 1.5rem;
+        border-radius: 10px 10px 0 0;
+        border-bottom: 2px solid #4ecdc4;
+      }
+      
+      .code-title {
+        font-weight: bold;
+        color: #4ecdc4;
+        font-size: 1.1rem;
+      }
+      
+      .copy-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        background: #ff6b6b;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+      
+      .copy-btn:hover {
+        background: #ff5252;
+        transform: scale(1.05);
+      }
+      
+      .copy-btn.copied {
+        background: #4caf50;
+      }
+      
+      pre {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 1.5rem;
+        border-radius: 0 0 10px 10px;
+        overflow-x: auto;
+        margin: 0;
+        font-family: 'Courier New', monospace;
+        line-height: 1.5;
+      }
+      
+      code {
+        color: #f8f8f2;
+        font-size: 0.9rem;
+      }
+      
+      /* Syntax highlighting */
+      .language-html .token.tag { color: #ff79c6; }
+      .language-html .token.attr-name { color: #50fa7b; }
+      .language-html .token.attr-value { color: #f1fa8c; }
+      
+      .language-css .token.selector { color: #ff79c6; }
+      .language-css .token.property { color: #66d9ef; }
+      .language-css .token.string { color: #f1fa8c; }
+      
+      .language-javascript .token.keyword { color: #ff79c6; }
+      .language-javascript .token.function { color: #50fa7b; }
+      .language-javascript .token.string { color: #f1fa8c; }
+      
+      /* Animations */
+      @keyframes titleGlow {
+        0% { filter: brightness(1); }
+        100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 107, 0.5)); }
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .animated-title {
+          font-size: 2.5rem;
+        }
+        
+        .description {
+          font-size: 1.1rem;
+        }
+        
+        .code-section {
+          padding: 1rem;
+          margin: 1rem;
+        }
+        
+        .code-tabs {
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        
+        .tab-btn {
+          padding: 0.6rem 1.5rem;
+          font-size: 0.9rem;
+        }
+        
+        .code-header {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+        
+        pre {
+          font-size: 0.8rem;
+          padding: 1rem;
+        }
+      }
+      
+      /* Sand Clock Section Styles */
+      .sandclock-section {
+        margin-top: 4rem;
+        padding: 3rem 2rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        text-align: center;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #4ecdc4;
+        text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+      }
+      
+      .section-description {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.8;
+      }
+      
+      .animation-demo {
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 350px;
+        position: relative;
+      }
+      
+      /* Load Modal Box Styles */
+      .load-modal-box {
+        border-radius: 8px;
+        -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+        width: 400px;
+        height: 300px;
+        background: -webkit-linear-gradient(top, #f1f1f1 65%, #f1f1f1 65%);
+        background: linear-gradient(to bottom, #f1f1f1 65%, #f1f1f1 65%);
+        z-index: 3;
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .load {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .sandtimer-icon {
+        font-size: 5rem;
+        position: absolute;
+        top: 80px;
+        animation: rotateHourglass 2s infinite ease-in-out;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      }
+      
+      .loading-text {
+        text-align: center;
+        color: #6f7475;
+        position: absolute;
+        top: 200px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0;
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+      
+      @keyframes rotateHourglass {
+        0% { 
+          transform: rotate(0deg); 
+          opacity: 1; 
+        }
+        25% { 
+          transform: rotate(0deg); 
+          opacity: 0.8; 
+        }
+        50% { 
+          transform: rotate(180deg); 
+          opacity: 1; 
+        }
+        75% { 
+          transform: rotate(180deg); 
+          opacity: 0.8; 
+        }
+        100% { 
+          transform: rotate(360deg); 
+          opacity: 1; 
+        }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { 
+          opacity: 1; 
+          transform: scale(1); 
+        }
+        50% { 
+          opacity: 0.7; 
+          transform: scale(0.98); 
+        }
+      }
+      
+      /* Show Code Button */
+      .show-code-btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 2rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .show-code-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      }
+      
+      .show-code-btn i {
+        margin-right: 0.5rem;
+      }
+      
+      /* Sand Clock Code Section */
+      .sandclock-code-section {
+        margin-top: 2rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: left;
+      }
+      
+      .sandclock-code-section.hidden {
+        display: none;
+      }
+      
+      .code-tabs-mini {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        justify-content: center;
+      }
+      
+      .tab-btn-mini {
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .tab-btn-mini:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      
+      .tab-btn-mini.active {
+        background: #4ecdc4;
+        box-shadow: 0 3px 10px rgba(78, 205, 196, 0.3);
+      }
+      
+      .tab-pane-mini {
+        display: none;
+      }
+      
+      .tab-pane-mini.active {
+        display: block;
+      }
+      
+      /* Responsive for sand clock section */
+      @media (max-width: 768px) {
+        .sandclock-section {
+          margin-top: 2rem;
+          padding: 2rem 1rem;
+        }
+        
+        .section-title {
+          font-size: 2rem;
+        }
+        
+        .sandclock {
+          width: 100px;
+          height: 170px;
+        }
+        
+        .sandclock-top,
+        .sandclock-bottom {
+          width: 100px;
+          height: 75px;
+        }
+        
+        .show-code-btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 1rem;
+        }
+        
+        .code-tabs-mini {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      
+      /* Rocket Moon Section Styles */
+      .rocket-moon-section {
+        padding: 2rem 0;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .rocket-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        min-height: 400px;
+      }
+      
+      .rocket-side {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 400px;
+      }
+      
+      /* Moon Surface */
+      .moon-surface {
+        width: 200px;
+        height: 100px;
+        background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%);
+        border-radius: 100px 100px 0 0;
+        position: relative;
+        box-shadow: 0 -5px 20px rgba(192, 192, 192, 0.3);
+      }
+      
+      .moon-crater {
+        position: absolute;
+        border-radius: 50%;
+        background: #909090;
+        box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      .crater-1 {
+        width: 15px;
+        height: 15px;
+        top: 20px;
+        left: 30px;
+      }
+      
+      .crater-2 {
+        width: 10px;
+        height: 10px;
+        top: 30px;
+        right: 40px;
+      }
+      
+      .crater-3 {
+        width: 8px;
+        height: 8px;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      /* Rocket */
+      .rocket {
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: rocketHover 3s ease-in-out infinite;
+      }
+      
+      .rocket-body {
+        width: 40px;
+        height: 120px;
+        position: relative;
+      }
+      
+      .rocket-top {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+        border-radius: 20px 20px 0 0;
+        position: relative;
+      }
+      
+      .rocket-top::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 20px;
+        background: #ffff00;
+        border-radius: 3px;
+      }
+      
+      .rocket-middle {
+        width: 40px;
+        height: 60px;
+        background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+        position: relative;
+      }
+      
+      .rocket-middle::before,
+      .rocket-middle::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #4444ff;
+        border-radius: 50%;
+      }
+      
+      .rocket-middle::before {
+        top: 15px;
+        left: 8px;
+      }
+      
+      .rocket-middle::after {
+        top: 15px;
+        right: 8px;
+      }
+      
+      .rocket-bottom {
+        width: 40px;
+        height: 20px;
+        background: linear-gradient(135deg, #666666 0%, #333333 100%);
+        position: relative;
+      }
+      
+      .rocket-flame {
+        width: 20px;
+        height: 30px;
+        background: linear-gradient(180deg, #ff6600 0%, #ff0000 50%, #ffff00 100%);
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 0 0 50% 50%;
+        animation: flameFlicker 0.5s ease-in-out infinite alternate;
+      }
+      
+      /* Text Side */
+      .text-side {
+        padding: 2rem;
+        color: white;
+        text-align: center;
+        position: relative;
+      }
+      
+      .rocket-title {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: titlePulse 2s ease-in-out infinite;
+      }
+      
+      .rocket-subtitle {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        color: #ffd700;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        animation: subtitleGlow 3s ease-in-out infinite alternate;
+      }
+      
+      .rocket-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Stars */
+      .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+      
+      .star {
+        position: absolute;
+        font-size: 1rem;
+        animation: starTwinkle 2s ease-in-out infinite;
+      }
+      
+      .star-1 {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      
+      .star-2 {
+        top: 10%;
+        right: 20%;
+        animation-delay: 0.5s;
+      }
+      
+      .star-3 {
+        bottom: 30%;
+        left: 15%;
+        animation-delay: 1s;
+      }
+      
+      .star-4 {
+        top: 60%;
+        right: 10%;
+        animation-delay: 1.5s;
+      }
+      
+      .star-5 {
+        bottom: 20%;
+        right: 30%;
+        animation-delay: 2s;
+      }
+      
+      /* Animations */
+      @keyframes rocketHover {
+        0%, 100% {
+          transform: translateX(-50%) translateY(0px);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+      
+      @keyframes flameFlicker {
+        0% {
+          transform: translateX(-50%) scaleY(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-50%) scaleY(0.8);
+          opacity: 0.8;
+        }
+      }
+      
+      @keyframes titlePulse {
+        0%, 100% {
+          transform: scale(1);
+          filter: brightness(1);
+        }
+        50% {
+          transform: scale(1.05);
+          filter: brightness(1.2);
+        }
+      }
+      
+      @keyframes subtitleGlow {
+        0% {
+          text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        100% {
+          text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+      }
+      
+      @keyframes starTwinkle {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+      
+      /* Responsive Design for Rocket Section */
+      @media (max-width: 768px) {
+        .rocket-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+        
+        .rocket-side {
+          height: 300px;
+        }
+        
+        .moon-surface {
+          width: 150px;
+          height: 75px;
+        }
+        
+        .rocket-body {
+          width: 30px;
+          height: 90px;
+        }
+        
+        .rocket-top {
+          width: 30px;
+          height: 30px;
+        }
+        
+        .rocket-middle {
+          width: 30px;
+          height: 45px;
+        }
+        
+        .rocket-bottom {
+          width: 30px;
+          height: 15px;
+        }
+        
+        .rocket-title {
+          font-size: 3rem;
+        }
+        
+        .rocket-subtitle {
+          font-size: 2rem;
+        }
+        
+        .rocket-description {
+          font-size: 1rem;
+        }
+      }
+      
+      /* Rocket Code Section Styles */
+      .rocket-code-section {
+        margin-top: 2rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: left;
+      }
+      
+      .rocket-code-section.hidden {
+        display: none;
+      }
+      
+      /* Light Theme Styles */
+      body.light {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #333;
+      }
+      
+      body.light .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
 
-@media (max-width: 480px) {
-    .main-container {
-        padding: 1rem;
-    }
-    
-    .hero-section {
-        margin-bottom: 3rem;
-    }
-    
-    .countdown-section {
-        margin-bottom: 3rem;
-    }
-    
-    .signup-section {
-        margin-bottom: 3rem;
-    }
-}
+      /* Dark theme navbar override for this page */
+      body.dark .navbar {
+        background: rgba(18, 18, 18, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      
+      body.light .nav-links a {
+        color: #333;
+      }
+      
+      body.light .nav-links a:hover {
+        color: #667eea;
+      }
+      
+      body.light .theme-toggle {
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: #333;
+      }
+      
+      body.light .theme-toggle:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      
+      body.light .main-content {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      
+      body.light .section-title {
+        color: #333;
+      }
+      
+      body.light .code-section {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      
+      body.light .tab-btn {
+        background: rgba(0, 0, 0, 0.1);
+        color: #333;
+      }
+      
+      body.light .tab-btn.active {
+        background: #667eea;
+        color: white;
+      }
+      
+      body.light pre {
+        background: #f8f9fa;
+        color: #333;
+      }
+      
+      body.light .copy-btn {
+        background: #667eea;
+      }
+      
+      body.light .sandclock-section {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      body.light .sandclock-code-section {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      
+      body.light .rocket-section {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      body.light .rocket-moon-section {
+        padding: 2rem 0;
+        background: linear-gradient(135deg, #f5f7ff 0%, #e9efff 50%, #f7f0ff 100%);
+      }
 
+      body.light .rocket-description { color: #222; }
+      body.light .stars .star { color: #666; }
+      
+      body.light .rocket-code-section {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      
+      body.light .rocket-text h2 {
+        color: #333;
+      }
+      
+      body.light .rocket-text p {
+        color: #555;
+      }
+      
+      body.light .footer {
+        background: rgba(255, 255, 255, 0.95);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      body.light .footer h3 {
+        color: #333;
+      }
+      
+      body.light .footer p,
+      body.light .footer a {
+        color: #555;
+      }
+      
+      body.light .footer a:hover {
+        color: #667eea;
+      }
+      
+      body.light .social-icons a {
+        color: #555;
+      }
+      
+      body.light .social-icons a:hover {
+        color: #667eea;
+      }
 
-.view-code-section {
-    margin-top: 3rem;
-    text-align: center;
-}
+      /* Utility */
+      .hidden { display: none !important; }
 
-.view-code-btn, .copy-btn {
-    background: linear-gradient(135deg, hsl(270, 100%, 70%), hsl(190, 100%, 60%));
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: transform 0.2s ease;
-    margin-top: 1rem;
-}
+      /* Safari support */
+      .countdown, .code-section, .sandclock-code-section, .rocket-code-section, .navbar, .main-content {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+    </style>
+  </head>
 
-.view-code-btn:hover, .copy-btn:hover {
-    transform: scale(1.05);
-}
-
-.code-container {
-    margin-top: 1.5rem;
-    background: #1e1e2f;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    text-align: left;
-    max-height: 400px;
-    overflow-y: auto;
-    color: #f8f8f2;
-    font-family: monospace;
-    font-size: 0.9rem;
-}
-
-.code-container pre {
-    margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.code-container h3 {
-    margin: 1rem 0 0.5rem;
-    color: #ffcc70;
-    font-size: 1rem;
-    font-weight: 600;
-}
-</style>
-</head>
-<body>
-    <!-- Floating Particles -->
-    <div id="particles-container"></div>
-    
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="content-wrapper">
-            
-            <!-- Hero Section -->
-            <div class="hero-section fade-in-up" style="animation-delay: 0.2s;">
-                <h1 class="hero-title gradient-text">
-                    Something Amazing<br>
-                    Is Coming Soon
-                </h1>
-                
-                <p class="hero-description" style="animation-delay: 0.4s;">
-                    We're crafting an extraordinary experience that will revolutionize 
-                    the way you interact with technology. Get ready for the future.
-                </p>
-            </div>
-
-            <!-- Countdown Timer -->
-            <div class="countdown-section fade-in-up" style="animation-delay: 0.6s;">
-                <h2 class="countdown-title">Launch Countdown</h2>
-                <div class="countdown-timer" id="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-value gradient-text" id="days">00</div>
-                        <div class="countdown-label">DAYS</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value gradient-text" id="hours">00</div>
-                        <div class="countdown-label">HOURS</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value gradient-text" id="minutes">00</div>
-                        <div class="countdown-label">MINUTES</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value gradient-text" id="seconds">00</div>
-                        <div class="countdown-label">SECONDS</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Email Signup -->
-            <div class="signup-section fade-in-up" style="animation-delay: 0.8s;">
-                <h3 class="signup-title">Be the first to know when we launch</h3>
-                <form class="email-form" id="emailForm">
-                    <div class="input-wrapper">
-                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <input type="email" id="email" placeholder="Enter your email" class="email-input">
-                    </div>
-                    <div class="error-message" id="errorMessage">Please enter a valid email address</div>
-                    <button type="submit" class="submit-btn btn-glow" id="submitBtn">
-                        <span id="btnText">Notify Me When We Launch</span>
-                        <svg id="checkIcon" class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-                            <polyline points="20,6 9,17 4,12"></polyline>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Social Media -->
-            <div class="social-section fade-in-up" style="animation-delay: 1.0s;">
-                <p class="social-description">Follow us for updates</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon" aria-label="Twitter">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-             <!-- Footer -->
-            <div class="footer fade-in-up" style="animation-delay: 1.2s;">
-                <p>&copy; 2025 Your Company. All rights reserved.</p>
-            </div>
-<!-- View Code Section -->
-<div class="view-code-section fade-in-up" style="animation-delay: 1.4s;">
-    <button id="viewCodeBtn" class="view-code-btn">View Code</button>
-    
-    <div id="codeContainer" class="code-container" style="display: none;">
-        <h3>index.html</h3>
-        <pre><code id="htmlCode"></code></pre>
-
-        <h3>styles.css</h3>
-        <pre><code id="cssCode"></code></pre>
-
-        <h3>script.js</h3>
-        <pre><code id="jsCode"></code></pre>
-
-        <button id="copyCodeBtn" class="copy-btn">Copy All Code</button>
-    </div>
-</div>
-
-
+  <body class="light">
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+            <span class="site-name">Animate It Now</span>
         </div>
-    </div>
-<script>// Countdown Timer
-function initCountdown() {
-    // Set target date to 30 days from now
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 30);
-    
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate.getTime() - now;
-        
-        if (distance > 0) {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../templates.html">Templates</a></li>
+                <li><a href="../components.html">Components</a></li>
+                <li><a href="../playground.html">Hover-Effects</a></li>
+                <li><a href="../contributors.html">Contributors</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../leaderboard.html">Leaderboard</a></li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow"
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="GitHub Repo"
+                       class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </li>
+        <!-- theme toggle moved next to GitHub icon -->
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="../loginpage.html" class="btn btn-outline">Login</a>
+                <a href="../signup.html" class="btn">Sign Up</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="main-content">
+      <section class="animated-coming-soon">
+        <div class="container">
+          <div class="content-wrapper">
+            <h1 class="animated-title">Animated Coming Soon</h1>
+            <p class="description">Here's the code for creating beautiful animated coming soon pages</p>
+
             
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+          
+            <!-- Sand Clock Animation Subsection -->
+            <div class="sandclock-section">
+              <h2 class="section-title">Rotating Sand Clock Animation</h2>
+              <p class="section-description">A beautiful CSS-only rotating hourglass animation</p>
+              
+              <div class="animation-demo">
+                <div class="load" id="loadmodalbox">
+                  <div class="load-modal-box">
+                    <div class="sandtimer-icon">⏳</div>
+                    <h2 class="loading-text">Coming Soon...<br>Try something else in the meantime</h2>
+                  </div>
+                </div>
+              </div>
+              
+              <button class="show-code-btn" id="showSandclockCode">
+                <i class="fas fa-code"></i> Show Sand Clock Code
+              </button>
+              
+              <!-- Hidden Code Section -->
+              <div class="sandclock-code-section hidden" id="sandclockCodeSection">
+                <div class="code-tabs-mini">
+                  <button class="tab-btn-mini active" data-tab="sandclock-html">HTML</button>
+                  <button class="tab-btn-mini" data-tab="sandclock-css">CSS</button>
+                </div>
+                
+                <div class="code-content-mini">
+                  <!-- HTML Tab -->
+                  <div class="tab-pane-mini active" id="sandclock-html-tab">
+                    <div class="code-header">
+                      <span class="code-title">HTML Structure</span>
+                      <button class="copy-btn" data-code="sandclock-html">
+                        <i class="fas fa-copy"></i> Copy
+                      </button>
+                    </div>
+                    <pre><code class="language-html">&lt;div class="load" id="loadmodalbox"&gt;
+  &lt;div class="load-modal-box"&gt;
+    &lt;div class="sandtimer-icon"&gt;⏳&lt;/div&gt;
+    &lt;h2 class="loading-text"&gt;Coming Soon...&lt;br&gt;Try something else in the meantime&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                  
+                  <!-- CSS Tab -->
+                  <div class="tab-pane-mini" id="sandclock-css-tab">
+                    <div class="code-header">
+                      <span class="code-title">CSS Animation</span>
+                      <button class="copy-btn" data-code="sandclock-css">
+                        <i class="fas fa-copy"></i> Copy
+                      </button>
+                    </div>
+                    <pre><code class="language-css">.load-modal-box {
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 300px;
+  background: -webkit-linear-gradient(top, #f1f1f1 65%, #f1f1f1 65%);
+  background: linear-gradient(to bottom, #f1f1f1 65%, #f1f1f1 65%);
+  z-index: 3;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.load {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sandtimer-icon {
+  font-size: 5rem;
+  position: absolute;
+  top: 80px;
+  animation: rotateHourglass 2s infinite ease-in-out;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.loading-text {
+  text-align: center;
+  color: #6f7475;
+  position: absolute;
+  top: 200px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes rotateHourglass {
+  0% { 
+    transform: rotate(0deg); 
+    opacity: 1; 
+  }
+  25% { 
+    transform: rotate(0deg); 
+    opacity: 0.8; 
+  }
+  50% { 
+    transform: rotate(180deg); 
+    opacity: 1; 
+  }
+  75% { 
+    transform: rotate(180deg); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: rotate(360deg); 
+    opacity: 1; 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(0.98); 
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .load-modal-box {
+    width: 300px;
+    height: 250px;
+  }
+  
+  .sandtimer-icon {
+    font-size: 4rem;
+    top: 60px;
+  }
+  
+  .loading-text {
+    top: 160px;
+    font-size: 1rem;
+  }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rocket Moon Section -->
+      <section class="rocket-moon-section">
+        <div class="container">
+          <div class="rocket-container">
+            <div class="rocket-side">
+              <div class="moon-surface">
+                <div class="moon-crater crater-1"></div>
+                <div class="moon-crater crater-2"></div>
+                <div class="moon-crater crater-3"></div>
+              </div>
+              <div class="rocket">
+                <div class="rocket-body">
+                  <div class="rocket-top"></div>
+                  <div class="rocket-middle"></div>
+                  <div class="rocket-bottom"></div>
+                  <div class="rocket-flame"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-side">
+              <h2 class="rocket-title">Coming Soon</h2>
+              <h3 class="rocket-subtitle">Stay Tuned</h3>
+              <p class="rocket-description">Get ready for an amazing journey through space and time with our revolutionary animations!</p>
+              <div class="stars">
+                <div class="star star-1">⭐</div>
+                <div class="star star-2">⭐</div>
+                <div class="star star-3">⭐</div>
+                <div class="star star-4">⭐</div>
+                <div class="star star-5">⭐</div>
+              </div>
+            </div>
+          </div>
+          
+          <button class="show-code-btn" id="showRocketCode">
+            <i class="fas fa-code"></i> Show Rocket Code
+          </button>
+          
+          <!-- Hidden Code Section -->
+          <div class="rocket-code-section hidden" id="rocketCodeSection">
+            <div class="code-tabs-mini">
+              <button class="tab-btn-mini active" data-tab="rocket-html">HTML</button>
+              <button class="tab-btn-mini" data-tab="rocket-css">CSS</button>
+            </div>
+            
+            <div class="code-content-mini">
+              <!-- HTML Tab -->
+              <div class="tab-pane-mini active" id="rocket-html-tab">
+                <div class="code-header">
+                  <span class="code-title">HTML Structure</span>
+                  <button class="copy-btn" data-code="rocket-html">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                <pre><code class="language-html">&lt;section class="rocket-moon-section"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="rocket-container"&gt;
+      &lt;div class="rocket-side"&gt;
+        &lt;div class="moon-surface"&gt;
+          &lt;div class="moon-crater crater-1"&gt;&lt;/div&gt;
+          &lt;div class="moon-crater crater-2"&gt;&lt;/div&gt;
+          &lt;div class="moon-crater crater-3"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="rocket"&gt;
+          &lt;div class="rocket-body"&gt;
+            &lt;div class="rocket-top"&gt;&lt;/div&gt;
+            &lt;div class="rocket-middle"&gt;&lt;/div&gt;
+            &lt;div class="rocket-bottom"&gt;&lt;/div&gt;
+            &lt;div class="rocket-flame"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="text-side"&gt;
+        &lt;h2 class="rocket-title"&gt;Coming Soon&lt;/h2&gt;
+        &lt;h3 class="rocket-subtitle"&gt;Stay Tuned&lt;/h3&gt;
+        &lt;p class="rocket-description"&gt;Get ready for an amazing journey!&lt;/p&gt;
+        &lt;div class="stars"&gt;
+          &lt;div class="star star-1"&gt;⭐&lt;/div&gt;
+          &lt;div class="star star-2"&gt;⭐&lt;/div&gt;
+          &lt;div class="star star-3"&gt;⭐&lt;/div&gt;
+          &lt;div class="star star-4"&gt;⭐&lt;/div&gt;
+          &lt;div class="star star-5"&gt;⭐&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              
+              <!-- CSS Tab -->
+              <div class="tab-pane-mini" id="rocket-css-tab">
+                <div class="code-header">
+                  <span class="code-title">CSS Animation</span>
+                  <button class="copy-btn" data-code="rocket-css">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+                <pre><code class="language-css">.rocket-moon-section {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.rocket-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 400px;
+}
+
+.moon-surface {
+  width: 200px;
+  height: 100px;
+  background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%);
+  border-radius: 100px 100px 0 0;
+  position: relative;
+  box-shadow: 0 -5px 20px rgba(192, 192, 192, 0.3);
+}
+
+.rocket {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rocketHover 3s ease-in-out infinite;
+}
+
+.rocket-top {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.rocket-flame {
+  width: 20px;
+  height: 30px;
+  background: linear-gradient(180deg, #ff6600 0%, #ff0000 50%, #ffff00 100%);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0 0 50% 50%;
+  animation: flameFlicker 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes rocketHover {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes flameFlicker {
+  0% { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  100% { transform: translateX(-50%) scaleY(0.8); opacity: 0.8; }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="../images/logo.png" alt="Website Logo" />
+                        <span>AnimateItNow</span>
+                    </div>
+                    <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                </div>
+                
+                <div class="footer-social">
+                    <div class="newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Get the latest templates and updates directly to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                             <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                    <br>
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      // Theme toggle functionality
+      function setupThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference, default to light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        // Apply theme classes/attributes without wiping other classes
+        document.body.classList.toggle('dark', savedTheme === 'dark');
+        document.body.classList.toggle('light', savedTheme !== 'dark');
+        // Also add class used by navbar stylesheet to switch CSS variables
+        document.body.classList.toggle('dark-theme', savedTheme === 'dark');
+        // And set data-theme for broader compatibility with variable scopes
+        document.documentElement.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : 'light');
+        // Set initial icon based on theme
+        themeIcon.classList.toggle('fa-sun', savedTheme === 'dark');
+        themeIcon.classList.toggle('fa-moon', savedTheme !== 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+          const isDark = document.body.classList.contains('dark');
+          const next = isDark ? 'light' : 'dark';
+          document.body.classList.toggle('dark', next === 'dark');
+          document.body.classList.toggle('light', next !== 'dark');
+          document.body.classList.toggle('dark-theme', next === 'dark');
+          document.documentElement.setAttribute('data-theme', next === 'dark' ? 'dark' : 'light');
+          themeIcon.classList.toggle('fa-sun', next === 'dark');
+          themeIcon.classList.toggle('fa-moon', next !== 'dark');
+          localStorage.setItem('theme', next);
+        });
+      }
+
+      // Mobile menu functionality
+      function setupMobileMenu() {
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          hamburger.classList.toggle('active');
+        });
+      }
+
+      // Newsletter form
+      function setupNewsletter() {
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+          newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert('Thank you for subscribing! We\'ll keep you updated.');
+            e.target.querySelector('input[type="email"]').value = '';
+          });
         }
-    }
-    
-    // Update immediately and then every second
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-}
+      }
 
-// Floating Particles
-function initParticles() {
-    const container = document.getElementById('particles-container');
-    const particleCount = 15;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
+      // Tab functionality
+      function setupTabs() {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
         
-        const size = Math.random() * 8 + 4; // 4-12px
-        const x = Math.random() * 100; // 0-100%
-        const y = Math.random() * 100; // 0-100%
-        const delay = Math.random() * 6; // 0-6s delay
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // Remove active class from all tabs and panes
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            btn.classList.add('active');
+            
+            // Show corresponding tab pane
+            const tabId = btn.dataset.tab + '-tab';
+            document.getElementById(tabId).classList.add('active');
+          });
+        });
+      }
+      
+      // Copy code functionality
+      function setupCopyButtons() {
+        const copyBtns = document.querySelectorAll('.copy-btn');
         
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${x}%`;
-        particle.style.top = `${y}%`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        container.appendChild(particle);
-    }
-}
-
-// Email Form Validation
-function initEmailForm() {
-    const form = document.getElementById('emailForm');
-    const emailInput = document.getElementById('email');
-    const errorMessage = document.getElementById('errorMessage');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const checkIcon = document.getElementById('checkIcon');
-    
-    let isSubmitted = false;
-    
-    function validateEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
-    
-    function showError() {
-        emailInput.classList.add('error');
-        errorMessage.classList.add('show');
-    }
-    
-    function hideError() {
-        emailInput.classList.remove('error');
-        errorMessage.classList.remove('show');
-    }
-    
-    function showSuccess() {
-        isSubmitted = true;
-        submitBtn.classList.add('success');
-        submitBtn.disabled = true;
-        btnText.textContent = "You're on the list!";
-        checkIcon.style.display = 'block';
-        emailInput.disabled = true;
-    }
-    
-    // Handle input changes
-    emailInput.addEventListener('input', function() {
-        if (isSubmitted) return;
-        hideError();
-    });
-    
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (isSubmitted) return;
-        
-        const email = emailInput.value.trim();
-        
-        if (validateEmail(email)) {
-            hideError();
-            showSuccess();
-            // In a real application, you would send the email to your backend
-            console.log('Email submitted:', email);
-        } else {
-            showError();
-        }
-    });
-}
-
-// Intersection Observer for animations
-function initAnimations() {
-    const elements = document.querySelectorAll('.fade-in-up');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
+        copyBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const codeType = btn.dataset.code;
+            let codeContent = '';
+            
+            if (codeType === 'html') {
+              codeContent = document.querySelector('#html-tab code').textContent;
+            } else if (codeType === 'css') {
+              codeContent = document.querySelector('#css-tab code').textContent;
+            } else if (codeType === 'js') {
+              codeContent = document.querySelector('#js-tab code').textContent;
+            } else if (codeType === 'sandclock-html') {
+              codeContent = document.querySelector('#sandclock-html-tab code').textContent;
+            } else if (codeType === 'sandclock-css') {
+              codeContent = document.querySelector('#sandclock-css-tab code').textContent;
+            } else if (codeType === 'rocket-html') {
+              codeContent = document.querySelector('#rocket-html-tab code').textContent;
+            } else if (codeType === 'rocket-css') {
+              codeContent = document.querySelector('#rocket-css-tab code').textContent;
             }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    elements.forEach(element => {
-        observer.observe(element);
-    });
-}
-
-// Social Media Links (you can customize these URLs)
-function initSocialLinks() {
-    const socialLinks = document.querySelectorAll('.social-icon');
-    const urls = {
-        0: 'https://twitter.com', // Twitter
-        1: 'https://instagram.com', // Instagram  
-        2: 'https://facebook.com', // Facebook
-        3: 'https://linkedin.com', // LinkedIn
-        4: 'https://github.com' // GitHub
-    };
-    
-    socialLinks.forEach((link, index) => {
-        if (urls[index]) {
-            link.href = urls[index];
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-        }
-    });
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initCountdown();
-    initParticles();
-    initEmailForm();
-    initAnimations();
-    initSocialLinks();
-    
-    // Add a small delay for the initial animation
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-// Add smooth scroll behavior
-document.documentElement.style.scrollBehavior = 'smooth';
-
-// Handle window resize for responsive particles
-window.addEventListener('resize', function() {
-    // Regenerate particles on significant resize
-    const container = document.getElementById('particles-container');
-    if (container) {
-        container.innerHTML = '';
-        initParticles();
-    }
-});
-
-// View Code toggle + Copy functionality
-function initViewCode() {
-    const viewBtn = document.getElementById("viewCodeBtn");
-    const codeContainer = document.getElementById("codeContainer");
-    const copyBtn = document.getElementById("copyCodeBtn");
-    const htmlCode = document.getElementById("htmlCode");
-    const cssCode = document.getElementById("cssCode");
-    const jsCode = document.getElementById("jsCode");
-
-    // Load actual files dynamically
-    fetch("index.html")
-        .then(res => res.text())
-        .then(data => {
-            htmlCode.textContent = data;
-        });
-
-    fetch("styles.css")
-        .then(res => res.text())
-        .then(data => {
-            cssCode.textContent = data;
-        });
-
-    fetch("script.js")
-        .then(res => res.text())
-        .then(data => {
-            jsCode.textContent = data;
-        });
-
-    viewBtn.addEventListener("click", () => {
-        codeContainer.style.display =
-            codeContainer.style.display === "none" ? "block" : "none";
-        viewBtn.textContent =
-            codeContainer.style.display === "none" ? "View Code" : "Hide Code";
-    });
-
-    copyBtn.addEventListener("click", () => {
-        const allCode = htmlCode.textContent + "\n\n/* styles.css */\n" + cssCode.textContent + "\n\n// script.js\n" + jsCode.textContent;
-        navigator.clipboard.writeText(allCode)
-            .then(() => {
-                copyBtn.textContent = "Copied!";
-                setTimeout(() => copyBtn.textContent = "Copy All Code", 2000);
+            
+            navigator.clipboard.writeText(codeContent).then(() => {
+              const originalText = btn.innerHTML;
+              btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+              btn.classList.add('copied');
+              
+              setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied');
+              }, 2000);
+            }).catch(() => {
+              alert('Failed to copy code. Please select and copy manually.');
             });
-    });
-}
+          });
+        });
+      }
+      
+      // Sand clock code section functionality
+      function setupSandclockCode() {
+        const showBtn = document.getElementById('showSandclockCode');
+        const codeSection = document.getElementById('sandclockCodeSection');
+        const tabBtns = document.querySelectorAll('.tab-btn-mini');
+        const tabPanes = document.querySelectorAll('.tab-pane-mini');
+        
+        // Show/hide code section
+        showBtn.addEventListener('click', () => {
+          codeSection.classList.toggle('hidden');
+          showBtn.innerHTML = codeSection.classList.contains('hidden')
+            ? '<i class="fas fa-code"></i> Show Sand Clock Code'
+            : '<i class="fas fa-eye-slash"></i> Hide Sand Clock Code';
+        });
+        
+        // Mini tabs functionality
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // Remove active class from all mini tabs and panes
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            btn.classList.add('active');
+            
+            // Show corresponding tab pane
+            const tabId = btn.dataset.tab + '-tab';
+            document.getElementById(tabId).classList.add('active');
+          });
+        });
+      }
+      
+      // Rocket code section functionality
+      function setupRocketCode() {
+        const showBtn = document.getElementById('showRocketCode');
+        const codeSection = document.getElementById('rocketCodeSection');
+        const tabs = codeSection.querySelectorAll('.tab-btn-mini');
+        const panes = codeSection.querySelectorAll('.tab-pane-mini');
+        
+        showBtn.addEventListener('click', () => {
+          codeSection.classList.toggle('hidden');
+          showBtn.innerHTML = codeSection.classList.contains('hidden')
+            ? '<i class="fas fa-code"></i> Show Rocket Code'
+            : '<i class="fas fa-eye-slash"></i> Hide Rocket Code';
+        });
+        
+        // Tab functionality for rocket section
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            const targetId = tab.dataset.tab + '-tab';
+            const target = document.getElementById(targetId);
+            if (target) target.classList.add('active');
+          });
+        });
+      }
 
-// Call inside DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    initCountdown();
-    initParticles();
-    initEmailForm();
-    initAnimations();
-    initSocialLinks();
-    initViewCode(); // ✅ added
+      // Countdown logic
+      function setupCountdown() {
+        const wrapper = document.querySelector('.countdown-wrapper');
+        let target;
+        if (wrapper && wrapper.dataset.launchDate) {
+          const parsed = new Date(wrapper.dataset.launchDate);
+          target = isNaN(parsed.getTime()) ? null : parsed;
+        }
+        if (!target) {
+          target = new Date();
+          // Default target ~30 days from now if not provided
+          target.setDate(target.getDate() + 30);
+        }
 
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-</script>
-</body>
+        const elDays = document.getElementById('cd-days');
+        const elHours = document.getElementById('cd-hours');
+        const elMinutes = document.getElementById('cd-minutes');
+        const elSeconds = document.getElementById('cd-seconds');
+        const live = document.getElementById('cd-live');
+
+        function pad(n) { return n.toString().padStart(2, '0'); }
+
+        function tick() {
+          const now = new Date();
+          const diff = target.getTime() - now.getTime();
+          if (diff <= 0) {
+            elDays.textContent = '00';
+            elHours.textContent = '00';
+            elMinutes.textContent = '00';
+            elSeconds.textContent = '00';
+            if (live) live.textContent = 'Launched!';
+            clearInterval(timer);
+            return;
+          }
+          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const m = Math.floor((diff / (1000 * 60)) % 60);
+          const s = Math.floor((diff / 1000) % 60);
+          elDays.textContent = pad(d);
+          elHours.textContent = pad(h);
+          elMinutes.textContent = pad(m);
+          elSeconds.textContent = pad(s);
+          if (live && s % 5 === 0) {
+            live.textContent = `${d} days, ${h} hours, ${m} minutes, ${s} seconds remaining`;
+          }
+        }
+
+        tick();
+        const timer = setInterval(tick, 1000);
+      }
+      
+      // Initialize everything
+      document.addEventListener('DOMContentLoaded', () => {
+        setupThemeToggle();
+        setupMobileMenu();
+        setupNewsletter();
+        setupTabs();
+        setupCopyButtons();
+        setupSandclockCode();
+        setupRocketCode();
+        setupCountdown();
+      });
+    </script>
+  </body>
 </html>
