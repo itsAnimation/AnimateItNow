@@ -1,6 +1,8 @@
 /* Component Documentation System Styles */
 
-/* CSS Variables for theming */
+
+/* 🎨 CSS Variables for theming */
+
 :root {
     /* Light theme colors */
     --primary-color: #ff6b6b;
@@ -17,9 +19,14 @@
     --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15);
     --gradient-primary: linear-gradient(135deg, #ff6b6b, #feca57);
     --gradient-secondary: linear-gradient(135deg, #4ecdc4, #45b7d1);
+    
+    /* 🆕 Additional theme variables for enhanced customization */
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --spacing-unit: 1rem;
 }
 
-/* Dark theme colors */
+/* 🌙 Dark theme colors */
 .dark {
     --background-color: #0f172a;
     --surface-color: #1e293b;
@@ -32,7 +39,7 @@
     --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Base styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -44,10 +51,10 @@ body {
     background-color: var(--background-color);
     color: var(--text-primary);
     line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* Navigation styles (inherit from main styles.css) */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -63,6 +70,7 @@ body {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all var(--transition-speed) ease;
 }
 
 .menu-toggle {
@@ -110,7 +118,7 @@ body {
     will-change: transform;
     display: inline-block;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     cursor: pointer;
 }
 
@@ -165,7 +173,7 @@ body {
     color: transparent;
     -webkit-text-fill-color: transparent;
     transform: translateY(-2px);
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
 }
 
@@ -200,7 +208,7 @@ body {
     border-radius: 4px;
 }
 
-/* Dropdown styles */
+/* 📂 Dropdown styles */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -255,7 +263,7 @@ body {
     transform: translateY(0);
 }
 
-/* Desktop and mobile navigation */
+/* 🖥️ Desktop and mobile navigation */
 .desktop-nav {
     display: flex;
     justify-content: center;
@@ -267,14 +275,14 @@ body {
     display: none;
 }
 
-/* Theme toggle */
+/* 🌗 Theme toggle */
 #theme-toggle {
     background: transparent;
     border: none;
     color: #fff;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -286,7 +294,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Main content */
+
 .main-content {
     min-height: calc(100vh - 80px);
     padding: 2rem;
@@ -294,7 +302,7 @@ body {
     margin: 0 auto;
 }
 
-/* Header section */
+/* 📋 Header section */
 .docs-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -327,7 +335,7 @@ body {
     margin: 0 auto;
 }
 
-/* Search and filter section */
+/* 🔍 Search and filter section */
 .search-filter-section {
     background: var(--surface-color);
     border-radius: 1rem;
@@ -364,7 +372,7 @@ body {
     background: var(--background-color);
     color: var(--text-primary);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 #searchInput:focus {
@@ -384,14 +392,14 @@ body {
     cursor: pointer;
     padding: 0.25rem;
     border-radius: 0.25rem;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .clear-btn:hover {
     color: var(--text-primary);
 }
 
-/* Filter container */
+/* 🧰 Filter container */
 .filter-container {
     display: flex;
     flex-wrap: wrap;
@@ -426,7 +434,7 @@ body {
     color: var(--text-secondary);
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     font-size: 0.875rem;
     font-weight: 500;
 }
@@ -442,7 +450,7 @@ body {
     color: white;
 }
 
-/* View toggle */
+/* 🖼️ View toggle */
 .view-toggle {
     display: flex;
     gap: 0.25rem;
@@ -459,7 +467,7 @@ body {
     color: var(--text-muted);
     border-radius: 0.25rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     width: 40px;
     height: 40px;
     display: flex;
@@ -476,7 +484,7 @@ body {
     color: white;
 }
 
-/* Components section */
+/* 🧩 Components section */
 .components-section {
     margin-bottom: 3rem;
 }
@@ -485,21 +493,21 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .components-grid.list-view {
     grid-template-columns: 1fr;
 }
 
-/* Component card */
+/* 🃏 Component card */
 .component-card {
     background: var(--surface-color);
     border-radius: 1rem;
     padding: 1.5rem;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-light);
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -514,7 +522,7 @@ body {
     height: 4px;
     background: var(--gradient-primary);
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .component-card:hover {
@@ -610,7 +618,7 @@ body {
     color: white;
 }
 
-/* No results */
+/* 🚫 No results */
 .no-results {
     text-align: center;
     padding: 4rem 2rem;
@@ -629,7 +637,7 @@ body {
     color: var(--text-secondary);
 }
 
-/* Modal styles */
+/* 🪟 Modal styles */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -644,7 +652,7 @@ body {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .modal-overlay.active {
@@ -662,7 +670,7 @@ body {
     box-shadow: var(--shadow-heavy);
     border: 1px solid var(--border-color);
     transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .modal-overlay.active .modal-content {
@@ -686,7 +694,7 @@ body {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .modal-close:hover {
@@ -699,7 +707,7 @@ body {
     max-height: calc(90vh - 80px);
 }
 
-/* Modal tabs */
+/* 📑 Modal tabs */
 .modal-tabs {
     display: flex;
     background: var(--background-color);
@@ -713,7 +721,7 @@ body {
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     font-weight: 500;
     border-bottom: 3px solid transparent;
 }
@@ -729,7 +737,7 @@ body {
     background: var(--surface-color);
 }
 
-/* Tab content */
+/* 📄 Tab content */
 .tab-content {
     padding: 2rem;
 }
@@ -742,7 +750,7 @@ body {
     display: block;
 }
 
-/* Component preview */
+/* 🖼️ Component preview */
 .component-preview {
     background: var(--background-color);
     border: 1px solid var(--border-color);
@@ -752,7 +760,7 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Code sections */
+/* 💻 Code sections */
 .code-section {
     margin-bottom: 1.5rem;
     border-radius: 0.5rem;
@@ -784,7 +792,7 @@ body {
     border-radius: 0.25rem;
     cursor: pointer;
     font-size: 0.75rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -803,7 +811,7 @@ body {
     content: ' ✓';
 }
 
-/* Code blocks */
+/* 💻 Code blocks */
 pre {
     margin: 0;
     background: #1a202c !important;
@@ -816,7 +824,7 @@ code {
     line-height: 1.5;
 }
 
-/* Usage and customization content */
+/* 📖 Usage and customization content */
 .usage-content,
 .customization-content {
     line-height: 1.8;
@@ -852,7 +860,7 @@ code {
     margin-bottom: 0.5rem;
 }
 
-/* Footer */
+/* 🦶 Footer */
 .footer {
     background: var(--surface-color);
     border-top: 1px solid var(--border-color);
@@ -887,14 +895,14 @@ code {
 .social-links a {
     color: var(--text-muted);
     font-size: 1.5rem;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
 }
 
-/* Mobile navigation styles */
+
 @media (max-width: 1275px) {
     .desktop-nav {
         display: none;
@@ -999,7 +1007,10 @@ code {
     }
 }
 
-/* Responsive design */
+/* ========================================
+   Responsive design
+   ======================================== */
+
 @media (max-width: 768px) {
     .main-content {
         padding: 1rem;
@@ -1055,7 +1066,7 @@ code {
     }
 }
 
-/* Animation utilities */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -1071,7 +1082,7 @@ code {
     animation: fadeIn 0.6s ease-out;
 }
 
-/* Loading states */
+/* ⏳ Loading states */
 .loading {
     opacity: 0.6;
     pointer-events: none;

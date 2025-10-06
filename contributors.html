@@ -17,7 +17,323 @@
     <link rel="stylesheet" href="styles.css" />
 
     <style>
-      /* Contributors Page Specific Styles */
+
+      /* 🎨 CSS Variables for Theming */
+      :root {
+        --primary: #6c63ff;
+        --primary-light: #8a84ff;
+        --primary-dark: #554fd8;
+        --secondary: #ff6584;
+        --accent: #36d1dc;
+        --text: #2a2a3c;
+        --text-light: #6c757d;
+        --bg: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-tertiary: #e9ecef;
+        --border: #dee2e6;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --radius: 12px;
+        --transition: all 0.3s ease;
+        --header-height: 80px;
+        --card-shadow: rgba(0, 0, 0, 0.1);
+        --nav-bg: rgba(255, 255, 255, 0.95);
+        
+        /* 🆕 Additional theme variables for enhanced customization */
+        --transition-speed: 0.3s;
+        --border-radius: 12px;
+        --spacing-unit: 1rem;
+      }
+
+      /* 🌙 Dark Mode Variables */
+      .dark-theme {
+        --primary: #8a84ff;
+        --primary-light: #a8a4ff;
+        --primary-dark: #6c63ff;
+        --secondary: #ff8fa3;
+        --accent: #4dd0e1;
+        --text: #f8f9fa;
+        --text-light: #a0a0a0;
+        --bg: #121212;
+        --bg-secondary: #1e1e1e;
+        --bg-tertiary: #2a2a2a;
+        --border: #404040;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --card-shadow: rgba(0, 0, 0, 0.3);
+        --nav-bg: rgba(30, 30, 30, 0.95);
+      }
+
+      /* 🏗️ Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--bg);
+        transition: var(--transition);
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: var(--transition);
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+      }
+
+      /* 🧭 Header/Navigation */
+      .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  padding:1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px var(--card-shadow);
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+
+      /* .nav-left {
+      display: flex;
+      align-items: center;
+    } */
+    .home-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+ 
+  height: 40px;
+  width: auto;
+}
+
+.site-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+/* Update Styling */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav-links li {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  padding: 5px 0;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+      /* Snake cursor toggle */
+      
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+     background-color: #ccc;
+        transition: var(--transition);
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: var(--transition);
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: var(--primary);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+     
+
+      .github-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .github-icon:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      #theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      #theme-toggle:hover {
+        background-color: var(--bg-tertiary);
+      }
+
+      /* Contributors Page Styles */
+
       .contributors-main {
         padding-top: var(--header-height);
         min-height: 100vh;
@@ -348,10 +664,12 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./navbar_styles.css">
   </head>
 
   <body>
     <!-- Navigation -->
+
     <nav class="navbar scroll-fade">
       
         <div class="nav-left">
@@ -359,69 +677,67 @@
             <img src="images/logo.png" alt="Website Logo" class="logo" />
             <span class="site-name">Animate It Now</span>
           </a>
+
         </div>
 
         <div class="nav-right">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="templates.html">Templates</a></li>
-            <li><a href="components.html">Components</a></li>
-            <li><a href="editor.html">Editor</a></li>
-            <li><a href="playground.html">Hover-Effects</a></li>
-            <li><a href="contributors.html" class="active">Contributors</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-            <!-- cursor toggle switch -->
-            <li class="snakeList">
-              <label class="switch" title="Toggle Snake Cursor">
-                <input type="checkbox" id="cursorToggle" />
-                <span class="slider round"></span>
-              </label>
-              <span class="snakeLabel"></span>
-            </li>
-            <!-- github icon -->
-            <li>
-              <a
-                href="https://github.com/itsAnimation/AnimateItNow"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Repo"
-                class="github-icon"
-              >
-                <svg
-                  viewBox="0 0 16 16"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                  7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                  -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                  -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
-                  />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <button id="theme-toggle" aria-label="Toggle Theme">
-                <i class="fas fa-moon"></i>
-              </button>
-            </li>
-          </ul>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><a href="playground.html">Hover-Effects</a></li>
+                <li><a href="contributors.html" class="active" style="white-space: nowrap">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <!-- cursor toggle switch -->
+                <li class="snakeList">
+                    <label class="switch" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="snakeLabel">Snake Cursor</span>
+                </li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow"
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="GitHub Repo"
+                       class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="loginpage.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn">Sign Up</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-      
     </nav>
+
 
     <!-- Contributors Main Content -->
     <main class="contributors-main">

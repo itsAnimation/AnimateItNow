@@ -7,17 +7,262 @@
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
   
-  <!-- Apple Touch Icons -->
-  <!-- Fallback icon -->
+  <!-- 🍎 Apple Touch Icons -->
+  <!-- 🆘 Fallback icon -->
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   
-  <!-- Add animation library -->
+  <!-- 🎬 Add animation library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   
   <style>
-    /* About Page Specific Styles */
+
+    /* 🎨 CSS Variables for Theming */
+    :root {
+      --primary: #6c63ff;
+      --primary-light: #8a84ff;
+      --primary-dark: #554fd8;
+      --secondary: #ff6584;
+      --accent: #36d1dc;
+      --text: #2a2a3c;
+      --text-light: #6c757d;
+      --bg: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-tertiary: #e9ecef;
+      --border: #dee2e6;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+      --header-height: 80px;
+      
+      /* 🆕 Additional theme variables for enhanced customization */
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --spacing-unit: 1rem;
+    }
+
+    /* 🌙 Dark Mode Variables */
+    .dark-theme {
+      --primary: #8a84ff;
+      --primary-light: #a8a4ff;
+      --primary-dark: #6c63ff;
+      --secondary: #ff8fa3;
+      --accent: #4dd0e1;
+      --text: #f8f9fa;
+      --text-light: #a0a0a0;
+      --bg: #121212;
+      --bg-secondary: #1e1e1e;
+      --bg-tertiary: #2a2a2a;
+      --border: #404040;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 🏗️ Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: var(--transition);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      background-color: #e05574;
+      box-shadow: 0 10px 20px rgba(255, 101, 132, 0.3);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* 🧭 Header/Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: var(--bg);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .dark-theme .navbar {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar.scrolled {
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .dark-theme .navbar.scrolled {
+      background-color: rgba(18, 18, 18, 0.95);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .site-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+
+    /* About Page Styles */
+
     .about-main {
       padding-top: var(--header-height);
       min-height: 100vh;
@@ -231,9 +476,11 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 
 <body>
+
   <nav class="navbar scroll-fade">
     <div class="nav-left">
       <a href="index.html" class="home-link">
@@ -299,6 +546,7 @@
           <h1 class="about-title">About <span>AnimateItNow</span></h1>
           <p class="about-subtitle">
             Creating impactful web animations and templates for everyone.
+
           </p>
         </div>
       </section>
