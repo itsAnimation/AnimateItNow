@@ -65,7 +65,7 @@
             font-family: 'Inter', 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background-color: var(--bg);
+            background-color: transparent;
             transition: var(--transition);
             overflow-x: hidden;
         }
@@ -279,22 +279,40 @@
             font-weight: 500;
             position: relative;
             padding: 5px 0;
+            transition: all 0.3s ease-in-out; 
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
+            width: 100%;
+            height: 3px;
+            bottom: -5px;
             left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            transform: scaleX(0); /* Line starts hidden (zero width) */
+            transform-origin: left; /* Animation grows from the left */
+            transition: transform 0.3s ease-in-out;
+            border-radius: 2px;
+            
+        }
+
+        /* NEW CODE TO ADD */
+        .nav-links a:hover {
+        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6); 
+        background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
-            width: 100%;
+             transform: scaleX(1);
         }
 
         .nav-actions {
@@ -347,7 +365,7 @@
         .hero {
             padding: 180px 0 120px;
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
+            /* background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); */
             position: relative;
             overflow: hidden;
         }
@@ -1294,7 +1312,7 @@
             section {
                 padding: 60px 0;
             }
-            
+           
             .hero {
                 padding: 150px 0 80px;
             }
@@ -1370,6 +1388,100 @@
                 font-size: 1rem;
             }
         }
+<<<<<<< HEAD
+
+         
+            /* Fluid Background Styles */
+        .fluid-background-wrapper {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             pointer-events: none; 
+             overflow: hidden;
+             z-index: -1; 
+             background-color: var(--bg);
+        }
+
+        .fluid-blob {
+           position: absolute;
+           border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
+           filter: blur(70px); /* Heavy blur for softness */
+           opacity: 0.4; 
+           transition: all 0.5s ease;
+           animation: blob-move 20s infinite alternate ease-in-out;
+           will-change: transform, opacity; /* Optimizes performance */
+        }
+
+        /* Animation Keyframes */
+        @keyframes blob-move {
+           0%, 100% {
+           transform: translate(0, 0) scale(1);
+          }
+          33% {
+           transform: translate(25vw, -15vh) scale(1.1);
+          }
+          66% {
+           transform: translate(-10vw, 10vh) scale(0.95);
+          }
+        }  
+
+        /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
+       @keyframes pulse {
+          0% { transform: scale(1); opacity: 0.8; }
+          50% { transform: scale(1.02); opacity: 1; }
+          100% { transform: scale(1); opacity: 0.8; }
+        }
+
+       /* Positioning and Initial Colors */
+       .blob-1 {
+          width: 350px; height: 350px;
+          top: 10%; left: 5%;
+          background: var(--primary); /* Deep Purple */
+          animation-duration: 24s;
+          animation-delay: -5s;
+        }
+
+       .blob-2 {
+           width: 250px; height: 250px;
+           bottom: 15%; right: 10%;
+           background: var(--secondary); /* Pink */
+           animation-duration: 20s;
+           animation-delay: -10s;
+        }
+
+       .blob-3 {
+          width: 450px; height: 450px;
+          top: 50%; left: 40%;
+          background: var(--accent); /* Cyan */
+          animation-duration: 22s;
+          animation-delay: -15s;
+       }
+
+       .blob-4 {
+          width: 180px; height: 180px;
+          bottom: 5%; left: 60%;
+          background: var(--primary-light); /* Lighter Purple */
+          animation-duration: 28s;
+          animation-delay: -8s;
+        }
+
+        /* ADD THIS NEW BLOCK: Mobile Optimization */
+       @media (max-width: 768px) {
+       .fluid-blob {
+           transform: scale(0.6); 
+          opacity: 0.3; 
+          filter: blur(60px); 
+        }
+    
+       /* Ensure only one or two large blobs are prominent */
+       .blob-3 {
+          display: none; /* Hide the largest blob on mobile */
+       }
+    }
+
+=======
         /* --- Subscription Form Enhancement (#1445) --- */
 
         /* Overrides the squished form style for the new structure */
@@ -1464,12 +1576,23 @@
                 transform: none; /* Reset button hover scale */
             }
         }
+>>>>>>> upstream/main
     </style>
     <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 
 <body data-theme="light">
+<<<<<<< HEAD
+    <div class="fluid-background-wrapper">
+        <div class="fluid-blob blob-1"></div>
+        <div class="fluid-blob blob-2"></div>
+        <div class="fluid-blob blob-3"></div>
+        <div class="fluid-blob blob-4"></div> 
+    </div>
+    <!-- Progress Bar -->
+=======
     <!-- ⏳ Progress Bar -->
+>>>>>>> upstream/main
     <div id="progress-bar"></div>
 
 
