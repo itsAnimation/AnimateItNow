@@ -1,10 +1,12 @@
 // Component Documentation System JavaScript
 
-// 🎯 Enhanced Component Documentation System with Improved Performance and UX
-// This system provides interactive documentation for CSS components with live previews,
-// code snippets, and customization options.
 
-class ComponentDocumentation { 
+
+class ComponentDocumentation {
+    /**
+     * Initialize the component documentation system
+     */
+
     constructor() {
         // 📦 Component data storage
         this.components = [];
@@ -24,14 +26,49 @@ class ComponentDocumentation {
         this.init();
     }
 
-    // 🔄 Initialize the component documentation system
+
+    /**
+     * Initialize the system
+     * Sets up components, event listeners, and renders initial view
+     */
+
     init() {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
+        this.initializeTheme();
     }
 
-    // 📁 Load component data structure
+    // Initialize theme based on saved preference or system preference
+    initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.body.classList.add('dark');
+            this.updateThemeToggleIcon();
+        }
+    }
+
+    // Update theme toggle icon based on current theme
+    updateThemeToggleIcon() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+        
+        const icon = themeToggle.querySelector('i');
+        if (document.body.classList.contains('dark')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    }
+
+
+    /**
+     * Load all available components into the system
+     * Each component includes metadata, preview, and implementation details
+     */
+
     loadComponents() {
         // 🧩 Component library with enhanced metadata
         this.components = [
@@ -833,7 +870,7 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
     createNavPreview() {
         return `<nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
             <div style="font-weight: 600; color: #1a202c;">Brand</div>
->>>>>>> upstream/main
+
             <div style="display: flex; gap: 1rem;">
                 <a href="#" style="text-decoration: none; color: #4a5568;">Home</a>
                 <a href="#" style="text-decoration: none; color: #4a5568;">About</a>
@@ -893,11 +930,87 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
   `;
   }
 
-  // Setup event listeners
-  setupEventListeners() {
-    // 🔍 Search functionality
-    const searchInput = document.getElementById("searchInput");
-    const clearSearch = document.getElementById("clearSearch");
+
+    // ⚙️ Setup event listeners
+    setupEventListeners() {
+        // 🔍 Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+
+        searchInput.addEventListener('input', (e) => {
+            this.activeFilters.search = e.target.value.toLowerCase();
+            this.filterComponents();
+            this.renderComponents();
+        });
+
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            this.activeFilters.search = '';
+            this.filterComponents();
+            this.renderComponents();
+        });
+
+        // 📂 Category filters
+        document.getElementById('categoryFilters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // Update active button
+                document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+
+                // Update filter
+                this.activeFilters.category = e.target.dataset.category;
+                this.filterComponents();
+                this.renderComponents();
+            }
+        });
+
+        // 🧠 Complexity filters
+        document.getElementById('complexityFilters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // Update active button
+                document.querySelectorAll('#complexityFilters .filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+
+                // Update filter
+                this.activeFilters.complexity = e.target.dataset.complexity;
+                this.filterComponents();
+                this.renderComponents();
+            }
+        });
+
+        // 🖼️ View toggle
+        document.getElementById('gridView').addEventListener('click', () => {
+            this.currentView = 'grid';
+            this.updateViewButtons();
+            this.renderComponents();
+        });
+
+        document.getElementById('listView').addEventListener('click', () => {
+            this.currentView = 'list';
+            this.updateViewButtons();
+            this.renderComponents();
+        });
+
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                this.updateThemeToggleIcon();
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Modal functionality
+
+        this.setupModalListeners();
+    }
+
 
     searchInput.addEventListener("input", (e) => {
       this.activeFilters.search = e.target.value.toLowerCase();
@@ -1230,6 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new ComponentDocumentation();
 });
 
+
 // 🌙 Theme toggle functionality (if not already handled by main script.js)
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
@@ -1264,9 +1378,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
  
 // 📱 Mobile menu toggle functionality
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle");
-  const navRight = document.querySelector(".nav-right"); 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menuToggle');
+    const navRight = document.querySelector('.nav-right');
+    
+    if (menuToggle && navRight) {
+        menuToggle.addEventListener('click', () => {
+            navRight.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navRight.contains(e.target)) {
+                navRight.classList.remove('active');
+            }
+        });
+
 
   if (menuToggle && navRight) {
     menuToggle.addEventListener("click", () => {
