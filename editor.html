@@ -60,6 +60,67 @@
         transition: var(--transition);
         overflow-x: hidden;
       }
+      
+/* Snake Cursor Toggle Switch */
+.nav-links .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.nav-links .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.nav-links .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.nav-links .slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.nav-links .switch input:checked + .slider {
+  background-color: #6fd6e8;
+}
+
+.nav-links .switch input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Switch hover effects */
+.nav-links .switch:hover .slider {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.nav-links .switch:hover .slider:before {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.fade-in span{
+  color: #00d1ff;
+}
+
 
       .container {
         width: 100%;
@@ -567,6 +628,8 @@
       #theme-toggle:hover {
         background-color: var(--bg-tertiary);
       }
+
+
     </style>
   </head>
 
@@ -584,7 +647,13 @@
         <li><a href="templates.html">Templates</a></li>
         <li><a href="contributors.html">Contributors</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="editor.html" class="active">Editor</a></li>
+        <li><a href="editor.html" class="active">Editor</a></li> 
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+        </li>
       </ul>
       
       <div class="nav-actions">
@@ -828,6 +897,7 @@ document.head.appendChild(style);</textarea>
     </button>
 
     <script>
+   
       // Theme toggle functionality
       const themeToggle = document.getElementById('theme-toggle');
       const body = document.body;
@@ -862,6 +932,7 @@ document.head.appendChild(style);</textarea>
         } else {
           scrollBtn.style.display = "none";
         }
+        
       };
 
       // Editor functionality
@@ -1104,5 +1175,6 @@ document.head.appendChild(style);`;
         }
       });
     </script>
+    
   </body>
 </html>
