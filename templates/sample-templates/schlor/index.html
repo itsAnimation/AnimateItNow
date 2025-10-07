@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* CSS Variables - Updated naming convention */
         :root {
             --primary-color: #4f46e5;
             --primary-dark: #3730a3;
@@ -25,6 +26,7 @@
             --dark-color: #1f2937;
             --light-color: #f8fafc;
             --border-color: #e5e7eb;
+            --transition-speed: 0.3s; /* NEW: Added transition variable */
         }
 
         * {
@@ -38,14 +40,16 @@
             line-height: 1.6;
             color: var(--dark-color);
             background-color: #ffffff;
+            overflow-x: hidden; /* NEW: Prevent horizontal scroll */
         }
 
-        /* Navigation */
+        /* Navigation Styles */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
+            z-index: 1000; /* NEW: Ensure navbar stays on top */
         }
 
         .navbar.scrolled {
@@ -62,14 +66,15 @@
         .nav-link {
             font-weight: 500;
             color: var(--dark-color) !important;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
+            position: relative; /* NEW: For potential underline effects */
         }
 
         .nav-link:hover {
             color: var(--primary-color) !important;
         }
 
-        /* Hero Section */
+        /* Hero Section Styling */
         .hero {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
@@ -94,13 +99,14 @@
             z-index: 2;
         }
 
-        /* Search Bar */
+        /* Search Bar Component */
         .search-container {
             background: white;
             border-radius: 50px;
             padding: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-top: 2rem;
+            max-width: 600px; /* NEW: Limit search width */
         }
 
         .search-input {
@@ -110,6 +116,11 @@
             font-size: 1rem;
             width: 100%;
             border-radius: 45px;
+            transition: all var(--transition-speed) ease; /* NEW: Added transition */
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 2px var(--primary-color); /* NEW: Focus state */
         }
 
         .search-btn {
@@ -118,7 +129,8 @@
             color: white;
             padding: 12px 24px;
             border-radius: 45px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
+            font-weight: 600; /* NEW: Added font weight */
         }
 
         .search-btn:hover {
@@ -126,7 +138,7 @@
             transform: translateY(-2px);
         }
 
-        /* Category Pills */
+        /* Category Pills Styling */
         .category-pill {
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -136,8 +148,9 @@
             text-decoration: none;
             display: inline-block;
             margin: 5px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             font-weight: 500;
+            cursor: pointer; /* NEW: Added cursor pointer */
         }
 
         .category-pill:hover {
@@ -146,14 +159,15 @@
             transform: translateY(-2px);
         }
 
-        /* Course Cards */
+        /* Course Cards Design */
         .course-card {
             background: white;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             height: 100%;
+            position: relative; /* NEW: Ensure proper positioning */
         }
 
         .course-card:hover {
@@ -169,6 +183,7 @@
             justify-content: center;
             font-size: 3rem;
             color: white;
+            position: relative; /* NEW: For badge positioning */
         }
 
         .course-badge {
@@ -181,6 +196,7 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 2; /* NEW: Ensure badge stays on top */
         }
 
         .course-body {
@@ -191,6 +207,7 @@
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--dark-color);
+            line-height: 1.4; /* NEW: Better line height */
         }
 
         .course-instructor {
@@ -216,9 +233,10 @@
             color: #9ca3af;
             font-size: 1rem;
             font-weight: 400;
+            margin-left: 8px; /* NEW: Added spacing */
         }
 
-        /* Buttons */
+        /* Button Styles */
         .btn-primary-custom {
             background: var(--primary-color);
             border: none;
@@ -226,9 +244,10 @@
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             text-decoration: none;
             display: inline-block;
+            cursor: pointer; /* NEW: Added cursor */
         }
 
         .btn-primary-custom:hover {
@@ -244,9 +263,10 @@
             padding: 10px 22px;
             border-radius: 8px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             text-decoration: none;
             display: inline-block;
+            cursor: pointer; /* NEW: Added cursor */
         }
 
         .btn-outline-custom:hover {
@@ -291,7 +311,7 @@
             margin-bottom: 20px;
         }
 
-        /* Footer */
+        /* Footer Styles */
         .footer {
             background: var(--dark-color);
             color: white;
@@ -306,11 +326,28 @@
         .footer a {
             color: #9ca3af;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
         }
 
         .footer a:hover {
             color: white;
+        }
+
+        /* NEW: Social links styling */
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         /* Responsive Design */
@@ -326,6 +363,17 @@
             
             .stat-number {
                 font-size: 2rem;
+            }
+            
+            .search-container {
+                margin: 2rem auto; /* NEW: Center on mobile */
+            }
+        }
+
+        /* NEW: Tablet breakpoint */
+        @media (max-width: 992px) and (min-width: 769px) {
+            .course-card {
+                margin-bottom: 25px; /* NEW: Add spacing on tablet */
             }
         }
 
@@ -344,10 +392,21 @@
         .fade-in-up {
             animation: fadeInUp 0.6s ease-out;
         }
+
+        /* NEW: Loading animation */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .loading {
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation Header -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-code"></i> CodeAcademy Pro</a>
@@ -388,16 +447,19 @@
                     <h1 class="display-4 fw-bold mb-4 fade-in-up">Learn Coding Skills That Matter</h1>
                     <p class="lead mb-4 fade-in-up">Master programming languages, build real projects, and advance your career with our comprehensive coding courses.</p>
                     
-                    <!-- Search Bar -->
+                    <!-- Search Bar Component -->
                     <div class="search-container fade-in-up">
                         <div class="input-group">
                             <input type="text" class="search-input" id="courseSearch" placeholder="Search for courses, technologies, or instructors...">
+                            <button class="search-btn" onclick="searchCourses()">
+                                <i class="fas fa-search"></i> Search
+                            </button>
                         </div>
                     </div>
                     
                     <!-- Popular Categories -->
                     <div class="mt-4 fade-in-up">
-                        <p class="mb-2">Popular: </p>
+                        <p class="mb-2">Popular Categories: </p>
                         <a href="#" class="category-pill" onclick="filterCourses('javascript')">JavaScript</a>
                         <a href="#" class="category-pill" onclick="filterCourses('python')">Python</a>
                         <a href="#" class="category-pill" onclick="filterCourses('react')">React</a>
@@ -447,7 +509,7 @@
         </div>
     </section>
 
-    <!-- Featured Courses -->
+    <!-- Featured Courses Section -->
     <section id="courses" class="py-5">
         <div class="container">
             <div class="text-center mb-5">
@@ -456,7 +518,7 @@
             </div>
             
             <div class="row" id="courseContainer">
-                <!-- Course 1 -->
+                <!-- Course 1: JavaScript & React -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="javascript react">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -485,7 +547,7 @@
                     </div>
                 </div>
 
-                <!-- Course 2 -->
+                <!-- Course 2: Python Data Science -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="python machine-learning">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -514,7 +576,7 @@
                     </div>
                 </div>
 
-                <!-- Course 3 -->
+                <!-- Course 3: Flutter Mobile -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="mobile flutter">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -543,7 +605,7 @@
                     </div>
                 </div>
 
-                <!-- Course 4 -->
+                <!-- Course 4: Node.js Backend -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="nodejs backend">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -571,7 +633,7 @@
                     </div>
                 </div>
 
-                <!-- Course 5 -->
+                <!-- Course 5: DevOps & Cloud -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="devops cloud">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -599,7 +661,7 @@
                     </div>
                 </div>
 
-                <!-- Course 6 -->
+                <!-- Course 6: Cybersecurity -->
                 <div class="col-lg-4 col-md-6 mb-4 course-item" data-category="cybersecurity">
                     <div class="course-card position-relative">
                         <div class="course-image">
@@ -631,7 +693,9 @@
 
             <!-- Load More Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-outline-custom" onclick="loadMoreCourses()">Load More Courses</button>
+                <button class="btn btn-outline-custom" onclick="loadMoreCourses()">
+                    <i class="fas fa-plus"></i> Load More Courses
+                </button>
             </div>
         </div>
     </section>
@@ -785,7 +849,9 @@
                         <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Full marketing support</li>
                         <li class="mb-2"><i class="fas fa-check-circle me-2"></i> Easy course creation tools</li>
                     </ul>
-                    <button class="btn btn-light btn-lg mt-3" onclick="startTeaching()">Start Teaching Today</button>
+                    <button class="btn btn-light btn-lg mt-3" onclick="startTeaching()">
+                        <i class="fas fa-chalkboard-teacher me-2"></i>Start Teaching Today
+                    </button>
                 </div>
                 <div class="col-lg-6 text-center">
                     <i class="fas fa-chalkboard-teacher" style="font-size: 10rem; opacity: 0.3;"></i>
@@ -915,6 +981,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // NEW: Initialize application
+        console.log('CodeAcademy Pro initialized successfully');
+        
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -930,6 +999,8 @@
             const searchTerm = document.getElementById('courseSearch').value.toLowerCase();
             const courseItems = document.querySelectorAll('.course-item');
             
+            console.log(`Searching for: ${searchTerm}`); // NEW: Log search term
+            
             if (searchTerm.trim() === '') {
                 courseItems.forEach(item => {
                     item.style.display = 'block';
@@ -937,6 +1008,7 @@
                 return;
             }
             
+            let resultsFound = 0; // NEW: Track results
             courseItems.forEach(item => {
                 const title = item.querySelector('.course-title').textContent.toLowerCase();
                 const instructor = item.querySelector('.course-instructor').textContent.toLowerCase();
@@ -944,15 +1016,23 @@
                 
                 if (title.includes(searchTerm) || instructor.includes(searchTerm) || category.includes(searchTerm)) {
                     item.style.display = 'block';
+                    resultsFound++;
                 } else {
                     item.style.display = 'none';
                 }
             });
+            
+            // NEW: Show search results feedback
+            if (resultsFound === 0) {
+                console.log('No courses found matching search criteria');
+            }
         }
 
         // Filter courses by category
         function filterCourses(category) {
             const courseItems = document.querySelectorAll('.course-item');
+            
+            console.log(`Filtering by category: ${category}`); // NEW: Log filter action
             
             courseItems.forEach(item => {
                 const itemCategories = item.getAttribute('data-category').toLowerCase();
@@ -969,17 +1049,50 @@
 
         // Buy course functionality
         function buyCourse(courseName) {
+            console.log(`Purchase initiated for: ${courseName}`); // NEW: Log purchase attempt
             alert(`Great choice! You're about to purchase: "${courseName}"\n\nThis would redirect to the payment gateway in a real application.`);
+            
+            // NEW: Simulate analytics tracking
+            trackUserAction('course_purchase_attempt', courseName);
         }
 
         // Start teaching functionality
         function startTeaching() {
+            console.log('Instructor signup initiated'); // NEW: Log instructor signup
             alert('Welcome to our instructor program!\n\nThis would redirect to the instructor onboarding process where you can:\n\n• Create your instructor profile\n• Upload course content\n• Set pricing\n• Start earning money\n\nJoin thousands of successful instructors today!');
+            
+            // NEW: Simulate analytics tracking
+            trackUserAction('instructor_signup_click');
         }
 
         // Load more courses
         function loadMoreCourses() {
+            console.log('Loading more courses...'); // NEW: Log load more action
             alert('Loading more courses...\n\nIn a real application, this would load additional courses from the database via AJAX.');
+            
+            // NEW: Simulate loading state
+            const loadButton = document.querySelector('.btn-outline-custom');
+            const originalText = loadButton.innerHTML;
+            loadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            loadButton.disabled = true;
+            
+            setTimeout(() => {
+                loadButton.innerHTML = originalText;
+                loadButton.disabled = false;
+                console.log('More courses loaded (simulated)');
+            }, 1500);
+        }
+
+        // NEW: Analytics tracking function
+        function trackUserAction(action, data = null) {
+            // This would typically send data to analytics service
+            const eventData = {
+                action: action,
+                data: data,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            console.log('Tracking event:', eventData);
         }
 
         // Search on Enter key
@@ -987,6 +1100,12 @@
             if (e.key === 'Enter') {
                 searchCourses();
             }
+        });
+
+        // NEW: Add input event listener for real-time search
+        document.getElementById('courseSearch').addEventListener('input', function(e) {
+            // This could be used for real-time search in future implementations
+            console.log('Search input changed:', e.target.value);
         });
 
         // Smooth scrolling for navigation links
@@ -998,6 +1117,9 @@
                     target.scrollIntoView({
                         behavior: 'smooth'
                     });
+                    
+                    // NEW: Track navigation clicks
+                    trackUserAction('navigation_click', this.getAttribute('href'));
                 }
             });
         });
@@ -1031,12 +1153,24 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
+            
+            // NEW: Add click tracking
+            card.addEventListener('click', function() {
+                const categoryName = this.querySelector('.card-title').textContent;
+                trackUserAction('category_click', categoryName);
+            });
         });
 
-        // Initialize tooltips if any
+        // NEW: Initialize tooltips if any
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // NEW: Page load completion
+        window.addEventListener('load', function() {
+            console.log('CodeAcademy Pro fully loaded');
+            document.body.classList.add('loaded');
         });
     </script>
 </body>

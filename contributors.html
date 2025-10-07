@@ -14,9 +14,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="styles.css" />
 
     <style>
-      /* CSS Variables for Theming */
+
+      /* 🎨 CSS Variables for Theming */
       :root {
         --primary: #6c63ff;
         --primary-light: #8a84ff;
@@ -33,9 +35,16 @@
         --radius: 12px;
         --transition: all 0.3s ease;
         --header-height: 80px;
+        --card-shadow: rgba(0, 0, 0, 0.1);
+        --nav-bg: rgba(255, 255, 255, 0.95);
+        
+        /* 🆕 Additional theme variables for enhanced customization */
+        --transition-speed: 0.3s;
+        --border-radius: 12px;
+        --spacing-unit: 1rem;
       }
 
-      /* Dark Mode Variables */
+      /* 🌙 Dark Mode Variables */
       .dark-theme {
         --primary: #8a84ff;
         --primary-light: #a8a4ff;
@@ -49,9 +58,11 @@
         --bg-tertiary: #2a2a2a;
         --border: #404040;
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --card-shadow: rgba(0, 0, 0, 0.3);
+        --nav-bg: rgba(30, 30, 30, 0.95);
       }
 
-      /* Base Styles */
+      /* 🏗️ Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -73,9 +84,8 @@
 
       .container {
         width: 100%;
-        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 40px;
       }
 
       section {
@@ -156,102 +166,84 @@
         box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
       }
 
-      /* Header/Navigation */
+      /* 🧭 Header/Navigation */
       .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height);
-        background-color: var(--bg);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        transition: var(--transition);
-      }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  padding:1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px var(--card-shadow);
+  z-index: 1000;
+  transition: var(--transition);
+}
 
-      .dark-theme .navbar {
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .navbar.scrolled {
-        height: 70px;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-      }
-
-      .dark-theme .navbar.scrolled {
-        background-color: rgba(18, 18, 18, 0.95);
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-      }
 
       /* .nav-left {
       display: flex;
       align-items: center;
     } */
-      .home-link {
-        display: flex;
-        align-items: center;
-      }
+    .home-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
-      .logo {
-        height: 40px;
-        margin-right: 10px;
-      }
+.logo {
+ 
+  height: 40px;
+  width: auto;
+}
 
-      .site-name {
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+.site-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+/* Update Styling */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav-links li {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
 
-      .nav-links {
-        display: flex;
-        list-style: none;
-      }
+.nav-links a {
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  padding: 5px 0;
+  transition: var(--transition);
+  position: relative;
+}
 
-      .nav-links li {
-        margin-left: 16px;
-        display: flex;
-        align-items: center;
-      }
+.nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
 
-      .nav-links a {
-        color: var(--text);
-        font-weight: 500;
-        position: relative;
-        padding: 5px 0;
-      }
-
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: var(--primary);
-        transition: var(--transition);
-      }
-
-      .nav-links a:hover::after,
-      .nav-links a.active::after {
-        width: 100%;
-      }
-
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
       /* Snake cursor toggle */
-      .snakeList {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+      
 
       .switch {
         position: relative;
@@ -273,7 +265,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: var(--bg-tertiary);
+     background-color: #ccc;
         transition: var(--transition);
         border-radius: 24px;
       }
@@ -297,11 +289,14 @@
       input:checked + .slider:before {
         transform: translateX(26px);
       }
+.slider.round {
+  border-radius: 34px;
+}
 
-      .snakeLabel {
-        font-size: 0.9rem;
-        color: var(--text-light);
-      }
+.slider.round:before {
+  border-radius: 50%;
+}
+     
 
       .github-icon {
         display: flex;
@@ -337,6 +332,7 @@
       }
 
       /* Contributors Page Styles */
+
       .contributors-main {
         padding-top: var(--header-height);
         min-height: 100vh;
@@ -356,11 +352,10 @@
         font-size: 3.5rem;
         margin-bottom: 20px;
         position: relative;
-      }
-
-      .contributors-title span {
-        color: var(--primary);
-        position: relative;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .contributors-subtitle {
@@ -380,11 +375,11 @@
       }
 
       .stat-card {
-        background: var(--bg);
+        background: var(--card-bg);
         border-radius: var(--radius);
         padding: 25px;
         text-align: center;
-        box-shadow: var(--shadow);
+        box-shadow: var(--card-shadow);
         transition: var(--transition);
         border: 1px solid var(--border);
         min-width: 200px;
@@ -426,7 +421,7 @@
         font-size: 1.1rem;
         border-radius: var(--radius) 0 0 var(--radius);
         border: 2px solid var(--border);
-        background: var(--bg);
+        background: var(--card-bg);
         color: var(--text);
         outline: none;
         transition: var(--transition);
@@ -434,7 +429,7 @@
 
       .search-input:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+        box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.1);
       }
 
       .search-btn {
@@ -461,9 +456,9 @@
       }
 
       .contributor-card {
-        background: var(--bg);
+        background: var(--card-bg);
         border-radius: var(--radius);
-        box-shadow: var(--shadow);
+        box-shadow: var(--card-shadow);
         overflow: hidden;
         transition: var(--transition);
         border: 1px solid var(--border);
@@ -506,7 +501,7 @@
 
       .contributor-body {
         padding: 25px 20px;
-        display: flex; /* make body a column flex container */
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
@@ -589,91 +584,6 @@
         }
       }
 
-      /* Footer */
-      .footer {
-        background-color: var(--bg-secondary);
-        color: var(--text);
-        padding: 60px 0 30px;
-        border-top: 1px solid var(--border);
-      }
-
-      .footer-content {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-      }
-
-      .footer-left h2 {
-        margin-bottom: 15px;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .footer-right h4 {
-        margin-bottom: 20px;
-      }
-
-      .footer-right ul {
-        list-style: none;
-      }
-
-      .footer-right li {
-        margin-bottom: 10px;
-      }
-
-      .footer-right a {
-        color: var(--text-light);
-        transition: var(--transition);
-      }
-
-      .footer-right a:hover {
-        color: var(--primary);
-      }
-
-      .footer-right a i {
-        margin-right: 10px;
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid var(--border);
-        color: var(--text-light);
-        font-size: 0.9rem;
-      }
-
-      .footer-bottom .highlight {
-        color: var(--primary);
-        font-weight: 600;
-      }
-
-      /* Scroll to top button */
-      #scrollBtn {
-        display: none;
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: var(--primary);
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 50%;
-        font-size: 18px;
-        width: 50px;
-        height: 50px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-      }
-
-      #scrollBtn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
-      }
-
       /* Responsive Design */
       @media (max-width: 992px) {
         .contributors-title {
@@ -694,10 +604,6 @@
       }
 
       @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-        }
-
         .contributors-title {
           font-size: 2.2rem;
         }
@@ -757,80 +663,80 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./navbar_styles.css">
   </head>
 
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
-      <div class="container nav-container">
+
+    <nav class="navbar scroll-fade">
+      
         <div class="nav-left">
           <a href="index.html" class="home-link">
             <img src="images/logo.png" alt="Website Logo" class="logo" />
-            <span class="site-name">AnimateIt Now</span>
+            <span class="site-name">Animate It Now</span>
           </a>
+
         </div>
 
         <div class="nav-right">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="templates.html">Templates</a></li>
-            <li><a href="components.html">Components</a></li>
-            <li><a href="editor.html">Editor</a></li>
-            <li><a href="playground.html">Hover-Effects</a></li>
-            <li><a href="contributors.html" class="active">Contributors</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-            <!-- cursor toggle switch -->
-            <li class="snakeList">
-              <label class="switch" title="Toggle Snake Cursor">
-                <input type="checkbox" id="cursorToggle" />
-                <span class="slider round"></span>
-              </label>
-              <span class="snakeLabel">Snake Cursor</span>
-            </li>
-            <!-- github icon -->
-            <li>
-              <a
-                href="https://github.com/itsAnimation/AnimateItNow"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Repo"
-                class="github-icon"
-              >
-                <svg
-                  viewBox="0 0 16 16"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                  7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                  -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                  -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                 .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
-                  />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <button id="theme-toggle" aria-label="Toggle Theme">
-                <i class="fas fa-moon"></i>
-              </button>
-            </li>
-          </ul>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="templates.html">Templates</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><a href="playground.html">Hover-Effects</a></li>
+                <li><a href="contributors.html" class="active" style="white-space: nowrap">Contributors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <!-- cursor toggle switch -->
+                <li class="snakeList">
+                    <label class="switch" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="snakeLabel">Snake Cursor</span>
+                </li>
+                <!-- github icon -->
+                <li>
+                    <a href="https://github.com/itsAnimation/AnimateItNow"
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="GitHub Repo"
+                       class="github-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
+                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
+                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
+                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
+                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
+                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="loginpage.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn">Sign Up</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-      </div>
     </nav>
+
 
     <!-- Contributors Main Content -->
     <main class="contributors-main">
@@ -933,48 +839,8 @@
     <!-- Scroll to top button -->
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
+    <script src="script.js"></script>
     <script>
-      // Theme toggle functionality
-      const themeToggle = document.getElementById("theme-toggle");
-      const body = document.body;
-
-      function setTheme(isDark) {
-        const icon = themeToggle.querySelector("i");
-        body.classList.toggle("dark-theme", isDark);
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-
-        if (icon) {
-          icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
-        }
-      }
-
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(savedTheme === "dark" || (savedTheme === null && prefersDark));
-
-      themeToggle?.addEventListener("click", () => {
-        setTheme(!body.classList.contains("dark-theme"));
-      });
-
-      // Scroll to top functionality
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      window.onscroll = function () {
-        const scrollBtn = document.getElementById("scrollBtn");
-        if (
-          document.body.scrollTop > 300 ||
-          document.documentElement.scrollTop > 300
-        ) {
-          scrollBtn.style.display = "block";
-        } else {
-          scrollBtn.style.display = "none";
-        }
-      };
-
       // Contributors data
       const owner = "itsAnimation";
       const repo = "AnimateItNow";
@@ -1015,7 +881,7 @@
           {
             login: "anuj",
             id: 1,
-            avatar_url: "https://via.placeholder.com/100/6c63ff/ffffff?text=A",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=A",
             html_url: "https://github.com/anuj",
             contributions: 150,
             type: "User",
@@ -1023,7 +889,7 @@
           {
             login: "alice",
             id: 2,
-            avatar_url: "https://via.placeholder.com/100/ff6584/ffffff?text=A",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=A",
             html_url: "https://github.com/alice",
             contributions: 89,
             type: "User",
@@ -1031,7 +897,7 @@
           {
             login: "bob",
             id: 3,
-            avatar_url: "https://via.placeholder.com/100/36d1dc/ffffff?text=B",
+            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=B",
             html_url: "https://github.com/bob",
             contributions: 76,
             type: "User",
@@ -1039,7 +905,7 @@
           {
             login: "charlie",
             id: 4,
-            avatar_url: "https://via.placeholder.com/100/8a84ff/ffffff?text=C",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=C",
             html_url: "https://github.com/charlie",
             contributions: 64,
             type: "User",
@@ -1047,7 +913,7 @@
           {
             login: "diana",
             id: 5,
-            avatar_url: "https://via.placeholder.com/100/ff8fa3/ffffff?text=D",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=D",
             html_url: "https://github.com/diana",
             contributions: 52,
             type: "User",
@@ -1055,7 +921,7 @@
           {
             login: "emma",
             id: 6,
-            avatar_url: "https://via.placeholder.com/100/4dd0e1/ffffff?text=E",
+            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=E",
             html_url: "https://github.com/emma",
             contributions: 41,
             type: "User",
@@ -1063,7 +929,7 @@
           {
             login: "frank",
             id: 7,
-            avatar_url: "https://via.placeholder.com/100/554fd8/ffffff?text=F",
+            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=F",
             html_url: "https://github.com/frank",
             contributions: 35,
             type: "User",
@@ -1071,7 +937,7 @@
           {
             login: "grace",
             id: 8,
-            avatar_url: "https://via.placeholder.com/100/a8a4ff/ffffff?text=G",
+            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=G",
             html_url: "https://github.com/grace",
             contributions: 28,
             type: "User",

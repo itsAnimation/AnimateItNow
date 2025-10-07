@@ -8,37 +8,117 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .cart-badge { animation: bounce 0.3s ease-in-out; }
+        
+        /* Enhanced animations */
+        .cart-badge { 
+            animation: bounce 0.3s ease-in-out; 
+        }
         @keyframes bounce {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
-        .product-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
-        .fade-in { animation: fadeIn 0.5s ease-in; }
+        
+        .product-card:hover { 
+            transform: translateY(-4px); 
+            transition: all 0.3s ease; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in { 
+            animation: fadeIn 0.5s ease-in; 
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* NEW: Quick view modal styles */
+        .quick-view-modal {
+            backdrop-filter: blur(8px);
+        }
+        
+        /* NEW: Wishlist heart animation */
+        .wishlist-heart {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .wishlist-heart.active {
+            color: #ef4444;
+            transform: scale(1.2);
+        }
+        
+        /* NEW: Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* NEW: Badge styles */
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Header -->
+    <!-- Header with enhanced navigation -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <h1 class="text-2xl font-bold text-gray-900">StyleHub</h1>
+                    <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Premium</span>
+                </div>
+                
+                <!-- NEW: Search bar -->
+                <div class="hidden md:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full">
+                        <input 
+                            type="text" 
+                            id="search-input"
+                            placeholder="Search products..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                        <div class="absolute left-3 top-2.5 text-gray-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
                 
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                    <a href="#products" class="text-gray-700 hover:text-blue-600 font-medium">Products</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">Home</a>
+                    <a href="#products" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">Products</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">Categories</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200">About</a>
                 </nav>
                 
                 <div class="flex items-center space-x-4">
-                    <button onclick="toggleCart()" class="relative p-2 text-gray-700 hover:text-blue-600">
+                    <!-- NEW: Wishlist button -->
+                    <button onclick="toggleWishlist()" class="relative p-2 text-gray-700 hover:text-red-500 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span id="wishlist-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    
+                    <button onclick="toggleCart()" class="relative p-2 text-gray-700 hover:text-blue-600 transition-colors duration-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h7a2 2 0 002-2v-.5"></path>
                         </svg>
@@ -49,29 +129,62 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-6xl font-bold mb-6">Premium Fashion Collection</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Discover the latest trends in fashion with our curated collection of premium clothing and accessories.</p>
-            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 fade-in">Premium Fashion Collection</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">Discover the latest trends in fashion with our curated collection of premium clothing and accessories.</p>
+            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
                 Shop Now
             </button>
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- Products Section with enhanced features -->
     <section id="products" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold text-center mb-12 text-gray-900">Featured Products</h3>
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Featured Products</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">Handpicked selection of premium fashion items for every occasion</p>
+            </div>
+            
+            <!-- NEW: Category filters -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterProducts('all')" class="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium">All</button>
+                <button onclick="filterProducts('Clothing')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Clothing</button>
+                <button onclick="filterProducts('Accessories')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Accessories</button>
+                <button onclick="filterProducts('Footwear')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Footwear</button>
+                <button onclick="filterProducts('Outerwear')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Outerwear</button>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
-                <!-- Products will be dynamically generated -->
+                <!-- Products dynamically generated -->
             </div>
         </div>
     </section>
 
-    <!-- Shopping Cart Modal -->
+    <!-- NEW: Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden quick-view-modal">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-96 overflow-hidden">
+                <div class="p-6 border-b">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-semibold">Product Details</h4>
+                        <button onclick="closeQuickView()" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="quick-view-content" class="p-6">
+                    <!-- Quick view content loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Shopping Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
         <div class="flex items-center justify-center min-h-screen p-4">
             <div class="bg-white rounded-lg max-w-md w-full max-h-96 overflow-hidden">
@@ -95,15 +208,36 @@
                         <span class="font-semibold">Total: </span>
                         <span id="cart-total" class="font-bold text-xl">$0.00</span>
                     </div>
-                    <button onclick="checkout()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
-                        Checkout
+                    <button onclick="checkout()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                        Proceed to Checkout
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- NEW: Wishlist Modal -->
+    <div id="wishlist-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full max-h-96 overflow-hidden">
+                <div class="p-6 border-b">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xl font-semibold">Your Wishlist</h4>
+                        <button onclick="toggleWishlist()" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="wishlist-items" class="p-6 max-h-64 overflow-y-auto">
+                    <p class="text-gray-500 text-center">Your wishlist is empty</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -114,25 +248,24 @@
                 <div>
                     <h6 class="font-semibold mb-4">Quick Links</h6>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">About Us</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
-                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">FAQ</a></li>
                     </ul>
                 </div>
                 <div>
                     <h6 class="font-semibold mb-4">Categories</h6>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Men's Fashion</a></li>
-                        <li><a href="#" class="hover:text-white">Women's Fashion</a></li>
-                        <li><a href="#" class="hover:text-white">Accessories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Men's Fashion</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Women's Fashion</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Accessories</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h6 class="font-semibold mb-4">Follow Us</h6>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">📘</a>
-                        <a href="#" class="text-gray-400 hover:text-white">📷</a>
-                        <a href="#" class="text-gray-400 hover:text-white">🐦</a>
+                    <h6 class="font-semibold mb-4">Newsletter</h6>
+                    <div class="flex space-x-2">
+                        <input type="email" placeholder="Your email" class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -143,49 +276,175 @@
     </footer>
 
     <script>
-        // Sample product data
+        // Enhanced product data with additional properties
         const products = [
-            { id: 1, name: "Premium Cotton T-Shirt", price: 29.99, image: "👕", category: "Clothing" },
-            { id: 2, name: "Designer Jeans", price: 89.99, image: "👖", category: "Clothing" },
-            { id: 3, name: "Leather Jacket", price: 199.99, image: "🧥", category: "Outerwear" },
-            { id: 4, name: "Sneakers", price: 129.99, image: "👟", category: "Footwear" },
-            { id: 5, name: "Sunglasses", price: 79.99, image: "🕶️", category: "Accessories" },
-            { id: 6, name: "Watch", price: 249.99, image: "⌚", category: "Accessories" },
-            { id: 7, name: "Backpack", price: 59.99, image: "🎒", category: "Accessories" },
-            { id: 8, name: "Baseball Cap", price: 24.99, image: "🧢", category: "Accessories" }
+            { id: 1, name: "Premium Cotton T-Shirt", price: 29.99, image: "👕", category: "Clothing", badge: "Bestseller", rating: 4.5 },
+            { id: 2, name: "Designer Jeans", price: 89.99, image: "👖", category: "Clothing", badge: "New", rating: 4.8 },
+            { id: 3, name: "Leather Jacket", price: 199.99, image: "🧥", category: "Outerwear", badge: "Premium", rating: 4.9 },
+            { id: 4, name: "Sneakers", price: 129.99, image: "👟", category: "Footwear", badge: "Popular", rating: 4.7 },
+            { id: 5, name: "Sunglasses", price: 79.99, image: "🕶️", category: "Accessories", badge: "Trending", rating: 4.6 },
+            { id: 6, name: "Watch", price: 249.99, image: "⌚", category: "Accessories", badge: "Luxury", rating: 4.9 },
+            { id: 7, name: "Backpack", price: 59.99, image: "🎒", category: "Accessories", badge: "Sale", rating: 4.4 },
+            { id: 8, name: "Baseball Cap", price: 24.99, image: "🧢", category: "Accessories", badge: "Casual", rating: 4.3 }
         ];
 
         let cart = [];
+        let wishlist = [];
+        let currentFilter = 'all';
+
+        // NEW: Load cart and wishlist from localStorage
+        function loadFromStorage() {
+            const savedCart = localStorage.getItem('stylehub-cart');
+            const savedWishlist = localStorage.getItem('stylehub-wishlist');
+            
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+            if (savedWishlist) {
+                wishlist = JSON.parse(savedWishlist);
+            }
+        }
+
+        // NEW: Save to localStorage
+        function saveToStorage() {
+            localStorage.setItem('stylehub-cart', JSON.stringify(cart));
+            localStorage.setItem('stylehub-wishlist', JSON.stringify(wishlist));
+        }
 
         // Initialize the page
         function init() {
+            loadFromStorage();
             renderProducts();
             updateCartUI();
+            updateWishlistUI();
+            setupSearch();
         }
 
-        // Render products
+        // NEW: Setup search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                filterProductsBySearch(searchTerm);
+            });
+        }
+
+        // NEW: Filter products by search term
+        function filterProductsBySearch(searchTerm) {
+            const filtered = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            renderFilteredProducts(filtered);
+        }
+
+        // Enhanced render products with filtering
         function renderProducts() {
+            const filteredProducts = currentFilter === 'all' 
+                ? products 
+                : products.filter(product => product.category === currentFilter);
+            renderFilteredProducts(filteredProducts);
+        }
+
+        // NEW: Render filtered products
+        function renderFilteredProducts(filteredProducts) {
             const grid = document.getElementById('products-grid');
-            grid.innerHTML = products.map(product => `
-                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                    <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden relative">
+                    ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                    <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
                         <span class="text-6xl">${product.image}</span>
+                        <!-- NEW: Wishlist heart button -->
+                        <button 
+                            onclick="toggleWishlistItem(${product.id})" 
+                            class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md wishlist-heart ${wishlist.find(item => item.id === product.id) ? 'active' : ''}"
+                        >
+                            <svg class="w-5 h-5" fill="${wishlist.find(item => item.id === product.id) ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
                     </div>
                     <div class="p-6">
                         <h4 class="font-semibold text-lg mb-2">${product.name}</h4>
-                        <p class="text-gray-600 mb-4">${product.category}</p>
+                        <p class="text-gray-600 mb-2">${product.category}</p>
+                        <!-- NEW: Product rating -->
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5-Math.floor(product.rating))}
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">${product.rating}</span>
+                        </div>
                         <div class="flex justify-between items-center">
                             <span class="text-2xl font-bold text-blue-600">$${product.price}</span>
-                            <button onclick="addToCart(${product.id})" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Add to Cart
-                            </button>
+                            <div class="flex space-x-2">
+                                <button onclick="showQuickView(${product.id})" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-300 transition duration-200">
+                                    Quick View
+                                </button>
+                                <button onclick="addToCart(${product.id})" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Add to cart
+        // NEW: Filter products by category
+        function filterProducts(category) {
+            currentFilter = category;
+            renderProducts();
+            
+            // Update active filter button
+            document.querySelectorAll('.flex-wrap button').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.target.classList.add('bg-blue-600', 'text-white');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+        }
+
+        // NEW: Show quick view modal
+        function showQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            const modal = document.getElementById('quick-view-modal');
+            const content = document.getElementById('quick-view-content');
+            
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-64 flex items-center justify-center">
+                        <span class="text-8xl">${product.image}</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2">${product.name}</h3>
+                        <p class="text-gray-600 mb-4">${product.category}</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5-Math.floor(product.rating))}
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">${product.rating} (128 reviews)</span>
+                        </div>
+                        <p class="text-gray-700 mb-6">Premium quality ${product.name.toLowerCase()} designed for comfort and style. Perfect for everyday wear and special occasions.</p>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-3xl font-bold text-blue-600">$${product.price}</span>
+                            <span class="text-green-600 font-semibold">In Stock</span>
+                        </div>
+                        <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                            Add to Cart - $${product.price}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        // NEW: Close quick view
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.add('hidden');
+        }
+
+        // Enhanced add to cart with localStorage
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             const existingItem = cart.find(item => item.id === productId);
@@ -197,8 +456,9 @@
             }
             
             updateCartUI();
+            saveToStorage();
             
-            // Add bounce animation to cart icon
+            // Enhanced cart animation
             const cartCount = document.getElementById('cart-count');
             cartCount.classList.add('cart-badge');
             setTimeout(() => cartCount.classList.remove('cart-badge'), 300);
@@ -208,6 +468,7 @@
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCartUI();
+            saveToStorage();
         }
 
         // Update quantity
@@ -219,11 +480,12 @@
                     removeFromCart(productId);
                 } else {
                     updateCartUI();
+                    saveToStorage();
                 }
             }
         }
 
-        // Update cart UI
+        // Enhanced update cart UI
         function updateCartUI() {
             const cartCount = document.getElementById('cart-count');
             const cartItems = document.getElementById('cart-items');
@@ -248,10 +510,64 @@
                             </div>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300">-</button>
-                            <span class="w-8 text-center">${item.quantity}</span>
-                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300">+</button>
-                            <button onclick="removeFromCart(${item.id})" class="ml-2 text-red-500 hover:text-red-700">🗑️</button>
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-200">-</button>
+                            <span class="w-8 text-center font-medium">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-200">+</button>
+                            <button onclick="removeFromCart(${item.id})" class="ml-2 text-red-500 hover:text-red-700 transition-colors duration-200">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // NEW: Wishlist functionality
+        function toggleWishlistItem(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingIndex = wishlist.findIndex(item => item.id === productId);
+            
+            if (existingIndex > -1) {
+                wishlist.splice(existingIndex, 1);
+            } else {
+                wishlist.push(product);
+            }
+            
+            updateWishlistUI();
+            saveToStorage();
+            renderProducts(); // Re-render to update heart states
+        }
+
+        // NEW: Update wishlist UI
+        function updateWishlistUI() {
+            const wishlistCount = document.getElementById('wishlist-count');
+            const wishlistItems = document.getElementById('wishlist-items');
+            
+            wishlistCount.textContent = wishlist.length;
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = '<p class="text-gray-500 text-center">Your wishlist is empty</p>';
+            } else {
+                wishlistItems.innerHTML = wishlist.map(item => `
+                    <div class="flex items-center justify-between py-3 border-b">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">${item.image}</span>
+                            <div>
+                                <h5 class="font-medium">${item.name}</h5>
+                                <p class="text-sm text-gray-600">$${item.price}</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="addToCart(${item.id})" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors duration-200">
+                                Add to Cart
+                            </button>
+                            <button onclick="toggleWishlistItem(${item.id})" class="text-red-500 hover:text-red-700 transition-colors duration-200">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 `).join('');
@@ -264,7 +580,13 @@
             modal.classList.toggle('hidden');
         }
 
-        // Checkout function
+        // NEW: Toggle wishlist modal
+        function toggleWishlist() {
+            const modal = document.getElementById('wishlist-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Enhanced checkout function
         function checkout() {
             if (cart.length === 0) {
                 alert('Your cart is empty!');
@@ -272,23 +594,32 @@
             }
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            alert(`Thank you for your purchase! Total: $${total.toFixed(2)}\n\nThis is a demo checkout. In a real store, you would be redirected to a secure payment processor.`);
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            alert(`Thank you for your purchase!\n\nItems: ${itemCount}\nTotal: $${total.toFixed(2)}\n\nThis is a demo checkout. In a real store, you would be redirected to a secure payment processor.`);
             
             // Clear cart after checkout
             cart = [];
             updateCartUI();
+            saveToStorage();
             toggleCart();
         }
 
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         document.getElementById('cart-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                toggleCart();
-            }
+            if (e.target === this) toggleCart();
+        });
+
+        document.getElementById('wishlist-modal').addEventListener('click', function(e) {
+            if (e.target === this) toggleWishlist();
+        });
+
+        document.getElementById('quick-view-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeQuickView();
         });
 
         // Initialize the page when loaded
-        init();
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b174cb319179fe',t:'MTc1NDUxMzk0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

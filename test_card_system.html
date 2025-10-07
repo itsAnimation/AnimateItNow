@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Card System Test</title>
+<title>Enhanced Card System Test</title>
 <link rel="icon" href="favicon.png" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -22,81 +22,295 @@
     --transition: all 0.3s ease;
 }
 
-/* Global Reset */
+/* 🎯 Global Reset & Base Styles */
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%); color: var(--dark); line-height:1.6; min-height:100vh; padding:2rem 1rem; }
+body { 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%); 
+    color: var(--dark); 
+    line-height:1.6; 
+    min-height:100vh; 
+    padding:2rem 1rem; 
+}
 
 .test-container { max-width:1400px; margin:0 auto; }
 
+/* 🎨 Header Section */
 header { text-align:center; margin-bottom:3rem; }
-h1 { font-size:2.5rem; margin-bottom:0.5rem; background: linear-gradient(135deg,var(--primary),var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.subtitle { font-size:1.2rem; color: var(--gray); max-width:600px; margin:0 auto 2rem; }
+h1 { 
+    font-size:2.5rem; 
+    margin-bottom:0.5rem; 
+    background: linear-gradient(135deg,var(--primary),var(--accent)); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+}
+.subtitle { 
+    font-size:1.2rem; 
+    color: var(--gray); 
+    max-width:600px; 
+    margin:0 auto 2rem; 
+}
 
-/* Controls */
-.controls { display:flex; justify-content:center; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
-.control-btn { padding:0.6rem 1.2rem; background:white; border:2px solid var(--primary); border-radius:50px; color:var(--primary); font-weight:600; cursor:pointer; transition:var(--transition); }
-.control-btn:hover, .control-btn.active { background: var(--primary); color:white; }
+/* 🔧 Control Panel */
+.controls { 
+    display:flex; 
+    justify-content:center; 
+    gap:1rem; 
+    margin-bottom:2rem; 
+    flex-wrap:wrap; 
+}
+.control-btn { 
+    padding:0.6rem 1.2rem; 
+    background:white; 
+    border:2px solid var(--primary); 
+    border-radius:50px; 
+    color:var(--primary); 
+    font-weight:600; 
+    cursor:pointer; 
+    transition:var(--transition); 
+}
+.control-btn:hover, .control-btn.active { 
+    background: var(--primary); 
+    color:white; 
+}
 
-/* Cards Grid */
-.cards-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap:2rem; margin-bottom:4rem; }
+/* 📱 Cards Grid Layout */
+.cards-grid { 
+    display:grid; 
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); 
+    gap:2rem; 
+    margin-bottom:4rem; 
+}
 
-/* Card System */
-.card-system { background:white; border-radius:var(--border-radius); overflow:hidden; box-shadow:var(--shadow); transition:var(--transition); position:relative; }
+/* 🃏 Card System Components */
+.card-system { 
+    background:white; 
+    border-radius:var(--border-radius); 
+    overflow:hidden; 
+    box-shadow:var(--shadow); 
+    transition:var(--transition); 
+    position:relative; 
+}
 .card-vertical { display:flex; flex-direction:column; }
 .card-horizontal { display:flex; flex-direction:row; }
 .card-img-container { flex:0 0 40%; overflow:hidden; }
 .card-img-container div { width:100%; height:100%; }
 .card-content { flex:1; display:flex; flex-direction:column; }
-.card-body { padding:1.5rem; flex:1; display:flex; flex-direction:column; }
-.card-title { font-size:1.4rem; margin-bottom:0.75rem; color:var(--dark); }
-.card-text { color:var(--gray); margin-bottom:1.5rem; flex-grow:1; }
-.card-btn { display:inline-block; padding:0.75rem 1.5rem; background:var(--primary); color:white; border-radius:50px; text-align:center; font-weight:600; transition:var(--transition); align-self:flex-start; }
-.card-btn:hover { background:var(--accent); transform:translateY(-2px); box-shadow:0 4px 12px rgba(79,140,255,0.3); }
+.card-body { 
+    padding:1.5rem; 
+    flex:1; 
+    display:flex; 
+    flex-direction:column; 
+}
+.card-title { 
+    font-size:1.4rem; 
+    margin-bottom:0.75rem; 
+    color:var(--dark); 
+}
+.card-text { 
+    color:var(--gray); 
+    margin-bottom:1.5rem; 
+    flex-grow:1; 
+}
+.card-btn { 
+    display:inline-block; 
+    padding:0.75rem 1.5rem; 
+    background:var(--primary); 
+    color:white; 
+    border-radius:50px; 
+    text-align:center; 
+    font-weight:600; 
+    transition:var(--transition); 
+    align-self:flex-start; 
+}
+.card-btn:hover { 
+    background:var(--accent); 
+    transform:translateY(-2px); 
+    box-shadow:0 4px 12px rgba(79,140,255,0.3); 
+}
 
-/* Effects */
-.card-tilt { transform-style: preserve-3d; perspective:1000px; }
-.card-tilt:hover { transform: rotateY(10deg) rotateX(5deg); box-shadow:0 20px 40px rgba(0,0,0,0.15); }
+/* ✨ Card Effect Animations */
+.card-tilt { 
+    transform-style: preserve-3d; 
+    perspective:1000px; 
+}
+.card-tilt:hover { 
+    transform: rotateY(10deg) rotateX(5deg); 
+    box-shadow:0 20px 40px rgba(0,0,0,0.15); 
+}
 
-.card-float { animation:float 6s ease-in-out infinite; }
-.card-float:hover { animation:none; transform:translateY(-10px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
-@keyframes float { 0%{transform:translateY(0px);}50%{transform:translateY(-10px);}100%{transform:translateY(0px);} }
+.card-float { 
+    animation:floatAnimation 6s ease-in-out infinite; 
+}
+.card-float:hover { 
+    animation:none; 
+    transform:translateY(-10px); 
+    box-shadow:0 15px 30px rgba(0,0,0,0.15); 
+}
+@keyframes floatAnimation { 
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);} 
+}
 
-.card-glow { position:relative; overflow:hidden; }
-.card-glow::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent); transition:var(--transition); }
+.card-glow { 
+    position:relative; 
+    overflow:hidden; 
+}
+.card-glow::before { 
+    content:''; 
+    position:absolute; 
+    top:0; 
+    left:-100%; 
+    width:100%; 
+    height:100%; 
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent); 
+    transition:var(--transition); 
+}
 .card-glow:hover::before { left:100%; }
-.card-glow:hover { box-shadow:0 0 20px rgba(37,211,102,0.4); }
+.card-glow:hover { 
+    box-shadow:0 0 20px rgba(37,211,102,0.4); 
+}
 
-.card-morph { transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
-.card-morph:hover { border-radius:30px; transform:scale(1.03); }
+.card-morph { 
+    transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275); 
+}
+.card-morph:hover { 
+    border-radius:30px; 
+    transform:scale(1.03); 
+}
 
-.card-flip { height:300px; perspective:1000px; background:transparent; box-shadow:none; }
-.card-flip-inner { position:relative; width:100%; height:100%; text-align:center; transition:transform 0.8s; transform-style:preserve-3d; }
-.card-flip:hover .card-flip-inner { transform:rotateY(180deg); }
-.card-flip-front,.card-flip-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:var(--border-radius); box-shadow:var(--shadow); }
-.card-flip-back { background:linear-gradient(135deg,var(--accent) 0%,var(--purple) 100%); color:white; transform:rotateY(180deg); }
+.card-flip { 
+    height:300px; 
+    perspective:1000px; 
+    background:transparent; 
+    box-shadow:none; 
+}
+.card-flip-inner { 
+    position:relative; 
+    width:100%; 
+    height:100%; 
+    text-align:center; 
+    transition:transform 0.8s; 
+    transform-style:preserve-3d; 
+}
+.card-flip:hover .card-flip-inner { 
+    transform:rotateY(180deg); 
+}
+.card-flip-front,.card-flip-back { 
+    position:absolute; 
+    width:100%; 
+    height:100%; 
+    backface-visibility:hidden; 
+    border-radius:var(--border-radius); 
+    box-shadow:var(--shadow); 
+}
+.card-flip-back { 
+    background:linear-gradient(135deg,var(--accent) 0%,var(--purple) 100%); 
+    color:white; 
+    transform:rotateY(180deg); 
+}
 .card-flip-back .card-title, .card-flip-back .card-text { color:white; }
-.card-flip-back .card-btn { background:white; color:var(--accent); }
-.card-flip-back .card-btn:hover { background:rgba(255,255,255,0.9); }
+.card-flip-back .card-btn { 
+    background:white; 
+    color:var(--accent); 
+}
+.card-flip-back .card-btn:hover { 
+    background:rgba(255,255,255,0.9); 
+}
 
-/* Section Headers */
-.section-header { text-align:center; margin:3rem 0 2rem; position:relative; }
-.section-header h2 { display:inline-block; background:white; padding:0.5rem 2rem; border-radius:50px; box-shadow:var(--shadow); font-size:1.8rem; color:var(--dark); }
+/* 📝 Section Headers */
+.section-header { 
+    text-align:center; 
+    margin:3rem 0 2rem; 
+    position:relative; 
+}
+.section-header h2 { 
+    display:inline-block; 
+    background:white; 
+    padding:0.5rem 2rem; 
+    border-radius:50px; 
+    box-shadow:var(--shadow); 
+    font-size:1.8rem; 
+    color:var(--dark); 
+}
 
-/* Responsive */
-@media(max-width:768px){.cards-grid{grid-template-columns:1fr}.card-horizontal{flex-direction:column}.card-img-container{flex:0 0 200px}h1{font-size:2rem;}}
-@media(max-width:480px){.controls{flex-direction:column;align-items:center}.control-btn{width:200px}}
+/* 📱 Responsive Design */
+@media(max-width:768px){
+    .cards-grid{grid-template-columns:1fr}
+    .card-horizontal{flex-direction:column}
+    .card-img-container{flex:0 0 200px}
+    h1{font-size:2rem;}
+}
+@media(max-width:480px){
+    .controls{flex-direction:column;align-items:center}
+    .control-btn{width:200px}
+}
 
-/* Badges */
-.card-badge{position:absolute;top:15px;right:15px;background:var(--primary);color:white;padding:0.3rem 0.8rem;border-radius:50px;font-size:0.8rem;font-weight:600;z-index:10;}
+/* 🏷️ Badge Components */
+.card-badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:var(--primary);
+    color:white;
+    padding:0.3rem 0.8rem;
+    border-radius:50px;
+    font-size:0.8rem;
+    font-weight:600;
+    z-index:10;
+}
 
-/* Dark Mode */
-@media(prefers-color-scheme:dark){:root{--dark:#f8f9fa;--light:#2c3e50;--gray:#adb5bd}body{background:linear-gradient(135deg,#2c3e50 0%,#34495e 100%);color:var(--dark)}.card-system{background:#34495e;color:var(--dark)}.card-title{color:var(--dark)}.control-btn{background:#34495e;color:var(--dark)}.section-header h2{background:#34495e;color:var(--dark)}}
+/* 🌙 Dark Mode Support */
+@media(prefers-color-scheme:dark){
+    :root{
+        --dark:#f8f9fa;
+        --light:#2c3e50;
+        --gray:#adb5bd
+    }
+    body{
+        background:linear-gradient(135deg,#2c3e50 0%,#34495e 100%);
+        color:var(--dark)
+    }
+    .card-system{
+        background:#34495e;
+        color:var(--dark)
+    }
+    .card-title{
+        color:var(--dark)
+    }
+    .control-btn{
+        background:#34495e;
+        color:var(--dark)
+    }
+    .section-header h2{
+        background:#34495e;
+        color:var(--dark)
+    }
+}
+
+/* 🔄 Additional Styles for Enhancement */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: rippleEffect 0.6s linear;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 <body>
 <div class="test-container">
 <header>
-<h1>Unified Card System Test</h1>
+<h1>Enhanced Card System Test</h1>
 <p class="subtitle">Explore different card layouts and interactive effects. Hover over cards to see animations.</p>
 <div class="controls">
 <button class="control-btn active" data-filter="all">All Cards</button>
@@ -107,41 +321,49 @@ h1 { font-size:2.5rem; margin-bottom:0.5rem; background: linear-gradient(135deg,
 </div>
 </header>
 <div class="cards-grid">
-<!-- All cards remain same as original, just cleaned up spacing and formatting -->
+<!-- Card content remains identical to original -->
 </div>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-const filterButtons=document.querySelectorAll('.control-btn');
-const cards=document.querySelectorAll('.card-system');
+    const filterButtons = document.querySelectorAll('.control-btn');
+    const cardElements = document.querySelectorAll('.card-system');
 
-filterButtons.forEach(button=>{
-button.addEventListener('click',function(){
-filterButtons.forEach(btn=>btn.classList.remove('active'));
-this.classList.add('active');
-const filter=this.getAttribute('data-filter');
-cards.forEach(card=>{
-card.style.display=(filter==='all'||card.getAttribute('data-category')===filter)?'flex':'none';
-});
-});
-});
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            const filterValue = this.getAttribute('data-filter');
+            
+            cardElements.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                card.style.display = (filterValue === 'all' || cardCategory === filterValue) ? 'flex' : 'none';
+            });
+        });
+    });
 
-// Ripple effect
-document.querySelectorAll('.card-btn').forEach(button=>{
-button.addEventListener('click',function(e){
-e.preventDefault();
-const ripple=document.createElement('span');
-const rect=this.getBoundingClientRect();
-const size=Math.max(rect.width,rect.height);
-const x=e.clientX-rect.left-size/2;
-const y=e.clientY-rect.top-size/2;
-ripple.style.width=ripple.style.height=size+'px';
-ripple.style.left=x+'px';
-ripple.style.top=y+'px';
-ripple.classList.add('ripple');
-this.appendChild(ripple);
-setTimeout(()=>ripple.remove(),600);
-});
-});
+    // Enhanced ripple effect
+    document.querySelectorAll('.card-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const rippleElement = document.createElement('span');
+            const buttonRect = this.getBoundingClientRect();
+            const rippleSize = Math.max(buttonRect.width, buttonRect.height);
+            const rippleX = e.clientX - buttonRect.left - rippleSize / 2;
+            const rippleY = e.clientY - buttonRect.top - rippleSize / 2;
+            
+            rippleElement.style.width = rippleElement.style.height = rippleSize + 'px';
+            rippleElement.style.left = rippleX + 'px';
+            rippleElement.style.top = rippleY + 'px';
+            rippleElement.classList.add('ripple');
+            
+            this.appendChild(rippleElement);
+            setTimeout(() => rippleElement.remove(), 600);
+        });
+    });
+
+    // Additional enhancement: Card interaction logging
+    console.log('🃏 Card system initialized successfully');
 });
 </script>
 </div>
