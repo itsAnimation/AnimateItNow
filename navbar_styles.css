@@ -167,7 +167,7 @@
             z-index: 999;
             transition: var(--transition);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 10px;
         }
@@ -204,11 +204,17 @@
             -webkit-text-fill-color: transparent;
         }
 
+        
         .nav-links {
-             width:50%;
-            display: flex;
-            list-style: none;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 40px;
+}
 
         .nav-links li {
             margin-left: 20px;
@@ -329,16 +335,6 @@
             background-color: var(--bg-tertiary);
         }
 
-
-
-
-        .nav-right{
-            display:flex;
-            justify-content: space-around;
-            align-items:center;
-            width:85%;
-        }
-
         section {
             padding: 50px 0;
         }
@@ -405,7 +401,7 @@
         /* Header/Navigation */
         .header {
             position: fixed;
-            top: 0;
+            top: 48;
             left: 0;
             width: 100%;
             height: var(--header-height);
@@ -435,11 +431,16 @@
             align-items: center;
             height: 100%;
             width:100%;
+            max-width: 1200px;
+             margin: 0 auto;
+            position: relative;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
+            flex: 0 0 auto;
+           
         }
 
 
@@ -448,8 +449,10 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-left:300px;
-            margin-right:0;
+            /* margin-left:30px;
+            margin-right:10px; */
+             flex: 0 0 auto;
+
         }
 
         .theme-toggle {
@@ -490,3 +493,36 @@
             transition: var(--transition);
             border-radius: 2px;
         }
+
+        @media (max-width: 992px) {
+    .main-primary-bar .nav-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .nav-links {
+        display: none; /* Hide links, show hamburger */
+    }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100vw;
+        background: var(--bg);
+        z-index: 1000;
+        gap: 0;
+        padding: 20px 0;
+    }
+    .nav-actions {
+        gap: 10px;
+    }
+    .logo-container {
+        min-width: 0;
+    }
+}
+
+/* Hamburger always right */
+.hamburger {
+    margin-left: 10px;
+}
