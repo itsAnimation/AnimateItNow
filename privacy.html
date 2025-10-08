@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | AnimateItNow</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Privacy Policy for AnimateItNow - A comprehensive collection of CSS animation templates and effects for web developers"
+    />
+
+    <!-- Icons & Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      /* 🎨 CSS Variables for Theming */
+      :root {
+        --primary: #6c63ff;
+        --primary-light: #8a84ff;
+        --primary-dark: #554fd8;
+        --secondary: #ff6584;
+        --accent: #36d1dc;
+        --text: #2a2a3c;
+        --text-light: #6c757d;
+        --bg: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-tertiary: #e9ecef;
+        --border: #dee2e6;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --radius: 12px;
+        --transition: all 0.3s ease;
+        --header-height: 80px;
+
+        /* 🆕 Additional theme variables for enhanced customization */
+        --transition-speed: 0.3s;
+        --border-radius: 12px;
+        --spacing-unit: 1rem;
+      }
+
+      /* 🌙 Dark Mode Variables */
+      .dark-theme {
+        --primary: #8a84ff;
+        --primary-light: #a8a4ff;
+        --primary-dark: #6c63ff;
+        --secondary: #ff8fa3;
+        --accent: #4dd0e1;
+        --text: #f8f9fa;
+        --text-light: #a0a0a0;
+        --bg: #121212;
+        --bg-secondary: #1e1e1e;
+        --bg-tertiary: #2a2a2a;
+        --border: #404040;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      /* Background Elements */
+      .bg-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .bg-element {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        filter: blur(40px);
+      }
+
+      .bg-element-1 {
+        width: 300px;
+        height: 300px;
+        background: var(--primary);
+        top: 10%;
+        left: 5%;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .bg-element-2 {
+        width: 200px;
+        height: 200px;
+        background: var(--accent);
+        top: 60%;
+        right: 10%;
+        animation: float 15s infinite ease-in-out reverse;
+      }
+
+      .bg-element-3 {
+        width: 150px;
+        height: 150px;
+        background: var(--secondary);
+        bottom: 20%;
+        left: 20%;
+        animation: float 25s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-20px) rotate(120deg);
+        }
+        66% {
+          transform: translateY(10px) rotate(240deg);
+        }
+      }
+
+      /* ===================== NAVBAR ===================== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .dark-theme .navbar {
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: var(--header-height);
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .site-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 25px;
+      }
+
+      .nav-links li a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 1rem;
+      }
+
+      .nav-links li a:hover,
+      .nav-links li a.active {
+        color: var(--primary);
+        text-shadow: 0 0 4px rgba(108, 99, 255, 0.3);
+      }
+
+      .nav-links li a i {
+        color: var(--accent);
+      }
+
+      /* Theme Toggle Button */
+      .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        color: var(--text);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .theme-toggle:hover {
+        background: var(--bg-secondary);
+        transform: scale(1.1);
+      }
+
+      .theme-toggle .fa-sun {
+        color: #ffa502;
+      }
+
+      .theme-toggle .fa-moon {
+        color: #70a1ff;
+      }
+
+      /* ============ Hamburger Button ============ */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+      }
+
+      .menu-toggle span {
+        height: 3px;
+        width: 25px;
+        background: var(--primary);
+        margin: 4px 0;
+        border-radius: 5px;
+        transition: 0.4s;
+      }
+
+      /* When menu is active */
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* ============ Mobile Menu ============ */
+      @media (max-width: 992px) {
+        .menu-toggle {
+          display: flex;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: var(--header-height);
+          right: 0;
+          width: 100%;
+          flex-direction: column;
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: all 0.4s ease;
+        }
+
+        .nav-links.open {
+          max-height: 500px;
+          opacity: 1;
+          padding: 15px 0;
+        }
+
+        .nav-links li {
+          margin: 10px 0;
+        }
+
+        .nav-links li a {
+          font-size: 1.1rem;
+        }
+      }
+
+      /* Scroll shrink */
+      .navbar.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        height: 70px;
+      }
+
+      .dark-theme .navbar.scrolled {
+        background-color: rgba(18, 18, 18, 0.95);
+      }
+
+      /* ===================== CONTENT ===================== */
+      main {
+        padding-top: var(--header-height);
+        min-height: 100vh;
+      }
+
+      section {
+        padding: 100px 20px;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .privacy-header {
+        text-align: center;
+        padding: 100px 0 60px;
+      }
+
+      .privacy-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .privacy-subtitle {
+        font-size: 1.3rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Privacy Policy Content Styles */
+      .privacy-content {
+        text-align: left;
+        margin-top: 40px;
+      }
+
+      .privacy-content h2 {
+        color: var(--primary);
+        margin: 40px 0 20px;
+        font-size: 1.8rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .privacy-content h2::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        bottom: 0;
+        left: 0;
+        border-radius: 2px;
+      }
+
+      .privacy-content h3 {
+        color: var(--text);
+        margin: 25px 0 10px;
+        font-size: 1.3rem;
+      }
+
+      .privacy-content p {
+        text-align: left;
+        margin-bottom: 15px;
+        color: var(--text-light);
+      }
+
+      .privacy-content ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .privacy-content li {
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+
+      .highlight {
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+      }
+
+      .info-box {
+        background: var(--bg-secondary);
+        border-left: 4px solid var(--primary);
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        box-shadow: var(--shadow);
+      }
+
+      .info-box p {
+        margin-bottom: 0;
+      }
+
+      .last-updated {
+        text-align: center;
+        font-style: italic;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      /* ===================== FOOTER ===================== */
+      footer {
+        background: var(--bg-secondary);
+        padding: 60px 0 30px;
+        text-align: center;
+        border-top: 1px solid var(--border);
+      }
+
+      footer .highlight {
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+      }
+
+      footer p {
+        color: var(--text-light);
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        opacity: 0;
+        visibility: hidden;
+        box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        z-index: 100;
+        border: none;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Background Elements -->
+    <div class="bg-elements">
+      <div class="bg-element bg-element-1"></div>
+      <div class="bg-element bg-element-2"></div>
+      <div class="bg-element bg-element-3"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <a href="index.html">
+            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          </a>
+          <span class="site-name">Animate It Now</span>
+        </div>
+
+        <div class="nav-right">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon" style="display: none"></i>
+          </button>
+
+          <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <ul class="nav-links" id="navLinks">
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+              <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </li>
+            <li>
+              <a href="templates.html"
+                ><i class="fas fa-th-large"></i> Templates</a
+              >
+            </li>
+            <li>
+              <a href="components.html"
+                ><i class="fas fa-puzzle-piece"></i> Components</a
+              >
+            </li>
+            <li>
+              <a href="editor.html" target="_blank"
+                ><i class="fas fa-code"></i> Editor</a
+              >
+            </li>
+            <li>
+              <a href="playground.html"
+                ><i class="fas fa-magic"></i> Hover-Effects</a
+              >
+            </li>
+            <li>
+              <a href="contributors.html"
+                ><i class="fas fa-users"></i> Contributors</a
+              >
+            </li>
+            <li>
+              <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+            <li>
+              <a href="leaderboard.html"
+                ><i class="fas fa-trophy"></i> Leaderboard</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section>
+        <div class="privacy-header">
+          <h1 class="privacy-title">Privacy Policy</h1>
+          <p class="privacy-subtitle">
+            Your privacy is important to us. Learn how we collect, use, and
+            protect your information.
+          </p>
+        </div>
+
+        <div class="privacy-content">
+          <div class="info-box">
+            <p><strong>Last Updated:</strong> January 1, 2025</p>
+          </div>
+
+          <h2>Introduction</h2>
+          <p>
+            Welcome to AnimateItNow. We are committed to protecting your privacy
+            and ensuring you have a positive experience on our website. This
+            Privacy Policy explains how we collect, use, disclose, and safeguard
+            your information when you visit our website.
+          </p>
+          <p>
+            Please read this privacy policy carefully. If you do not agree with
+            the terms of this privacy policy, please do not access the site.
+          </p>
+
+          <h2>Information We Collect</h2>
+
+          <h3>Personal Information</h3>
+          <p>
+            We may collect personal information that you voluntarily provide to
+            us when you:
+          </p>
+          <ul>
+            <li>Register on our website</li>
+            <li>Subscribe to our newsletter</li>
+            <li>Contact us through our contact forms</li>
+            <li>Participate in our community or contribute content</li>
+          </ul>
+          <p>The personal information we collect may include:</p>
+          <ul>
+            <li>Name</li>
+            <li>Email address</li>
+            <li>GitHub username (if you contribute to our project)</li>
+            <li>Any other information you choose to provide</li>
+          </ul>
+
+          <h3>Automatically Collected Information</h3>
+          <p>
+            When you visit our website, we automatically collect certain
+            information about your device and how you interact with our site,
+            including:
+          </p>
+          <ul>
+            <li>IP address</li>
+            <li>Browser type and version</li>
+            <li>Pages you visit on our site</li>
+            <li>Time and date of your visit</li>
+            <li>Time spent on those pages</li>
+            <li>Other diagnostic data</li>
+          </ul>
+
+          <h2>How We Use Your Information</h2>
+          <p>
+            We use the information we collect in various ways, including to:
+          </p>
+          <ul>
+            <li>Provide, operate, and maintain our website</li>
+            <li>Improve, personalize, and expand our website</li>
+            <li>Understand and analyze how you use our website</li>
+            <li>Develop new products, services, features, and functionality</li>
+            <li>
+              Communicate with you, either directly or through one of our
+              partners, including for customer service, to provide you with
+              updates and other information relating to the website, and for
+              marketing and promotional purposes
+            </li>
+            <li>Process your transactions</li>
+            <li>Send you emails</li>
+            <li>Find and prevent fraud</li>
+          </ul>
+
+          <h2>Cookies and Tracking Technologies</h2>
+          <p>
+            We use cookies and similar tracking technologies to track activity
+            on our website and store certain information. Cookies are files with
+            a small amount of data which may include an anonymous unique
+            identifier.
+          </p>
+          <p>
+            You can instruct your browser to refuse all cookies or to indicate
+            when a cookie is being sent. However, if you do not accept cookies,
+            you may not be able to use some portions of our website.
+          </p>
+
+          <h2>Third-Party Services</h2>
+          <p>
+            We may employ third-party companies and individuals due to the
+            following reasons:
+          </p>
+          <ul>
+            <li>To facilitate our website</li>
+            <li>To provide the website on our behalf</li>
+            <li>To perform website-related services</li>
+            <li>To assist us in analyzing how our website is used</li>
+          </ul>
+          <p>
+            These third parties have access to your personal information only to
+            perform these tasks on our behalf and are obligated not to disclose
+            or use it for any other purpose.
+          </p>
+
+          <h2>Data Security</h2>
+          <p>
+            The security of your data is important to us, but remember that no
+            method of transmission over the Internet or method of electronic
+            storage is 100% secure. While we strive to use commercially
+            acceptable means to protect your personal information, we cannot
+            guarantee its absolute security.
+          </p>
+
+          <h2>Your Data Protection Rights</h2>
+          <p>
+            Depending on your location, you may have the following rights
+            regarding your personal data:
+          </p>
+          <ul>
+            <li>
+              The right to access – You have the right to request copies of your
+              personal data.
+            </li>
+            <li>
+              The right to rectification – You have the right to request that we
+              correct any information you believe is inaccurate or complete
+              information you believe is incomplete.
+            </li>
+            <li>
+              The right to erasure – You have the right to request that we erase
+              your personal data, under certain conditions.
+            </li>
+            <li>
+              The right to restrict processing – You have the right to request
+              that we restrict the processing of your personal data, under
+              certain conditions.
+            </li>
+            <li>
+              The right to object to processing – You have the right to object
+              to our processing of your personal data, under certain conditions.
+            </li>
+            <li>
+              The right to data portability – You have the right to request that
+              we transfer the data that we have collected to another
+              organization, or directly to you, under certain conditions.
+            </li>
+          </ul>
+          <p>
+            If you make a request, we have one month to respond to you. If you
+            would like to exercise any of these rights, please contact us.
+          </p>
+
+          <h2>Children's Privacy</h2>
+          <p>
+            Our website does not address anyone under the age of 13. We do not
+            knowingly collect personally identifiable information from children
+            under 13. If you are a parent or guardian and you are aware that
+            your child has provided us with personal data, please contact us. If
+            we become aware that we have collected personal data from children
+            without verification of parental consent, we take steps to remove
+            that information from our servers.
+          </p>
+
+          <h2>Changes to This Privacy Policy</h2>
+          <p>
+            We may update our Privacy Policy from time to time. We will notify
+            you of any changes by posting the new Privacy Policy on this page
+            and updating the "Last Updated" date at the top of this Privacy
+            Policy.
+          </p>
+          <p>
+            You are advised to review this Privacy Policy periodically for any
+            changes. Changes to this Privacy Policy are effective when they are
+            posted on this page.
+          </p>
+
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions about this Privacy Policy, please contact
+            us:
+          </p>
+          <ul>
+            <li>By email: privacy@animateitnow.com</li>
+            <li>
+              By visiting our contact page:
+              <a href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+
+          <p class="last-updated">
+            This Privacy Policy was last updated on January 1, 2025.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <footer>
+      <p>
+        © 2025 AnimateItNow. Made with ❤️ by
+        <span class="highlight">Anuj</span> and Contributors.
+      </p>
+    </footer>
+
+    <script>
+      // Theme Toggle Functionality
+      const themeToggle = document.getElementById("themeToggle");
+      const sunIcon = themeToggle.querySelector(".fa-sun");
+      const moonIcon = themeToggle.querySelector(".fa-moon");
+
+      // Check for saved theme preference or default to light
+      const currentTheme = localStorage.getItem("theme") || "light";
+
+      // Apply the saved theme on page load
+      if (currentTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      } else {
+        document.body.classList.remove("dark-theme");
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      }
+
+      // Toggle theme when button is clicked
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme");
+
+        if (document.body.classList.contains("dark-theme")) {
+          localStorage.setItem("theme", "dark");
+          sunIcon.style.display = "none";
+          moonIcon.style.display = "block";
+        } else {
+          localStorage.setItem("theme", "light");
+          sunIcon.style.display = "block";
+          moonIcon.style.display = "none";
+        }
+      });
+
+      // Toggle mobile menu
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        navLinks.classList.toggle("open");
+      });
+
+      // Navbar shrink effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        const backToTop = document.getElementById("backToTop");
+
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+          backToTop.classList.add("visible");
+        } else {
+          navbar.classList.remove("scrolled");
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      // Back to top functionality
+      document.getElementById("backToTop").addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>
