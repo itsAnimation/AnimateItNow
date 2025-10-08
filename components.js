@@ -1,10 +1,12 @@
 // Component Documentation System JavaScript
 
-// 🎯 Enhanced Component Documentation System with Improved Performance and UX
-// This system provides interactive documentation for CSS components with live previews,
-// code snippets, and customization options.
+
 
 class ComponentDocumentation {
+    /**
+     * Initialize the component documentation system
+     */
+
     constructor() {
         // 📦 Component data storage
         this.components = [];
@@ -24,14 +26,49 @@ class ComponentDocumentation {
         this.init();
     }
 
-    // 🔄 Initialize the component documentation system
+
+    /**
+     * Initialize the system
+     * Sets up components, event listeners, and renders initial view
+     */
+
     init() {
         this.loadComponents();
         this.setupEventListeners();
         this.renderComponents();
+        this.initializeTheme();
     }
 
-    // 📁 Load component data structure
+    // Initialize theme based on saved preference or system preference
+    initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.body.classList.add('dark');
+            this.updateThemeToggleIcon();
+        }
+    }
+
+    // Update theme toggle icon based on current theme
+    updateThemeToggleIcon() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+        
+        const icon = themeToggle.querySelector('i');
+        if (document.body.classList.contains('dark')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    }
+
+
+    /**
+     * Load all available components into the system
+     * Each component includes metadata, preview, and implementation details
+     */
+
     loadComponents() {
         // 🧩 Component library with enhanced metadata
         this.components = [
@@ -47,7 +84,7 @@ class ComponentDocumentation {
   <span class="btn-text">Click Me</span>
   <span class="btn-icon">→</span>
 </button>`,
-                css: `.animated-btn {
+        css: `.animated-btn {
   position: relative;
   padding: 12px 24px;
   background: linear-gradient(45deg, #ff6b6b, #feca57);
@@ -75,8 +112,8 @@ class ComponentDocumentation {
 .animated-btn:hover .btn-icon {
   transform: translateX(4px);
 }`,
-                js: '',
-                usage: `
+        js: "",
+        usage: `
 <h3>Basic Usage</h3>
 <p>Simply add the animated-btn class to any button element:</p>
 <pre><code>&lt;button class="animated-btn"&gt;Your Text&lt;/button&gt;</code></pre>
@@ -95,7 +132,7 @@ class ComponentDocumentation {
   <li>Add aria-label for icon-only buttons</li>
   <li>Ensure keyboard navigation works properly</li>
 </ul>`,
-                customization: `
+        customization: `
 <h3>Color Customization</h3>
 <p>Modify the gradient colors by changing the background property:</p>
 <pre><code>background: linear-gradient(45deg, #your-color-1, #your-color-2);</code></pre>
@@ -111,17 +148,18 @@ class ComponentDocumentation {
 <h3>Animation Speed</h3>
 <p>Control animation duration with the transition property:</p>
 <pre><code>transition: all 0.2s ease; /* Faster */
-transition: all 0.5s ease; /* Slower */</code></pre>`
-            },
-            {
-                id: 'card-hover',
-                title: 'Card Hover Effect',
-                description: 'Elegant card component with smooth hover animations and shadow effects',
-                category: 'cards',
-                complexity: 'intermediate',
-                tags: ['hover', 'shadow', 'transform'],
-                preview: this.createCardPreview(),
-                html: `<div class="hover-card">
+transition: all 0.5s ease; /* Slower */</code></pre>`,
+      },
+      {
+        id: "card-hover",
+        title: "Card Hover Effect",
+        description:
+          "Elegant card component with smooth hover animations and shadow effects",
+        category: "cards",
+        complexity: "intermediate",
+        tags: ["hover", "shadow", "transform"],
+        preview: this.createCardPreview(),
+        html: `<div class="hover-card">
   <div class="card-image">
     <img src="https://via.placeholder.com/300x200" alt="Card image">
   </div>
@@ -131,7 +169,7 @@ transition: all 0.5s ease; /* Slower */</code></pre>`
     <button class="card-button">Learn More</button>
   </div>
 </div>`,
-                css: `.hover-card {
+        css: `.hover-card {
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -192,8 +230,8 @@ transition: all 0.5s ease; /* Slower */</code></pre>`
 .card-button:hover {
   background: #e55555;
 }`,
-                js: '',
-                usage: `
+        js: "",
+        usage: `
 <h3>Basic Usage</h3>
 <p>Create a card with image, content, and interactive elements:</p>
 <pre><code>&lt;div class="hover-card"&gt;
@@ -214,7 +252,7 @@ transition: all 0.5s ease; /* Slower */</code></pre>`
   <li>Limit descriptions to 2-3 lines</li>
   <li>Use high-quality images</li>
 </ul>`,
-                customization: `
+        customization: `
 <h3>Card Dimensions</h3>
 <p>Adjust max-width and height for different card sizes:</p>
 <pre><code>max-width: 250px; /* Smaller cards */
@@ -231,17 +269,18 @@ transform: scale(1.02); /* Scale effect */</code></pre>
   <li>Background: Change the card background color</li>
   <li>Text: Modify title and description colors</li>
   <li>Button: Update button background and hover states</li>
-</ul>`
-            },
-            {
-                id: 'glassmorphism-form',
-                title: 'Glassmorphism Form',
-                description: 'Modern form with glassmorphism design and smooth animations',
-                category: 'forms',
-                complexity: 'advanced',
-                tags: ['glassmorphism', 'form', 'modern'],
-                preview: this.createFormPreview(),
-                html: `<form class="glass-form">
+</ul>`,
+      },
+      {
+        id: "glassmorphism-form",
+        title: "Glassmorphism Form",
+        description:
+          "Modern form with glassmorphism design and smooth animations",
+        category: "forms",
+        complexity: "advanced",
+        tags: ["glassmorphism", "form", "modern"],
+        preview: this.createFormPreview(),
+        html: `<form class="glass-form">
   <h2 class="form-title">Sign In</h2>
   <div class="form-group">
     <input type="email" id="email" required>
@@ -253,7 +292,7 @@ transform: scale(1.02); /* Scale effect */</code></pre>
   </div>
   <button type="submit" class="glass-button">Sign In</button>
 </form>`,
-                css: `.glass-form {
+        css: `.glass-form {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -329,8 +368,8 @@ transform: scale(1.02); /* Scale effect */</code></pre>
   background: rgba(255, 107, 107, 1);
   transform: translateY(-2px);
 }`,
-                js: '',
-                usage: `
+        js: "",
+        usage: `
 <h3>Implementation</h3>
 <p>Best used with a background image or gradient for the glass effect:</p>
 <pre><code>body {
@@ -350,7 +389,7 @@ transform: scale(1.02); /* Scale effect */</code></pre>
   <li>Use proper label associations</li>
   <li>Support keyboard navigation</li>
 </ul>`,
-                customization: `
+        customization: `
 <h3>Glass Effect Intensity</h3>
 <p>Adjust the backdrop-filter blur value:</p>
 <pre><code>backdrop-filter: blur(5px);  /* Subtle */
@@ -367,17 +406,17 @@ background: rgba(255, 255, 255, 0.2);  /* Less transparent */</code></pre>
   <li>Blue theme: rgba(66, 153, 225, 0.8)</li>
   <li>Green theme: rgba(72, 187, 120, 0.8)</li>
   <li>Purple theme: rgba(159, 122, 234, 0.8)</li>
-</ul>`
-            },
-            {
-                id: 'navigation-menu',
-                title: 'Responsive Navigation',
-                description: 'Mobile-friendly navigation menu with smooth animations',
-                category: 'navigation',
-                complexity: 'intermediate',
-                tags: ['responsive', 'mobile', 'hamburger'],
-                preview: this.createNavPreview(),
-                html: `<nav class="responsive-nav">
+</ul>`,
+      },
+      {
+        id: "navigation-menu",
+        title: "Responsive Navigation",
+        description: "Mobile-friendly navigation menu with smooth animations",
+        category: "navigation",
+        complexity: "intermediate",
+        tags: ["responsive", "mobile", "hamburger"],
+        preview: this.createNavPreview(),
+        html: `<nav class="responsive-nav">
   <div class="nav-brand">
     <img src="logo.png" alt="Logo" class="nav-logo">
     <span class="brand-text">Brand</span>
@@ -394,7 +433,7 @@ background: rgba(255, 255, 255, 0.2);  /* Less transparent */</code></pre>
     <li><a href="#" class="nav-link">Contact</a></li>
   </ul>
 </nav>`,
-                css: `.responsive-nav {
+        css: `.responsive-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -511,7 +550,7 @@ background: rgba(255, 255, 255, 0.2);  /* Less transparent */</code></pre>
     transform: rotate(45deg) translate(-5px, -6px);
   }
 }`,
-                js: `// Navigation toggle functionality
+        js: `// Navigation toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
@@ -537,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });`,
-                usage: `
+        usage: `
 <h3>Basic Implementation</h3>
 <p>Include the HTML structure and add the JavaScript for mobile functionality:</p>
 <pre><code>&lt;script src="navigation.js"&gt;&lt;/script&gt;</code></pre>
@@ -555,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <li>ARIA labels for screen readers</li>
   <li>Focus management</li>
 </ul>`,
-                customization: `
+        customization: `
 <h3>Breakpoint Customization</h3>
 <p>Change the mobile breakpoint in the media query:</p>
 <pre><code>@media (max-width: 992px) { /* Tablet breakpoint */
@@ -571,21 +610,21 @@ transition: all 0.5s ease; /* Slower */</code></pre>
   <li>Background: Change nav background color</li>
   <li>Links: Modify text and hover colors</li>
   <li>Hamburger: Update hamburger icon color</li>
-</ul>`
-            },
-            {
-                id: 'loading-spinner',
-                title: 'Loading Spinner',
-                description: 'Smooth CSS-only loading spinner with multiple variations',
-                category: 'animations',
-                complexity: 'beginner',
-                tags: ['loading', 'spinner', 'css-only'],
-                preview: this.createSpinnerPreview(),
-                html: `<div class="spinner-container">
+</ul>`,
+      },
+      {
+        id: "loading-spinner",
+        title: "Loading Spinner",
+        description: "Smooth CSS-only loading spinner with multiple variations",
+        category: "animations",
+        complexity: "beginner",
+        tags: ["loading", "spinner", "css-only"],
+        preview: this.createSpinnerPreview(),
+        html: `<div class="spinner-container">
   <div class="spinner"></div>
   <p class="loading-text">Loading...</p>
 </div>`,
-                css: `.spinner-container {
+        css: `.spinner-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -656,8 +695,8 @@ transition: all 0.5s ease; /* Slower */</code></pre>
     opacity: 0;
   }
 }`,
-                js: '',
-                usage: `
+        js: "",
+        usage: `
 <h3>Basic Usage</h3>
 <p>Show during loading states:</p>
 <pre><code>&lt;div class="spinner-container"&gt;
@@ -677,7 +716,7 @@ document.querySelector('.spinner-container').style.display = 'none';</code></pre
   <li>Provide loading text for context</li>
   <li>Consider reduced motion preferences</li>
 </ul>`,
-                customization: `
+        customization: `
 <h3>Size Variations</h3>
 <p>Adjust spinner dimensions:</p>
 <pre><code>/* Small */
@@ -695,53 +734,202 @@ border-top-color: #9f7aea; /* Purple */</code></pre>
 <h3>Animation Speed</h3>
 <p>Control rotation speed:</p>
 <pre><code>animation: spin 0.5s linear infinite; /* Faster */
-animation: spin 2s linear infinite;   /* Slower */</code></pre>`
+animation: spin 2s linear infinite;   /* Slower */</code></pre>`,
+      },
+      {
+        id: "animated-background",
+        title: "Animated Grid Background",
+        description: "Add a subtle, animated grid background to your website or app. Ideal for hero sections, dashboards, or landing pages.",
+        category: "background",
+        complexity: "intermediate",
+        tags: ["animation" ,'grid', "background", "glowing"],
+        preview: this.createBackgroundPreview(),
+        html: `
+<div class="animated-background">
+  <div class= "grid"></div> 
+  <div class="main"
+      <h3 class="text">Animated Grid Background</h3>
+  </div>
+</div>`,
+        css: `
+          @keyframes grid-wave {
+            0% {
+              background-position: 0 0, 0 0;
+              opacity: 0.8;
+              transform: scale(1);
             }
-        ];
+            50% {
+              background-position: 10px 10px, 10px 10px;
+              opacity: 1;
+              transform: scale(1.05);
+            }
+            100% {
+              background-position: 0 0, 0 0;
+              opacity: 0.8;
+              transform: scale(1);
+            }
+        }
+        .animated-background{
+          position: relative; 
+          width: 100%; 
+          height: 200px; 
+          overflow: hidden;
+        } 
+        .grid{
+          position: absolute;
+          inset: 0;
+          background-image: 
+            linear-gradient(90deg, rgba(19, 150, 40, 0.8) 1px, transparent 1px),
+            linear-gradient(rgba(218, 32, 7, 0.3) 1px, transparent 1px);
+          background-size: 20px 20px;
+          z-index: 9;
+          animation: grid-wave 6s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .main{
+          position: relative; 
+          z-index: 10; 
+          height:100%; 
+          display: flex; 
+          justify-content: center; 
+          align-items: center; 
+          gap: 10px; 
+        }
+        .text{
+          text-shadow:0 0 10px #ff3a3aff, 0 0 20px #1b38bdff;
+        }
+        `,
+        js: ``,
+        usage: `
+<h3>Basic Usage</h3>
+<p>Add a dynamic, animated grid background to your website or app.
+This background is subtle, modern, and ideal for landing pages, hero sections, or dashboards.</P>
+<pre><code>
+&lt;div class="container" style="position: relative; height: 100vh;"&gt;
+  &lt;h1 style="color: white; z-index: 10; position: relative; text-align: center; top: 40%;"&gt;
+    Animated Grid Background
+  &lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>JavaScript Integration</h3>
+<pre><code>
+&lt;script&gt;
+  document.querySelector(".container")
+    .insertAdjacentHTML("beforeend", createBackgroundPreview());
+&lt;/script&gt;
+</pre></code>
 
-        this.filteredComponents = [...this.components];
-    }
-
+<h3>Best Practices</h3>
+<ul>
+  <li>Use pointer-events: none to prevent blocking clicks</li>
+  <li>Set z-index: -1 to stay behind content </li>
+  <li>Adjust animation speed for smooth performance on all devices</li>
+  <li>Combine with particles or gradient overlays for advanced effects</li>
+</ul>
+        `,
+        customization: `
+<h3>Change grid Color</h3>  
+<p>Modify the color of the grid lines by updating the property</p>
+<pre><code>
+  color: 'rgba(86, 10, 136, 0.1)';</code></pre>
+<h3>Adjust Grid Size</h3>
+<p>Control the spacing between grid lines by changing the background size property</p>
+<pre><code>
+  background-size : 30px 30px; 
+</code></pre>
+        `,
+      },
+    ];
+ 
+    this.filteredComponents = [...this.components];
+  } 
     // 🎨 Create preview elements for each component
     createButtonPreview() {
         return `<button style="padding: 8px 16px; background: linear-gradient(45deg, #ff6b6b, #feca57); border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Preview Button</button>`;
-    }
+    } 
+ 
 
-    createCardPreview() {
-        return `<div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 200px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+  createCardPreview() {
+    return `<div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 200px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
             <div style="width: 100%; height: 60px; background: linear-gradient(45deg, #ff6b6b, #feca57); border-radius: 4px; margin-bottom: 0.5rem;"></div>
             <h4 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: #1a202c;">Card Title</h4>
             <p style="margin: 0; font-size: 0.75rem; color: #4a5568;">Card description</p>
         </div>`;
-    }
+  }
 
-    createFormPreview() {
-        return `<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 1rem; max-width: 200px;">
+  createFormPreview() {
+    return `<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 1rem; max-width: 200px;">
             <h4 style="color: white; margin: 0 0 1rem 0; text-align: center; font-size: 0.875rem;">Sign In</h4>
             <input style="width: 100%; padding: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; margin-bottom: 0.5rem;" placeholder="Email">
             <input style="width: 100%; padding: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white; margin-bottom: 0.5rem;" placeholder="Password" type="password">
             <button style="width: 100%; padding: 0.5rem; background: rgba(255,107,107,0.8); border: none; border-radius: 4px; color: white; font-size: 0.75rem;">Sign In</button>
         </div>`;
-    }
+  }
+
 
     createNavPreview() {
         return `<nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
             <div style="font-weight: 600; color: #1a202c;">Brand</div>
+
             <div style="display: flex; gap: 1rem;">
                 <a href="#" style="text-decoration: none; color: #4a5568;">Home</a>
                 <a href="#" style="text-decoration: none; color: #4a5568;">About</a>
                 <a href="#" style="text-decoration: none; color: #4a5568;">Contact</a>
             </div>
         </nav>`;
-    }
+  }
 
-    createSpinnerPreview() {
-        return `<div style="display: flex; align-items: center; gap: 0.5rem;">
+  createSpinnerPreview() {
+    return `<div style="display: flex; align-items: center; gap: 0.5rem;">
             <div style="width: 20px; height: 20px; border: 2px solid #f3f3f3; border-top: 2px solid #ff6b6b; border-radius: 50%; animation: spin 1s linear infinite;"></div>
             <span style="font-size: 0.75rem; color: #4a5568;">Loading...</span>
         </div>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>`;
-    }
+  } 
+
+  // added new background component
+  createBackgroundPreview() {
+    return `
+     <style> 
+        @keyframes grid-wave {
+          0% {
+            background-position: 0 0, 0 0;
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            background-position: 10px 10px, 10px 10px;
+            opacity: 1;
+            transform: scale(1.05);
+          }
+          100% {
+            background-position: 0 0, 0 0;
+            opacity: 0.8;
+            transform: scale(1);
+          } 
+        }
+     </style>
+
+    <div style="position: relative; width: 100%; height: 150px; overflow: hidden;">
+      <div style="
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(90deg, rgba(19, 150, 40, 0.8) 1px, transparent 1px),
+          linear-gradient(rgba(218, 32, 7, 0.3) 1px, transparent 1px);
+        background-size: 20px 20px;
+        z-index: 9;
+        animation: grid-wave 6s ease-in-out infinite;
+        pointer-events: none;
+      "></div> 
+      <div style="position: relative; z-index: 10; height:100%; display: flex; justify-content: center; align-items: center; gap: 10px;  ">
+        <h4 style="text-shadow:0 0 10px #ff3a3aff, 0 0 20px #1b38bdff; color:white;">
+        Animated Grid Background</h4>
+      </div>
+    </div>
+  `;
+  }
+
 
     // ⚙️ Setup event listeners
     setupEventListeners() {
@@ -807,55 +995,155 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
             this.renderComponents();
         });
 
-        // 🪟 Modal functionality
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                this.updateThemeToggleIcon();
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Modal functionality
+
         this.setupModalListeners();
     }
 
-    // 🔍 Filter components based on active filters
-    filterComponents() {
-        this.filteredComponents = this.components.filter(component => {
-            const matchesSearch = this.activeFilters.search === '' || 
-                component.title.toLowerCase().includes(this.activeFilters.search) ||
-                component.description.toLowerCase().includes(this.activeFilters.search) ||
-                component.tags.some(tag => tag.toLowerCase().includes(this.activeFilters.search));
 
-            const matchesCategory = this.activeFilters.category === 'all' || 
-                component.category === this.activeFilters.category;
+    searchInput.addEventListener("input", (e) => {
+      this.activeFilters.search = e.target.value.toLowerCase();
+      this.filterComponents();
+      this.renderComponents();
+    });
 
-            const matchesComplexity = this.activeFilters.complexity === 'all' || 
-                component.complexity === this.activeFilters.complexity;
+    clearSearch.addEventListener("click", () => {
+      searchInput.value = "";
+      this.activeFilters.search = "";
+      this.filterComponents();
+      this.renderComponents();
+    });
 
-            return matchesSearch && matchesCategory && matchesComplexity;
-        });
-    }
+    // 📂 Category filters
+    document
+      .getElementById("categoryFilters")
+      .addEventListener("click", (e) => {
+        if (e.target.classList.contains("filter-btn")) {
+          // Update active button
+          document
+            .querySelectorAll("#categoryFilters .filter-btn")
+            .forEach((btn) => {
+              btn.classList.remove("active");
+            });
+          e.target.classList.add("active");
 
-    // 🔄 Update view toggle buttons
-    updateViewButtons() {
-        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(this.currentView + 'View').classList.add('active');
-    }
-
-    // 🎨 Render components grid
-    renderComponents() {
-        const grid = document.getElementById('componentsGrid');
-        const noResults = document.getElementById('noResults');
-
-        // Update grid class for view type
-        grid.className = `components-grid ${this.currentView === 'list' ? 'list-view' : ''}`;
-
-        if (this.filteredComponents.length === 0) {
-            grid.innerHTML = '';
-            noResults.style.display = 'block';
-            return;
+          // Update filter
+          this.activeFilters.category = e.target.dataset.category;
+          this.filterComponents();
+          this.renderComponents();
         }
+      });
 
-        noResults.style.display = 'none';
+    // 🧠 Complexity filters
+    document
+      .getElementById("complexityFilters")
+      .addEventListener("click", (e) => {
+        if (e.target.classList.contains("filter-btn")) {
+          // Update active button
+          document
+            .querySelectorAll("#complexityFilters .filter-btn")
+            .forEach((btn) => {
+              btn.classList.remove("active");
+            });
+          e.target.classList.add("active");
 
-        grid.innerHTML = this.filteredComponents.map(component => `
-            <div class="component-card fade-in" data-component-id="${component.id}">
+          // Update filter
+          this.activeFilters.complexity = e.target.dataset.complexity;
+          this.filterComponents();
+          this.renderComponents();
+        }
+      });
+
+    // 🖼️ View toggle
+    document.getElementById("gridView").addEventListener("click", () => {
+      this.currentView = "grid";
+      this.updateViewButtons();
+      this.renderComponents();
+    });
+
+    document.getElementById("listView").addEventListener("click", () => {
+      this.currentView = "list";
+      this.updateViewButtons();
+      this.renderComponents();
+    });
+
+    // 🪟 Modal functionality
+    this.setupModalListeners();
+  }
+
+  // 🔍 Filter components based on active filters
+  filterComponents() {
+    this.filteredComponents = this.components.filter((component) => {
+      const matchesSearch =
+        this.activeFilters.search === "" ||
+        component.title.toLowerCase().includes(this.activeFilters.search) ||
+        component.description
+          .toLowerCase()
+          .includes(this.activeFilters.search) ||
+        component.tags.some((tag) =>
+          tag.toLowerCase().includes(this.activeFilters.search)
+        );
+
+      const matchesCategory =
+        this.activeFilters.category === "all" ||
+        component.category === this.activeFilters.category;
+
+      const matchesComplexity =
+        this.activeFilters.complexity === "all" ||
+        component.complexity === this.activeFilters.complexity;
+
+      return matchesSearch && matchesCategory && matchesComplexity;
+    });
+  }
+
+  // 🔄 Update view toggle buttons
+  updateViewButtons() {
+    document
+      .querySelectorAll(".view-btn")
+      .forEach((btn) => btn.classList.remove("active"));
+    document.getElementById(this.currentView + "View").classList.add("active");
+  }
+
+  // 🎨 Render components grid
+  renderComponents() {
+    const grid = document.getElementById("componentsGrid");
+    const noResults = document.getElementById("noResults");
+
+    // Update grid class for view type
+    grid.className = `components-grid ${
+      this.currentView === "list" ? "list-view" : ""
+    }`;
+
+    if (this.filteredComponents.length === 0) {
+      grid.innerHTML = "";
+      noResults.style.display = "block";
+      return;
+    }
+
+    noResults.style.display = "none";
+
+    grid.innerHTML = this.filteredComponents
+      .map(
+        (component) => `
+            <div class="component-card fade-in" data-component-id="${
+              component.id
+            }">
                 <div class="card-header">
                     <h3 class="component-title">${component.title}</h3>
-                    <span class="component-category">${component.category}</span>
+                    <span class="component-category">${
+                      component.category
+                    }</span>
                 </div>
                 
                 <p class="component-description">${component.description}</p>
@@ -866,215 +1154,231 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`
                 
                 <div class="card-footer">
                     <div class="component-tags">
-                        ${component.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${component.tags
+                          .map((tag) => `<span class="tag">${tag}</span>`)
+                          .join("")}
                     </div>
-                    <span class="complexity-badge complexity-${component.complexity}">
+                    <span class="complexity-badge complexity-${
+                      component.complexity
+                    }">
                         ${component.complexity}
                     </span>
                 </div>
             </div>
-        `).join('');
+        `
+      )
+      .join("");
 
-        // Add click listeners to cards
-        grid.querySelectorAll('.component-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const componentId = card.dataset.componentId;
-                this.openComponentModal(componentId);
-            });
-        });
+    // Add click listeners to cards
+    grid.querySelectorAll(".component-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const componentId = card.dataset.componentId;
+        this.openComponentModal(componentId);
+      });
+    });
+  }
+
+  // 🪟 Modal functionality
+  setupModalListeners() {
+    const modal = document.getElementById("componentModal");
+    const closeBtn = document.getElementById("modalClose");
+
+    // Close modal
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+
+    // Close on overlay click
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    });
+
+    // Tab switching
+    document.querySelector(".modal-tabs").addEventListener("click", (e) => {
+      if (e.target.classList.contains("tab-btn")) {
+        const tabName = e.target.dataset.tab;
+        this.switchTab(tabName);
+      }
+    });
+
+    // Copy code functionality
+    document.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("copy-code-btn") ||
+        e.target.closest(".copy-code-btn")
+      ) {
+        const btn = e.target.classList.contains("copy-code-btn")
+          ? e.target
+          : e.target.closest(".copy-code-btn");
+        this.copyCode(btn);
+      }
+    });
+  }
+
+  // 📂 Open component modal
+  openComponentModal(componentId) {
+    const component = this.components.find((c) => c.id === componentId);
+    if (!component) return;
+
+    const modal = document.getElementById("componentModal");
+    const modalTitle = document.getElementById("modalTitle");
+
+    // Set modal title
+    modalTitle.textContent = component.title;
+
+    // Populate content
+    this.populateModalContent(component);
+
+    // Show modal
+    modal.classList.add("active");
+
+    // Switch to preview tab by default
+    this.switchTab("preview");
+  }
+
+  // 📦 Populate modal content
+  populateModalContent(component) {
+    // Preview tab
+    document.getElementById("componentPreview").innerHTML = component.preview;
+
+    // Code tab
+    document.getElementById("htmlCode").textContent = component.html;
+    document.getElementById("cssCode").textContent = component.css;
+
+    const jsSection = document.getElementById("jsCodeSection");
+    if (component.js) {
+      document.getElementById("jsCode").textContent = component.js;
+      jsSection.style.display = "block";
+    } else {
+      jsSection.style.display = "none";
     }
 
-    // 🪟 Modal functionality
-    setupModalListeners() {
-        const modal = document.getElementById('componentModal');
-        const closeBtn = document.getElementById('modalClose');
+    // Usage tab
+    document.getElementById("usageContent").innerHTML = component.usage;
 
-        // Close modal
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
+    // Customization tab
+    document.getElementById("customizationContent").innerHTML =
+      component.customization;
 
-        // Close on overlay click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
+    // Trigger Prism.js syntax highlighting
+    if (window.Prism) {
+      Prism.highlightAll();
+    }
+  }
 
-        // Tab switching
-        document.querySelector('.modal-tabs').addEventListener('click', (e) => {
-            if (e.target.classList.contains('tab-btn')) {
-                const tabName = e.target.dataset.tab;
-                this.switchTab(tabName);
-            }
-        });
+  // Switch modal tabs
+  switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
 
-        // Copy code functionality
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('copy-code-btn') || e.target.closest('.copy-code-btn')) {
-                const btn = e.target.classList.contains('copy-code-btn') ? e.target : e.target.closest('.copy-code-btn');
-                this.copyCode(btn);
-            }
-        });
+    // Update tab content
+    document.querySelectorAll(".tab-pane").forEach((pane) => {
+      pane.classList.remove("active");
+    });
+    document.getElementById(tabName + "Tab").classList.add("active");
+  }
+
+  // Copy code to clipboard
+  async copyCode(button) {
+    const codeType = button.dataset.codeType;
+    let codeElement;
+
+    switch (codeType) {
+      case "html":
+        codeElement = document.getElementById("htmlCode");
+        break;
+      case "css":
+        codeElement = document.getElementById("cssCode");
+        break;
+      case "js":
+        codeElement = document.getElementById("jsCode");
+        break;
+      default:
+        return;
     }
 
-    // 📂 Open component modal
-    openComponentModal(componentId) {
-        const component = this.components.find(c => c.id === componentId);
-        if (!component) return;
+    try {
+      await navigator.clipboard.writeText(codeElement.textContent);
 
-        const modal = document.getElementById('componentModal');
-        const modalTitle = document.getElementById('modalTitle');
+      // Visual feedback
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      button.classList.add("copied");
 
-        // Set modal title
-        modalTitle.textContent = component.title;
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove("copied");
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy code:", err);
 
-        // Populate content
-        this.populateModalContent(component);
+      // Fallback for older browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = codeElement.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
 
-        // Show modal
-        modal.classList.add('active');
+      // Visual feedback
+      const originalText = button.innerHTML;
+      button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      button.classList.add("copied");
 
-        // Switch to preview tab by default
-        this.switchTab('preview');
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove("copied");
+      }, 2000);
     }
-
-    // 📦 Populate modal content
-    populateModalContent(component) {
-        // Preview tab
-        document.getElementById('componentPreview').innerHTML = component.preview;
-
-        // Code tab
-        document.getElementById('htmlCode').textContent = component.html;
-        document.getElementById('cssCode').textContent = component.css;
-        
-        const jsSection = document.getElementById('jsCodeSection');
-        if (component.js) {
-            document.getElementById('jsCode').textContent = component.js;
-            jsSection.style.display = 'block';
-        } else {
-            jsSection.style.display = 'none';
-        }
-
-        // Usage tab
-        document.getElementById('usageContent').innerHTML = component.usage;
-
-        // Customization tab
-        document.getElementById('customizationContent').innerHTML = component.customization;
-
-        // Trigger Prism.js syntax highlighting
-        if (window.Prism) {
-            Prism.highlightAll();
-        }
-    }
-
-    // 🔄 Switch modal tabs
-    switchTab(tabName) {
-        // Update tab buttons
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-
-        // Update tab content
-        document.querySelectorAll('.tab-pane').forEach(pane => {
-            pane.classList.remove('active');
-        });
-        document.getElementById(tabName + 'Tab').classList.add('active');
-    }
-
-    // 📋 Copy code to clipboard
-    async copyCode(button) {
-        const codeType = button.dataset.codeType;
-        let codeElement;
-
-        switch (codeType) {
-            case 'html':
-                codeElement = document.getElementById('htmlCode');
-                break;
-            case 'css':
-                codeElement = document.getElementById('cssCode');
-                break;
-            case 'js':
-                codeElement = document.getElementById('jsCode');
-                break;
-            default:
-                return;
-        }
-
-        try {
-            await navigator.clipboard.writeText(codeElement.textContent);
-            
-            // Visual feedback
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            button.classList.add('copied');
-
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.classList.remove('copied');
-            }, 2000);
-
-        } catch (err) {
-            console.error('Failed to copy code:', err);
-            
-            // Fallback for older browsers
-            const textArea = document.createElement('textarea');
-            textArea.value = codeElement.textContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-
-            // Visual feedback
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            button.classList.add('copied');
-
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.classList.remove('copied');
-            }, 2000);
-        }
-    }
+  }
 }
-
+ 
 // 🚀 Initialize the component documentation system
 document.addEventListener('DOMContentLoaded', () => {
     new ComponentDocumentation();
 });
 
+
 // 🌙 Theme toggle functionality (if not already handled by main script.js)
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    const body = document.body; 
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            
-            // Update icon
-            const icon = themeToggle.querySelector('i');
-            if (body.classList.contains('dark')) {
-                icon.className = 'fas fa-sun';
-            } else {
-                icon.className = 'fas fa-moon';
-            }
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
 
-            // Save preference
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
+      // Update icon
+      const icon = themeToggle.querySelector("i");
+      if (body.classList.contains("dark")) {
+        icon.className = "fas fa-sun";
+      } else {
+        icon.className = "fas fa-moon";
+      }
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            themeToggle.querySelector('i').className = 'fas fa-moon';
-        }
+      // Save preference
+      localStorage.setItem(
+        "theme",
+        body.classList.contains("dark") ? "dark" : "light"
+      );
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      body.classList.remove("dark");
+      themeToggle.querySelector("i").className = "fas fa-moon";
     }
+  }
 });
-
+ 
 // 📱 Mobile menu toggle functionality
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const navRight = document.querySelector('.nav-right');
@@ -1091,12 +1395,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when clicking on a nav link
-        const navLinks = navRight.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navRight.classList.remove('active');
-            });
-        });
-    }
+
+  if (menuToggle && navRight) {
+    menuToggle.addEventListener("click", () => {
+      navRight.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuToggle.contains(e.target) && !navRight.contains(e.target)) {
+        navRight.classList.remove("active");
+      }
+    });
+
+    // Close menu when clicking on a nav link
+    const navLinks = navRight.querySelectorAll("a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navRight.classList.remove("active");
+      });
+    });
+  }
 });
