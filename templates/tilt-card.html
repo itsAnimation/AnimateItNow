@@ -12,6 +12,9 @@
   <link rel="icon" type="image/png" href="../images/logo.png" />
     <link rel="stylesheet" href="../styles.css" />
     <style>
+        /* ─────────────────────────────────────────────────────
+           Gallery Styles
+           ───────────────────────────────────────────────────── */
         .tilt-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -20,10 +23,17 @@
             gap: 3rem;
             padding: 2rem;
         }
+        
+        /* ─────────────────────────────────────────────────────
+           Tilt Container Styles
+           ───────────────────────────────────────────────────── */
         .tilt-container {
             perspective: 1000px;
         }
 
+        /* ─────────────────────────────────────────────────────
+           Tilt Card Styles
+           ───────────────────────────────────────────────────── */
         .tilt-card {
             width: 300px;
             height: 300px;
@@ -39,12 +49,14 @@
             transition: transform 0.1s ease;
             transform-style: preserve-3d;
         }
+        
         .tilt-card h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             transform: translateZ(50px);
         }
+        
         .tilt-card p {
             font-size: 1rem;
             transform: translateZ(30px);

@@ -2,17 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glassmorphism Login form | Lakshya Singh</title>
     <link rel="stylesheet" href="../styles.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+      /* ==================== 
+         Base Styles 
+         ==================== */
       * {
         margin: 0;
         padding: 0;
         font-family: "Poppins", sans-serif;
       }
 
-      /* Loader Styles */
+      /* ==================== 
+         Loader Styles 
+         ==================== */
       .loader-container {
         position: fixed;
         top: 0;
@@ -38,6 +44,7 @@
         display: inline-block;
         position: relative;
       }
+      
       .loader::after,
       .loader::before {
         content: "";
@@ -51,6 +58,7 @@
         top: 0;
         animation: animloader 2s linear infinite;
       }
+      
       .loader::after {
         animation-delay: 1s;
       }
@@ -66,7 +74,9 @@
         }
       }
 
-      /* Main Content Styles */
+      /* ==================== 
+         Main Content Styles 
+         ==================== */
       .main-content {
         opacity: 0;
         visibility: hidden;
@@ -78,7 +88,7 @@
         visibility: visible;
       }
 
-      section {
+      .login-section {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -103,20 +113,23 @@
         align-items: center;
       }
 
-      h2 {
+      .form-title {
         font-size: 2em;
         color: #fff;
         text-align: center;
       }
 
-      .inputbox {
+      /* ==================== 
+         Input Field Styles 
+         ==================== */
+      .input-group {
         position: relative;
         margin: 30px 0;
         width: 310px;
         border-bottom: 2px solid #fff;
       }
 
-      .inputbox label {
+      .input-group label {
         position: absolute;
         top: 50%;
         left: 5px;
@@ -127,17 +140,13 @@
         transition: 0.5s;
       }
 
-      input:focus ~ label {
-        top: -5px;
-      }
-      input:valid ~ label {
-        top: -5px;
-      }
-      input:not(:placeholder-shown) ~ label {
+      .input-field:focus ~ label,
+      .input-field:valid ~ label,
+      .input-field:not(:placeholder-shown) ~ label {
         top: -5px;
       }
 
-      .inputbox input {
+      .input-field {
         width: 100%;
         height: 50px;
         background: transparent;
@@ -148,7 +157,7 @@
         color: #fff;
       }
 
-      .inputbox ion-icon {
+      .input-icon {
         position: absolute;
         right: 8px;
         color: #fff;
@@ -156,7 +165,10 @@
         top: 20px;
       }
 
-      .forget {
+      /* ==================== 
+         Form Options Styles 
+         ==================== */
+      .form-options {
         display: flex;
         justify-content: space-between;
         margin: 10px 0 15px;
@@ -164,29 +176,32 @@
         color: #fff;
       }
 
-      .forget label:nth-child(2) {
+      .form-options label:nth-child(2) {
         order: 1;
       }
 
-      .forget label {
+      .form-options label {
         display: flex;
         align-items: center;
       }
 
-      .forget label input[type="checkbox"] {
+      .form-options input[type="checkbox"] {
         margin-right: 6px;
       }
 
-      .forget label a {
+      .form-options a {
         color: #fff;
         text-decoration: none;
       }
 
-      .forget label a:hover {
+      .form-options a:hover {
         text-decoration: underline;
       }
 
-      button {
+      /* ==================== 
+         Button Styles 
+         ==================== */
+      .submit-button {
         width: 100%;
         height: 40px;
         border-radius: 40px;
@@ -198,22 +213,29 @@
         font-weight: 600;
       }
 
-      .register {
+      /* ==================== 
+         Registration Link Styles 
+         ==================== */
+      .registration-prompt {
         font-size: 0.9em;
         color: #fff;
         text-align: center;
         margin: 25px 0 10px;
       }
 
-      .register p a {
+      .registration-link {
         text-decoration: none;
         color: #fff;
         font-weight: 600;
       }
 
-      .register p a:hover {
+      .registration-link:hover {
         text-decoration: underline;
       }
+      
+      /* ==================== 
+         Code Display Styles 
+         ==================== */
       .code-block {
         display: none;
         text-align: left;
@@ -225,7 +247,7 @@
         font-size: 0.9rem;
         border-radius: 8px;
         overflow-x: auto;
-        position: relative; /* For copy button positioning */
+        position: relative;
       }
 
       .copy-btn {
@@ -243,6 +265,7 @@
         opacity: 0.85;
         transition: background 0.2s, opacity 0.2s;
       }
+      
       .copy-btn:hover {
         background: #007bff;
         opacity: 1;
@@ -339,30 +362,33 @@
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
       <!-- partial:index.partial.html -->
-      <section>
+      <section class="login-section">
         <div class="form-box">
           <div class="form-value">
-            <form action="">
-              <h2>Login</h2>
-              <div class="inputbox">
-                <ion-icon name="mail-outline"></ion-icon>
-                <input type="email" required placeholder=" " />
-                <label for="">Email</label>
+            <form action="" method="post" id="loginForm">
+              <h2 class="form-title">Login</h2>
+              <div class="input-group">
+                <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+                <input type="email" class="input-field" required placeholder=" " id="email" />
+                <label for="email">Email</label>
               </div>
-              <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" required placeholder=" " />
-                <label for="">Password</label>
+              <div class="input-group">
+                <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+                <input type="password" class="input-field" required placeholder=" " id="password" />
+                <label for="password">Password</label>
               </div>
-              <div class="forget">
-                <label> <input type="checkbox" /> Remember me </label>
+              <div class="form-options">
+                <label> 
+                  <input type="checkbox" id="rememberMe" /> 
+                  <span>Remember me</span>
+                </label>
                 <label>
                   <a href="#" id="forgotPassword">Forgot password?</a>
                 </label>
               </div>
-              <button>Log in</button>
-              <div class="register">
-                <p>Don't have a account ? <a href="#" id="registerLink">Register</a></p>
+              <button type="submit" class="submit-button">Log in</button>
+              <div class="registration-prompt">
+                <p>Don't have an account? <a href="#" id="registerLink" class="registration-link">Register</a></p>
               </div>
             </form>
           </div>
@@ -707,6 +733,7 @@
           }, 1200);
         });
       }
+      
       // Loader functionality
       window.addEventListener("load", function () {
         const loader = document.getElementById("loader");
@@ -726,16 +753,26 @@
           }, 500);
         }, 2000); // 1.5 seconds delay - adjust as needed
       });
-       //forgot-password
-      document.getElementById("forgotPassword").addEventListener("click",function(e){
+      
+      // Forgot password handler
+      document.getElementById("forgotPassword").addEventListener("click", function(e) {
         e.preventDefault();
-        window.location.href="forgot-password.html";
-      })
-      //register
-      document.getElementById("registerLink").addEventListener("click",function(e){
+        window.location.href = "forgot-password.html";
+      });
+      
+      // Register link handler
+      document.getElementById("registerLink").addEventListener("click", function(e) {
         e.preventDefault();
-        window.location.href="register.html";
-      })
+        window.location.href = "register.html";
+      });
+      
+      // Form submission handler
+      document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        // In a real application, this would handle form submission
+        // For now, we're just preventing the default behavior
+        console.log("Login form submitted");
+      });
     </script>
 
     <div id="cursor-snake"></div>
