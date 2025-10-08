@@ -110,6 +110,8 @@ button {
     transition: background 0.3s;
 }
 
+
+
 button:hover {
     background: #554fd8;
 }`;
@@ -320,3 +322,36 @@ function cleanup() {
   console.log("🧹 Editor cleanup completed");
 }
 
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+function setIcon(theme) {
+  const icon = theme === 'dark-theme' ? 'fa-sun' : 'fa-moon';
+  themeToggle.innerHTML = `<i class="fas ${icon}"></i>`;
+}
+
+function toggleTheme() {
+  if (body.classList.contains('dark-theme')) {
+    body.classList.remove('dark-theme');
+    localStorage.setItem('theme', 'light-theme');
+    setIcon('light-theme');
+  } else {
+    body.classList.add('dark-theme');
+    localStorage.setItem('theme', 'dark-theme');
+    setIcon('dark-theme');
+  }
+}
+
+// Check for saved theme on load
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light-theme';
+  if (savedTheme === 'dark-theme') {
+    body.classList.add('dark-theme');
+  }
+  setIcon(savedTheme);
+}
+// Add to DOMContentLoaded listener:
+// loadTheme();
+// themeToggle.addEventListener("click", toggleTheme);
