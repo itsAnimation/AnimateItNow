@@ -111,6 +111,7 @@
         }
 
         .btn {
+            
             display: inline-block;
             padding: 14px 32px;
             background-color: var(--primary);
@@ -165,6 +166,8 @@
         .btn-outline:hover {
             background-color: var(--primary);
             color: white;
+             padding: 5px 5px 5px 5px;
+            margin: 5px 5px 5px 5px;
         }
 
         .section-title {
@@ -236,6 +239,7 @@
         }
 
         .nav-container {
+            
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -262,7 +266,35 @@
             -webkit-text-fill-color: transparent;
         }
 
+
+        .nav-links a {
+         color: var(--text);
+         font-weight: 500;
+         position: relative;
+         padding: 20px 15px 20px 15px; /* added inner spacing */
+         border-radius: 12px; /* smooth rounded corners */
+         transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect (Glow + Rounded Background + Gradient Text) */
+/*Changes by Sayee Gosavi*/
+.nav-links a:hover {
+    padding: 5px 7px 5px 7px;  /* Inner Spacing */
+    background: rgba(108, 99, 255, 0.15); /* soft glowing background */
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.3); /* subtle outer glow */
+    border-radius: 5px; /* keep corners round */
+    text-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
         .nav-links {
+            
             margin-right:10%;
             width:50%;
             /* border:1px solid black; */
@@ -272,14 +304,6 @@
 
         .nav-links li {
             margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-            transition: all 0.3s ease-in-out; 
         }
 
         .nav-links a::after {
@@ -299,6 +323,7 @@
 
         /* NEW CODE TO ADD */
         .nav-links a:hover {
+        
         text-shadow: 0 0 8px rgba(108, 99, 255, 0.6); 
         background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
         background-clip: text;
@@ -309,6 +334,8 @@
         transition: all 0.3s ease;
         box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
         }
+
+        
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
