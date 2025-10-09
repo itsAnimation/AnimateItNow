@@ -1,963 +1,911 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template Gallery | AnimateItNow</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon" />
-    <meta
-      name="description"
-      content="Explore our comprehensive collection of CSS animation templates and effects for modern web development"
-    />
-     <!-- 📦 Font Awesome Icon Library -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- 📱 Progressive Web App Meta Configuration -->
-    <meta name="theme-color" content="#ff6b6b" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
-    <meta
-      name="msapplication-TileImage"
-      content="images/icons/icon-144x144.png"
-    />
-    <meta name="msapplication-TileColor" content="#ff6b6b" />
-    <!-- 📄 Web App Manifest Reference -->
-    <link rel="manifest" href="manifest.json" /> 
-
-    <!-- 🖼️ Progressive Web App Icons -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="72x72"
-      href="images/icons/icon-72x72.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="images/icons/icon-96x96.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="128x128"
-      href="images/icons/icon-128x128.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="144x144"
-      href="images/icons/icon-144x144.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="152x152"
-      href="images/icons/icon-152x152.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="images/icons/icon-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="384x384"
-      href="images/icons/icon-384x384.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="images/icons/icon-512x512.png"
-    />
-
-    <!-- 🍎 Apple Touch Icon Configuration -->
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="images/icons/icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="192x192"
-      href="images/icons/icon-192x192.png"
-    />
-
-    <!-- 🆘 Fallback Icon Reference -->
-    <link rel="icon" type="image/png" href="images/logo.png" />
-
-    
-    <style>
-        /* 🎨 CSS Design System Variables - Enhanced organization */
-        :root {
-            --primary-color: #6c63ff;
-            --primary-light: #8a84ff;
-            --primary-dark: #554fd8;
-            --secondary-color: #ff6584;
-            --accent-color: #36d1dc;
-            --text-primary: #2a2a3c;
-            --text-secondary: #6c757d;
-            --background-primary: #ffffff;
-            --background-secondary: #f8f9fa;
-            --background-tertiary: #e9ecef;
-            --border-color: #dee2e6;
-            --shadow-default: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
-            --border-radius: 12px;
-            --border-radius-large: 20px;
-            --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --header-height: 80px;
-            --spacing-default: 2rem;
-        }
-
-        /* 🌙 Dark Mode Design System */
-        [data-theme="dark"] {
-            --primary-color: #8a84ff;
-            --primary-light: #a8a4ff;
-            --primary-dark: #6c63ff;
-            --secondary-color: #ff8fa3;
-            --accent-color: #4dd0e1;
-            --text-primary: #f8f9fa;
-            --text-secondary: #a0a0a0;
-            --background-primary: #121212;
-            --background-secondary: #1e1e1e;
-            --background-tertiary: #2a2a2a;
-            --border-color: #404040;
-            --shadow-default: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        /* 🏗️ Base Document Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--background-primary);
-            transition: var(--transition-default);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 🧭 Navigation Component Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition-default);
-        }
-
-        [data-theme="dark"] .navbar {
-            background: rgba(18, 18, 18, 0.95);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: none;
-            margin: 0;
-            padding: 1rem 2rem;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .site-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition-default);
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: var(--background-secondary);
-            color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            cursor: pointer;
-        }
-
-        #theme-toggle {
-            background: var(--background-secondary);
-            border: none;
-            padding: 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            color: var(--text-primary);
-            transition: var(--transition-default);
-        }
-
-        #theme-toggle:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        /* Main Content Area */
-        .templates-main {
-            padding-top: calc(var(--header-height) + 2rem);
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
-        }
-
-        .templates-main h1 {
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Search and Filter Component Styles */
-        .search-filter-container {
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-            padding: 0 2rem;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-        }
-
-        #search-bar {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius-large);
-            background: var(--background-primary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition-default);
-        }
-
-        #search-bar:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        .filter-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--border-color);
-            background: var(--background-primary);
-            color: var(--text-primary);
-            border-radius: var(--border-radius-large);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition-default);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: var(--transition-default);
-        }
-
-        .filter-btn:hover::before {
-            left: 100%;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
-        }
-
-        /* Template Grid Layout */
-        .templates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Template Card Component - Glassmorphism Design */
-        .template-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-large);
-            overflow: hidden;
-            transition: var(--transition-default);
-            cursor: pointer;
-            position: relative;
-        }
-
-        [data-theme="dark"] .template-card {
-            background: rgba(30, 30, 30, 0.8);
-        }
-
-        .template-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(108, 99, 255, 0.05) 0%, 
-                rgba(255, 101, 132, 0.05) 100%);
-            opacity: 0;
-            transition: var(--transition-default);
-        }
-
-        .template-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary-color);
-        }
-
-        .template-card:hover::before {
-            opacity: 1;
-        }
-
-        .template-preview {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .template-preview i {
-            font-size: 4rem;
-            color: white;
-            opacity: 0.9;
-            transition: var(--transition-default);
-        }
-
-        .template-card:hover .template-preview i {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        .favorite-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-default);
-            backdrop-filter: blur(10px);
-        }
-
-        .favorite-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .template-content {
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .template-content h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .template-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .template-tags {
-            margin-bottom: 1.5rem;
-        }
-
-        .template-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--background-secondary);
-            color: var(--primary-color);
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-        }
-
-        .template-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            text-align: center;
-            transition: var(--transition-default);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .template-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: var(--transition-default);
-        }
-
-        .template-btn:hover::before {
-            left: 100%;
-        }
-
-        .template-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
-        }
-
-        /* Footer Component Styles */
-        .footer {
-            background-color: var(--background-secondary);
-            color: var(--text-primary);
-            padding: 80px 0 30px;
-            position: relative;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-about {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .footer-logo span {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-about p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .footer-links h3,
-        .footer-social h3 {
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-links h3::after,
-        .footer-social h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            transition: var(--transition-default);
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-links a i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-color);
-            padding-left: 5px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--background-tertiary);
-            border-radius: 50%;
-            color: var(--text-primary);
-            transition: var(--transition-default);
-        }
-
-        .social-icons a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer-bottom .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .newsletter {
-            background: var(--background-tertiary);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .newsletter h4 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 3px 3px;
-            border: 3px solid var(--border-color);
-            border-radius: var(--border-radius);
-            background: var(--background-primary);
-            color: var(--text-primary);
-        }
-
-        .newsletter-form input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .newsletter-form button {
-            padding: 3px 3px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition-default);
-        }
-
-        .newsletter-form button:hover {
-            background: var(--primary-dark);
-        }
-
-        /* No Results Component */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-        }
-
-        .no-results i {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.3;
-        }
-
-        .no-results h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        /* Dropdown Component */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-btn {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition-default);
-        }
-
-        .dropdown-btn:hover {
-            background: var(--background-secondary);
-            color: var(--primary-color);
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--background-primary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-default);
-            z-index: 100;
-            min-width: 200px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content li {
-            list-style: none;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: var(--transition-default);
-        }
-
-        .dropdown-content a:hover {
-            background: var(--background-secondary);
-            color: var(--primary-color);
-        }
-
-        /* Navigation Layout Components */
-        .desktop-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .mobile-nav {
-            display: none;
-        }
-
-        .github-icon {
-            color: var(--text-primary);
-            font-size: 1.25rem;
-            padding: 0.5rem;
-            transition: var(--transition-default);
-        }
-
-        .github-icon:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        /* Toggle Switch Component */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--border-color);
-            transition: var(--transition-default);
-            border-radius: 24px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: var(--transition-default);
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        /* 📱 Responsive Design System */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--background-primary);
-                flex-direction: column;
-                gap: 0;
-                border-top: 1px solid var(--border-color);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition-default);
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-links li {
-                width: 100%;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .desktop-nav {
-                display: none;
-            }
-
-            .mobile-nav {
-                display: block;
-            }
-
-            .templates-main h1 {
-                font-size: 2.5rem;
-            }
-
-            .templates-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .filter-container {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-
-            .templates-main h1 {
-                font-size: 2rem;
-            }
-
-            .template-content {
-                padding: 1.5rem;
-            }
-        }
-    </style>
-
-  </head>
-
-  <body class="dark">
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
-
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="templates.html" class="active" style="white-space: nowrap">Templates</a></li>
-                <li><a href="components.html">Components</a></li>
-                <li><a href="playground.html" >Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <!-- cursor toggle switch -->
-                <li class="snakeList">
-                    <label class="switch" title="Toggle Snake Cursor">
-                        <input type="checkbox" id="cursorToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="snakeLabel">Snake Cursor</span>
-                </li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repository"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Gallery | AnimateItNow</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon" />
+  <meta name="description"
+    content="Explore our comprehensive collection of CSS animation templates and effects for modern web development" />
+  <!-- 📦 Font Awesome Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- 📱 Progressive Web App Meta Configuration -->
+  <meta name="theme-color" content="#ff6b6b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="AnimateItNow" />
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
+  <meta name="msapplication-TileColor" content="#ff6b6b" />
+  <!-- 📄 Web App Manifest Reference -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- 🖼️ Progressive Web App Icons -->
+  <link rel="icon" type="image/png" sizes="72x72" href="images/icons/icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="images/icons/icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/icon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/icon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512x512.png" />
+
+  <!-- 🍎 Apple Touch Icon Configuration -->
+  <link rel="apple-touch-icon" sizes="152x152" href="images/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/icon-192x192.png" />
+
+  <!-- 🆘 Fallback Icon Reference -->
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
+
+  <style>
+    /* 🎨 CSS Design System Variables - Enhanced organization */
+    :root {
+      --primary-color: #6c63ff;
+      --primary-light: #8a84ff;
+      --primary-dark: #554fd8;
+      --secondary-color: #ff6584;
+      --accent-color: #36d1dc;
+      --text-primary: #2a2a3c;
+      --text-secondary: #6c757d;
+      --background-primary: #ffffff;
+      --background-secondary: #f8f9fa;
+      --background-tertiary: #e9ecef;
+      --border-color: #dee2e6;
+      --shadow-default: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+      --border-radius: 12px;
+      --border-radius-large: 20px;
+      --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-height: 80px;
+      --spacing-default: 2rem;
+    }
+
+    /* 🌙 Dark Mode Design System */
+    [data-theme="dark"] {
+      --primary-color: #8a84ff;
+      --primary-light: #a8a4ff;
+      --primary-dark: #6c63ff;
+      --secondary-color: #ff8fa3;
+      --accent-color: #4dd0e1;
+      --text-primary: #f8f9fa;
+      --text-secondary: #a0a0a0;
+      --background-primary: #121212;
+      --background-secondary: #1e1e1e;
+      --background-tertiary: #2a2a2a;
+      --border-color: #404040;
+      --shadow-default: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 🏗️ Base Document Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--background-primary);
+      transition: var(--transition-default);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 🧭 Navigation Component Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-default);
+    }
+
+    [data-theme="dark"] .navbar {
+      background: rgba(18, 18, 18, 0.95);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: none;
+      margin: 0;
+      padding: 1rem 2rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .site-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      transition: var(--transition-default);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--background-secondary);
+      color: var(--primary-color);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    #theme-toggle {
+      background: var(--background-secondary);
+      border: none;
+      padding: 0.75rem;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: var(--transition-default);
+    }
+
+    #theme-toggle:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Main Content Area */
+    .templates-main {
+      padding-top: calc(var(--header-height) + 2rem);
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    }
+
+    .templates-main h1 {
+      text-align: center;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Search and Filter Component Styles */
+    .search-filter-container {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius-large);
+      background: var(--background-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: var(--transition-default);
+    }
+
+    #search-bar:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+    }
+
+    .filter-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-color);
+      background: var(--background-primary);
+      color: var(--text-primary);
+      border-radius: var(--border-radius-large);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-default);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: var(--transition-default);
+    }
+
+    .filter-btn:hover::before {
+      left: 100%;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+    }
+
+    /* Template Grid Layout */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Template Card Component - Glassmorphism Design */
+    .template-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-large);
+      overflow: hidden;
+      transition: var(--transition-default);
+      cursor: pointer;
+      position: relative;
+    }
+
+    [data-theme="dark"] .template-card {
+      background: rgba(30, 30, 30, 0.8);
+    }
+
+    .template-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg,
+          rgba(108, 99, 255, 0.05) 0%,
+          rgba(255, 101, 132, 0.05) 100%);
+      opacity: 0;
+      transition: var(--transition-default);
+    }
+
+    .template-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-color);
+    }
+
+    .template-card:hover::before {
+      opacity: 1;
+    }
+
+    .template-preview {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-preview i {
+      font-size: 1.8rem;
+      color: white;
+      opacity: 0.9;
+      transition: var(--transition-default);
+    }
+
+    .template-card:hover .template-preview i {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-default);
+      backdrop-filter: blur(10px);
+    }
+
+    .favorite-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    .template-content {
+      padding: 2rem 2rem 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .template-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .template-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .template-tags {
+      margin-bottom: 1.5rem;
+    }
+
+    .template-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--background-secondary);
+      color: var(--primary-color);
+      border-radius: var(--border-radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+    }
+
+    .template-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      text-align: center;
+      transition: var(--transition-default);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: var(--transition-default);
+    }
+
+    .template-btn:hover::before {
+      left: 100%;
+    }
+
+    .template-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+    }
+
+    /* Footer Component Styles */
+    .footer {
+      background-color: var(--background-secondary);
+      color: var(--text-primary);
+      padding: 80px 0 30px;
+      position: relative;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-about {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-about p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .footer-links h3,
+    .footer-social h3 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h3::after,
+    .footer-social h3::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary-color);
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      transition: var(--transition-default);
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-links a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--background-tertiary);
+      border-radius: 50%;
+      color: var(--text-primary);
+      transition: var(--transition-default);
+    }
+
+    .social-icons a:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom .highlight {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .newsletter {
+      background: var(--background-tertiary);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .newsletter h4 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 5px 10px;
+      margin-top: 10px;
+      border: 3px solid var(--border-color);
+      border-radius: var(--border-radius);
+      background: var(--background-primary);
+      color: var(--text-primary);
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .newsletter-form button {
+      padding: 5px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .newsletter-form button:hover {
+      background: var(--primary-dark);
+    }
+
+    /* No Results Component */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+
+    .no-results i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .no-results h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    /* Dropdown Component */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .dropdown-btn:hover {
+      background: var(--background-secondary);
+      color: var(--primary-color);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--background-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-default);
+      z-index: 100;
+      min-width: 200px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content li {
+      list-style: none;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition-default);
+    }
+
+    .dropdown-content a:hover {
+      background: var(--background-secondary);
+      color: var(--primary-color);
+    }
+
+    /* Navigation Layout Components */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    .github-icon {
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      padding: 0.5rem;
+      transition: var(--transition-default);
+    }
+
+    .github-icon:hover {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    /* Toggle Switch Component */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--border-color);
+      transition: var(--transition-default);
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: var(--transition-default);
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(26px);
+    }
+
+    /* 📱 Responsive Design System */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--background-primary);
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid var(--border-color);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-default);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .templates-main h1 {
+        font-size: 2.5rem;
+      }
+
+      .templates-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .filter-container {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .templates-main h1 {
+        font-size: 2rem;
+      }
+
+      .template-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="dark">
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+      <span class="site-name">Animate It Now</span>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="templates.html" class="active" style="white-space: nowrap">Templates</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="playground.html">Hover-Effects</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <!-- cursor toggle switch -->
+        <li class="snakeList">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="snakeLabel">Snake Cursor</span>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub Repository" class="github-icon">
+            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
                                 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
                                 -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
                                 -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
@@ -968,309 +916,309 @@
                             1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
                             .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
                             .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
+                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
 
-            <div class="nav-actions">
-                <a href="loginpage.html" class="btn btn-outline">Login</a>
-                <a href="signup.html" class="btn">Sign Up</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+      <div class="nav-actions">
+        <a href="loginpage.html" class="btn btn-outline">Login</a>
+        <a href="signup.html" class="btn">Sign Up</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="templates-main">
+    <h1>Template Gallery Collection</h1>
+
+    <!-- Search and Filter Section -->
+    <div class="search-filter-container">
+      <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search template collection..." aria-label="Search templates" />
+        <i class="fas fa-search search-icon"></i>
+      </div>
+
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">
+          All Templates
+        </button>
+        <button class="filter-btn" data-filter="navbar">Navigation</button>
+        <button class="filter-btn" data-filter="button">Buttons</button>
+        <button class="filter-btn" data-filter="card">Cards</button>
+        <button class="filter-btn" data-filter="form">Forms</button>
+        <button class="filter-btn" data-filter="landing">
+          Landing Pages
+        </button>
+        <button class="filter-btn" data-filter="other">Other</button>
+        <button class="filter-btn" data-filter="favorites">⭐ Favorites</button>
+      </div>
+    </div>
+
+    <!-- Templates Grid -->
+    <section class="templates-grid" id="templatesGrid">
+      <!-- Template Cards will be dynamically generated by JavaScript -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="Website Logo" />
+            <span>AnimateItNow</span>
+          </div>
+          <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and
+            grow together.</p>
         </div>
-    </nav>
 
-    <main class="templates-main">
-      <h1>Template Gallery Collection</h1> 
-
-      <!-- Search and Filter Section -->
-      <div class="search-filter-container">
-        <div class="search-container">
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search template collection..."
-            aria-label="Search templates"
-          />
-          <i class="fas fa-search search-icon"></i>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="templates.html"><i class="fas fa-palette"></i> Templates</a></li>
+            <li><a href="editor.html"><i class="fas fa-code"></i> Editor</a></li>
+            <li><a href="playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
+            <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+            <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+          </ul>
         </div>
 
-        <div class="filter-container">
-          <button class="filter-btn active" data-filter="all">
-            All Templates
-          </button>
-          <button class="filter-btn" data-filter="navbar">Navigation</button>
-          <button class="filter-btn" data-filter="button">Buttons</button>
-          <button class="filter-btn" data-filter="card">Cards</button>
-          <button class="filter-btn" data-filter="form">Forms</button>
-          <button class="filter-btn" data-filter="landing">
-            Landing Pages
-          </button>
-          <button class="filter-btn" data-filter="other">Other</button>
-          <button class="filter-btn" data-filter="favorites">⭐ Favorites</button>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+            <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+            <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <div class="newsletter">
+            <h4>Stay Updated</h4>
+            <p>Get the latest templates and updates directly to your inbox.</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required>
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+          <br>
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+              title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"
+              title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i
+                class="fab fa-twitter"></i></a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" title="Discord"><i
+                class="fab fa-discord"></i></a>
+            <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
         </div>
       </div>
 
-      <!-- Templates Grid -->
-      <section class="templates-grid" id="templatesGrid">
-        <!-- Template Cards will be dynamically generated by JavaScript -->
-      </section>
-    </main>
+      <div class="footer-bottom">
+        <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <img src="images/logo.png" alt="Website Logo" />
-                        <span>AnimateItNow</span>
-                    </div>
-                    <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="templates.html"><i class="fas fa-palette"></i> Templates</a></li>
-                        <li><a href="editor.html"><i class="fas fa-code"></i> Editor</a></li>
-                        <li><a href="playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
-                        <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
-                        <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
-                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-social">
-                    <div class="newsletter">
-                        <h4>Stay Updated</h4>
-                        <p>Get the latest templates and updates directly to your inbox.</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Your email address" required>
-                             <button type="submit">Subscribe</button>
-                        </form>
-                    </div>
-                    <br>
-                    <h3>Connect With Us</h3>
-                    <div class="social-icons">
-                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-            </div>
-        </div>
-    </footer>
+  <script>
+    // Template data collection
+    const templateCollection = [
+      {
+        id: 1,
+        title: "Animated Navigation Bar",
+        description:
+          "A sleek navigation bar with smooth hover animations and dropdown effects.",
+        category: "navbar",
+        icon: "fas fa-bars",
+        link: "templates/navbar.html",
+      },
+      {
+        id: 2,
+        title: "Contact Us Template",
+        description:
+          "A responsive contact form with animated inputs and validation.",
+        category: "form",
+        icon: "fas fa-envelope",
+        link: "templates/contact.html",
+      },
+      {
+        id: 3,
+        title: "Coming Soon Landing Page",
+        description:
+          "An engaging coming soon page with countdown timer and newsletter signup.",
+        category: "landing",
+        icon: "fas fa-hourglass-half",
+        link: "templates/Coming_Soon_Landing_Page.html",
+      },
+      {
+        id: 4,
+        title: "Animated Button Collection",
+        description:
+          "A variety of creative button animations for different interactions.",
+        category: "button",
+        icon: "fas fa-hand-pointer",
+        link: "templates/animated-btn.html",
+      },
+      {
+        id: 5,
+        title: "Product Card Showcase",
+        description:
+          "Interactive product cards with hover effects and quick view options.",
+        category: "card",
+        icon: "fas fa-shopping-cart",
+        link: "templates/card_hover.html",
+      },
+      {
+        id: 6,
+        title: "Login/Signup Form",
+        description:
+          "Beautiful authentication forms with smooth transitions between states.",
+        category: "form",
+        icon: "fas fa-user",
+        link: "templates/LoginFormGlassMorphism.html",
+      },
+      {
+        id: 7,
+        title: "Pricing Table",
+        description:
+          "Animated pricing tables with hover effects and selection animations.",
+        category: "card",
+        icon: "fas fa-tags",
+        link: "templates/price_plan.html",
+      },
+      {
+        id: 8,
+        title: "Testimonial Slider",
+        description:
+          "A responsive testimonial slider with smooth transitions.",
+        category: "other",
+        icon: "fas fa-comments",
+        link: "templates/Testinomials_Sliders.html",
+      },
+      {
+        id: 9,
+        title: "Hero Section",
+        description:
+          "An eye-catching hero section with animated text and call-to-action.",
+        category: "landing",
+        icon: "fas fa-star",
+        link: "templates/hero.html",
+      },
+      {
+        id: 10,
+        title: "FAQ Accordion",
+        description:
+          "An animated FAQ section with smooth expand/collapse transitions.",
+        category: "other",
+        icon: "fas fa-question-circle",
+        link: "templates/faq_acc.html",
+      },
+      {
+        id: 11,
+        title: "Image Gallery",
+        description:
+          "A responsive image gallery with lightbox and hover effects.",
+        category: "other",
+        icon: "fas fa-images",
+        link: "templates/carousel.html",
+      },
+      {
+        id: 12,
+        title: "Progress Bars",
+        description:
+          "Animated progress bars with different styles and loading effects.",
+        category: "other",
+        icon: "fas fa-chart-bar",
+        link: "templates/Progress_Bar.html",
+      },
+      {
+        id: 13,
+        title: "404 Page",
+        description: "A responsive 404 error page template for websites.",
+        category: "other",
+        icon: "fas fa-exclamation-triangle",
+        link: "templates/404.html",
+      },
+      {
+        id: 14,
+        title: "CSS Snippet Generator",
+        description: "Generate code for custom CSS styling",
+        category: "other",
+        icon: "fas fa-hand-pointer",
+        link: "generator.html",
+      },
+      {
+        id: 15,
+        title: "Pomodoro Timer",
+        description: "Your all in one Stopwatch.",
+        category: "other",
+        icon: "fas fa-hourglass-half",
+        link: "pomodoro.html",
+      },
+      {
+        id: 16,
+        title: "Quote Generator",
+        description: "Daily dose of motivation.",
+        category: "other",
+        icon: "fas fa-comments",
+        link: "templates/quotes.html",
+      }
+    ];
 
-    <script>
-      // Template data collection
-      const templateCollection = [
-        {
-          id: 1,
-          title: "Animated Navigation Bar",
-          description:
-            "A sleek navigation bar with smooth hover animations and dropdown effects.",
-          category: "navbar",
-          icon: "fas fa-bars",
-          link: "templates/navbar.html",
-        },
-        {
-          id: 2,
-          title: "Contact Us Template",
-          description:
-            "A responsive contact form with animated inputs and validation.",
-          category: "form",
-          icon: "fas fa-envelope",
-          link: "templates/contact.html",
-        },
-        {
-          id: 3,
-          title: "Coming Soon Landing Page",
-          description:
-            "An engaging coming soon page with countdown timer and newsletter signup.",
-          category: "landing",
-          icon: "fas fa-hourglass-half",
-          link: "templates/Coming_Soon_Landing_Page.html",
-        },
-        {
-          id: 4,
-          title: "Animated Button Collection",
-          description:
-            "A variety of creative button animations for different interactions.",
-          category: "button",
-          icon: "fas fa-hand-pointer",
-          link: "templates/animated-btn.html",
-        },
-        {
-          id: 5,
-          title: "Product Card Showcase",
-          description:
-            "Interactive product cards with hover effects and quick view options.",
-          category: "card",
-          icon: "fas fa-shopping-cart",
-          link: "templates/card_hover.html",
-        },
-        {
-          id: 6,
-          title: "Login/Signup Form",
-          description:
-            "Beautiful authentication forms with smooth transitions between states.",
-          category: "form",
-          icon: "fas fa-user",
-          link: "templates/LoginFormGlassMorphism.html",
-        },
-        {
-          id: 7,
-          title: "Pricing Table",
-          description:
-            "Animated pricing tables with hover effects and selection animations.",
-          category: "card",
-          icon: "fas fa-tags",
-          link: "templates/price_plan.html",
-        },
-        {
-          id: 8,
-          title: "Testimonial Slider",
-          description:
-            "A responsive testimonial slider with smooth transitions.",
-          category: "other",
-          icon: "fas fa-comments",
-          link: "templates/Testinomials_Sliders.html",
-        },
-        {
-          id: 9,
-          title: "Hero Section",
-          description:
-            "An eye-catching hero section with animated text and call-to-action.",
-          category: "landing",
-          icon: "fas fa-star",
-          link: "templates/hero.html",
-        },
-        {
-          id: 10,
-          title: "FAQ Accordion",
-          description:
-            "An animated FAQ section with smooth expand/collapse transitions.",
-          category: "other",
-          icon: "fas fa-question-circle",
-          link: "templates/faq_acc.html",
-        },
-        {
-          id: 11,
-          title: "Image Gallery",
-          description:
-            "A responsive image gallery with lightbox and hover effects.",
-          category: "other",
-          icon: "fas fa-images",
-          link: "templates/carousel.html",
-        },
-        {
-          id: 12,
-          title: "Progress Bars",
-          description:
-            "Animated progress bars with different styles and loading effects.",
-          category: "other",
-          icon: "fas fa-chart-bar",
-          link: "templates/Progress_Bar.html",
-        },
-        {
-          id: 13,
-          title: "404 Page",
-          description: "A responsive 404 error page template for websites.",
-          category: "other",
-          icon: "fas fa-exclamation-triangle",
-          link: "templates/404.html",
-        },
-        {
-          id: 14,
-          title: "CSS Snippet Generator",
-          description: "Generate code for custom CSS styling",
-          category: "other",
-          icon: "fas fa-hand-pointer",
-          link: "generator.html",
-        },
-        {
-          id: 15,
-          title: "Pomodoro Timer",
-          description: "Your all in one Stopwatch.",
-          category: "other",
-          icon: "fas fa-hourglass-half",
-          link: "pomodoro.html",
-        },
-        {
-          id: 16,
-          title: "Quote Generator",
-          description: "Daily dose of motivation.",
-          category: "other",
-          icon: "fas fa-comments",
-          link: "templates/quotes.html",
-        }
-      ];
+    // DOM Element References
+    const templatesGrid = document.getElementById("templatesGrid");
+    const searchBar = document.getElementById("search-bar");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const themeToggle = document.getElementById("theme-toggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
 
-      // DOM Element References
-      const templatesGrid = document.getElementById("templatesGrid");
-      const searchBar = document.getElementById("search-bar");
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      const themeToggle = document.getElementById("theme-toggle");
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
+    // Initialize application
+    document.addEventListener("DOMContentLoaded", function () {
+      renderTemplateCollection(templateCollection);
+      initializeEventListeners();
+      loadThemePreference();
+    });
 
-      // Initialize application
-      document.addEventListener("DOMContentLoaded", function () {
-        renderTemplateCollection(templateCollection);
-        initializeEventListeners();
-        loadThemePreference();
-      });
+    // Render template collection to grid
+    function renderTemplateCollection(templatesToRender) {
+      templatesGrid.innerHTML = "";
 
-      // Render template collection to grid
-      function renderTemplateCollection(templatesToRender) {
-        templatesGrid.innerHTML = "";
-
-        if (templatesToRender.length === 0) {
-          templatesGrid.innerHTML = `
+      if (templatesToRender.length === 0) {
+        templatesGrid.innerHTML = `
           <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
             <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
             <h3>No templates found</h3>
             <p>Try adjusting your search or filter criteria</p>
           </div>
         `;
-          return;
-        }
+        return;
+      }
 
-        templatesToRender.forEach((template) => {
-          const templateCard = document.createElement("div");
-          templateCard.href = template.link;
-          templateCard.className = "template-card";
-          templateCard.setAttribute("data-category", template.category);
+      templatesToRender.forEach((template) => {
+        const templateCard = document.createElement("div");
+        templateCard.href = template.link;
+        templateCard.className = "template-card";
+        templateCard.setAttribute("data-category", template.category);
 
-          templateCard.innerHTML = `
+        templateCard.innerHTML = `
           <div class="template-preview">
             <i class="${template.icon}"></i>
              <button class="favorite-btn" data-id="${template.id}" title="Add to Favorites">
@@ -1287,150 +1235,151 @@
           </div>
         `;
 
-          templatesGrid.appendChild(templateCard);
-        });
-        // Initialize favorite button event listeners
-        document.querySelectorAll(".favorite-btn").forEach((btn) => {
-                btn.addEventListener("click", handleFavoriteToggle);
-            });
+        templatesGrid.appendChild(templateCard);
+      });
+      // Initialize favorite button event listeners
+      document.querySelectorAll(".favorite-btn").forEach((btn) => {
+        btn.addEventListener("click", handleFavoriteToggle);
+      });
 
-            updateFavoriteDisplay();
-      }
-      // Load favorites from localStorage or initialize empty array
-let favoriteTemplates = JSON.parse(localStorage.getItem("favorites")) || [];
+      updateFavoriteDisplay();
+    }
+    // Load favorites from localStorage or initialize empty array
+    let favoriteTemplates = JSON.parse(localStorage.getItem("favorites")) || [];
 
-// Function to handle favorite toggle
-function handleFavoriteToggle(event) {
-    event.stopPropagation(); // Prevent event bubbling
-    const templateId = parseInt(event.currentTarget.dataset.id);
+    // Function to handle favorite toggle
+    function handleFavoriteToggle(event) {
+      event.stopPropagation(); // Prevent event bubbling
+      const templateId = parseInt(event.currentTarget.dataset.id);
 
-    if (favoriteTemplates.includes(templateId)) {
+      if (favoriteTemplates.includes(templateId)) {
         favoriteTemplates = favoriteTemplates.filter((id) => id !== templateId);
-    } else {
+      } else {
         favoriteTemplates.push(templateId);
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favoriteTemplates));
+      updateFavoriteDisplay();
     }
 
-    localStorage.setItem("favorites", JSON.stringify(favoriteTemplates));
-    updateFavoriteDisplay();
-}
+    function updateFavoriteDisplay() {
+      document.querySelectorAll(".favorite-btn").forEach((btn) => {
+        const templateId = parseInt(btn.dataset.id);
+        const iconElement = btn.querySelector("i");
 
-      function updateFavoriteDisplay() {
-            document.querySelectorAll(".favorite-btn").forEach((btn) => {
-                const templateId = parseInt(btn.dataset.id);
-                const iconElement = btn.querySelector("i");
-
-                if (favoriteTemplates.includes(templateId)) {
-                    iconElement.classList.remove("far");
-                    iconElement.classList.add("fas");
-                    iconElement.style.color = "gold";
-                    btn.title = "Remove from Favorites";
-                } else {
-                    iconElement.classList.remove("fas");
-                    iconElement.classList.add("far");
-                    iconElement.style.color = "inherit";
-                    btn.title = "Add to Favorites";
-                }
-            });
-        }
-      // Initialize event listeners
-      function initializeEventListeners() {
-        // Search functionality
-        searchBar.addEventListener("input", filterTemplateCollection);
-
-        // Filter button interactions
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            // Update active button state
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            // Set active class on clicked button
-            this.classList.add("active");
-            filterTemplateCollection();
-          });
-        });
-
-        // Theme toggle functionality
-        themeToggle.addEventListener("click", toggleThemeMode);
-
-        // Mobile menu toggle
-        menuToggle.addEventListener("click", function () {
-          navLinks.classList.toggle("active");
-          const menuIcon = this.querySelector("i");
-          if (navLinks.classList.contains("active")) {
-            menuIcon.classList.remove("fa-bars");
-            menuIcon.classList.add("fa-times");
-          } else {
-            menuIcon.classList.remove("fa-times");
-            menuIcon.classList.add("fa-bars");
-          }
-        });
-
-        // Close mobile menu on link click
-        document.querySelectorAll(".nav-links a").forEach((link) => {
-          link.addEventListener("click", function () {
-            navLinks.classList.remove("active");
-            menuToggle.querySelector("i").classList.remove("fa-times");
-            menuToggle.querySelector("i").classList.add("fa-bars");
-          });
-        });
-      }
-
-      // Filter template collection based on search and category
-      function filterTemplateCollection() {
-        const searchQuery = searchBar.value.toLowerCase();
-        const activeFilter =
-          document.querySelector(".filter-btn.active").dataset.filter;
-
-        const filteredCollection = templateCollection.filter((template) => {
-          const matchesSearchQuery =
-            template.title.toLowerCase().includes(searchQuery) ||
-            template.description.toLowerCase().includes(searchQuery);
-          let matchesCategoryFilter =
-            activeFilter === "all" || template.category === activeFilter;
-              // Handle favorites filter
-              if (activeFilter === "favorites") {
-                    matchesCategoryFilter = favoriteTemplates.includes(template.id);
-                }
-
-          return matchesSearchQuery && matchesCategoryFilter;
-        });
-
-        renderTemplateCollection(filteredCollection);
-      }
-
-      // Theme mode toggle functionality
-      function toggleThemeMode() {
-        const htmlElement = document.documentElement;
-        const themeIcon = themeToggle.querySelector("i");
-        const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
-
-        if (currentTheme === 'light') {
-          htmlElement.setAttribute('data-theme', 'dark');
-          themeIcon.classList.remove("fa-moon");
-          themeIcon.classList.add("fa-sun");
-          localStorage.setItem("theme", "dark");
+        if (favoriteTemplates.includes(templateId)) {
+          iconElement.classList.remove("far");
+          iconElement.classList.add("fas");
+          iconElement.style.color = "gold";
+          btn.title = "Remove from Favorites";
         } else {
-          htmlElement.setAttribute('data-theme', 'light');
-          themeIcon.classList.remove("fa-sun");
-          themeIcon.classList.add("fa-moon");
-          localStorage.setItem("theme", "light");
+          iconElement.classList.remove("fas");
+          iconElement.classList.add("far");
+          iconElement.style.color = "inherit";
+          btn.title = "Add to Favorites";
         }
-      }
+      });
+    }
+    // Initialize event listeners
+    function initializeEventListeners() {
+      // Search functionality
+      searchBar.addEventListener("input", filterTemplateCollection);
 
-      // Load saved theme preference
-      function loadThemePreference() {
-        const savedTheme = localStorage.getItem("theme") || "light";
-        const themeIcon = themeToggle.querySelector("i");
+      // Filter button interactions
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          // Update active button state
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          // Set active class on clicked button
+          this.classList.add("active");
+          filterTemplateCollection();
+        });
+      });
 
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        
-        if (savedTheme === "dark") {
-          themeIcon.classList.remove("fa-moon");
-          themeIcon.classList.add("fa-sun");
+      // Theme toggle functionality
+      themeToggle.addEventListener("click", toggleThemeMode);
+
+      // Mobile menu toggle
+      menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+        const menuIcon = this.querySelector("i");
+        if (navLinks.classList.contains("active")) {
+          menuIcon.classList.remove("fa-bars");
+          menuIcon.classList.add("fa-times");
         } else {
-          themeIcon.classList.remove("fa-sun");
-          themeIcon.classList.add("fa-moon");
+          menuIcon.classList.remove("fa-times");
+          menuIcon.classList.add("fa-bars");
         }
+      });
+
+      // Close mobile menu on link click
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("active");
+          menuToggle.querySelector("i").classList.remove("fa-times");
+          menuToggle.querySelector("i").classList.add("fa-bars");
+        });
+      });
+    }
+
+    // Filter template collection based on search and category
+    function filterTemplateCollection() {
+      const searchQuery = searchBar.value.toLowerCase();
+      const activeFilter =
+        document.querySelector(".filter-btn.active").dataset.filter;
+
+      const filteredCollection = templateCollection.filter((template) => {
+        const matchesSearchQuery =
+          template.title.toLowerCase().includes(searchQuery) ||
+          template.description.toLowerCase().includes(searchQuery);
+        let matchesCategoryFilter =
+          activeFilter === "all" || template.category === activeFilter;
+        // Handle favorites filter
+        if (activeFilter === "favorites") {
+          matchesCategoryFilter = favoriteTemplates.includes(template.id);
+        }
+
+        return matchesSearchQuery && matchesCategoryFilter;
+      });
+
+      renderTemplateCollection(filteredCollection);
+    }
+
+    // Theme mode toggle functionality
+    function toggleThemeMode() {
+      const htmlElement = document.documentElement;
+      const themeIcon = themeToggle.querySelector("i");
+      const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+
+      if (currentTheme === 'light') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+        localStorage.setItem("theme", "dark");
+      } else {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+        localStorage.setItem("theme", "light");
       }
-    </script>
-  </body>
+    }
+
+    // Load saved theme preference
+    function loadThemePreference() {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      const themeIcon = themeToggle.querySelector("i");
+
+      document.documentElement.setAttribute('data-theme', savedTheme);
+
+      if (savedTheme === "dark") {
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      } else {
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+      }
+    }
+  </script>
+</body>
+
 </html>
