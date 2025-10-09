@@ -1237,7 +1237,20 @@
         .nav-links.active {
           display: flex;
         }
+           
+        @media (max-width: 600px) {
+            .templates-showcase .template-info {
+                    text-align: center; 
+            }
 
+            .template-info a.btn {
+                    margin: 0 auto;
+            }
+    }
+        
+        /* 🔄 How It Works */
+        .how-it-works {
+            background-color: var(--bg-secondary);
         .nav-links li {
           margin: 10px 0;
         }
@@ -1911,6 +1924,190 @@
           font-weight: 600;
           padding: 5px 0;
         }
+
+         
+            /* Fluid Background Styles */
+        .fluid-background-wrapper {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             pointer-events: none; 
+             overflow: hidden;
+             z-index: -1; 
+             background-color: var(--bg);
+        }
+
+        .fluid-blob {
+           position: absolute;
+           border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
+           filter: blur(70px); /* Heavy blur for softness */
+           opacity: 0.4; 
+           transition: all 0.5s ease;
+           animation: blob-move 20s infinite alternate ease-in-out;
+           will-change: transform, opacity; /* Optimizes performance */
+        }
+
+        /* Animation Keyframes */
+        @keyframes blob-move {
+           0%, 100% {
+           transform: translate(0, 0) scale(1);
+          }
+          33% {
+           transform: translate(25vw, -15vh) scale(1.1);
+          }
+          66% {
+           transform: translate(-10vw, 10vh) scale(0.95);
+          }
+        }  
+
+        /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
+       @keyframes pulse {
+          0% { transform: scale(1); opacity: 0.8; }
+          50% { transform: scale(1.02); opacity: 1; }
+          100% { transform: scale(1); opacity: 0.8; }
+        }
+
+       /* Positioning and Initial Colors */
+       .blob-1 {
+          width: 350px; height: 350px;
+          top: 10%; left: 5%;
+          background: var(--primary); /* Deep Purple */
+          animation-duration: 24s;
+          animation-delay: -5s;
+        }
+
+       .blob-2 {
+           width: 250px; height: 250px;
+           bottom: 15%; right: 10%;
+           background: var(--secondary); /* Pink */
+           animation-duration: 20s;
+           animation-delay: -10s;
+        }
+
+       .blob-3 {
+          width: 450px; height: 450px;
+          top: 50%; left: 40%;
+          background: var(--accent); /* Cyan */
+          animation-duration: 22s;
+          animation-delay: -15s;
+       }
+
+       .blob-4 {
+          width: 180px; height: 180px;
+          bottom: 5%; left: 60%;
+          background: var(--primary-light); /* Lighter Purple */
+          animation-duration: 28s;
+          animation-delay: -8s;
+        }
+
+        /* ADD THIS NEW BLOCK: Mobile Optimization */
+       @media (max-width: 768px) {
+       .fluid-blob {
+           transform: scale(0.6); 
+          opacity: 0.3; 
+          filter: blur(60px); 
+        }
+    
+       /* Ensure only one or two large blobs are prominent */
+       .blob-3 {
+          display: none; /* Hide the largest blob on mobile */
+       }
+    }
+
+        /* --- Subscription Form Enhancement (#1445) --- */
+
+        /* Overrides the squished form style for the new structure */
+        .newsletter-form {
+            display: none; /* Hide the old form class */
+        }
+
+        .newsletter-pill-form {
+           
+            display: flex;
+            gap: 0; 
+            background: var(--bg);
+            border: 3px solid var(--border);
+            border-radius: 50px; /* Use a large radius for the pill effect */
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .newsletter-pill-form:focus-within {
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+        }
+
+        .newsletter-pill-form input {
+            flex-grow: 1;
+            /* Reset input defaults to fit the pill container */
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .newsletter-pill-form input::placeholder {
+            color: var(--text-darkgray);
+            opacity: 0.8;
+            text-align: justify;
+             font-size: 1.3rem;
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn {
+            /* Style the button */
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 11px; /* Adjust padding for a better size */
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            
+            /* Align icon and text */
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+            
+            /* Match the height of the container */
+            border-radius: 0 50px 50px 0; 
+        }
+
+        .newsletter-pill-form .newsletter-submit-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05); /* Subtle animation for AnimateItNow */
+        }
+
+        /* Ensure the submit button icon has the right size */
+        .newsletter-submit-btn i {
+            font-size: 1.3rem;
+            line-height: 1; /* Fix vertical alignment */
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 576px) {
+            .newsletter-pill-form {
+                flex-direction: column;
+                border-radius: var(--radius); /* Stack inputs on small screens */
+                border: none; /* Remove border from container */
+            }
+            .newsletter-pill-form input {
+                border: 3px solid var(--border);
+                border-radius: var(--radius);
+                margin-bottom: 10px;
+            }
+            .newsletter-pill-form .newsletter-submit-btn {
+                width: 100%;
+                padding: 12px;
+                border-radius: var(--radius);
+                justify-content: center;
+                transform: none; /* Reset button hover scale */
+            }
+        }
         .top-secondary-bar.hidden {
           transform: translateY(
             0
@@ -1925,7 +2122,7 @@
     <link rel="stylesheet" href="./navbar_styles.css" />
   </head>
 
-  <body data-theme="light">
+<body data-theme="light">
     <div class="fluid-background-wrapper">
       <div class="fluid-blob blob-1"></div>
       <div class="fluid-blob blob-2"></div>
