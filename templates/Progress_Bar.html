@@ -740,7 +740,7 @@
                 <p>Classic horizontal progress bar with smooth animation</p>
               </div>
               <div class="progress-demo">
-                <div class="linear-progress" data-progress="75">
+                <div class="linear-progress" data-progress="75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Linear progress indicator">
                   <div class="progress-fill"></div>
                   <span class="progress-text">75%</span>
                 </div>
@@ -757,7 +757,7 @@
                 <p>Modern circular progress with SVG animation</p>
               </div>
               <div class="progress-demo">
-                <div class="circular-progress" data-progress="60">
+                <div class="circular-progress" data-progress="60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Circular progress indicator">
                   <svg viewBox="0 0 100 100">
                     <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
                     <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
@@ -777,7 +777,7 @@
                 <p>Vibrant gradient progress with glow effect</p>
               </div>
               <div class="progress-demo">
-                <div class="gradient-progress" data-progress="85">
+                <div class="gradient-progress" data-progress="85" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Gradient progress indicator">
                   <div class="progress-fill gradient-fill"></div>
                   <span class="progress-text">85%</span>
                 </div>
@@ -794,7 +794,7 @@
                 <p>Animated dots loading indicator</p>
               </div>
               <div class="progress-demo">
-                <div class="dots-progress">
+                <div class="dots-progress" role="status" aria-label="Loading progress with animated dots">
                   <div class="dot"></div>
                   <div class="dot"></div>
                   <div class="dot"></div>
@@ -814,7 +814,7 @@
                 <p>Multi-step progress with completion indicators</p>
               </div>
               <div class="progress-demo">
-                <div class="step-progress">
+                <div class="step-progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Multi-step progress indicator">
                   <div class="step completed">
                     <div class="step-circle"><i class="fas fa-check"></i></div>
                     <span class="step-label">Start</span>
@@ -848,7 +848,7 @@
                 <p>Liquid wave animation progress indicator</p>
               </div>
               <div class="progress-demo">
-                <div class="wave-progress" data-progress="70">
+                <div class="wave-progress" data-progress="70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Wave animation progress indicator">
                   <div class="wave-container">
                     <div class="wave"></div>
                     <div class="wave wave2"></div>
@@ -868,7 +868,7 @@
                 <p>Classic character animation with spinning loader</p>
               </div>
               <div class="progress-demo">
-                <div class="spinner-progress">
+                <div class="spinner-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Spinner progress indicator">
                   <div class="spinner-container">
                     <span class="spinner-char">|</span>
                     <span class="spinner-text">Loading...</span>
@@ -891,7 +891,7 @@
                 <p>Smooth rotating @ symbol with progress animation</p>
               </div>
               <div class="progress-demo">
-                <div class="rotating-progress">
+                <div class="rotating-progress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Rotating symbol progress indicator">
                   <div class="rotating-container">
                     <span class="rotating-symbol">@</span>
                     <span class="rotating-text">Processing...</span>
@@ -2550,6 +2550,9 @@
     </style>
 
     <script>
+        // 🎯 Progress Bar Accessibility & Debug Enhancement
+        console.log("🎨 Debug: Progress bars module initialized");
+
         // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
@@ -2652,6 +2655,8 @@
 
         // Progress bar animations
         function animateProgressBars() {
+            console.log("🎨 Debug: Animating progress bars");
+            
             // Linear progress bars
             document.querySelectorAll('.linear-progress').forEach(bar => {
                 const progress = bar.dataset.progress;
@@ -2660,6 +2665,7 @@
                 fill.style.width = '0%';
                 setTimeout(() => {
                     fill.style.width = progress + '%';
+                    console.log(`🎨 Debug: Linear progress set to ${progress}%`);
                 }, 100);
             });
 
@@ -2674,6 +2680,7 @@
                 progressBar.style.strokeDashoffset = circumference;
                 setTimeout(() => {
                     progressBar.style.strokeDashoffset = offset;
+                    console.log(`🎨 Debug: Circular progress set to ${progress}%`);
                 }, 100);
             });
 
@@ -2685,6 +2692,7 @@
                 fill.style.width = '0%';
                 setTimeout(() => {
                     fill.style.width = progress + '%';
+                    console.log(`🎨 Debug: Gradient progress set to ${progress}%`);
                 }, 100);
             });
 
@@ -2696,6 +2704,7 @@
                 waveContainer.style.height = '0%';
                 setTimeout(() => {
                     waveContainer.style.height = progress + '%';
+                    console.log(`🎨 Debug: Wave progress set to ${progress}%`);
                 }, 100);
             });
 
@@ -2707,6 +2716,7 @@
                 fill.style.width = '0%';
                 setTimeout(() => {
                     fill.style.width = progress + '%';
+                    console.log(`🎨 Debug: Spinner progress set to ${progress}%`);
                 }, 100);
             });
 
@@ -2718,6 +2728,7 @@
                 fill.style.width = '0%';
                 setTimeout(() => {
                     fill.style.width = progress + '%';
+                    console.log(`🎨 Debug: Rotating progress set to ${progress}%`);
                 }, 100);
             });
         }
@@ -3123,6 +3134,7 @@ progressBar.style.strokeDashoffset = offset;`,
                     codeContent.textContent = code;
                     modal.classList.add('show');
                     document.body.style.overflow = 'hidden';
+                    console.log(`🎨 Debug: Opening code modal for ${type} progress bar`);
                 }
             });
         });
@@ -3165,6 +3177,7 @@ progressBar.style.strokeDashoffset = offset;`,
         function closeModalFunction() {
             modal.classList.remove('show');
             document.body.style.overflow = '';
+            console.log("🎨 Debug: Code modal closed");
         }
 
         closeModal.addEventListener('click', closeModalFunction);
@@ -3177,6 +3190,7 @@ progressBar.style.strokeDashoffset = offset;`,
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                 copyBtn.classList.add('success');
+                console.log("🎨 Debug: Code copied to clipboard");
                 
                 setTimeout(() => {
                     copyBtn.innerHTML = originalText;
@@ -3196,6 +3210,7 @@ progressBar.style.strokeDashoffset = offset;`,
 
         // Initialize animations
         document.addEventListener('DOMContentLoaded', () => {
+            console.log("🎨 Debug: DOM loaded, initializing progress bars");
             setTimeout(animateProgressBars, 300);
             startSpinnerAnimation();
         });
@@ -3209,12 +3224,22 @@ progressBar.style.strokeDashoffset = offset;`,
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    console.log("🎨 Debug: Progress bars in view, re-animating");
                     animateProgressBars();
                 }
             });
         }, observerOptions);
 
         observer.observe(document.querySelector('.progress-grid'));
+
+        // 🎯 Accessibility helper function
+        function enhanceProgressAccessibility() {
+            console.log("🎨 Debug: Enhancing progress bar accessibility");
+            // This function can be extended for additional accessibility features
+        }
+
+        // Initialize accessibility enhancements
+        enhanceProgressAccessibility();
     </script>
   </body>   
-</html>   
+</html>

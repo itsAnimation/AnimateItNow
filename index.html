@@ -23,13 +23,15 @@
             --primary-dark: #554fd8;
             --secondary: #ff6584;
             --accent: #36d1dc;
-            --text: #2a2a3c;
-            --text-light: #6c757d;
-            --bg: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #e9ecef;
-            --border: #dee2e6;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+             --text : #1a202c;        /* Deep Navy/Black for max contrast */
+             --text-light: #64748b;  /* Slate Gray for subtle elements */
+             --bg: #ffffff;          /* Pure White for Primary Nav */
+             --bg-secondary: #f5f7fa; /* Cooler Off-White for Secondary Nav */
+             --bg-tertiary: #e9ecef;
+             --border: #dee2e6;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
             --radius: 12px;
             --transition: all 0.3s ease;
             --header-height: 80px;
@@ -38,6 +40,9 @@
             --transition-speed: 0.3s;
             --border-radius: 12px;
             --spacing-unit: 1rem;
+            --secondary-bar-height: 55px; 
+            --header-height: 80px;
+            --total-header-height: calc(var(--header-height) + var(--secondary-bar-height));
         }
 
         /* 🌙 Dark Mode Variables */
@@ -47,13 +52,14 @@
             --primary-dark: #6c63ff;
             --secondary: #ff8fa3;
             --accent: #4dd0e1;
-            --text: #f8f9fa;
-            --text-light: #a0a0a0;
-            --bg: #121212;
-            --bg-secondary: #1e1e1e;
-            --bg-tertiary: #2a2a2a;
+            --text: #e2e8f0;        /* Soft White for readability */
+            --text-light: #94a3b8;  /* Lighter Blue-Gray */
+            --bg: #1a1a2e;          /* Deep Dark Purple-Blue for Primary Nav */
+            --bg-secondary: #2c2c43; /* Slightly lighter Dark Blue-Gray for Secondary Nav */
+            --bg-tertiary: #3e4a6e;  
             --border: #404040;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --nav-secondary-bg: #343450;
         }
 
         /* 🏗️ Base Styles */
@@ -1388,7 +1394,6 @@
                 font-size: 1rem;
             }
         }
-<<<<<<< HEAD
 
          
             /* Fluid Background Styles */
@@ -1481,108 +1486,393 @@
        }
     }
 
-=======
-        /* --- Subscription Form Enhancement (#1445) --- */
-
-        /* Overrides the squished form style for the new structure */
-        .newsletter-form {
-            display: none; /* Hide the old form class */
-        }
-
-        .newsletter-pill-form {
-            /* Implement the joined pill shape using Flexbox */
-            display: flex;
-            gap: 0; /* Remove gap between input and button */
-            
-            /* Style the container like a large input field */
-            background: var(--bg);
-            border: 3px solid var(--border);
-            border-radius: 50px; /* Use a large radius for the pill effect */
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .newsletter-pill-form:focus-within {
-            border-color: var(--primary); /* Glowing border on focus-within */
-            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
-        }
-
-        .newsletter-pill-form input {
-            flex-grow: 1;
-            /* Reset input defaults to fit the pill container */
-            padding: 15px 20px;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 1.3rem;
-            color: var(--text);
-        }
-
-        .newsletter-pill-form input::placeholder {
-            color: var(--text-darkgray);
-            opacity: 0.8;
-            text-align: justify;
-             font-size: 1.3rem;
-        }
-
-        .newsletter-pill-form .newsletter-submit-btn {
-            /* Style the button */
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 11px; /* Adjust padding for a better size */
-            font-size: 1.3rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            
-            /* Align icon and text */
-            display: flex;
+    /* ----------------------- NEW DUAL NAV STYLES ----------------------- */
+        
+        /* Utility Bar Styling */
+        .top-utility-bar {
+            height: 35px;
+            display: none; /* Hidden by default, shown by media query */
             align-items: center;
-            gap: 8px; /* Space between icon and text */
+            width: 100%;
+            background-color: var(--bg-secondary); /* Use secondary background */
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            z-index: 1000; 
+            font-size: 0.85rem;
+            color: var(--text-light);
+            padding: 0 20px;
+        }
+
+        .utility-link:hover {
+            color: var(--primary);
+        }
+
+        .top-secondary-bar {
+            height: var(--secondary-bar-height);
+            display: flex; 
+            align-items: center;
+            width: 100%;
+            background-color:  var(--nav-secondary-bg);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 998 ; 
+            font-size: 2rem;
+            color: var(--text);
+            padding: 0 20px;
+            position: fixed;
+            left: 0; 
+            top: var(--header-height);
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+
+        }
+
+        .top-secondary-bar .container {
+           display: flex;
+           align-items: center;
+           justify-content: space-between; /* Spread content out */
+           width: 100%;
+           max-width: 1200px; /* Use the same max-width as main content */
+           margin: 0 auto;
+           padding: 0 20px;
+    }
+
+     .top-secondary-bar .utility-link {
+         font-size: 1.4rem;
+         font-weight: 620; /* Made text bold */
+         color: var(--text); /* Use main text color for prominence */
+         position: relative;
+         padding: 5px 0 10px 0;
+         transition: all 0.3s ease-in-out;
+     
+        }
+
+    .top-secondary-bar .utility-link:hover {
+    /* Copy the complex text styling from .nav-links a:hover */
+        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6); 
+        background: linear-gradient(135deg, #5a73f1, #f119e2, #ff6ec4);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        webkit-text-fill-color: transparent;
+       transform: translateY(-2px); /* Subtle lift */
+       transition: all 0.3s ease;
+       box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
+    }  
+
+    .top-secondary-bar .utility-link::after {
+         content: '';
+         position: absolute;
+         width: 100%;
+         height: 3px;
+         bottom: 0px; /* Position under the link */
+         left: 0;
+         background: linear-gradient(90deg, var(--primary), var(--secondary)); /* Gradient color */
+        transform: scaleX(0); /* Line starts hidden */
+        transform-origin: left;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 2px;
+    }
+
+   .top-secondary-bar .utility-link:hover::after {
+     transform: scaleX(1); 
+    }
+
+    .secondary-links-group {
+       display: flex;
+       align-items: center;
+       gap: 35px;
+       padding: 0;
+       margin: 0;
+    }
+
+    .secondary-utility-group {
+        display: flex;
+        align-items: center;
+        gap: 30px; /* Space between the toggle and GitHub icon */
+    }
+        
+         
+
+    .top-secondary-bar .utility-link i {
+         margin-right: 8px; 
+        font-size: 1.1rem; 
+        color: var(--primary);
+        transition: var(--transition);
+    }
+
+    .top-secondary-bar .utility-link:hover i {
+       color: var(--primary); /* Highlight icon */
+    }
+    
+
+    .top-secondary-bar.hidden {
+         transform: translateY(-100%);
+         box-shadow: none;
+    }
+
+     .top-secondary-bar .switch-group {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+         margin-left: 20px;
+        white-space: nowrap;
+    }
+
+   .top-secondary-bar .switch-group .text-xs {
+        color: var(--text-light);
+        font-size: 0.85rem;
+    }
+
+
+        /* Adjust Main Header Positioning */
+    .main-primary-bar {
+        position: relative;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        transition: var(--transition);
+    }
+
+.main-primary-bar.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height); /* 80px */
+    z-index: 999;
+    background: var(--bg);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.main-primary-bar.sticky {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 999;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    animation: slideDown 0.3s;
+    background-color: var(--bg);
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+}
+
+        .hero {
+   padding: var(--total-header-offset) 0 120px; 
+    padding-top: var(--total-header-offset); 
+        }
+
+        .github-icon-sm i {
+    font-size: 1.8rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.github-icon-sm:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+        /* Desktop Dropdown Styles */
+        .dropdown-link-item {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
+            z-index: 999;
+            list-style: none;
+            min-width: 180px;
+            padding: 8px 0;
+            border-top: 3px solid var(--primary); /* Nice accent line */
+            animation: fadeIn 0.2s ease-out; /* Add animation */
+            margin-top: 5px; /* Slight gap from the link */
+
+        }
+
+        .dropdown-content li a {
+            padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .dropdown-content li a:hover {
+           background-color: var(--bg-tertiary);
+           color: var(--primary);
+           padding-left: 20px; 
+        }
+
+        @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        
+        /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
+        
+        .mobile-menu-container {
+            display: none; /* Controlled by JS */
+            position: fixed;
+            top: var(--header-height); /* Sits right under the main header on mobile */
+            left: 0;
+            width: 100%;
+            background-color: var(--bg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .mobile-menu-container.active {
+            display: block;
+        }
+        
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+        
+        .mobile-link-item {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .mobile-link-item a,
+        .accordion-toggle {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .accordion-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--bg-secondary);
+        }
+        
+        .accordion-content.active {
+            max-height: 300px; /* Large enough to show all sub-links */
+        }
+        
+        .accordion-content a {
+            padding: 10px 20px 10px 40px; /* Indentation */
+            font-size: 1rem;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+        
+        .accordion-content a:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--primary);
+        }
+        
+        /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
+
+    
+        @media (min-width: 769px) {
+            /* 1. SECONDARY BAR (The one you want on top) */
+            .top-secondary-bar {
+                display: flex !important; 
+                position: absolute;
+                z-index: 999; 
+            }
             
-            /* Match the height of the container */
-            border-radius: 0 50px 50px 0; 
-        }
+            /* 2. PRIMARY BAR (The one with the logo/login) */
+     .main-primary-bar {
+         position: relative;
+        top: 48px; /* Push down below the top bar */
+        width: 100%;
+        z-index: 999;
+         transition: var(--transition);
+     }
 
-        .newsletter-pill-form .newsletter-submit-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05); /* Subtle animation for AnimateItNow */
-        }
 
-        /* Ensure the submit button icon has the right size */
-        .newsletter-submit-btn i {
-            font-size: 1.3rem;
-            line-height: 1; /* Fix vertical alignment */
-        }
 
-        /* Responsive adjustment for small screens */
-        @media (max-width: 576px) {
-            .newsletter-pill-form {
-                flex-direction: column;
-                border-radius: var(--radius); /* Stack inputs on small screens */
-                border: none; /* Remove border from container */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+}
+             .top-secondary-bar, .main-primary-bar {
+        visibility: visible !important;
+    }
+
+            /* Ensure main content is pushed down (important for the screen to not look empty) */
+            .hero {
+                padding-top: calc(var(--header-height) + 60px); 
+            
+            /* Show desktop links and hide hamburger */
+            .desktop-only {
+                display: flex !important; 
             }
-            .newsletter-pill-form input {
-                border: 3px solid var(--border);
-                border-radius: var(--radius);
-                margin-bottom: 10px;
-            }
-            .newsletter-pill-form .newsletter-submit-btn {
-                width: 100%;
-                padding: 12px;
-                border-radius: var(--radius);
-                justify-content: center;
-                transform: none; /* Reset button hover scale */
+            .nav-actions .hamburger {
+                display: flexyes !important;
             }
         }
->>>>>>> upstream/main
+    }
+        
+        /* Mobile View: Reset Primary Nav to top */
+       @media (max-width: 768px) {
+     .top-secondary-bar {
+        position: relative; /* Stack normally on mobile */
+        top: 0;
+        height: 40px; /* Smaller height */
+        font-size: 1rem;
+    }
+    .top-secondary-bar .container {
+        /* Allow scrollable content on mobile to fit all links */
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 0 10px;
+    }
+
+    .top-secondary-bar .utility-link {
+        font-size: 1rem; 
+        font-weight: 600;
+        padding: 5px 0;
+    }
+    .top-secondary-bar.hidden {
+        transform: translateY(0); /* Don't hide the secondary bar on mobile; it should scroll with the page */
+    }
+    .hero {
+        /* Re-calculate for mobile where secondary bar is not fixed: */
+        padding-top: calc(var(--header-height) + 60px); 
+    }
+}
+
     </style>
     <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 
 <body data-theme="light">
-<<<<<<< HEAD
     <div class="fluid-background-wrapper">
         <div class="fluid-blob blob-1"></div>
         <div class="fluid-blob blob-2"></div>
@@ -1590,69 +1880,46 @@
         <div class="fluid-blob blob-4"></div> 
     </div>
     <!-- Progress Bar -->
-=======
-    <!-- ⏳ Progress Bar -->
->>>>>>> upstream/main
     <div id="progress-bar"></div>
 
 
     <!-- Header/Navigation -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
 
-        <div class="nav-right">
+   <header class="main-primary-bar header" id="main-header">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+                <span class="site-name">Animate It Now</span>
+            </div>
 
-            <ul class="nav-links">
-                <li><a href="index.html" class="active" style="white-space: nowrap">Home</a></li>
+            <!-- <ul class="nav-links desktop-only" id="desktop-links">
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="components.html">Components</a></li>
-                <li><a href="playground.html">Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <!-- cursor toggle switch -->
-                <li class="snakeList">
-                    <label class="switch" title="Toggle Snake Cursor">
-                        <input type="checkbox" id="cursorToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="snakeLabel">Snake Cursor</span>
-                </li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-
+            </ul> -->
+            
+            <ul class="nav-links desktop-only" id="desktop-links">
+                <li><a href="index.html" class="active">
+                    <i class="fas fa-home" style="margin-right: 5px;"></i> Home
+                </a></li>
+                
+                <li><a href="about.html">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i> About
+                </a></li>
+                
+                <li><a href="contact.html">
+                    <i class="fas fa-envelope" style="margin-right: 5px;"></i> Contact
+                </a></li>
+            </ul> 
+            
             <div class="nav-actions">
                 <a href="loginpage.html" class="btn btn-outline">Login</a>
                 <a href="signup.html" class="btn">Sign Up</a>
+                
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
+
                 <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
@@ -1660,7 +1927,76 @@
                 </button>
             </div>
         </div>
+    </header>
+    
+    <nav class="top-secondary-bar">
+        <div class="container">
+            
+            <div class="secondary-links-group">
+                <a href="templates.html" class="utility-link">
+                    <i class="fas fa-palette" style="margin-right: 5px;"></i> Templates
+                </a>
+                
+                <a href="components.html" class="utility-link">
+                    <i class="fas fa-cube" style="margin-right: 5px;"></i> Components
+                </a>
+                
+                <a href="playground.html" class="utility-link">
+                    <i class="fas fa-mouse-pointer" style="margin-right: 5px;"></i> Hover-Effects
+                </a>
+                
+                <a href="contributors.html" class="utility-link">
+                    <i class="fas fa-users" style="margin-right: 5px;"></i> Contributors
+                </a>
+                
+                <a href="leaderboard.html" class="utility-link">
+                    <i class="fas fa-trophy" style="margin-right: 5px;"></i> Leaderboard
+                </a>
+            </div>
+            <div class="secondary-utility-group">
+                 <div class="switch-group">
+                    <label class="switch switch-sm" title="Toggle Snake Cursor">
+                        <input type="checkbox" id="cursorToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="text-xs text-gray-500" style="color: var(--text-light);">
+                        <i class="fas fa-hat-snake" style="margin-right: 3px;"></i> Snake
+                    </span>
+                 </div>
+
+                <a href="https://github.com/itsAnimation/AnimateItNow"
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="GitHub Repo"
+                   class="github-icon-sm">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            </div>
     </nav>
+
+    <div id="mobile-menu" class="mobile-menu-container">
+        <div class="mobile-menu-links">
+            <div class="mobile-link-item"><a href="index.html"><i class="fas fa-home" style="margin-right: 10px;"></i> Home</a></div>
+            
+            <div class="mobile-link-item"><a href="about.html"><i class="fas fa-info-circle" style="margin-right: 10px;"></i> About</a></div>
+            
+            <div class="mobile-link-item"><a href="contact.html"><i class="fas fa-envelope" style="margin-right: 10px;"></i> Contact</a></div>
+            
+            <div class="mobile-link-item">
+                <button class="accordion-toggle" data-accordion-content="mobile-resources">
+                    <i class="fas fa-layer-group" style="margin-right: 10px;"></i> Resources & Community <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content" id="mobile-resources">
+                    <a href="templates.html"><i class="fas fa-palette" style="margin-right: 10px;"></i> Templates</a>
+                    <a href="components.html"><i class="fas fa-cube" style="margin-right: 10px;"></i> Components</a>
+                    <a href="playground.html"><i class="fas fa-mouse-pointer" style="margin-right: 10px;"></i> Hover-Effects</a>
+                    <a href="contributors.html"><i class="fas fa-users" style="margin-right: 10px;"></i> Contributors</a>
+                    <a href="leaderboard.html"><i class="fas fa-trophy" style="margin-right: 10px;"></i> Leaderboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 🦸 Hero Section -->
     <section class="hero">
@@ -2018,7 +2354,7 @@
                             </button>
                         </form>
                     </div>
-                    <!-- <br>
+                     <br>
                     <h3>Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -2026,7 +2362,7 @@
                         <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                         <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div> -->
+                    </div> 
                 </div>
             </div>
             
@@ -2202,18 +2538,43 @@
         }
         
         // ⏳ Progress Bar
+        let lastScrollTop = 0;
+        const secondaryBar = document.querySelector('.top-secondary-bar');
+        const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
+
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('progress-bar').style.width = scrolled + '%';
             
-            // Header scroll effect
-            if (window.scrollY > 50) {
-                document.querySelector('.header').classList.add('scrolled');
+            // --- SMART DUAL-HEADER SCROLL EFFECT ---
+            const mainHeader = document.querySelector('.main-primary-bar.header');
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (st > lastScrollTop && st > secondaryBarHeight) {
+                // Scroll Down: Hide the secondary bar by adding the 'hidden' class
+                secondaryBar.classList.add('hidden');
             } else {
-                document.querySelector('.header').classList.remove('scrolled');
+                // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
+                secondaryBar.classList.remove('hidden');
             }
+            
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
+            
+            // Header scroll effect (for the old .header.scrolled class)
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled'); 
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+        
+        // Ensure initial call for the testimonials and theme (keep existing initTheme and showTestimonial calls)
+        document.addEventListener('DOMContentLoaded', () => {
+             initTheme();
+             // Initial call to set the carousel's starting position
+             showTestimonial(0); 
         });
         
         // 📧 Newsletter form submission
@@ -2242,6 +2603,86 @@
                 scrollBtn.style.display = "none";
             }
         };
+
+        // ----------------------- NEW DUAL NAV AND ACCORDION LOGIC -----------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Mobile Menu Toggle (Hamburger)
+    const hamburgerBtn = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+    }
+
+    // 2. Mobile Accordion Logic
+    const accordionToggles = document.querySelectorAll('.accordion-toggle[data-accordion-content]');
+
+    accordionToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            // Only prevent default if it's an accordion toggle, not a simple link
+            if (toggle.getAttribute('href') === '#') {
+                e.preventDefault();
+            }
+            
+            const contentId = toggle.getAttribute('data-accordion-content');
+            const content = document.getElementById(contentId);
+            
+            if (!content) return; 
+
+            const isActive = content.classList.contains('active');
+            
+            // Close all other accordions
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                if (c !== content) {
+                    c.classList.remove('active');
+                    c.style.maxHeight = null;
+                    // Reset arrow rotation if applicable
+                    const otherToggle = c.previousElementSibling;
+                    if (otherToggle) {
+                         otherToggle.querySelector('i').style.transform = null;
+                    }
+                }
+            });
+
+            // Toggle current accordion
+            content.classList.toggle('active');
+            if (content.classList.contains('active')) {
+                // Set max-height for smooth transition (use scrollHeight for content size)
+                content.style.maxHeight = content.scrollHeight + "px";
+                toggle.querySelector('i').style.transform = 'rotate(180deg)';
+            } else {
+                content.style.maxHeight = null;
+                toggle.querySelector('i').style.transform = null;
+            }
+        });
+    });
+
+    // 3. Desktop Dropdown Toggle (for consolidated links)
+    const dropdownLinkItem = document.querySelector('.dropdown-link-item');
+    const desktopDropdownContent = document.getElementById('animations-dropdown');
+
+    if (dropdownLinkItem && desktopDropdownContent) {
+        // Use standard CSS :hover on desktop where possible, but use JS for cleanup/accessibility
+
+        dropdownLinkItem.addEventListener('mouseenter', () => {
+             // In a vanilla JS environment, ensure the dropdown is visible on hover
+             desktopDropdownContent.style.display = 'block';
+        });
+
+        dropdownLinkItem.addEventListener('mouseleave', () => {
+            desktopDropdownContent.style.display = 'none';
+        });
+    }
+});
+
+
+
     </script>
 </body>
 </html>
