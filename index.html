@@ -1540,6 +1540,175 @@
         }
       }
 
+        .newsletter-pill-form {
+            /* Implement the joined pill shape using Flexbox */
+            display: flex;
+            gap: 0; /* Remove gap between input and button */
+            
+            /* Style the container like a large input field */
+            background: var(--bg);
+            border: 3px solid var(--border);
+            border-radius: 50px; /* Use a large radius for the pill effect */
+            transition: var(--transition);
+        }
+
+    
+        .newsletter-pill-form input {
+            flex-grow: 1;
+            /* Reset input defaults to fit the pill container */
+            padding: 5px 5px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+
+        .github-icon-sm i {
+    font-size: 1.8rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.github-icon-sm:hover i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+        /* Desktop Dropdown Styles */
+        .dropdown-link-item {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
+            z-index: 999;
+            list-style: none;
+            min-width: 180px;
+            padding: 8px 0;
+            border-top: 3px solid var(--primary); /* Nice accent line */
+            animation: fadeIn 0.2s ease-out; /* Add animation */
+            margin-top: 5px; /* Slight gap from the link */
+
+        }
+
+        .dropdown-content li a {
+            padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .dropdown-content li a:hover {
+           background-color: var(--bg-tertiary);
+           color: var(--primary);
+           padding-left: 20px; 
+        }
+
+        @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        
+        /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
+        
+        .mobile-menu-container {
+            display: none; /* Controlled by JS */
+            position: fixed;
+            top: var(--header-height); /* Sits right under the main header on mobile */
+            left: 0;
+            width: 100%;
+            background-color: var(--bg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .mobile-menu-container.active {
+            display: block;
+        }
+        
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+        
+        .mobile-link-item {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .mobile-link-item a,
+        .accordion-toggle {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .accordion-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--bg-secondary);
+        }
+        
+        .accordion-content.active {
+            max-height: 300px; /* Large enough to show all sub-links */
+        }
+        
+        .accordion-content a {
+            padding: 10px 20px 10px 40px; /* Indentation */
+            font-size: 1rem;
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+        
+        .accordion-content a:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--primary);
+        }
+        
+        /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
+
+    
+        @media (min-width: 769px) {
+            /* 1. SECONDARY BAR (The one you want on top) */
+            .top-secondary-bar {
+                display: flex !important; 
+                position: absolute;
+                z-index: 999; 
+            }
+            
+            /* 2. PRIMARY BAR (The one with the logo/login) */
+     .main-primary-bar {
+         position: relative;
+        top: 48px; /* Push down below the top bar */
       /* ----------------------- NEW DUAL NAV STYLES ----------------------- */
 
       /* Utility Bar Styling */
