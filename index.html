@@ -1,3020 +1,2915 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AnimateItNow - CSS Animation Templates & Effects</title>
-    <link rel="icon" href="favicon.png" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
 
-    <style>
-      /* 🧹 CSS Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnimateItNow - CSS Animation Templates & Effects</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
+  <style>
+    /* 🧹 CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 🎨 CSS Variables for Theming */
+    :root {
+      --primary: #6c63ff;
+      --primary-light: #8a84ff;
+      --primary-dark: #554fd8;
+      --secondary: #ff6584;
+      --accent: #36d1dc;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --text: #1a202c;
+      /* Deep Navy/Black for max contrast */
+      --text-light: #64748b;
+      /* Slate Gray for subtle elements */
+      --bg: #ffffff;
+      /* Pure White for Primary Nav */
+      --bg-secondary: #f5f7fa;
+      /* Cooler Off-White for Secondary Nav */
+      --bg-tertiary: #e9ecef;
+      --border: #dee2e6;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+      --radius: 12px;
+      --transition: all 0.3s ease;
+      --header-height: 80px;
+
+      /* 🆕 Additional theme variables for enhanced customization */
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --spacing-unit: 1rem;
+      --secondary-bar-height: 55px;
+      --header-height: 80px;
+      --total-header-height: calc(var(--header-height) + var(--secondary-bar-height));
+    }
+
+    /* 🌙 Dark Mode Variables */
+    [data-theme="dark"] {
+      --primary: #8a84ff;
+      --primary-light: #a8a4ff;
+      --primary-dark: #6c63ff;
+      --secondary: #ff8fa3;
+      --accent: #4dd0e1;
+      --text: #e2e8f0;
+      /* Soft White for readability */
+      --text-light: #94a3b8;
+      /* Lighter Blue-Gray */
+      --bg: #1a1a2e;
+      /* Deep Dark Purple-Blue for Primary Nav */
+      --bg-secondary: #2c2c43;
+      /* Slightly lighter Dark Blue-Gray for Secondary Nav */
+      --bg-tertiary: #3e4a6e;
+      --border: #404040;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --nav-secondary-bg: #343450;
+    }
+
+    /* 🏗️ Base Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: transparent;
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      /* max-width: 1200px; */
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      width: 150px;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent);
+      transition: var(--transition);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+    }
+
+    .btn-secondary:hover {
+      background-color: #e05574;
+      box-shadow: 0 10px 20px rgba(255, 101, 132, 0.3);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 17px;
+    }
+
+    /* ⏳ Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      z-index: 1000;
+      transition: width 0.3s ease;
+    }
+
+    /* 🧭 Header/Navigation */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      background-color: var(--bg);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] .header {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header.scrolled {
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    [data-theme="dark"] .header.scrolled {
+      background-color: rgba(18, 18, 18, 0.95);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      /* border:1px solid black; */
+    }
+
+    .logo {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .site-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      margin-right: 10%;
+      width: 50%;
+      /* border:1px solid black; */
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: -5px;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      /* Line starts hidden (zero width) */
+      transform-origin: left;
+      /* Animation grows from the left */
+      transition: transform 0.3s ease-in-out;
+      border-radius: 2px;
+    }
+
+    /* NEW CODE TO ADD */
+    .nav-links a:hover {
+      text-shadow: 0 0 8px rgba(108, 99, 255, 0.1);
+      background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      /* border:1px solid black; */
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 2px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    /* 🦸 Hero Section */
+    .hero {
+      padding: 180px 0 120px;
+      text-align: center;
+      /* background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(108, 99, 255, 0.05)"/></svg>');
+      background-size: cover;
+    }
+
+    .hero h1 {
+      margin-bottom: 20px;
+      margin-top: 170px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      position: relative;
+    }
+
+    .hero h1 span::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      background-color: rgba(108, 99, 255, 0.2);
+      bottom: 5px;
+      left: 0;
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    .hero p {
+      font-size: 2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: var(--text-light);
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    .hero-animation {
+      margin-top: 80px;
+      height: 300px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><path fill="%236c63ff" fill-opacity="0.1" d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,186.7C672,192,768,192,864,181.3C960,171,1056,149,1152,133.3C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+      animation: wave 10s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      /* 🎨 CSS Variables for Theming */
-      :root {
-        --primary: #6c63ff;
-        --primary-light: #8a84ff;
-        --primary-dark: #554fd8;
-        --secondary: #ff6584;
-        --accent: #36d1dc;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        --text: #1a202c; /* Deep Navy/Black for max contrast */
-        --text-light: #64748b; /* Slate Gray for subtle elements */
-        --bg: #ffffff; /* Pure White for Primary Nav */
-        --bg-secondary: #f5f7fa; /* Cooler Off-White for Secondary Nav */
-        --bg-tertiary: #e9ecef;
-        --border: #dee2e6;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      50% {
+        transform: translateY(-20px);
+      }
+    }
 
-        --radius: 12px;
-        --transition: all 0.3s ease;
-        --header-height: 80px;
-
-        /* 🆕 Additional theme variables for enhanced customization */
-        --transition-speed: 0.3s;
-        --border-radius: 12px;
-        --spacing-unit: 1rem;
-        --secondary-bar-height: 55px;
-        --header-height: 80px;
-        --total-header-height: calc(
-          var(--header-height) + var(--secondary-bar-height)
-        );
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
 
-      /* 🌙 Dark Mode Variables */
-      [data-theme="dark"] {
-        --primary: #8a84ff;
-        --primary-light: #a8a4ff;
-        --primary-dark: #6c63ff;
-        --secondary: #ff8fa3;
-        --accent: #4dd0e1;
-        --text: #e2e8f0; /* Soft White for readability */
-        --text-light: #94a3b8; /* Lighter Blue-Gray */
-        --bg: #1a1a2e; /* Deep Dark Purple-Blue for Primary Nav */
-        --bg-secondary: #2c2c43; /* Slightly lighter Dark Blue-Gray for Secondary Nav */
-        --bg-tertiary: #3e4a6e;
-        --border: #404040;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        --nav-secondary-bg: #343450;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ✨ Features Section */
+    .features {
+      background-color: var(--bg);
+      padding: 50px 100px 70px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg, var(--bg), var(--bg-secondary));
+      border-radius: 24px;
+      padding: 60px 40px 50px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(108, 99, 255, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(108, 99, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%,
+          transparent,
+          var(--primary),
+          var(--accent),
+          transparent);
+      opacity: 0;
+      transition: all 0.6s ease;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
       }
 
-      /* 🏗️ Base Styles */
-      html {
-        scroll-behavior: smooth;
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      body {
-        font-family: "Inter", "Segoe UI", sans-serif;
-        line-height: 1.6;
-        color: var(--text);
-        background-color: transparent;
-        transition: var(--transition);
-        overflow-x: hidden;
-      }
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(145deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 50%,
+          rgba(108, 99, 255, 0.05) 100%);
+      border-radius: 24px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
 
+    .feature-card:hover {
+      transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 40px 80px rgba(108, 99, 255, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: var(--primary);
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.3;
+    }
+
+    .feature-card:hover::after {
+      opacity: 1;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: translateY(-10px) scale(1.2) rotate(10deg);
+      box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4);
+    }
+
+    .feature-card:hover h3 {
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    .feature-card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 30px rgba(108, 99, 255, 0.25),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .feature-icon::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg,
+          var(--primary),
+          var(--accent),
+          var(--secondary));
+      border-radius: 30px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon::before {
+      opacity: 1;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover p {
+      opacity: 1;
+    }
+
+    /* 🖼️ Templates Showcase */
+    .templates-showcase {
+      background-color: var(--bg-secondary);
+    }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      padding: 0 100px;
+      min-width: 100%;
+    }
+
+    .template-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .template-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .template-preview {
+      height: 200px;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .template-info {
+      padding: 20px;
+    }
+
+    .template-info h3 {
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .template-info p {
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+
+    /* 🔄 How It Works */
+    .how-it-works {
+      background-color: var(--bg-secondary);
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--border);
+      z-index: 1;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .step-content {
+      padding: 0 15px;
+    }
+
+    /* ❓ FAQ Section */
+    .faq-section {
+      background-color: var(--bg);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .faq-question {
+      padding: 20px;
+      background-color: var(--bg-secondary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .faq-question i {
+      transition: var(--transition);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 20px;
+      max-height: 500px;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    /* 👥 Testimonials */
+    .testimonials {
+      background-color: var(--bg-secondary);
+    }
+
+    .testimonial-slider {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 80px;
+      overflow: hidden;
+    }
+
+    .testimonial-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      transition: transform 0.6s ease;
+    }
+
+    .testimonial-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid var(--border);
+      width: 350px;
+      flex-shrink: 0;
+      transition: all 0.6s ease;
+      opacity: 0.6;
+      transform: scale(0.9);
+    }
+
+    .testimonial-card.active {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15), var(--shadow);
+      border-color: var(--primary);
+      z-index: 2;
+    }
+
+    .testimonial-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .testimonial-arrows:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+    }
+
+    .arrow-left {
+      left: 20px;
+    }
+
+    .arrow-right {
+      right: 20px;
+    }
+
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .testimonial-role {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 10px;
+    }
+
+    .testimonial-nav button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .testimonial-nav button.active {
+      background-color: var(--primary);
+    }
+
+    /* 📣 CTA Section */
+    .cta-section {
+      background-color: var(--bg);
+      text-align: center;
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-section h2 {
+      margin-bottom: 20px;
+      color: var(--text);
+      font-size: 40px;
+    }
+
+    .cta-section p {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      color: var(--text-light);
+      font-size: 18px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .cta-buttons .btn {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .cta-buttons .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .cta-buttons .btn-outline {
+      background: transparent;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .cta-buttons .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* 🦶 Footer */
+    .footer {
+      background-color: var(--bg-secondary);
+      color: var(--text);
+      padding: 80px 80px 30px;
+      position: relative;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-about {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .footer-logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-about p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .footer-links h3,
+    .footer-social h3 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h3::after,
+    .footer-social h3::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary);
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-links a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--bg-tertiary);
+      border-radius: 50%;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .newsletter {
+      background: var(--bg-tertiary);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .newsletter h4 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 3px 3px;
+      border: 3px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .newsletter-form input::placeholder {
+      color: var(--text-light);
+    }
+
+    .newsletter-form button {
+      padding: 3px 3px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      background: var(--primary-dark);
+    }
+
+    /* ⬆️ Scroll to Top Button */
+    #scrollBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      width: 50px;
+      height: 50px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    #scrollBtn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    /* 📱 Responsive Design */
+    @media (max-width: 1200px) {
       .container {
-        width: 100%;
-        /* max-width: 1200px; */
-        margin: 0 auto;
-        padding: 0 20px;
+        max-width: 960px;
       }
+    }
 
-      section {
-        padding: 100px 0;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-bottom: 1rem;
-        line-height: 1.2;
-        font-weight: 700;
-      }
-
+    @media (max-width: 992px) {
       h1 {
-        font-size: 3.5rem;
+        font-size: 2.8rem;
       }
 
       h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
       }
 
-      h3 {
-        font-size: 1.8rem;
+      .steps {
+        flex-direction: column;
+        gap: 40px;
       }
 
-      p {
-        margin-bottom: 1.5rem;
-        color: var(--text-light);
+      .steps::before {
+        display: none;
       }
 
-      a {
-        text-decoration: none;
-        color: inherit;
-        transition: var(--transition);
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 14px 32px;
-        background-color: var(--primary);
-        color: white;
-        border-radius: var(--radius);
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: var(--transition);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        width: 150px;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: var(--transition);
-      }
-
-      .btn:hover::before {
-        left: 100%;
-      }
-
-      .btn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
-      }
-
-      .btn-secondary {
-        background-color: var(--secondary);
-      }
-
-      .btn-secondary:hover {
-        background-color: #e05574;
-        box-shadow: 0 10px 20px rgba(255, 101, 132, 0.3);
-      }
-
-      .btn-outline {
-        background-color: transparent;
-        border: 2px solid var(--primary);
-        color: var(--primary);
-      }
-
-      .btn-outline:hover {
-        background-color: var(--primary);
-        color: white;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 60px;
-      }
-
-      .section-title h2 {
-        position: relative;
-        display: inline-block;
+      .step-number {
         margin-bottom: 15px;
       }
 
-      .section-title h2::after {
-        content: "";
-        position: absolute;
-        width: 70px;
-        height: 4px;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 2px;
+      .feature-card {
+        padding: 40px 30px;
       }
 
-      .section-title p {
-        color: var(--text-light);
-        max-width: 700px;
-        margin: 0 auto;
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .testimonial-slider {
+        padding: 0 60px;
       }
 
-      /* ⏳ Progress Bar */
-      #progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 4px;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        z-index: 1000;
-        transition: width 0.3s ease;
+      .testimonial-card {
+        width: 280px;
+        padding: 20px;
       }
 
-      /* 🧭 Header/Navigation */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height);
-        background-color: var(--bg);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        transition: var(--transition);
-      }
-
-      [data-theme="dark"] .header {
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .header.scrolled {
-        height: 70px;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-      }
-
-      [data-theme="dark"] .header.scrolled {
-        background-color: rgba(18, 18, 18, 0.95);
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-        /* border:1px solid black; */
-      }
-
-      .logo {
+      .testimonial-arrows {
+        width: 40px;
         height: 40px;
-        margin-right: 10px;
+        font-size: 1rem;
       }
 
-      .site-name {
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .arrow-left {
+        left: 10px;
+      }
+
+      .arrow-right {
+        right: 10px;
       }
 
       .nav-links {
-        margin-right: 10%;
-        width: 50%;
-        /* border:1px solid black; */
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-links.active {
         display: flex;
-        list-style: none;
       }
 
       .nav-links li {
-        margin-left: 30px;
+        margin: 10px 0;
       }
 
-      .nav-links a {
-        color: var(--text);
-        font-weight: 500;
-        position: relative;
-        padding: 5px 0;
-        transition: all 0.3s ease-in-out;
-      }
-
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        bottom: -5px;
-        left: 0;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        transform: scaleX(0); /* Line starts hidden (zero width) */
-        transform-origin: left; /* Animation grows from the left */
-        transition: transform 0.3s ease-in-out;
-        border-radius: 2px;
-      }
-
-      /* NEW CODE TO ADD */
-      .nav-links a:hover {
-        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
-        background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-        transform: translateY(-2px);
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
-      }
-
-      .nav-links a:hover::after,
-      .nav-links a.active::after {
-        transform: scaleX(1);
+      .nav-actions .btn,
+      .nav-actions .btn-outline {
+        display: none;
       }
 
       .nav-actions {
         display: flex;
-        align-items: center;
         gap: 15px;
-        /* border:1px solid black; */
       }
 
-      .theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--text);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-
-      .theme-toggle:hover {
-        background-color: var(--bg-tertiary);
+      .nav-links {
+        display: none;
       }
 
       .hamburger {
-        display: none;
-        flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        justify-content: center;
-      }
-
-      .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text);
-        margin: 2px 0;
-        transition: var(--transition);
-        border-radius: 2px;
-      }
-
-      /* 🦸 Hero Section */
-      .hero {
-        padding: 180px 0 120px;
-        text-align: center;
-        /* background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); */
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(108, 99, 255, 0.05)"/></svg>');
-        background-size: cover;
-      }
-
-      .hero h1 {
-        margin-bottom: 20px;
-        animation: fadeInUp 1s ease;
-      }
-
-      .hero h1 span {
-        color: var(--primary);
-        position: relative;
-      }
-
-      .hero h1 span::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 8px;
-        background-color: rgba(108, 99, 255, 0.2);
-        bottom: 5px;
-        left: 0;
-        z-index: -1;
-        border-radius: 4px;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto 40px;
-        color: var(--text-light);
-        animation: fadeInUp 1s ease 0.2s both;
-      }
-
-      .hero-buttons {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        animation: fadeInUp 1s ease 0.4s both;
       }
 
-      .hero-animation {
-        margin-top: 80px;
-        height: 300px;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><path fill="%236c63ff" fill-opacity="0.1" d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,186.7C672,192,768,192,864,181.3C960,171,1056,149,1152,133.3C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-        background-size: cover;
-        background-position: center;
-        animation: wave 10s ease-in-out infinite;
+      .hero-buttons,
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
       }
 
-      @keyframes wave {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
+      .hero-buttons .btn,
+      .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
       }
 
-      /* ✨ Features Section */
-      .features {
-        background-color: var(--bg);
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
       }
 
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+
+      .newsletter-form {
+        flex-direction: column;
       }
 
       .feature-card {
-        background: linear-gradient(145deg, var(--bg), var(--bg-secondary));
-        border-radius: 24px;
-        padding: 60px 40px 50px;
-        text-align: center;
-        box-shadow: 0 20px 40px rgba(108, 99, 255, 0.1),
-          0 10px 20px rgba(0, 0, 0, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(108, 99, 255, 0.1);
-        backdrop-filter: blur(10px);
-      }
-
-      .feature-card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          from 0deg at 50% 50%,
-          transparent,
-          var(--primary),
-          var(--accent),
-          transparent
-        );
-        opacity: 0;
-        transition: all 0.6s ease;
-        animation: rotate 10s linear infinite;
-      }
-
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .feature-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.1) 0%,
-          transparent 50%,
-          rgba(108, 99, 255, 0.05) 100%
-        );
-        border-radius: 24px;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-
-      .feature-card:hover {
-        transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
-        box-shadow: 0 40px 80px rgba(108, 99, 255, 0.2),
-          0 20px 40px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        border-color: var(--primary);
-      }
-
-      .feature-card:hover::before {
-        opacity: 0.3;
-      }
-
-      .feature-card:hover::after {
-        opacity: 1;
-      }
-
-      .feature-card:hover .feature-icon {
-        transform: translateY(-10px) scale(1.2) rotate(10deg);
-        box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4);
-      }
-
-      .feature-card:hover h3 {
-        color: var(--primary);
-        transform: translateY(-5px);
-      }
-
-      .feature-card > * {
-        position: relative;
-        z-index: 2;
+        padding: 30px 20px;
       }
 
       .feature-icon {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 30px;
-        background: linear-gradient(135deg, var(--primary), var(--accent));
-        border-radius: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 2.5rem;
-        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 15px 30px rgba(108, 99, 255, 0.25),
-          0 5px 15px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-
-      .feature-icon::before {
-        content: "";
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(
-          45deg,
-          var(--primary),
-          var(--accent),
-          var(--secondary)
-        );
-        border-radius: 30px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .feature-card:hover .feature-icon::before {
-        opacity: 1;
-      }
-
-      .feature-card h3 {
-        margin-bottom: 20px;
+        width: 70px;
+        height: 70px;
         font-size: 1.8rem;
-        font-weight: 700;
-        transition: all 0.3s ease;
-      }
-
-      .feature-card p {
-        font-size: 1rem;
-        line-height: 1.7;
-        opacity: 0.8;
-        transition: all 0.3s ease;
-      }
-
-      .feature-card:hover p {
-        opacity: 1;
-      }
-
-      /* 🖼️ Templates Showcase */
-      .templates-showcase {
-        background-color: var(--bg-secondary);
       }
 
       .templates-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-      }
-
-      .template-card {
-        background: var(--bg);
-        border-radius: var(--radius);
-        overflow: hidden;
-        transition: var(--transition);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-      }
-
-      .template-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .template-preview {
-        height: 200px;
-        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 3rem;
-      }
-
-      .template-info {
-        padding: 20px;
-      }
-
-      .template-info h3 {
-        margin-bottom: 10px;
-        color: var(--text);
-      }
-
-      .template-info p {
-        color: var(--text-light);
-        margin-bottom: 15px;
-      }
-
-      /* 🔄 How It Works */
-      .how-it-works {
-        background-color: var(--bg-secondary);
-      }
-
-      .steps {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        max-width: 900px;
-        margin: 0 auto;
-      }
-
-      .steps::before {
-        content: "";
-        position: absolute;
-        top: 40px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--border);
-        z-index: 1;
-      }
-
-      .step {
-        text-align: center;
-        position: relative;
-        z-index: 2;
-        flex: 1;
-      }
-
-      .step-number {
-        width: 80px;
-        height: 80px;
-        background: var(--bg);
-        border: 2px solid var(--primary);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin: 0 auto 20px;
-        position: relative;
-      }
-
-      .step-content {
-        padding: 0 15px;
-      }
-
-      /* ❓ FAQ Section */
-      .faq-section {
-        background-color: var(--bg);
-      }
-
-      .faq-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .faq-item {
-        margin-bottom: 15px;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        border: 1px solid var(--border);
-      }
-
-      .faq-question {
-        padding: 20px;
-        background-color: var(--bg-secondary);
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 600;
-        transition: var(--transition);
-      }
-
-      .faq-question:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      .faq-question i {
-        transition: var(--transition);
-      }
-
-      .faq-answer {
-        padding: 0 20px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-      }
-
-      .faq-item.active .faq-answer {
-        padding: 20px;
-        max-height: 500px;
-      }
-
-      .faq-item.active .faq-question i {
-        transform: rotate(180deg);
-      }
-
-      /* 👥 Testimonials */
-      .testimonials {
-        background-color: var(--bg-secondary);
-      }
-
-      .testimonial-slider {
-        max-width: 1000px;
-        margin: 0 auto;
-        position: relative;
-        padding: 0 80px;
-        overflow: hidden;
-      }
-
-      .testimonial-carousel {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        transition: transform 0.6s ease;
-      }
-
-      .testimonial-card {
-        background: var(--bg);
-        border-radius: var(--radius);
-        padding: 30px;
-        box-shadow: var(--shadow);
-        text-align: center;
-        border: 1px solid var(--border);
-        width: 350px;
-        flex-shrink: 0;
-        transition: all 0.6s ease;
-        opacity: 0.6;
-        transform: scale(0.9);
-      }
-
-      .testimonial-card.active {
-        opacity: 1;
-        transform: scale(1);
-        box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15), var(--shadow);
-        border-color: var(--primary);
-        z-index: 2;
-      }
-
-      .testimonial-arrows {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--bg);
-        border: 2px solid var(--primary);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: var(--transition);
-        z-index: 10;
-        color: var(--primary);
-        font-size: 1.2rem;
-      }
-
-      .testimonial-arrows:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
-      }
-
-      .arrow-left {
-        left: 20px;
-      }
-
-      .arrow-right {
-        right: 20px;
-      }
-
-      .testimonial-avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin: 0 auto 20px;
-        overflow: hidden;
-        border: 3px solid var(--primary);
-        transition: all 0.3s ease;
-      }
-
-      .testimonial-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .testimonial-text {
-        font-style: italic;
-        margin-bottom: 20px;
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      .testimonial-author {
-        font-weight: 600;
-        color: var(--primary);
-        font-size: 1.1rem;
-      }
-
-      .testimonial-role {
-        color: var(--text-light);
-        font-size: 0.9rem;
-        margin-top: 5px;
-      }
-
-      .testimonial-nav {
-        display: flex;
-        justify-content: center;
-        margin-top: 30px;
-        gap: 10px;
-      }
-
-      .testimonial-nav button {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: none;
-        background-color: var(--border);
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .testimonial-nav button.active {
-        background-color: var(--primary);
-      }
-
-      /* 📣 CTA Section */
-      .cta-section {
-        background-color: var(--bg);
-        text-align: center;
-        padding: 100px 0;
-        border-top: 1px solid var(--border);
-      }
-
-      .cta-section h2 {
-        margin-bottom: 20px;
-        color: var(--text);
-      }
-
-      .cta-section p {
-        max-width: 700px;
-        margin: 0 auto 40px;
-        color: var(--text-light);
-      }
-
-      .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .cta-buttons .btn {
-        background-color: var(--primary);
-        color: white;
-      }
-
-      .cta-buttons .btn:hover {
-        background-color: var(--primary-dark);
-      }
-
-      .cta-buttons .btn-outline {
-        background: transparent;
-        border-color: var(--primary);
-        color: var(--primary);
-      }
-
-      .cta-buttons .btn-outline:hover {
-        background-color: var(--primary);
-        color: white;
-      }
-
-      /* 🦶 Footer */
-      .footer {
-        background-color: var(--bg-secondary);
-        color: var(--text);
-        padding: 80px 0 30px;
-        position: relative;
-        border-top: 1px solid var(--border);
+        grid-template-columns: 1fr;
       }
 
       .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-      }
-
-      .footer-about {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .footer-logo img {
-        height: 40px;
-        margin-right: 10px;
-      }
-
-      .footer-logo span {
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .footer-about p {
-        color: var(--text-light);
-        margin-bottom: 20px;
-      }
-
-      .footer-links h3,
-      .footer-social h3 {
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 10px;
+        grid-template-columns: 1fr;
+        text-align: center;
       }
 
       .footer-links h3::after,
       .footer-social h3::after {
-        content: "";
-        position: absolute;
-        width: 40px;
-        height: 2px;
-        background-color: var(--primary);
-        bottom: 0;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .testimonial-slider {
+        padding: 0 50px;
       }
 
-      .footer-links ul {
-        list-style: none;
+      .testimonial-card {
+        width: 250px;
+        padding: 15px;
       }
 
-      .footer-links li {
-        margin-bottom: 12px;
-      }
-
-      .footer-links a {
-        color: var(--text-light);
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-      }
-
-      .footer-links a i {
-        margin-right: 10px;
-        width: 20px;
-        text-align: center;
-      }
-
-      .footer-links a:hover {
-        color: var(--primary);
-        padding-left: 5px;
-      }
-
-      .social-icons {
-        display: flex;
-        gap: 15px;
-      }
-
-      .social-icons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: var(--bg-tertiary);
-        border-radius: 50%;
-        color: var(--text);
-        transition: var(--transition);
-      }
-
-      .social-icons a:hover {
-        background-color: var(--primary);
-        color: white;
-        transform: translateY(-3px);
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid var(--border);
-        color: var(--text-light);
+      .testimonial-text {
         font-size: 0.9rem;
       }
 
-      .footer-bottom .highlight {
-        color: var(--primary);
-        font-weight: 600;
+      .testimonial-avatar {
+        width: 60px;
+        height: 60px;
       }
 
-      .newsletter {
-        background: var(--bg-tertiary);
-        border-radius: var(--radius);
-        padding: 20px;
-        margin-top: 20px;
-        border: 1px solid var(--border);
-        text-align: center;
+      h1 {
+        font-size: 2.2rem;
       }
 
-      .newsletter h4 {
-        margin-bottom: 15px;
-        font-size: 1.2rem;
+      h2 {
+        font-size: 1.8rem;
       }
 
-      .newsletter-form {
-        display: flex;
-        gap: 10px;
+      section {
+        padding: 60px 0;
       }
 
-      .newsletter-form input {
-        flex: 1;
-        padding: 3px 3px;
-        border: 3px solid var(--border);
-        border-radius: var(--radius);
-        background: var(--bg);
-        color: var(--text);
+      .hero {
+        padding: 150px 0 80px;
       }
 
-      .newsletter-form input::placeholder {
-        color: var(--text-light);
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
 
-      .newsletter-form button {
-        padding: 3px 3px;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: var(--radius);
-        cursor: pointer;
-        transition: var(--transition);
+      .feature-card {
+        padding: 25px 15px;
       }
 
-      .newsletter-form button:hover {
-        background: var(--primary-dark);
-      }
-      /* ⬆️ Scroll to Top Button */
-      #scrollBtn {
-        display: none;
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: var(--primary);
-        color: white;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 50%;
-        font-size: 18px;
-        width: 50px;
-        height: 50px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-      }
-      #scrollBtn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
       }
 
-      /* 📱 Responsive Design */
-      @media (max-width: 1200px) {
-        .container {
-          max-width: 960px;
-        }
+      .hero-animation {
+        height: 200px;
+        margin-top: 50px;
       }
 
-      @media (max-width: 992px) {
-        h1 {
-          font-size: 2.8rem;
-        }
-
-        h2 {
-          font-size: 2.2rem;
-        }
-
-        .steps {
-          flex-direction: column;
-          gap: 40px;
-        }
-
-        .steps::before {
-          display: none;
-        }
-
-        .step-number {
-          margin-bottom: 15px;
-        }
-
-        .feature-card {
-          padding: 40px 30px;
-        }
-
-        .feature-icon {
-          width: 80px;
-          height: 80px;
-          font-size: 2rem;
-        }
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
       }
 
-      @media (max-width: 768px) {
-        .testimonial-slider {
-          padding: 0 60px;
-        }
-
-        .testimonial-card {
-          width: 280px;
-          padding: 20px;
-        }
-
-        .testimonial-arrows {
-          width: 40px;
-          height: 40px;
-          font-size: 1rem;
-        }
-
-        .arrow-left {
-          left: 10px;
-        }
-
-        .arrow-right {
-          right: 10px;
-        }
-
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background-color: var(--bg);
-          flex-direction: column;
-          padding: 20px;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
-          border-top: 1px solid var(--border);
-        }
-
-        .nav-links.active {
-          display: flex;
-        }
-
-        .nav-links li {
-          margin: 10px 0;
-        }
-        .nav-actions .btn,
-        .nav-actions .btn-outline {
-          display: none;
-        }
-        .nav-actions {
-          display: flex;
-          gap: 15px;
-        }
-
-        .nav-links {
-          display: none;
-        }
-
-        .hamburger {
-          display: flex;
-        }
-
-        .hero-buttons,
-        .cta-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .hero-buttons .btn,
-        .cta-buttons .btn {
-          width: 100%;
-          max-width: 300px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-          opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .newsletter-form {
-          flex-direction: column;
-        }
-
-        .feature-card {
-          padding: 30px 20px;
-        }
-
-        .feature-icon {
-          width: 70px;
-          height: 70px;
-          font-size: 1.8rem;
-        }
-
-        .templates-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-
-        .footer-links h3::after,
-        .footer-social h3::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      }
-
-      @media (max-width: 576px) {
-        .testimonial-slider {
-          padding: 0 50px;
-        }
-
-        .testimonial-card {
-          width: 250px;
-          padding: 15px;
-        }
-
-        .testimonial-text {
-          font-size: 0.9rem;
-        }
-
-        .testimonial-avatar {
-          width: 60px;
-          height: 60px;
-        }
-
-        h1 {
-          font-size: 2.2rem;
-        }
-
-        h2 {
-          font-size: 1.8rem;
-        }
-
-        section {
-          padding: 60px 0;
-        }
-
-        .hero {
-          padding: 150px 0 80px;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-          gap: 30px;
-        }
-
-        .feature-card {
-          padding: 25px 15px;
-        }
-
-        .feature-icon {
-          width: 60px;
-          height: 60px;
-          font-size: 1.5rem;
-          margin-bottom: 20px;
-        }
-
-        .hero-animation {
-          height: 200px;
-          margin-top: 50px;
-        }
-
-        .step-number {
-          width: 60px;
-          height: 60px;
-          font-size: 1.5rem;
-        }
-
-        .template-preview {
-          height: 150px;
-          font-size: 2rem;
-        }
-
-        .testimonial-card {
-          padding: 20px;
-        }
-
-        .cta-section {
-          padding: 60px 0;
-        }
-
-        .footer {
-          padding: 60px 0 20px;
-        }
-      }
-
-      @media (max-width: 400px) {
-        h1 {
-          font-size: 1.8rem;
-        }
-
-        h2 {
-          font-size: 1.5rem;
-        }
-
-        .btn {
-          padding: 12px 24px;
-          font-size: 0.9rem;
-        }
-
-        .feature-card h3 {
-          font-size: 1.5rem;
-        }
-
-        .section-title h2 {
-          font-size: 1.8rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-        }
-      }
-
-      /* Fluid Background Styles */
-      .fluid-background-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: -1;
-        background-color: var(--bg);
-      }
-
-      .fluid-blob {
-        position: absolute;
-        border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
-        filter: blur(70px); /* Heavy blur for softness */
-        opacity: 0.4;
-        transition: all 0.5s ease;
-        animation: blob-move 20s infinite alternate ease-in-out;
-        will-change: transform, opacity; /* Optimizes performance */
-      }
-
-      /* Animation Keyframes */
-      @keyframes blob-move {
-        0%,
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(25vw, -15vh) scale(1.1);
-        }
-        66% {
-          transform: translate(-10vw, 10vh) scale(0.95);
-        }
-      }
-
-      /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.8;
-        }
-        50% {
-          transform: scale(1.02);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0.8;
-        }
-      }
-
-      /* Positioning and Initial Colors */
-      .blob-1 {
-        width: 350px;
-        height: 350px;
-        top: 10%;
-        left: 5%;
-        background: var(--primary); /* Deep Purple */
-        animation-duration: 24s;
-        animation-delay: -5s;
-      }
-
-      .blob-2 {
-        width: 250px;
-        height: 250px;
-        bottom: 15%;
-        right: 10%;
-        background: var(--secondary); /* Pink */
-        animation-duration: 20s;
-        animation-delay: -10s;
-      }
-
-      .blob-3 {
-        width: 450px;
-        height: 450px;
-        top: 50%;
-        left: 40%;
-        background: var(--accent); /* Cyan */
-        animation-duration: 22s;
-        animation-delay: -15s;
-      }
-
-      .blob-4 {
-        width: 180px;
-        height: 180px;
-        bottom: 5%;
-        left: 60%;
-        background: var(--primary-light); /* Lighter Purple */
-        animation-duration: 28s;
-        animation-delay: -8s;
-      }
-
-      /* ADD THIS NEW BLOCK: Mobile Optimization */
-      @media (max-width: 768px) {
-        .fluid-blob {
-          transform: scale(0.6);
-          opacity: 0.3;
-          filter: blur(60px);
-        }
-
-        /* Ensure only one or two large blobs are prominent */
-        .blob-3 {
-          display: none; /* Hide the largest blob on mobile */
-        }
-      }
-
-      /* ----------------------- NEW DUAL NAV STYLES ----------------------- */
-
-      /* Utility Bar Styling */
-      .top-utility-bar {
-        height: 35px;
-        display: none; /* Hidden by default, shown by media query */
-        align-items: center;
-        width: 100%;
-        background-color: var(--bg-secondary); /* Use secondary background */
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-        z-index: 1000;
-        font-size: 0.85rem;
-        color: var(--text-light);
-        padding: 0 20px;
-      }
-
-      .utility-link:hover {
-        color: var(--primary);
-      }
-
-      .top-secondary-bar {
-        height: var(--secondary-bar-height);
-        display: flex;
-        align-items: center;
-        width: 100%;
-        background-color: var(--nav-secondary-bg);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        z-index: 998;
+      .template-preview {
+        height: 150px;
         font-size: 2rem;
-        color: var(--text);
-        padding: 0 20px;
-        position: fixed;
-        left: 0;
-        top: var(--header-height);
-        transition: transform 0.3s ease-in-out, background-color 0.3s ease;
       }
 
-      .top-secondary-bar .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* Spread content out */
-        width: 100%;
-        max-width: 1200px; /* Use the same max-width as main content */
-        margin: 0 auto;
-        padding: 0 20px;
+      .testimonial-card {
+        padding: 20px;
       }
 
-      .top-secondary-bar .utility-link {
-        font-size: 1.4rem;
-        font-weight: 620; /* Made text bold */
-        color: var(--text); /* Use main text color for prominence */
-        position: relative;
-        padding: 5px 0 10px 0;
-        transition: all 0.3s ease-in-out;
+      .cta-section {
+        padding: 60px 0;
       }
 
-      .top-secondary-bar .utility-link:hover {
-        /* Copy the complex text styling from .nav-links a:hover */
-        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
-        background: linear-gradient(135deg, #5a73f1, #f119e2, #ff6ec4);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        webkit-text-fill-color: transparent;
-        transform: translateY(-2px); /* Subtle lift */
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
+      .footer {
+        padding: 60px 0 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.8rem;
       }
 
-      .top-secondary-bar .utility-link::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        bottom: 0px; /* Position under the link */
-        left: 0;
-        background: linear-gradient(
-          90deg,
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Fluid Background Styles */
+    .fluid-background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+      background-color: var(--bg);
+    }
+
+    .fluid-blob {
+      position: absolute;
+      border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
+      filter: blur(70px);
+      /* Heavy blur for softness */
+      opacity: 0.4;
+      transition: all 0.5s ease;
+      animation: blob-move 20s infinite alternate ease-in-out;
+      will-change: transform, opacity;
+      /* Optimizes performance */
+    }
+
+    /* Animation Keyframes */
+    @keyframes blob-move {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(25vw, -15vh) scale(1.1);
+      }
+
+      66% {
+        transform: translate(-10vw, 10vh) scale(0.95);
+      }
+    }
+
+    /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: scale(1.02);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+    }
+
+    /* Positioning and Initial Colors */
+    .blob-1 {
+      width: 350px;
+      height: 350px;
+      top: 10%;
+      left: 5%;
+      background: var(--primary);
+      /* Deep Purple */
+      animation-duration: 24s;
+      animation-delay: -5s;
+    }
+
+    .blob-2 {
+      width: 250px;
+      height: 250px;
+      bottom: 15%;
+      right: 10%;
+      background: var(--secondary);
+      /* Pink */
+      animation-duration: 20s;
+      animation-delay: -10s;
+    }
+
+    .blob-3 {
+      width: 450px;
+      height: 450px;
+      top: 50%;
+      left: 40%;
+      background: var(--accent);
+      /* Cyan */
+      animation-duration: 22s;
+      animation-delay: -15s;
+    }
+
+    .blob-4 {
+      width: 180px;
+      height: 180px;
+      bottom: 5%;
+      left: 60%;
+      background: var(--primary-light);
+      /* Lighter Purple */
+      animation-duration: 28s;
+      animation-delay: -8s;
+    }
+
+    /* ADD THIS NEW BLOCK: Mobile Optimization */
+    @media (max-width: 768px) {
+      .fluid-blob {
+        transform: scale(0.6);
+        opacity: 0.3;
+        filter: blur(60px);
+      }
+
+      /* Ensure only one or two large blobs are prominent */
+      .blob-3 {
+        display: none;
+        /* Hide the largest blob on mobile */
+      }
+    }
+
+    /* ----------------------- NEW DUAL NAV STYLES ----------------------- */
+
+    /* Utility Bar Styling */
+    .top-utility-bar {
+      height: 35px;
+      display: none;
+      /* Hidden by default, shown by media query */
+      align-items: center;
+      width: 100%;
+      background-color: var(--bg-secondary);
+      /* Use secondary background */
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      padding: 0 20px;
+    }
+
+    .utility-link:hover {
+      color: var(--primary);
+    }
+
+    .top-secondary-bar {
+      height: var(--secondary-bar-height);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-color: var(--nav-secondary-bg);
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+      z-index: 998;
+      font-size: 2rem;
+      color: var(--text);
+      padding: 0 20px;
+      position: fixed;
+      left: 0;
+      top: var(--header-height);
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    }
+
+    .top-secondary-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* Spread content out */
+      width: 100%;
+      max-width: 1200px;
+      /* Use the same max-width as main content */
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .top-secondary-bar .utility-link {
+      font-size: 1.4rem;
+      font-weight: 620;
+      /* Made text bold */
+      color: var(--text);
+      /* Use main text color for prominence */
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .top-secondary-bar .utility-link:hover {
+      /* Copy the complex text styling from .nav-links a:hover */
+      text-shadow: 0 0 8px rgba(108, 99, 255, 0.1);
+      background: linear-gradient(135deg, #5a73f1, #f119e2, #ff6ec4);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      webkit-text-fill-color: transparent;
+      transform: translateY(-2px);
+      /* Subtle lift */
+      transition: all 0.3s ease;
+    }
+
+    .top-secondary-bar .utility-link::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0px;
+      /* Position under the link */
+      left: 0;
+      background: linear-gradient(90deg,
           var(--primary),
-          var(--secondary)
-        ); /* Gradient color */
-        transform: scaleX(0); /* Line starts hidden */
-        transform-origin: left;
-        transition: transform 0.3s ease-in-out;
-        border-radius: 2px;
-      }
+          var(--secondary));
+      /* Gradient color */
+      transform: scaleX(0);
+      /* Line starts hidden */
+      transform-origin: left;
+      transition: transform 0.3s ease-in-out;
+      border-radius: 2px;
+    }
 
-      .top-secondary-bar .utility-link:hover::after {
-        transform: scaleX(1);
-      }
+    .top-secondary-bar .utility-link:hover::after {
+      transform: scaleX(1);
+    }
 
-      .secondary-links-group {
-        display: flex;
-        align-items: center;
-        gap: 35px;
-        padding: 0;
-        margin: 0;
-      }
+    .secondary-links-group {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      padding: 0;
+      margin: 0;
+    }
 
-      .secondary-utility-group {
-        display: flex;
-        align-items: center;
-        gap: 30px; /* Space between the toggle and GitHub icon */
-      }
+    .secondary-utility-group {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      /* Space between the toggle and GitHub icon */
+    }
 
-      .top-secondary-bar .utility-link i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-        color: var(--primary);
-        transition: var(--transition);
-      }
+    .top-secondary-bar .utility-link i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
 
-      .top-secondary-bar .utility-link:hover i {
-        color: var(--primary); /* Highlight icon */
-      }
+    .top-secondary-bar .utility-link:hover i {
+      color: var(--primary);
+      /* Highlight icon */
+    }
 
-      .top-secondary-bar.hidden {
+    .top-secondary-bar.hidden {
+      transform: translateY(-100%);
+      box-shadow: none;
+    }
+
+    .top-secondary-bar .switch-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 20px;
+      white-space: nowrap;
+    }
+
+    .top-secondary-bar .switch-group .text-xs {
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+
+    /* Adjust Main Header Positioning */
+    .main-primary-bar {
+      position: relative;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .main-primary-bar.header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      /* 80px */
+      z-index: 999;
+      background: var(--bg);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .main-primary-bar.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      z-index: 999;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      animation: slideDown 0.3s;
+      background-color: var(--bg);
+    }
+
+    @keyframes slideDown {
+      from {
         transform: translateY(-100%);
-        box-shadow: none;
       }
 
-      .top-secondary-bar .switch-group {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin-left: 20px;
-        white-space: nowrap;
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      padding: var(--total-header-offset) 0 120px;
+      padding-top: var(--total-header-offset);
+    }
+
+    .github-icon-sm i {
+      font-size: 2.2rem;
+      color: var(--text);
+      transition: var(--transition);
+      margin-bottom: 10px;
+    }
+
+    .github-icon-sm:hover i {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    /* Desktop Dropdown Styles */
+    .dropdown-link-item {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      z-index: 999;
+      list-style: none;
+      min-width: 180px;
+      padding: 8px 0;
+      border-top: 3px solid var(--primary);
+      /* Nice accent line */
+      animation: fadeIn 0.2s ease-out;
+      /* Add animation */
+      margin-top: 5px;
+      /* Slight gap from the link */
+    }
+
+    .dropdown-content li a {
+      padding: 10px 15px;
+      display: block;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .dropdown-content li a:hover {
+      background-color: var(--bg-tertiary);
+      color: var(--primary);
+      padding-left: 20px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
       }
 
-      .top-secondary-bar .switch-group .text-xs {
-        color: var(--text-light);
-        font-size: 0.85rem;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
+
+    .mobile-menu-container {
+      display: none;
+      /* Controlled by JS */
+      position: fixed;
+      top: var(--header-height);
+      /* Sits right under the main header on mobile */
+      left: 0;
+      width: 100%;
+      background-color: var(--bg);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      z-index: 998;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .mobile-menu-container.active {
+      display: block;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    .mobile-link-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-link-item a,
+    .accordion-toggle {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 500;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .accordion-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion-toggle:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: var(--bg-secondary);
+    }
+
+    .accordion-content.active {
+      max-height: 300px;
+      /* Large enough to show all sub-links */
+    }
+
+    .accordion-content a {
+      padding: 10px 20px 10px 40px;
+      /* Indentation */
+      font-size: 1rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .accordion-content a:hover {
+      background-color: var(--bg-tertiary);
+      color: var(--primary);
+    }
+
+    /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
+
+    @media (min-width: 769px) {
+
+      /* 1. SECONDARY BAR (The one you want on top) */
+      .top-secondary-bar {
+        display: flex !important;
+        position: absolute;
+        z-index: 999;
       }
 
-      /* Adjust Main Header Positioning */
+      /* 2. PRIMARY BAR (The one with the logo/login) */
       .main-primary-bar {
         position: relative;
-        top: 0;
+        top: 48px;
+        /* Push down below the top bar */
         width: 100%;
         z-index: 999;
         transition: var(--transition);
-      }
-
-      .main-primary-bar.header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height); /* 80px */
-        z-index: 999;
-        background: var(--bg);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        transition: var(--transition);
-      }
-
-      .main-primary-bar.sticky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 70px;
-        z-index: 999;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        animation: slideDown 0.3s;
-        background-color: var(--bg);
       }
 
       @keyframes slideDown {
         from {
           transform: translateY(-100%);
         }
+
         to {
           transform: translateY(0);
         }
+      }
+
+      .top-secondary-bar,
+      .main-primary-bar {
+        visibility: visible !important;
+      }
+
+      /* Ensure main content is pushed down (important for the screen to not look empty) */
+      .hero {
+        padding-top: calc(var(--header-height) + 60px);
+
+        /* Show desktop links and hide hamburger */
+        .desktop-only {
+          display: flex !important;
+        }
+
+        .nav-actions .hamburger {
+          display: flexyes !important;
+        }
+      }
+    }
+
+    /* Mobile View: Reset Primary Nav to top */
+    @media (max-width: 768px) {
+      .top-secondary-bar {
+        position: relative;
+        /* Stack normally on mobile */
+        top: 0;
+        height: 40px;
+        /* Smaller height */
+        font-size: 1rem;
+      }
+
+      .top-secondary-bar .container {
+        /* Allow scrollable content on mobile to fit all links */
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 0 10px;
+      }
+
+      .top-secondary-bar .utility-link {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 5px 0;
+      }
+
+      .top-secondary-bar.hidden {
+        transform: translateY(0);
+        /* Don't hide the secondary bar on mobile; it should scroll with the page */
       }
 
       .hero {
-        padding: var(--total-header-offset) 0 120px;
-        padding-top: var(--total-header-offset);
+        /* Re-calculate for mobile where secondary bar is not fixed: */
+        padding-top: calc(var(--header-height) + 60px);
       }
+    }
+  </style>
+  <link rel="stylesheet" href="./navbar_styles.css" />
+</head>
 
-      .github-icon-sm i {
-        font-size: 1.8rem;
-        color: var(--text);
-        transition: var(--transition);
-      }
+<body data-theme="light">
+  <div class="fluid-background-wrapper">
+    <div class="fluid-blob blob-1"></div>
+    <div class="fluid-blob blob-2"></div>
+    <div class="fluid-blob blob-3"></div>
+    <div class="fluid-blob blob-4"></div>
+  </div>
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
 
-      .github-icon-sm:hover i {
-        color: var(--primary);
-        transform: scale(1.1);
-      }
+  <!-- Header/Navigation -->
 
-      /* Desktop Dropdown Styles */
-      .dropdown-link-item {
-        position: relative;
-      }
+  <header class="main-primary-bar header" id="main-header">
+    <div class="container nav-container">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <a href="index.html" class="site-name-link">
+          <span class="site-name"> Animate It Now </span>
+        </a>
+      </div>
 
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--shadow);
-        z-index: 999;
-        list-style: none;
-        min-width: 180px;
-        padding: 8px 0;
-        border-top: 3px solid var(--primary); /* Nice accent line */
-        animation: fadeIn 0.2s ease-out; /* Add animation */
-        margin-top: 5px; /* Slight gap from the link */
-      }
-
-      .dropdown-content li a {
-        padding: 10px 15px;
-        display: block;
-        white-space: nowrap;
-        font-weight: 500;
-      }
-
-      .dropdown-content li a:hover {
-        background-color: var(--bg-tertiary);
-        color: var(--primary);
-        padding-left: 20px;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
-
-      .mobile-menu-container {
-        display: none; /* Controlled by JS */
-        position: fixed;
-        top: var(
-          --header-height
-        ); /* Sits right under the main header on mobile */
-        left: 0;
-        width: 100%;
-        background-color: var(--bg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        z-index: 998;
-        overflow-y: auto;
-        max-height: 90vh;
-      }
-
-      .mobile-menu-container.active {
-        display: block;
-      }
-
-      .mobile-menu-links {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 0;
-      }
-
-      .mobile-link-item {
-        border-bottom: 1px solid var(--border);
-      }
-
-      .mobile-link-item a,
-      .accordion-toggle {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        text-align: left;
-        font-size: 1.1rem;
-        font-weight: 500;
-        background: none;
-        border: none;
-        color: var(--text);
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-      }
-
-      .accordion-toggle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .accordion-toggle:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-        background-color: var(--bg-secondary);
-      }
-
-      .accordion-content.active {
-        max-height: 300px; /* Large enough to show all sub-links */
-      }
-
-      .accordion-content a {
-        padding: 10px 20px 10px 40px; /* Indentation */
-        font-size: 1rem;
-        border: none;
-        border-top: 1px solid var(--border);
-      }
-
-      .accordion-content a:hover {
-        background-color: var(--bg-tertiary);
-        color: var(--primary);
-      }
-
-      /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
-
-      @media (min-width: 769px) {
-        /* 1. SECONDARY BAR (The one you want on top) */
-        .top-secondary-bar {
-          display: flex !important;
-          position: absolute;
-          z-index: 999;
-        }
-
-        /* 2. PRIMARY BAR (The one with the logo/login) */
-        .main-primary-bar {
-          position: relative;
-          top: 48px; /* Push down below the top bar */
-          width: 100%;
-          z-index: 999;
-          transition: var(--transition);
-        }
-
-        @keyframes slideDown {
-          from {
-            transform: translateY(-100%);
-          }
-          to {
-            transform: translateY(0);
-          }
-        }
-        .top-secondary-bar,
-        .main-primary-bar {
-          visibility: visible !important;
-        }
-
-        /* Ensure main content is pushed down (important for the screen to not look empty) */
-        .hero {
-          padding-top: calc(var(--header-height) + 60px);
-
-          /* Show desktop links and hide hamburger */
-          .desktop-only {
-            display: flex !important;
-          }
-          .nav-actions .hamburger {
-            display: flexyes !important;
-          }
-        }
-      }
-
-      /* Mobile View: Reset Primary Nav to top */
-      @media (max-width: 768px) {
-        .top-secondary-bar {
-          position: relative; /* Stack normally on mobile */
-          top: 0;
-          height: 40px; /* Smaller height */
-          font-size: 1rem;
-        }
-        .top-secondary-bar .container {
-          /* Allow scrollable content on mobile to fit all links */
-          justify-content: flex-start;
-          overflow-x: auto;
-          padding: 0 10px;
-        }
-
-        .top-secondary-bar .utility-link {
-          font-size: 1rem;
-          font-weight: 600;
-          padding: 5px 0;
-        }
-        .top-secondary-bar.hidden {
-          transform: translateY(
-            0
-          ); /* Don't hide the secondary bar on mobile; it should scroll with the page */
-        }
-        .hero {
-          /* Re-calculate for mobile where secondary bar is not fixed: */
-          padding-top: calc(var(--header-height) + 60px);
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="./navbar_styles.css" />
-  </head>
-
-  <body data-theme="light">
-    <div class="fluid-background-wrapper">
-      <div class="fluid-blob blob-1"></div>
-      <div class="fluid-blob blob-2"></div>
-      <div class="fluid-blob blob-3"></div>
-      <div class="fluid-blob blob-4"></div>
-    </div>
-    <!-- Progress Bar -->
-    <div id="progress-bar"></div>
-
-    <!-- Header/Navigation -->
-
-    <header class="main-primary-bar header" id="main-header">
-      <div class="container nav-container">
-        <div class="logo-container">
-          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-          <a href="index.html" class="site-name-link">
-            <span class="site-name"> Animate It Now </span>
-          </a>
-        </div>
-
-        <!-- <ul class="nav-links desktop-only" id="desktop-links">
+      <!-- <ul class="nav-links desktop-only" id="desktop-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul> -->
 
-        <ul class="nav-links desktop-only" id="desktop-links">
-          <li>
-            <a href="index.html" class="active">
-              <i class="fas fa-home" style="margin-right: 5px"></i> Home
-            </a>
-          </li>
+      <ul class="nav-links desktop-only" id="desktop-links">
+        <li>
+          <a href="index.html" class="active">
+            <i class="fas fa-home" style="margin-right: 5px"></i> Home
+          </a>
+        </li>
 
-          <li>
-            <a href="about.html">
-              <i class="fas fa-info-circle" style="margin-right: 5px"></i> About
-            </a>
-          </li>
+        <li>
+          <a href="about.html">
+            <i class="fas fa-info-circle" style="margin-right: 5px"></i> About
+          </a>
+        </li>
 
-          <li>
-            <a href="contact.html">
-              <i class="fas fa-envelope" style="margin-right: 5px"></i> Contact
-            </a>
-          </li>
-        </ul>
+        <li>
+          <a href="contact.html">
+            <i class="fas fa-envelope" style="margin-right: 5px"></i> Contact
+          </a>
+        </li>
+      </ul>
 
-        <div class="nav-actions">
-          <a href="loginpage.html" class="btn btn-outline">Login</a>
-          <a href="signup.html" class="btn">Sign Up</a>
+      <div class="nav-actions">
+        <a href="loginpage.html" class="btn btn-outline">Login</a>
+        <a href="signup.html" class="btn">Sign Up</a>
 
-          <button
-            class="theme-toggle"
-            id="theme-toggle"
-            aria-label="Toggle theme"
-          >
-            <i class="fas fa-moon"></i>
-          </button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
 
-          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="top-secondary-bar">
+    <div class="container">
+      <div class="secondary-links-group">
+        <a href="templates.html" class="utility-link">
+          <i class="fas fa-palette" style="margin-right: 5px"></i> Templates
+        </a>
+
+        <a href="components.html" class="utility-link">
+          <i class="fas fa-cube" style="margin-right: 5px"></i> Components
+        </a>
+
+        <a href="playground.html" class="utility-link">
+          <i class="fas fa-mouse-pointer" style="margin-right: 5px"></i>
+          Hover-Effects
+        </a>
+
+        <a href="contributors.html" class="utility-link">
+          <i class="fas fa-users" style="margin-right: 5px"></i> Contributors
+        </a>
+
+        <a href="leaderboard.html" class="utility-link">
+          <i class="fas fa-trophy" style="margin-right: 5px"></i> Leaderboard
+        </a>
+      </div>
+      <div class="secondary-utility-group">
+        <div class="switch-group">
+          <label class="switch switch-sm" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span class="text-xs text-gray-500" style="color: var(--text-light)">
+            <i class="fas fa-hat-snake" style="margin-right: 3px"></i> Snake
+          </span>
+        </div>
+
+        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub Repo" class="github-icon-sm">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="mobile-menu-container">
+    <div class="mobile-menu-links">
+      <div class="mobile-link-item">
+        <a href="index.html"><i class="fas fa-home" style="margin-right: 10px"></i> Home</a>
+      </div>
+
+      <div class="mobile-link-item">
+        <a href="about.html"><i class="fas fa-info-circle" style="margin-right: 10px"></i>
+          About</a>
+      </div>
+
+      <div class="mobile-link-item">
+        <a href="contact.html"><i class="fas fa-envelope" style="margin-right: 10px"></i>
+          Contact</a>
+      </div>
+
+      <div class="mobile-link-item">
+        <button class="accordion-toggle" data-accordion-content="mobile-resources">
+          <i class="fas fa-layer-group" style="margin-right: 10px"></i>
+          Resources & Community <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="accordion-content" id="mobile-resources">
+          <a href="templates.html"><i class="fas fa-palette" style="margin-right: 10px"></i>
+            Templates</a>
+          <a href="components.html"><i class="fas fa-cube" style="margin-right: 10px"></i>
+            Components</a>
+          <a href="playground.html"><i class="fas fa-mouse-pointer" style="margin-right: 10px"></i>
+            Hover-Effects</a>
+          <a href="contributors.html"><i class="fas fa-users" style="margin-right: 10px"></i>
+            Contributors</a>
+          <a href="leaderboard.html"><i class="fas fa-trophy" style="margin-right: 10px"></i>
+            Leaderboard</a>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <nav class="top-secondary-bar">
-      <div class="container">
-        <div class="secondary-links-group">
-          <a href="templates.html" class="utility-link">
-            <i class="fas fa-palette" style="margin-right: 5px"></i> Templates
-          </a>
+  <!-- 🦸 Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Create Stunning <span>CSS Animations</span></h1>
+      <p>
+        A comprehensive collection of CSS animation templates and effects for
+        web developers. Join our community to contribute, learn, and inspire
+        others!
+      </p>
+      <div class="hero-buttons">
+        <a href="templates.html" class="btn">Explore Templates</a>
+        <a href="editor.html" class="btn btn-secondary">Try Our Editor</a>
+      </div>
+      <div class="hero-animation"></div>
+    </div>
+  </section>
 
-          <a href="components.html" class="utility-link">
-            <i class="fas fa-cube" style="margin-right: 5px"></i> Components
-          </a>
+  <!-- ✨ Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose AnimateItNow</h2>
+        <p>
+          Discover the features that make our platform the best choice for CSS
+          animations
+        </p>
+      </div>
 
-          <a href="playground.html" class="utility-link">
-            <i class="fas fa-mouse-pointer" style="margin-right: 5px"></i>
-            Hover-Effects
-          </a>
-
-          <a href="contributors.html" class="utility-link">
-            <i class="fas fa-users" style="margin-right: 5px"></i> Contributors
-          </a>
-
-          <a href="leaderboard.html" class="utility-link">
-            <i class="fas fa-trophy" style="margin-right: 5px"></i> Leaderboard
-          </a>
-        </div>
-        <div class="secondary-utility-group">
-          <div class="switch-group">
-            <label class="switch switch-sm" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle" />
-              <span class="slider round"></span>
-            </label>
-            <span
-              class="text-xs text-gray-500"
-              style="color: var(--text-light)"
-            >
-              <i class="fas fa-hat-snake" style="margin-right: 3px"></i> Snake
-            </span>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-palette"></i>
           </div>
+          <h3>Beautiful Templates</h3>
+          <p>
+            Handcrafted animation templates designed to make your website
+            stand out.
+          </p>
+        </div>
 
-          <a
-            href="https://github.com/itsAnimation/AnimateItNow"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Repo"
-            class="github-icon-sm"
-          >
-            <i class="fab fa-github"></i>
-          </a>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Easy to Use</h3>
+          <p>
+            Copy-paste ready code snippets that work seamlessly with your
+            projects.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Community Driven</h3>
+          <p>
+            Join a vibrant community of developers sharing and improving
+            animations.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Fully Responsive</h3>
+          <p>All animations are optimized to work perfectly on any device.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Lightweight</h3>
+          <p>
+            Performance-optimized animations that won't slow down your
+            website.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3>Regular Updates</h3>
+          <p>
+            New templates and improvements added regularly by our community.
+          </p>
         </div>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <div id="mobile-menu" class="mobile-menu-container">
-      <div class="mobile-menu-links">
-        <div class="mobile-link-item">
-          <a href="index.html"
-            ><i class="fas fa-home" style="margin-right: 10px"></i> Home</a
-          >
+  <!-- 🖼️ Templates Showcase -->
+  <section class="templates-showcase">
+    <div class="container">
+      <div class="section-title">
+        <h2>Popular Animation Templates</h2>
+        <p>
+          Explore our most loved animation templates created by the community
+        </p>
+      </div>
+
+      <div class="templates-grid">
+        <div class="template-card">
+          <div class="template-preview">
+            <i class="fas fa-spinner"></i>
+          </div>
+          <div class="template-info">
+            <h3>Loading Spinners</h3>
+            <p>10+ creative loading animations for better user experience.</p>
+            <a href="templates/LoadingSpinner.html" class="btn btn-outline">View Template</a>
+          </div>
         </div>
 
-        <div class="mobile-link-item">
-          <a href="about.html"
-            ><i class="fas fa-info-circle" style="margin-right: 10px"></i>
-            About</a
-          >
+        <div class="template-card">
+          <div class="template-preview">
+            <i class="fas fa-mouse-pointer"></i>
+          </div>
+          <div class="template-info">
+            <h3>Hover Effects</h3>
+            <p>
+              Interactive hover animations for buttons, cards, and images.
+            </p>
+            <a href="playground.html" class="btn btn-outline">View Template</a>
+          </div>
         </div>
 
-        <div class="mobile-link-item">
-          <a href="contact.html"
-            ><i class="fas fa-envelope" style="margin-right: 10px"></i>
-            Contact</a
-          >
+        <div class="template-card">
+          <div class="template-preview">
+            <i class="fas fa-scroll"></i>
+          </div>
+          <div class="template-info">
+            <h3>Scroll Animations</h3>
+            <p>Reveal content with beautiful scroll-triggered animations.</p>
+            <a href="templates/scrollingAnimations.html" class="btn btn-outline">View Template</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-button" style="text-align: center; margin-top: 40px">
+        <a href="templates.html" class="btn">View All Templates</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔄 How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-title">
+        <h2>How It Works</h2>
+        <p>Get started with AnimateItNow in just a few simple steps</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Browse Templates</h3>
+            <p>
+              Explore our collection of animation templates and find the
+              perfect one for your project.
+            </p>
+          </div>
         </div>
 
-        <div class="mobile-link-item">
-          <button
-            class="accordion-toggle"
-            data-accordion-content="mobile-resources"
-          >
-            <i class="fas fa-layer-group" style="margin-right: 10px"></i>
-            Resources & Community <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="accordion-content" id="mobile-resources">
-            <a href="templates.html"
-              ><i class="fas fa-palette" style="margin-right: 10px"></i>
-              Templates</a
-            >
-            <a href="components.html"
-              ><i class="fas fa-cube" style="margin-right: 10px"></i>
-              Components</a
-            >
-            <a href="playground.html"
-              ><i class="fas fa-mouse-pointer" style="margin-right: 10px"></i>
-              Hover-Effects</a
-            >
-            <a href="contributors.html"
-              ><i class="fas fa-users" style="margin-right: 10px"></i>
-              Contributors</a
-            >
-            <a href="leaderboard.html"
-              ><i class="fas fa-trophy" style="margin-right: 10px"></i>
-              Leaderboard</a
-            >
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Copy Code</h3>
+            <p>
+              Copy the HTML, CSS, and JavaScript code with a single click.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Implement</h3>
+            <p>
+              Paste the code into your project and customize it to fit your
+              needs.
+            </p>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- 🦸 Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1>Create Stunning <span>CSS Animations</span></h1>
+  <!-- ❓ FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about AnimateItNow</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-1">
+          <div class="faq-question">
+            <span>How can I contribute to AnimateItNow?</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq-answer-1">
+            <p>
+              Fork our repository on GitHub, add your unique animations or
+              improvements, and submit a pull request. All skill levels are
+              welcome!
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-2">
+          <div class="faq-question">
+            <span>Are the animations responsive?</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq-answer-2">
+            <p>
+              Yes, all animations are designed to be fully responsive and work
+              perfectly on all device sizes.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-3">
+          <div class="faq-question">
+            <span>Can I use these animations in commercial projects?</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq-answer-3">
+            <p>
+              Absolutely! All animations are open source and free to use in
+              personal and commercial projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-4">
+          <div class="faq-question">
+            <span>How often are new templates added?</span>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq-answer-4">
+            <p>
+              New templates are added regularly by our community of
+              contributors. Check back often for new animations!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 👥 Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Our Users Say</h2>
         <p>
-          A comprehensive collection of CSS animation templates and effects for
-          web developers. Join our community to contribute, learn, and inspire
-          others!
+          Hear from developers who have transformed their projects with
+          AnimateItNow
         </p>
-        <div class="hero-buttons">
-          <a href="templates.html" class="btn">Explore Templates</a>
-          <a href="editor.html" class="btn btn-secondary">Try Our Editor</a>
-        </div>
-        <div class="hero-animation"></div>
       </div>
-    </section>
 
-    <!-- ✨ Features Section -->
-    <section class="features">
-      <div class="container">
-        <div class="section-title">
-          <h2>Why Choose AnimateItNow</h2>
+      <div class="testimonial-slider">
+        <button class="testimonial-arrows arrow-left" aria-label="Previous testimonial">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="testimonial-carousel">
+          <div class="testimonial-card active">
+            <div class="testimonial-avatar">
+              <img src="images/amn.jpg" alt="Aman" />
+            </div>
+            <p class="testimonial-text">
+              "AnimateItNow transformed my full stack projects, making them
+              dynamic and engaging. Integrating it was effortless and truly
+              enhanced the user experience."
+            </p>
+            <div class="testimonial-author">Aman Singh</div>
+            <div class="testimonial-role">Full Stack Developer</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img src="images/img2.jpg" alt="Sarah" />
+            </div>
+            <p class="testimonial-text">
+              "As a UI/UX designer, I love how AnimateItNow bridges the gap
+              between design and development. The animations are smooth,
+              professional, and exactly what modern websites need."
+            </p>
+            <div class="testimonial-author">Sarah Chen</div>
+            <div class="testimonial-role">UI/UX Designer</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img src="images/img3.jpg" alt="Marcus" />
+            </div>
+            <p class="testimonial-text">
+              "The variety of animations and the ease of implementation is
+              incredible. My clients are always impressed with the interactive
+              elements I can now add to their websites."
+            </p>
+            <div class="testimonial-author">Marcus Johnson</div>
+            <div class="testimonial-role">Freelance Developer</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img src="images/img4.jpg" alt="Priya" />
+            </div>
+            <p class="testimonial-text">
+              "AnimateItNow saved me countless hours of development time. The
+              ready-to-use templates are perfect for rapid prototyping and
+              production projects alike."
+            </p>
+            <div class="testimonial-author">Priya Sharma</div>
+            <div class="testimonial-role">Frontend Lead</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img src="images/img5.jpg" alt="David" />
+            </div>
+            <p class="testimonial-text">
+              "The community-driven approach and open-source nature makes this
+              platform amazing. Contributing new animations and seeing them
+              used by others is incredibly rewarding."
+            </p>
+            <div class="testimonial-author">David Rodriguez</div>
+            <div class="testimonial-role">Open Source Contributor</div>
+          </div>
+        </div>
+
+        <button class="testimonial-arrows arrow-right" aria-label="Next testimonial">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="testimonial-nav">
+          <button class="active" data-slide="0" aria-label="Testimonial 1"
+            title="View testimonial from Aman Singh"></button>
+          <button data-slide="1" aria-label="Testimonial 2" title="View testimonial from Sarah Chen"></button>
+          <button data-slide="2" aria-label="Testimonial 3" title="View testimonial from Marcus Johnson"></button>
+          <button data-slide="3" aria-label="Testimonial 4" title="View testimonial from Priya Sharma"></button>
+          <button data-slide="4" aria-label="Testimonial 5" title="View testimonial from David Rodriguez"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📣 CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Animate Your Website?</h2>
+      <p>
+        Join thousands of developers who are already creating stunning
+        animations with AnimateItNow
+      </p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="btn">Get Started Free</a>
+        <a href="templates.html" class="btn btn-outline">Browse Templates</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🦶 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="Website Logo" />
+            <span>AnimateItNow</span>
+          </div>
           <p>
-            Discover the features that make our platform the best choice for CSS
-            animations
+            Creating impactful web animations and templates for everyone. Join
+            our community to contribute, learn, and grow together.
           </p>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-palette"></i>
-            </div>
-            <h3>Beautiful Templates</h3>
-            <p>
-              Handcrafted animation templates designed to make your website
-              stand out.
-            </p>
-          </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+              <a href="templates.html"><i class="fas fa-palette"></i> Templates</a>
+            </li>
+            <li>
+              <a href="editor.html"><i class="fas fa-code"></i> Editor</a>
+            </li>
+            <li>
+              <a href="playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a>
+            </li>
+            <li>
+              <a href="contributors.html"><i class="fas fa-users"></i> Contributors</a>
+            </li>
+            <li>
+              <a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            </li>
+          </ul>
+        </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <h3>Easy to Use</h3>
-            <p>
-              Copy-paste ready code snippets that work seamlessly with your
-              projects.
-            </p>
-          </div>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li>
+              <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+            </li>
+            <li>
+              <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-book"></i> Documentation</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-blog"></i> Blog</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <h3>Community Driven</h3>
+        <div class="footer-social">
+          <div class="newsletter">
+            <h4>Stay Updated</h4>
             <p>
-              Join a vibrant community of developers sharing and improving
-              animations.
+              Get the latest templates and updates directly to your inbox.
             </p>
+            <form class="newsletter-pill-form">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit" class="newsletter-submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                Subscribe
+              </button>
+            </form>
           </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h3>Fully Responsive</h3>
-            <p>All animations are optimized to work perfectly on any device.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-rocket"></i>
-            </div>
-            <h3>Lightweight</h3>
-            <p>
-              Performance-optimized animations that won't slow down your
-              website.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-sync-alt"></i>
-            </div>
-            <h3>Regular Updates</h3>
-            <p>
-              New templates and improvements added regularly by our community.
-            </p>
+          <br />
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i
+                class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i
+                class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 🖼️ Templates Showcase -->
-    <section class="templates-showcase">
-      <div class="container">
-        <div class="section-title">
-          <h2>Popular Animation Templates</h2>
-          <p>
-            Explore our most loved animation templates created by the community
-          </p>
-        </div>
-
-        <div class="templates-grid">
-          <div class="template-card">
-            <div class="template-preview">
-              <i class="fas fa-spinner"></i>
-            </div>
-            <div class="template-info">
-              <h3>Loading Spinners</h3>
-              <p>10+ creative loading animations for better user experience.</p>
-              <a href="templates/LoadingSpinner.html" class="btn btn-outline"
-                >View Template</a
-              >
-            </div>
-          </div>
-
-          <div class="template-card">
-            <div class="template-preview">
-              <i class="fas fa-mouse-pointer"></i>
-            </div>
-            <div class="template-info">
-              <h3>Hover Effects</h3>
-              <p>
-                Interactive hover animations for buttons, cards, and images.
-              </p>
-              <a href="playground.html" class="btn btn-outline"
-                >View Template</a
-              >
-            </div>
-          </div>
-
-          <div class="template-card">
-            <div class="template-preview">
-              <i class="fas fa-scroll"></i>
-            </div>
-            <div class="template-info">
-              <h3>Scroll Animations</h3>
-              <p>Reveal content with beautiful scroll-triggered animations.</p>
-              <a
-                href="templates/scrollingAnimations.html"
-                class="btn btn-outline"
-                >View Template</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px">
-          <a href="templates.html" class="btn">View All Templates</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🔄 How It Works -->
-    <section class="how-it-works">
-      <div class="container">
-        <div class="section-title">
-          <h2>How It Works</h2>
-          <p>Get started with AnimateItNow in just a few simple steps</p>
-        </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Browse Templates</h3>
-              <p>
-                Explore our collection of animation templates and find the
-                perfect one for your project.
-              </p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Copy Code</h3>
-              <p>
-                Copy the HTML, CSS, and JavaScript code with a single click.
-              </p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Implement</h3>
-              <p>
-                Paste the code into your project and customize it to fit your
-                needs.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ❓ FAQ Section -->
-    <section class="faq-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
-          <p>Find answers to common questions about AnimateItNow</p>
-        </div>
-
-        <div class="faq-container">
-          <div
-            class="faq-item"
-            role="button"
-            tabindex="0"
-            aria-expanded="false"
-            aria-controls="faq-answer-1"
-          >
-            <div class="faq-question">
-              <span>How can I contribute to AnimateItNow?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <div class="faq-answer" id="faq-answer-1">
-              <p>
-                Fork our repository on GitHub, add your unique animations or
-                improvements, and submit a pull request. All skill levels are
-                welcome!
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="faq-item"
-            role="button"
-            tabindex="0"
-            aria-expanded="false"
-            aria-controls="faq-answer-2"
-          >
-            <div class="faq-question">
-              <span>Are the animations responsive?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <div class="faq-answer" id="faq-answer-2">
-              <p>
-                Yes, all animations are designed to be fully responsive and work
-                perfectly on all device sizes.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="faq-item"
-            role="button"
-            tabindex="0"
-            aria-expanded="false"
-            aria-controls="faq-answer-3"
-          >
-            <div class="faq-question">
-              <span>Can I use these animations in commercial projects?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <div class="faq-answer" id="faq-answer-3">
-              <p>
-                Absolutely! All animations are open source and free to use in
-                personal and commercial projects.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="faq-item"
-            role="button"
-            tabindex="0"
-            aria-expanded="false"
-            aria-controls="faq-answer-4"
-          >
-            <div class="faq-question">
-              <span>How often are new templates added?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </div>
-            <div class="faq-answer" id="faq-answer-4">
-              <p>
-                New templates are added regularly by our community of
-                contributors. Check back often for new animations!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 👥 Testimonials -->
-    <section class="testimonials">
-      <div class="container">
-        <div class="section-title">
-          <h2>What Our Users Say</h2>
-          <p>
-            Hear from developers who have transformed their projects with
-            AnimateItNow
-          </p>
-        </div>
-
-        <div class="testimonial-slider">
-          <button
-            class="testimonial-arrows arrow-left"
-            aria-label="Previous testimonial"
-          >
-            <i class="fas fa-chevron-left"></i>
-          </button>
-
-          <div class="testimonial-carousel">
-            <div class="testimonial-card active">
-              <div class="testimonial-avatar">
-                <img src="images/amn.jpg" alt="Aman" />
-              </div>
-              <p class="testimonial-text">
-                "AnimateItNow transformed my full stack projects, making them
-                dynamic and engaging. Integrating it was effortless and truly
-                enhanced the user experience."
-              </p>
-              <div class="testimonial-author">Aman Singh</div>
-              <div class="testimonial-role">Full Stack Developer</div>
-            </div>
-
-            <div class="testimonial-card">
-              <div class="testimonial-avatar">
-                <img src="images/img2.jpg" alt="Sarah" />
-              </div>
-              <p class="testimonial-text">
-                "As a UI/UX designer, I love how AnimateItNow bridges the gap
-                between design and development. The animations are smooth,
-                professional, and exactly what modern websites need."
-              </p>
-              <div class="testimonial-author">Sarah Chen</div>
-              <div class="testimonial-role">UI/UX Designer</div>
-            </div>
-
-            <div class="testimonial-card">
-              <div class="testimonial-avatar">
-                <img src="images/img3.jpg" alt="Marcus" />
-              </div>
-              <p class="testimonial-text">
-                "The variety of animations and the ease of implementation is
-                incredible. My clients are always impressed with the interactive
-                elements I can now add to their websites."
-              </p>
-              <div class="testimonial-author">Marcus Johnson</div>
-              <div class="testimonial-role">Freelance Developer</div>
-            </div>
-
-            <div class="testimonial-card">
-              <div class="testimonial-avatar">
-                <img src="images/img4.jpg" alt="Priya" />
-              </div>
-              <p class="testimonial-text">
-                "AnimateItNow saved me countless hours of development time. The
-                ready-to-use templates are perfect for rapid prototyping and
-                production projects alike."
-              </p>
-              <div class="testimonial-author">Priya Sharma</div>
-              <div class="testimonial-role">Frontend Lead</div>
-            </div>
-
-            <div class="testimonial-card">
-              <div class="testimonial-avatar">
-                <img src="images/img5.jpg" alt="David" />
-              </div>
-              <p class="testimonial-text">
-                "The community-driven approach and open-source nature makes this
-                platform amazing. Contributing new animations and seeing them
-                used by others is incredibly rewarding."
-              </p>
-              <div class="testimonial-author">David Rodriguez</div>
-              <div class="testimonial-role">Open Source Contributor</div>
-            </div>
-          </div>
-
-          <button
-            class="testimonial-arrows arrow-right"
-            aria-label="Next testimonial"
-          >
-            <i class="fas fa-chevron-right"></i>
-          </button>
-
-          <div class="testimonial-nav">
-            <button
-              class="active"
-              data-slide="0"
-              aria-label="Testimonial 1"
-              title="View testimonial from Aman Singh"
-            ></button>
-            <button
-              data-slide="1"
-              aria-label="Testimonial 2"
-              title="View testimonial from Sarah Chen"
-            ></button>
-            <button
-              data-slide="2"
-              aria-label="Testimonial 3"
-              title="View testimonial from Marcus Johnson"
-            ></button>
-            <button
-              data-slide="3"
-              aria-label="Testimonial 4"
-              title="View testimonial from Priya Sharma"
-            ></button>
-            <button
-              data-slide="4"
-              aria-label="Testimonial 5"
-              title="View testimonial from David Rodriguez"
-            ></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 📣 CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Ready to Animate Your Website?</h2>
+      <div class="footer-bottom">
         <p>
-          Join thousands of developers who are already creating stunning
-          animations with AnimateItNow
+          © 2025 AnimateItNow. Made with ❤️ by
+          <span class="highlight">Anuj</span> and Contributors.
         </p>
-        <div class="cta-buttons">
-          <a href="signup.html" class="btn">Get Started Free</a>
-          <a href="templates.html" class="btn btn-outline">Browse Templates</a>
-        </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- 🦶 Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-about">
-            <div class="footer-logo">
-              <img src="images/logo.png" alt="Website Logo" />
-              <span>AnimateItNow</span>
-            </div>
-            <p>
-              Creating impactful web animations and templates for everyone. Join
-              our community to contribute, learn, and grow together.
-            </p>
+  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
-            <div class="footer-social">
-              <h3>Connect With Us</h3>
-              <div class="social-icons">
-                <a
-                  href="https://github.com/itsAnimation/AnimateItNow"
-                  target="_blank"
-                  title="GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/in/anujshrivastava1/"
-                  target="_blank"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-                <a href="https://twitter.com" target="_blank" title="Twitter"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a href="https://discord.com" target="_blank" title="Discord"
-                  ><i class="fab fa-discord"></i
-                ></a>
-                <a href="mailto:contact@animateitnow.com" title="Email"
-                  ><i class="fas fa-envelope"></i
-                ></a>
-              </div>
-            </div>
-          </div>
+  <script>
+    // 🌗 Theme Toggle - Perfect Implementation
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = themeToggle.querySelector("i");
+    const body = document.body;
 
-          <div class="footer-links">
-            <h3>Quick Links</h3>
-            <ul>
-              <li>
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-              </li>
-              <li>
-                <a href="templates.html"
-                  ><i class="fas fa-palette"></i> Templates</a
-                >
-              </li>
-              <li>
-                <a href="editor.html"><i class="fas fa-code"></i> Editor</a>
-              </li>
-              <li>
-                <a href="playground.html"
-                  ><i class="fas fa-mouse-pointer"></i> Hover Effects</a
-                >
-              </li>
-              <li>
-                <a href="contributors.html"
-                  ><i class="fas fa-users"></i> Contributors</a
-                >
-              </li>
-              <li>
-                <a href="leaderboard.html"
-                  ><i class="fas fa-trophy"></i> Leaderboard</a
-                >
-              </li>
-            </ul>
-          </div>
+    // Function to set theme
+    function setTheme(theme) {
+      body.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
 
-          <div class="footer-links">
-            <h3>Resources</h3>
-            <ul>
-              <li>
-                <a href="about.html"
-                  ><i class="fas fa-info-circle"></i> About Us</a
-                >
-              </li>
-              <li>
-                <a href="contact.html"
-                  ><i class="fas fa-envelope"></i> Contact</a
-                >
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-book"></i> Documentation</a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-blog"></i> Blog</a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-question-circle"></i> Support</a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer-social">
-            <div class="newsletter">
-              <h4>Stay Updated</h4>
-              <p>
-                Get the latest templates and updates directly to your inbox.
-              </p>
-              <form class="newsletter-pill-form">
-                <input type="email" placeholder="Your email address" required />
-                <button type="submit" class="newsletter-submit-btn">
-                  <i class="fa-solid fa-paper-plane"></i>
-                  Subscribe
-                </button>
-              </form>
-            </div>
-            <br />
-            <h3>Connect With Us</h3>
-            <div class="social-icons">
-              <a
-                href="https://github.com/itsAnimation/AnimateItNow"
-                target="_blank"
-                title="GitHub"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a
-                href="https://www.linkedin.com/in/anujshrivastava1/"
-                target="_blank"
-                title="LinkedIn"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://twitter.com" target="_blank" title="Twitter"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="https://discord.com" target="_blank" title="Discord"
-                ><i class="fab fa-discord"></i
-              ></a>
-              <a href="mailto:contact@animateitnow.com" title="Email"
-                ><i class="fas fa-envelope"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            © 2025 AnimateItNow. Made with ❤️ by
-            <span class="highlight">Anuj</span> and Contributors.
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
-
-    <script>
-      // 🌗 Theme Toggle - Perfect Implementation
-      const themeToggle = document.getElementById("theme-toggle");
-      const themeIcon = themeToggle.querySelector("i");
-      const body = document.body;
-
-      // Function to set theme
-      function setTheme(theme) {
-        body.setAttribute("data-theme", theme);
-        localStorage.setItem("theme", theme);
-
-        // Update icon
-        if (theme === "dark") {
-          themeIcon.classList.remove("fa-moon");
-          themeIcon.classList.add("fa-sun");
-        } else {
-          themeIcon.classList.remove("fa-sun");
-          themeIcon.classList.add("fa-moon");
-        }
+      // Update icon
+      if (theme === "dark") {
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      } else {
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
       }
+    }
 
-      // Initialize theme
-      function initTheme() {
-        const savedTheme = localStorage.getItem("theme");
-        const systemPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
+    // Initialize theme
+    function initTheme() {
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
-        if (savedTheme) {
-          setTheme(savedTheme);
-        } else if (systemPrefersDark) {
-          setTheme("dark");
-        } else {
-          setTheme("light");
-        }
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (systemPrefersDark) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
       }
+    }
 
-      // Toggle theme
-      themeToggle.addEventListener("click", () => {
-        const currentTheme = body.getAttribute("data-theme");
-        setTheme(currentTheme === "light" ? "dark" : "light");
+    // Toggle theme
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = body.getAttribute("data-theme");
+      setTheme(currentTheme === "light" ? "dark" : "light");
+    });
+
+    // Listen for system theme changes
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (!localStorage.getItem("theme")) {
+          setTheme(e.matches ? "dark" : "light");
+        }
       });
 
-      // Listen for system theme changes
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            setTheme(e.matches ? "dark" : "light");
+    // 📱 Mobile Navigation Toggle
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+      });
+    });
+
+    // ❓ FAQ Accordion
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const question = item.querySelector(".faq-question");
+
+      question.addEventListener("click", () => {
+        // Close all other items
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove("active");
           }
         });
 
-      // 📱 Mobile Navigation Toggle
-      const hamburger = document.getElementById("hamburger");
-      const navLinks = document.querySelector(".nav-links");
-
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        hamburger.classList.toggle("active");
+        // Toggle current item
+        item.classList.toggle("active");
       });
+    });
 
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          hamburger.classList.remove("active");
-        });
-      });
+    // 👥 Testimonial Carousel Navigation
+    const testimonialNavButtons = document.querySelectorAll(
+      ".testimonial-nav button"
+    );
+    const testimonialCards = document.querySelectorAll(".testimonial-card");
+    const testimonialCarousel = document.querySelector(
+      ".testimonial-carousel"
+    );
+    const arrowLeft = document.querySelector(".arrow-left");
+    const arrowRight = document.querySelector(".arrow-right");
+    let currentTestimonial = 0;
 
-      // ❓ FAQ Accordion
-      const faqItems = document.querySelectorAll(".faq-item");
+    function showTestimonial(index) {
+      // Ensure index is within bounds
+      if (index < 0) index = testimonialCards.length - 1;
+      if (index >= testimonialCards.length) index = 0;
 
-      faqItems.forEach((item) => {
-        const question = item.querySelector(".faq-question");
+      // Remove active class from all cards and buttons
+      testimonialCards.forEach((card) => card.classList.remove("active"));
+      testimonialNavButtons.forEach((btn) => btn.classList.remove("active"));
 
-        question.addEventListener("click", () => {
-          // Close all other items
-          faqItems.forEach((otherItem) => {
-            if (otherItem !== item) {
-              otherItem.classList.remove("active");
-            }
-          });
-
-          // Toggle current item
-          item.classList.toggle("active");
-        });
-      });
-
-      // 👥 Testimonial Carousel Navigation
-      const testimonialNavButtons = document.querySelectorAll(
-        ".testimonial-nav button"
-      );
-      const testimonialCards = document.querySelectorAll(".testimonial-card");
-      const testimonialCarousel = document.querySelector(
-        ".testimonial-carousel"
-      );
-      const arrowLeft = document.querySelector(".arrow-left");
-      const arrowRight = document.querySelector(".arrow-right");
-      let currentTestimonial = 0;
-
-      function showTestimonial(index) {
-        // Ensure index is within bounds
-        if (index < 0) index = testimonialCards.length - 1;
-        if (index >= testimonialCards.length) index = 0;
-
-        // Remove active class from all cards and buttons
-        testimonialCards.forEach((card) => card.classList.remove("active"));
-        testimonialNavButtons.forEach((btn) => btn.classList.remove("active"));
-
-        // Add active class to current card and button
-        if (testimonialCards[index]) {
-          testimonialCards[index].classList.add("active");
-        }
-        if (testimonialNavButtons[index]) {
-          testimonialNavButtons[index].classList.add("active");
-        }
-
-        // Calculate carousel position to center the active card
-        const cardWidth = 380; // card width + gap
-        const totalCards = testimonialCards.length;
-        const centerOffset = ((totalCards - 1) * cardWidth) / 2;
-        const offset = centerOffset - index * cardWidth;
-
-        if (testimonialCarousel) {
-          testimonialCarousel.style.transform = `translateX(${offset}px)`;
-        }
-
-        currentTestimonial = index;
+      // Add active class to current card and button
+      if (testimonialCards[index]) {
+        testimonialCards[index].classList.add("active");
+      }
+      if (testimonialNavButtons[index]) {
+        testimonialNavButtons[index].classList.add("active");
       }
 
-      // Navigation button handlers
-      testimonialNavButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-          showTestimonial(index);
-        });
+      // Calculate carousel position to center the active card
+      const cardWidth = 380; // card width + gap
+      const totalCards = testimonialCards.length;
+      const centerOffset = ((totalCards - 1) * cardWidth) / 2;
+      const offset = centerOffset - index * cardWidth;
+
+      if (testimonialCarousel) {
+        testimonialCarousel.style.transform = `translateX(${offset}px)`;
+      }
+
+      currentTestimonial = index;
+    }
+
+    // Navigation button handlers
+    testimonialNavButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        showTestimonial(index);
+      });
+    });
+
+    // Arrow navigation handlers
+    if (arrowLeft) {
+      arrowLeft.addEventListener("click", () => {
+        showTestimonial(currentTestimonial - 1);
+      });
+    }
+
+    if (arrowRight) {
+      arrowRight.addEventListener("click", () => {
+        showTestimonial(currentTestimonial + 1);
+      });
+    }
+
+    // Auto-rotate testimonials every 6 seconds
+    function autoRotateTestimonials() {
+      const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
+      showTestimonial(nextIndex);
+    }
+
+    // Start auto-rotation
+    let testimonialInterval = setInterval(autoRotateTestimonials, 6000);
+
+    // Pause auto-rotation when user hovers over testimonials
+    const testimonialSection = document.querySelector(".testimonials");
+    if (testimonialSection) {
+      testimonialSection.addEventListener("mouseenter", () => {
+        clearInterval(testimonialInterval);
       });
 
-      // Arrow navigation handlers
-      if (arrowLeft) {
-        arrowLeft.addEventListener("click", () => {
-          showTestimonial(currentTestimonial - 1);
-        });
-      }
-
-      if (arrowRight) {
-        arrowRight.addEventListener("click", () => {
-          showTestimonial(currentTestimonial + 1);
-        });
-      }
-
-      // Auto-rotate testimonials every 6 seconds
-      function autoRotateTestimonials() {
-        const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
-        showTestimonial(nextIndex);
-      }
-
-      // Start auto-rotation
-      let testimonialInterval = setInterval(autoRotateTestimonials, 6000);
-
-      // Pause auto-rotation when user hovers over testimonials
-      const testimonialSection = document.querySelector(".testimonials");
-      if (testimonialSection) {
-        testimonialSection.addEventListener("mouseenter", () => {
-          clearInterval(testimonialInterval);
-        });
-
-        testimonialSection.addEventListener("mouseleave", () => {
-          testimonialInterval = setInterval(autoRotateTestimonials, 6000);
-        });
-      }
-
-      // ⏳ Progress Bar
-      let lastScrollTop = 0;
-      const secondaryBar = document.querySelector(".top-secondary-bar");
-      const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
-
-      window.addEventListener("scroll", () => {
-        const winScroll =
-          document.body.scrollTop || document.documentElement.scrollTop;
-        const height =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById("progress-bar").style.width = scrolled + "%";
-
-        // --- SMART DUAL-HEADER SCROLL EFFECT ---
-        const mainHeader = document.querySelector(".main-primary-bar.header");
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (st > lastScrollTop && st > secondaryBarHeight) {
-          // Scroll Down: Hide the secondary bar by adding the 'hidden' class
-          secondaryBar.classList.add("hidden");
-        } else {
-          // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
-          secondaryBar.classList.remove("hidden");
-        }
-
-        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
-
-        // Header scroll effect (for the old .header.scrolled class)
-        if (window.scrollY > 50) {
-          mainHeader.classList.add("scrolled");
-        } else {
-          mainHeader.classList.remove("scrolled");
-        }
+      testimonialSection.addEventListener("mouseleave", () => {
+        testimonialInterval = setInterval(autoRotateTestimonials, 6000);
       });
+    }
 
-      // Ensure initial call for the testimonials and theme (keep existing initTheme and showTestimonial calls)
-      document.addEventListener("DOMContentLoaded", () => {
-        initTheme();
-        // Initial call to set the carousel's starting position
-        showTestimonial(0);
-      });
+    // ⏳ Progress Bar
+    let lastScrollTop = 0;
+    const secondaryBar = document.querySelector(".top-secondary-bar");
+    const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
 
-      // 📧 Newsletter form submission
-      document
-        .querySelector(".newsletter-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = this.querySelector("input").value;
-          alert(
-            `Thank you for subscribing with ${email}! We'll keep you updated.`
-          );
-          this.reset();
-        });
+    window.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("progress-bar").style.width = scrolled + "%";
 
-      // 🚀 Initialize everything when page loads
-      document.addEventListener("DOMContentLoaded", () => {
-        initTheme();
-      });
+      // --- SMART DUAL-HEADER SCROLL EFFECT ---
+      const mainHeader = document.querySelector(".main-primary-bar.header");
+      let st = window.pageYOffset || document.documentElement.scrollTop;
 
-      // ⬆️ Scroll to top functionality
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      if (st > lastScrollTop && st > secondaryBarHeight) {
+        // Scroll Down: Hide the secondary bar by adding the 'hidden' class
+        secondaryBar.classList.add("hidden");
+      } else {
+        // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
+        secondaryBar.classList.remove("hidden");
       }
 
-      window.onscroll = function () {
-        const scrollBtn = document.getElementById("scrollBtn");
-        if (
-          document.body.scrollTop > 300 ||
-          document.documentElement.scrollTop > 300
-        ) {
-          scrollBtn.style.display = "block";
-        } else {
-          scrollBtn.style.display = "none";
-        }
-      };
+      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
 
-      // ----------------------- NEW DUAL NAV AND ACCORDION LOGIC -----------------------
+      // Header scroll effect (for the old .header.scrolled class)
+      if (window.scrollY > 50) {
+        mainHeader.classList.add("scrolled");
+      } else {
+        mainHeader.classList.remove("scrolled");
+      }
+    });
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // 1. Mobile Menu Toggle (Hamburger)
-        const hamburgerBtn = document.getElementById("hamburger");
-        const mobileMenu = document.getElementById("mobile-menu");
+    // Ensure initial call for the testimonials and theme (keep existing initTheme and showTestimonial calls)
+    document.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      // Initial call to set the carousel's starting position
+      showTestimonial(0);
+    });
 
-        if (hamburgerBtn && mobileMenu) {
-          hamburgerBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("active");
-            hamburgerBtn.classList.toggle("active");
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = mobileMenu.classList.contains(
-              "active"
-            )
-              ? "hidden"
-              : "";
-          });
-        }
-
-        // 2. Mobile Accordion Logic
-        const accordionToggles = document.querySelectorAll(
-          ".accordion-toggle[data-accordion-content]"
+    // 📧 Newsletter form submission
+    document
+      .querySelector(".newsletter-form")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = this.querySelector("input").value;
+        alert(
+          `Thank you for subscribing with ${email}! We'll keep you updated.`
         );
+        this.reset();
+      });
 
-        accordionToggles.forEach((toggle) => {
-          toggle.addEventListener("click", (e) => {
-            // Only prevent default if it's an accordion toggle, not a simple link
-            if (toggle.getAttribute("href") === "#") {
-              e.preventDefault();
-            }
+    // 🚀 Initialize everything when page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+    });
 
-            const contentId = toggle.getAttribute("data-accordion-content");
-            const content = document.getElementById(contentId);
+    // ⬆️ Scroll to top functionality
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-            if (!content) return;
+    window.onscroll = function () {
+      const scrollBtn = document.getElementById("scrollBtn");
+      if (
+        document.body.scrollTop > 300 ||
+        document.documentElement.scrollTop > 300
+      ) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
 
-            const isActive = content.classList.contains("active");
+    // ----------------------- NEW DUAL NAV AND ACCORDION LOGIC -----------------------
 
-            // Close all other accordions
-            document.querySelectorAll(".accordion-content").forEach((c) => {
-              if (c !== content) {
-                c.classList.remove("active");
-                c.style.maxHeight = null;
-                // Reset arrow rotation if applicable
-                const otherToggle = c.previousElementSibling;
-                if (otherToggle) {
-                  otherToggle.querySelector("i").style.transform = null;
-                }
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Mobile Menu Toggle (Hamburger)
+      const hamburgerBtn = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("active");
+          hamburgerBtn.classList.toggle("active");
+          // Prevent body scroll when menu is open
+          document.body.style.overflow = mobileMenu.classList.contains(
+            "active"
+          )
+            ? "hidden"
+            : "";
+        });
+      }
+
+      // 2. Mobile Accordion Logic
+      const accordionToggles = document.querySelectorAll(
+        ".accordion-toggle[data-accordion-content]"
+      );
+
+      accordionToggles.forEach((toggle) => {
+        toggle.addEventListener("click", (e) => {
+          // Only prevent default if it's an accordion toggle, not a simple link
+          if (toggle.getAttribute("href") === "#") {
+            e.preventDefault();
+          }
+
+          const contentId = toggle.getAttribute("data-accordion-content");
+          const content = document.getElementById(contentId);
+
+          if (!content) return;
+
+          const isActive = content.classList.contains("active");
+
+          // Close all other accordions
+          document.querySelectorAll(".accordion-content").forEach((c) => {
+            if (c !== content) {
+              c.classList.remove("active");
+              c.style.maxHeight = null;
+              // Reset arrow rotation if applicable
+              const otherToggle = c.previousElementSibling;
+              if (otherToggle) {
+                otherToggle.querySelector("i").style.transform = null;
               }
-            });
-
-            // Toggle current accordion
-            content.classList.toggle("active");
-            if (content.classList.contains("active")) {
-              // Set max-height for smooth transition (use scrollHeight for content size)
-              content.style.maxHeight = content.scrollHeight + "px";
-              toggle.querySelector("i").style.transform = "rotate(180deg)";
-            } else {
-              content.style.maxHeight = null;
-              toggle.querySelector("i").style.transform = null;
             }
           });
+
+          // Toggle current accordion
+          content.classList.toggle("active");
+          if (content.classList.contains("active")) {
+            // Set max-height for smooth transition (use scrollHeight for content size)
+            content.style.maxHeight = content.scrollHeight + "px";
+            toggle.querySelector("i").style.transform = "rotate(180deg)";
+          } else {
+            content.style.maxHeight = null;
+            toggle.querySelector("i").style.transform = null;
+          }
+        });
+      });
+
+      // 3. Desktop Dropdown Toggle (for consolidated links)
+      const dropdownLinkItem = document.querySelector(".dropdown-link-item");
+      const desktopDropdownContent = document.getElementById(
+        "animations-dropdown"
+      );
+
+      if (dropdownLinkItem && desktopDropdownContent) {
+        // Use standard CSS :hover on desktop where possible, but use JS for cleanup/accessibility
+
+        dropdownLinkItem.addEventListener("mouseenter", () => {
+          // In a vanilla JS environment, ensure the dropdown is visible on hover
+          desktopDropdownContent.style.display = "block";
         });
 
-        // 3. Desktop Dropdown Toggle (for consolidated links)
-        const dropdownLinkItem = document.querySelector(".dropdown-link-item");
-        const desktopDropdownContent = document.getElementById(
-          "animations-dropdown"
-        );
+        dropdownLinkItem.addEventListener("mouseleave", () => {
+          desktopDropdownContent.style.display = "none";
+        });
+      }
+    });
+  </script>
+</body>
 
-        if (dropdownLinkItem && desktopDropdownContent) {
-          // Use standard CSS :hover on desktop where possible, but use JS for cleanup/accessibility
-
-          dropdownLinkItem.addEventListener("mouseenter", () => {
-            // In a vanilla JS environment, ensure the dropdown is visible on hover
-            desktopDropdownContent.style.display = "block";
-          });
-
-          dropdownLinkItem.addEventListener("mouseleave", () => {
-            desktopDropdownContent.style.display = "none";
-          });
-        }
-      });
-    </script>
-  </body>
 </html>
