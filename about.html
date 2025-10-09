@@ -56,6 +56,13 @@
       --bg-tertiary: #2a2a2a;
       --border: #404040;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      /* 🔹 DARK MODE FIX: Ensures active link/icon are light against dark background */
+.dark-theme .nav-links a.active,
+.dark-theme .nav-links a.active i.fas {
+    /* Set to the primary accent color or the main light text color */
+    color: var(--accent) !important; /* Using --accent (e.g., #4dd0e1) for a neon glow effect */
+    text-shadow: 0 0 5px rgba(77, 208, 225, 0.5); /* Optional: Add a subtle glow */
+}
     }
 
     /* 🏗️ Base Styles */
@@ -237,12 +244,19 @@
       align-items: center;
     }
 
-    .nav-links a {
-      color: var(--text);
-      font-weight: 500;
-      position: relative;
-      padding: 5px 0;
-    }
+    /* In styles.css (around line 290) */
+.nav-links a {
+  color: var(--nav-text-60);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 10px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  display: flex;       /* Make it a flex container */
+  align-items: center; /* Vertically center icon and text */
+  gap: 6px;            /* Space between icon and text */
+}
 
     .nav-links a::after {
       content: '';
@@ -255,10 +269,48 @@
       transition: var(--transition);
     }
 
+    
     .nav-links a:hover::after,
     .nav-links a.active::after {
       width: 100%;
     }
+
+    /* 🔹 NEW CSS BLOCK: Base styling for icons */
+.nav-links a i.fas {
+  font-size: 1.2rem; /* Match the text size */
+  /* color: var(--nav-text-60); Default color (faded white) */
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: #6c67ff;
+}
+
+.nav-links a.active {
+  color: var(--primary) !important; /* Use the theme's primary color (e.g., #6c63ff) */
+  text-shadow: 0 0 4px rgba(108, 99, 255, 0.3); /* Add subtle shadow */
+  font-weight: 800;
+  font-size: 1.1rem; /* Adjust to a more reasonable size */
+}
+
+/* 🔹 NEW: Active icon style */
+.nav-links a.active i.fas {
+  /* color: var(--primary) !important; */
+  color: var(--accent);
+  font-size: 1.1rem; /* Match the larger active text size */
+}
+
+.nav-links a:hover {
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4); 
+  background: linear-gradient(135deg, #18FFFF, #00FFC0, #3B82F6);
+  -webkit-background-clip: text;
+  color: #4843d9;
+  
+  /* 3. Keep movement and shadow */
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
+  font-weight: 500;
+}
+
 
 
     /* About Page Styles */
@@ -489,53 +541,26 @@
       </a>
     </div>
     <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="components.html">Components</a></li>
-        <li><a href="editor.html" target="_blank">Editor</a></li>
-        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-        <li><a href="contributors.html">Contributors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="leaderboard.html">Leaderboard</a></li>  
-                <!-- cursor toggle switch -->
-        <li class="snakeList">
-          <label class="switch" title="Toggle Snake Cursor">
-            <input type="checkbox" id="cursorToggle">
-            <span class="slider round"></span>
-          </label>
-          <span class="snakeLabel">Snake Cursor</span>
-        </li>
-        <li>
-          <a href="https://github.com/itsAnimation/AnimateItNow"
-             target="_blank" 
-             rel="noopener noreferrer" 
-             aria-label="GitHub Repo"
-             class="github-icon">
-            <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-
-                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-               .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-              -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-              .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-              1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-              .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-              .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-              0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <button id="theme-toggle" aria-label="Toggle Theme">
-              <i class="fas fa-moon"></i>
-            </button>
-          </li>
+        <ul class="nav-links">
+  <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+  
+  <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+  
+  <li><a href="templates.html"><i class="fas fa-th-large"></i> Templates</a></li>
+  
+  <li><a href="components.html"><i class="fas fa-puzzle-piece"></i> Components</a></li>
+  
+  <li><a href="editor.html" target="_blank"><i class="fas fa-code"></i> Editor</a></li>
+  
+  <li><a href="playground.html" style="white-space: nowrap"><i class="fas fa-magic"></i> Hover-Effects</a></li>
+  
+  <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+  
+  <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+  
+  <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>  
+  
+  </ul>
         </ul>
       </div>
     </nav>
