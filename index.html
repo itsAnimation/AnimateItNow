@@ -1202,6 +1202,61 @@
         }
 
         .testimonial-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border);
+            width: 350px;
+            flex-shrink: 0;
+            transition: all 0.6s ease;
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15), var(--shadow);
+            border-color: var(--primary);
+            z-index: 2;
+        }
+        
+        .testimonial-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-arrows:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            transition: all 0.3s ease;
           width: 280px;
           padding: 20px;
         }
@@ -1212,6 +1267,11 @@
           font-size: 1rem;
         }
 
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
         .arrow-left {
           left: 10px;
         }
@@ -1376,6 +1436,114 @@
           margin-bottom: 20px;
         }
 
+        @media (max-width: 768px) {
+            .testimonial-slider {
+                padding: 0 60px;
+            }
+            
+            .testimonial-card {
+                width: 280px;
+                padding: 20px;
+            }
+            
+            .testimonial-arrows {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+           
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                border-top: 1px solid var(--border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .nav-actions .btn, .nav-actions .btn-outline {
+                display: none; 
+            }
+            .nav-actions {
+                display: flex; 
+                gap: 15px;
+            }
+            
+            .nav-links {
+                
+                display: none;
+               
+            }
+
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-buttons,
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn,
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links h3::after,
+            .footer-social h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         .hero-animation {
           height: 200px;
           margin-top: 50px;
@@ -2786,6 +2954,65 @@
               <div class="testimonial-author">Aman Singh</div>
               <div class="testimonial-role">Full Stack Developer</div>
             </div>
+            
+            
+                
+                <div class="testimonial-carousel">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-avatar">
+                            <img src="images/amn.jpg" alt="Aman">
+                        </div>
+                        <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
+                        <div class="testimonial-author">Aman Singh</div>
+                        <div class="testimonial-role">Full Stack Developer</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img2.jpg" alt="Sarah">
+                        </div>
+                        <p class="testimonial-text">"As a UI/UX designer, I love how AnimateItNow bridges the gap between design and development. The animations are smooth, professional, and exactly what modern websites need."</p>
+                        <div class="testimonial-author">Sarah Chen</div>
+                        <div class="testimonial-role">UI/UX Designer</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img3.jpg" alt="Marcus">
+                        </div>
+                        <p class="testimonial-text">"The variety of animations and the ease of implementation is incredible. My clients are always impressed with the interactive elements I can now add to their websites."</p>
+                        <div class="testimonial-author">Marcus Johnson</div>
+                        <div class="testimonial-role">Freelance Developer</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img4.jpg" alt="Priya">
+                        </div>
+                        <p class="testimonial-text">"AnimateItNow saved me countless hours of development time. The ready-to-use templates are perfect for rapid prototyping and production projects alike."</p>
+                        <div class="testimonial-author">Priya Sharma</div>
+                        <div class="testimonial-role">Frontend Lead</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="images/img5.jpg" alt="David">
+                        </div>
+                        <p class="testimonial-text">"The community-driven approach and open-source nature makes this platform amazing. Contributing new animations and seeing them used by others is incredibly rewarding."</p>
+                        <div class="testimonial-author">David Rodriguez</div>
+                        <div class="testimonial-role">Open Source Contributor</div>
+                    </div>
+                </div>
+                
+
+                
+                <!-- <div class="testimonial-nav">
+                    <button class="active" data-slide="0" aria-label="Testimonial 1" title="View testimonial from Aman Singh"></button>
+                    <button data-slide="1" aria-label="Testimonial 2" title="View testimonial from Sarah Chen"></button>
+                    <button data-slide="2" aria-label="Testimonial 3" title="View testimonial from Marcus Johnson"></button>
+                    <button data-slide="3" aria-label="Testimonial 4" title="View testimonial from Priya Sharma"></button>
+                    <button data-slide="4" aria-label="Testimonial 5" title="View testimonial from David Rodriguez"></button>
+                </div> -->
 
             <div class="testimonial-card">
               <div class="testimonial-avatar">
@@ -3116,6 +3343,93 @@
           navLinks.classList.remove("active");
           hamburger.classList.remove("active");
         });
+        
+ // 👥 Testimonial Carousel (no nav buttons)
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+const testimonialCarousel = document.querySelector('.testimonial-carousel');
+
+let currentTestimonial = 0;
+
+function showTestimonial(index) {
+  // Ensure index is within bounds
+  if (index < 0) index = testimonialCards.length - 1;
+  if (index >= testimonialCards.length) index = 0;
+
+  // Remove active class from all cards
+  testimonialCards.forEach(card => card.classList.remove('active'));
+
+  // Add active class to current card
+  if (testimonialCards[index]) {
+    testimonialCards[index].classList.add('active');
+  }
+
+  // Calculate carousel position to center the active card
+  const cardWidth = 380; // card width + gap
+  const totalCards = testimonialCards.length;
+  const centerOffset = (totalCards - 1) * cardWidth / 2;
+  const offset = centerOffset - (index * cardWidth);
+
+  if (testimonialCarousel) {
+    testimonialCarousel.style.transform = `translateX(${offset}px)`;
+  }
+
+  currentTestimonial = index;
+}
+
+// Auto-rotate testimonials every 4 seconds
+function autoRotateTestimonials() {
+  const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
+  showTestimonial(nextIndex);
+}
+
+// Start auto-rotation
+showTestimonial(currentTestimonial);
+let testimonialInterval = setInterval(autoRotateTestimonials, 4000);
+
+// Pause auto-rotation when user hovers over testimonials
+const testimonialSection = document.querySelector('.testimonials');
+if (testimonialSection) {
+  testimonialSection.addEventListener('mouseenter', () => {
+    clearInterval(testimonialInterval);
+  });
+
+  testimonialSection.addEventListener('mouseleave', () => {
+    testimonialInterval = setInterval(autoRotateTestimonials, 2000);
+  });
+}
+
+        
+        // ⏳ Progress Bar
+        let lastScrollTop = 0;
+        const secondaryBar = document.querySelector('.top-secondary-bar');
+        const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+            
+            // --- SMART DUAL-HEADER SCROLL EFFECT ---
+            const mainHeader = document.querySelector('.main-primary-bar.header');
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (st > lastScrollTop && st > secondaryBarHeight) {
+                // Scroll Down: Hide the secondary bar by adding the 'hidden' class
+                secondaryBar.classList.add('hidden');
+            } else {
+                // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
+                secondaryBar.classList.remove('hidden');
+            }
+            
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
+            
+            // Header scroll effect (for the old .header.scrolled class)
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled'); 
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
       });
 
       // ❓ FAQ Accordion
