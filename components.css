@@ -1,6 +1,5 @@
 /* Component Documentation System Styles */
 
-
 /* 🎨 CSS Variables for theming */
 
 :root {
@@ -19,13 +18,11 @@
     --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15);
     --gradient-primary: linear-gradient(135deg, #ff6b6b, #feca57);
     --gradient-secondary: linear-gradient(135deg, #4ecdc4, #45b7d1);
-    
     /* 🆕 Additional theme variables for enhanced customization */
     --transition-speed: 0.3s;
     --border-radius: 8px;
     --spacing-unit: 1rem;
 }
-
 
 /* 🌙 Dark theme colors */
 
@@ -41,7 +38,6 @@
     --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -55,7 +51,6 @@ body {
     line-height: 1.6;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
-
 
 .navbar {
     display: flex;
@@ -296,7 +291,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
 .main-content {
     min-height: calc(100vh - 80px);
     padding: 2rem;
@@ -307,7 +301,7 @@ body {
 /* 📋 Header section */
 .docs-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     padding: 2rem 0;
 }
 
@@ -323,6 +317,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    margin-top: 80px;
 }
 
 .docs-title i {
@@ -353,8 +348,7 @@ body {
 
 .search-input-wrapper {
     position: relative;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 800px;
 }
 
 .search-icon {
@@ -909,6 +903,7 @@ code {
     .desktop-nav {
         display: none;
     }
+
     .mobile-nav {
         display: block;
     }
@@ -918,11 +913,11 @@ code {
     .navbar {
         padding: 15px 20px;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
-    
+
     .nav-right {
         position: fixed;
         top: 0;
@@ -939,47 +934,47 @@ code {
         z-index: 1000;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
     }
-    
+
     .nav-right.active {
         right: 0;
     }
-    
+
     .nav-links {
         flex-direction: column;
         width: 100%;
         gap: 25px;
         align-items: center;
     }
-    
+
     .nav-links li {
         width: 100%;
         text-align: center;
         justify-content: center;
         margin-left: 0;
     }
-    
+
     .nav-links a {
         font-size: 1.2rem;
         padding: 12px 15px;
         width: 100%;
         display: block;
     }
-    
+
     .nav-links a::after {
         left: 50%;
         transform: translateX(-50%) scaleX(0);
         width: 70%;
     }
-    
+
     .nav-links a:hover::after {
         transform: translateX(-50%) scaleX(1);
     }
-    
+
     .nav-left {
         width: auto;
         min-width: auto;
     }
-    
+
     .site-name {
         font-size: 1.1rem;
     }
@@ -989,20 +984,20 @@ code {
     .navbar {
         padding: 12px 15px;
     }
-    
+
     .nav-right {
         width: 100%;
     }
-    
+
     .logo {
         height: 30px;
         width: 30px;
     }
-    
+
     .site-name {
         font-size: 1rem;
     }
-    
+
     .menu-toggle {
         width: 25px;
         height: 25px;
@@ -1074,6 +1069,7 @@ code {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

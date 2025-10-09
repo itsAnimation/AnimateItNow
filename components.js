@@ -1,86 +1,82 @@
 // Component Documentation System JavaScript
 
-
-
 class ComponentDocumentation {
-    /**
-     * Initialize the component documentation system
-     */
+  /**
+   * Initialize the component documentation system
+   */
 
-    constructor() {
-        // 📦 Component data storage
-        this.components = [];
-        this.filteredComponents = [];
-        
-        // 🖥️ View management
-        this.currentView = 'grid';
-        
-        // 🔍 Active filters
-        this.activeFilters = {
-            category: 'all',
-            complexity: 'all',
-            search: ''
-        };
+  constructor() {
+    // 📦 Component data storage
+    this.components = [];
+    this.filteredComponents = [];
 
-        // 🚀 Initialize the system
-        this.init();
+    // 🖥️ View management
+    this.currentView = 'grid';
+
+    // 🔍 Active filters
+    this.activeFilters = {
+      category: 'all',
+      complexity: 'all',
+      search: ''
+    };
+
+    // 🚀 Initialize the system
+    this.init();
+  }
+
+  /**
+   * Initialize the system
+   * Sets up components, event listeners, and renders initial view
+   */
+
+  init() {
+    this.loadComponents();
+    this.setupEventListeners();
+    this.renderComponents();
+    this.initializeTheme();
+  }
+
+  // Initialize theme based on saved preference or system preference
+  initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.body.classList.add('dark');
+      this.updateThemeToggleIcon();
     }
+  }
 
+  // Update theme toggle icon based on current theme
+  updateThemeToggleIcon() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
 
-    /**
-     * Initialize the system
-     * Sets up components, event listeners, and renders initial view
-     */
-
-    init() {
-        this.loadComponents();
-        this.setupEventListeners();
-        this.renderComponents();
-        this.initializeTheme();
+    const icon = themeToggle.querySelector('i');
+    if (document.body.classList.contains('dark')) {
+      icon.className = 'fas fa-sun';
+    } else {
+      icon.className = 'fas fa-moon';
     }
+  }
 
-    // Initialize theme based on saved preference or system preference
-    initializeTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            document.body.classList.add('dark');
-            this.updateThemeToggleIcon();
-        }
-    }
+  /**
+   * Load all available components into the system
+   * Each component includes metadata, preview, and implementation details
+   */
 
-    // Update theme toggle icon based on current theme
-    updateThemeToggleIcon() {
-        const themeToggle = document.getElementById('theme-toggle');
-        if (!themeToggle) return;
-        
-        const icon = themeToggle.querySelector('i');
-        if (document.body.classList.contains('dark')) {
-            icon.className = 'fas fa-sun';
-        } else {
-            icon.className = 'fas fa-moon';
-        }
-    }
-
-
-    /**
-     * Load all available components into the system
-     * Each component includes metadata, preview, and implementation details
-     */
-
-    loadComponents() {
-        // 🧩 Component library with enhanced metadata
-        this.components = [
-            {
-                id: 'animated-button',
-                title: 'Animated Button',
-                description: 'Interactive button with hover effects and smooth animations',
-                category: 'buttons',
-                complexity: 'beginner',
-                tags: ['hover', 'animation', 'interactive'],
-                preview: this.createButtonPreview(),
-                html: `<button class="animated-btn">
+  loadComponents() {
+    // 🧩 Component library with enhanced metadata
+    this.components = [
+      {
+        id: 'animated-button',
+        title: 'Animated Button',
+        description: 'Interactive button with hover effects and smooth animations',
+        category: 'buttons',
+        complexity: 'beginner',
+        tags: ['hover', 'animation', 'interactive'],
+        preview: this.createButtonPreview(),
+        html: `<button class="animated-btn">
   <span class="btn-text">Click Me</span>
   <span class="btn-icon">→</span>
 </button>`,
@@ -742,7 +738,7 @@ animation: spin 2s linear infinite;   /* Slower */</code></pre>`,
         description: "Add a subtle, animated grid background to your website or app. Ideal for hero sections, dashboards, or landing pages.",
         category: "background",
         complexity: "intermediate",
-        tags: ["animation" ,'grid', "background", "glowing"],
+        tags: ["animation", 'grid', "background", "glowing"],
         preview: this.createBackgroundPreview(),
         html: `
 <div class="animated-background">
@@ -840,14 +836,14 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
         `,
       },
     ];
- 
+
     this.filteredComponents = [...this.components];
-  } 
-    // 🎨 Create preview elements for each component
-    createButtonPreview() {
-        return `<button style="padding: 8px 16px; background: linear-gradient(45deg, #ff6b6b, #feca57); border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Preview Button</button>`;
-    } 
- 
+  }
+  // 🎨 Create preview elements for each component
+  createButtonPreview() {
+    return `<button style="padding: 8px 16px; background: linear-gradient(45deg, #ff6b6b, #feca57); border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Preview Button</button>`;
+  }
+
 
   createCardPreview() {
     return `<div style="background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 200px; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
@@ -867,8 +863,8 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
   }
 
 
-    createNavPreview() {
-        return `<nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
+  createNavPreview() {
+    return `<nav style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
             <div style="font-weight: 600; color: #1a202c;">Brand</div>
 
             <div style="display: flex; gap: 1rem;">
@@ -885,7 +881,7 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
             <span style="font-size: 0.75rem; color: #4a5568;">Loading...</span>
         </div>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>`;
-  } 
+  }
 
   // added new background component
   createBackgroundPreview() {
@@ -931,219 +927,216 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
   }
 
 
-    // ⚙️ Setup event listeners
-    setupEventListeners() {
-        // 🔍 Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const clearSearch = document.getElementById('clearSearch');
+  // ⚙️ Setup event listeners
+  setupEventListeners() {
+    // 🔍 Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
 
-        searchInput.addEventListener('input', (e) => {
-            this.activeFilters.search = e.target.value.toLowerCase();
-            this.filterComponents();
-            this.renderComponents();
-        });
-
-        clearSearch.addEventListener('click', () => {
-            searchInput.value = '';
-            this.activeFilters.search = '';
-            this.filterComponents();
-            this.renderComponents();
-        });
-
-        // 📂 Category filters
-        document.getElementById('categoryFilters').addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-btn')) {
-                // Update active button
-                document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                e.target.classList.add('active');
-
-                // Update filter
-                this.activeFilters.category = e.target.dataset.category;
-                this.filterComponents();
-                this.renderComponents();
-            }
-        });
-
-        // 🧠 Complexity filters
-        document.getElementById('complexityFilters').addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-btn')) {
-                // Update active button
-                document.querySelectorAll('#complexityFilters .filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                e.target.classList.add('active');
-
-                // Update filter
-                this.activeFilters.complexity = e.target.dataset.complexity;
-                this.filterComponents();
-                this.renderComponents();
-            }
-        });
-
-        // 🖼️ View toggle
-        document.getElementById('gridView').addEventListener('click', () => {
-            this.currentView = 'grid';
-            this.updateViewButtons();
-            this.renderComponents();
-        });
-
-        document.getElementById('listView').addEventListener('click', () => {
-            this.currentView = 'list';
-            this.updateViewButtons();
-            this.renderComponents();
-        });
-
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark');
-                this.updateThemeToggleIcon();
-                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-            });
-        }
-
-        // Modal functionality
-
-        this.setupModalListeners();
-    }
-
-
-    searchInput.addEventListener("input", (e) => {
+    searchInput.addEventListener('input', (e) => {
       this.activeFilters.search = e.target.value.toLowerCase();
       this.filterComponents();
       this.renderComponents();
     });
 
-    clearSearch.addEventListener("click", () => {
-      searchInput.value = "";
-      this.activeFilters.search = "";
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      this.activeFilters.search = '';
       this.filterComponents();
       this.renderComponents();
     });
 
     // 📂 Category filters
-    document
-      .getElementById("categoryFilters")
-      .addEventListener("click", (e) => {
-        if (e.target.classList.contains("filter-btn")) {
-          // Update active button
-          document
-            .querySelectorAll("#categoryFilters .filter-btn")
-            .forEach((btn) => {
-              btn.classList.remove("active");
-            });
-          e.target.classList.add("active");
+    document.getElementById('categoryFilters').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        // Update active button
+        document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        e.target.classList.add('active');
 
-          // Update filter
-          this.activeFilters.category = e.target.dataset.category;
-          this.filterComponents();
-          this.renderComponents();
-        }
-      });
+        // Update filter
+        this.activeFilters.category = e.target.dataset.category;
+        this.filterComponents();
+        this.renderComponents();
+      }
+    });
 
     // 🧠 Complexity filters
-    document
-      .getElementById("complexityFilters")
-      .addEventListener("click", (e) => {
-        if (e.target.classList.contains("filter-btn")) {
-          // Update active button
-          document
-            .querySelectorAll("#complexityFilters .filter-btn")
-            .forEach((btn) => {
-              btn.classList.remove("active");
-            });
-          e.target.classList.add("active");
+    document.getElementById('complexityFilters').addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        // Update active button
+        document.querySelectorAll('#complexityFilters .filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        e.target.classList.add('active');
 
-          // Update filter
-          this.activeFilters.complexity = e.target.dataset.complexity;
-          this.filterComponents();
-          this.renderComponents();
-        }
-      });
+        // Update filter
+        this.activeFilters.complexity = e.target.dataset.complexity;
+        this.filterComponents();
+        this.renderComponents();
+      }
+    });
 
     // 🖼️ View toggle
-    document.getElementById("gridView").addEventListener("click", () => {
-      this.currentView = "grid";
+    document.getElementById('gridView').addEventListener('click', () => {
+      this.currentView = 'grid';
       this.updateViewButtons();
       this.renderComponents();
     });
 
-    document.getElementById("listView").addEventListener("click", () => {
-      this.currentView = "list";
+    document.getElementById('listView').addEventListener('click', () => {
+      this.currentView = 'list';
       this.updateViewButtons();
       this.renderComponents();
     });
 
-    // 🪟 Modal functionality
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        this.updateThemeToggleIcon();
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      });
+    }
+
+    // Modal functionality
+
     this.setupModalListeners();
   }
 
-  // 🔍 Filter components based on active filters
-  filterComponents() {
-    this.filteredComponents = this.components.filter((component) => {
-      const matchesSearch =
-        this.activeFilters.search === "" ||
-        component.title.toLowerCase().includes(this.activeFilters.search) ||
-        component.description
-          .toLowerCase()
-          .includes(this.activeFilters.search) ||
-        component.tags.some((tag) =>
-          tag.toLowerCase().includes(this.activeFilters.search)
-        );
 
-      const matchesCategory =
-        this.activeFilters.category === "all" ||
-        component.category === this.activeFilters.category;
+    searchInput.addEventListener("input", (e) => {
+  this.activeFilters.search = e.target.value.toLowerCase();
+  this.filterComponents();
+  this.renderComponents();
+});
 
-      const matchesComplexity =
-        this.activeFilters.complexity === "all" ||
-        component.complexity === this.activeFilters.complexity;
+clearSearch.addEventListener("click", () => {
+  searchInput.value = "";
+  this.activeFilters.search = "";
+  this.filterComponents();
+  this.renderComponents();
+});
 
-      return matchesSearch && matchesCategory && matchesComplexity;
-    });
+// 📂 Category filters
+document
+  .getElementById("categoryFilters")
+  .addEventListener("click", (e) => {
+    if (e.target.classList.contains("filter-btn")) {
+      // Update active button
+      document
+        .querySelectorAll("#categoryFilters .filter-btn")
+        .forEach((btn) => {
+          btn.classList.remove("active");
+        });
+      e.target.classList.add("active");
+
+      // Update filter
+      this.activeFilters.category = e.target.dataset.category;
+      this.filterComponents();
+      this.renderComponents();
+    }
+  });
+
+// 🧠 Complexity filters
+document
+  .getElementById("complexityFilters")
+  .addEventListener("click", (e) => {
+    if (e.target.classList.contains("filter-btn")) {
+      // Update active button
+      document
+        .querySelectorAll("#complexityFilters .filter-btn")
+        .forEach((btn) => {
+          btn.classList.remove("active");
+        });
+      e.target.classList.add("active");
+
+      // Update filter
+      this.activeFilters.complexity = e.target.dataset.complexity;
+      this.filterComponents();
+      this.renderComponents();
+    }
+  });
+
+// 🖼️ View toggle
+document.getElementById("gridView").addEventListener("click", () => {
+  this.currentView = "grid";
+  this.updateViewButtons();
+  this.renderComponents();
+});
+
+document.getElementById("listView").addEventListener("click", () => {
+  this.currentView = "list";
+  this.updateViewButtons();
+  this.renderComponents();
+});
+
+// 🪟 Modal functionality
+this.setupModalListeners();
   }
 
-  // 🔄 Update view toggle buttons
-  updateViewButtons() {
-    document
-      .querySelectorAll(".view-btn")
-      .forEach((btn) => btn.classList.remove("active"));
-    document.getElementById(this.currentView + "View").classList.add("active");
-  }
+// 🔍 Filter components based on active filters
+filterComponents() {
+  this.filteredComponents = this.components.filter((component) => {
+    const matchesSearch =
+      this.activeFilters.search === "" ||
+      component.title.toLowerCase().includes(this.activeFilters.search) ||
+      component.description
+        .toLowerCase()
+        .includes(this.activeFilters.search) ||
+      component.tags.some((tag) =>
+        tag.toLowerCase().includes(this.activeFilters.search)
+      );
 
-  // 🎨 Render components grid
-  renderComponents() {
-    const grid = document.getElementById("componentsGrid");
-    const noResults = document.getElementById("noResults");
+    const matchesCategory =
+      this.activeFilters.category === "all" ||
+      component.category === this.activeFilters.category;
 
-    // Update grid class for view type
-    grid.className = `components-grid ${
-      this.currentView === "list" ? "list-view" : ""
+    const matchesComplexity =
+      this.activeFilters.complexity === "all" ||
+      component.complexity === this.activeFilters.complexity;
+
+    return matchesSearch && matchesCategory && matchesComplexity;
+  });
+}
+
+// 🔄 Update view toggle buttons
+updateViewButtons() {
+  document
+    .querySelectorAll(".view-btn")
+    .forEach((btn) => btn.classList.remove("active"));
+  document.getElementById(this.currentView + "View").classList.add("active");
+}
+
+// 🎨 Render components grid
+renderComponents() {
+  const grid = document.getElementById("componentsGrid");
+  const noResults = document.getElementById("noResults");
+
+  // Update grid class for view type
+  grid.className = `components-grid ${this.currentView === "list" ? "list-view" : ""
     }`;
 
-    if (this.filteredComponents.length === 0) {
-      grid.innerHTML = "";
-      noResults.style.display = "block";
-      return;
-    }
+  if (this.filteredComponents.length === 0) {
+    grid.innerHTML = "";
+    noResults.style.display = "block";
+    return;
+  }
 
-    noResults.style.display = "none";
+  noResults.style.display = "none";
 
-    grid.innerHTML = this.filteredComponents
-      .map(
-        (component) => `
-            <div class="component-card fade-in" data-component-id="${
-              component.id
-            }">
+  grid.innerHTML = this.filteredComponents
+    .map(
+      (component) => `
+            <div class="component-card fade-in" data-component-id="${component.id
+        }">
                 <div class="card-header">
                     <h3 class="component-title">${component.title}</h3>
-                    <span class="component-category">${
-                      component.category
-                    }</span>
+                    <span class="component-category">${component.category
+        }</span>
                 </div>
                 
                 <p class="component-description">${component.description}</p>
@@ -1155,199 +1148,196 @@ This background is subtle, modern, and ideal for landing pages, hero sections, o
                 <div class="card-footer">
                     <div class="component-tags">
                         ${component.tags
-                          .map((tag) => `<span class="tag">${tag}</span>`)
-                          .join("")}
+          .map((tag) => `<span class="tag">${tag}</span>`)
+          .join("")}
                     </div>
-                    <span class="complexity-badge complexity-${
-                      component.complexity
-                    }">
+                    <span class="complexity-badge complexity-${component.complexity
+        }">
                         ${component.complexity}
                     </span>
                 </div>
             </div>
         `
-      )
-      .join("");
+    )
+    .join("");
 
-    // Add click listeners to cards
-    grid.querySelectorAll(".component-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const componentId = card.dataset.componentId;
-        this.openComponentModal(componentId);
-      });
+  // Add click listeners to cards
+  grid.querySelectorAll(".component-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const componentId = card.dataset.componentId;
+      this.openComponentModal(componentId);
     });
-  }
+  });
+}
 
-  // 🪟 Modal functionality
-  setupModalListeners() {
-    const modal = document.getElementById("componentModal");
-    const closeBtn = document.getElementById("modalClose");
+// 🪟 Modal functionality
+setupModalListeners() {
+  const modal = document.getElementById("componentModal");
+  const closeBtn = document.getElementById("modalClose");
 
-    // Close modal
-    closeBtn.addEventListener("click", () => {
+  // Close modal
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  // Close on overlay click
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
       modal.classList.remove("active");
-    });
-
-    // Close on overlay click
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.remove("active");
-      }
-    });
-
-    // Tab switching
-    document.querySelector(".modal-tabs").addEventListener("click", (e) => {
-      if (e.target.classList.contains("tab-btn")) {
-        const tabName = e.target.dataset.tab;
-        this.switchTab(tabName);
-      }
-    });
-
-    // Copy code functionality
-    document.addEventListener("click", (e) => {
-      if (
-        e.target.classList.contains("copy-code-btn") ||
-        e.target.closest(".copy-code-btn")
-      ) {
-        const btn = e.target.classList.contains("copy-code-btn")
-          ? e.target
-          : e.target.closest(".copy-code-btn");
-        this.copyCode(btn);
-      }
-    });
-  }
-
-  // 📂 Open component modal
-  openComponentModal(componentId) {
-    const component = this.components.find((c) => c.id === componentId);
-    if (!component) return;
-
-    const modal = document.getElementById("componentModal");
-    const modalTitle = document.getElementById("modalTitle");
-
-    // Set modal title
-    modalTitle.textContent = component.title;
-
-    // Populate content
-    this.populateModalContent(component);
-
-    // Show modal
-    modal.classList.add("active");
-
-    // Switch to preview tab by default
-    this.switchTab("preview");
-  }
-
-  // 📦 Populate modal content
-  populateModalContent(component) {
-    // Preview tab
-    document.getElementById("componentPreview").innerHTML = component.preview;
-
-    // Code tab
-    document.getElementById("htmlCode").textContent = component.html;
-    document.getElementById("cssCode").textContent = component.css;
-
-    const jsSection = document.getElementById("jsCodeSection");
-    if (component.js) {
-      document.getElementById("jsCode").textContent = component.js;
-      jsSection.style.display = "block";
-    } else {
-      jsSection.style.display = "none";
     }
+  });
 
-    // Usage tab
-    document.getElementById("usageContent").innerHTML = component.usage;
-
-    // Customization tab
-    document.getElementById("customizationContent").innerHTML =
-      component.customization;
-
-    // Trigger Prism.js syntax highlighting
-    if (window.Prism) {
-      Prism.highlightAll();
+  // Tab switching
+  document.querySelector(".modal-tabs").addEventListener("click", (e) => {
+    if (e.target.classList.contains("tab-btn")) {
+      const tabName = e.target.dataset.tab;
+      this.switchTab(tabName);
     }
+  });
+
+  // Copy code functionality
+  document.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("copy-code-btn") ||
+      e.target.closest(".copy-code-btn")
+    ) {
+      const btn = e.target.classList.contains("copy-code-btn")
+        ? e.target
+        : e.target.closest(".copy-code-btn");
+      this.copyCode(btn);
+    }
+  });
+}
+
+// 📂 Open component modal
+openComponentModal(componentId) {
+  const component = this.components.find((c) => c.id === componentId);
+  if (!component) return;
+
+  const modal = document.getElementById("componentModal");
+  const modalTitle = document.getElementById("modalTitle");
+
+  // Set modal title
+  modalTitle.textContent = component.title;
+
+  // Populate content
+  this.populateModalContent(component);
+
+  // Show modal
+  modal.classList.add("active");
+
+  // Switch to preview tab by default
+  this.switchTab("preview");
+}
+
+// 📦 Populate modal content
+populateModalContent(component) {
+  // Preview tab
+  document.getElementById("componentPreview").innerHTML = component.preview;
+
+  // Code tab
+  document.getElementById("htmlCode").textContent = component.html;
+  document.getElementById("cssCode").textContent = component.css;
+
+  const jsSection = document.getElementById("jsCodeSection");
+  if (component.js) {
+    document.getElementById("jsCode").textContent = component.js;
+    jsSection.style.display = "block";
+  } else {
+    jsSection.style.display = "none";
   }
 
-  // Switch modal tabs
-  switchTab(tabName) {
-    // Update tab buttons
-    document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.classList.remove("active");
-    });
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
+  // Usage tab
+  document.getElementById("usageContent").innerHTML = component.usage;
 
-    // Update tab content
-    document.querySelectorAll(".tab-pane").forEach((pane) => {
-      pane.classList.remove("active");
-    });
-    document.getElementById(tabName + "Tab").classList.add("active");
+  // Customization tab
+  document.getElementById("customizationContent").innerHTML =
+    component.customization;
+
+  // Trigger Prism.js syntax highlighting
+  if (window.Prism) {
+    Prism.highlightAll();
   }
+}
+
+// Switch modal tabs
+switchTab(tabName) {
+  // Update tab buttons
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.classList.remove("active");
+  });
+  document.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
+
+  // Update tab content
+  document.querySelectorAll(".tab-pane").forEach((pane) => {
+    pane.classList.remove("active");
+  });
+  document.getElementById(tabName + "Tab").classList.add("active");
+}
 
   // Copy code to clipboard
   async copyCode(button) {
-    const codeType = button.dataset.codeType;
-    let codeElement;
+  const codeType = button.dataset.codeType;
+  let codeElement;
 
-    switch (codeType) {
-      case "html":
-        codeElement = document.getElementById("htmlCode");
-        break;
-      case "css":
-        codeElement = document.getElementById("cssCode");
-        break;
-      case "js":
-        codeElement = document.getElementById("jsCode");
-        break;
-      default:
-        return;
-    }
+  switch (codeType) {
+    case "html":
+      codeElement = document.getElementById("htmlCode");
+      break;
+    case "css":
+      codeElement = document.getElementById("cssCode");
+      break;
+    case "js":
+      codeElement = document.getElementById("jsCode");
+      break;
+    default:
+      return;
+  }
 
-    try {
-      await navigator.clipboard.writeText(codeElement.textContent);
+  try {
+    await navigator.clipboard.writeText(codeElement.textContent);
 
-      // Visual feedback
-      const originalText = button.innerHTML;
-      button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-      button.classList.add("copied");
+    // Visual feedback
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    button.classList.add("copied");
 
-      setTimeout(() => {
-        button.innerHTML = originalText;
-        button.classList.remove("copied");
-      }, 2000);
-    } catch (err) {
-      console.error("Failed to copy code:", err);
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.classList.remove("copied");
+    }, 2000);
+  } catch (err) {
+    console.error("Failed to copy code:", err);
 
-      // Fallback for older browsers
-      const textArea = document.createElement("textarea");
-      textArea.value = codeElement.textContent;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
+    // Fallback for older browsers
+    const textArea = document.createElement("textarea");
+    textArea.value = codeElement.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
 
-      // Visual feedback
-      const originalText = button.innerHTML;
-      button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-      button.classList.add("copied");
+    // Visual feedback
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    button.classList.add("copied");
 
-      setTimeout(() => {
-        button.innerHTML = originalText;
-        button.classList.remove("copied");
-      }, 2000);
-    }
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.classList.remove("copied");
+    }, 2000);
   }
 }
- 
+
 // 🚀 Initialize the component documentation system
 document.addEventListener('DOMContentLoaded', () => {
-    new ComponentDocumentation();
+  new ComponentDocumentation();
 });
-
 
 // 🌙 Theme toggle functionality (if not already handled by main script.js)
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body; 
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
@@ -1376,44 +1366,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
- 
+
 // 📱 Mobile menu toggle functionality
 
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-    const navRight = document.querySelector('.nav-right');
-    
-    if (menuToggle && navRight) {
-        menuToggle.addEventListener('click', () => {
-            navRight.classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !navRight.contains(e.target)) {
-                navRight.classList.remove('active');
-            }
-        });
-
+  const menuToggle = document.getElementById('menuToggle');
+  const navRight = document.querySelector('.nav-right');
 
   if (menuToggle && navRight) {
-    menuToggle.addEventListener("click", () => {
-      navRight.classList.toggle("active");
+    menuToggle.addEventListener('click', () => {
+      navRight.classList.toggle('active');
     });
 
     // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (!menuToggle.contains(e.target) && !navRight.contains(e.target)) {
-        navRight.classList.remove("active");
+        navRight.classList.remove('active');
       }
     });
 
-    // Close menu when clicking on a nav link
-    const navLinks = navRight.querySelectorAll("a");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navRight.classList.remove("active");
+
+    if (menuToggle && navRight) {
+      menuToggle.addEventListener("click", () => {
+        navRight.classList.toggle("active");
       });
-    });
-  }
-});
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!menuToggle.contains(e.target) && !navRight.contains(e.target)) {
+          navRight.classList.remove("active");
+        }
+      });
+
+      // Close menu when clicking on a nav link
+      const navLinks = navRight.querySelectorAll("a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navRight.classList.remove("active");
+        });
+      });
+    }
+  });
