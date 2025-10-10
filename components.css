@@ -223,6 +223,7 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(to right, var(--primary), var(--accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1008,6 +1009,7 @@ code {
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(to right, var(--primary), var(--accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -1194,6 +1196,27 @@ code {
     .docs-subtitle {
         font-size: 1rem;
     }
+}
+
+/* 🔒 Force light look on components page even if dark theme toggled */
+body[data-theme="dark"] {
+    /* Re-apply light palette to keep page white */
+    --primary: #6c63ff;
+    --primary-light: #8a84ff;
+    --primary-dark: #554fd8;
+    --secondary: #ff6584;
+    --accent: #36d1dc;
+    --text: #1a202c;
+    --text-light: #64748b;
+    --bg: #ffffff;               /* white background */
+    --bg-secondary: #f5f7fa;
+    --bg-tertiary: #e9ecef;
+    --border: #dee2e6;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --nav-secondary-bg: #ffffff;
+
+    color: var(--text);
+    background-color: var(--bg);
 }
 
 @media (max-width: 768px) {
