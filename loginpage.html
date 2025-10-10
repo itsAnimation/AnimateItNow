@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - AnimateItNow</title>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="signup.css">
-  
+
   <!-- 🎯 Additional CSS for accessibility and enhancements -->
   <style>
     /* Accessibility improvements */
@@ -21,19 +22,21 @@
       white-space: nowrap;
       border: 0;
     }
-    
+
     /* Focus styles for better accessibility */
-    input:focus, button:focus, a:focus {
+    input:focus,
+    button:focus,
+    a:focus {
       outline: 2px solid #4f46e5;
       outline-offset: 2px;
     }
-    
+
     /* Loading state */
     .loading {
       opacity: 0.7;
       pointer-events: none;
     }
-    
+
     /* Error states */
     .error-message {
       color: #dc2626;
@@ -41,16 +44,16 @@
       margin-top: 0.25rem;
       display: none;
     }
-    
+
     .input-error {
       border-color: #dc2626 !important;
     }
-    
+
     /* Success states */
     .input-success {
       border-color: #16a34a !important;
     }
-    
+
     /* Debug info (development only) */
     .debug-info {
       background: #f3f4f6;
@@ -64,10 +67,15 @@
     }
   </style>
 </head>
+
 <body>
   <!-- 🎯 Navigation with enhanced accessibility -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="logo" role="banner">AnimateItNow</div>
+    <div class="logo" role="banner">
+      <a href="index.html">
+        AnimateItNow
+      </a>
+    </div>
     <ul class="nav-links" role="menubar">
       <li role="none"><a href="index.html" role="menuitem">Home</a></li>
       <li role="none"><a href="signup.html" role="menuitem">Sign Up</a></li>
@@ -81,41 +89,25 @@
 
     <!-- 🎯 Debug information (development only) -->
     <div id="debugInfo" class="debug-info" role="complementary" aria-label="Debug information">
-      <strong>🔧 Debug Mode:</strong> 
+      <strong>🔧 Debug Mode:</strong>
       <span id="debugStatus">Ready</span>
     </div>
 
     <!-- 🎯 Enhanced form with accessibility features -->
     <form id="loginForm" role="form" aria-labelledby="loginHeading">
       <div class="visually-hidden" id="loginHeading">Login Form</div>
-      
+
       <div class="input-group">
         <label for="email" class="visually-hidden">Email Address</label>
-        <input 
-          type="email" 
-          id="email"
-          name="email"
-          placeholder="Email Address" 
-          required
-          aria-required="true"
-          aria-describedby="emailError"
-          autocomplete="email"
-        >
+        <input type="email" id="email" name="email" placeholder="Email Address" required aria-required="true"
+          aria-describedby="emailError" autocomplete="email">
         <div id="emailError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
 
       <div class="input-group">
         <label for="password" class="visually-hidden">Password</label>
-        <input 
-          type="password" 
-          id="password"
-          name="password"
-          placeholder="Password" 
-          required
-          aria-required="true"
-          aria-describedby="passwordError"
-          autocomplete="current-password"
-        >
+        <input type="password" id="password" name="password" placeholder="Password" required aria-required="true"
+          aria-describedby="passwordError" autocomplete="current-password">
         <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
 
@@ -125,11 +117,14 @@
       </button>
     </form>
 
-    <p class="switch">Don't have an account? <a href="signup.html" aria-label="Navigate to sign up page">Sign up here</a></p>
+    <p class="switch">Don't have an account? <a href="signup.html" aria-label="Navigate to sign up page">Sign up
+        here</a></p>
 
     <!-- 🎯 Accessibility helper -->
-    <div class="accessibility-helper" role="complementary" aria-label="Accessibility tips" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem; text-align: center;">
-      <strong>♿ Accessibility:</strong> Use Tab to navigate and Enter to submit. Screen reader users can navigate using standard form commands.
+    <div class="accessibility-helper" role="complementary" aria-label="Accessibility tips"
+      style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem; text-align: center;">
+      <strong>♿ Accessibility:</strong> Use Tab to navigate and Enter to submit. Screen reader users can navigate using
+      standard form commands.
     </div>
   </main>
 
@@ -137,7 +132,7 @@
     // 🎯 Debug logging helper
     const logDebug = (message, data = null) => {
       console.log(`🔐 LoginDebug: ${message}`, data ? data : '');
-      
+
       // Update debug info in development
       if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         const debugInfo = document.getElementById('debugInfo');
@@ -161,15 +156,15 @@
       loginAttempts: 0,
       lastAttempt: null,
       maxAttempts: 5,
-      
-      trackAttempt: function() {
+
+      trackAttempt: function () {
         this.loginAttempts++;
         this.lastAttempt = new Date();
         logDebug('🔒 Login attempt tracked', {
           attemptNumber: this.loginAttempts,
           timestamp: this.lastAttempt.toISOString()
         });
-        
+
         if (this.loginAttempts >= this.maxAttempts) {
           logDebug('🚨 Maximum login attempts reached', {
             attempts: this.loginAttempts,
@@ -177,92 +172,92 @@
           });
         }
       },
-      
-      resetAttempts: function() {
+
+      resetAttempts: function () {
         this.loginAttempts = 0;
         this.lastAttempt = null;
         logDebug('🔄 Login attempts reset');
       },
-      
-      isRateLimited: function() {
+
+      isRateLimited: function () {
         return this.loginAttempts >= this.maxAttempts;
       }
     };
 
     // 🎯 Form validation
     const formValidator = {
-      email: function(email) {
+      email: function (email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isValid = emailRegex.test(email);
-        
+
         logDebug('📧 Email validation', {
           email: email.substring(0, 3) + '...', // Partial logging for privacy
           isValid: isValid
         });
-        
+
         return isValid;
       },
-      
-      password: function(password) {
+
+      password: function (password) {
         const isValid = password.length >= 6;
-        
+
         logDebug('🔑 Password validation', {
           length: password.length,
           isValid: isValid
         });
-        
+
         return isValid;
       },
-      
-      showError: function(fieldId, message) {
+
+      showError: function (fieldId, message) {
         const field = document.getElementById(fieldId);
         const errorElement = document.getElementById(fieldId + 'Error');
-        
+
         if (field && errorElement) {
           field.classList.add('input-error');
           field.classList.remove('input-success');
           errorElement.textContent = message;
           errorElement.style.display = 'block';
-          
+
           logDebug('❌ Field error shown', { field: fieldId, message: message });
         }
       },
-      
-      showSuccess: function(fieldId) {
+
+      showSuccess: function (fieldId) {
         const field = document.getElementById(fieldId);
         const errorElement = document.getElementById(fieldId + 'Error');
-        
+
         if (field && errorElement) {
           field.classList.remove('input-error');
           field.classList.add('input-success');
           errorElement.style.display = 'none';
-          
+
           logDebug('✅ Field validation passed', { field: fieldId });
         }
       },
-      
-      clearErrors: function() {
+
+      clearErrors: function () {
         const errorElements = document.querySelectorAll('.error-message');
         const inputFields = document.querySelectorAll('input');
-        
+
         errorElements.forEach(el => {
           el.style.display = 'none';
           el.textContent = '';
         });
-        
+
         inputFields.forEach(field => {
           field.classList.remove('input-error', 'input-success');
         });
-        
+
         logDebug('🧹 All form errors cleared');
       }
     };
 
     // 🎯 Page initialization
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const loadStartTime = performance.now();
       logDebug('🚀 Login page initialized');
-      
+
       const form = document.getElementById('loginForm');
       const emailInput = document.getElementById('email');
       const passwordInput = document.getElementById('password');
@@ -277,7 +272,7 @@
       });
 
       // 🎯 Real-time validation
-      emailInput.addEventListener('blur', function() {
+      emailInput.addEventListener('blur', function () {
         if (this.value.trim()) {
           if (formValidator.email(this.value)) {
             formValidator.showSuccess('email');
@@ -287,7 +282,7 @@
         }
       });
 
-      passwordInput.addEventListener('blur', function() {
+      passwordInput.addEventListener('blur', function () {
         if (this.value.trim()) {
           if (formValidator.password(this.value)) {
             formValidator.showSuccess('password');
@@ -298,22 +293,22 @@
       });
 
       // 🎯 Form submission handler
-      form.addEventListener('submit', async function(event) {
+      form.addEventListener('submit', async function (event) {
         event.preventDefault();
-        
+
         const submitStartTime = performance.now();
         logDebug('🎯 Form submission started');
-        
+
         // Clear previous errors
         formValidator.clearErrors();
-        
+
         // Get form data
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
-        
+
         // Validate form
         let isValid = true;
-        
+
         if (!email) {
           formValidator.showError('email', 'Email is required');
           isValid = false;
@@ -321,7 +316,7 @@
           formValidator.showError('email', 'Please enter a valid email address');
           isValid = false;
         }
-        
+
         if (!password) {
           formValidator.showError('password', 'Password is required');
           isValid = false;
@@ -329,65 +324,65 @@
           formValidator.showError('password', 'Password must be at least 6 characters');
           isValid = false;
         }
-        
+
         if (!isValid) {
           logDebug('❌ Form validation failed', { email: !!email, password: !!password });
           return;
         }
-        
+
         // Check rate limiting
         if (securityMonitor.isRateLimited()) {
           formValidator.showError('password', 'Too many login attempts. Please try again later.');
           logDebug('🚨 Rate limiting applied', { attempts: securityMonitor.loginAttempts });
           return;
         }
-        
+
         // Track login attempt
         securityMonitor.trackAttempt();
-        
+
         // Show loading state
         loginButton.disabled = true;
         loginButton.classList.add('loading');
         buttonText.style.display = 'none';
         buttonSpinner.style.display = 'inline';
-        
+
         logDebug('⏳ Authentication in progress', {
           email: email.substring(0, 3) + '...', // Privacy-conscious logging
           attempt: securityMonitor.loginAttempts
         });
-        
+
         try {
           // Simulate API call (replace with actual authentication)
           await new Promise(resolve => setTimeout(resolve, 1500));
-          
+
           const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          
+
           // Simulate successful login (replace with actual success handling)
           logDebug('✅ Login successful', {
             duration: `${submitDuration.toFixed(2)}ms`,
             attempts: securityMonitor.loginAttempts
           });
-          
+
           // Reset attempts on success
           securityMonitor.resetAttempts();
-          
+
           // Show success message (replace with actual redirect)
           alert('Login successful! Redirecting...');
-          
+
           // Simulate redirect (replace with actual navigation)
           setTimeout(() => {
             window.location.href = 'dashboard.html';
           }, 1000);
-          
+
         } catch (error) {
           const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          
+
           logDebug('❌ Login failed', {
             error: error.message,
             duration: `${submitDuration.toFixed(2)}ms`,
             attempts: securityMonitor.loginAttempts
           });
-          
+
           formValidator.showError('password', 'Invalid email or password. Please try again.');
         } finally {
           // Reset loading state
@@ -399,14 +394,14 @@
       });
 
       // 🎯 Keyboard navigation enhancements
-      document.addEventListener('keydown', function(event) {
+      document.addEventListener('keydown', function (event) {
         // Escape key to clear form
         if (event.key === 'Escape') {
           form.reset();
           formValidator.clearErrors();
           logDebug('⌨️ Form cleared with Escape key');
         }
-        
+
         // Ctrl+Enter to submit form
         if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
           event.preventDefault();
@@ -418,13 +413,13 @@
       // 🎯 Input field tracking for analytics
       const inputs = document.querySelectorAll('input');
       inputs.forEach(input => {
-        input.addEventListener('focus', function() {
+        input.addEventListener('focus', function () {
           logDebug('🎯 Field focused', { field: this.id });
         });
-        
-        input.addEventListener('input', function() {
-          logDebug('📝 Field input', { 
-            field: this.id, 
+
+        input.addEventListener('input', function () {
+          logDebug('📝 Field input', {
+            field: this.id,
             valueLength: this.value.length,
             hasValue: !!this.value.trim()
           });
@@ -435,7 +430,7 @@
     });
 
     // 🎯 Error boundary for unhandled errors
-    window.addEventListener('error', function(event) {
+    window.addEventListener('error', function (event) {
       logDebug('🚨 Unhandled error', {
         message: event.message,
         filename: event.filename,
@@ -445,12 +440,13 @@
     });
 
     // 🎯 Page visibility tracking
-    document.addEventListener('visibilitychange', function() {
-      logDebug('👀 Page visibility changed', { 
+    document.addEventListener('visibilitychange', function () {
+      logDebug('👀 Page visibility changed', {
         hidden: document.hidden,
         visibilityState: document.visibilityState
       });
     });
   </script>
 </body>
+
 </html>

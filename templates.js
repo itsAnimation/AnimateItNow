@@ -31,13 +31,13 @@ categoryButtonElements.forEach(button => {
     // Update active button state
     categoryButtonElements.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
-    
+
     // Set current active category
     currentActiveCategory = button.dataset.category;
-    
+
     // Apply template filtering
     applyTemplateFiltering();
-    
+
     // Collapse dropdown after selection
     categoryFilterContainer.classList.remove("show");
   });
@@ -51,13 +51,13 @@ function applyTemplateFiltering() {
   templateCardElements.forEach((cardElement) => {
     const cardTitle = cardElement.querySelector("h2").textContent.trim().toLowerCase();
     const cardCategory = cardElement.dataset.category;
-    
+
     // Verify if card matches search criteria
     const matchesSearchQuery = searchQuery === "" || cardTitle.includes(searchQuery);
-    
+
     // Verify if card matches category filter
     const matchesCategoryFilter = currentActiveCategory === "all" || cardCategory === currentActiveCategory;
-    
+
     // Display logic based on filter conditions
     if (matchesSearchQuery && matchesCategoryFilter) {
       cardElement.style.display = "";
@@ -112,7 +112,7 @@ if (animationTarget) {
     } else {
       animationTarget.textContent = currentAnimationText.substring(0, currentCharIndex++);
     }
-    
+
     // Completed typing full text
     if (!isDeletingMode && currentCharIndex === currentAnimationText.length + 1) {
       setTimeout(() => {
@@ -132,7 +132,7 @@ if (animationTarget) {
     // Deletion occurs at faster rate than typing
     setTimeout(executeTypeAnimation, isDeletingMode ? animationSpeed / 2 : animationSpeed);
   }
-  
+
   executeTypeAnimation(); // Initialize animation sequence
 }
 
