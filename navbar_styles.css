@@ -186,7 +186,19 @@
             background-color: rgba(18, 18, 18, 0.95);
         }
 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
         .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-right {
+            min-width: 0;  /* Allows flex children to shrink */
+            overflow-x: auto; /* Prevents overflow on small screens */
             display: flex;
             align-items: center;
         }
@@ -206,15 +218,11 @@
 
         
         .nav-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-}
+            display: flex;
+            list-style:none;
+            flex-wrap: wrap; 
+            min-width: 0;
+        }
 
         .nav-links li {
             margin-left: 20px;
@@ -432,7 +440,7 @@
             height: 100%;
             width:100%;
             max-width: 1200px;
-             margin: 0 auto;
+            margin: 0 auto;
             position: relative;
         }
 
@@ -525,4 +533,58 @@
 /* Hamburger always right */
 .hamburger {
     margin-left: 10px;
+}
+
+/*changed,for overriding earlier navbar rules*/
+.navbar .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* balance logo and nav */
+    overflow:hidden;
+}
+
+/* logo area stays fixed width */
+.navbar .home-link,
+.navbar .nav-left,
+.navbar .logo-container {
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 0;
+    align-items: center;
+    white-space: nowrap;
+    gap: 8px;
+}
+
+.navbar .logo {
+  height: 28px; /* slightly smaller logo */
+  width: auto;
+  margin: 0;
+}
+.navbar .site-name {
+    font-size: 1rem; /* smaller text */
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    color:inherit
+    /* display: inline-block;
+    vertical-align: middle; */
+}
+
+.navbar .nav-right {
+    display:flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    min-width:min-content;
+    overflow-x: auto;
+    margin-left: auto;
+}
+.navbar .nav-links {
+  flex: 0 1 auto;
+  gap: 18px;
+  white-space: nowrap;
+  min-width: max-content
 }
