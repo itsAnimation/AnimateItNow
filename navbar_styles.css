@@ -186,7 +186,19 @@
             background-color: rgba(18, 18, 18, 0.95);
         }
 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
         .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-right {
+            min-width: 0;  /* Allows flex children to shrink */
+            overflow-x: auto; /* Prevents overflow on small screens */
             display: flex;
             align-items: center;
         }
@@ -206,15 +218,11 @@
 
         
         .nav-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-}
+            display: flex;
+            list-style:none;
+            flex-wrap: wrap; 
+            min-width: 0;
+        }
 
         .nav-links li {
             margin-left: 20px;
@@ -432,7 +440,7 @@
             height: 100%;
             width:100%;
             max-width: 1200px;
-             margin: 0 auto;
+            margin: 0 auto;
             position: relative;
         }
 
@@ -525,4 +533,36 @@
 /* Hamburger always right */
 .hamburger {
     margin-left: 10px;
+}
+
+/*changed,for overriding earlier navbar rules*/
+.navbar .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* logo area stays fixed width */
+.navbar .nav-left,
+.navbar .logo-container {
+    flex: 0 1 auto;
+    min-width: 1.3rem;
+}
+
+.navbar .nav-right {
+    display:flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    min-width:0;
+    overflow-x: auto;
+}
+.navbar .nav-links {
+  flex: 0 1 auto;
+  gap: 18px;
+  white-space: nowrap;
+  min-width: max-content
 }
