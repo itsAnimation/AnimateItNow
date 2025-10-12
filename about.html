@@ -57,12 +57,7 @@
       --border: #404040;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       /* 🔹 DARK MODE FIX: Ensures active link/icon are light against dark background */
-.dark-theme .nav-links a.active,
-.dark-theme .nav-links a.active i.fas {
-    /* Set to the primary accent color or the main light text color */
-    color: var(--accent) !important; /* Using --accent (e.g., #4dd0e1) for a neon glow effect */
-    text-shadow: 0 0 5px rgba(77, 208, 225, 0.5); /* Optional: Add a subtle glow */
-}
+
     }
 
     /* 🏗️ Base Styles */
@@ -181,44 +176,11 @@
       color: white;
     }
 
-    /* 🧭 Header/Navigation */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: var(--header-height);
-      background-color: var(--bg);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-      z-index: 999;
-      transition: var(--transition);
-    }
+    
 
-    .dark-theme .navbar {
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    }
+    
 
-    .navbar.scrolled {
-      height: 70px;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-    }
-
-    .dark-theme .navbar.scrolled {
-      background-color: rgba(18, 18, 18, 0.95);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 100%;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
+    
 
     .logo {
       height: 40px;
@@ -233,87 +195,16 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav-links li {
-      margin-left: 30px;
-      display: flex;
-      align-items: center;
-    }
 
     /* In styles.css (around line 290) */
-.nav-links a {
-  color: var(--nav-text-60);
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 8px 10px;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 500;
-  display: flex;       /* Make it a flex container */
-  align-items: center; /* Vertically center icon and text */
-  gap: 6px;            /* Space between icon and text */
-}
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
 
-    
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    /* 🔹 NEW CSS BLOCK: Base styling for icons */
-.nav-links a i.fas {
-  font-size: 1.2rem; /* Match the text size */
-  /* color: var(--nav-text-60); Default color (faded white) */
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  color: #6c67ff;
-}
-
-.nav-links a.active {
-  color: var(--primary) !important; /* Use the theme's primary color (e.g., #6c63ff) */
-  text-shadow: 0 0 4px rgba(108, 99, 255, 0.3); /* Add subtle shadow */
-  font-weight: 800;
-  font-size: 1.1rem; /* Adjust to a more reasonable size */
-}
-
-/* 🔹 NEW: Active icon style */
-.nav-links a.active i.fas {
-  /* color: var(--primary) !important; */
-  color: var(--accent);
-  font-size: 1.1rem; /* Match the larger active text size */
-}
-
-.nav-links a:hover {
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4); 
-  background: linear-gradient(135deg, #18FFFF, #00FFC0, #3B82F6);
-  -webkit-background-clip: text;
-  color: #4843d9;
   
-  /* 3. Keep movement and shadow */
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
-  font-weight: 500;
-}
 
 
 
-    /* About Page Styles */
+
+
 
     .about-main {
       padding-top: var(--header-height);
@@ -528,43 +419,18 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="./navbar_styles.css">
+  <!-- <link rel="stylesheet" href="./navbar_styles.css"> -->
 </head>
 
 <body>
+  <div id="navbar"></div>
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
 
-  <nav class="navbar scroll-fade">
-    <div class="nav-left">
-      <a href="index.html" class="home-link">
-        <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-        <span class="site-name">Animate It Now</span>
-      </a>
-    </div>
-    <div class="nav-right">
-        <ul class="nav-links">
-  <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-  
-  <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
-  
-  <li><a href="templates.html"><i class="fas fa-th-large"></i> Templates</a></li>
-  
-  <li><a href="components.html"><i class="fas fa-puzzle-piece"></i> Components</a></li>
-  
-  <li><a href="editor.html" target="_blank"><i class="fas fa-code"></i> Editor</a></li>
-  
-  <li><a href="playground.html" style="white-space: nowrap"><i class="fas fa-magic"></i> Hover-Effects</a></li>
-  
-  <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
-  
-  <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-  
-  <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>  
-  
-  </ul>
-        </ul>
-      </div>
-    </nav>
-
+  <!-- <iframe src="nav.html" frameborder="0"></iframe> -->
     <main class="about-main">
       <section class="about-header">
         <div class="container">
