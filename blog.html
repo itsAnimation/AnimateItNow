@@ -1337,38 +1337,13 @@
 
     <!-- Header/Navigation -->
     <header class="header">
-        <div class="container nav-container">
-            <div class="logo-container">
-                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-                <span class="site-name">AnimateItNow</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="editor.html">Editor</a></li>
-                <li><a href="playground.html">Hover Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <li>
-                  <label class="switch" title="Toggle Snake Cursor">
-                    <input type="checkbox" id="cursorToggle" />
-                    <span class="slider round"></span>
-                  </label>
-                </li>
-            </ul>
-            <div class="nav-actions">
-                <a href="loginpage.html" class="btn btn-outline">Login</a>
-                <a href="signup.html" class="btn">Sign Up</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
+         <div id="navbar"></div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
     </header>
 
     <!-- Blog Section -->

@@ -492,75 +492,13 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-left">
-          <a href="index.html">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-          </a>
-          <span class="site-name">Animate It Now</span>
-        </div>
+<div id="navbar"></div>
 
-        <div class="nav-right">
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Toggle theme"
-          >
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon" style="display: none"></i>
-          </button>
-
-          <button class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
-          <ul class="nav-links" id="navLinks">
-            <li>
-              <a href="index.html"><i class="fas fa-home"></i> Home</a>
-            </li>
-            <li>
-              <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-            </li>
-            <li>
-              <a href="templates.html"
-                ><i class="fas fa-th-large"></i> Templates</a
-              >
-            </li>
-            <li>
-              <a href="components.html"
-                ><i class="fas fa-puzzle-piece"></i> Components</a
-              >
-            </li>
-            <li>
-              <a href="editor.html" target="_blank"
-                ><i class="fas fa-code"></i> Editor</a
-              >
-            </li>
-            <li>
-              <a href="playground.html"
-                ><i class="fas fa-magic"></i> Hover-Effects</a
-              >
-            </li>
-            <li>
-              <a href="contributors.html"
-                ><i class="fas fa-users"></i> Contributors</a
-              >
-            </li>
-            <li>
-              <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-            </li>
-            <li>
-              <a href="leaderboard.html"
-                ><i class="fas fa-trophy"></i> Leaderboard</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
 
     <main>
       <section>
