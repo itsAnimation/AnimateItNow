@@ -1,34 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - AnimateItNow</title>
-  <link rel="icon" href="favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="signup.css">
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">AnimateItNow</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="loginpage.html">Login</a></li>
-    </ul>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - AnimateItNow</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="signup.css" />
+  </head>
 
-  <section class="form-container">
-    <h1>Create an Account</h1>
-    <p class="subtitle">Join us to contribute, learn, and inspire others!</p>
+  <body data-theme="light">
+    <!-- Header/Navigation -->
+    <header class="main-primary-bar header" id="main-header">
+      <div class="container nav-container">
+        <div class="logo-container">
+          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+          <a href="index.html" class="site-name-link">
+            <span class="site-name"> Animate It Now </span>
+          </a>
+        </div>
 
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Confirm Password" required>
-      <button type="submit" class="btn">Sign Up</button>
-    </form>
+        <ul class="nav-links desktop-only" id="desktop-links">
+          <li>
+            <a href="index.html">
+              <i class="fas fa-home" style="margin-right: 5px"></i> Home
+            </a>
+          </li>
 
-    <p class="switch">Already have an account? <a href="loginpage.html">Login here</a></p>
-  </section>
-</body>
+          <li>
+            <a href="templates.html">
+              <i class="fas fa-palette" style="margin-right: 5px"></i> Templates
+            </a>
+          </li>
+
+          <li>
+            <a href="components.html">
+              <i class="fas fa-cube" style="margin-right: 5px"></i> Components
+            </a>
+          </li>
+
+          <li>
+            <a href="playground.html">
+              <i class="fas fa-mouse-pointer" style="margin-right: 5px"></i>
+              Hover Effects
+            </a>
+          </li>
+
+          <li>
+            <a href="contributors.html">
+              <i class="fas fa-users" style="margin-right: 5px"></i>
+              Contributors
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="loginpage.html" class="btn btn-outline">Login</a>
+          <a href="signup.html" class="btn">Sign Up</a>
+
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <a
+            href="https://github.com/itsAnimation/AnimateItNow"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Repo"
+            class="github-icon-sm"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu-container">
+      <div class="mobile-menu-links">
+        <div class="mobile-link-item">
+          <a href="index.html">
+            <i class="fas fa-home" style="margin-right: 10px"></i> Home
+          </a>
+        </div>
+
+        <div class="mobile-link-item">
+          <a href="templates.html">
+            <i class="fas fa-palette" style="margin-right: 10px"></i> Templates
+          </a>
+        </div>
+
+        <div class="mobile-link-item">
+          <a href="components.html">
+            <i class="fas fa-cube" style="margin-right: 10px"></i> Components
+          </a>
+        </div>
+
+        <div class="mobile-link-item">
+          <a href="playground.html">
+            <i class="fas fa-mouse-pointer" style="margin-right: 10px"></i>
+            Hover Effects
+          </a>
+        </div>
+
+        <div class="mobile-link-item">
+          <a href="contributors.html">
+            <i class="fas fa-users" style="margin-right: 10px"></i> Contributors
+          </a>
+        </div>
+
+        <div class="mobile-link-item">
+          <a href="loginpage.html">
+            <i class="fas fa-sign-in-alt" style="margin-right: 10px"></i> Login
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <section class="signup-container">
+        <div class="signup-header">
+          <h1>Create an Account</h1>
+          <p>Join our community to create amazing animations</p>
+        </div>
+
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                id="fullname"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                placeholder="Create a strong password"
+                required
+              />
+              <span class="password-toggle" id="togglePassword">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+            <div class="password-strength">
+              <div class="strength-bar"></div>
+              <span class="strength-text">Password strength</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm your password"
+                required
+              />
+              <span class="password-toggle" id="toggleConfirmPassword">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="terms">
+            <input type="checkbox" id="terms" required />
+            <label for="terms"
+              >I agree to the <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a></label
+            >
+          </div>
+
+          <button type="submit" class="signup-btn">Create Account</button>
+
+          <div class="divider">
+            <span>Or sign up with</span>
+          </div>
+
+          <div class="social-login">
+            <button type="button" class="social-btn google">
+              <i class="fab fa-google"></i> Google
+            </button>
+            <button type="button" class="social-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+
+          <p class="switch">
+            Already have an account? <a href="loginpage.html">Login here</a>
+          </p>
+        </form>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="footer-logo">
+              <img src="images/logo.png" alt="Website Logo" />
+              <span>AnimateItNow</span>
+            </div>
+            <p>
+              Creating impactful web animations and templates for everyone. Join
+              our community to contribute, learn, and grow together.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li>
+                <a href="templates.html"
+                  ><i class="fas fa-palette"></i> Templates</a
+                >
+              </li>
+              <li>
+                <a href="components.html"
+                  ><i class="fas fa-cube"></i> Components</a
+                >
+              </li>
+              <li>
+                <a href="playground.html"
+                  ><i class="fas fa-mouse-pointer"></i> Hover Effects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h3>Resources</h3>
+            <ul>
+              <li>
+                <a href="about.html"
+                  ><i class="fas fa-info-circle"></i> About Us</a
+                >
+              </li>
+              <li>
+                <a href="contact.html"
+                  ><i class="fas fa-envelope"></i> Contact</a
+                >
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-book"></i> Documentation</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                title="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" title="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://discord.com" target="_blank" title="Discord"
+                ><i class="fab fa-discord"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © 2025 AnimateItNow. Made with ❤️ by
+            <span class="highlight">Anuj</span> and Contributors.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="signup.js"></script>
+  </body>
 </html>
