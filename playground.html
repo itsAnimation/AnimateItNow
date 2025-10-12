@@ -6,8 +6,7 @@
     <title>Hover Effects | AnimateItNow</title>
     <link rel="icon" href="favicon.png" type="image/x-icon" />
     <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-    <!-- PWA Meta Tags -->
+
     <meta name="theme-color" content="#6c63ff" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -15,13 +14,12 @@
     <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png" />
     <meta name="msapplication-TileColor" content="#6c63ff" />
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png" />
     <link rel="shortcut icon" href="images/logo.png" />
     
-    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     
     <style>
@@ -974,7 +972,6 @@
         body {
             opacity: 0;
             transition: opacity 0.5s ease;
-            
         }
 
         body.loaded {
@@ -1117,7 +1114,6 @@
                 font-size: 1.2rem;
             }
         }
-
         
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1126,7 +1122,6 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
         
         @keyframes fadeIn {
             from { 
@@ -1161,34 +1156,30 @@
         .effect-card:nth-child(15) { animation-delay: 1.5s; }
 
         #snake-area {
-    
-    position: fixed; 
-    top: 0;
-    left: 0;
-    pointer-events: none; 
-    z-index: 9999; 
-    display: none; 
-}
+            position: fixed; 
+            top: 0;
+            left: 0;
+            pointer-events: none; 
+            z-index: 9999; 
+            display: none; 
+        }
 
-.cursor-snake {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 15px; 
-    height: 15px;
-    background: var(--primary); 
-    border-radius: 50%; 
-    opacity: 0.8;
-    
-    transform: translate(-50%, -50%); 
-    
-    box-shadow: 0 0 5px rgba(108, 99, 255, 0.7), 0 0 10px rgba(108, 99, 255, 0.4); 
-}
+        .cursor-snake {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px; 
+            height: 15px;
+            background: var(--primary); 
+            border-radius: 50%; 
+            opacity: 0.8;
+            transform: translate(-50%, -50%); 
+            box-shadow: 0 0 5px rgba(108, 99, 255, 0.7), 0 0 10px rgba(108, 99, 255, 0.4); 
+        }
     </style>
-    <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 <body>
-     <div id="snake-area">
+    <div id="snake-area">
         <div class="cursor-snake"></div>
         <div class="cursor-snake"></div>
         <div class="cursor-snake"></div>
@@ -1205,72 +1196,13 @@
         <div class="cursor-snake"></div>
         <div class="cursor-snake"></div>
     </div>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
+    <div id="navbar"></div>
 
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="components.html">Components</a></li>
-                <li><a href="playground.html" class="active" style="white-space: nowrap">Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <!-- cursor toggle switch -->
-                <li class="snakeList">
-                    <label class="switch" title="Toggle Snake Cursor">
-                        <input type="checkbox" id="cursorToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="snakeLabel">Snake Cursor</span>
-                </li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="loginpage.html" class="btn btn-outline">Login</a>
-                <a href="signup.html" class="btn">Sign Up</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-        <!-- Playground Main -->
+    <script>
+    fetch('nav.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('navbar').innerHTML = data);
+    </script>
         <main class="playground-main">
             <section class="playground-section">
                 <div class="container">
@@ -1282,10 +1214,9 @@
                         </h1>
                         <p class="playground-subtitle fade-in">Discover the magic of CSS transitions! Hover over each card to experience stunning visual effects that will elevate your web projects.</p>
                         
-                        <!-- Category Filters -->
                         <div class="category-filters fade-in">
                             <button class="filter-btn active" data-category="all">
-                                <i class="fas fa-grid-3x3"></i>
+                                <i class="fas fa-border-all"></i>
                                 <span>All Effects</span>
                             </button>
                             <button class="filter-btn" data-category="transform">
@@ -1309,7 +1240,6 @@
                     
                     <div class="effects-container">
                         <div class="effects" id="effectsGrid">
-                            <!-- Transform Effects -->
                             <div class="effect-card scale fade-in" data-category="transform" data-effect="scale">
                                 <div class="effect-icon"><i class="fas fa-expand-arrows-alt"></i></div>
                                 <div class="effect-content">
@@ -1366,7 +1296,6 @@
                                 </button>
                             </div>
                             
-                            <!-- Color & Style Effects -->
                             <div class="effect-card Background-Color fade-in" data-category="color" data-effect="background">
                                 <div class="effect-icon"><i class="fas fa-paint-brush"></i></div>
                                 <div class="effect-content">
@@ -1412,7 +1341,6 @@
                                 </button>
                             </div>
                             
-                            <!-- Shadow & Blur Effects -->
                             <div class="effect-card Box-Shadow fade-in" data-category="shadow" data-effect="shadow">
                                 <div class="effect-icon"><i class="fas fa-square"></i></div>
                                 <div class="effect-content">
@@ -1447,7 +1375,6 @@
                                 </button>
                             </div>
                             
-                            <!-- Animation Effects -->
                             <div class="effect-card bounce fade-in" data-category="animation" data-effect="bounce">
                                 <div class="effect-icon"><i class="fas fa-arrows-alt-v"></i></div>
                                 <div class="effect-content">
@@ -1484,11 +1411,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
 
-    <!-- Code Modal -->
     <div class="code-modal" id="codeModal">
         <div class="modal-overlay" id="modalOverlay"></div>
         <div class="modal-content">
@@ -1513,7 +1438,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1537,7 +1461,6 @@
     </footer>
 
     <script>
-        
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1555,7 +1478,6 @@
         if (snakeArea) {
             snakeArea.style.display = 'none';
         }
-
         
         const effectCodes = {
             scale: `/* Scale Effect */
@@ -1660,11 +1582,11 @@
     transform: translateY(-8px);
 }`,
             'text-shadow': `/* Text Shadow Effect */
-.text-shadow-element {
+.text-shadow-element h3 {
     transition: text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.text-shadow-element:hover {
+.text-shadow-element:hover h3 {
     text-shadow: 
         2px 2px 8px rgba(108, 99, 255, 0.3),
         -2px -2px 8px rgba(54, 209, 220, 0.2);
@@ -1680,10 +1602,6 @@
     background: rgba(108, 99, 255, 0.1);
 }`,
             bounce: `/* Bounce Effect */
-.bounce-element {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .bounce-element:hover {
     animation: bounceEffect 0.8s ease;
 }
@@ -1694,10 +1612,6 @@
     80% { transform: translateY(-12px) scale(1.01); }
 }`,
             pulse: `/* Pulse Effect */
-.pulse-element {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .pulse-element:hover {
     animation: pulseEffect 1.5s ease-in-out infinite;
 }
@@ -1717,18 +1631,26 @@
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.slide-element .effect-icon, .slide-element .effect-content {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .slide-element:hover {
     transform: translateX(15px);
 }
 
-.slide-element:hover .slide-content {
-    transform: translateX(-10px);
+.slide-element:hover .effect-icon {
+    transform: translateX(-30px) scale(1.1);
+}
+
+.slide-element:hover .effect-content {
+    transform: translateX(10px);
 }`
         };
 
         // Theme toggle functionality
         function setTheme(isDark) {
-            const icon = themeToggle.querySelector('i');
+            const icon = themeToggle ? themeToggle.querySelector('i') : null;
             body.classList.toggle('dark-theme', isDark);
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             
@@ -1736,30 +1658,30 @@
                 icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
         }
+        
+        if (themeToggle) {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
 
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+            themeToggle.addEventListener('click', () => {
+                setTheme(!body.classList.contains('dark-theme'));
+            });
+        }
 
-        themeToggle.addEventListener('click', () => {
-            setTheme(!body.classList.contains('dark-theme'));
-        });
 
         // Category filtering functionality
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const category = btn.dataset.category;
                 
-                // Update active button
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                // Filter effect cards with animation
                 effectCards.forEach((card, index) => {
                     const cardCategory = card.dataset.category;
                     const shouldShow = category === 'all' || cardCategory === category;
                     
-                    // Add stagger effect
                     setTimeout(() => {
                         if (shouldShow) {
                             card.style.display = 'flex';
@@ -1782,8 +1704,8 @@
         // Modal functionality
         function openModal(effectType) {
             const code = effectCodes[effectType];
-            if (code) {
-                modalTitle.innerHTML = `<i class="fas fa-code"></i> ${effectType.charAt(0).toUpperCase() + effectType.slice(1)} Effect CSS`;
+            if (code && modalTitle && modalCodeBlock && codeModal) {
+                modalTitle.innerHTML = `<i class="fas fa-code"></i> ${effectType.charAt(0).toUpperCase() + effectType.slice(1).replace('-', ' ')} Effect CSS`;
                 modalCodeBlock.textContent = code;
                 codeModal.classList.add('show');
                 document.body.style.overflow = 'hidden';
@@ -1791,47 +1713,46 @@
         }
 
         function closeModal() {
-            codeModal.classList.remove('show');
-            document.body.style.overflow = '';
+            if (codeModal) {
+                codeModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
         }
-
         
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.show-code-btn')) {
+            const showCodeButton = e.target.closest('.show-code-btn');
+            if (showCodeButton) {
                 e.stopPropagation();
-                const btn = e.target.closest('.show-code-btn');
-                const effectType = btn.dataset.effect;
+                const effectType = showCodeButton.dataset.effect;
                 openModal(effectType);
             }
         });
 
-        
-        modalCloseBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
-        
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+        if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
         
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && codeModal.classList.contains('show')) {
+            if (e.key === 'Escape' && codeModal && codeModal.classList.contains('show')) {
                 closeModal();
             }
         });
 
-        
-        modalCopyBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(modalCodeBlock.textContent);
-                showCopySuccess(modalCopyBtn);
-            } catch (err) {
-                
-                const textArea = document.createElement('textarea');
-                textArea.value = modalCodeBlock.textContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showCopySuccess(modalCopyBtn);
-            }
-        });
+        if (modalCopyBtn) {
+            modalCopyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(modalCodeBlock.textContent);
+                    showCopySuccess(modalCopyBtn);
+                } catch (err) {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = modalCodeBlock.textContent;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showCopySuccess(modalCopyBtn);
+                }
+            });
+        }
 
         function showCopySuccess(button) {
             const originalText = button.innerHTML;
@@ -1844,24 +1765,21 @@
             }, 2000);
         }
 
-        
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
         });
 
-        
         if (snakeToggleInput) {
-            
             toggleSnakeCursor();
-            
             snakeToggleInput.addEventListener('change', toggleSnakeCursor);
         }
-
         
         const observerOptions = {
             threshold: 0.1,
@@ -1876,7 +1794,6 @@
             });
         }, observerOptions);
 
-        
         function enableGPUAcceleration() {
             const cards = document.querySelectorAll('.effect-card');
             cards.forEach(card => {
@@ -1884,29 +1801,21 @@
                 card.style.willChange = 'transform, opacity, box-shadow';
             });
         }
-
         
         document.addEventListener('DOMContentLoaded', function() {
-            
             const elementsToAnimate = document.querySelectorAll('.effect-card, .code-display, .hero-content > *');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
-
+            elementsToAnimate.forEach(el => observer.observe(el));
             
             enableGPUAcceleration();
-
             
             effectCards.forEach(card => {
                 card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             });
-
             
             setTimeout(() => {
                 document.body.classList.add('loaded');
             }, 100);
         });
-
         
         document.addEventListener('keydown', (e) => {
             if (e.key >= '1' && e.key <= '5') {
@@ -1917,41 +1826,33 @@
                 }
             }
         });
-        
 
+        function moveSnake(e) {
+            gsap.to(".cursor-snake", {
+                x: e.clientX,
+                y: e.clientY,
+                stagger: -0.02, 
+                ease: "power1.out",
+                overwrite: "auto",
+                duration: 0.4,
+                scale: (i) => 1.0 - (i * 0.05),
+                opacity: (i) => 0.8 - (i * 0.03)
+            });
+        }
 
-function moveSnake(e) {
-    gsap.to(".cursor-snake", {
-        x: e.clientX,
-        y: e.clientY,
-        stagger: -0.02, 
-        ease: "power1.out",
-        overwrite: "auto",
-        duration: 0.4,
-        scale: (i) => 1.0 - (i * 0.05),
-        opacity: (i) => 0.8 - (i * 0.03)
-    });
-}
+        function toggleSnakeCursor() {
+            if (!snakeArea || !snakeToggleInput) return;
 
-
-function toggleSnakeCursor() {
-   
-    if (!snakeArea || !snakeToggleInput) return;
-
-    if (snakeToggleInput.checked) {
-        
-        snakeArea.style.display = 'block';
-        document.body.style.cursor = 'none'; 
-        document.addEventListener("mousemove", moveSnake);
-    } else {
-        
-        snakeArea.style.display = 'none';
-        document.body.style.cursor = 'default';
-        document.removeEventListener("mousemove", moveSnake);
-    }
-}
-        
+            if (snakeToggleInput.checked) {
+                snakeArea.style.display = 'block';
+                document.body.style.cursor = 'none'; 
+                document.addEventListener("mousemove", moveSnake);
+            } else {
+                snakeArea.style.display = 'none';
+                document.body.style.cursor = 'default';
+                document.removeEventListener("mousemove", moveSnake);
+            }
+        }
     </script>
 </body>
 </html>
-

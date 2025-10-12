@@ -67,7 +67,6 @@
         --bg-tertiary: #3e4a6e;
         --border: #404040;
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        --nav-secondary-bg: #343450;
       }
 
       /* 🏗️ Base Styles */
@@ -86,7 +85,7 @@
 
       .container {
         width: 100%;
-        /* max-width: 1200px; */
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
@@ -231,163 +230,10 @@
         transition: width 0.3s ease;
       }
 
-      /* 🧭 Header/Navigation */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height);
-        background-color: var(--bg);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-        transition: var(--transition);
-      }
-
-      [data-theme="dark"] .header {
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .header.scrolled {
-        height: 70px;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-      }
-
-      [data-theme="dark"] .header.scrolled {
-        background-color: rgba(18, 18, 18, 0.95);
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-        /* border:1px solid black; */
-      }
-
-      .logo {
-        height: 40px;
-        margin-right: 10px;
-      }
-
-      .site-name {
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .nav-links {
-        margin-right: 10%;
-        width: 50%;
-        /* border:1px solid black; */
-        display: flex;
-        list-style: none;
-      }
-
-      .nav-links li {
-        margin-left: 30px;
-      }
-
-      .nav-links a {
-        color: var(--text);
-        font-weight: 500;
-        position: relative;
-        padding: 5px 0;
-        transition: all 0.3s ease-in-out;
-      }
-
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        bottom: -5px;
-        left: 0;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        transform: scaleX(0); /* Line starts hidden (zero width) */
-        transform-origin: left; /* Animation grows from the left */
-        transition: transform 0.3s ease-in-out;
-        border-radius: 2px;
-      }
-
-      /* NEW CODE TO ADD */
-      .nav-links a:hover {
-        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
-        background: linear-gradient(135deg, #3f5efb, #f119e2, #ff6ec4);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-        transform: translateY(-2px);
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
-      }
-
-      .nav-links a:hover::after,
-      .nav-links a.active::after {
-        transform: scaleX(1);
-      }
-
-      .nav-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        /* border:1px solid black; */
-      }
-
-      .theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--text);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-
-      .theme-toggle:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        justify-content: center;
-      }
-
-      .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text);
-        margin: 2px 0;
-        transition: var(--transition);
-        border-radius: 2px;
-      }
-
       /* 🦸 Hero Section */
       .hero {
         padding: 180px 0 120px;
         text-align: center;
-        /* background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); */
         position: relative;
         overflow: hidden;
       }
@@ -1100,37 +946,62 @@
         font-size: 1.2rem;
       }
 
-      .newsletter-form {
+      .newsletter-pill-form {
         display: flex;
-        gap: 10px;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        padding: 3px 3px;
-        border: 3px solid var(--border);
-        border-radius: var(--radius);
+        gap: 0;
         background: var(--bg);
-        color: var(--text);
-      }
-
-      .newsletter-form input::placeholder {
-        color: var(--text-light);
-      }
-
-      .newsletter-form button {
-        padding: 3px 3px;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: var(--radius);
-        cursor: pointer;
+        border: 3px solid var(--border);
+        border-radius: 50px;
+        overflow: hidden;
         transition: var(--transition);
       }
 
-      .newsletter-form button:hover {
-        background: var(--primary-dark);
+      .newsletter-pill-form:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
       }
+
+      .newsletter-pill-form input {
+        flex-grow: 1;
+        padding: 15px 20px;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 1.3rem;
+        color: var(--text);
+      }
+
+      .newsletter-pill-form input::placeholder {
+        color: var(--text-light);
+        opacity: 0.8;
+        font-size: 1.3rem;
+      }
+
+      .newsletter-pill-form .newsletter-submit-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0 11px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 0 50px 50px 0;
+      }
+
+      .newsletter-pill-form .newsletter-submit-btn:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      .newsletter-submit-btn i {
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+
       /* ⬆️ Scroll to Top Button */
       #scrollBtn {
         display: none;
@@ -1151,453 +1022,10 @@
         box-shadow: var(--shadow);
         transition: var(--transition);
       }
+
       #scrollBtn:hover {
         background-color: var(--primary-dark);
         transform: translateY(-3px);
-      }
-
-      /* 📱 Responsive Design */
-      @media (max-width: 1200px) {
-        .container {
-          max-width: 960px;
-        }
-      }
-
-      @media (max-width: 992px) {
-        h1 {
-          font-size: 2.8rem;
-        }
-
-        h2 {
-          font-size: 2.2rem;
-        }
-
-        .steps {
-          flex-direction: column;
-          gap: 40px;
-        }
-
-        .steps::before {
-          display: none;
-        }
-
-        .step-number {
-          margin-bottom: 15px;
-        }
-
-        .feature-card {
-          padding: 40px 30px;
-        }
-
-        .feature-icon {
-          width: 80px;
-          height: 80px;
-          font-size: 2rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .testimonial-slider {
-          padding: 0 60px;
-        }
-
-        .testimonial-card {
-            background: var(--bg);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            border: 1px solid var(--border);
-            width: 350px;
-            flex-shrink: 0;
-            transition: all 0.6s ease;
-            opacity: 0.6;
-            transform: scale(0.9);
-        }
-        
-        .testimonial-card.active {
-            opacity: 1;
-            transform: scale(1);
-            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15), var(--shadow);
-            border-color: var(--primary);
-            z-index: 2;
-        }
-        
-        .testimonial-arrows {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
-        .testimonial-arrows:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
-        }
-
-        .testimonial-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 3px solid var(--primary);
-            transition: all 0.3s ease;
-          width: 280px;
-          padding: 20px;
-        }
-
-        .testimonial-arrows {
-          width: 40px;
-          height: 40px;
-          font-size: 1rem;
-        }
-
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-        .arrow-left {
-          left: 10px;
-        }
-
-        .arrow-right {
-          right: 10px;
-        }
-
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background-color: var(--bg);
-          flex-direction: column;
-          padding: 20px;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
-          border-top: 1px solid var(--border);
-        }
-
-        .nav-links.active {
-          display: flex;
-        }
-           
-        @media (max-width: 600px) {
-            .templates-showcase .template-info {
-                    text-align: center; 
-            }
-
-            .template-info a.btn {
-                    margin: 0 auto;
-            }
-    }
-        
-        /* 🔄 How It Works */
-        .how-it-works {
-            background-color: var(--bg-secondary);
-        .nav-links li {
-          margin: 10px 0;
-        }
-        .nav-actions .btn,
-        .nav-actions .btn-outline {
-          display: none;
-        }
-        .nav-actions {
-          display: flex;
-          gap: 15px;
-        }
-
-        .nav-links {
-          display: none;
-        }
-
-        .hamburger {
-          display: flex;
-        }
-
-        .hero-buttons,
-        .cta-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .hero-buttons .btn,
-        .cta-buttons .btn {
-          width: 100%;
-          max-width: 300px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-          opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .newsletter-form {
-          flex-direction: column;
-        }
-
-        .feature-card {
-          padding: 30px 20px;
-        }
-
-        .feature-icon {
-          width: 70px;
-          height: 70px;
-          font-size: 1.8rem;
-        }
-
-        .templates-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-          text-align: center;
-        }
-
-        .footer-links h3::after,
-        .footer-social h3::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      }
-
-      @media (max-width: 576px) {
-        .testimonial-slider {
-          padding: 0 50px;
-        }
-
-        .testimonial-card {
-          width: 250px;
-          padding: 15px;
-        }
-
-        .testimonial-text {
-          font-size: 0.9rem;
-        }
-
-        .testimonial-avatar {
-          width: 60px;
-          height: 60px;
-        }
-
-        h1 {
-          font-size: 2.2rem;
-        }
-
-        h2 {
-          font-size: 1.8rem;
-        }
-
-        section {
-          padding: 60px 0;
-        }
-
-        .hero {
-          padding: 150px 0 80px;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-          gap: 30px;
-        }
-
-        .feature-card {
-          padding: 25px 15px;
-        }
-
-        .feature-icon {
-          width: 60px;
-          height: 60px;
-          font-size: 1.5rem;
-          margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .testimonial-slider {
-                padding: 0 60px;
-            }
-            
-            .testimonial-card {
-                width: 280px;
-                padding: 20px;
-            }
-            
-            .testimonial-arrows {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-           
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-                border-top: 1px solid var(--border);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 10px 0;
-            }
-            .nav-actions .btn, .nav-actions .btn-outline {
-                display: none; 
-            }
-            .nav-actions {
-                display: flex; 
-                gap: 15px;
-            }
-            
-            .nav-links {
-                
-                display: none;
-               
-            }
-
-            .hamburger {
-                display: flex;
-            }
-            
-            .hero-buttons,
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons .btn,
-            .cta-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .feature-card {
-                padding: 30px 20px;
-            }
-
-            .feature-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
-            }
-
-            .templates-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-links h3::after,
-            .footer-social h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        .hero-animation {
-          height: 200px;
-          margin-top: 50px;
-        }
-
-        .step-number {
-          width: 60px;
-          height: 60px;
-          font-size: 1.5rem;
-        }
-
-        .template-preview {
-          height: 150px;
-          font-size: 2rem;
-        }
-
-        .testimonial-card {
-          padding: 20px;
-        }
-
-        .cta-section {
-          padding: 60px 0;
-        }
-
-        .footer {
-          padding: 60px 0 20px;
-        }
-      }
-
-      @media (max-width: 400px) {
-        h1 {
-          font-size: 1.8rem;
-        }
-
-        h2 {
-          font-size: 1.5rem;
-        }
-
-        .btn {
-          padding: 12px 24px;
-          font-size: 0.9rem;
-        }
-
-        .feature-card h3 {
-          font-size: 1.5rem;
-        }
-
-        .section-title h2 {
-          font-size: 1.8rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-        }
       }
 
       /* Fluid Background Styles */
@@ -1616,14 +1044,13 @@
       .fluid-blob {
         position: absolute;
         border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
-        filter: blur(70px); /* Heavy blur for softness */
+        filter: blur(70px);
         opacity: 0.4;
         transition: all 0.5s ease;
         animation: blob-move 20s infinite alternate ease-in-out;
-        will-change: transform, opacity; /* Optimizes performance */
+        will-change: transform, opacity;
       }
 
-      /* Animation Keyframes */
       @keyframes blob-move {
         0%,
         100% {
@@ -1637,7 +1064,6 @@
         }
       }
 
-      /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
       @keyframes pulse {
         0% {
           transform: scale(1);
@@ -1653,13 +1079,12 @@
         }
       }
 
-      /* Positioning and Initial Colors */
       .blob-1 {
         width: 350px;
         height: 350px;
         top: 10%;
         left: 5%;
-        background: var(--primary); /* Deep Purple */
+        background: var(--primary);
         animation-duration: 24s;
         animation-delay: -5s;
       }
@@ -1669,7 +1094,7 @@
         height: 250px;
         bottom: 15%;
         right: 10%;
-        background: var(--secondary); /* Pink */
+        background: var(--secondary);
         animation-duration: 20s;
         animation-delay: -10s;
       }
@@ -1679,7 +1104,7 @@
         height: 450px;
         top: 50%;
         left: 40%;
-        background: var(--accent); /* Cyan */
+        background: var(--accent);
         animation-duration: 22s;
         animation-delay: -15s;
       }
@@ -1689,952 +1114,234 @@
         height: 180px;
         bottom: 5%;
         left: 60%;
-        background: var(--primary-light); /* Lighter Purple */
+        background: var(--primary-light);
         animation-duration: 28s;
         animation-delay: -8s;
       }
+      
+      /* 📱 Responsive Design */
+      @media (max-width: 1200px) {
+        .container {
+          max-width: 960px;
+        }
+      }
 
-      /* ADD THIS NEW BLOCK: Mobile Optimization */
+      @media (max-width: 992px) {
+        h1 {
+          font-size: 2.8rem;
+        }
+        h2 {
+          font-size: 2.2rem;
+        }
+        .steps {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .steps::before {
+          display: none;
+        }
+        .step-number {
+          margin-bottom: 15px;
+        }
+        .feature-card {
+          padding: 40px 30px;
+        }
+        .feature-icon {
+          width: 80px;
+          height: 80px;
+          font-size: 2rem;
+        }
+      }
+
       @media (max-width: 768px) {
-        .fluid-blob {
-          transform: scale(0.6);
-          opacity: 0.3;
-          filter: blur(60px);
+        .testimonial-slider {
+          padding: 0 60px;
         }
-
-        /* Ensure only one or two large blobs are prominent */
-        .blob-3 {
-          display: none; /* Hide the largest blob on mobile */
+        .testimonial-card {
+          width: 280px;
+          padding: 20px;
         }
-      }
-
-        .newsletter-pill-form {
-            /* Implement the joined pill shape using Flexbox */
-            display: flex;
-            gap: 0; /* Remove gap between input and button */
-            
-            /* Style the container like a large input field */
-            background: var(--bg);
-            border: 3px solid var(--border);
-            border-radius: 50px; /* Use a large radius for the pill effect */
-            transition: var(--transition);
+        .testimonial-arrows {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
         }
-
-    
-        .newsletter-pill-form input {
-            flex-grow: 1;
-            /* Reset input defaults to fit the pill container */
-            padding: 5px 5px;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 1.3rem;
-            color: var(--text);
+        .arrow-left {
+            left: 10px;
         }
-
-        .github-icon-sm i {
-    font-size: 1.8rem;
-    color: var(--text);
-    transition: var(--transition);
-}
-
-.github-icon-sm:hover i {
-    color: var(--primary);
-    transform: scale(1.1);
-}
-
-        /* Desktop Dropdown Styles */
-        .dropdown-link-item {
-            position: relative;
+        .arrow-right {
+            right: 10px;
         }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow);
-            z-index: 999;
-            list-style: none;
-            min-width: 180px;
-            padding: 8px 0;
-            border-top: 3px solid var(--primary); /* Nice accent line */
-            animation: fadeIn 0.2s ease-out; /* Add animation */
-            margin-top: 5px; /* Slight gap from the link */
-
+        .hero-buttons,
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
         }
-
-        .dropdown-content li a {
-            padding: 10px 15px;
-            display: block;
-            white-space: nowrap;
-            font-weight: 500;
-        }
-
-        .dropdown-content li a:hover {
-           background-color: var(--bg-tertiary);
-           color: var(--primary);
-           padding-left: 20px; 
-        }
-
-        @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-        
-        /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
-        
-        .mobile-menu-container {
-            display: none; /* Controlled by JS */
-            position: fixed;
-            top: var(--header-height); /* Sits right under the main header on mobile */
-            left: 0;
-            width: 100%;
-            background-color: var(--bg);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            z-index: 998;
-            overflow-y: auto;
-            max-height: 90vh;
-        }
-        
-        .mobile-menu-container.active {
-            display: block;
-        }
-        
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            padding: 10px 0;
-        }
-        
-        .mobile-link-item {
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .mobile-link-item a,
-        .accordion-toggle {
-            display: block;
-            width: 100%;
-            padding: 15px 20px;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 500;
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        
-        .accordion-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion-toggle:hover {
-            background-color: var(--bg-tertiary);
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: var(--bg-secondary);
-        }
-        
-        .accordion-content.active {
-            max-height: 300px; /* Large enough to show all sub-links */
-        }
-        
-        .accordion-content a {
-            padding: 10px 20px 10px 40px; /* Indentation */
-            font-size: 1rem;
-            border: none;
-            border-top: 1px solid var(--border);
-        }
-        
-        .accordion-content a:hover {
-            background-color: var(--bg-tertiary);
-            color: var(--primary);
-        }
-        
-        /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
-
-    
-        @media (min-width: 769px) {
-            /* 1. SECONDARY BAR (The one you want on top) */
-            .top-secondary-bar {
-                display: flex !important; 
-                position: absolute;
-                z-index: 999; 
-            }
-            
-            /* 2. PRIMARY BAR (The one with the logo/login) */
-     .main-primary-bar {
-         position: relative;
-        top: 48px; /* Push down below the top bar */
-      /* ----------------------- NEW DUAL NAV STYLES ----------------------- */
-
-      /* Utility Bar Styling */
-      .top-utility-bar {
-        height: 35px;
-        display: none; /* Hidden by default, shown by media query */
-        align-items: center;
-        width: 100%;
-        background-color: var(--bg-secondary); /* Use secondary background */
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-        z-index: 1000;
-        font-size: 0.85rem;
-        color: var(--text-light);
-        padding: 0 20px;
-      }
-
-      .utility-link:hover {
-        color: var(--primary);
-      }
-
-      .top-secondary-bar {
-        height: var(--secondary-bar-height);
-        display: flex;
-        align-items: center;
-        width: 100%;
-        background-color: var(--nav-secondary-bg);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        z-index: 998;
-        font-size: 2rem;
-        color: var(--text);
-        padding: 0 20px;
-        position: fixed;
-        left: 0;
-        top: var(--header-height);
-        transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-      }
-
-      .top-secondary-bar .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; /* Spread content out */
-        width: 100%;
-        max-width: 1200px; /* Use the same max-width as main content */
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .top-secondary-bar .utility-link {
-        font-size: 1.4rem;
-        font-weight: 620; /* Made text bold */
-        color: var(--text); /* Use main text color for prominence */
-        position: relative;
-        padding: 5px 0 10px 0;
-        transition: all 0.3s ease-in-out;
-      }
-
-      .top-secondary-bar .utility-link:hover {
-        /* Copy the complex text styling from .nav-links a:hover */
-        text-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
-        background: linear-gradient(135deg, #5a73f1, #f119e2, #ff6ec4);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        webkit-text-fill-color: transparent;
-        transform: translateY(-2px); /* Subtle lift */
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(63, 94, 251, 0.2);
-      }
-
-      .top-secondary-bar .utility-link::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        bottom: 0px; /* Position under the link */
-        left: 0;
-        background: linear-gradient(
-          90deg,
-          var(--primary),
-          var(--secondary)
-        ); /* Gradient color */
-        transform: scaleX(0); /* Line starts hidden */
-        transform-origin: left;
-        transition: transform 0.3s ease-in-out;
-        border-radius: 2px;
-      }
-
-      .top-secondary-bar .utility-link:hover::after {
-        transform: scaleX(1);
-      }
-
-      .secondary-links-group {
-        display: flex;
-        align-items: center;
-        gap: 35px;
-        padding: 0;
-        margin: 0;
-      }
-
-      .secondary-utility-group {
-        display: flex;
-        align-items: center;
-        gap: 30px; /* Space between the toggle and GitHub icon */
-      }
-
-      .top-secondary-bar .utility-link i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-        color: var(--primary);
-        transition: var(--transition);
-      }
-
-      .top-secondary-bar .utility-link:hover i {
-        color: var(--primary); /* Highlight icon */
-      }
-
-      .top-secondary-bar.hidden {
-        transform: translateY(-100%);
-        box-shadow: none;
-      }
-
-      .top-secondary-bar .switch-group {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin-left: 20px;
-        white-space: nowrap;
-      }
-
-      .top-secondary-bar .switch-group .text-xs {
-        color: var(--text-light);
-        font-size: 0.85rem;
-      }
-
-      /* Adjust Main Header Positioning */
-      .main-primary-bar {
-        position: relative;
-        top: 0;
-        width: 100%;
-        z-index: 999;
-        transition: var(--transition);
-      }
-
-      .main-primary-bar.header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height); /* 80px */
-        z-index: 999;
-        background: var(--bg);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        transition: var(--transition);
-      }
-
-      .main-primary-bar.sticky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 70px;
-        z-index: 999;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        animation: slideDown 0.3s;
-        background-color: var(--bg);
-      }
-
-      @keyframes slideDown {
-        from {
-          transform: translateY(-100%);
-        }
-        to {
-          transform: translateY(0);
-        }
-      }
-
-      .hero {
-        padding: var(--total-header-offset) 0 120px;
-        padding-top: var(--total-header-offset);
-      }
-
-      .github-icon-sm i {
-        font-size: 1.8rem;
-        color: var(--text);
-        transition: var(--transition);
-      }
-
-      .github-icon-sm:hover i {
-        color: var(--primary);
-        transform: scale(1.1);
-      }
-
-      /* Desktop Dropdown Styles */
-      .dropdown-link-item {
-        position: relative;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--shadow);
-        z-index: 999;
-        list-style: none;
-        min-width: 180px;
-        padding: 8px 0;
-        border-top: 3px solid var(--primary); /* Nice accent line */
-        animation: fadeIn 0.2s ease-out; /* Add animation */
-        margin-top: 5px; /* Slight gap from the link */
-      }
-
-      .dropdown-content li a {
-        padding: 10px 15px;
-        display: block;
-        white-space: nowrap;
-        font-weight: 500;
-      }
-
-      .dropdown-content li a:hover {
-        background-color: var(--bg-tertiary);
-        color: var(--primary);
-        padding-left: 20px;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* -------------------- MOBILE ACCORDION MENU STYLES -------------------- */
-
-      .mobile-menu-container {
-        display: none; /* Controlled by JS */
-        position: fixed;
-        top: var(
-          --header-height
-        ); /* Sits right under the main header on mobile */
-        left: 0;
-        width: 100%;
-        background-color: var(--bg);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        z-index: 998;
-        overflow-y: auto;
-        max-height: 90vh;
-      }
-
-      .mobile-menu-container.active {
-        display: block;
-      }
-
-      .mobile-menu-links {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 0;
-      }
-
-      .mobile-link-item {
-        border-bottom: 1px solid var(--border);
-      }
-
-      .mobile-link-item a,
-      .accordion-toggle {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        text-align: left;
-        font-size: 1.1rem;
-        font-weight: 500;
-        background: none;
-        border: none;
-        color: var(--text);
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-      }
-
-      .accordion-toggle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .accordion-toggle:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-        background-color: var(--bg-secondary);
-      }
-
-      .accordion-content.active {
-        max-height: 300px; /* Large enough to show all sub-links */
-      }
-
-      .accordion-content a {
-        padding: 10px 20px 10px 40px; /* Indentation */
-        font-size: 1rem;
-        border: none;
-        border-top: 1px solid var(--border);
-      }
-
-      .accordion-content a:hover {
-        background-color: var(--bg-tertiary);
-        color: var(--primary);
-      }
-
-      /* -------------------- RESPONSIVE MEDIA QUERIES -------------------- */
-
-      @media (min-width: 769px) {
-        /* 1. SECONDARY BAR (The one you want on top) */
-        .top-secondary-bar {
-          display: flex !important;
-          position: absolute;
-          z-index: 999;
-        }
-
-        /* 2. PRIMARY BAR (The one with the logo/login) */
-        .main-primary-bar {
-          position: relative;
-          top: 48px; /* Push down below the top bar */
+        .hero-buttons .btn,
+        .cta-buttons .btn {
           width: 100%;
-          z-index: 999;
-          transition: var(--transition);
+          max-width: 300px;
         }
-
-        @keyframes slideDown {
-          from {
-            transform: translateY(-100%);
-          }
-          to {
-            transform: translateY(0);
-          }
+        .newsletter-form {
+          flex-direction: column;
         }
-        .top-secondary-bar,
-        .main-primary-bar {
-          visibility: visible !important;
+        .feature-card {
+          padding: 30px 20px;
         }
-
-        /* Ensure main content is pushed down (important for the screen to not look empty) */
-        .hero {
-          padding-top: calc(var(--header-height) + 60px);
-
-          /* Show desktop links and hide hamburger */
-          .desktop-only {
-            display: flex !important;
-          }
-          .nav-actions .hamburger {
-            display: flexyes !important;
-          }
+        .feature-icon {
+          width: 70px;
+          height: 70px;
+          font-size: 1.8rem;
         }
-      }
-
-      /* Mobile View: Reset Primary Nav to top */
-      @media (max-width: 768px) {
-        .top-secondary-bar {
-          position: relative; /* Stack normally on mobile */
-          top: 0;
-          height: 40px; /* Smaller height */
-          font-size: 1rem;
+        .templates-grid {
+          grid-template-columns: 1fr;
         }
-        .top-secondary-bar .container {
-          /* Allow scrollable content on mobile to fit all links */
-          justify-content: flex-start;
-          overflow-x: auto;
-          padding: 0 10px;
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
         }
-
-        .top-secondary-bar .utility-link {
-          font-size: 1rem;
-          font-weight: 600;
-          padding: 5px 0;
+        .footer-links h3::after,
+        .footer-social h3::after {
+          left: 50%;
+          transform: translateX(-50%);
         }
-
-         
-            /* Fluid Background Styles */
-        .fluid-background-wrapper {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             pointer-events: none; 
-             overflow: hidden;
-             z-index: -1; 
-             background-color: var(--bg);
-        }
-
         .fluid-blob {
-           position: absolute;
-           border-radius: 40% 60% 70% 30% / 60% 40% 60% 40%;
-           filter: blur(70px); /* Heavy blur for softness */
-           opacity: 0.4; 
-           transition: all 0.5s ease;
-           animation: blob-move 20s infinite alternate ease-in-out;
-           will-change: transform, opacity; /* Optimizes performance */
-        }
-
-        /* Animation Keyframes */
-        @keyframes blob-move {
-           0%, 100% {
-           transform: translate(0, 0) scale(1);
-          }
-          33% {
-           transform: translate(25vw, -15vh) scale(1.1);
-          }
-          66% {
-           transform: translate(-10vw, 10vh) scale(0.95);
-          }
-        }  
-
-        /* ADD THIS NEW BLOCK: Pulsing Glow Keyframes */
-       @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.8; }
-          50% { transform: scale(1.02); opacity: 1; }
-          100% { transform: scale(1); opacity: 0.8; }
-        }
-
-       /* Positioning and Initial Colors */
-       .blob-1 {
-          width: 350px; height: 350px;
-          top: 10%; left: 5%;
-          background: var(--primary); /* Deep Purple */
-          animation-duration: 24s;
-          animation-delay: -5s;
-        }
-
-       .blob-2 {
-           width: 250px; height: 250px;
-           bottom: 15%; right: 10%;
-           background: var(--secondary); /* Pink */
-           animation-duration: 20s;
-           animation-delay: -10s;
-        }
-
-       .blob-3 {
-          width: 450px; height: 450px;
-          top: 50%; left: 40%;
-          background: var(--accent); /* Cyan */
-          animation-duration: 22s;
-          animation-delay: -15s;
-       }
-
-       .blob-4 {
-          width: 180px; height: 180px;
-          bottom: 5%; left: 60%;
-          background: var(--primary-light); /* Lighter Purple */
-          animation-duration: 28s;
-          animation-delay: -8s;
-        }
-
-        /* ADD THIS NEW BLOCK: Mobile Optimization */
-       @media (max-width: 768px) {
-       .fluid-blob {
            transform: scale(0.6); 
           opacity: 0.3; 
           filter: blur(60px); 
         }
-    
-       /* Ensure only one or two large blobs are prominent */
        .blob-3 {
-          display: none; /* Hide the largest blob on mobile */
+          display: none;
        }
-    }
+      }
 
-        /* --- Subscription Form Enhancement (#1445) --- */
-
-        /* Overrides the squished form style for the new structure */
-        .newsletter-form {
-            display: none; /* Hide the old form class */
+      @media (max-width: 600px) {
+        .templates-showcase .template-info {
+          text-align: center;
         }
-
-        .newsletter-pill-form {
-           
-            display: flex;
-            gap: 0; 
-            background: var(--bg);
-            border: 3px solid var(--border);
-            border-radius: 50px; /* Use a large radius for the pill effect */
-            overflow: hidden;
-            transition: var(--transition);
+        .template-info a.btn {
+          margin: 0 auto;
         }
+      }
 
-        .newsletter-pill-form:focus-within {
-            border-color: var(--primary); 
-            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+      @media (max-width: 576px) {
+        .testimonial-slider {
+          padding: 0 50px;
         }
-
-        .newsletter-pill-form input {
-            flex-grow: 1;
-            /* Reset input defaults to fit the pill container */
-            padding: 15px 20px;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-size: 1.3rem;
-            color: var(--text);
+        .testimonial-card {
+          width: 250px;
+          padding: 15px;
         }
-
-        .newsletter-pill-form input::placeholder {
-            color: var(--text-darkgray);
-            opacity: 0.8;
-            text-align: justify;
-             font-size: 1.3rem;
+        .testimonial-text {
+          font-size: 0.9rem;
         }
-
-        .newsletter-pill-form .newsletter-submit-btn {
-            /* Style the button */
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 11px; /* Adjust padding for a better size */
-            font-size: 1.3rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            
-            /* Align icon and text */
-            display: flex;
-            align-items: center;
-            gap: 8px; /* Space between icon and text */
-            
-            /* Match the height of the container */
-            border-radius: 0 50px 50px 0; 
+        .testimonial-avatar {
+          width: 60px;
+          height: 60px;
         }
-
-        .newsletter-pill-form .newsletter-submit-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05); /* Subtle animation for AnimateItNow */
+        h1 {
+          font-size: 2.2rem;
         }
-
-        /* Ensure the submit button icon has the right size */
-        .newsletter-submit-btn i {
-            font-size: 1.3rem;
-            line-height: 1; /* Fix vertical alignment */
+        h2 {
+          font-size: 1.8rem;
         }
-
-        /* Responsive adjustment for small screens */
-        @media (max-width: 576px) {
-            .newsletter-pill-form {
-                flex-direction: column;
-                border-radius: var(--radius); /* Stack inputs on small screens */
-                border: none; /* Remove border from container */
-            }
-            .newsletter-pill-form input {
-                border: 3px solid var(--border);
-                border-radius: var(--radius);
-                margin-bottom: 10px;
-            }
-            .newsletter-pill-form .newsletter-submit-btn {
-                width: 100%;
-                padding: 12px;
-                border-radius: var(--radius);
-                justify-content: center;
-                transform: none; /* Reset button hover scale */
-            }
-        }
-        .top-secondary-bar.hidden {
-          transform: translateY(
-            0
-          ); /* Don't hide the secondary bar on mobile; it should scroll with the page */
+        section {
+          padding: 60px 0;
         }
         .hero {
-          /* Re-calculate for mobile where secondary bar is not fixed: */
-          padding-top: calc(var(--header-height) + 60px);
+          padding: 150px 0 80px;
+        }
+        .hero-animation {
+          height: 200px;
+          margin-top: 50px;
+        }
+        .step-number {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+        .template-preview {
+          height: 150px;
+          font-size: 2rem;
+        }
+        .testimonial-card {
+          padding: 20px;
+        }
+        .cta-section {
+          padding: 60px 0;
+        }
+        .footer {
+          padding: 60px 0 20px;
+        }
+        .feature-card {
+          padding: 25px 15px;
+        }
+        .feature-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+          margin-bottom: 20px;
+        }
+        .newsletter-pill-form {
+            flex-direction: column;
+            border-radius: var(--radius);
+            border: none;
+        }
+        .newsletter-pill-form input {
+            border: 3px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+        }
+        .newsletter-pill-form .newsletter-submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius);
+            justify-content: center;
+            transform: none;
+        }
+      }
+
+      @media (max-width: 400px) {
+        h1 {
+          font-size: 1.8rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+        .btn {
+          padding: 12px 24px;
+          font-size: 0.9rem;
+        }
+        .feature-card h3 {
+          font-size: 1.5rem;
+        }
+        .section-title h2 {
+          font-size: 1.8rem;
+        }
+        .hero p {
+          font-size: 1rem;
         }
       }
     </style>
-    <link rel="stylesheet" href="./navbar_styles.css" />
   </head>
 
 <body data-theme="light">
+  <div id="navbar"></div>
+
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
+
     <div class="fluid-background-wrapper">
       <div class="fluid-blob blob-1"></div>
       <div class="fluid-blob blob-2"></div>
       <div class="fluid-blob blob-3"></div>
       <div class="fluid-blob blob-4"></div>
     </div>
-    <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
-    <!-- Header/Navigation -->
-
-    <header class="main-primary-bar header" id="main-header">
-      <div class="container nav-container">
-        <div class="logo-container">
-          <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-          <a href="index.html" class="site-name-link">
-            <span class="site-name"> Animate It Now </span>
-          </a>
-        </div>
-
-        <!-- <ul class="nav-links desktop-only" id="desktop-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul> -->
-
-        <ul class="nav-links desktop-only" id="desktop-links">
-          <li>
-            <a href="index.html" class="active">
-              <i class="fas fa-home" style="margin-right: 5px"></i> Home
-            </a>
-          </li>
-
-          <li>
-            <a href="about.html">
-              <i class="fas fa-info-circle" style="margin-right: 5px"></i> About
-            </a>
-          </li>
-
-          <li>
-            <a href="contact.html">
-              <i class="fas fa-envelope" style="margin-right: 5px"></i> Contact
-            </a>
-          </li>
-        </ul>
-
-        <div class="nav-actions">
-          <a href="loginpage.html" class="btn btn-outline">Login</a>
-          <a href="signup.html" class="btn">Sign Up</a>
-
-          <button
-            class="theme-toggle"
-            id="theme-toggle"
-            aria-label="Toggle theme"
-          >
-            <i class="fas fa-moon"></i>
-          </button>
-
-          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <nav class="top-secondary-bar">
-      <div class="container">
-        <div class="secondary-links-group">
-          <a href="templates.html" class="utility-link">
-            <i class="fas fa-palette" style="margin-right: 5px"></i> Templates
-          </a>
-
-          <a href="components.html" class="utility-link">
-            <i class="fas fa-cube" style="margin-right: 5px"></i> Components
-          </a>
-
-          <a href="playground.html" class="utility-link">
-            <i class="fas fa-mouse-pointer" style="margin-right: 5px"></i>
-            Hover-Effects
-          </a>
-
-          <a href="contributors.html" class="utility-link">
-            <i class="fas fa-users" style="margin-right: 5px"></i> Contributors
-          </a>
-
-          <a href="leaderboard.html" class="utility-link">
-            <i class="fas fa-trophy" style="margin-right: 5px"></i> Leaderboard
-          </a>
-        </div>
-        <div class="secondary-utility-group">
-          <div class="switch-group">
-            <label class="switch switch-sm" title="Toggle Snake Cursor">
-              <input type="checkbox" id="cursorToggle" />
-              <span class="slider round"></span>
-            </label>
-            <span
-              class="text-xs text-gray-500"
-              style="color: var(--text-light)"
-            >
-              <i class="fas fa-hat-snake" style="margin-right: 3px"></i> Snake
-            </span>
-          </div>
-
-          <a
-            href="https://github.com/itsAnimation/AnimateItNow"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Repo"
-            class="github-icon-sm"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
-    </nav>
-
-    <div id="mobile-menu" class="mobile-menu-container">
-      <div class="mobile-menu-links">
-        <div class="mobile-link-item">
-          <a href="index.html"
-            ><i class="fas fa-home" style="margin-right: 10px"></i> Home</a
-          >
-        </div>
-
-        <div class="mobile-link-item">
-          <a href="about.html"
-            ><i class="fas fa-info-circle" style="margin-right: 10px"></i>
-            About</a
-          >
-        </div>
-
-        <div class="mobile-link-item">
-          <a href="contact.html"
-            ><i class="fas fa-envelope" style="margin-right: 10px"></i>
-            Contact</a
-          >
-        </div>
-
-        <div class="mobile-link-item">
-          <button
-            class="accordion-toggle"
-            data-accordion-content="mobile-resources"
-          >
-            <i class="fas fa-layer-group" style="margin-right: 10px"></i>
-            Resources & Community <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="accordion-content" id="mobile-resources">
-            <a href="templates.html"
-              ><i class="fas fa-palette" style="margin-right: 10px"></i>
-              Templates</a
-            >
-            <a href="components.html"
-              ><i class="fas fa-cube" style="margin-right: 10px"></i>
-              Components</a
-            >
-            <a href="playground.html"
-              ><i class="fas fa-mouse-pointer" style="margin-right: 10px"></i>
-              Hover-Effects</a
-            >
-            <a href="contributors.html"
-              ><i class="fas fa-users" style="margin-right: 10px"></i>
-              Contributors</a
-            >
-            <a href="leaderboard.html"
-              ><i class="fas fa-trophy" style="margin-right: 10px"></i>
-              Leaderboard</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 🦸 Hero Section -->
     <section class="hero">
       <div class="container">
         <h1>Create Stunning <span>CSS Animations</span></h1>
@@ -2651,7 +1358,6 @@
       </div>
     </section>
 
-    <!-- ✨ Features Section -->
     <section class="features">
       <div class="container">
         <div class="section-title">
@@ -2728,7 +1434,6 @@
       </div>
     </section>
 
-    <!-- 🖼️ Templates Showcase -->
     <section class="templates-showcase">
       <div class="container">
         <div class="section-title">
@@ -2789,7 +1494,6 @@
       </div>
     </section>
 
-    <!-- 🔄 How It Works -->
     <section class="how-it-works">
       <div class="container">
         <div class="section-title">
@@ -2833,7 +1537,6 @@
       </div>
     </section>
 
-    <!-- ❓ FAQ Section -->
     <section class="faq-section">
       <div class="container">
         <div class="section-title">
@@ -2922,7 +1625,6 @@
       </div>
     </section>
 
-    <!-- 👥 Testimonials -->
     <section class="testimonials">
       <div class="container">
         <div class="section-title">
@@ -2954,65 +1656,6 @@
               <div class="testimonial-author">Aman Singh</div>
               <div class="testimonial-role">Full Stack Developer</div>
             </div>
-            
-            
-                
-                <div class="testimonial-carousel">
-                    <div class="testimonial-card active">
-                        <div class="testimonial-avatar">
-                            <img src="images/amn.jpg" alt="Aman">
-                        </div>
-                        <p class="testimonial-text">"AnimateItNow transformed my full stack projects, making them dynamic and engaging. Integrating it was effortless and truly enhanced the user experience."</p>
-                        <div class="testimonial-author">Aman Singh</div>
-                        <div class="testimonial-role">Full Stack Developer</div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">
-                            <img src="images/img2.jpg" alt="Sarah">
-                        </div>
-                        <p class="testimonial-text">"As a UI/UX designer, I love how AnimateItNow bridges the gap between design and development. The animations are smooth, professional, and exactly what modern websites need."</p>
-                        <div class="testimonial-author">Sarah Chen</div>
-                        <div class="testimonial-role">UI/UX Designer</div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">
-                            <img src="images/img3.jpg" alt="Marcus">
-                        </div>
-                        <p class="testimonial-text">"The variety of animations and the ease of implementation is incredible. My clients are always impressed with the interactive elements I can now add to their websites."</p>
-                        <div class="testimonial-author">Marcus Johnson</div>
-                        <div class="testimonial-role">Freelance Developer</div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">
-                            <img src="images/img4.jpg" alt="Priya">
-                        </div>
-                        <p class="testimonial-text">"AnimateItNow saved me countless hours of development time. The ready-to-use templates are perfect for rapid prototyping and production projects alike."</p>
-                        <div class="testimonial-author">Priya Sharma</div>
-                        <div class="testimonial-role">Frontend Lead</div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-avatar">
-                            <img src="images/img5.jpg" alt="David">
-                        </div>
-                        <p class="testimonial-text">"The community-driven approach and open-source nature makes this platform amazing. Contributing new animations and seeing them used by others is incredibly rewarding."</p>
-                        <div class="testimonial-author">David Rodriguez</div>
-                        <div class="testimonial-role">Open Source Contributor</div>
-                    </div>
-                </div>
-                
-
-                
-                <!-- <div class="testimonial-nav">
-                    <button class="active" data-slide="0" aria-label="Testimonial 1" title="View testimonial from Aman Singh"></button>
-                    <button data-slide="1" aria-label="Testimonial 2" title="View testimonial from Sarah Chen"></button>
-                    <button data-slide="2" aria-label="Testimonial 3" title="View testimonial from Marcus Johnson"></button>
-                    <button data-slide="3" aria-label="Testimonial 4" title="View testimonial from Priya Sharma"></button>
-                    <button data-slide="4" aria-label="Testimonial 5" title="View testimonial from David Rodriguez"></button>
-                </div> -->
 
             <div class="testimonial-card">
               <div class="testimonial-avatar">
@@ -3106,7 +1749,6 @@
       </div>
     </section>
 
-    <!-- 📣 CTA Section -->
     <section class="cta-section">
       <div class="container">
         <h2>Ready to Animate Your Website?</h2>
@@ -3121,7 +1763,6 @@
       </div>
     </section>
 
-    <!-- 🦶 Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
@@ -3134,33 +1775,6 @@
               Creating impactful web animations and templates for everyone. Join
               our community to contribute, learn, and grow together.
             </p>
-
-            <div class="footer-social">
-              <h3>Connect With Us</h3>
-              <div class="social-icons">
-                <a
-                  href="https://github.com/itsAnimation/AnimateItNow"
-                  target="_blank"
-                  title="GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-                <a
-                  href="https://www.linkedin.com/in/anujshrivastava1/"
-                  target="_blank"
-                  title="LinkedIn"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-                <a href="https://twitter.com" target="_blank" title="Twitter"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a href="https://discord.com" target="_blank" title="Discord"
-                  ><i class="fab fa-discord"></i
-                ></a>
-                <a href="mailto:contact@animateitnow.com" title="Email"
-                  ><i class="fas fa-envelope"></i
-                ></a>
-              </div>
-            </div>
           </div>
 
           <div class="footer-links">
@@ -3279,268 +1893,7 @@
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
     <script>
-      // 🌗 Theme Toggle - Perfect Implementation
-      const themeToggle = document.getElementById("theme-toggle");
-      const themeIcon = themeToggle.querySelector("i");
-      const body = document.body;
-
-      // Function to set theme
-      function setTheme(theme) {
-        body.setAttribute("data-theme", theme);
-        localStorage.setItem("theme", theme);
-
-        // Update icon
-        if (theme === "dark") {
-          themeIcon.classList.remove("fa-moon");
-          themeIcon.classList.add("fa-sun");
-        } else {
-          themeIcon.classList.remove("fa-sun");
-          themeIcon.classList.add("fa-moon");
-        }
-      }
-
-      // Initialize theme
-      function initTheme() {
-        const savedTheme = localStorage.getItem("theme");
-        const systemPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-
-        if (savedTheme) {
-          setTheme(savedTheme);
-        } else if (systemPrefersDark) {
-          setTheme("dark");
-        } else {
-          setTheme("light");
-        }
-      }
-
-      // Toggle theme
-      themeToggle.addEventListener("click", () => {
-        const currentTheme = body.getAttribute("data-theme");
-        setTheme(currentTheme === "light" ? "dark" : "light");
-      });
-
-      // Listen for system theme changes
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            setTheme(e.matches ? "dark" : "light");
-          }
-        });
-
-      // 📱 Mobile Navigation Toggle
-      const hamburger = document.getElementById("hamburger");
-      const navLinks = document.querySelector(".nav-links");
-
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        hamburger.classList.toggle("active");
-      });
-
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          hamburger.classList.remove("active");
-        });
-        
- // 👥 Testimonial Carousel (no nav buttons)
-const testimonialCards = document.querySelectorAll('.testimonial-card');
-const testimonialCarousel = document.querySelector('.testimonial-carousel');
-
-let currentTestimonial = 0;
-
-function showTestimonial(index) {
-  // Ensure index is within bounds
-  if (index < 0) index = testimonialCards.length - 1;
-  if (index >= testimonialCards.length) index = 0;
-
-  // Remove active class from all cards
-  testimonialCards.forEach(card => card.classList.remove('active'));
-
-  // Add active class to current card
-  if (testimonialCards[index]) {
-    testimonialCards[index].classList.add('active');
-  }
-
-  // Calculate carousel position to center the active card
-  const cardWidth = 380; // card width + gap
-  const totalCards = testimonialCards.length;
-  const centerOffset = (totalCards - 1) * cardWidth / 2;
-  const offset = centerOffset - (index * cardWidth);
-
-  if (testimonialCarousel) {
-    testimonialCarousel.style.transform = `translateX(${offset}px)`;
-  }
-
-  currentTestimonial = index;
-}
-
-// Auto-rotate testimonials every 4 seconds
-function autoRotateTestimonials() {
-  const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
-  showTestimonial(nextIndex);
-}
-
-// Start auto-rotation
-showTestimonial(currentTestimonial);
-let testimonialInterval = setInterval(autoRotateTestimonials, 4000);
-
-// Pause auto-rotation when user hovers over testimonials
-const testimonialSection = document.querySelector('.testimonials');
-if (testimonialSection) {
-  testimonialSection.addEventListener('mouseenter', () => {
-    clearInterval(testimonialInterval);
-  });
-
-  testimonialSection.addEventListener('mouseleave', () => {
-    testimonialInterval = setInterval(autoRotateTestimonials, 2000);
-  });
-}
-
-        
-        // ⏳ Progress Bar
-        let lastScrollTop = 0;
-        const secondaryBar = document.querySelector('.top-secondary-bar');
-        const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progress-bar').style.width = scrolled + '%';
-            
-            // --- SMART DUAL-HEADER SCROLL EFFECT ---
-            const mainHeader = document.querySelector('.main-primary-bar.header');
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (st > lastScrollTop && st > secondaryBarHeight) {
-                // Scroll Down: Hide the secondary bar by adding the 'hidden' class
-                secondaryBar.classList.add('hidden');
-            } else {
-                // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
-                secondaryBar.classList.remove('hidden');
-            }
-            
-            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
-            
-            // Header scroll effect (for the old .header.scrolled class)
-            if (window.scrollY > 50) {
-                mainHeader.classList.add('scrolled'); 
-            } else {
-                mainHeader.classList.remove('scrolled');
-            }
-      });
-
-      // ❓ FAQ Accordion
-      const faqItems = document.querySelectorAll(".faq-item");
-
-      faqItems.forEach((item) => {
-        const question = item.querySelector(".faq-question");
-
-        question.addEventListener("click", () => {
-          // Close all other items
-          faqItems.forEach((otherItem) => {
-            if (otherItem !== item) {
-              otherItem.classList.remove("active");
-            }
-          });
-
-          // Toggle current item
-          item.classList.toggle("active");
-        });
-      });
-
-      // 👥 Testimonial Carousel Navigation
-      const testimonialNavButtons = document.querySelectorAll(
-        ".testimonial-nav button"
-      );
-      const testimonialCards = document.querySelectorAll(".testimonial-card");
-      const testimonialCarousel = document.querySelector(
-        ".testimonial-carousel"
-      );
-      const arrowLeft = document.querySelector(".arrow-left");
-      const arrowRight = document.querySelector(".arrow-right");
-      let currentTestimonial = 0;
-
-      function showTestimonial(index) {
-        // Ensure index is within bounds
-        if (index < 0) index = testimonialCards.length - 1;
-        if (index >= testimonialCards.length) index = 0;
-
-        // Remove active class from all cards and buttons
-        testimonialCards.forEach((card) => card.classList.remove("active"));
-        testimonialNavButtons.forEach((btn) => btn.classList.remove("active"));
-
-        // Add active class to current card and button
-        if (testimonialCards[index]) {
-          testimonialCards[index].classList.add("active");
-        }
-        if (testimonialNavButtons[index]) {
-          testimonialNavButtons[index].classList.add("active");
-        }
-
-        // Calculate carousel position to center the active card
-        const cardWidth = 380; // card width + gap
-        const totalCards = testimonialCards.length;
-        const centerOffset = ((totalCards - 1) * cardWidth) / 2;
-        const offset = centerOffset - index * cardWidth;
-
-        if (testimonialCarousel) {
-          testimonialCarousel.style.transform = `translateX(${offset}px)`;
-        }
-
-        currentTestimonial = index;
-      }
-
-      // Navigation button handlers
-      testimonialNavButtons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-          showTestimonial(index);
-        });
-      });
-
-      // Arrow navigation handlers
-      if (arrowLeft) {
-        arrowLeft.addEventListener("click", () => {
-          showTestimonial(currentTestimonial - 1);
-        });
-      }
-
-      if (arrowRight) {
-        arrowRight.addEventListener("click", () => {
-          showTestimonial(currentTestimonial + 1);
-        });
-      }
-
-      // Auto-rotate testimonials every 6 seconds
-      function autoRotateTestimonials() {
-        const nextIndex = (currentTestimonial + 1) % testimonialCards.length;
-        showTestimonial(nextIndex);
-      }
-
-      // Start auto-rotation
-      let testimonialInterval = setInterval(autoRotateTestimonials, 6000);
-
-      // Pause auto-rotation when user hovers over testimonials
-      const testimonialSection = document.querySelector(".testimonials");
-      if (testimonialSection) {
-        testimonialSection.addEventListener("mouseenter", () => {
-          clearInterval(testimonialInterval);
-        });
-
-        testimonialSection.addEventListener("mouseleave", () => {
-          testimonialInterval = setInterval(autoRotateTestimonials, 6000);
-        });
-      }
-
-      // ⏳ Progress Bar
-      let lastScrollTop = 0;
-      const secondaryBar = document.querySelector(".top-secondary-bar");
-      const secondaryBarHeight = 55; // Must match the CSS variable --secondary-bar-height
-
+      // ⏳ Progress Bar on scroll
       window.addEventListener("scroll", () => {
         const winScroll =
           document.body.scrollTop || document.documentElement.scrollTop;
@@ -3549,54 +1902,89 @@ if (testimonialSection) {
           document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         document.getElementById("progress-bar").style.width = scrolled + "%";
-
-        // --- SMART DUAL-HEADER SCROLL EFFECT ---
-        const mainHeader = document.querySelector(".main-primary-bar.header");
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (st > lastScrollTop && st > secondaryBarHeight) {
-          // Scroll Down: Hide the secondary bar by adding the 'hidden' class
-          secondaryBar.classList.add("hidden");
-        } else {
-          // Scroll Up or near the top: Show the secondary bar by removing the 'hidden' class
-          secondaryBar.classList.remove("hidden");
-        }
-
-        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or small screens, don't set negative values
-
-        // Header scroll effect (for the old .header.scrolled class)
-        if (window.scrollY > 50) {
-          mainHeader.classList.add("scrolled");
-        } else {
-          mainHeader.classList.remove("scrolled");
-        }
       });
 
-      // Ensure initial call for the testimonials and theme (keep existing initTheme and showTestimonial calls)
-      document.addEventListener("DOMContentLoaded", () => {
-        initTheme();
-        // Initial call to set the carousel's starting position
-        showTestimonial(0);
-      });
-
-      // 📧 Newsletter form submission
-      document
-        .querySelector(".newsletter-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = this.querySelector("input").value;
-          alert(
-            `Thank you for subscribing with ${email}! We'll keep you updated.`
-          );
-          this.reset();
+      // ❓ FAQ Accordion
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        question.addEventListener("click", () => {
+          // Close all other items before opening the new one
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove("active");
+            }
+          });
+          // Toggle the clicked item
+          item.classList.toggle("active");
         });
-
-      // 🚀 Initialize everything when page loads
-      document.addEventListener("DOMContentLoaded", () => {
-        initTheme();
       });
 
-      // ⬆️ Scroll to top functionality
+      // 👥 Testimonial Carousel
+      const testimonialCards = document.querySelectorAll(".testimonial-card");
+      const testimonialNavButtons = document.querySelectorAll(
+        ".testimonial-nav button"
+      );
+      const testimonialCarousel = document.querySelector(".testimonial-carousel");
+      const arrowLeft = document.querySelector(".arrow-left");
+      const arrowRight = document.querySelector(".arrow-right");
+      let currentTestimonial = 0;
+
+      function showTestimonial(index) {
+        // Loop around if index goes out of bounds
+        if (index < 0) {
+          index = testimonialCards.length - 1;
+        } else if (index >= testimonialCards.length) {
+          index = 0;
+        }
+
+        testimonialCards.forEach((card) => card.classList.remove("active"));
+        testimonialNavButtons.forEach((btn) => btn.classList.remove("active"));
+
+        if (testimonialCards[index]) {
+            testimonialCards[index].classList.add("active");
+        }
+        if (testimonialNavButtons[index]) {
+            testimonialNavButtons[index].classList.add("active");
+        }
+
+        const cardWidth = 380; // card width (350) + gap (30)
+        const totalCards = testimonialCards.length;
+        const centerOffset = (testimonialCarousel.offsetWidth / 2) - (cardWidth / 2);
+        const offset = centerOffset - index * cardWidth;
+
+        if (testimonialCarousel) {
+          testimonialCarousel.style.transform = `translateX(${offset}px)`;
+        }
+        currentTestimonial = index;
+      }
+
+      testimonialNavButtons.forEach((button, index) => {
+        button.addEventListener("click", () => showTestimonial(index));
+      });
+
+      if (arrowLeft) {
+        arrowLeft.addEventListener("click", () => showTestimonial(currentTestimonial - 1));
+      }
+      if (arrowRight) {
+        arrowRight.addEventListener("click", () => showTestimonial(currentTestimonial + 1));
+      }
+
+      let testimonialInterval = setInterval(() => {
+        showTestimonial(currentTestimonial + 1);
+      }, 4000);
+
+      const testimonialSection = document.querySelector(".testimonials");
+      if (testimonialSection) {
+        testimonialSection.addEventListener("mouseenter", () => clearInterval(testimonialInterval));
+        testimonialSection.addEventListener("mouseleave", () => {
+          testimonialInterval = setInterval(() => {
+            showTestimonial(currentTestimonial + 1);
+          }, 4000);
+        });
+      }
+
+      // ⬆️ Scroll to top button
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
@@ -3613,89 +2001,9 @@ if (testimonialSection) {
         }
       };
 
-      // ----------------------- NEW DUAL NAV AND ACCORDION LOGIC -----------------------
-
+      // 🚀 Initialize when page loads
       document.addEventListener("DOMContentLoaded", () => {
-        // 1. Mobile Menu Toggle (Hamburger)
-        const hamburgerBtn = document.getElementById("hamburger");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (hamburgerBtn && mobileMenu) {
-          hamburgerBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("active");
-            hamburgerBtn.classList.toggle("active");
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = mobileMenu.classList.contains(
-              "active"
-            )
-              ? "hidden"
-              : "";
-          });
-        }
-
-        // 2. Mobile Accordion Logic
-        const accordionToggles = document.querySelectorAll(
-          ".accordion-toggle[data-accordion-content]"
-        );
-
-        accordionToggles.forEach((toggle) => {
-          toggle.addEventListener("click", (e) => {
-            // Only prevent default if it's an accordion toggle, not a simple link
-            if (toggle.getAttribute("href") === "#") {
-              e.preventDefault();
-            }
-
-            const contentId = toggle.getAttribute("data-accordion-content");
-            const content = document.getElementById(contentId);
-
-            if (!content) return;
-
-            const isActive = content.classList.contains("active");
-
-            // Close all other accordions
-            document.querySelectorAll(".accordion-content").forEach((c) => {
-              if (c !== content) {
-                c.classList.remove("active");
-                c.style.maxHeight = null;
-                // Reset arrow rotation if applicable
-                const otherToggle = c.previousElementSibling;
-                if (otherToggle) {
-                  otherToggle.querySelector("i").style.transform = null;
-                }
-              }
-            });
-
-            // Toggle current accordion
-            content.classList.toggle("active");
-            if (content.classList.contains("active")) {
-              // Set max-height for smooth transition (use scrollHeight for content size)
-              content.style.maxHeight = content.scrollHeight + "px";
-              toggle.querySelector("i").style.transform = "rotate(180deg)";
-            } else {
-              content.style.maxHeight = null;
-              toggle.querySelector("i").style.transform = null;
-            }
-          });
-        });
-
-        // 3. Desktop Dropdown Toggle (for consolidated links)
-        const dropdownLinkItem = document.querySelector(".dropdown-link-item");
-        const desktopDropdownContent = document.getElementById(
-          "animations-dropdown"
-        );
-
-        if (dropdownLinkItem && desktopDropdownContent) {
-          // Use standard CSS :hover on desktop where possible, but use JS for cleanup/accessibility
-
-          dropdownLinkItem.addEventListener("mouseenter", () => {
-            // In a vanilla JS environment, ensure the dropdown is visible on hover
-            desktopDropdownContent.style.display = "block";
-          });
-
-          dropdownLinkItem.addEventListener("mouseleave", () => {
-            desktopDropdownContent.style.display = "none";
-          });
-        }
+        showTestimonial(0);
       });
     </script>
   </body>

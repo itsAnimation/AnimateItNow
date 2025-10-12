@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding: 12px 40px;
+  padding: 12px 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -34,13 +34,15 @@
   -webkit-text-fill-color: transparent;
   font-weight: 700;
   font-size: 22px;
+ 
+  white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 25px;
+  gap: 10px;
 }
 
 .nav-links li {
@@ -58,14 +60,19 @@
   color: #3b82f6;
 }
 
-/* Dropdown Menu */
+/* --- IMPROVED Dropdown Menu --- */
+.dropdown {
+    cursor: pointer; /* Good to show it's clickable! */
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: white;
   list-style: none;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  top: 30px;
+  top: 100%; /* More reliable than a fixed pixel value */
+  margin-top: 10px; /* Adds a nice little gap */
   left: 0;
   padding: 10px 0;
   border-radius: 4px;
