@@ -1,4 +1,4 @@
- :root {
+:root {
             --primary: #6c63ff;
             --primary-light: #8a84ff;
             --primary-dark: #554fd8;
@@ -84,7 +84,7 @@
             --filter-text: #e0e0e0;
         }
 
-         [data-theme="dark"] {
+        [data-theme="dark"] {
             --primary: #8a84ff;
             --primary-light: #a8a4ff;
             --primary-dark: #6c63ff;
@@ -170,6 +170,8 @@
             justify-content: center;
             align-items: center;
             padding: 0 10px;
+            gap: 16px;
+
         }
 
         .dark-theme .navbar {
@@ -200,27 +202,23 @@
             font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(to right, var(--primary), var(--accent));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         
         .nav-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-}
-
-        .nav-links li {
-            margin-left: 20px;
             display: flex;
+            justify-content: center;
             align-items: center;
+            flex: 1;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
         }
+
 
         .nav-links a {
             color: var(--text);
@@ -230,7 +228,7 @@
         }
 
         .nav-links a::after {
-            content: '';
+            content: "❘";
             position: absolute;
             width: 0;
             height: 2px;
@@ -238,7 +236,10 @@
             left: 0;
             background-color: var(--primary);
             transition: var(--transition);
+            
+
         }
+
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
