@@ -1908,7 +1908,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="totalPRs">0</div>
-                    <div class="stat-label">Merged PRs</div>
+                    <div class="stat-label">Total Contributions</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="totalPoints">0</div>
@@ -1958,7 +1958,7 @@
                             <tr>
                                 <th style="width: 10%;">Rank</th>
                                 <th style="width: 25%;">Contributor</th>
-                                <th style="width: 45%;">Merged PRs</th>
+                                <th style="width: 45%;">Contributions</th>
                                 <th style="width: 20%;">Points</th>
                             </tr>
                         </thead>
@@ -1975,6 +1975,7 @@
 
                 <div id="pagination" class="pagination-container"></div>
             </div>
+
 
 
             <!-- Download Section -->
@@ -2018,12 +2019,17 @@
     <script>
         // Enhanced leaderboard JavaScript
         const owner = "itsAnimation";
-        const repo = "AnimateItnow";
-        const token = "";
+        const repo = "AnimateItNow";
+        let token = localStorage.getItem('githubToken') || ""; // Get token from localStorage
         const pointsPerLevel = {
             "level1": 3,
             "level2": 7,
-            "level3": 10
+            "level3": 10,
+            "good first issue": 2,
+            "bug": 5,
+            "enhancement": 8,
+            "documentation": 4,
+            "hacktoberfest": 3
         };
         let contributorsData = [];
         let allPRsData = [];
@@ -2034,6 +2040,7 @@
         let filteredData = null;
 
         // Theme toggle and mobile navigation are now handled by navbar-theme.js
+
 
         // Scroll to top functionality
         function scrollToTop() {
@@ -2049,12 +2056,30 @@
             }
         };
 
-        // Fetch merged PRs with error handling
+        // Fetch merged PRs with enhanced error handling and rate limit management
         async function fetchMergedPRs(page = 1, allPRs = []) {
             try {
-                const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}`;
-                const headers = token ? { Authorization: `token ${token}` } : {};
+                const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}&sort=updated&direction=desc`;
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'User-Agent': 'AnimateItNow-Leaderboard'
+                };
+                
+                if (token) {
+                    headers['Authorization'] = `token ${token}`;
+                }
+
                 const res = await fetch(url, { headers });
+
+                // Handle rate limiting
+                if (res.status === 403) {
+                    const rateLimitRemaining = res.headers.get('X-RateLimit-Remaining');
+                    const rateLimitReset = res.headers.get('X-RateLimit-Reset');
+                    if (rateLimitRemaining === '0') {
+                        const resetTime = new Date(parseInt(rateLimitReset) * 1000);
+                        throw new Error(`GitHub API rate limit exceeded. Reset at: ${resetTime.toLocaleTimeString()}`);
+                    }
+                }
 
                 if (!res.ok) {
                     const errorText = await res.text();
@@ -2064,8 +2089,27 @@
                 const prs = await res.json();
                 if (!Array.isArray(prs)) return allPRs;
 
-                const merged = prs.filter(pr => pr.merged_at);
+                const merged = prs.filter(pr => pr.merged_at && pr.user && pr.user.login);
                 allPRs = allPRs.concat(merged);
+
+                // Also fetch issues that were closed and might have points
+                if (page === 1) {
+                    try {
+                        const issuesUrl = `https://api.github.com/repos/${owner}/${repo}/issues?state=closed&per_page=100&page=${page}&sort=updated&direction=desc`;
+                        const issuesRes = await fetch(issuesUrl, { headers });
+                        if (issuesRes.ok) {
+                            const issues = await issuesRes.json();
+                            const closedIssues = issues.filter(issue => 
+                                issue.pull_request === undefined && 
+                                issue.user && 
+                                issue.user.login
+                            );
+                            allPRs = allPRs.concat(closedIssues);
+                        }
+                    } catch (issueError) {
+                        console.warn('Could not fetch issues:', issueError);
+                    }
+                }
 
                 if (prs.length === 100) {
                     return fetchMergedPRs(page + 1, allPRs);
@@ -2078,22 +2122,61 @@
             }
         }
 
-        // Calculate contributor data from PRs
-        function calculateContributorData(prs) {
+        // Calculate contributor data from PRs and Issues
+        function calculateContributorData(contributions) {
             const data = {};
-            prs.forEach(pr => {
-                const user = pr.user.login;
-                const avatar = pr.user.avatar_url;
-                const prUrl = pr.html_url;
-                const title = pr.title;
-                const labels = pr.labels.map(label => label.name.toLowerCase());
-                const level = labels.find(l => l.startsWith("level")) || "none";
-                const points = pointsPerLevel[level] || 0;
+            contributions.forEach(contribution => {
+                const user = contribution.user.login;
+                const avatar = contribution.user.avatar_url;
+                const url = contribution.html_url;
+                const title = contribution.title;
+                const labels = contribution.labels ? contribution.labels.map(label => label.name.toLowerCase()) : [];
+                
+                // Determine contribution type and points
+                let points = 0;
+                let contributionType = 'unknown';
+                
+                // Check for level labels first
+                const levelLabel = labels.find(l => l.startsWith("level"));
+                if (levelLabel) {
+                    points = pointsPerLevel[levelLabel] || 0;
+                    contributionType = levelLabel;
+                } else {
+                    // Check for other label types
+                    const matchedLabel = labels.find(l => pointsPerLevel[l]);
+                    if (matchedLabel) {
+                        points = pointsPerLevel[matchedLabel];
+                        contributionType = matchedLabel;
+                    } else {
+                        // Default points based on contribution type
+                        if (contribution.pull_request) {
+                            // It's a PR
+                            points = 5; // Default PR points
+                            contributionType = 'pull_request';
+                        } else {
+                            // It's an issue
+                            points = 2; // Default issue points
+                            contributionType = 'issue';
+                        }
+                    }
+                }
+
+                // Skip if no points assigned
+                if (points === 0) return;
 
                 if (!data[user]) {
-                    data[user] = { prs: [], total: 0, avatar };
+                    data[user] = { contributions: [], total: 0, avatar };
                 }
-                data[user].prs.push({ title, url: prUrl, level });
+                
+                data[user].contributions.push({ 
+                    title, 
+                    url, 
+                    type: contributionType,
+                    points,
+                    labels,
+                    created_at: contribution.created_at,
+                    merged_at: contribution.merged_at || contribution.closed_at
+                });
                 data[user].total += points;
             });
             return data;
@@ -2107,12 +2190,12 @@
             const totalContributors = dataToShow.length;
             document.getElementById('totalContributors').textContent = totalContributors;
 
-            // Total PRs
-            let totalPRs = 0;
+            // Total contributions (PRs + Issues)
+            let totalContributions = 0;
             dataToShow.forEach(([user, userData]) => {
-                totalPRs += userData.prs.length;
+                totalContributions += userData.contributions.length;
             });
-            document.getElementById('totalPRs').textContent = totalPRs;
+            document.getElementById('totalPRs').textContent = totalContributions;
 
             // Total points
             let totalPoints = 0;
@@ -2186,21 +2269,23 @@
         `;
                 row.appendChild(contributorTd);
 
-                // PRs cell
-                const prsTd = document.createElement("td");
-                prsTd.className = "prs-cell";
+                // Contributions cell
+                const contributionsTd = document.createElement("td");
+                contributionsTd.className = "prs-cell";
 
-                const prListHtml = userData.prs.map(pr => {
-                    return `<li><a href="${pr.url}" target="_blank">${pr.title}</a> - <strong>${pr.level} = ${pointsPerLevel[pr.level]} points</strong></li>`;
+                const contributionListHtml = userData.contributions.map(contrib => {
+                    const typeIcon = contrib.type === 'pull_request' ? '🔀' : 
+                                   contrib.type === 'issue' ? '📋' : '🏷️';
+                    return `<li><a href="${contrib.url}" target="_blank">${typeIcon} ${contrib.title}</a> - <strong>${contrib.type} = ${contrib.points} points</strong></li>`;
                 }).join("");
 
-                prsTd.innerHTML = `
+                contributionsTd.innerHTML = `
           <details>
-            <summary class="pr-summary">Show PRs (${userData.prs.length})</summary>
-            <ul class="pr-list">${prListHtml}</ul>
+            <summary class="pr-summary">Show Contributions (${userData.contributions.length})</summary>
+            <ul class="pr-list">${contributionListHtml}</ul>
           </details>
         `;
-                row.appendChild(prsTd);
+                row.appendChild(contributionsTd);
 
                 // Points cell
                 const pointsTd = document.createElement("td");
@@ -2320,7 +2405,7 @@
           <tr>
             <th>Rank</th>
             <th>Contributor</th>
-            <th>Merged PRs</th>
+            <th>Contributions</th>
             <th>Total Points</th>
           </tr>
         </thead>
@@ -2336,15 +2421,17 @@
             }
 
             dataToExport.forEach(([user, userData], idx) => {
-                const prList = userData.prs.map(pr => {
-                    return `${pr.title} (${pr.level} = ${pointsPerLevel[pr.level]} points)`;
+                const contributionList = userData.contributions.map(contrib => {
+                    const typeIcon = contrib.type === 'pull_request' ? 'PR' : 
+                                   contrib.type === 'issue' ? 'Issue' : contrib.type;
+                    return `${contrib.title} (${typeIcon} = ${contrib.points} points)`;
                 }).join('; ');
 
                 const row = document.createElement("tr");
                 row.innerHTML = `
           <td>${idx + 1}</td>
           <td>${user}</td>
-          <td>${prList}</td>
+          <td>${contributionList}</td>
           <td>${userData.total}</td>
         `;
                 tbody.appendChild(row);
@@ -2354,26 +2441,44 @@
             XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
         }
 
-        // Initialize leaderboard with error handling and dummy data fallback
+        // Initialize leaderboard with enhanced error handling
         async function init() {
             try {
                 console.log('Starting to fetch GitHub data...');
-                const prs = await fetchMergedPRs();
-                allPRsData = prs;
-                let fetchedContributors = Object.entries(calculateContributorData(prs)).sort((a, b) => b[1].total - a[1].total);
+                const contributions = await fetchMergedPRs();
+                allPRsData = contributions;
+                let fetchedContributors = Object.entries(calculateContributorData(contributions)).sort((a, b) => b[1].total - a[1].total);
 
                 console.log('Fetched contributors:', fetchedContributors.length);
+                console.log('Total contributions:', contributions.length);
 
-                // If no data fetched, use dummy data for demonstration
+                // If no data fetched, show a helpful message
                 if (fetchedContributors.length === 0) {
-                    console.warn("No data fetched from GitHub. Using dummy data for demonstration.");
-                    fetchedContributors = [
-                        ['itsAnimation', { prs: [{ title: 'Added new animation templates', url: 'https://github.com/itsAnimation/AnimateItNow/pull/1', level: 'level1' }, { title: 'Fixed responsive design issues', url: 'https://github.com/itsAnimation/AnimateItNow/pull/2', level: 'level2' }], total: 17, avatar: 'https://avatars.githubusercontent.com/u/12345678?v=4' }],
-                        ['contributor1', { prs: [{ title: 'Improved button animations', url: 'https://github.com/itsAnimation/AnimateItNow/pull/3', level: 'level1' }, { title: 'Added new hover effects', url: 'https://github.com/itsAnimation/AnimateItNow/pull/4', level: 'level3' }], total: 13, avatar: 'https://avatars.githubusercontent.com/u/87654321?v=4' }],
-                        ['contributor2', { prs: [{ title: 'Enhanced CSS transitions', url: 'https://github.com/itsAnimation/AnimateItNow/pull/5', level: 'level2' }], total: 7, avatar: 'https://avatars.githubusercontent.com/u/11223344?v=4' }],
-                        ['contributor3', { prs: [{ title: 'Added loading animations', url: 'https://github.com/itsAnimation/AnimateItNow/pull/6', level: 'level1' }, { title: 'Fixed mobile responsiveness', url: 'https://github.com/itsAnimation/AnimateItNow/pull/7', level: 'level1' }], total: 6, avatar: 'https://avatars.githubusercontent.com/u/55667788?v=4' }],
-                        ['contributor4', { prs: [{ title: 'Created new template designs', url: 'https://github.com/itsAnimation/AnimateItNow/pull/8', level: 'level3' }], total: 10, avatar: 'https://avatars.githubusercontent.com/u/99887766?v=4' }],
-                    ].sort((a, b) => b[1].total - a[1].total);
+                    console.warn("No contributor data found. This might be due to:");
+                    console.warn("1. No merged PRs or closed issues in the repository");
+                    console.warn("2. GitHub API rate limiting");
+                    console.warn("3. Repository not found or private");
+                    
+                    // Show message in table
+                    const tbody = document.querySelector("#pointsTable tbody");
+                    tbody.innerHTML = `
+          <tr>
+            <td colspan="4" style="text-align: center; padding: 40px;">
+              <div style="font-size: 3rem; margin-bottom: 20px;">📊</div>
+              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: var(--primary);">
+                No Contributions Found
+              </div>
+              <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">
+                No merged pull requests or closed issues found in the repository.<br>
+                Start contributing to see your name on the leaderboard!
+              </div>
+              <a href="https://github.com/${owner}/${repo}" target="_blank" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block;">
+                View Repository
+              </a>
+            </td>
+          </tr>
+        `;
+                    return;
                 }
 
                 contributorsData = fetchedContributors;
@@ -2383,25 +2488,37 @@
             } catch (error) {
                 console.error('Error loading leaderboard data:', error);
 
-                // Use dummy data as fallback instead of showing error
-                console.log('Using fallback dummy data due to API error');
-                const dummyContributors = [
-                    ['itsAnimation', { prs: [{ title: 'Added new animation templates', url: 'https://github.com/itsAnimation/AnimateItNow/pull/1', level: 'level1' }, { title: 'Fixed responsive design issues', url: 'https://github.com/itsAnimation/AnimateItNow/pull/2', level: 'level2' }], total: 17, avatar: 'https://avatars.githubusercontent.com/u/12345678?v=4' }],
-                    ['contributor1', { prs: [{ title: 'Improved button animations', url: 'https://github.com/itsAnimation/AnimateItNow/pull/3', level: 'level1' }, { title: 'Added new hover effects', url: 'https://github.com/itsAnimation/AnimateItNow/pull/4', level: 'level3' }], total: 13, avatar: 'https://avatars.githubusercontent.com/u/87654321?v=4' }],
-                    ['contributor2', { prs: [{ title: 'Enhanced CSS transitions', url: 'https://github.com/itsAnimation/AnimateItNow/pull/5', level: 'level2' }], total: 7, avatar: 'https://avatars.githubusercontent.com/u/11223344?v=4' }],
-                    ['contributor3', { prs: [{ title: 'Added loading animations', url: 'https://github.com/itsAnimation/AnimateItNow/pull/6', level: 'level1' }, { title: 'Fixed mobile responsiveness', url: 'https://github.com/itsAnimation/AnimateItNow/pull/7', level: 'level1' }], total: 6, avatar: 'https://avatars.githubusercontent.com/u/55667788?v=4' }],
-                    ['contributor4', { prs: [{ title: 'Created new template designs', url: 'https://github.com/itsAnimation/AnimateItNow/pull/8', level: 'level3' }], total: 10, avatar: 'https://avatars.githubusercontent.com/u/99887766?v=4' }],
-                ].sort((a, b) => b[1].total - a[1].total);
-
-                contributorsData = dummyContributors;
-                currentPage = 1;
-                renderTablePage(currentPage);
+                // Display error message in table
+                const tbody = document.querySelector("#pointsTable tbody");
+                tbody.innerHTML = `
+          <tr>
+            <td colspan="4" style="text-align: center; padding: 40px;">
+              <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #dc3545;">
+                Error Loading Data
+              </div>
+              <div style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                ${error.message.includes('rate limit') ? 
+                  'GitHub API rate limit exceeded. Please try again later.' :
+                  'Unable to fetch contributor data. This might be due to network issues or repository access.'}
+              </div>
+              <div style="margin-bottom: 20px;">
+                <button onclick="location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                Retry
+              </button>
+                <a href="https://github.com/${owner}/${repo}" target="_blank" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block;">
+                  View Repository
+                </a>
+              </div>
+            </td>
+          </tr>
+        `;
             }
         }
 
         // Start initialization after DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            init();
+        init();
         });
     </script>
 </body>
