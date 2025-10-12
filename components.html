@@ -32,7 +32,14 @@
   <script>
     fetch('nav.html')
       .then(res => res.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+        // Load the navbar theme manager script
+        const script = document.createElement('script');
+        script.src = 'navbar-theme.js';
+        document.head.appendChild(script);
+      })
+      .catch(err => console.error('Error loading navbar:', err));
   </script>
 
     <!-- 📄 Main Content -->
