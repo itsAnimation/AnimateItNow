@@ -1875,21 +1875,13 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar').innerHTML = data;
-        // Re-initialize theme toggle after navbar is loaded
-        setTimeout(() => {
-          const themeToggle = document.getElementById('theme-toggle');
-          if (themeToggle) {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isDark = savedTheme === 'dark' || (savedTheme === null && prefersDark);
-            
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-              icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            }
-            document.body.classList.toggle('dark-theme', isDark);
-          }
-        }, 100);
+        // Load the navbar theme manager script
+        const script = document.createElement('script');
+        script.src = 'navbar-theme.js';
+        script.onload = () => {
+          console.log('Navbar theme manager loaded successfully');
+        };
+        document.head.appendChild(script);
       })
       .catch(err => console.error('Error loading navbar:', err));
   </script>
@@ -2041,53 +2033,7 @@
         let currentSort = 'points';
         let filteredData = null;
 
-        // Theme toggle functionality - wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            function setTheme(isDark) {
-                if (themeToggle) {
-                    const icon = themeToggle.querySelector('i');
-                    if (icon) {
-                        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-                    }
-                }
-                body.classList.toggle('dark-theme', isDark);
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            }
-
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
-
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    setTheme(!body.classList.contains('dark-theme'));
-                });
-            }
-        });
-
-        // Mobile Navigation Toggle - wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.querySelector('.nav-links');
-
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    hamburger.classList.toggle('active');
-                });
-
-                // Close mobile menu when clicking on a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                        hamburger.classList.remove('active');
-                    });
-                });
-            }
-        });
+        // Theme toggle and mobile navigation are now handled by navbar-theme.js
 
         // Scroll to top functionality
         function scrollToTop() {
