@@ -27,170 +27,206 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        
+        /* NEW: Enhanced animations and styles */
+        .booking-progress {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .destination-gallery {
+            scroll-behavior: smooth;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* NEW: Loading spinner */
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* NEW: Success animation */
+        .success-checkmark {
+            animation: success 0.6s ease-in-out;
+        }
+        
+        @keyframes success {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
+    <!-- Enhanced Navigation -->
     <nav class="bg-white shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <span class="text-2xl">✈️</span>
                     <h1 class="ml-2 text-2xl font-bold text-blue-600">Wanderlust Adventures</h1>
+                    <span class="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Trusted Since 2008</span>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Home</a>
                     <a href="#destinations" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Destinations</a>
                     <a href="#packages" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Packages</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Reviews</a>
                     <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a>
                 </div>
                 
-                <button class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
-                    Book Now
+                <button onclick="showBookingForm()" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    Book Your Trip
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white">
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-16">
         <div class="text-center max-w-4xl mx-auto px-4">
             <div class="floating mb-8">
                 <span class="text-8xl">🌍</span>
             </div>
-            <h2 class="text-5xl md:text-7xl font-bold mb-6">Explore the World</h2>
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 fade-in-up">Explore the World</h2>
             <p class="text-xl md:text-2xl mb-8 opacity-90">Discover breathtaking destinations and create unforgettable memories with our expertly crafted travel experiences</p>
+            
+            <!-- NEW: Quick stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <div class="text-2xl font-bold">50K+</div>
+                    <div class="text-sm opacity-80">Happy Travelers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold">150+</div>
+                    <div class="text-sm opacity-80">Destinations</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold">4.9/5</div>
+                    <div class="text-sm opacity-80">Rating</div>
+                </div>
+            </div>
+            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="showBookingForm()" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300">
+                <button onclick="showBookingForm()" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
                     Start Your Journey
                 </button>
-                <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">
+                <button onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition duration-300">
                     View Destinations
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Popular Destinations -->
+    <!-- Enhanced Popular Destinations -->
     <section id="destinations" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h3 class="text-4xl font-bold text-gray-900 mb-4">Popular Destinations</h3>
-                <p class="text-xl text-gray-600">Discover the world's most amazing places</p>
+                <p class="text-xl text-gray-600">Discover the world's most amazing places with our curated selection</p>
+            </div>
+            
+            <!-- NEW: Destination filter tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterDestinations('all')" class="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium">All Destinations</button>
+                <button onclick="filterDestinations('beach')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Beach</button>
+                <button onclick="filterDestinations('mountain')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Mountain</button>
+                <button onclick="filterDestinations('city')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">City</button>
+                <button onclick="filterDestinations('adventure')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-300">Adventure</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid">
+                <!-- Destinations will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Traveler Reviews Section -->
+    <section id="reviews" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Traveler Reviews</h3>
+                <p class="text-xl text-gray-600">See what our adventurers have to say about their experiences</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center">
-                        <span class="text-8xl">🏝️</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">Maldives</h4>
-                        <p class="text-gray-600 mb-4">Crystal clear waters and pristine beaches await you in this tropical paradise</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $2,499</span>
-                            <button onclick="selectDestination('Maldives')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl mr-4">👤</div>
+                        <div>
+                            <h4 class="font-semibold">Sarah M.</h4>
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
                         </div>
                     </div>
+                    <p class="text-gray-600">"The Maldives trip was absolutely magical! Every detail was perfectly arranged."</p>
                 </div>
                 
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center">
-                        <span class="text-8xl">🗼</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">Paris, France</h4>
-                        <p class="text-gray-600 mb-4">The city of love and lights with iconic landmarks and rich culture</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $1,899</span>
-                            <button onclick="selectDestination('Paris')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl mr-4">👤</div>
+                        <div>
+                            <h4 class="font-semibold">James K.</h4>
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
                         </div>
                     </div>
+                    <p class="text-gray-600">"Our African safari exceeded all expectations. The guides were incredibly knowledgeable."</p>
                 </div>
                 
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-green-400 to-emerald-400 flex items-center justify-center">
-                        <span class="text-8xl">🏔️</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">Swiss Alps</h4>
-                        <p class="text-gray-600 mb-4">Majestic mountains and charming villages in the heart of Europe</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $2,199</span>
-                            <button onclick="selectDestination('Swiss Alps')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl mr-4">👤</div>
+                        <div>
+                            <h4 class="font-semibold">Maria L.</h4>
+                            <div class="flex text-yellow-400">
+                                ★★★★☆
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
-                        <span class="text-8xl">🌸</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">Tokyo, Japan</h4>
-                        <p class="text-gray-600 mb-4">Modern metropolis blending ancient traditions with cutting-edge technology</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $2,799</span>
-                            <button onclick="selectDestination('Tokyo')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center">
-                        <span class="text-8xl">🦁</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">African Safari</h4>
-                        <p class="text-gray-600 mb-4">Experience wildlife in their natural habitat on an unforgettable adventure</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $3,299</span>
-                            <button onclick="selectDestination('African Safari')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="h-64 bg-gradient-to-br from-teal-400 to-blue-400 flex items-center justify-center">
-                        <span class="text-8xl">🏛️</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold mb-2">Santorini, Greece</h4>
-                        <p class="text-gray-600 mb-4">Stunning sunsets and white-washed buildings overlooking the Aegean Sea</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-blue-600">From $1,799</span>
-                            <button onclick="selectDestination('Santorini')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                                Explore
-                            </button>
-                        </div>
-                    </div>
+                    <p class="text-gray-600">"Tokyo was an incredible experience. The cultural activities were well-organized and authentic."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Travel Packages -->
-    <section id="packages" class="py-20 bg-gray-100">
+    <!-- Enhanced Travel Packages -->
+    <section id="packages" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h3 class="text-4xl font-bold text-gray-900 mb-4">Travel Packages</h3>
-                <p class="text-xl text-gray-600">Choose the perfect package for your adventure</p>
+                <p class="text-xl text-gray-600">Choose the perfect package for your adventure style and budget</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                <!-- Packages remain the same but with enhanced interactions -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center card-hover">
                     <div class="text-6xl mb-4">🎒</div>
                     <h4 class="text-2xl font-bold mb-4">Explorer</h4>
                     <p class="text-gray-600 mb-6">Perfect for budget-conscious travelers who want to see the world</p>
@@ -201,12 +237,13 @@
                         <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Airport transfers</li>
                     </ul>
                     <div class="text-3xl font-bold text-blue-600 mb-4">From $999</div>
-                    <button onclick="selectPackage('Explorer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    <button onclick="selectPackage('Explorer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105">
                         Choose Package
                     </button>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-xl p-8 text-center border-4 border-blue-500 relative">
+                <!-- Most Popular package with enhanced styling -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center border-4 border-blue-500 relative card-hover">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                         Most Popular
                     </div>
@@ -221,12 +258,12 @@
                         <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Local experiences</li>
                     </ul>
                     <div class="text-3xl font-bold text-blue-600 mb-4">From $1,999</div>
-                    <button onclick="selectPackage('Adventurer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    <button onclick="selectPackage('Adventurer')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105">
                         Choose Package
                     </button>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center card-hover">
                     <div class="text-6xl mb-4">👑</div>
                     <h4 class="text-2xl font-bold mb-4">Luxury</h4>
                     <p class="text-gray-600 mb-6">Ultimate luxury experience with premium accommodations and services</p>
@@ -239,7 +276,7 @@
                         <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Personal concierge</li>
                     </ul>
                     <div class="text-3xl font-bold text-blue-600 mb-4">From $4,999</div>
-                    <button onclick="selectPackage('Luxury')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                    <button onclick="selectPackage('Luxury')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105">
                         Choose Package
                     </button>
                 </div>
@@ -247,8 +284,8 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- Enhanced About Section -->
+    <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -260,7 +297,7 @@
                             <div class="text-3xl mr-4">🎯</div>
                             <div>
                                 <h4 class="text-xl font-semibold mb-2">Personalized Experiences</h4>
-                                <p class="text-gray-600">Every trip is tailored to your interests and preferences</p>
+                                <p class="text-gray-600">Every trip is tailored to your interests and preferences with our custom itinerary builder</p>
                             </div>
                         </div>
                         
@@ -268,7 +305,7 @@
                             <div class="text-3xl mr-4">🛡️</div>
                             <div>
                                 <h4 class="text-xl font-semibold mb-2">24/7 Support</h4>
-                                <p class="text-gray-600">Round-the-clock assistance wherever you are in the world</p>
+                                <p class="text-gray-600">Round-the-clock assistance wherever you are in the world with our dedicated support team</p>
                             </div>
                         </div>
                         
@@ -276,7 +313,7 @@
                             <div class="text-3xl mr-4">💎</div>
                             <div>
                                 <h4 class="text-xl font-semibold mb-2">Premium Quality</h4>
-                                <p class="text-gray-600">Carefully selected accommodations and experiences</p>
+                                <p class="text-gray-600">Carefully selected accommodations and experiences vetted by our travel experts</p>
                             </div>
                         </div>
                     </div>
@@ -303,12 +340,12 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Enhanced Contact Section -->
     <section id="contact" class="py-20 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h3 class="text-4xl font-bold mb-4">Ready to Start Your Adventure?</h3>
-                <p class="text-xl text-gray-300">Get in touch with our travel experts today</p>
+                <p class="text-xl text-gray-300">Get in touch with our travel experts today for a personalized consultation</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -316,34 +353,37 @@
                     <div class="text-4xl mb-4">📞</div>
                     <h4 class="text-xl font-semibold mb-2">Call Us</h4>
                     <p class="text-gray-300">+1 (555) 123-4567</p>
+                    <p class="text-sm text-gray-400 mt-1">Mon-Sun, 6AM-10PM EST</p>
                 </div>
                 
                 <div class="text-center">
                     <div class="text-4xl mb-4">✉️</div>
                     <h4 class="text-xl font-semibold mb-2">Email Us</h4>
                     <p class="text-gray-300">hello@wanderlustadventures.com</p>
+                    <p class="text-sm text-gray-400 mt-1">Response within 2 hours</p>
                 </div>
                 
                 <div class="text-center">
                     <div class="text-4xl mb-4">📍</div>
                     <h4 class="text-xl font-semibold mb-2">Visit Us</h4>
                     <p class="text-gray-300">123 Travel Street, Adventure City</p>
+                    <p class="text-sm text-gray-400 mt-1">By appointment only</p>
                 </div>
             </div>
             
             <div class="text-center">
-                <button onclick="showBookingForm()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300">
+                <button onclick="showBookingForm()" class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
                     Plan Your Trip Now
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Booking Modal -->
+    <!-- Enhanced Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Book Your Adventure</h3>
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-90vh overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 p-6 border-b">
+                <h3 class="text-2xl font-bold">Plan Your Adventure</h3>
                 <button onclick="hideBookingForm()" class="text-gray-400 hover:text-gray-600">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -351,39 +391,66 @@
                 </button>
             </div>
             
-            <form id="bookingForm" onsubmit="submitBooking(event)">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <!-- NEW: Booking progress indicator -->
+            <div class="px-6 mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-blue-600">Step 1 of 3</span>
+                    <span class="text-sm text-gray-500">Basic Information</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="booking-progress bg-blue-600 h-2 rounded-full" style="width: 33%"></div>
+                </div>
+            </div>
+            
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="p-6">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                            <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                            <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                            <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers *</label>
+                            <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                                <option value="">Select travelers</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5+">5+ People</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Destination</label>
-                        <select id="destinationSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Destination *</label>
+                        <select id="destinationSelect" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
                             <option value="">Select a destination</option>
-                            <option value="Maldives">Maldives</option>
-                            <option value="Paris">Paris, France</option>
-                            <option value="Swiss Alps">Swiss Alps</option>
-                            <option value="Tokyo">Tokyo, Japan</option>
-                            <option value="African Safari">African Safari</option>
-                            <option value="Santorini">Santorini, Greece</option>
+                            <option value="Maldives">Maldives - From $2,499</option>
+                            <option value="Paris">Paris, France - From $1,899</option>
+                            <option value="Swiss Alps">Swiss Alps - From $2,199</option>
+                            <option value="Tokyo">Tokyo, Japan - From $2,799</option>
+                            <option value="African Safari">African Safari - From $3,299</option>
+                            <option value="Santorini">Santorini, Greece - From $1,799</option>
                         </select>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Package</label>
-                        <select id="packageSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Travel Package *</label>
+                        <select id="packageSelect" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
                             <option value="">Select a package</option>
                             <option value="Explorer">Explorer - From $999</option>
                             <option value="Adventurer">Adventurer - From $1,999</option>
@@ -391,67 +458,337 @@
                         </select>
                     </div>
                     
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Travel Date</label>
-                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Travel Date *</label>
+                            <input type="date" required min="<?php echo date('Y-m-d'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Trip Duration</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                                <option value="7">7 Days</option>
+                                <option value="10" selected>10 Days</option>
+                                <option value="14">14 Days</option>
+                                <option value="21">21 Days</option>
+                            </select>
+                        </div>
                     </div>
                     
+                    <!-- NEW: Special requirements section -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
-                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option value="1">1 Person</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5+">5+ People</option>
-                        </select>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Special Requirements</label>
+                        <textarea placeholder="Any dietary restrictions, accessibility needs, or special requests..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" rows="3"></textarea>
+                    </div>
+                    
+                    <!-- NEW: Trip customization options -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Trip Activities (Optional)</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Adventure Sports</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Cultural Tours</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Beach Relaxation</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Food & Dining</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Shopping</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" class="rounded text-blue-600">
+                                <span class="text-sm">Nightlife</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mt-6">
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105 mt-8">
                     Submit Booking Request
                 </button>
+                
+                <p class="text-xs text-gray-500 text-center mt-4">
+                    By submitting this form, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                </p>
             </form>
         </div>
     </div>
 
+    <!-- NEW: Booking Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center">
+            <div class="success-checkmark text-6xl text-green-500 mb-4">✅</div>
+            <h3 class="text-2xl font-bold mb-4">Booking Request Submitted!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your booking request! Our travel experts will contact you within 24 hours to finalize your adventure and provide a detailed itinerary.</p>
+            <button onclick="hideSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Show booking form
+        // Enhanced destination data with categories
+        const destinations = [
+            { id: 1, name: "Maldives", price: 2499, image: "🏝️", category: "beach", description: "Crystal clear waters and pristine beaches await you in this tropical paradise", rating: 4.9 },
+            { id: 2, name: "Paris, France", price: 1899, image: "🗼", category: "city", description: "The city of love and lights with iconic landmarks and rich culture", rating: 4.8 },
+            { id: 3, name: "Swiss Alps", price: 2199, image: "🏔️", category: "mountain", description: "Majestic mountains and charming villages in the heart of Europe", rating: 4.7 },
+            { id: 4, name: "Tokyo, Japan", price: 2799, image: "🌸", category: "city", description: "Modern metropolis blending ancient traditions with cutting-edge technology", rating: 4.9 },
+            { id: 5, name: "African Safari", price: 3299, image: "🦁", category: "adventure", description: "Experience wildlife in their natural habitat on an unforgettable adventure", rating: 4.8 },
+            { id: 6, name: "Santorini, Greece", price: 1799, image: "🏛️", category: "beach", description: "Stunning sunsets and white-washed buildings overlooking the Aegean Sea", rating: 4.6 }
+        ];
+
+        let currentFilter = 'all';
+
+        // NEW: Initialize enhanced features
+        function init() {
+            renderDestinations();
+            setupFormValidation();
+            loadUserPreferences();
+        }
+
+        // NEW: Render destinations with filtering
+        function renderDestinations() {
+            const grid = document.getElementById('destinations-grid');
+            const filteredDestinations = currentFilter === 'all' 
+                ? destinations 
+                : destinations.filter(dest => dest.category === currentFilter);
+            
+            grid.innerHTML = filteredDestinations.map(dest => `
+                <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden relative">
+                    <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center relative">
+                        <span class="text-8xl">${dest.image}</span>
+                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 px-2 py-1 rounded-full text-sm font-semibold">
+                            ${dest.rating} ★
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-2xl font-bold mb-2">${dest.name}</h4>
+                        <p class="text-gray-600 mb-4">${dest.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-blue-600">From $${dest.price}</span>
+                            <div class="flex space-x-2">
+                                <button onclick="showDestinationDetails(${dest.id})" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-300 transition duration-200">
+                                    Details
+                                </button>
+                                <button onclick="selectDestination('${dest.name}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                    Explore
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // NEW: Filter destinations by category
+        function filterDestinations(category) {
+            currentFilter = category;
+            renderDestinations();
+            
+            // Update active filter button
+            document.querySelectorAll('.flex-wrap button').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.target.classList.add('bg-blue-600', 'text-white');
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+        }
+
+        // NEW: Show destination details
+        function showDestinationDetails(destinationId) {
+            const dest = destinations.find(d => d.id === destinationId);
+            alert(`Destination: ${dest.name}\n\nPrice: From $${dest.price}\nRating: ${dest.rating} ★\nCategory: ${dest.category}\n\n${dest.description}\n\nBest time to visit: Year-round destination with perfect weather conditions.`);
+        }
+
+        // NEW: Setup form validation
+        function setupFormValidation() {
+            const form = document.getElementById('bookingForm');
+            const inputs = form.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    clearFieldError(this);
+                    saveFormProgress(); // NEW: Auto-save form progress
+                });
+            });
+        }
+
+        // NEW: Validate individual field
+        function validateField(field) {
+            if (!field.value.trim()) {
+                showFieldError(field, 'This field is required');
+                return false;
+            }
+            
+            if (field.type === 'email' && !isValidEmail(field.value)) {
+                showFieldError(field, 'Please enter a valid email address');
+                return false;
+            }
+            
+            if (field.type === 'date' && new Date(field.value) < new Date()) {
+                showFieldError(field, 'Please select a future date');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // NEW: Email validation
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // NEW: Show field error
+        function showFieldError(field, message) {
+            field.classList.add('border-red-500');
+            let errorElement = field.parentNode.querySelector('.field-error');
+            if (!errorElement) {
+                errorElement = document.createElement('p');
+                errorElement.className = 'field-error text-red-500 text-xs mt-1';
+                field.parentNode.appendChild(errorElement);
+            }
+            errorElement.textContent = message;
+        }
+
+        // NEW: Clear field error
+        function clearFieldError(field) {
+            field.classList.remove('border-red-500');
+            const errorElement = field.parentNode.querySelector('.field-error');
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+
+        // NEW: Save form progress to localStorage
+        function saveFormProgress() {
+            const formData = new FormData(document.getElementById('bookingForm'));
+            const formObject = Object.fromEntries(formData);
+            localStorage.setItem('wanderlust-booking-progress', JSON.stringify(formObject));
+        }
+
+        // NEW: Load user preferences from localStorage
+        function loadUserPreferences() {
+            const savedProgress = localStorage.getItem('wanderlust-booking-progress');
+            if (savedProgress) {
+                const formData = JSON.parse(savedProgress);
+                Object.keys(formData).forEach(key => {
+                    const field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        field.value = formData[key];
+                    }
+                });
+            }
+        }
+
+        // Enhanced show booking form
         function showBookingForm() {
             document.getElementById('bookingModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Hide booking form
+        // Enhanced hide booking form
         function hideBookingForm() {
             document.getElementById('bookingModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
 
-        // Select destination
+        // NEW: Show success modal
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        // NEW: Hide success modal
+        function hideSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Enhanced select destination
         function selectDestination(destination) {
             showBookingForm();
             document.getElementById('destinationSelect').value = destination;
+            saveFormProgress();
         }
 
-        // Select package
+        // Enhanced select package
         function selectPackage(packageName) {
             showBookingForm();
             document.getElementById('packageSelect').value = packageName;
+            saveFormProgress();
         }
 
-        // Submit booking
+        // Enhanced submit booking with validation
         function submitBooking(event) {
             event.preventDefault();
             
-            // Get form data
-            const formData = new FormData(event.target);
-            const bookingData = Object.fromEntries(formData);
+            // Validate all fields
+            const form = event.target;
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
             
-            // Show success message
-            alert('Thank you for your booking request! Our travel experts will contact you within 24 hours to finalize your adventure.');
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
             
-            // Hide modal and reset form
-            hideBookingForm();
-            event.target.reset();
+            if (!isValid) {
+                alert('Please fill in all required fields correctly.');
+                return;
+            }
+            
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<div class="loading-spinner mx-auto"></div>';
+            submitButton.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Get form data
+                const formData = new FormData(form);
+                const bookingData = Object.fromEntries(formData);
+                
+                // Clear form and storage
+                form.reset();
+                localStorage.removeItem('wanderlust-booking-progress');
+                
+                // Hide booking modal and show success
+                hideBookingForm();
+                showSuccessModal();
+                
+                // Restore button
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // NEW: Track booking conversion
+                trackBookingConversion(bookingData);
+                
+            }, 2000);
+        }
+
+        // NEW: Track booking conversion (analytics)
+        function trackBookingConversion(bookingData) {
+            console.log('Booking conversion tracked:', {
+                destination: bookingData.destinationSelect,
+                package: bookingData.packageSelect,
+                travelers: bookingData.travelers,
+                timestamp: new Date().toISOString()
+            });
         }
 
         // Smooth scrolling for navigation links
@@ -468,12 +805,21 @@
             });
         });
 
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 hideBookingForm();
             }
         });
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideSuccessModal();
+            }
+        });
+
+        // NEW: Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b24b1df1cf7e79',t:'MTc1NDUyMjcyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
