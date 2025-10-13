@@ -1417,3 +1417,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all items
+      faqItems.forEach(f => {
+        f.classList.remove('active');
+        f.setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked item if it was closed
+      if (!isActive) {
+        item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+});
+
+
