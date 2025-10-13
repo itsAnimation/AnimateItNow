@@ -207,23 +207,24 @@
 
 
     .about-main {
-      padding-top: var(--header-height);
       min-height: 100vh;
     }
 
     .about-header {
       text-align: center;
-      padding: 100px 0 60px;
+      padding: 60px 0;
     }
 
     .about-title {
       font-size: 3.5rem;
       margin-bottom: 20px;
       position: relative;
-      background: linear-gradient(to right, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
     .about-subtitle {
@@ -241,17 +242,18 @@
     }
 
     .about-card {
-      background: var(--card-bg);
+      background: var(--bg);
       border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--card-shadow);
+      padding: 35px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
       transition: var(--transition);
       border: 1px solid var(--border);
     }
 
     .about-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(108, 99, 255, 0.15);
+      border-color: var(--primary);
     }
 
     .about-card i {
@@ -303,17 +305,18 @@
     }
 
     .team-member {
-      background: var(--card-bg);
+      background: var(--bg);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
       transition: var(--transition);
       border: 1px solid var(--border);
     }
 
     .team-member:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 20px 40px rgba(108, 99, 255, 0.2);
+      border-color: var(--primary);
     }
 
     .member-header {
