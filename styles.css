@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+/* Document should be scrollable by default */
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+}
+
 :root {
   --primary-bg: #f9f9f9;
   --primary-text: #222;
@@ -235,6 +243,8 @@ body {
   color: var(--primary-text);
   transition: background var(--transition), color var(--transition);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   transition: background 0.5s ease 0.2s;
 }
 
@@ -763,10 +773,11 @@ main {
   margin: 0 auto;
   padding: 2rem 1rem 2rem 1rem;
   max-width: 900px;
-  padding-bottom: 8.5rem; /* Space for footer */
+  padding-bottom: 0; /* Footer follows content; no artificial spacing */
   display: flex; /* Main content area used flex */
   flex-direction: column;
   gap: 3rem; /* Space between sections */
+  flex: 1 0 auto;
 }
 .info-section {
   /* margin: 3rem 0; */
@@ -953,7 +964,7 @@ main {
  background: linear-gradient(135deg, #3f5efb, #9f5de2, #ff6ec4);
   color: #ffffff;
   padding: 50px 20px 30px;
-  margin-top: 80px;
+  margin-top: auto;
   box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12);
   font-family: "Segoe UI", sans-serif;
   position: relative;
@@ -1162,26 +1173,68 @@ main {
 
 
 body.dark .contact-container {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid rgba(28, 200, 200, 0.6);
-  border-radius: 20px;
-  padding: 2.5rem;
-  animation: neonPulse 3s ease-in-out infinite;
-  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 25px;
+  padding: 3rem;
+  position: relative;
+  z-index: 10;
   box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.3), 
-    0 0 20px rgba(28, 200, 200, 0.4),
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+body.dark .contact-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(168, 85, 247, 0.05) 50%, 
+    rgba(34, 197, 94, 0.1) 100%);
+  border-radius: 25px;
+  z-index: -1;
+}
+
+body.dark .contact-container::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg,
+    rgba(59, 130, 246, 0.1) 60deg,
+    transparent 120deg,
+    rgba(168, 85, 247, 0.05) 180deg,
+    transparent 240deg,
+    rgba(34, 197, 94, 0.1) 300deg,
+    transparent 360deg);
+  animation: rotateGlowDark 8s linear infinite;
+  z-index: -2;
+}
+
+@keyframes rotateGlowDark {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 body.dark .contact-container:hover {
-  transform: scale(1.02);
+  transform: scale(1.02) translateY(-5px);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.4), 
-    0 0 30px rgba(28, 200, 200, 0.5),
+    0 35px 70px rgba(0, 0, 0, 0.5), 
+    0 0 40px rgba(59, 130, 246, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border-color: rgba(28, 200, 200, 0.8);
+  border-color: rgba(59, 130, 246, 0.6);
 }
 
 @media (max-width: 768px) {
@@ -1759,10 +1812,76 @@ body.dark .contributor-card:hover {
 
 /* Contact Form Styles */
 .contact {
-  background: url("images/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, 
+    #667eea 0%, 
+    #764ba2 25%, 
+    #f093fb 50%, 
+    #f5576c 75%, 
+    #4facfe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  overflow: auto; /* allow scrolling on contact page */
+  min-height: 100vh; /* ensure full viewport height and allow growth */
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  animation: floatingOrbs 20s ease-in-out infinite;
+}
+
+.contact::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle 10s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingOrbs {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  33% { 
+    transform: translateY(-20px) rotate(120deg);
+    opacity: 0.9;
+  }
+  66% { 
+    transform: translateY(10px) rotate(240deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes sparkle {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-100px); }
 }
 .main-section {
   width: 100%;
@@ -1792,26 +1911,19 @@ body.dark .contributor-card:hover {
 }
 
 .contact-container {
- background: conic-gradient(from -90deg,
-  rgba(85, 131, 181, 0.7),  /* enhanced blue */
-  rgba(76, 165, 150, 0.7),   /* enhanced jade mint */
-  rgba(212, 178, 219, 0.7),  /* enhanced soft moss */
-  rgba(255, 255, 255, 0.8),  /* enhanced whitewash */
-  rgba(85, 131, 181, 0.7)   /* enhanced blue */
-);
-
- /* Enhanced translucent background */
-  border: 2px solid rgba(79, 140, 255, 0.5); /* Stronger, more visible border */
-  border-radius: 20px;
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.15), 
-    0 0 20px rgba(79, 140, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  padding: 2.5rem;
-  animation:  flowingNeonLite 3s ease-in-out infinite;
-  transition: all 0.4s ease;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 3rem;
   position: relative;
+  z-index: 10;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
@@ -1824,20 +1936,44 @@ body.dark .contributor-card:hover {
   bottom: 0;
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.1) 0%, 
-    rgba(79, 140, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.05) 50%, 
     rgba(255, 255, 255, 0.1) 100%);
-  border-radius: 20px;
-  pointer-events: none;
-  z-index: 1;
+  border-radius: 25px;
+  z-index: -1;
 }
 
+.contact-container::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, 
+    transparent 0deg,
+    rgba(255, 255, 255, 0.1) 60deg,
+    transparent 120deg,
+    rgba(255, 255, 255, 0.05) 180deg,
+    transparent 240deg,
+    rgba(255, 255, 255, 0.1) 300deg,
+    transparent 360deg);
+  animation: rotateGlow 8s linear infinite;
+  z-index: -2;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 .contact-container:hover {
-  transform: scale(1.02);
+  transform: scale(1.02) translateY(-5px);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.2), 
-    0 0 30px rgba(79, 140, 255, 0.4),
+    0 35px 70px rgba(0, 0, 0, 0.2), 
+    0 0 40px rgba(79, 140, 255, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(79, 140, 255, 0.7);
+  border-color: rgba(79, 140, 255, 0.6);
 }
 .contact-form {
   width: 100%;
@@ -2062,9 +2198,75 @@ body.dark .navbar {
 
 
 body.contact.dark {
-  background: url("images/bgdark.png") no-repeat center center;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, 
+    #0f0c29 0%, 
+    #302b63 25%, 
+    #24243e 50%, 
+    #1a1a2e 75%, 
+    #16213e 100%);
+  background-size: 400% 400%;
+  animation: gradientShiftDark 15s ease infinite;
+  position: relative;
+  overflow: auto; /* allow scrolling in dark mode contact */
+}
+
+body.contact.dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.15) 0%, transparent 50%);
+  animation: floatingOrbsDark 20s ease-in-out infinite;
+}
+
+body.contact.dark::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(59, 130, 246, 0.4), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(168, 85, 247, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(34, 197, 94, 0.5), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(59, 130, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(168, 85, 247, 0.4), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkleDark 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes gradientShiftDark {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingOrbsDark {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% { 
+    transform: translateY(-25px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% { 
+    transform: translateY(15px) rotate(240deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sparkleDark {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-100px); }
 }
 
 body.dark .form-group input:focus,
