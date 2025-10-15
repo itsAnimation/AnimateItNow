@@ -375,6 +375,199 @@
       color: white;
       transform: translateY(-3px);
     }
+       .footer {
+        background-color: var(--bg-secondary);
+        color: var(--text);
+        padding: 80px 0 30px;
+        position: relative;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-about {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo img {
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .footer-logo span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .footer-about p {
+        color: var(--text-light);
+        margin-bottom: 20px;
+      }
+
+      .footer-links h3,
+      .footer-social h3 {
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-links h3::after,
+      .footer-social h3::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary);
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: var(--text-light);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-links a i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: var(--bg-tertiary);
+        border-radius: 50%;
+        color: var(--text);
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid var(--border);
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom .highlight {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .newsletter {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius);
+        padding: 20px;
+        margin-top: 20px;
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .newsletter h4 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      .newsletter-pill-form {
+        display: flex;
+        gap: 0;
+        background: var(--bg);
+        border: 3px solid var(--border);
+        border-radius: 50px;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .newsletter-pill-form:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+      }
+
+      .newsletter-pill-form input {
+        flex-grow: 1;
+        padding: 15px 20px;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 1.3rem;
+        color: var(--text);
+      }
+
+      .newsletter-pill-form input::placeholder {
+        color: var(--text-light);
+        opacity: 0.8;
+        font-size: 1.3rem;
+      }
+
+      .newsletter-pill-form .newsletter-submit-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0 11px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 0 50px 50px 0;
+      }
+
+      .newsletter-pill-form .newsletter-submit-btn:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      .newsletter-submit-btn i {
+        font-size: 1.3rem;
+        line-height: 1;
+      }
 
     /* Responsive Design */
     @media (max-width: 768px) {
@@ -528,27 +721,132 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <h2>AnimateItNow</h2>
-            <p>Creating impactful web animations and templates for everyone.</p>
+         
+     <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-about">
+              <div class="footer-logo">
+                <img src="images/logo.png" alt="Website Logo" />
+                <span>AnimateItNow</span>
+              </div>
+              <p>
+                Creating impactful web animations and templates for everyone. Join
+                our community to contribute, learn, and grow together.
+              </p>
+            </div>
+
+            <div class="footer-links">
+              <h3>Quick Links</h3>
+              <ul>
+                <li>
+                  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li>
+                  <a href="templates.html"
+                    ><i class="fas fa-palette"></i> Templates</a
+                  >
+                </li>
+                <li>
+                  <a href="editor.html"><i class="fas fa-code"></i> Editor</a>
+                </li>
+                <li>
+                  <a href="playground.html"
+                    ><i class="fas fa-mouse-pointer"></i> Hover Effects</a
+                  >
+                </li>
+                <li>
+                  <a href="contributors.html"
+                    ><i class="fas fa-users"></i> Contributors</a
+                  >
+                </li>
+                <li>
+                  <a href="leaderboard.html"
+                    ><i class="fas fa-trophy"></i> Leaderboard</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-links">
+              <h3>Resources</h3>
+              <ul>
+                <li>
+                  <a href="about.html"
+                    ><i class="fas fa-info-circle"></i> About Us</a
+                  >
+                </li>
+                <li>
+                  <a href="contact.html"
+                    ><i class="fas fa-envelope"></i> Contact</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-book"></i> Documentation</a>
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-blog"></i> Blog</a>
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+                </li>
+                <li>
+                  <a href="privacy.html"
+                    ><i class="fas fa-shield-alt"></i> Privacy Policy</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="footer-social">
+              <div class="newsletter">
+                <h4>Stay Updated</h4>
+                <p>
+                  Get the latest templates and updates directly to your inbox.
+                </p>
+                <form class="newsletter-pill-form">
+                  <input type="email" placeholder="Your email address" required />
+                  <button type="submit" class="newsletter-submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Subscribe
+                  </button>
+                </form>
+              </div>
+              <br />
+              <h3>Connect With Us</h3>
+              <div class="social-icons">
+                <a
+                  href="https://github.com/itsAnimation/AnimateItNow"
+                  target="_blank"
+                  title="GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+                <a
+                  href="https://www.linkedin.com/in/anujshrivastava1/"
+                  target="_blank"
+                  title="LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+                <a href="https://twitter.com" target="_blank" title="Twitter"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="https://discord.com" target="_blank" title="Discord"
+                  ><i class="fab fa-discord"></i
+                ></a>
+                <a href="mailto:contact@animateitnow.com" title="Email"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </div>
+            </div>
           </div>
-          <div class="footer-right">
-            <h4>Connect With Us</h4>
-            <ul>
-              <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li> 
-              <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-              <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
-            </ul>
+
+          <div class="footer-bottom">
+            <p>
+              © 2025 AnimateItNow. Made with ❤️ by
+              <span class="highlight">Anuj</span> and Contributors.
+            </p>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
 
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
