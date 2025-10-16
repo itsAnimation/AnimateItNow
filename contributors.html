@@ -1049,15 +1049,14 @@
         document
           .getElementById("searchContributors")
           .addEventListener("keyup", function (e) {
-            if (e.key=== "Enter") {
+            
+            if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
               performSearch();
             }
-            // if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
-            //   performSearch();
-            // }
-            // if (e.key=== "Backspace") {
-            //   performSearch();
-            // }
+            if (e.key=== "Backspace") {
+              performSearch();
+            }
+           
           });
 
         // Clear search on escape key
