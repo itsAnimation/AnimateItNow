@@ -623,10 +623,25 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-.navbar #theme-toggle {
-  color: #fff !important; /* Use white for better contrast */
-  opacity: 1;
-}
+
+ #theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+  #theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
 
 /* Left Logo Section */
 .nav-left {

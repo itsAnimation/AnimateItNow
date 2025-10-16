@@ -79,19 +79,31 @@ class NavbarThemeManager {
 
     setupMobileMenu() {
         const hamburger = document.getElementById('hamburger');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         const navLinks = document.querySelector('.nav-links');
 
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 hamburger.classList.toggle('active');
-            });
+                
+
+                // Swap icon
+            if (navLinks.classList.contains('active')) {
+                hamburgerIcon.src = "svg/close.svg"; // menu open → show close
+            } else {
+                hamburgerIcon.src = "svg/hamburger.svg"; // menu closed → show hamburger
+            }
+        });
+
+ 
 
             // Close mobile menu when clicking on a link
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     hamburger.classList.remove('active');
+                    hamburgerIcon.src = "svg/hamburger.svg";
                 });
             });
 
@@ -100,6 +112,7 @@ class NavbarThemeManager {
                 if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                     navLinks.classList.remove('active');
                     hamburger.classList.remove('active');
+                    hamburgerIcon.src = "svg/hamburger.svg";
                 }
             });
         }
