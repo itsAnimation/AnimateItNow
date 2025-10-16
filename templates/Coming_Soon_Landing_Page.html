@@ -9,6 +9,8 @@
       name="description"
       content="Something amazing is coming soon at AnimateItNow - Stay tuned for revolutionary animations and templates"
     />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/AnimateItNow/navbar_styles.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- PWA Meta Tags -->
@@ -151,7 +153,9 @@
         margin-bottom: 3rem;
         opacity: 0.9;
       }
-
+      .description p{
+        color: white;
+      }
       /* Countdown Styles */
       .countdown-wrapper {
         display: flex;
@@ -306,6 +310,180 @@
         background: #4caf50;
       }
       
+        /* Footer Component Styles */
+        .footer {
+            background-color: var(--background-secondary);
+            color: var(--text-primary);
+            padding: 80px 0 30px;
+            position: relative;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            gap: 110px;
+            margin-bottom: 40px;
+        }
+        .footer-container{
+          display: flex;
+        }
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after,
+        .footer-social h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition-default);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-tertiary);
+            border-radius: 50%;
+            color: var(--text-primary);
+            transition: var(--transition-default);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .newsletter {
+            background: var(--background-tertiary);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .newsletter h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px 6px;
+            border: 3px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--background-primary);
+            color: var(--text-primary);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .newsletter-form button {
+            padding: 10px 3px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition-default);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
       pre {
         background: rgba(0, 0, 0, 0.7);
         padding: 1.5rem;
@@ -349,7 +527,6 @@
         .description {
           font-size: 1.1rem;
         }
-        
         .code-section {
           padding: 1rem;
           margin: 1rem;
@@ -947,6 +1124,8 @@
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
       }
 
       /* Dark theme navbar override for this page */
@@ -955,6 +1134,8 @@
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
       }
       
       body.light .nav-links a {
@@ -1076,64 +1257,50 @@
   </head>
 
   <body class="light">
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
-
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../templates.html">Templates</a></li>
-                <li><a href="../components.html">Components</a></li>
-                <li><a href="../playground.html">Hover-Effects</a></li>
-                <li><a href="../contributors.html">Contributors</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-                <li><a href="../leaderboard.html">Leaderboard</a></li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-        <!-- theme toggle moved next to GitHub icon -->
+  <nav class="navbar scroll-fade">
+    <div class="nav-left">
+      <a href="../index.html" class="home-link">
+        <img src="../images/logo.png" alt="AnimateItNow Logo" class="logo" />
+        <span class="site-name">Animate It Now</span>
+      </a>
+    </div>
+    
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../editor.html" target="_blank">Editor</a></li>
+        <li><a href="../templates.html">Templates</a></li>
+        <li><a href="../playground.html" style="white-space: nowrap">Hover-Effects</a></li>
+        <li><a href="../contributors.html">Contributors</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../leaderboard.html">Leaderboard</a></li>
+        <li><a href="../generator.html">Generator</a></li>
+        <!-- cursor toggle switch -->
         <li>
-          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Theme">
             <i class="fas fa-moon"></i>
           </button>
         </li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="../loginpage.html" class="btn btn-outline">Login</a>
-                <a href="../signup.html" class="btn">Sign Up</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
+      </ul>
+    </div>
+  </nav>
 
     <!-- Main Section -->
     <main class="main-content">
@@ -1468,10 +1635,34 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="../images/logo.png" alt="Website Logo" />
+                        <img src="/AnimateItNow/images/logo.png" alt="Website Logo" />
                         <span>AnimateItNow</span>
                     </div>
                     <p>Creating impactful web animations and templates for everyone. Join our community to contribute, learn, and grow together.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/AnimateItNow/index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/AnimateItNow/templates.html"><i class="fas fa-palette"></i> Templates</a></li>
+                        <li><a href="/AnimateItNow/editor.html"><i class="fas fa-code"></i> Editor</a></li>
+                        <li><a href="/AnimateItNow/playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
+                        <li><a href="/AnimateItNow/contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+                        <li><a href="/AnimateItNow/leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="/AnimateItNow/documentation.html"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="/AnimateItNow/blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="/AnimateItNow/support.html"><i class="fas fa-question-circle"></i> Support</a></li>
+                        <li><a href="/AnimateItNow/privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
                 </div>
                 
                 <div class="footer-social">
@@ -1500,7 +1691,6 @@
             </div>
         </div>
     </footer>
-
     <script>
       // Theme toggle functionality
       function setupThemeToggle() {
