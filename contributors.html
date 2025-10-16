@@ -602,6 +602,24 @@
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
       }
+      .footer-left h2 {
+      margin-bottom: 15px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+      .footer-left p{
+        color:rgba(0, 0, 0, 0.478)
+      }
+
+      .footer-right a{
+        color: rgba(0, 0, 0, 0.639);
+      }
+      .footer-right{
+        display: flex;
+        flex-direction: column;
+        margin-left: 70%;
+      }
 
       @media (max-width: 768px) {
         .contributors-title {
@@ -758,7 +776,7 @@
                 >
               </li>
               <li>
-                <a
+                <a 
                   href="mailto:contact@animateitnow.com"
                   rel="noopener noreferrer"
                   ><i class="fas fa-envelope"></i> Email Us</a
@@ -1031,9 +1049,14 @@
         document
           .getElementById("searchContributors")
           .addEventListener("keyup", function (e) {
-            if (e.key === "Enter") {
+            
+            if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
               performSearch();
             }
+            if (e.key=== "Backspace") {
+              performSearch();
+            }
+           
           });
 
         // Clear search on escape key
