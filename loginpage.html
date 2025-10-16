@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,78 @@
   <link rel="stylesheet" href="signup.css">
   
   <style>
-    /* Accessibility improvements */
+    /* ---------- Base Styles ---------- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+      margin: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    main.form-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #4338ca;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .switch a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .switch a:hover {
+      text-decoration: underline;
+    }
+
+    /* Accessibility & States */
     .visually-hidden {
       position: absolute;
       width: 1px;
@@ -20,49 +91,24 @@
       white-space: nowrap;
       border: 0;
     }
-    
-    /* Focus styles for better accessibility */
+
     input:focus, button:focus, a:focus {
       outline: 2px solid #4f46e5;
       outline-offset: 2px;
     }
-    
-    /* Loading state */
-    .loading {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-    
-    /* Error states */
+
     .error-message {
       color: #dc2626;
       font-size: 0.875rem;
-      margin-top: 0.25rem;
-      display: none;
-    }
-    
-    .input-error {
-      border-color: #dc2626 !important;
-    }
-    
-    /* Success states */
-    .input-success {
-      border-color: #16a34a !important;
-    }
-    
-    /* Debug info (development only) */
-    .debug-info {
-      background: #f3f4f6;
-      border: 1px solid #d1d5db;
-      border-radius: 0.375rem;
-      padding: 0.75rem;
-      margin: 1rem 0;
-      font-size: 0.75rem;
-      color: #6b7280;
+      margin-top: -0.5rem;
+      margin-bottom: 0.75rem;
       display: none;
     }
 
-    /* ✨ Styles for the new SVG Password Toggle ✨ */
+    .input-error { border-color: #dc2626 !important; }
+    .input-success { border-color: #16a34a !important; }
+
+    /* Password Toggle */
     .input-group {
       position: relative;
     }
@@ -78,21 +124,64 @@
       transform: translateY(-50%);
       background: transparent;
       border: none;
-      padding: 0;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: #6b7280;
-    }
-
-    .password-toggle-btn:focus {
-      border-radius: 4px;
     }
 
     .password-toggle-btn svg {
       width: 1.25rem;
       height: 1.25rem;
+    }
+
+    /* ---------- 🌙 Dark Mode ---------- */
+    [data-theme="dark"] body {
+      background-color: #111827;
+      color: #f3f4f6;
+    }
+      [data-theme="dark"] h1{
+        color:white;
+      }
+
+        [data-theme="dark"] p{
+          color:rgb(229, 201, 201);
+        }
+
+    [data-theme="dark"] main.form-container {
+      background: #1f2937;
+      color: #f9fafb;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+    }
+    [data-theme="dark"] main.form-container p {
+     
+      color:rgb(229, 201, 201);
+      
+    }
+    
+
+    [data-theme="dark"] input {
+      background-color: #374151;
+      color: #f9fafb;
+      border: 1px solid #4b5563;
+    }
+
+    [data-theme="dark"] input::placeholder {
+      color: #9ca3af;
+    }
+
+    [data-theme="dark"] .btn {
+      background-color: #6366f1;
+    }
+
+    [data-theme="dark"] .btn:hover {
+      background-color: #818cf8;
+    }
+
+    [data-theme="dark"] .switch a {
+      color: #a5b4fc;
+    }
+
+    [data-theme="dark"] .error-message {
+      color: #f87171;
     }
   </style>
 </head>
@@ -114,33 +203,14 @@
       
       <div class="input-group">
         <label for="email" class="visually-hidden">Email Address</label>
-        <input 
-          type="email" 
-          id="email"
-          name="email"
-          placeholder="Email Address" 
-          required
-          aria-required="true"
-          aria-describedby="emailError"
-          autocomplete="email"
-        >
+        <input type="email" id="email" name="email" placeholder="Email Address" required aria-required="true" aria-describedby="emailError" autocomplete="email">
         <div id="emailError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
 
       <div class="input-group">
         <label for="password" class="visually-hidden">Password</label>
-        <input 
-          type="password" 
-          id="password"
-          name="password"
-          placeholder="Password" 
-          required
-          aria-required="true"
-          aria-describedby="passwordError"
-          autocomplete="current-password"
-        >
-        <button type="button" id="passwordToggle" class="password-toggle-btn" aria-label="Show password">
-          </button>
+        <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" aria-describedby="passwordError" autocomplete="current-password">
+        <button type="button" id="passwordToggle" class="password-toggle-btn" aria-label="Show password"></button>
         <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
 
@@ -150,154 +220,25 @@
       </button>
     </form>
 
-    <p class="switch">Don't have an account? <a href="signup.html" aria-label="Navigate to sign up page">Sign up here</a></p>
-
+    <p class="switch">Don't have an account? <a href="signup.html">Sign up here</a></p>
   </main>
 
   <script>
-    // 🎯 Debug logging helper
-    const logDebug = (message, data = null) => {
-      console.log(`🔐 LoginDebug: ${message}`, data ? data : '');
-      
-      // Update debug info in development
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        const debugInfo = document.getElementById('debugInfo');
-        const debugStatus = document.getElementById('debugStatus');
-        if (debugInfo && debugStatus) {
-          debugInfo.style.display = 'block';
-          debugStatus.textContent = message;
-        }
-      }
-    };
-
-    // 🎯 Performance monitoring helper
-    const trackPerformance = (operation, startTime) => {
-      const duration = performance.now() - startTime;
-      logDebug(`⏱️ ${operation} Performance`, { duration: `${duration.toFixed(2)}ms` });
-      return duration;
-    };
-
-    // 🎯 Security monitoring
-    const securityMonitor = {
-      loginAttempts: 0,
-      lastAttempt: null,
-      maxAttempts: 5,
-      trackAttempt: function() { this.loginAttempts++; this.lastAttempt = new Date(); logDebug('🔒 Login attempt tracked', { attemptNumber: this.loginAttempts, timestamp: this.lastAttempt.toISOString() }); if (this.loginAttempts >= this.maxAttempts) { logDebug('🚨 Maximum login attempts reached', { attempts: this.loginAttempts, limit: this.maxAttempts }); } },
-      resetAttempts: function() { this.loginAttempts = 0; this.lastAttempt = null; logDebug('🔄 Login attempts reset'); },
-      isRateLimited: function() { return this.loginAttempts >= this.maxAttempts; }
-    };
-
-    // 🎯 Form validation
-    const formValidator = {
-      email: function(email) { const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; const isValid = emailRegex.test(email); logDebug('📧 Email validation', { email: email.substring(0, 3) + '...', isValid: isValid }); return isValid; },
-      password: function(password) { const isValid = password.length >= 6; logDebug('🔑 Password validation', { length: password.length, isValid: isValid }); return isValid; },
-      showError: function(fieldId, message) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.add('input-error'); field.classList.remove('input-success'); errorElement.textContent = message; errorElement.style.display = 'block'; logDebug('❌ Field error shown', { field: fieldId, message: message }); } },
-      showSuccess: function(fieldId) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.remove('input-error'); field.classList.add('input-success'); errorElement.style.display = 'none'; logDebug('✅ Field validation passed', { field: fieldId }); } },
-      clearErrors: function() { const errorElements = document.querySelectorAll('.error-message'); const inputFields = document.querySelectorAll('input'); errorElements.forEach(el => { el.style.display = 'none'; el.textContent = ''; }); inputFields.forEach(field => { field.classList.remove('input-error', 'input-success'); }); logDebug('🧹 All form errors cleared'); }
-    };
-
-    // 🎯 Page initialization
-    document.addEventListener('DOMContentLoaded', function() {
-      const loadStartTime = performance.now();
-      logDebug('🚀 Login page initialized');
-      
-      const form = document.getElementById('loginForm');
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('password');
-      const loginButton = document.getElementById('loginButton');
-      const buttonText = document.getElementById('buttonText');
-      const buttonSpinner = document.getElementById('buttonSpinner');
-
-      // ✨ Logic for the SVG eye icon starts here! ✨
-      const passwordToggle = document.getElementById('passwordToggle');
-
-      const eyeIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639l4.423-4.423a1.012 1.012 0 0 1 1.428 0l4.028 4.028a1.012 1.012 0 0 1 0 1.428l-4.423 4.423a1.012 1.012 0 0 1-1.428 0l-4.028-4.028a1.012 1.012 0 0 1 0-1.428Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`;
-      const eyeSlashIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.243 4.243L6.228 6.228" /></svg>`;
-
-      passwordToggle.innerHTML = eyeIconSVG;
-
-      passwordToggle.addEventListener('click', function() {
-        const isPassword = passwordInput.type === 'password';
-        passwordInput.type = isPassword ? 'text' : 'password';
-        this.innerHTML = isPassword ? eyeSlashIconSVG : eyeIconSVG;
-        this.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
-      });
-      // ✨ Eye icon logic ends here. ✨
-
-      // Track page load performance
-      window.addEventListener('load', () => {
-        const loadDuration = trackPerformance('Page Load', loadStartTime);
-        logDebug('✅ Page fully loaded', { loadTime: `${loadDuration.toFixed(2)}ms` });
-      });
-
-      // 🎯 Real-time validation
-      emailInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.email(this.value)) { formValidator.showSuccess('email'); } else { formValidator.showError('email', 'Please enter a valid email address'); } } });
-      passwordInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.password(this.value)) { formValidator.showSuccess('password'); } else { formValidator.showError('password', 'Password must be at least 6 characters'); } } });
-
-      // 🎯 Form submission handler
-      form.addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const submitStartTime = performance.now();
-        logDebug('🎯 Form submission started');
-        formValidator.clearErrors();
-        
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-        let isValid = true;
-        
-        if (!email) { formValidator.showError('email', 'Email is required'); isValid = false; } else if (!formValidator.email(email)) { formValidator.showError('email', 'Please enter a valid email address'); isValid = false; }
-        if (!password) { formValidator.showError('password', 'Password is required'); isValid = false; } else if (!formValidator.password(password)) { formValidator.showError('password', 'Password must be at least 6 characters'); isValid = false; }
-        if (!isValid) { logDebug('❌ Form validation failed', { email: !!email, password: !!password }); return; }
-        if (securityMonitor.isRateLimited()) { formValidator.showError('password', 'Too many login attempts. Please try again later.'); logDebug('🚨 Rate limiting applied', { attempts: securityMonitor.loginAttempts }); return; }
-        
-        securityMonitor.trackAttempt();
-        
-        loginButton.disabled = true;
-        loginButton.classList.add('loading');
-        buttonText.style.display = 'none';
-        buttonSpinner.style.display = 'inline';
-        logDebug('⏳ Authentication in progress', { email: email.substring(0, 3) + '...', attempt: securityMonitor.loginAttempts });
-        
-        try {
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          logDebug('✅ Login successful', { duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
-          securityMonitor.resetAttempts();
-          alert('Login successful! Redirecting...');
-          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
-        } catch (error) {
-          const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          logDebug('❌ Login failed', { error: error.message, duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
-          formValidator.showError('password', 'Invalid email or password. Please try again.');
-        } finally {
-          loginButton.disabled = false;
-          loginButton.classList.remove('loading');
-          buttonText.style.display = 'inline';
-          buttonSpinner.style.display = 'none';
-        }
-      });
-
-      // 🎯 Keyboard navigation enhancements
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') { form.reset(); formValidator.clearErrors(); logDebug('⌨️ Form cleared with Escape key'); }
-        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); form.dispatchEvent(new Event('submit')); logDebug('⌨️ Form submitted with Ctrl+Enter'); }
-      });
-
-      // 🎯 Input field tracking for analytics
-      const inputs = document.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.addEventListener('focus', function() { logDebug('🎯 Field focused', { field: this.id }); });
-        input.addEventListener('input', function() { logDebug('📝 Field input', { field: this.id, valueLength: this.value.length, hasValue: !!this.value.trim() }); });
-      });
-
-      logDebug('🔧 Event listeners initialized');
+    // ✅ Apply saved theme from localStorage (same as navbar-theme.js)
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
     });
 
-    // 🎯 Error boundary for unhandled errors
-    window.addEventListener('error', function(event) { logDebug('🚨 Unhandled error', { message: event.message, filename: event.filename, lineno: event.lineno, colno: event.colno }); });
-
-    // 🎯 Page visibility tracking
-    document.addEventListener('visibilitychange', function() { logDebug('👀 Page visibility changed', { hidden: document.hidden, visibilityState: document.visibilityState }); });
+    // ✅ Optional: Sync with navbar toggle in real-time
+    window.addEventListener("storage", (event) => {
+      if (event.key === "theme") {
+        document.documentElement.setAttribute("data-theme", event.newValue);
+      }
+    });
   </script>
+
+  <!-- ⚙️ Include your existing login logic JS below -->
+  <script src="login.js"></script>
 </body>
 </html>
