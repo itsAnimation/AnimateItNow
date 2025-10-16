@@ -595,7 +595,200 @@
             }
         }
 
-/* Hamburger always right */
-.hamburger {
-    margin-left: 10px;
+/* ========================= */
+/* 🔥 Enhanced Navbar Styles */
+/* ========================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
 }
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle,
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover,
+.hamburger:hover {
+  color: var(--accent);
+}
+
+
+/* 🌙 Theme toggle hover glow */
+#theme-toggle:hover i {
+  color: var(--primary);
+  transform: rotate(20deg);
+  transition: all 0.3s ease;
+}
+
+/* 🍔 Animated hamburger */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Dropdown container styling */
+.dropdown-content {
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background-color: var(--bg-glass);
+}
+
+/* Scroll shrink animation */
+.navbar.scrolled {
+  height: 65px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid var(--border-color);
+  transition: height 0.4s ease, background 0.4s ease;
+}
+
+.dark-theme .navbar.scrolled {
+  background: rgba(18, 18, 18, 0.7);
+}
+
+/* Better spacing and layout balance */
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-container {
+  padding: 0 1rem;
+}
+/* Ensure login stays visible */
+.nav-links a:last-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Fix hover for last item (Login) */
+.nav-links a:last-child:hover {
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 101, 132, 0.3);
+}
+
+/* In dark theme */
+.dark-theme .nav-links a:last-child {
+  color: var(--text-light);
+}
+
+/* Z-index fix if hidden behind nav actions */
+.nav-links {
+  z-index: 5;
+}
+.nav-actions {
+  z-index: 10;
+}
+
+
+.logo h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(270deg, #6c63ff, #36d1dc, #ff6584);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.05) rotate(-1deg);
+}
+
+.logo img {
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover img {
+    transform: rotate(-15deg) scale(1.1);
+}
+
+
+.logo {
+    padding: 6px 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    box-shadow: 0 6px 25px rgba(108, 99, 255, 0.4);
+}
+
+.logo img {
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
