@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - AnimateItNow</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    /* === GENERAL === */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* === FEEDBACK CONTAINER === */
+    .feedback-container {
+      width: 90%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      padding: 50px 40px;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+      animation: floatUp 0.8s ease forwards;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+
+    .feedback-container::before {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+      top: -50%;
+      left: -50%;
+      transform: rotate(25deg);
+      z-index: 0;
+      filter: blur(100px);
+    }
+
+    @keyframes floatUp {
+      from { opacity:0; transform:translateY(50px);}
+      to { opacity:1; transform:translateY(0);}
+    }
+
+    .feedback-container h2 {
+      text-align:center;
+      font-size:2.4em;
+      margin-bottom:15px;
+      color:#333;
+      z-index:1;
+      position:relative;
+    }
+
+    .feedback-container p {
+      text-align:center;
+      margin-bottom:40px;
+      color:#555;
+      z-index:1;
+      position:relative;
+      font-size:1em;
+    }
+
+    /* === FORM STYLING === */
+    .feedback-form {
+      position:relative;
+      z-index:1;
+    }
+
+    .feedback-form .form-group {
+      position:relative;
+      margin-bottom:30px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1em;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      transition: all 0.3s;
+      background: #fff;
+    }
+
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      border-color: #6a11cb;
+      box-shadow: 0 0 10px rgba(106,17,203,0.3);
+    }
+
+    .feedback-form input.error,
+    .feedback-form textarea.error { border-color: red; animation: shake 0.2s ease; }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .feedback-form label {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      pointer-events: none;
+      color: #888;
+      font-size: 0.9em;
+      transition: all 0.3s;
+      background: #fff;
+      padding: 0 5px;
+    }
+
+    .feedback-form input:focus + label,
+    .feedback-form input:not(:placeholder-shown) + label,
+    .feedback-form textarea:focus + label,
+    .feedback-form textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      color: #6a11cb;
+      font-size: 0.75em;
+    }
+
+    .feedback-form textarea { resize:none; height:150px; }
+
+    .feedback-form button {
+      width:100%;
+      padding:15px;
+      font-size:1.1em;
+      border:none;
+      border-radius:12px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color:#fff;
+      cursor:pointer;
+      transition: all 0.3s;
+    }
+
+    .feedback-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+    }
+
+    /* === STAR RATING === */
+    #starRating {
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-bottom:10px;
+      position:relative;
+      z-index:2;
+    }
+
+    #starRating span {
+      font-size: 36px;
+      color: #ccc;
+      cursor:pointer;
+      transition: transform 0.2s, color 0.15s ease;
+      user-select:none;
+    }
+
+    #starRating span.active,
+    #starRating span.hover {
+      color:#f5c518;
+      transform: scale(1.4);
+    }
+
+    #starDescription {
+      text-align:center;
+      font-size:0.95em;
+      color:#555;
+      margin-bottom:5px;
+      transition: all 0.3s;
+    }
+
+    .error-message {
+      color:red;
+      font-size:0.9em;
+      display:none;
+    }
+
+    @media(max-width:768px) {
+      .feedback-container { margin:50px 20px; padding:40px 30px; }
+    }
+
+    /* === POPUP === */
+    #popupOverlay {
+      position:fixed; top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+    }
+    #popupOverlay.show { display:flex; }
+    #popupOverlay .popup {
+      background:#fff;
+      padding:30px 40px;
+      border-radius:15px;
+      text-align:center;
+      font-size:1.1em;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    #popupOverlay.show .popup { transform: scale(1); }
+    #popupOverlay .popup button {
+      margin-top:20px;
+      padding:10px 25px;
+      font-size:1em;
+      border:none;
+      border-radius:12px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      width:100%;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color:#fff;
+      text-align:center;
+      padding:40px 20px;
+      font-size:0.9em;
+      margin-top:auto;
+    }
+    .footer h3 { margin-bottom:15px; font-size:1.5em; }
+    .footer a { color:#ffd700; margin:0 10px; text-decoration:none; transition:0.3s; }
+    .footer a:hover { color:#fff; }
+
+    .footer {
+  width: 100%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer a:hover {
+  color: #fff !important;
+  transform: scale(1.2);
+}
+
+.footer h3 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-social a {
+  text-decoration: none;
+}
+
+.footer p {
+  margin: 0;
+}
+
+@media(max-width:768px){
+  .footer-container { flex-direction: column; gap:10px; }
+}
+
+.footer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px 40px 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer h3 {
+  font-size: 1.8em;
+  margin-bottom: 5px;
+}
+
+.footer p {
+  font-size: 1em;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2em;
+}
+
+.footer-social a {
+  color: #ffd700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* Wave background */
+.wave-bg {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 200px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff33" fill-opacity="0.2" d="M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,176C672,171,768,181,864,192C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+  background-size: cover;
+  animation: waveMove 15s linear infinite;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media(max-width:768px){
+  .footer-container { gap:10px; }
+  .footer h3 { font-size:1.5em; }
+}
+
+/* Footer wave background */
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 200px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff33" fill-opacity="0.2" d="M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,176C672,171,768,181,864,192C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+  background-size: cover;
+  animation: waveMove 15s linear infinite;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* ===== FOOTER STYLING ===== */
+.footer {
+  width: 100%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 60px 20px 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.footer-about {
+  flex: 1 1 250px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.footer-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.footer-about p {
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.footer-links {
+  flex: 1 1 150px;
+}
+
+.footer-links h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #ffd700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links ul li a i {
+  margin-right: 8px;
+}
+
+.footer-links ul li a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.footer-social {
+  flex: 1 1 250px;
+}
+
+.newsletter h4 {
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.newsletter-pill-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.newsletter-pill-form input {
+  flex: 1 1 auto;
+  padding: 10px 15px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+}
+
+.newsletter-pill-form button {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  background: #ffd700;
+  color: #6a11cb;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.newsletter-pill-form button:hover {
+  background: #fff;
+  color: #2575fc;
+  transform: scale(1.05);
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  font-size: 1.2em;
+}
+
+.social-icons a {
+  color: #ffd700;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #fff;
+  transform: scale(1.3);
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #e0e0e0;
+}
+
+.footer-bottom .highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media(max-width: 992px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .footer-links, .footer-about, .footer-social {
+    text-align: center;
+  }
+
+  .newsletter-pill-form {
+    flex-direction: column;
+  }
+
+  .newsletter-pill-form input, .newsletter-pill-form button {
+    width: 100%;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <script>
+    fetch('nav.html').then(res=>res.text()).then(data=>{
+      document.getElementById('navbar').innerHTML=data;
+      const script=document.createElement('script');
+      script.src='navbar-script.js';
+      document.head.appendChild(script);
+    });
+  </script>
+
+  <!-- Feedback Form -->
+  <div class="feedback-container">
+    <h2>Share Your Feedback</h2>
+    <p>Your thoughts help us grow and improve AnimateItNow</p>
+
+    <form class="feedback-form" id="feedbackForm">
+      <div class="form-group">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Your Name</label>
+        <div class="error-message" id="nameError">Name is required</div>
+      </div>
+
+      <div class="form-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">Your Email</label>
+        <div class="error-message" id="emailError">Invalid email</div>
+      </div>
+
+      <div class="form-group">
+        <label>Rate Your Experience *</label>
+        <div id="starRating">
+          <span data-rating="1" title="Terrible">★</span>
+          <span data-rating="2" title="Not Good">★</span>
+          <span data-rating="3" title="Average">★</span>
+          <span data-rating="4" title="Good">★</span>
+          <span data-rating="5" title="Amazing">★</span>
+        </div>
+        <div id="starDescription">Select a rating</div>
+        <div class="error-message" id="ratingError">Please select a rating</div>
+      </div>
+
+      <div class="form-group">
+        <textarea id="feedback" placeholder=" " required></textarea>
+        <label for="feedback">Your Feedback</label>
+        <div class="error-message" id="feedbackError">Feedback must be at least 10 characters</div>
+      </div>
+
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
+
+  <!-- Popup -->
+  <div id="popupOverlay">
+    <div class="popup">
+      Thank you for your feedback!<br>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+ <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="footer-logo">
+              <img src="images/logo.png" alt="Website Logo" />
+              <span>AnimateItNow</span>
+            </div>
+            <p>
+              Creating impactful web animations and templates for everyone. Join
+              our community to contribute, learn, and grow together.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li>
+                <a href="templates.html"
+                  ><i class="fas fa-palette"></i> Templates</a
+                >
+              </li>
+              <li>
+                <a href="editor.html"><i class="fas fa-code"></i> Editor</a>
+              </li>
+              <li>
+                <a href="playground.html"
+                  ><i class="fas fa-mouse-pointer"></i> Hover Effects</a
+                >
+              </li>
+              <li>
+                <a href="contributors.html"
+                  ><i class="fas fa-users"></i> Contributors</a
+                >
+              </li>
+              <li>
+                <a href="leaderboard.html"
+                  ><i class="fas fa-trophy"></i> Leaderboard</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h3>Resources</h3>
+            <ul>
+              <li>
+                <a href="about.html"
+                  ><i class="fas fa-info-circle"></i> About Us</a
+                >
+              </li>
+              <li>
+                <a href="contact.html"
+                  ><i class="fas fa-envelope"></i> Contact</a
+                >
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-book"></i> Documentation</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-blog"></i> Blog</a>
+              </li>
+              <li>
+                <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+              </li>
+              <li>
+                <a href="privacy.html"
+                  ><i class="fas fa-shield-alt"></i> Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <div class="newsletter">
+              <h4>Stay Updated</h4>
+              <p>
+                Get the latest templates and updates directly to your inbox.
+              </p>
+              <form class="newsletter-pill-form">
+                <input type="email" placeholder="Your email address" required />
+                <button type="submit" class="newsletter-submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  Subscribe
+                </button>
+              </form>
+            </div>
+            <br />
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a
+                href="https://github.com/itsAnimation/AnimateItNow"
+                target="_blank"
+                title="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/anujshrivastava1/"
+                target="_blank"
+                title="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" title="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://discord.com" target="_blank" title="Discord"
+                ><i class="fab fa-discord"></i
+              ></a>
+              <a href="mailto:contact@animateitnow.com" title="Email"
+                ><i class="fas fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © 2025 AnimateItNow. Made with ❤️ by
+            <span class="highlight">Anuj</span> and Contributors.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+
+
+  <script>
+    // === STAR RATING LOGIC ===
+    const stars = document.querySelectorAll('#starRating span');
+    const starDesc = document.getElementById('starDescription');
+    let selectedRating = 0;
+    const descriptions = {1:'Terrible',2:'Not Good',3:'Average',4:'Good',5:'Amazing'};
+
+    function resetHover() {
+      stars.forEach(star => star.classList.remove('hover'));
+    }
+
+    function highlightHover(rating) {
+      stars.forEach((star,index) => index < rating ? star.classList.add('hover') : star.classList.remove('hover'));
+    }
+
+    function updateStars() {
+      stars.forEach((star,index) => index < selectedRating ? star.classList.add('active') : star.classList.remove('active'));
+    }
+
+    stars.forEach((star,index)=>{
+      star.addEventListener('mouseenter',()=>{ highlightHover(index+1); starDesc.innerText = descriptions[index+1]; });
+      star.addEventListener('mouseleave',()=>{ resetHover(); starDesc.innerText = selectedRating ? descriptions[selectedRating] : 'Select a rating'; });
+      star.addEventListener('click',()=>{ selectedRating=index+1; updateStars(); starDesc.innerText=descriptions[selectedRating]; document.getElementById('ratingError').style.display='none'; });
+    });
+
+    // === FORM VALIDATION & POPUP ===
+    const feedbackForm=document.getElementById('feedbackForm');
+
+    function validateField(id,minLength=1){
+      const field=document.getElementById(id);
+      const error=document.getElementById(id+'Error');
+      let valid=true;
+      if(id==='email'){ valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim()); }
+      else if(id==='feedback'){ valid=field.value.trim().length>=minLength; }
+      else{ valid=field.value.trim()!==''; }
+      if(!valid){ field.classList.add('error'); error.style.display='block'; }
+      else{ field.classList.remove('error'); error.style.display='none'; }
+      return valid;
+    }
+
+    function validateRating(){ if(selectedRating===0){ document.getElementById('ratingError').style.display='block'; return false; } return true; }
+
+    ['name','email','feedback'].forEach(id=>document.getElementById(id).addEventListener('input',()=>validateField(id,10)));
+
+    feedbackForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const validName=validateField('name');
+      const validEmail=validateField('email');
+      const validFeedback=validateField('feedback',10);
+      const validRating=validateRating();
+      if(validName && validEmail && validFeedback && validRating) showPopup();
+      else{
+        const firstError=document.querySelector('.error-message[style*="block"]');
+        if(firstError) firstError.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+    });
+
+    function showPopup(){ document.getElementById('popupOverlay').classList.add('show'); document.body.style.overflow='hidden'; }
+
+    function closePopup(){
+      document.getElementById('popupOverlay').classList.remove('show');
+      document.body.style.overflow='auto';
+      feedbackForm.reset();
+      selectedRating=0;
+      updateStars();
+      document.querySelectorAll('.error-message').forEach(e=>e.style.display='none');
+      document.querySelectorAll('.feedback-form input,.feedback-form textarea').forEach(f=>f.classList.remove('error'));
+      starDesc.innerText='Select a rating';
+    }
+  </script>
+</body>
+</html>
