@@ -7,7 +7,6 @@
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="signup.css">
   
-  <!-- 🎯 Additional CSS for accessibility and enhancements -->
   <style>
     /* Accessibility improvements */
     .visually-hidden {
@@ -62,10 +61,42 @@
       color: #6b7280;
       display: none;
     }
+
+    /* ✨ Styles for the new SVG Password Toggle ✨ */
+    .input-group {
+      position: relative;
+    }
+
+    #password {
+      padding-right: 2.5rem !important;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+    }
+
+    .password-toggle-btn:focus {
+      border-radius: 4px;
+    }
+
+    .password-toggle-btn svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   </style>
 </head>
 <body>
-  <!-- 🎯 Navigation with enhanced accessibility -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="logo" role="banner">AnimateItNow</div>
     <ul class="nav-links" role="menubar">
@@ -74,18 +105,15 @@
     </ul>
   </nav>
 
-  <!-- 🎯 Main content with proper landmark -->
   <main class="form-container" role="main">
     <h1>Login</h1>
     <p class="subtitle">Welcome back! Please log in to continue.</p>
 
-    <!-- 🎯 Debug information (development only) -->
     <div id="debugInfo" class="debug-info" role="complementary" aria-label="Debug information">
       <strong>🔧 Debug Mode:</strong> 
       <span id="debugStatus">Ready</span>
     </div>
 
-    <!-- 🎯 Enhanced form with accessibility features -->
     <form id="loginForm" role="form" aria-labelledby="loginHeading">
       <div class="visually-hidden" id="loginHeading">Login Form</div>
       
@@ -116,6 +144,8 @@
           aria-describedby="passwordError"
           autocomplete="current-password"
         >
+        <button type="button" id="passwordToggle" class="password-toggle-btn" aria-label="Show password">
+          </button>
         <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
 
@@ -127,7 +157,6 @@
 
     <p class="switch">Don't have an account? <a href="signup.html" aria-label="Navigate to sign up page">Sign up here</a></p>
 
-    <!-- 🎯 Accessibility helper -->
     <div class="accessibility-helper" role="complementary" aria-label="Accessibility tips" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem; text-align: center;">
       <strong>♿ Accessibility:</strong> Use Tab to navigate and Enter to submit. Screen reader users can navigate using standard form commands.
     </div>
@@ -161,101 +190,18 @@
       loginAttempts: 0,
       lastAttempt: null,
       maxAttempts: 5,
-      
-      trackAttempt: function() {
-        this.loginAttempts++;
-        this.lastAttempt = new Date();
-        logDebug('🔒 Login attempt tracked', {
-          attemptNumber: this.loginAttempts,
-          timestamp: this.lastAttempt.toISOString()
-        });
-        
-        if (this.loginAttempts >= this.maxAttempts) {
-          logDebug('🚨 Maximum login attempts reached', {
-            attempts: this.loginAttempts,
-            limit: this.maxAttempts
-          });
-        }
-      },
-      
-      resetAttempts: function() {
-        this.loginAttempts = 0;
-        this.lastAttempt = null;
-        logDebug('🔄 Login attempts reset');
-      },
-      
-      isRateLimited: function() {
-        return this.loginAttempts >= this.maxAttempts;
-      }
+      trackAttempt: function() { this.loginAttempts++; this.lastAttempt = new Date(); logDebug('🔒 Login attempt tracked', { attemptNumber: this.loginAttempts, timestamp: this.lastAttempt.toISOString() }); if (this.loginAttempts >= this.maxAttempts) { logDebug('🚨 Maximum login attempts reached', { attempts: this.loginAttempts, limit: this.maxAttempts }); } },
+      resetAttempts: function() { this.loginAttempts = 0; this.lastAttempt = null; logDebug('🔄 Login attempts reset'); },
+      isRateLimited: function() { return this.loginAttempts >= this.maxAttempts; }
     };
 
     // 🎯 Form validation
     const formValidator = {
-      email: function(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isValid = emailRegex.test(email);
-        
-        logDebug('📧 Email validation', {
-          email: email.substring(0, 3) + '...', // Partial logging for privacy
-          isValid: isValid
-        });
-        
-        return isValid;
-      },
-      
-      password: function(password) {
-        const isValid = password.length >= 6;
-        
-        logDebug('🔑 Password validation', {
-          length: password.length,
-          isValid: isValid
-        });
-        
-        return isValid;
-      },
-      
-      showError: function(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        const errorElement = document.getElementById(fieldId + 'Error');
-        
-        if (field && errorElement) {
-          field.classList.add('input-error');
-          field.classList.remove('input-success');
-          errorElement.textContent = message;
-          errorElement.style.display = 'block';
-          
-          logDebug('❌ Field error shown', { field: fieldId, message: message });
-        }
-      },
-      
-      showSuccess: function(fieldId) {
-        const field = document.getElementById(fieldId);
-        const errorElement = document.getElementById(fieldId + 'Error');
-        
-        if (field && errorElement) {
-          field.classList.remove('input-error');
-          field.classList.add('input-success');
-          errorElement.style.display = 'none';
-          
-          logDebug('✅ Field validation passed', { field: fieldId });
-        }
-      },
-      
-      clearErrors: function() {
-        const errorElements = document.querySelectorAll('.error-message');
-        const inputFields = document.querySelectorAll('input');
-        
-        errorElements.forEach(el => {
-          el.style.display = 'none';
-          el.textContent = '';
-        });
-        
-        inputFields.forEach(field => {
-          field.classList.remove('input-error', 'input-success');
-        });
-        
-        logDebug('🧹 All form errors cleared');
-      }
+      email: function(email) { const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; const isValid = emailRegex.test(email); logDebug('📧 Email validation', { email: email.substring(0, 3) + '...', isValid: isValid }); return isValid; },
+      password: function(password) { const isValid = password.length >= 6; logDebug('🔑 Password validation', { length: password.length, isValid: isValid }); return isValid; },
+      showError: function(fieldId, message) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.add('input-error'); field.classList.remove('input-success'); errorElement.textContent = message; errorElement.style.display = 'block'; logDebug('❌ Field error shown', { field: fieldId, message: message }); } },
+      showSuccess: function(fieldId) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.remove('input-error'); field.classList.add('input-success'); errorElement.style.display = 'none'; logDebug('✅ Field validation passed', { field: fieldId }); } },
+      clearErrors: function() { const errorElements = document.querySelectorAll('.error-message'); const inputFields = document.querySelectorAll('input'); errorElements.forEach(el => { el.style.display = 'none'; el.textContent = ''; }); inputFields.forEach(field => { field.classList.remove('input-error', 'input-success'); }); logDebug('🧹 All form errors cleared'); }
     };
 
     // 🎯 Page initialization
@@ -270,6 +216,22 @@
       const buttonText = document.getElementById('buttonText');
       const buttonSpinner = document.getElementById('buttonSpinner');
 
+      // ✨ Logic for the SVG eye icon starts here! ✨
+      const passwordToggle = document.getElementById('passwordToggle');
+
+      const eyeIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639l4.423-4.423a1.012 1.012 0 0 1 1.428 0l4.028 4.028a1.012 1.012 0 0 1 0 1.428l-4.423 4.423a1.012 1.012 0 0 1-1.428 0l-4.028-4.028a1.012 1.012 0 0 1 0-1.428Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`;
+      const eyeSlashIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.243 4.243L6.228 6.228" /></svg>`;
+
+      passwordToggle.innerHTML = eyeIconSVG;
+
+      passwordToggle.addEventListener('click', function() {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        this.innerHTML = isPassword ? eyeSlashIconSVG : eyeIconSVG;
+        this.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+      });
+      // ✨ Eye icon logic ends here. ✨
+
       // Track page load performance
       window.addEventListener('load', () => {
         const loadDuration = trackPerformance('Page Load', loadStartTime);
@@ -277,120 +239,45 @@
       });
 
       // 🎯 Real-time validation
-      emailInput.addEventListener('blur', function() {
-        if (this.value.trim()) {
-          if (formValidator.email(this.value)) {
-            formValidator.showSuccess('email');
-          } else {
-            formValidator.showError('email', 'Please enter a valid email address');
-          }
-        }
-      });
-
-      passwordInput.addEventListener('blur', function() {
-        if (this.value.trim()) {
-          if (formValidator.password(this.value)) {
-            formValidator.showSuccess('password');
-          } else {
-            formValidator.showError('password', 'Password must be at least 6 characters');
-          }
-        }
-      });
+      emailInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.email(this.value)) { formValidator.showSuccess('email'); } else { formValidator.showError('email', 'Please enter a valid email address'); } } });
+      passwordInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.password(this.value)) { formValidator.showSuccess('password'); } else { formValidator.showError('password', 'Password must be at least 6 characters'); } } });
 
       // 🎯 Form submission handler
       form.addEventListener('submit', async function(event) {
         event.preventDefault();
-        
         const submitStartTime = performance.now();
         logDebug('🎯 Form submission started');
-        
-        // Clear previous errors
         formValidator.clearErrors();
         
-        // Get form data
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
-        
-        // Validate form
         let isValid = true;
         
-        if (!email) {
-          formValidator.showError('email', 'Email is required');
-          isValid = false;
-        } else if (!formValidator.email(email)) {
-          formValidator.showError('email', 'Please enter a valid email address');
-          isValid = false;
-        }
+        if (!email) { formValidator.showError('email', 'Email is required'); isValid = false; } else if (!formValidator.email(email)) { formValidator.showError('email', 'Please enter a valid email address'); isValid = false; }
+        if (!password) { formValidator.showError('password', 'Password is required'); isValid = false; } else if (!formValidator.password(password)) { formValidator.showError('password', 'Password must be at least 6 characters'); isValid = false; }
+        if (!isValid) { logDebug('❌ Form validation failed', { email: !!email, password: !!password }); return; }
+        if (securityMonitor.isRateLimited()) { formValidator.showError('password', 'Too many login attempts. Please try again later.'); logDebug('🚨 Rate limiting applied', { attempts: securityMonitor.loginAttempts }); return; }
         
-        if (!password) {
-          formValidator.showError('password', 'Password is required');
-          isValid = false;
-        } else if (!formValidator.password(password)) {
-          formValidator.showError('password', 'Password must be at least 6 characters');
-          isValid = false;
-        }
-        
-        if (!isValid) {
-          logDebug('❌ Form validation failed', { email: !!email, password: !!password });
-          return;
-        }
-        
-        // Check rate limiting
-        if (securityMonitor.isRateLimited()) {
-          formValidator.showError('password', 'Too many login attempts. Please try again later.');
-          logDebug('🚨 Rate limiting applied', { attempts: securityMonitor.loginAttempts });
-          return;
-        }
-        
-        // Track login attempt
         securityMonitor.trackAttempt();
         
-        // Show loading state
         loginButton.disabled = true;
         loginButton.classList.add('loading');
         buttonText.style.display = 'none';
         buttonSpinner.style.display = 'inline';
-        
-        logDebug('⏳ Authentication in progress', {
-          email: email.substring(0, 3) + '...', // Privacy-conscious logging
-          attempt: securityMonitor.loginAttempts
-        });
+        logDebug('⏳ Authentication in progress', { email: email.substring(0, 3) + '...', attempt: securityMonitor.loginAttempts });
         
         try {
-          // Simulate API call (replace with actual authentication)
           await new Promise(resolve => setTimeout(resolve, 1500));
-          
           const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          
-          // Simulate successful login (replace with actual success handling)
-          logDebug('✅ Login successful', {
-            duration: `${submitDuration.toFixed(2)}ms`,
-            attempts: securityMonitor.loginAttempts
-          });
-          
-          // Reset attempts on success
+          logDebug('✅ Login successful', { duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
           securityMonitor.resetAttempts();
-          
-          // Show success message (replace with actual redirect)
           alert('Login successful! Redirecting...');
-          
-          // Simulate redirect (replace with actual navigation)
-          setTimeout(() => {
-            window.location.href = 'dashboard.html';
-          }, 1000);
-          
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
         } catch (error) {
           const submitDuration = trackPerformance('Form Submission', submitStartTime);
-          
-          logDebug('❌ Login failed', {
-            error: error.message,
-            duration: `${submitDuration.toFixed(2)}ms`,
-            attempts: securityMonitor.loginAttempts
-          });
-          
+          logDebug('❌ Login failed', { error: error.message, duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
           formValidator.showError('password', 'Invalid email or password. Please try again.');
         } finally {
-          // Reset loading state
           loginButton.disabled = false;
           loginButton.classList.remove('loading');
           buttonText.style.display = 'inline';
@@ -400,57 +287,25 @@
 
       // 🎯 Keyboard navigation enhancements
       document.addEventListener('keydown', function(event) {
-        // Escape key to clear form
-        if (event.key === 'Escape') {
-          form.reset();
-          formValidator.clearErrors();
-          logDebug('⌨️ Form cleared with Escape key');
-        }
-        
-        // Ctrl+Enter to submit form
-        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
-          event.preventDefault();
-          form.dispatchEvent(new Event('submit'));
-          logDebug('⌨️ Form submitted with Ctrl+Enter');
-        }
+        if (event.key === 'Escape') { form.reset(); formValidator.clearErrors(); logDebug('⌨️ Form cleared with Escape key'); }
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); form.dispatchEvent(new Event('submit')); logDebug('⌨️ Form submitted with Ctrl+Enter'); }
       });
 
       // 🎯 Input field tracking for analytics
       const inputs = document.querySelectorAll('input');
       inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-          logDebug('🎯 Field focused', { field: this.id });
-        });
-        
-        input.addEventListener('input', function() {
-          logDebug('📝 Field input', { 
-            field: this.id, 
-            valueLength: this.value.length,
-            hasValue: !!this.value.trim()
-          });
-        });
+        input.addEventListener('focus', function() { logDebug('🎯 Field focused', { field: this.id }); });
+        input.addEventListener('input', function() { logDebug('📝 Field input', { field: this.id, valueLength: this.value.length, hasValue: !!this.value.trim() }); });
       });
 
       logDebug('🔧 Event listeners initialized');
     });
 
     // 🎯 Error boundary for unhandled errors
-    window.addEventListener('error', function(event) {
-      logDebug('🚨 Unhandled error', {
-        message: event.message,
-        filename: event.filename,
-        lineno: event.lineno,
-        colno: event.colno
-      });
-    });
+    window.addEventListener('error', function(event) { logDebug('🚨 Unhandled error', { message: event.message, filename: event.filename, lineno: event.lineno, colno: event.colno }); });
 
     // 🎯 Page visibility tracking
-    document.addEventListener('visibilitychange', function() {
-      logDebug('👀 Page visibility changed', { 
-        hidden: document.hidden,
-        visibilityState: document.visibilityState
-      });
-    });
+    document.addEventListener('visibilitychange', function() { logDebug('👀 Page visibility changed', { hidden: document.hidden, visibilityState: document.visibilityState }); });
   </script>
 </body>
 </html>
