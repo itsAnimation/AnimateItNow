@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effects - AnimateItNow</title>
+    <style>
+        :root {
+            --primary: #4a6cf7;
+            --primary-dark: #3a5ce5;
+            --secondary: #6c757d;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --danger: #dc3545;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--border-radius);
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .page-title p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.7rem 1.5rem;
+            margin: 0.5rem;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-tab.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-tab:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .animation-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .animation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .animation-preview {
+            height: 180px;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-element {
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .animation-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .animation-description {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .animation-category {
+            background-color: #e9ecef;
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .view-code-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .view-code-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* FAB Favorite Button Styles */
+        .fab-favorite {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            font-size: 1.3rem;
+            color: #ddd;
+        }
+
+        .fab-favorite:hover {
+            width: auto;
+            border-radius: 25px;
+            padding: 0 18px;
+            background: var(--danger);
+            color: white;
+        }
+
+        .fab-favorite:hover .fav-text {
+            display: inline;
+            margin-left: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fab-favorite.favorited {
+            background: var(--danger);
+            color: white;
+        }
+
+        .fab-favorite.favorited .fav-icon {
+            color: white;
+        }
+
+        .fav-text {
+            display: none;
+            white-space: nowrap;
+        }
+
+        .fav-icon {
+            transition: var(--transition);
+        }
+
+        /* Animation Classes */
+        .hover-grow:hover .preview-element {
+            transform: scale(1.2);
+        }
+
+        .hover-rotate:hover .preview-element {
+            transform: rotate(15deg);
+        }
+
+        .hover-color:hover .preview-element {
+            background-color: var(--danger);
+        }
+
+        .hover-shadow:hover .preview-element {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hover-skew:hover .preview-element {
+            transform: skewX(-10deg);
+        }
+
+        .hover-bounce:hover .preview-element {
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hover-pulse:hover .preview-element {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .hover-slide:hover .preview-element {
+            transform: translateX(20px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .animation-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i>✨</i> AnimateItNow
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../templates.html">Templates</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="../CONTRIBUTING.md">Contribute</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-title">
+            <h1>Hover Effects</h1>
+            <p>Explore our collection of hover animations. Click the heart icon to save your favorites!</p>
+        </div>
+
+        <div class="filter-tabs">
+            <div class="filter-tab active">All Effects</div>
+            <div class="filter-tab">Buttons</div>
+            <div class="filter-tab">Cards</div>
+            <div class="filter-tab">Images</div>
+            <div class="filter-tab">Text</div>
+            <div class="filter-tab">My Favorites</div>
+        </div>
+
+        <div class="animation-grid">
+            <!-- Animation Card 1 -->
+            <div class="animation-card hover-grow">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Grow Effect</h3>
+                    </div>
+                    <p class="animation-description">Element scales up on hover for a subtle but noticeable effect.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Buttons</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 2 -->
+            <div class="animation-card hover-rotate">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Rotate Effect</h3>
+                    </div>
+                    <p class="animation-description">Element rotates slightly on hover for a dynamic feel.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Cards</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 3 -->
+            <div class="animation-card hover-color">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Color Change</h3>
+                    </div>
+                    <p class="animation-description">Changes color on hover for immediate visual feedback.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Buttons</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 4 -->
+            <div class="animation-card hover-shadow">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Shadow Effect</h3>
+                    </div>
+                    <p class="animation-description">Adds a shadow on hover to create depth and elevation.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Cards</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 5 -->
+            <div class="animation-card hover-skew">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Skew Effect</h3>
+                    </div>
+                    <p class="animation-description">Skews the element on hover for a unique transformation.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Images</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 6 -->
+            <div class="animation-card hover-bounce">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Bounce Effect</h3>
+                    </div>
+                    <p class="animation-description">Element bounces up and down for a playful interaction.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Buttons</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 7 -->
+            <div class="animation-card hover-pulse">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Pulse Effect</h3>
+                    </div>
+                    <p class="animation-description">Element pulses continuously while hovered for attention.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Buttons</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Card 8 -->
+            <div class="animation-card hover-slide">
+                <div class="animation-preview">
+                    <div class="preview-element">Hover Me</div>
+                    <button class="fab-favorite">
+                        <span class="fav-icon">♥</span>
+                        <span class="fav-text">Add to Favorites</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="animation-title">Slide Effect</h3>
+                    </div>
+                    <p class="animation-description">Element slides to the right on hover for smooth motion.</p>
+                    <div class="card-footer">
+                        <span class="animation-category">Cards</span>
+                        <button class="view-code-btn">View Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AnimateItNow</h3>
+                    <p>Creating beautiful animations for developers and designers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../templates.html">Templates</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="../CONTRIBUTING.md">Contribute</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Buttons</a></li>
+                        <li><a href="#">Loaders</a></li>
+                        <li><a href="#">Modals</a></li>
+                        <li><a href="#">Forms</a></li>
+                        <li><a href="#">Navigation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AnimateItNow. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAB Favorite functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all FAB favorite buttons
+            const fabButtons = document.querySelectorAll('.fab-favorite');
+            
+            // Load favorites from localStorage
+            let favorites = JSON.parse(localStorage.getItem('animationFavorites')) || [];
+            
+            // Update UI based on stored favorites
+            updateFavoriteUI();
+            
+            // Add event listeners to FAB buttons
+            fabButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent card click event
+                    const card = this.closest('.animation-card');
+                    const animationTitle = card.querySelector('.animation-title').textContent;
+                    
+                    // Check if already favorited
+                    const index = favorites.indexOf(animationTitle);
+                    
+                    if (index === -1) {
+                        // Add to favorites
+                        favorites.push(animationTitle);
+                        this.classList.add('favorited');
+                        this.innerHTML = '<span class="fav-icon">♥</span><span class="fav-text">Added!</span>';
+                        
+                        // Reset text after 2 seconds
+                        setTimeout(() => {
+                            this.innerHTML = '<span class="fav-icon">♥</span><span class="fav-text">Remove Favorite</span>';
+                        }, 2000);
+                    } else {
+                        // Remove from favorites
+                        favorites.splice(index, 1);
+                        this.classList.remove('favorited');
+                        this.innerHTML = '<span class="fav-icon">♥</span><span class="fav-text">Add to Favorites</span>';
+                    }
+                    
+                    // Save to localStorage
+                    localStorage.setItem('animationFavorites', JSON.stringify(favorites));
+                });
+            });
+            
+            // Filter tabs functionality
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    const filter = this.textContent;
+                    
+                    // Filter animations based on selected tab
+                    filterAnimations(filter);
+                });
+            });
+            
+            // Function to update UI based on stored favorites
+            function updateFavoriteUI() {
+                fabButtons.forEach(button => {
+                    const card = button.closest('.animation-card');
+                    const animationTitle = card.querySelector('.animation-title').textContent;
+                    
+                    if (favorites.includes(animationTitle)) {
+                        button.classList.add('favorited');
+                        button.innerHTML = '<span class="fav-icon">♥</span><span class="fav-text">Remove Favorite</span>';
+                    } else {
+                        button.classList.remove('favorited');
+                        button.innerHTML = '<span class="fav-icon">♥</span><span class="fav-text">Add to Favorites</span>';
+                    }
+                });
+            }
+            
+            // Function to filter animations
+            function filterAnimations(filter) {
+                const animationCards = document.querySelectorAll('.animation-card');
+                
+                animationCards.forEach(card => {
+                    const category = card.querySelector('.animation-category').textContent;
+                    const animationTitle = card.querySelector('.animation-title').textContent;
+                    
+                    if (filter === 'All Effects') {
+                        card.style.display = 'block';
+                    } else if (filter === 'My Favorites') {
+                        if (favorites.includes(animationTitle)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    } else if (category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

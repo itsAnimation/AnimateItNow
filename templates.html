@@ -90,6 +90,37 @@
     <link rel="icon" type="image/png" href="images/logo.png" />
 
     
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="editor.html" target="_blank">Editor</a></li>
+        <li><a href="templates.html" class="active">Templates</a></li>
+        <li><a href="templates/hover.html">Hover Effects</a></li>
+        <li><a href="contributors.html">Contributors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="generator.html">Generator</a></li>
+        <!-- cursor toggle switch -->
+        <li>
+          <label class="switch" title="Toggle Snake Cursor">
+            <input type="checkbox" id="cursorToggle" />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <!-- github icon -->
+        <li>
+          <a href="https://github.com/itsAnimation/AnimateItNow"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub Repo"
+             class="github-icon">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
     <style>
         /* 🎨 CSS Design System Variables - Enhanced organization */
         :root {
@@ -966,6 +997,144 @@
         </div>
       </div>
 
+  <script>
+    // Template data
+    const templates = [
+      {
+        id: 1,
+        title: "Animated Navigation Bar",
+        description: "A sleek navigation bar with smooth hover animations and dropdown effects.",
+        category: "navbar",
+        icon: "fas fa-bars",
+        link: "templates/animated-navbar.html"
+      },
+      {
+        id: 2,
+        title: "Contact Us Template",
+        description: "A responsive contact form with animated inputs and validation.",
+        category: "form",
+        icon: "fas fa-envelope",
+        link: "templates/contact-form.html"
+      },
+      {
+        id: 3,
+        title: "Coming Soon Landing Page",
+        description: "An engaging coming soon page with countdown timer and newsletter signup.",
+        category: "landing",
+        icon: "fas fa-hourglass-half",
+        link: "templates/coming-soon.html"
+      },
+      {
+        id: 4,
+        title: "Animated Button Collection",
+        description: "A variety of creative button animations for different interactions.",
+        category: "button",
+        icon: "fas fa-hand-pointer",
+        link: "templates/animated-buttons.html"
+      },
+      {
+        id: 5,
+        title: "Product Card Showcase",
+        description: "Interactive product cards with hover effects and quick view options.",
+        category: "card",
+        icon: "fas fa-shopping-cart",
+        link: "templates/product-cards.html"
+      },
+      {
+        id: 6,
+        title: "Login/Signup Form",
+        description: "Beautiful authentication forms with smooth transitions between states.",
+        category: "form",
+        icon: "fas fa-user",
+        link: "templates/auth-forms.html"
+      },
+      {
+        id: 7,
+        title: "Pricing Table",
+        description: "Animated pricing tables with hover effects and selection animations.",
+        category: "card",
+        icon: "fas fa-tags",
+        link: "templates/pricing-table.html"
+      },
+      {
+        id: 8,
+        title: "Testimonial Slider",
+        description: "A responsive testimonial slider with smooth transitions.",
+        category: "other",
+        icon: "fas fa-comments",
+        link: "templates/testimonial-slider.html"
+      },
+      {
+        id: 9,
+        title: "Hero Section",
+        description: "An eye-catching hero section with animated text and call-to-action.",
+        category: "landing",
+        icon: "fas fa-star",
+        link: "templates/hero-section.html"
+      },
+      {
+        id: 10,
+        title: "FAQ Accordion",
+        description: "An animated FAQ section with smooth expand/collapse transitions.",
+        category: "other",
+        icon: "fas fa-question-circle",
+        link: "templates/faq-accordion.html"
+      },
+      {
+        id: 11,
+        title: "Image Gallery",
+        description: "A responsive image gallery with lightbox and hover effects.",
+        category: "other",
+        icon: "fas fa-images",
+        link: "templates/image-gallery.html"
+      },
+      {
+        id: 12,
+        title: "Progress Bars",
+        description: "Animated progress bars with different styles and loading effects.",
+        category: "other",
+        icon: "fas fa-chart-bar",
+        link: "templates/progress-bars.html"
+      },
+      {
+        id: 13,
+        title: "404 Page",
+        description: "A responsive 404 error page template for websites.",
+        category: "other",
+        icon: "fas fa-exclamation-triangle",
+        link: "templates/404.html"
+      },
+      {
+        id: 14,
+        title: "Hover Effects Gallery",
+        description: "Collection of interactive hover animations with favorite functionality.",
+        category: "button",
+        icon: "fas fa-magic",
+        link: "templates/hover.html"
+      }
+    ];
+
+    // DOM Elements
+    const templatesGrid = document.getElementById('templatesGrid');
+    const searchBar = document.getElementById('search-bar');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const themeToggle = document.getElementById('theme-toggle');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderTemplates(templates);
+      setupEventListeners();
+      checkThemePreference();
+    });
+
+    // Render templates to the grid
+    function renderTemplates(templatesToRender) {
+      templatesGrid.innerHTML = '';
+      
+      if (templatesToRender.length === 0) {
+        templatesGrid.innerHTML = `
       <!-- Templates Grid -->
       <section class="templates-grid" id="templatesGrid">
         <!-- Template Cards will be dynamically generated by JavaScript -->
@@ -1377,6 +1546,10 @@ function handleFavoriteToggle(event) {
           themeIcon.classList.add("fa-moon");
         }
       }
+    }
+  </script>
+</body>
+</html>
     </script>
   </body>
 </html>
