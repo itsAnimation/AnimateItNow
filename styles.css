@@ -435,7 +435,7 @@ body.dark {
 .footer {
   background: var(--footer-bg);
   color: var(--footer-text);
-  padding: 3rem 1rem 1.5rem;
+  padding: 3rem 5rem 1.5rem;
   margin-top: 3rem;
 }
 
@@ -457,7 +457,7 @@ body.dark {
 
 
 .footer-left p {
-  color: #ccc;
+  color: var(--text-light);
   line-height: 1.6;
 }
 
@@ -476,7 +476,7 @@ body.dark {
 }
 
 .footer-right a {
-  color: #ccc;
+  color: var(--text-light);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -569,21 +569,19 @@ body {
 
 /* NAVBAR */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 18px;
-  background: rgba(2, 13, 47);
-  /* Ensure stable layout */
-  position: relative;
-  min-height: 70px;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--bg);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
 }
 
 /* Hamburger Menu */
@@ -755,24 +753,28 @@ body {
 
 /* Navigation Links */
 .nav-links {
-  display: flex;
-  list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 40px;
 }
 
 .nav-links li {
   display: flex;
   align-items: center;
-  margin-left:12px;
+  margin-left:20px;
 }
 .nav-links a {
-  color: var(--nav-text-60);
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 8px 10px;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 500;
-  display: inline-block;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    position: relative;
+    padding: 2px 0;
+    padding-left: 186px;
 }
 
 .nav-links a:hover {
