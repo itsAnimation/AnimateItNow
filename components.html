@@ -22,74 +22,60 @@
     <link rel="stylesheet" href="./navbar_styles.css">
 </head>
 
-
-<body class="dark">
-
-
-    <!-- Navigation -->
-    <nav class="navbar">
-
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
-
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="templates.html">Templates</a></li>
-
-                <li><a href="components.html" class="active">Components</a></li>
-                
-
-                <div class="desktop-nav">
-                    <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-                    <li><a href="generator.html">Generator</a></li>
-                    <li><a href="pomodoro.html">Pomodoro</a></li>
-                </div>
-                
-
-                <div class="dropdown mobile-nav">
-                    <div class="dropdown-btn">Tools ▾</div>
-                    <div class="dropdown-content">
-                        <li><a href="playground.html" style="white-space: nowrap">Hover-Effects</a></li>
-                        <li><a href="generator.html">Generator</a></li>
-                        <li><a href="pomodoro.html">Pomodoro</a></li>
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <button class="dropdown-btn">Explore ▾</button>
-                    <div class="dropdown-content">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="leaderboard.html">Leaderboard</a></li>
-                        <li><a href="contributors.html">Contributors</a></li>
-                    </div>
-                </div>
+<body data-theme="light">
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
 
 
+    <!-- Header/Navigation -->
+    <header class="main-primary-bar header" id="main-header">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
+                <a href="index.html" class="site-name-link">
+                    <span class="site-name">Animate It Now</span>
+                </a>
+            </div>
+
+            <ul class="nav-links desktop-only" id="desktop-links">
                 <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
+                    <a href="index.html">
+                        <i class="fas fa-home" style="margin-right: 5px"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html">
+                        <i class="fas fa-info-circle" style="margin-right: 5px"></i> About
+                    </a>
+                </li>
+                <li>
+                    <a href="templates.html">
+                        <i class="fas fa-palette" style="margin-right: 5px"></i> Templates
+                    </a>
+                </li>
+                <li>
+                    <a href="components.html" class="active">
+                        <i class="fas fa-cube" style="margin-right: 5px"></i> Components
+                    </a>
+                </li>
+                <li>
+                    <a href="playground.html">
+                        <i class="fas fa-mouse-pointer" style="margin-right: 5px"></i> Hover-Effects
+                    </a>
+                </li>
+                <li>
+                    <a href="contributors.html">
+                        <i class="fas fa-users" style="margin-right: 5px"></i> Contributors
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <i class="fas fa-envelope" style="margin-right: 5px"></i> Contact
+                    </a>
+                </li>
+                <li>
+                    <a href="leaderboard.html">
+                        <i class="fas fa-trophy" style="margin-right: 5px"></i> Leaderboard
                     </a>
                 </li>
             </ul>
@@ -97,9 +83,11 @@
             <div class="nav-actions">
                 <a href="loginpage.html" class="btn btn-outline">Login</a>
                 <a href="signup.html" class="btn">Sign Up</a>
+
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
+
                 <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
@@ -107,13 +95,44 @@
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
+
+
+    <div id="mobile-menu" class="mobile-menu-container">
+        <div class="mobile-menu-links">
+            <div class="mobile-link-item">
+                <a href="index.html"><i class="fas fa-home" style="margin-right: 10px"></i> Home</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="about.html"><i class="fas fa-info-circle" style="margin-right: 10px"></i> About</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="templates.html"><i class="fas fa-palette" style="margin-right: 10px"></i> Templates</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="components.html" class="active"><i class="fas fa-cube" style="margin-right: 10px"></i> Components</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="playground.html"><i class="fas fa-mouse-pointer" style="margin-right: 10px"></i> Hover-Effects</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="contributors.html"><i class="fas fa-users" style="margin-right: 10px"></i> Contributors</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="contact.html"><i class="fas fa-envelope" style="margin-right: 10px"></i> Contact</a>
+            </div>
+            <div class="mobile-link-item">
+                <a href="leaderboard.html"><i class="fas fa-trophy" style="margin-right: 10px"></i> Leaderboard</a>
+            </div>
+        </div>
+    </div>
+
 
     <!-- 📄 Main Content -->
     <main class="main-content">
         <!-- 📋 Header Section -->
-        <header class="docs-header">
-            <div class="header-content">
+        <section class="hero">
+            <div class="container">
                 <h1 class="docs-title">
                     <i class="fas fa-cube"></i>
                     Component Documentation
@@ -123,72 +142,76 @@
                     code snippets, and implementation guides
                 </p>
             </div>
-        </header>
+        </section>
 
         <!-- 🔍 Search and Filter Section -->
         <section class="search-filter-section">
-            <div class="search-container">
-                <div class="search-input-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Search components, categories, or features..."
-                        aria-label="Search components"
-                    >
-                    <button id="clearSearch" class="clear-btn" aria-label="Clear search">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="filter-container">
-                <div class="filter-group">
-                    <label class="filter-label">Category:</label>
-                    <div class="filter-buttons" id="categoryFilters">
-                        <button class="filter-btn active" data-category="all">All</button>
-                        <button class="filter-btn" data-category="navigation">Navigation</button>
-                        <button class="filter-btn" data-category="buttons">Buttons</button>
-                        <button class="filter-btn" data-category="cards">Cards</button>
-                        <button class="filter-btn" data-category="forms">Forms</button>
-                        <button class="filter-btn" data-category="animations">Animations</button>
-                        <button class="filter-btn" data-category="layouts">Layouts</button>
-                        <button class="filter-btn" data-category="effects">Effects</button>
+            <div class="container">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Search components, categories, or features..."
+                            aria-label="Search components"
+                        >
+                        <button id="clearSearch" class="clear-btn" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="filter-group">
-                    <label class="filter-label">Complexity:</label>
-                    <div class="filter-buttons" id="complexityFilters">
-                        <button class="filter-btn active" data-complexity="all">All</button>
-                        <button class="filter-btn" data-complexity="beginner">Beginner</button>
-                        <button class="filter-btn" data-complexity="intermediate">Intermediate</button>
-                        <button class="filter-btn" data-complexity="advanced">Advanced</button>
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label class="filter-label">Category:</label>
+                        <div class="filter-buttons" id="categoryFilters">
+                            <button class="filter-btn active" data-category="all">All</button>
+                            <button class="filter-btn" data-category="navigation">Navigation</button>
+                            <button class="filter-btn" data-category="buttons">Buttons</button>
+                            <button class="filter-btn" data-category="cards">Cards</button>
+                            <button class="filter-btn" data-category="forms">Forms</button>
+                            <button class="filter-btn" data-category="animations">Animations</button>
+                            <button class="filter-btn" data-category="layouts">Layouts</button>
+                            <button class="filter-btn" data-category="effects">Effects</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="view-toggle">
-                    <button id="gridView" class="view-btn active" aria-label="Grid view">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button id="listView" class="view-btn" aria-label="List view">
-                        <i class="fas fa-list"></i>
-                    </button>
+                    <div class="filter-group">
+                        <label class="filter-label">Complexity:</label>
+                        <div class="filter-buttons" id="complexityFilters">
+                            <button class="filter-btn active" data-complexity="all">All</button>
+                            <button class="filter-btn" data-complexity="beginner">Beginner</button>
+                            <button class="filter-btn" data-complexity="intermediate">Intermediate</button>
+                            <button class="filter-btn" data-complexity="advanced">Advanced</button>
+                        </div>
+                    </div>
+
+                    <div class="view-toggle">
+                        <button id="gridView" class="view-btn active" aria-label="Grid view">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button id="listView" class="view-btn" aria-label="List view">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 🧩 Components Grid -->
         <section class="components-section">
-            <div class="components-grid" id="componentsGrid">
-                <!-- Components will be dynamically loaded here -->
-            </div>
+            <div class="container">
+                <div class="components-grid" id="componentsGrid">
+                    <!-- Components will be dynamically loaded here -->
+                </div>
 
-            <!-- 🚫 No Results Message -->
-            <div class="no-results" id="noResults" style="display: none;">
-                <i class="fas fa-search"></i>
-                <h3>No components found</h3>
-                <p>Try adjusting your search terms or filters</p>
+                <!-- 🚫 No Results Message -->
+                <div class="no-results" id="noResults" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No components found</h3>
+                    <p>Try adjusting your search terms or filters</p>
+                </div>
             </div>
         </section>
 
@@ -269,27 +292,226 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- 🦶 Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <h2>AnimateItNow</h2>
-                <p>Creating impactful web animations and components for everyone.</p>
-            </div>
-            <div class="footer-right">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Website Logo" />
+                        <span>AnimateItNow</span>
+                    </div>
+                    <p>
+                        Creating impactful web animations and templates for everyone. Join
+                        our community to contribute, learn, and grow together.
+                    </p>
+
+                    <div class="footer-social">
+                        <h3>Connect With Us</h3>
+                        <div class="social-icons">
+                            <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                            <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="templates.html"><i class="fas fa-palette"></i> Templates</a></li>
+                        <li><a href="editor.html"><i class="fas fa-code"></i> Editor</a></li>
+                        <li><a href="playground.html"><i class="fas fa-mouse-pointer"></i> Hover Effects</a></li>
+                        <li><a href="contributors.html"><i class="fas fa-users"></i> Contributors</a></li>
+                        <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Support</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <div class="newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Get the latest templates and updates directly to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required />
+                            <button type="submit" class="newsletter-submit-btn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                    <br />
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="mailto:contact@animateitnow.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © 2025 AnimateItNow. Made with ❤️ by
+                    <span class="highlight">Anuj</span> and Contributors.
+                </p>
             </div>
         </div>
     </footer>
+
+    <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="components.js"></script>
+    <script>
+        // 🌗 Theme Toggle - Perfect Implementation
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector("i");
+        const body = document.body;
+
+        // Function to set theme
+        function setTheme(theme) {
+            body.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+
+            // Update icon
+            if (theme === "dark") {
+                themeIcon.classList.remove("fa-moon");
+                themeIcon.classList.add("fa-sun");
+            } else {
+                themeIcon.classList.remove("fa-sun");
+                themeIcon.classList.add("fa-moon");
+            }
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem("theme");
+            const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (systemPrefersDark) {
+                setTheme("dark");
+            } else {
+                setTheme("light");
+            }
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = body.getAttribute("data-theme");
+            setTheme(currentTheme === "light" ? "dark" : "light");
+        });
+
+        // Listen for system theme changes
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+                setTheme(e.matches ? "dark" : "light");
+            }
+        });
+
+        // 📱 Mobile Navigation Toggle
+        const hamburger = document.getElementById("hamburger");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll(".mobile-menu-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                hamburger.classList.remove("active");
+            });
+        });
+
+        // ⏳ Progress Bar
+        window.addEventListener("scroll", () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+
+        // ⬆️ Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function () {
+            const scrollBtn = document.getElementById("scrollBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        };
+
+        // Mobile Accordion Logic
+        const accordionToggles = document.querySelectorAll(".accordion-toggle[data-accordion-content]");
+
+        accordionToggles.forEach((toggle) => {
+            toggle.addEventListener("click", (e) => {
+                if (toggle.getAttribute("href") === "#") {
+                    e.preventDefault();
+                }
+
+                const contentId = toggle.getAttribute("data-accordion-content");
+                const content = document.getElementById(contentId);
+
+                if (!content) return;
+
+                const isActive = content.classList.contains("active");
+
+                // Close all other accordions
+                document.querySelectorAll(".accordion-content").forEach((c) => {
+                    if (c !== content) {
+                        c.classList.remove("active");
+                        c.style.maxHeight = null;
+                        const otherToggle = c.previousElementSibling;
+                        if (otherToggle) {
+                            otherToggle.querySelector("i").style.transform = null;
+                        }
+                    }
+                });
+
+                // Toggle current accordion
+                content.classList.toggle("active");
+                if (content.classList.contains("active")) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    toggle.querySelector("i").style.transform = "rotate(180deg)";
+                } else {
+                    content.style.maxHeight = null;
+                    toggle.querySelector("i").style.transform = null;
+                }
+            });
+        });
+
+        // Initialize everything when page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            initTheme();
+        });
+    </script>
 </body>
 </html>

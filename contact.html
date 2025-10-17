@@ -17,78 +17,618 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="./navbar_styles.css">
+    
+    <style>
+      /* Enhanced Layout and Alignment */
+      * {
+        box-sizing: border-box;
+      }
+      
+      body.contact {
+        line-height: 1.6;
+        color: #2d3748;
+      }
+
+      .footer-left h2 {
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-left p{
+          color:rgba(0, 0, 0, 0.695);
+        }
+
+      
+      /* Contact Header - Better Spacing */
+      .contact-header {
+        position: relative;
+        overflow: hidden;
+        padding: 60px 20px 40px;
+        text-align: center;
+      }
+      
+      .contact-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        pointer-events: none;
+      }
+      
+      .contact-header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .contact-heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        animation: fadeInDown 0.8s ease;
+      }
+      
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .contact-heading i {
+        font-size: 48px;
+        color: #667eea;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.3));
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+      }
+      
+      .contact-heading h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      
+      .contact-heading h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+        animation: lineExpand 1s ease 0.5s both;
+      }
+      
+      @keyframes lineExpand {
+        from {
+          width: 0;
+          opacity: 0;
+        }
+        to {
+          width: 150px;
+          opacity: 1;
+        }
+      }
+      
+      .contact-subtitle {
+        font-size: 1.2rem;
+        color: #4a5568;
+        max-width: 600px;
+        margin: 0 auto;
+        animation: fadeIn 1s ease 0.3s both;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      /* Main Contact Section - Improved Layout */
+      .contact-main {
+        position: relative;
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .contact-container {
+        max-width: 800px;
+        margin: 0 auto 60px;
+      }
+      
+      /* Form Styling - Better Readability */
+      .contact-form {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+      
+      .form-group {
+        margin-bottom: 25px;
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+      }
+      
+      .form-group:nth-child(1) { animation-delay: 0.1s; }
+      .form-group:nth-child(2) { animation-delay: 0.2s; }
+      .form-group:nth-child(3) { animation-delay: 0.3s; }
+      .form-group:nth-child(4) { animation-delay: 0.4s; }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: #2d3748;
+        transition: all 0.3s ease;
+      }
+      
+      .form-group label i {
+        font-size: 1.1rem;
+        color: #667eea;
+        transition: transform 0.3s ease;
+      }
+      
+      .form-group:hover label i {
+        transform: scale(1.2) rotate(5deg);
+      }
+      
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 15px 18px;
+        font-size: 1rem;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        color: #2d3748;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+      
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: #a0aec0;
+        opacity: 1;
+      }
+      
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+      }
+      
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+        line-height: 1.6;
+      }
+      
+      /* Submit Button - Enhanced */
+      .contact-button {
+        margin-top: 30px;
+        animation: fadeInUp 0.6s ease 0.5s forwards;
+        opacity: 0;
+      }
+      
+      .btn-primary {
+        width: 100%;
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+      
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s ease;
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+      }
+      
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+      
+      .btn-primary:active {
+        transform: translateY(-1px);
+      }
+      
+      /* Info Container - Better Alignment */
+      .contact-info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .contact-info-container .infoContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        justify-items: center;
+      }
+      
+      .contact-info {
+        padding: 30px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+        border-radius: 16px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fadeInRight 0.6s ease forwards;
+        opacity: 0;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        color: #2d3748;
+        width: 100%;
+        max-width: 350px;
+      }
+      
+      .contact-info:nth-child(1) { animation-delay: 0.3s; }
+      .contact-info:nth-child(2) { animation-delay: 0.4s; }
+      .contact-info:nth-child(3) { animation-delay: 0.5s; }
+      
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      .contact-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+        transition: left 0.6s ease;
+      }
+      
+      .contact-info:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.25);
+        border-color: rgba(102, 126, 234, 0.4);
+      }
+      
+      .contact-info:hover::before {
+        left: 100%;
+      }
+      
+      /* Icon decorations */
+      .contact-info::after {
+        content: '💬';
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+        font-size: 50px;
+        opacity: 0.15;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+      
+      .contact-info:nth-child(2)::after {
+        content: '🚀';
+      }
+      
+      .contact-info:nth-child(3)::after {
+        content: '✨';
+      }
+      
+      .contact-info:hover::after {
+        opacity: 0.25;
+        transform: scale(1.2) rotate(10deg);
+      }
+      
+      /* Success Message */
+      .success-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 60px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        text-align: center;
+      }
+      
+      .success-message.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      
+      .success-message i {
+        font-size: 60px;
+        margin-bottom: 20px;
+        display: block;
+        animation: pulse 1s infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      
+      .success-message h3 {
+        font-size: 1.8rem;
+        margin: 0 0 10px 0;
+      }
+      
+      .success-message p {
+        font-size: 1.1rem;
+        margin: 0;
+        opacity: 0.9;
+      }
+      
+      /* Floating Particles */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(102, 126, 234, 0.4);
+        border-radius: 50%;
+        animation: float-particle 15s infinite;
+      }
+      
+      @keyframes float-particle {
+        0% {
+          transform: translateY(100vh) translateX(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) translateX(100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .contact-info-container .infoContainer {
+          grid-template-columns: 1fr;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        
+        .contact-heading h1 {
+          font-size: 2.5rem;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .contact-header {
+          padding: 40px 20px 30px;
+        }
+        
+        .contact-heading {
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .contact-heading h1 {
+          font-size: 2rem;
+        }
+        
+        .contact-heading i {
+          font-size: 40px;
+        }
+        
+        .contact-subtitle {
+          font-size: 1rem;
+        }
+        
+        .contact-main {
+          padding: 40px 15px;
+        }
+        
+        .contact-form {
+          padding: 30px 20px;
+        }
+        
+        .contact-info {
+          padding: 25px 20px;
+          font-size: 1rem;
+        }
+        
+        .contact-info::after {
+          font-size: 40px;
+          right: 20px;
+          bottom: 20px;
+        }
+        
+        .success-message {
+          padding: 30px 40px;
+          width: 90%;
+          max-width: 400px;
+        }
+        
+        .success-message i {
+          font-size: 50px;
+        }
+        
+        .success-message h3 {
+          font-size: 1.5rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .contact-heading h1 {
+          font-size: 1.75rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+          padding: 12px 15px;
+          font-size: 0.95rem;
+        }
+        
+        .btn-primary {
+          padding: 14px 28px;
+          font-size: 1rem;
+        }
+      }
+      
+         .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-left h2 {
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-right h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-right ul {
+            list-style: none;
+        }
+
+        .footer-right li {
+            margin-bottom: 10px;
+        }
+
+        .footer-right a {
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: var(--primary);
+        }
+
+        .footer-right a i {
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
   </head>
  
-
-
 <body class="contact">
 
-  <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo.png" alt="AnimateItNow Logo" class="logo" />
-            <span class="site-name">Animate It Now</span>
-        </div>
+    <div id="navbar"></div>
 
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="templates.html">Templates</a></li>
-                <li><a href="components.html">Components</a></li>
-                <li><a href="playground.html">Hover-Effects</a></li>
-                <li><a href="contributors.html">Contributors</a></li>
-                <li><a href="contact.html" class="active" style="white-space: nowrap">Contact</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <!-- cursor toggle switch -->
-                <li class="snakeList">
-                    <label class="switch" title="Toggle Snake Cursor">
-                        <input type="checkbox" id="cursorToggle">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="snakeLabel">Snake Cursor</span>
-                </li>
-                <!-- github icon -->
-                <li>
-                    <a href="https://github.com/itsAnimation/AnimateItNow"
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       aria-label="GitHub Repo"
-                       class="github-icon">
-                        <svg viewBox="0 0 16 16" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                                7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49
-                                -2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82
-                            .72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-                            -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-                            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
-                            .64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27
-                            1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
-                            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95
-                            .29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2
-                            0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-
-
-            <div class="nav-actions">
-                <a href="loginpage.html" class="btn btn-outline">Login</a>
-                <a href="signup.html" class="btn">Sign Up</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-
-    </nav>
-
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('navbar').innerHTML = data);
+  </script>
 
     <main class="main-section scroll-fade">
       <section class="contact-header">
@@ -104,11 +644,12 @@
       </section>
 
       <div class="contact-main">
-
+        <!-- Particle background -->
+        <div class="particles" id="particles"></div>
      
         <div class="contact-container scroll-fade">
           <!-- 📧 Contact Form -->
-          <form class="contact-form">
+          <form class="contact-form" id="contactForm">
             <div class="form-group scroll-fade">
               <label for="name"><i class="fa-solid fa-user"></i> Name</label>
               <input
@@ -120,115 +661,145 @@
               />
             </div>
 
+            <div class="form-group scroll-fade">
+              <label for="email"><i class="fa-solid fa-square-envelope"></i> Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email id (e.g. john@gmail.com)"
+                required
+              />
+            </div>
 
-              <div class="form-group scroll-fade">
-                <label for="email"><i class="fa-solid fa-square-envelope"></i> Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter your email id (e.g. john@gmail.com)"
-                  required
-                />
-              </div>
+            <div class="form-group scroll-fade">
+              <label for="subject"><i class="fa-solid fa-pen-to-square"></i> Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Enter the subject"
+                required
+              />
+            </div>
 
-              <div class="form-group scroll-fade">
-                <label for="subject"><i class="fa-solid fa-pen-to-square"></i> Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  placeholder="Enter the subject"
-                  required
-                />
-              </div>
+            <div class="form-group scroll-fade">
+              <label for="message"><i class="fa-solid fa-message"></i> Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Enter the message you want to convey"
+                required
+              ></textarea>
+            </div>
 
-              <div class="form-group scroll-fade">
-                <label for="message"><i class="fa-solid fa-message"></i> Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  placeholder="Enter the message you want to convey"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="contact-button scroll-fade">
-                <button type="submit" class="btn btn-primary" id="submit">
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="contact-button scroll-fade">
+              <button type="submit" class="btn btn-primary" id="submit">
+                <span>Send Message</span>
+              </button>
+            </div>
+          </form>
+        </div>
           
-          <div class="contact-info-container">
-            <div class="infoContainer">
-              <div class="contact-info">
-                We're here for you anytime<br>
-                Always ready to help.
-              </div>
-              <div class="contact-info">
-                We build websites that reflect your vision<br>
-                and earn your trust.
-              </div>
-              <div class="contact-info">
-                Every message you send inspires us<br>
-                to keep doing better.
-              </div>
+        <!-- Info Cards -->
+        <div class="contact-info-container">
+          <div class="infoContainer">
+            <div class="contact-info">
+              We're here for you anytime<br>
+              Always ready to help.
+            </div>
+            <div class="contact-info">
+              We build websites that reflect your vision<br>
+              and earn your trust.
+            </div>
+            <div class="contact-info">
+              Every message you send inspires us<br>
+              to keep doing better.
             </div>
           </div>
         </div>
       </div>
     </main>
 
-
-  <!-- ℹ️ Info Container -->
-  <div class="infoContainer">
-  <div class="contact-info">
-    We're here for you anytime<br>
-    Always ready to help.
-  </div>
-  <div class="contact-info">
-    We build websites that reflect your vision<br>
-    and earn your trust.
-  </div>
-  <div class="contact-info">
-    Every message you send inspires us<br>
-    to keep doing better.
-  </div>
-</div>
-
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+      <i class="fa-solid fa-check-circle"></i>
+      <h3>Message Sent!</h3>
+      <p>We'll get back to you soon.</p>
+    </div>
 
     <!-- 🦶 Footer -->
-
-    <footer class="footer scroll-fade">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <h2>AnimateItNow</h2>
-            <p>Creating impactful web animations and templates for everyone.</p>
-          </div>
-          <div class="footer-right">
-            <h4>Connect With Us</h4>
-            <ul>
-              <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
-              <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-              <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-            </ul>
-          </div>
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h2>AnimateItNow</h2>
+                    <p>Creating impactful web animations and templates for everyone.</p>
+                </div>
+                <div class="footer-right">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
         </div>
-        <div class="footer-bottom">
-          <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-        </div>
-      </div>
     </footer>
+
     
     <div id="cursor-snake"></div>
     <script src="script.js"></script>
-
-
+    
+    <script>
+      // Create floating particles
+      function createParticles() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 15 + 's';
+          particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          container.appendChild(particle);
+        }
+      }
+      
+      // Form submission with success animation
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const successMsg = document.getElementById('successMessage');
+            if (successMsg) {
+              successMsg.classList.add('show');
+              
+              // Reset form
+              this.reset();
+              
+              // Hide success message after 3 seconds
+              setTimeout(() => {
+                successMsg.classList.remove('show');
+              }, 3000);
+            }
+          });
+        }
+        
+        // Initialize particles
+        createParticles();
+      });
+    </script>
 </body>
   <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
-
 </html>
