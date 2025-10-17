@@ -61,38 +61,14 @@
       color: #6b7280;
       display: none;
     }
-
-    /* ✨ Styles for the new SVG Password Toggle ✨ */
-    .input-group {
-      position: relative;
+    #forgotpass{
+      text-align: center;
+      margin-top: 0.25rem; 
+      margin-bottom: 0.25rem;
     }
-
-    #password {
-      padding-right: 2.5rem !important;
-    }
-
-    .password-toggle-btn {
-      position: absolute;
-      top: 50%;
-      right: 0.75rem;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6b7280;
-    }
-
-    .password-toggle-btn:focus {
-      border-radius: 4px;
-    }
-
-    .password-toggle-btn svg {
-      width: 1.25rem;
-      height: 1.25rem;
+    #forgotpass a{
+      color: #4f46e5; 
+      text-decoration: none;
     }
   </style>
 </head>
@@ -143,6 +119,9 @@
           </button>
         <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
       </div>
+      <p id="forgotpass">
+        <a href="forgot-password.html">Forgot Password?</a>
+      </p>
 
       <button type="submit" class="btn" id="loginButton" aria-label="Login to your account">
         <span id="buttonText">Login</span>
