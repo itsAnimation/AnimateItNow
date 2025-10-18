@@ -5,7 +5,166 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - AnimateItNow</title>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="signup.css">
+
+  <style>
+    /* ---- THEME VARIABLES ---- */
+    :root {
+      --bg-color: #f4f4f9;
+      --form-bg: #ffffff;
+      --nav-bg: #ffffff;
+      --text-color: #333333;
+      --subtitle-color: #666666;
+      --input-border: #dddddd;
+      --input-bg: #ffffff;
+      --primary-color: #007bff;
+      --primary-hover: #0056b3;
+      --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --form-bg: #1e1e1e;
+      --nav-bg: #1e1e1e;
+      --text-color: #e0e0e0;
+      --subtitle-color: #aaaaaa;
+      --input-border: #444444;
+      --input-bg: #2c2c2c;
+      --primary-color: #3a9cff;
+      --primary-hover: #5ca9ff;
+      --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+    /* ------------------------- */
+
+
+    /* ---- GENERAL STYLES ---- */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: var(--bg-color); /* Uses variable */
+      color: var(--text-color); /* Uses variable */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--nav-bg); /* Uses variable */
+      padding: 1rem 2rem;
+      box-shadow: var(--box-shadow); /* Uses variable */
+      transition: background-color 0.3s;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center; /* Vertically align items in navbar */
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      margin-left: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color); /* Uses variable */
+      font-weight: 500;
+    }
+
+    /* ---- THEME TOGGLE BUTTON ---- */
+    #theme-toggle {
+      background: none;
+      border: 1px solid var(--input-border);
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1.2rem; /* Makes emoji bigger */
+      line-height: 1; /* Aligns emoji nicely */
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    #theme-toggle:hover {
+      background-color: var(--input-bg);
+    }
+
+
+    /* ---- FORM STYLES ---- */
+    .form-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 2rem;
+      background: var(--form-bg); /* Uses variable */
+      border-radius: 8px;
+      box-shadow: var(--box-shadow); /* Uses variable */
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      color: var(--text-color); /* Uses variable */
+    }
+
+    .subtitle {
+      color: var(--subtitle-color); /* Uses variable */
+      margin-bottom: 2rem;
+    }
+
+    form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--input-border); /* Uses variable */
+      background-color: var(--input-bg); /* Uses variable */
+      color: var(--text-color); /* Uses variable */
+      border-radius: 4px;
+      box-sizing: border-box; /* Important! */
+      font-size: 1rem;
+    }
+    
+    /* Style for placeholder text in dark mode */
+    form input::placeholder {
+        color: var(--subtitle-color);
+        opacity: 0.7;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color); /* Uses variable */
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover); /* Uses variable */
+    }
+
+    .switch {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .switch a {
+      color: var(--primary-color); /* Uses variable */
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -13,6 +172,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="loginpage.html">Login</a></li>
+      <li><button id="theme-toggle">🌙</button></li>
     </ul>
   </nav>
 
@@ -30,5 +190,41 @@
 
     <p class="switch">Already have an account? <a href="loginpage.html">Login here</a></p>
   </section>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Function to apply the saved theme on page load
+    const applySavedTheme = () => {
+      const savedTheme = localStorage.getItem('theme');
+      // Default to light theme if no theme is saved
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.textContent = '☀️'; // Sun emoji for dark mode
+      } else {
+        body.classList.remove('dark-mode');
+        themeToggle.textContent = '🌙'; // Moon emoji for light mode
+      }
+    };
+
+    // Event listener for the toggle button
+    themeToggle.addEventListener('click', () => {
+      // Toggle the .dark-mode class on the body
+      body.classList.toggle('dark-mode');
+
+      // Save the current theme to localStorage
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙';
+      }
+    });
+
+    // Apply the saved theme when the page loads
+    document.addEventListener('DOMContentLoaded', applySavedTheme);
+  </script>
 </body>
 </html>
