@@ -74,7 +74,10 @@
         margin-bottom: 20px;
         animation: fadeInDown 0.8s ease;
       }
-      
+      .nav-links{
+       gap: 15px !important;
+       padding-left: 182px !important;
+    }
       @keyframes fadeInDown {
         from {
           opacity: 0;
@@ -559,6 +562,64 @@
           font-size: 1rem;
         }
       }
+      
+         .footer {
+            background-color: var(--bg-secondary);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-left h2 {
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-right h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-right ul {
+            list-style: none;
+        }
+
+        .footer-right li {
+            margin-bottom: 10px;
+        }
+
+        .footer-right a {
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: var(--primary);
+        }
+
+        .footer-right a i {
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
     </style>
   </head>
  
@@ -672,27 +733,28 @@
     </div>
 
     <!-- 🦶 Footer -->
-    <footer class="footer scroll-fade">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <h2>AnimateItNow</h2>
-            <p>Creating impactful web animations and templates for everyone.</p>
-          </div>
-          <div class="footer-right">
-            <h4>Connect With Us</h4>
-            <ul>
-              <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-beat"></i> GitHub</a></li> 
-              <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-beat"></i> LinkedIn</a></li>
-              <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope fa-beat"></i> Email Us</a></li>
-            </ul>
-          </div>
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h2>AnimateItNow</h2>
+                    <p>Creating impactful web animations and templates for everyone.</p>
+                </div>
+                <div class="footer-right">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="https://github.com/itsAnimation/AnimateItNow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/anujshrivastava1/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:contact@animateitnow.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i> Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
+            </div>
         </div>
-        <div class="footer-bottom">
-          <p>© 2025 AnimateItNow. Made with ❤️ by <span class="highlight">Anuj</span> and Contributors.</p>
-        </div>
-      </div>
     </footer>
+
     
     <div id="cursor-snake"></div>
     <script src="script.js"></script>
