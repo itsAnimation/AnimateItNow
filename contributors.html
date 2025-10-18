@@ -12,18 +12,15 @@
     <link rel="icon" type="image/png" href="images/logo.png" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
 
     <style>
-
       /* 🎨 CSS Variables for Theming */
       :root {
         --primary: #6c63ff;
         --primary-light: #8a84ff;
         --primary-dark: #554fd8;
-        --secondary: #ff6584;
         --accent: #36d1dc;
         --text: #2a2a3c;
         --text-light: #6c757d;
@@ -34,698 +31,276 @@
         --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         --radius: 12px;
         --transition: all 0.3s ease;
-        --header-height: 80px;
-        --card-shadow: rgba(0, 0, 0, 0.1);
-        --nav-bg: rgba(255, 255, 255, 0.95);
-        
-        /* 🆕 Additional theme variables for enhanced customization */
-        --transition-speed: 0.3s;
-        --border-radius: 12px;
-        --spacing-unit: 1rem;
+        --header-height: 90px; /* Adjusted for taller navbar */
+        --card-bg: var(--bg);
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --focus-glow: rgba(108, 99, 255, 0.25);
       }
 
       /* 🌙 Dark Mode Variables */
       .dark-theme {
         --primary: #8a84ff;
-        --primary-light: #a8a4ff;
-        --primary-dark: #6c63ff;
-        --secondary: #ff8fa3;
-        --accent: #4dd0e1;
         --text: #f8f9fa;
         --text-light: #a0a0a0;
         --bg: #121212;
         --bg-secondary: #1e1e1e;
         --bg-tertiary: #2a2a2a;
         --border: #404040;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        --card-shadow: rgba(0, 0, 0, 0.3);
-        --nav-bg: rgba(30, 30, 30, 0.95);
+        --card-bg: var(--bg-secondary);
+        --nav-bg: rgba(30, 30, 30, 0.85);
+        --focus-glow: rgba(138, 132, 255, 0.25);
       }
 
       /* 🏗️ Base Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         font-family: "Inter", "Segoe UI", sans-serif;
         line-height: 1.6;
         color: var(--text);
         background-color: var(--bg);
-        transition: var(--transition);
+        transition: background-color 0.3s ease, color 0.3s ease;
         overflow-x: hidden;
       }
+      .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+      a { text-decoration: none; }
 
-      .container {
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 40px;
-      }
-
-      section {
-        padding: 100px 0;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-bottom: 1rem;
-        line-height: 1.2;
-        font-weight: 700;
-      }
-
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-      }
-
-      p {
-        margin-bottom: 1.5rem;
-        color: var(--text-light);
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-        transition: var(--transition);
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 14px 32px;
-        background-color: var(--primary);
-        color: white;
-        border-radius: var(--radius);
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: var(--transition);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: var(--transition);
-      }
-
-      .btn:hover::before {
-        left: 100%;
-      }
-
-      .btn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
-      }
-
-      /* 🧭 Header/Navigation */
+      /*
+      ========================================
+      🚢 NAVBAR STYLES 🚢
+      ========================================
+      */
       .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  padding:1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px var(--card-shadow);
-  z-index: 1000;
-  transition: var(--transition);
-}
-
-
-      /* .nav-left {
-      display: flex;
-      align-items: center;
-    } */
-    .home-link {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.logo {
- 
-  height: 40px;
-  width: auto;
-}
-
-.site-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-/* Update Styling */
-.nav-links {
-  display: flex;
-  align-items: center;
-}
-.nav-links li {
-  margin-left: 30px;
-  display: flex;
-  align-items: center;
-}
-
-.nav-links a {
-  font-weight: 500;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  padding: 5px 0;
-  transition: var(--transition);
-  position: relative;
-}
-
-.nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-      /* Snake cursor toggle */
-      
-
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 24px;
-      }
-
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .slider {
-        position: absolute;
-        cursor: pointer;
+        background-color: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+        position: fixed;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-     background-color: #ccc;
+        width: 100%;
+        z-index: 1000;
         transition: var(--transition);
-        border-radius: 24px;
       }
-
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 16px;
-        width: 16px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: var(--transition);
-        border-radius: 50%;
-      }
-
-      input:checked + .slider {
-        background-color: var(--primary);
-      }
-
-      input:checked + .slider:before {
-        transform: translateX(26px);
-      }
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-     
-
-      .github-icon {
+      .nav-container {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: var(--transition);
-      }
-
-      .github-icon:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      #theme-toggle {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--text);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-
-      #theme-toggle:hover {
-        background-color: var(--bg-tertiary);
-      }
-
-      /* Contributors Page Styles */
-
-      .contributors-main {
-        padding-top: var(--header-height);
-        min-height: 100vh;
-        background: linear-gradient(
-          135deg,
-          var(--bg-secondary) 0%,
-          var(--bg) 100%
-        );
-      }
-
-      .contributors-header {
-        text-align: center;
-        padding: 100px 0 60px;
-      }
-
-      .contributors-title {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        position: relative;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .contributors-subtitle {
-        font-size: 1.3rem;
-        color: var(--text-light);
-        max-width: 600px;
+        width: 95%;
+        max-width: 1400px;
         margin: 0 auto;
       }
 
-      /* Stats Section */
-      .contributors-stats {
+      /* Logo */
+      .logo {
         display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin: 40px 0;
-        flex-wrap: wrap;
-      }
-
-      .stat-card {
-        background: var(--card-bg);
+        align-items: center;
+        gap: 10px;
+        padding: 8px 15px;
+        background-color: rgba(128, 128, 128, 0.1);
         border-radius: var(--radius);
-        padding: 25px;
-        text-align: center;
-        box-shadow: var(--card-shadow);
         transition: var(--transition);
-        border: 1px solid var(--border);
-        min-width: 200px;
       }
-
-      .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      .logo:hover {
+        background-color: rgba(128, 128, 128, 0.2);
+        box-shadow: 0 0 15px var(--focus-glow);
       }
-
-      .stat-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 10px;
-      }
-
-      .stat-label {
-        font-size: 1rem;
-        color: var(--text-light);
-        font-weight: 600;
-      }
-
-      /* Search Section */
-      .search-section {
-        padding: 30px;
-        margin: 40px auto;
-        max-width: 800px;
-      }
-
-      .search-container {
-        display: flex;
-        position: relative;
-      }
-
-      .search-input {
-        flex: 1;
-        padding: 15px 20px;
-        font-size: 1.1rem;
-        border-radius: var(--radius) 0 0 var(--radius);
-        border: 2px solid var(--border);
-        background: var(--card-bg);
+      .logo img { height: 40px; }
+      .logo h2 {
+        font-size: 1.5rem;
         color: var(--text);
-        outline: none;
-        transition: var(--transition);
+        margin: 0;
       }
 
-      .search-input:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.1);
+      /* Navigation Links */
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 10px;
       }
-
-      .search-btn {
-        padding: 15px 25px;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 0 var(--radius) var(--radius) 0;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .search-btn:hover {
-        background: var(--primary-dark);
-      }
-
-      /* Contributors Grid */
-      .contributors-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-        margin: 60px 25px;
-      }
-
-      .contributor-card {
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: var(--card-shadow);
-        overflow: hidden;
-        transition: var(--transition);
-        border: 1px solid var(--border);
-        text-align: center;
+      .nav-links a {
         display: flex;
         flex-direction: column;
-        height: 100%;
-      }
-
-      .contributor-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .contributor-header {
-        background: linear-gradient(135deg, var(--primary), var(--accent));
-        padding: 30px 20px;
-        color: white;
-      }
-
-      .contributor-avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid white;
-        margin-bottom: 15px;
-      }
-
-      .contributor-name {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 5px;
-      }
-
-      .contributor-login {
-        font-size: 1rem;
-        opacity: 0.9;
-      }
-
-      .contributor-body {
-        padding: 25px 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-grow: 1;
-      }
-
-      .contributor-stats {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-      }
-
-      .contributor-stat {
-        text-align: center;
-      }
-
-      .contributor-stat-value {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary);
-      }
-
-      .contributor-stat-label {
+        align-items: center;
+        gap: 5px;
+        padding: 10px 12px;
+        color: var(--text-light);
         font-size: 0.9rem;
-        color: var(--text-light);
-      }
-
-      .contributor-bio {
-        margin-bottom: 20px;
-        color: var(--text-light);
-        font-style: italic;
-        min-height: 3em;
-      }
-
-      .contributor-link {
-        display: inline-block;
-        padding: 10px 20px;
-        background: var(--primary);
-        color: white;
-        border-radius: var(--radius);
-        font-weight: 600;
+        font-weight: 500;
+        border-radius: 8px;
         transition: var(--transition);
-        margin-top: auto;
-        width: auto;
+      }
+      .nav-links a:hover, .nav-links a.active {
+        color: var(--primary);
+        background-color: var(--bg-tertiary);
+      }
+      .nav-links a i { font-size: 1.2rem; }
+
+      /* Dropdown Menu */
+      .dropdown { position: relative; }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        min-width: 200px;
+        padding: 10px 0;
+        list-style: none;
+        z-index: 1001;
+      }
+      .dropdown:hover .dropdown-content { display: block; }
+      .dropdown-content a {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 0;
+        font-size: 1rem;
       }
 
-      .contributor-link:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
+      /* Action Buttons (Theme, Hamburger) */
+      .nav-actions { display: flex; align-items: center; gap: 10px; }
+      #theme-toggle, .hamburger {
+        background: none; border: none; color: var(--text); font-size: 1.5rem;
+        cursor: pointer; width: 45px; height: 45px; border-radius: 50%;
+        display: flex; justify-content: center; align-items: center;
+        transition: var(--transition);
       }
-
-      /* Loading State */
-      .loading-state {
-        text-align: center;
-        padding: 60px 20px;
-        grid-column: 1 / -1;
-      }
-
-      .loader {
-        border: 6px solid var(--border);
-        border-top: 6px solid var(--primary);
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        animation: spin 1.2s linear infinite;
-        margin: 0 auto 20px;
-      }
-
-      .loading-text {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text-light);
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Responsive Design */
-      @media (max-width: 992px) {
-        .contributors-title {
-          font-size: 2.8rem;
-        }
-
-        .contributors-stats {
-          gap: 20px;
-        }
-
-        .stat-card {
-          min-width: 160px;
-        }
-
-        .contributors-grid {
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
-      }
-      .footer-left h2 {
-      margin-bottom: 15px;
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-      .footer-left p{
-        color:rgba(0, 0, 0, 0.478)
-      }
-
-      .footer-right a{
-        color: rgba(0, 0, 0, 0.639);
-      }
-      .footer-right{
-        display: flex;
-        flex-direction: column;
-        margin-left: 70%;
-      }
-
-      @media (max-width: 768px) {
-        .contributors-title {
-          font-size: 2.2rem;
-        }
-
-        .contributors-subtitle {
-          font-size: 1.1rem;
-        }
-
-        .search-section {
-          padding: 20px;
-        }
-
-        .search-container {
-          flex-direction: column;
-        }
-
-        .search-input {
-          border-radius: var(--radius) var(--radius) 0 0;
-        }
-
-        .search-btn {
-          border-radius: 0 0 var(--radius) var(--radius);
-        }
-
-        .contributors-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .contributors-title {
-          font-size: 1.8rem;
-        }
-
-        .contributors-stats {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .stat-card {
+      #theme-toggle:hover, .hamburger:hover { background-color: var(--bg-tertiary); }
+      .hamburger { display: none; }
+      
+      /* Responsive Navbar */
+      @media (max-width: 1024px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 71px; /* Height of navbar */
+          left: 0;
           width: 100%;
-          max-width: 300px;
+          flex-direction: column;
+          background-color: var(--nav-bg);
+          padding: 20px;
+          border-top: 1px solid var(--border);
+          box-shadow: var(--shadow);
         }
-
-        .contributor-header {
-          padding: 20px 15px;
-        }
-
-        .contributor-avatar {
-          width: 80px;
-          height: 80px;
-        }
-
-        .contributor-name {
-          font-size: 1.3rem;
-        }
+        .nav-links.active { display: flex; }
+        .hamburger { display: flex; }
+      }
+      
+      /*
+      ========================================
+      PAGE-SPECIFIC STYLES
+      ========================================
+      */
+      .contributors-main { padding-top: var(--header-height); min-height: 100vh; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%); }
+      .contributors-header { text-align: center; padding: 80px 0 60px; }
+      .contributors-title { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 20px; background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .contributors-subtitle { font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--text-light); max-width: 600px; margin: 0 auto; }
+      .contributors-stats { display: flex; justify-content: center; gap: 30px; margin: 40px 0; flex-wrap: wrap; }
+      .stat-card { background: var(--card-bg); border-radius: var(--radius); padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid var(--border); min-width: 200px; }
+      .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+      .dark-theme .stat-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+      .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+      .stat-label { font-size: 1rem; color: var(--text-light); font-weight: 600; }
+      .search-section { padding: 30px 0; margin: 40px auto; max-width: 800px; }
+      .search-container { display: flex; position: relative; }
+      .search-input { flex: 1; padding: 15px 20px; font-size: 1.1rem; border-radius: var(--radius) 0 0 var(--radius); border: 2px solid var(--border); background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); }
+      .search-input::placeholder { color: var(--text-light); opacity: 0.8; }
+      .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--focus-glow); }
+      .search-btn { padding: 15px 25px; background: var(--primary); color: white; border: none; border-radius: 0 var(--radius) var(--radius) 0; font-weight: 600; cursor: pointer; transition: var(--transition); }
+      .search-btn:hover { background: var(--primary-dark); }
+      .contributors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 60px 0; }
+      .contributor-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; transition: var(--transition); border: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; }
+      .contributor-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+      .dark-theme .contributor-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+      .contributor-header { background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 30px 20px; color: white; }
+      .contributor-avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid white; margin: 0 auto 15px; }
+      .contributor-name { font-size: 1.5rem; margin-bottom: 5px; }
+      .contributor-login { font-size: 1rem; opacity: 0.9; }
+      .contributor-body { padding: 25px 20px; display: flex; flex-direction: column; flex-grow: 1; }
+      .contributor-stats { display: flex; justify-content: space-around; margin-bottom: 20px; }
+      .contributor-stat-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+      .contributor-stat-label { font-size: 0.9rem; color: var(--text-light); }
+      .contributor-bio { margin-bottom: 20px; color: var(--text-light); font-style: italic; min-height: 4.5em; }
+      .contributor-link { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: var(--radius); font-weight: 600; transition: var(--transition); margin-top: auto; }
+      .contributor-link:hover { background: var(--primary-dark); transform: translateY(-2px); }
+      .loading-state { text-align: center; padding: 60px 20px; grid-column: 1 / -1; }
+      .loader { border: 6px solid var(--border); border-top: 6px solid var(--primary); border-radius: 50%; width: 60px; height: 60px; animation: spin 1.2s linear infinite; margin: 0 auto 20px; }
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+      .footer { padding: 40px 0 20px; background-color: var(--bg-secondary); border-top: 1px solid var(--border); text-align: center; }
+      @media (max-width: 768px) {
+        .search-container { flex-direction: column; }
+        .search-input { border-radius: var(--radius) var(--radius) 0 0; }
+        .search-btn { border-radius: 0 0 var(--radius) var(--radius); }
       }
     </style>
-    <link rel="stylesheet" href="./navbar_styles.css">
   </head>
-
   <body>
-    <!-- Navigation -->
-
-    <div id="navbar"></div>
-
-  <script>
-    fetch('nav.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
-  </script>
-
-
-    <!-- Contributors Main Content -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo-container">
+          <div class="logo">
+        <img src="images/logo.png" alt="Logo">
+          <h2>Animate It Now <span class="sparkle">✨</span></h2>
+      </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="about.html"><i class="fa fa-info-circle"></i> About</a></li>
+          <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+          <li><a href="editor.html"><i class="fa fa-edit"></i> Editor</a></li>
+          <li class="dropdown">
+            <a href="#"><i class="fa fa-layer-group"></i> Resources ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="templates.html"><i class="fa fa-palette"></i> Templates</a></li>
+              <li><a href="components.html"><i class="fa fa-cube"></i> Components</a></li>
+              <li><a href="pomodoro.html"><i class="fa fa-clock"></i> Pomodoro</a></li>
+            </ul>
+          </li>
+          <li><a href="leaderboard.html"><i class="fa fa-users"></i> Leaderboard</a></li>
+          <li><a href="contributors.html" class="active"><i class="fa fa-trophy"></i> Contributors</a></li>
+          <li><a href="loginpage.html"><i class="fa fa-user"></i> Login</a></li>
+          <li><a href="feedback.html"><i class="fa fa-comment-dots"></i> Feedback</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle theme"></button>
+          <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+    
     <main class="contributors-main">
       <section class="contributors-header">
         <div class="container">
-          <h1 class="contributors-title">Meet Our <span>Contributors</span></h1>
+          <h1 class="contributors-title">Meet Our Contributors</h1>
           <p class="contributors-subtitle">
-            The amazing people who make AnimateItNow possible through their
-            contributions
+            The amazing people who make AnimateItNow possible through their contributions.
           </p>
         </div>
       </section>
-
       <section class="container">
-        <!-- Stats Section -->
         <div class="contributors-stats">
           <div class="stat-card">
             <div class="stat-value" id="totalContributors">0</div>
-            <div class="stat-label">Total Contributors</div>
+            <div class="stat-label">Contributors</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="totalCommits">0</div>
-            <div class="stat-label">Total Commits</div>
+            <div class="stat-label">Commits</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="totalPRs">0</div>
             <div class="stat-label">Pull Requests</div>
           </div>
         </div>
-
-        <!-- Search Section -->
         <div class="search-section">
           <div class="search-container">
             <input
@@ -737,8 +312,6 @@
             <button id="searchBtn" class="search-btn">Search</button>
           </div>
         </div>
-
-        <!-- Contributors Grid -->
         <div id="contributors-grid" class="contributors-grid">
           <div class="loading-state">
             <div class="loader"></div>
@@ -747,331 +320,155 @@
         </div>
       </section>
     </main>
-
-    <!-- Footer -->
+    
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <h2>AnimateItNow</h2>
-            <p>Creating impactful web animations and templates for everyone.</p>
-          </div>
-          <div class="footer-right">
-            <h4>Connect With Us</h4>
-            <ul>
-              <li>
-                <a
-                  href="https://github.com/itsAnimation/AnimateItNow"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><i class="fab fa-github"></i> GitHub</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/anujshrivastava1/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><i class="fab fa-linkedin"></i> LinkedIn</a
-                >
-              </li>
-              <li>
-                <a 
-                  href="mailto:contact@animateitnow.com"
-                  rel="noopener noreferrer"
-                  ><i class="fas fa-envelope"></i> Email Us</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>
-            © 2025 AnimateItNow. Made with ❤️ by
-            <span class="highlight">Anuj</span> and Contributors.
-          </p>
-        </div>
+        <p>© 2025 AnimateItNow. Made with ❤️ by Anuj and Contributors.</p>
       </div>
     </footer>
 
-    <!-- Scroll to top button -->
-    <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
-
-    <script src="script.js"></script>
     <script>
-      // Contributors data
-      const owner = "itsAnimation";
-      const repo = "AnimateItNow";
-      let contributorsData = [];
-      let filteredContributors = [];
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- NAVBAR & THEME LOGIC ---
+        const themeToggle = document.getElementById("theme-toggle");
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const body = document.body;
 
-      // Fetch contributors from GitHub API
-      async function fetchContributors() {
-        try {
-          const url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
-          const response = await fetch(url);
-
-          if (!response.ok) {
-            throw new Error(`GitHub API error! Status: ${response.status}`);
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          const icon = hamburger.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+        
+        const applyTheme = (theme) => {
+          if (theme === "dark") {
+            body.classList.add("dark-theme");
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+          } else {
+            body.classList.remove("dark-theme");
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
           }
+        };
+        themeToggle.addEventListener("click", () => {
+          const newTheme = body.classList.contains("dark-theme") ? "light" : "dark";
+          localStorage.setItem("theme", newTheme);
+          applyTheme(newTheme);
+        });
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+        
+        // --- CONTRIBUTORS FETCHING LOGIC ---
+        const owner = "itsAnimation";
+        const repo = "AnimateItNow";
+        let contributorsData = [];
 
-          const contributors = await response.json();
-
-          // If no data fetched, use dummy data for demonstration
-          if (!Array.isArray(contributors) || contributors.length === 0) {
-            console.warn(
-              "No data fetched from GitHub. Using dummy data for demonstration."
-            );
+        async function fetchContributors() {
+          try {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`API error: ${response.status}`);
+            const contributors = await response.json();
+            return !Array.isArray(contributors) || contributors.length === 0
+              ? getDummyContributors()
+              : contributors;
+          } catch (error) {
+            console.error("Error fetching contributors:", error);
             return getDummyContributors();
           }
-
-          return contributors;
-        } catch (error) {
-          console.error("Error fetching contributors:", error);
-          // Return dummy data if fetch fails
-          return getDummyContributors();
         }
-      }
+        
+        function getDummyContributors() {
+          return [
+            {"login":"anuj","avatar_url":"https://via.placeholder.com/100","html_url":"#","contributions":150},
+            {"login":"alice","avatar_url":"https://via.placeholder.com/100","html_url":"#","contributions":89},
+            {"login":"bob","avatar_url":"https://via.placeholder.com/100","html_url":"#","contributions":76}
+          ];
+        }
 
-      // Get dummy contributors for demonstration
-      function getDummyContributors() {
-        return [
-          {
-            login: "anuj",
-            id: 1,
-            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=A",
-            html_url: "https://github.com/anuj",
-            contributions: 150,
-            type: "User",
-          },
-          {
-            login: "alice",
-            id: 2,
-            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=A",
-            html_url: "https://github.com/alice",
-            contributions: 89,
-            type: "User",
-          },
-          {
-            login: "bob",
-            id: 3,
-            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=B",
-            html_url: "https://github.com/bob",
-            contributions: 76,
-            type: "User",
-          },
-          {
-            login: "charlie",
-            id: 4,
-            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=C",
-            html_url: "https://github.com/charlie",
-            contributions: 64,
-            type: "User",
-          },
-          {
-            login: "diana",
-            id: 5,
-            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=D",
-            html_url: "https://github.com/diana",
-            contributions: 52,
-            type: "User",
-          },
-          {
-            login: "emma",
-            id: 6,
-            avatar_url: "https://via.placeholder.com/100/1dc5c8/ffffff?text=E",
-            html_url: "https://github.com/emma",
-            contributions: 41,
-            type: "User",
-          },
-          {
-            login: "frank",
-            id: 7,
-            avatar_url: "https://via.placeholder.com/100/4f8cff/ffffff?text=F",
-            html_url: "https://github.com/frank",
-            contributions: 35,
-            type: "User",
-          },
-          {
-            login: "grace",
-            id: 8,
-            avatar_url: "https://via.placeholder.com/100/2563eb/ffffff?text=G",
-            html_url: "https://github.com/grace",
-            contributions: 28,
-            type: "User",
-          },
-        ];
-      }
-
-      // Fetch additional user details
-      async function fetchUserDetails(login) {
-        try {
-          const url = `https://api.github.com/users/${login}`;
-          const response = await fetch(url);
-
-          if (!response.ok) {
+        async function fetchUserDetails(login) {
+          try {
+            const url = `https://api.github.com/users/${login}`;
+            const response = await fetch(url);
+            return response.ok ? await response.json() : null;
+          } catch (error) {
+            console.error(`Error fetching details for ${login}:`, error);
             return null;
           }
-
-          return await response.json();
-        } catch (error) {
-          console.error(`Error fetching user details for ${login}:`, error);
-          return null;
-        }
-      }
-
-      // Render contributors grid
-      function renderContributors(contributors) {
-        const grid = document.getElementById("contributors-grid");
-
-        if (contributors.length === 0) {
-          grid.innerHTML = `
-          <div class="loading-state">
-            <p class="loading-text">No contributors found matching your search.</p>
-          </div>
-        `;
-          return;
         }
 
-        grid.innerHTML = contributors
-          .map(
-            (contributor) => `
-        <div class="contributor-card">
-          <div class="contributor-header">
-            <img src="${contributor.avatar_url}" alt="${
-              contributor.login
-            }" class="contributor-avatar">
-            <h3 class="contributor-name">${
-              contributor.name || contributor.login
-            }</h3>
-            <p class="contributor-login">@${contributor.login}</p>
-          </div>
-          <div class="contributor-body">
-            <div class="contributor-stats">
-              <div class="contributor-stat">
-                <div class="contributor-stat-value">${
-                  contributor.contributions
-                }</div>
-                <div class="contributor-stat-label">Contributions</div>
+        function renderContributors(contributors) {
+          const grid = document.getElementById("contributors-grid");
+          if (contributors.length === 0) {
+            grid.innerHTML = `<div class="loading-state"><p class="loading-text">No contributors found.</p></div>`;
+            return;
+          }
+          grid.innerHTML = contributors.map(c => `
+            <div class="contributor-card">
+              <div class="contributor-header">
+                <img src="${c.avatar_url}" alt="${c.login}" class="contributor-avatar">
+                <h3 class="contributor-name">${c.name || c.login}</h3>
+                <p class="contributor-login">@${c.login}</p>
               </div>
-              <div class="contributor-stat">
-                <div class="contributor-stat-value">${
-                  contributor.public_repos || "N/A"
-                }</div>
-                <div class="contributor-stat-label">Repos</div>
+              <div class="contributor-body">
+                <div class="contributor-stats">
+                  <div>
+                    <div class="contributor-stat-value">${c.contributions}</div>
+                    <div class="contributor-stat-label">Commits</div>
+                  </div>
+                  <div>
+                    <div class="contributor-stat-value">${c.public_repos ?? "N/A"}</div>
+                    <div class="contributor-stat-label">Repos</div>
+                  </div>
+                  <div>
+                    <div class="contributor-stat-value">${c.followers ?? "N/A"}</div>
+                    <div class="contributor-stat-label">Followers</div>
+                  </div>
+                </div>
+                <p class="contributor-bio">${c.bio ? `"${c.bio}"` : ""}</p>
+                <a href="${c.html_url}" target="_blank" class="contributor-link">View Profile</a>
               </div>
-              <div class="contributor-stat">
-                <div class="contributor-stat-value">${
-                  contributor.followers || "N/A"
-                }</div>
-                <div class="contributor-stat-label">Followers</div>
-              </div>
-            </div>
-            ${
-              contributor.bio
-                ? `<p class="contributor-bio">"${contributor.bio}"</p>`
-                : ""
-            }
-            <a href="${
-              contributor.html_url
-            }" target="_blank" class="contributor-link">
-              View Profile
-            </a>
-          </div>
-        </div>
-      `
-          )
-          .join("");
-      }
+            </div>`).join("");
+        }
 
-      // Update stats
-      function updateStats(contributors) {
-        const totalContributors = contributors.length;
-        const totalCommits = contributors.reduce(
-          (sum, contributor) => sum + contributor.contributions,
-          0
-        );
-        const totalPRs = Math.floor(totalCommits * 0.7); // Estimate PRs as 70% of commits
+        function updateStats(contributors) {
+          const totalCommits = contributors.reduce((sum, c) => sum + c.contributions, 0);
+          document.getElementById("totalContributors").textContent = contributors.length;
+          document.getElementById("totalCommits").textContent = totalCommits.toLocaleString();
+          document.getElementById("totalPRs").textContent = Math.floor(totalCommits * 0.7).toLocaleString();
+        }
 
-        document.getElementById("totalContributors").textContent =
-          totalContributors;
-        document.getElementById("totalCommits").textContent =
-          totalCommits.toLocaleString();
-        document.getElementById("totalPRs").textContent =
-          totalPRs.toLocaleString();
-      }
-
-      // Search functionality
-      function performSearch() {
-        const searchTerm = document
-          .getElementById("searchContributors")
-          .value.trim()
-          .toLowerCase();
-
-        if (!searchTerm) {
-          filteredContributors = [...contributorsData];
-        } else {
-          filteredContributors = contributorsData.filter(
-            (contributor) =>
-              contributor.login.toLowerCase().includes(searchTerm) ||
-              (contributor.name &&
-                contributor.name.toLowerCase().includes(searchTerm))
+        function performSearch() {
+          const searchTerm = document.getElementById("searchContributors").value.trim().toLowerCase();
+          const filtered = contributorsData.filter(c =>
+            c.login.toLowerCase().includes(searchTerm) ||
+            (c.name && c.name.toLowerCase().includes(searchTerm))
           );
+          renderContributors(filtered);
         }
 
-        renderContributors(filteredContributors);
-      }
+        async function init() {
+          const contributors = await fetchContributors();
+          const contributorsWithDetails = await Promise.all(
+            contributors.map(async (c) => {
+              const userDetails = await fetchUserDetails(c.login);
+              return { ...c, ...userDetails };
+            })
+          );
+          contributorsData = contributorsWithDetails.sort((a, b) => b.contributions - a.contributions);
+          updateStats(contributorsData);
+          renderContributors(contributorsData);
 
-      // Initialize contributors page
-      async function init() {
-        const contributors = await fetchContributors();
-
-        // Fetch additional details for each contributor
-        const contributorsWithDetails = await Promise.all(
-          contributors.map(async (contributor) => {
-            const userDetails = await fetchUserDetails(contributor.login);
-            return { ...contributor, ...userDetails };
-          })
-        );
-
-        contributorsData = contributorsWithDetails.sort(
-          (a, b) => b.contributions - a.contributions
-        );
-        filteredContributors = [...contributorsData];
-
-        updateStats(contributorsData);
-        renderContributors(filteredContributors);
-
-        // Set up search functionality
-        document
-          .getElementById("searchBtn")
-          .addEventListener("click", performSearch);
-        document
-          .getElementById("searchContributors")
-          .addEventListener("keyup", function (e) {
-            
-            if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
-              performSearch();
-            }
-            if (e.key=== "Backspace") {
-              performSearch();
-            }
-           
+          document.getElementById("searchBtn").addEventListener("click", performSearch);
+          document.getElementById("searchContributors").addEventListener("keyup", (e) => {
+            if (e.key === "Enter") performSearch();
           });
+        }
 
-        // Clear search on escape key
-        document
-          .getElementById("searchContributors")
-          .addEventListener("keydown", function (e) {
-            if (e.key === "Escape") {
-              this.value = "";
-              performSearch();
-            }
-          });
-      }
-
-      // Start initialization
-      init();
+        init();
+      });
     </script>
   </body>
 </html>
