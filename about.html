@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About | AnimateItNow</title>
-  <link rel="icon" href="favicon.png" type="image/x-icon" />
-  <meta name="description" content="A comprehensive collection of CSS animation templates and effects for web developers" />
-  
-  <!-- 🍎 Apple Touch Icons -->
-  <!-- 🆘 Fallback icon -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  
-  <!-- 🎬 Add animation library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnimateItNow - CSS Animation Templates & Effects</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css">
   
   <style>
 
@@ -102,7 +100,7 @@
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-size: 5rem;
     }
 
     h2 {
@@ -195,7 +193,7 @@
       font-size: 1.5rem;
       font-weight: 700;
       background: linear-gradient(to right, var(--primary), var(--accent));
-      -webkit-background-clip: text;
+      --webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -217,7 +215,6 @@
 
     .about-header {
       text-align: center;
-      padding: 100px 0 60px;
     }
 
     .about-title {
@@ -281,7 +278,7 @@
     }
 
     .team-title {
-      font-size: 2.5rem;
+      font-size: 4rem;
       margin-bottom: 50px;
       position: relative;
       color:var(--text-light);
@@ -414,8 +411,7 @@
       .footer-logo span {
         font-size: 1.5rem;
         font-weight: 700;
-        background: linear-gradient(to right, var(--primary), var(--accent));
-        -webkit-background-clip: text;
+        --webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -652,9 +648,8 @@
     .footer-logo span {
       font-size: 1.5rem;
       font-weight: 700;
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      --webkit-background-clip: text;
+      --webkit-text-fill-color: transparent;
     }
 
     .footer-about p {
@@ -816,9 +811,16 @@
 <body>
   <div id="navbar"></div>
   <script>
-    fetch('nav.html')
+     fetch('nav.html')
       .then(res => res.text())
-      .then(data => document.getElementById('navbar').innerHTML = data);
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+        // Load the navbar theme manager script
+        const script = document.createElement('script');
+        script.src = 'navbar-theme.js';
+        document.head.appendChild(script);
+      })
+      .catch(err => console.error('Error loading navbar:', err));
   </script>
 
   <!-- <iframe src="nav.html" frameborder="0"></iframe> -->
