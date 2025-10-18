@@ -1,12 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - AnimateItNow</title>
   <style>
-    * {
+    /* ---------- Base Styles ---------- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
       margin: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    main.form-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #4338ca;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .switch a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .switch a:hover {
+      text-decoration: underline;
+    }
+
+    /* Accessibility & States */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
       padding: 0;
       box-sizing: border-box;
     }
@@ -84,96 +158,23 @@
       letter-spacing: 1px;
     }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
+    input:focus, button:focus, a:focus {
+      outline: 2px solid #4f46e5;
+      outline-offset: 2px;
     }
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: -0.5rem;
+      margin-bottom: 0.75rem;
+      display: none;
     }
 
-    .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
+    .input-error { border-color: #dc2626 !important; }
+    .input-success { border-color: #16a34a !important; }
 
-    /* Form Container */
-    .form-container {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      min-height: calc(100vh - 80px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      z-index: 10;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .form-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      padding: 3rem 2.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      animation: scaleIn 0.8s ease-out 0.3s both;
-    }
-
-    @keyframes scaleIn {
-      from {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: #667eea;
-      text-align: center;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 2.5rem;
-      font-size: 1rem;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
+    /* Password Toggle */
     .input-group {
       position: relative;
     }
@@ -204,71 +205,64 @@
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      margin-top: 1rem;
+      color: #6b7280;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    .password-toggle-btn svg {
+      width: 1.25rem;
+      height: 1.25rem;
     }
 
-    .btn:active {
-      transform: translateY(-1px);
+    /* ---------- 🌙 Dark Mode ---------- */
+    [data-theme="dark"] body {
+      background-color: #111827;
+      color: #f3f4f6;
     }
-
-    .switch {
-      text-align: center;
-      margin-top: 2rem;
-      color: #666;
-      font-size: 0.95rem;
-    }
-
-    .switch a {
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .switch a:hover {
-      color: #764ba2;
-      text-decoration: underline;
-    }
-
-    .decorative-line {
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      margin: 1.5rem auto;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem 3%;
+      [data-theme="dark"] h1{
+        color:white;
       }
 
-      .logo {
-        font-size: 1.5rem;
-      }
+        [data-theme="dark"] p{
+          color:rgb(229, 201, 201);
+        }
 
-      .nav-links {
-        gap: 1rem;
-      }
+    [data-theme="dark"] main.form-container {
+      background: #1f2937;
+      color: #f9fafb;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+    }
+    [data-theme="dark"] main.form-container p {
+     
+      color:rgb(229, 201, 201);
+      
+    }
+    
 
-      .form-card {
-        padding: 2rem 1.5rem;
-      }
+    [data-theme="dark"] input {
+      background-color: #374151;
+      color: #f9fafb;
+      border: 1px solid #4b5563;
+    }
 
-      h1 {
-        font-size: 2rem;
-      }
+    [data-theme="dark"] input::placeholder {
+      color: #9ca3af;
+    }
+
+    [data-theme="dark"] .btn {
+      background-color: #6366f1;
+    }
+
+    [data-theme="dark"] .btn:hover {
+      background-color: #818cf8;
+    }
+
+    [data-theme="dark"] .switch a {
+      color: #a5b4fc;
+    }
+
+    [data-theme="dark"] .error-message {
+      color: #f87171;
     }
   </style>
 </head>
@@ -281,24 +275,51 @@
     </ul>
   </nav>
 
-  <section class="form-container">
-    <div class="form-card">
-      <h1>Welcome Back</h1>
-      <div class="decorative-line"></div>
-      <p class="subtitle">Log in to continue your creative journey</p>
+  <main class="form-container" role="main">
+    <h1>Login</h1>
+    <p class="subtitle">Welcome back! Please log in to continue.</p>
 
-      <form>
-        <div class="input-group">
-          <input type="email" placeholder="Email Address" required>
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn">Login</button>
-      </form>
+    <form id="loginForm" role="form" aria-labelledby="loginHeading">
+      <div class="visually-hidden" id="loginHeading">Login Form</div>
+      
+      <div class="input-group">
+        <label for="email" class="visually-hidden">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Email Address" required aria-required="true" aria-describedby="emailError" autocomplete="email">
+        <div id="emailError" class="error-message" role="alert" aria-live="polite"></div>
+      </div>
 
-      <p class="switch">Don't have an account? <a href="signup.html">Sign up here</a></p>
-    </div>
-  </section>
+      <div class="input-group">
+        <label for="password" class="visually-hidden">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" aria-describedby="passwordError" autocomplete="current-password">
+        <button type="button" id="passwordToggle" class="password-toggle-btn" aria-label="Show password"></button>
+        <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
+      </div>
+
+      <button type="submit" class="btn" id="loginButton" aria-label="Login to your account">
+        <span id="buttonText">Login</span>
+        <span id="buttonSpinner" style="display: none;">⏳</span>
+      </button>
+    </form>
+
+    <p class="switch">Don't have an account? <a href="signup.html">Sign up here</a></p>
+  </main>
+
+  <script>
+    // ✅ Apply saved theme from localStorage (same as navbar-theme.js)
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+    });
+
+    // ✅ Optional: Sync with navbar toggle in real-time
+    window.addEventListener("storage", (event) => {
+      if (event.key === "theme") {
+        document.documentElement.setAttribute("data-theme", event.newValue);
+      }
+    });
+  </script>
+
+  <!-- ⚙️ Include your existing login logic JS below -->
+  <script src="login.js"></script>
 </body>
 </html>
