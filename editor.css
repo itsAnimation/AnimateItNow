@@ -59,10 +59,15 @@ border: 2px solid #94a3b8; /* slate-400 */
 
 
 }
-.editor-area:hover {
-  transform: scale(1.01);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+
+.editor-area:hover,
+#output:hover {
+    transform: scale(1.01); /* very subtle zoom */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* soft, realistic shadow */
+    transition: transform 0.25s ease, box-shadow 0.25s ease; /* smooth and quick */
 }
+
+
 #output {
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -73,10 +78,7 @@ border: 2px solid #94a3b8; /* slate-400 */
 
 }
 
-#output:hover {
-  transform: scale(1.01);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
-}
+
 
 
 .Output-line {
