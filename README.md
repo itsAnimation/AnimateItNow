@@ -182,20 +182,6 @@ If you use Visual Studio Code:
 * Preview changes live if using a local server or Live Server.
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-# File Structure Overview
-├text \
-├AnimateItNow/
-
-├── index.html                #Main landing page\
-├── templates                # Animation templates\
-│   ├── buttons/           # Button animations\
-│   ├── loaders/           # Loading animations\
-│   ├── modals/            # Modal animations\
-│   └── forms/             # Form animations\
-├── css/                   # Stylesheets\
-├── js/                    # JavaScript files\
-├── images/               # Project images and assets\
-└── README.md             # Project documentation\
 
 ## 🌈 Features & Demos\
 🎨 Animation Categories\
@@ -274,22 +260,147 @@ Benefits for Contributors:
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 🔧 Project Structure
-text
+## 📁 Project Structure
+
+```plaintext
 AnimateItNow/
-├── 📁 templates/          # All animation templates\
-│   ├── 📁 buttons/       # Button animations and effects\
-│   ├── 📁 loaders/       # Loading animations\
-│   ├── 📁 modals/        # Modal and popup animations\
-│   ├── 📁 forms/         # Form animations\
-│   └── 📁 navigation/    # Menu and nav animations\
-├── 📁 css/               # Global styles and utilities\
-├── 📁 js/                # JavaScript functionality\
-├── 📁 images/           # Assets and preview images\
-├── 📁 docs/             # Documentation files\
-├── index.html           # Main landing page\
-├── templates.html       # Templates gallery\
-└── CONTRIBUTING.md      # Contribution guidelines\
+│
+├─ .github/                     # GitHub configuration files (workflows, templates)
+│  ├─ ISSUE_TEMPLATE/           # Issue templates
+│  ├─ workflows/                # GitHub Actions workflows
+│  ├─ ISSUE_TEMPLATE.md         # Default issue template
+│  └─ PULL_REQUEST_TEMPLATE.md  # Pull request template
+│
+├─ .vscode/                     # VSCode settings
+│  └─ settings.json             # Workspace settings
+│
+├─ ai-assistant/                # AI assistant related files
+│  └─ chatbot-data.json
+│
+├─ index.html                   # Main entry HTML page
+├─ script.js                    # Main JS file
+├─ styles.css                   # Main CSS file
+│
+├─ background_templates/        # Background templates for animations
+│  ├─ demo/                     # Demo templates
+│  ├─ blue_wave_background.html
+│  └─ dark_starry_background.html
+│
+├─ images/                      # Images used across templates
+│
+├─ src/css/                     # Additional CSS files
+│
+├─ svg/                         # SVG assets
+│
+├─ templates/                   # Pre-built HTML templates
+│  └─ sample-templates/
+│
+├─ HTML Templates               # Individual HTML pages with effects
+│  ├─ 404.html
+│  ├─ Animation.html
+│  ├─ CardHoverEffects.html
+│  ├─ Coming_Soon_Landing_Page.html
+│  ├─ Flip.html
+│  ├─ LoadingSpinner.html
+│  ├─ LoginFormGlassMorphism.html
+│  ├─ Progress_Bar.html
+│  ├─ Side.html
+│  ├─ Testinomials_Sliders.html
+│  ├─ Type-animation.html
+│  ├─ Wave.html
+│  ├─ accordian.html
+│  ├─ animated-btn.html
+│  ├─ button.html
+│  ├─ card_hover.html
+│  ├─ carousel.html
+│  ├─ checkboxes.html
+│  ├─ code_playground.html
+│  ├─ contact.html
+│  ├─ display.html
+│  ├─ faq_acc.html
+│  ├─ feature.html
+│  ├─ forgot-password.html
+│  ├─ glassmorphism.html
+│  ├─ hamburger-menu.html
+│  ├─ hero.html
+│  ├─ login.html
+│  ├─ modal.html
+│  ├─ navbar.html
+│  ├─ neumorphic.html
+│  ├─ page_not_found_template.html
+│  ├─ price_plan.html
+│  ├─ professional_temp.html
+│  ├─ profile_card.html
+│  ├─ quotes.html
+│  ├─ register.html
+│  ├─ scrollingAnimations.html
+│  ├─ social-share-buttons.html
+│  ├─ text_effects_anim.html
+│  ├─ tilt-card.html
+│  ├─ timer.html
+│  └─ toggles-and-checkboxes.html
+│
+├─ Additional Config & Docs
+│  ├─ .DS_Store
+│  ├─ CARD_SYSTEM_DOCS.md
+│  ├─ CODE_OF_CONDUCT.md
+│  ├─ CONTRIBUTING.md
+│  ├─ LEARN.md
+│  ├─ LICENSE
+│  ├─ README.md
+│
+├─ Other HTML, CSS, JS
+│  ├─ about.html
+│  ├─ blog.html
+│  ├─ components.css
+│  ├─ components.html
+│  ├─ components.js
+│  ├─ contact.html
+│  ├─ contributors.html
+│  ├─ desktop.ini
+│  ├─ documentation.html
+│  ├─ editor.css
+│  ├─ editor.html
+│  ├─ editor.js
+│  ├─ favicon.png
+│  ├─ feedback.html
+│  ├─ generate-icons.js
+│  ├─ generator.css
+│  ├─ generator.html
+│  ├─ generator.js
+│  ├─ glassmorphismstyle.css
+│  ├─ index.css
+│  ├─ index.html
+│  ├─ index.js
+│  ├─ leaderboard.html
+│  ├─ loginpage.html
+│  ├─ manifest.json
+│  ├─ nav.html
+│  ├─ navbar-theme.js
+│  ├─ navbar_script.js
+│  ├─ navbar_styles.css
+│  ├─ opaque_hover.html
+│  ├─ package-lock.json
+│  ├─ playground.html
+│  ├─ pomodoro.css
+│  ├─ pomodoro.html
+│  ├─ pomodoro.js
+│  ├─ privacy.html
+│  ├─ privacyPolicy.html
+│  ├─ script.js
+│  ├─ signup.css
+│  ├─ signup.html
+│  ├─ sitemap.html
+│  ├─ styles.css
+│  ├─ support.html
+│  ├─ templates.css
+│  ├─ templates.html
+│  ├─ templates.js
+│  ├─ test_card_system.html
+│  ├─ theme-manager.js
+│  ├─ update-html-files.js
+│  └─ vercel.json
+```
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
