@@ -6,6 +6,47 @@
   <title>Sign Up - AnimateItNow</title>
   <link rel="icon" href="favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="signup.css">
+  
+  <style>
+    /* This container helps position the show/hide icon */
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 15px; /* Added to maintain spacing between inputs */
+    }
+
+    /* Make sure the input doesn't overlap with the icon */
+    .password-wrapper input {
+      width: 100%;
+      padding-right: 45px; /* Add some space on the right for the icon */
+      box-sizing: border-box; /* Ensures padding doesn't affect the overall width */
+    }
+
+    /* Styling and positioning the icon */
+    .toggle-password {
+
+      opacity: 0.8;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      user-select: none; /* Prevents the icon text from being selected */
+      font-size: 1.2rem; /* Make the icon a bit bigger */
+    }
+
+    /* Basic styling from what I imagine your signup.css might have */
+    /* You can remove this if you already have it */
+    body { font-family: sans-serif; }
+    .form-container input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -23,12 +64,48 @@
     <form>
       <input type="text" placeholder="Full Name" required>
       <input type="email" placeholder="Email Address" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Confirm Password" required>
+
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Password" required>
+        <span class="toggle-password">show</span>
+      </div>
+
+      <div class="password-wrapper">
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+        <span class="toggle-password">show</span>
+      </div>
+
       <button type="submit" class="btn">Sign Up</button>
     </form>
 
     <p class="switch">Already have an account? <a href="loginpage.html">Login here</a></p>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get all the toggle icons on the page
+      const toggleIcons = document.querySelectorAll('.toggle-password');
+
+      // Loop through each icon and add a click event
+      toggleIcons.forEach(icon => {
+        icon.addEventListener('click', function () {
+          // Get the password input field that is right before the icon
+          const passwordInput = this.previousElementSibling;
+          
+          // Check the current type of the input
+          const isPassword = passwordInput.getAttribute('type') === 'password';
+          
+          // If it's a password, change to text. Otherwise, change back to password.
+          if (isPassword) {
+            passwordInput.setAttribute('type', 'text');
+            this.textContent = 'hide'; // Change icon to 'hide'
+          } else {
+            passwordInput.setAttribute('type', 'password');
+            this.textContent = 'show'; // Change icon back to 'show'
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
