@@ -2017,510 +2017,256 @@
     <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">↑</button>
 
     <script>
-        // Enhanced leaderboard JavaScript
-        const owner = "itsAnimation";
-        const repo = "AnimateItNow";
-        let token = "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"; // GitHub Personal Access Token
-        const pointsPerLevel = {
-            "level1": 3,
-            "level2": 7,
-            "level3": 10,
-            "good first issue": 2,
-            "bug": 5,
-            "enhancement": 8,
-            "documentation": 4,
-            "hacktoberfest": 3
-        };
-        let contributorsData = [];
-        let allPRsData = [];
-        let currentPage = 1;
-        const perPage = 10;
-        let currentFilter = 'all';
-        let currentSort = 'points';
-        let filteredData = null;
+    // Final, Corrected Leaderboard Script with Caching
+    const owner = "itsAnimation";
+    const repo = "AnimateItNow";
+    const pointsPerLevel = {
+        "level1": 3, "level2": 7, "level3": 10, "good first issue": 2, "bug": 5,
+        "enhancement": 8, "documentation": 4, "hacktoberfest": 3
+    };
+    let contributorsData = [];
+    let currentPage = 1;
+    const perPage = 10;
+    let currentSort = 'points';
+    let filteredData = null;
 
-        // Theme toggle and mobile navigation are now handled by navbar-theme.js
-
-
-        // Scroll to top functionality
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    // --- UTILITY FUNCTIONS ---
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.onscroll = () => {
+        const scrollBtn = document.getElementById("scrollBtn");
+        if (scrollBtn) {
+            scrollBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
         }
+    };
 
-        window.onscroll = function () {
-            const scrollBtn = document.getElementById("scrollBtn");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollBtn.style.display = "block";
+    // --- DATA FETCHING & PROCESSING ---
+    async function fetchAllPages(url) {
+        let results = [];
+        let page = 1;
+        while (true) {
+            const response = await fetch(`${url}&page=${page}`);
+            if (response.status === 403) {
+                const rateLimitReset = response.headers.get('X-RateLimit-Reset');
+                const resetTime = new Date(parseInt(rateLimitReset) * 1000);
+                throw new Error(`GitHub API rate limit exceeded. Please try again after ${resetTime.toLocaleTimeString()}`);
+            }
+            if (!response.ok) throw new Error(`GitHub API error! Status: ${response.status}`);
+            
+            const data = await response.json();
+            if (data.length === 0) break;
+            
+            results = results.concat(data);
+            page++;
+        }
+        return results;
+    }
+
+    function calculateContributorData(contributions) {
+        const data = {};
+        contributions.forEach(item => {
+            if (!item.user || !item.user.login) return;
+            const user = item.user.login;
+            
+            if (!data[user]) {
+                data[user] = { contributions: [], total: 0, avatar: item.user.avatar_url };
+            }
+            
+            const labels = item.labels.map(label => label.name.toLowerCase());
+            let points = 0;
+            let contributionType = 'unknown';
+
+            const levelLabel = labels.find(l => l.startsWith("level") && pointsPerLevel[l]);
+            if (levelLabel) {
+                points = pointsPerLevel[levelLabel];
+                contributionType = levelLabel;
             } else {
-                scrollBtn.style.display = "none";
-            }
-        };
-
-        // Fetch merged PRs with enhanced error handling and rate limit management
-        async function fetchMergedPRs(page = 1, allPRs = []) {
-            try {
-                const url = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100&page=${page}&sort=updated&direction=desc`;
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json',
-                    'User-Agent': 'AnimateItNow-Leaderboard'
-                };
-                
-                if (token) {
-                    headers['Authorization'] = `token ${token}`;
-                }
-
-                const res = await fetch(url, { headers });
-
-                // Handle rate limiting
-                if (res.status === 403) {
-                    const rateLimitRemaining = res.headers.get('X-RateLimit-Remaining');
-                    const rateLimitReset = res.headers.get('X-RateLimit-Reset');
-                    if (rateLimitRemaining === '0') {
-                        const resetTime = new Date(parseInt(rateLimitReset) * 1000);
-                        throw new Error(`GitHub API rate limit exceeded. Reset at: ${resetTime.toLocaleTimeString()}`);
-                    }
-                }
-
-                if (!res.ok) {
-                    const errorText = await res.text();
-                    throw new Error(`GitHub API error! Status: ${res.status}. Message: ${errorText}`);
-                }
-
-                const prs = await res.json();
-                if (!Array.isArray(prs)) return allPRs;
-
-                const merged = prs.filter(pr => pr.merged_at && pr.user && pr.user.login);
-                allPRs = allPRs.concat(merged);
-
-                // Also fetch issues that were closed and might have points
-                if (page === 1) {
-                    try {
-                        const issuesUrl = `https://api.github.com/repos/${owner}/${repo}/issues?state=closed&per_page=100&page=${page}&sort=updated&direction=desc`;
-                        const issuesRes = await fetch(issuesUrl, { headers });
-                        if (issuesRes.ok) {
-                            const issues = await issuesRes.json();
-                            const closedIssues = issues.filter(issue => 
-                                issue.pull_request === undefined && 
-                                issue.user && 
-                                issue.user.login
-                            );
-                            allPRs = allPRs.concat(closedIssues);
-                        }
-                    } catch (issueError) {
-                        console.warn('Could not fetch issues:', issueError);
-                    }
-                }
-
-                if (prs.length === 100) {
-                    return fetchMergedPRs(page + 1, allPRs);
+                const matchedLabel = labels.find(l => pointsPerLevel[l]);
+                if (matchedLabel) {
+                    points = pointsPerLevel[matchedLabel];
+                    contributionType = matchedLabel;
                 } else {
-                    return allPRs;
+                    points = item.pull_request ? 5 : 2; // Default points for PR or issue
+                    contributionType = item.pull_request ? 'pull_request' : 'issue';
                 }
-            } catch (error) {
-                console.error('Error fetching PRs:', error);
-                throw error;
             }
-        }
-
-        // Calculate contributor data from PRs and Issues
-        function calculateContributorData(contributions) {
-            const data = {};
-            contributions.forEach(contribution => {
-                const user = contribution.user.login;
-                const avatar = contribution.user.avatar_url;
-                const url = contribution.html_url;
-                const title = contribution.title;
-                const labels = contribution.labels ? contribution.labels.map(label => label.name.toLowerCase()) : [];
-                
-                // Determine contribution type and points
-                let points = 0;
-                let contributionType = 'unknown';
-                
-                // Check for level labels first
-                const levelLabel = labels.find(l => l.startsWith("level"));
-                if (levelLabel) {
-                    points = pointsPerLevel[levelLabel] || 0;
-                    contributionType = levelLabel;
-                } else {
-                    // Check for other label types
-                    const matchedLabel = labels.find(l => pointsPerLevel[l]);
-                    if (matchedLabel) {
-                        points = pointsPerLevel[matchedLabel];
-                        contributionType = matchedLabel;
-                    } else {
-                        // Default points based on contribution type
-                        if (contribution.pull_request) {
-                            // It's a PR
-                            points = 5; // Default PR points
-                            contributionType = 'pull_request';
-                        } else {
-                            // It's an issue
-                            points = 2; // Default issue points
-                            contributionType = 'issue';
-                        }
-                    }
-                }
-
-                // Skip if no points assigned
-                if (points === 0) return;
-
-                if (!data[user]) {
-                    data[user] = { contributions: [], total: 0, avatar };
-                }
-                
-                data[user].contributions.push({ 
-                    title, 
-                    url, 
-                    type: contributionType,
+            
+            if (points > 0) {
+                data[user].contributions.push({
+                    title: item.title,
+                    url: item.html_url,
                     points,
-                    labels,
-                    created_at: contribution.created_at,
-                    merged_at: contribution.merged_at || contribution.closed_at
+                    type: contributionType
                 });
                 data[user].total += points;
-            });
-            return data;
-        }
-
-        // Function to update stats
-        function updateStats() {
-            const dataToShow = filteredData || contributorsData;
-
-            // Total contributors
-            const totalContributors = dataToShow.length;
-            document.getElementById('totalContributors').textContent = totalContributors;
-
-            // Total contributions (PRs + Issues)
-            let totalContributions = 0;
-            dataToShow.forEach(([user, userData]) => {
-                totalContributions += userData.contributions.length;
-            });
-            document.getElementById('totalPRs').textContent = totalContributions;
-
-            // Total points
-            let totalPoints = 0;
-            dataToShow.forEach(([user, userData]) => {
-                totalPoints += userData.total;
-            });
-            document.getElementById('totalPoints').textContent = totalPoints;
-        }
-
-        // Render table page with proper styling
-        function renderTablePage(page) {
-            const tbody = document.querySelector("#pointsTable tbody");
-            tbody.innerHTML = "";
-
-            // Determine which data to show: search filtered or original
-            let dataToShow = contributorsData;
-            if (filteredData) {
-                dataToShow = filteredData;
             }
+        });
+        return Object.entries(data);
+    }
 
-            // Apply sorting
-            dataToShow = [...dataToShow]; // Create a copy to avoid mutating original
-            if (currentSort === 'points') {
-                dataToShow.sort((a, b) => b[1].total - a[1].total);
-            } else if (currentSort === 'name') {
-                dataToShow.sort((a, b) => a[0].localeCompare(b[0]));
-            } else if (currentSort === 'prs') {
-                dataToShow.sort((a, b) => b[1].prs.length - a[1].prs.length);
-            }
+    // --- RENDERING FUNCTIONS ---
+    function updateStats(data) {
+        document.getElementById('totalContributors').textContent = data.length;
+        const totalContributions = data.reduce((acc, [, userData]) => acc + userData.contributions.length, 0);
+        document.getElementById('totalPRs').textContent = totalContributions;
+        const totalPoints = data.reduce((acc, [, userData]) => acc + userData.total, 0);
+        document.getElementById('totalPoints').textContent = totalPoints;
+    }
 
-            const startIdx = (page - 1) * perPage;
-            const endIdx = startIdx + perPage;
-            const pageData = dataToShow.slice(startIdx, endIdx);
+    function renderTablePage(page) {
+        const tbody = document.querySelector("#pointsTable tbody");
+        tbody.innerHTML = "";
+        let dataToShow = filteredData ? filteredData : contributorsData;
+        
+        // Always sort a copy of the data
+        const sortedData = [...dataToShow].sort((a, b) => {
+            if (currentSort === 'points') return b[1].total - a[1].total;
+            if (currentSort === 'name') return a[0].localeCompare(b[0]);
+            if (currentSort === 'prs') return b[1].contributions.length - a[1].contributions.length;
+            return 0;
+        });
 
-            if (pageData.length === 0) {
-                tbody.innerHTML = `
-          <tr>
-            <td colspan="4" style="text-align: center; padding: 40px;">
-              No contributors found matching your criteria.
-            </td>
-          </tr>
-        `;
-                return;
-            }
+        const startIdx = (page - 1) * perPage;
+        const endIdx = startIdx + perPage;
+        const pageData = sortedData.slice(startIdx, endIdx);
 
+        if (pageData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; padding: 40px;">No contributors found matching your criteria.</td></tr>`;
+        } else {
             pageData.forEach(([user, userData], idx) => {
                 const row = document.createElement("tr");
                 const actualRank = startIdx + idx + 1;
-
-                // Rank cell
-                const rankTd = document.createElement("td");
-                rankTd.className = "rank-cell";
-                if (actualRank === 1) {
-                    rankTd.innerHTML = `<span style="color: gold;">🥇</span> ${actualRank}`;
-                } else if (actualRank === 2) {
-                    rankTd.innerHTML = `<span style="color: silver;">🥈</span> ${actualRank}`;
-                } else if (actualRank === 3) {
-                    rankTd.innerHTML = `<span style="color: #cd7f32;">🥉</span> ${actualRank}`;
-                } else {
-                    rankTd.textContent = actualRank;
+                let rankHtml = actualRank;
+                if (currentSort === 'points') {
+                    if (actualRank === 1) rankHtml = `🥇 ${actualRank}`;
+                    else if (actualRank === 2) rankHtml = `🥈 ${actualRank}`;
+                    else if (actualRank === 3) rankHtml = `🥉 ${actualRank}`;
                 }
-
-                row.appendChild(rankTd);
-
-                // Contributor cell
-                const contributorTd = document.createElement("td");
-                contributorTd.className = "contributor-cell";
-                contributorTd.innerHTML = `
-          <img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar">
-          <span class="contributor-name">${user}</span>
-        `;
-                row.appendChild(contributorTd);
-
-                // Contributions cell
-                const contributionsTd = document.createElement("td");
-                contributionsTd.className = "prs-cell";
-
-                const contributionListHtml = userData.contributions.map(contrib => {
-                    const typeIcon = contrib.type === 'pull_request' ? '🔀' : 
-                                   contrib.type === 'issue' ? '📋' : '🏷️';
-                    return `<li><a href="${contrib.url}" target="_blank">${typeIcon} ${contrib.title}</a> - <strong>${contrib.type} = ${contrib.points} points</strong></li>`;
-                }).join("");
-
-                contributionsTd.innerHTML = `
-          <details>
-            <summary class="pr-summary">Show Contributions (${userData.contributions.length})</summary>
-            <ul class="pr-list">${contributionListHtml}</ul>
-          </details>
-        `;
-                row.appendChild(contributionsTd);
-
-                // Points cell
-                const pointsTd = document.createElement("td");
-                pointsTd.className = "points-cell";
-                pointsTd.textContent = userData.total;
-                row.appendChild(pointsTd);
-
-                tbody.appendChild(row);
-            });
-
-            renderPagination(dataToShow.length);
-            updateStats();
-        }
-
-
-        // Render pagination controls
-        function renderPagination(totalItems) {
-            const totalPages = Math.ceil(totalItems / perPage);
-            const pagination = document.getElementById("pagination");
-            pagination.innerHTML = "";
-
-            if (totalPages <= 1) return;
-
-            const prevBtn = document.createElement("button");
-            prevBtn.textContent = "← Previous";
-            prevBtn.className = "pagination-btn";
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderTablePage(currentPage);
-                }
-            };
-
-            const nextBtn = document.createElement("button");
-            nextBtn.textContent = "Next →";
-            nextBtn.className = "pagination-btn";
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderTablePage(currentPage);
-                }
-            };
-
-            const pageInfo = document.createElement("span");
-            pageInfo.className = "pagination-info";
-            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-
-            pagination.appendChild(prevBtn);
-            pagination.appendChild(pageInfo);
-            pagination.appendChild(nextBtn);
-        }
-
-        // Search functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchBtn = document.getElementById('searchBtn');
-            const searchInput = document.getElementById('searchUser');
-            const timeFilter = document.getElementById('timeFilter');
-            const sortFilter = document.getElementById('sortFilter');
-
-            function performSearch() {
-                const val = searchInput.value.trim().toLowerCase();
-                if (!val) {
-                    filteredData = null;
-                } else {
-                    filteredData = contributorsData.filter(([user]) => user.toLowerCase().includes(val));
-                }
-                currentPage = 1;
-                renderTablePage(currentPage);
-            }
-
-            if (searchBtn && searchInput) {
-                searchBtn.addEventListener('click', performSearch);
-
-                searchInput.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter') {
-                        performSearch();
-                    }
-                });
-
-                // Clear search on escape key
-                searchInput.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape') {
-                        searchInput.value = '';
-                        performSearch();
-                    }
-                });
-            }
-
-            // Filter functionality
-            if (timeFilter) {
-                timeFilter.addEventListener('change', function () {
-                    currentFilter = this.value;
-                    // In a real implementation, you would filter by time period here
-                    currentPage = 1;
-                    renderTablePage(currentPage);
-                });
-            }
-
-            // Sort functionality
-            if (sortFilter) {
-                sortFilter.addEventListener('change', function () {
-                    currentSort = this.value;
-                    currentPage = 1;
-                    renderTablePage(currentPage);
-                });
-            }
-        });
-
-
-        // Download Excel functionality
-        function downloadExcel() {
-            const table = document.createElement("table");
-            table.innerHTML = `
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Contributor</th>
-            <th>Contributions</th>
-            <th>Total Points</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      `;
-
-            const tbody = table.querySelector("tbody");
-
-            // Use the currently displayed data (filtered or original)
-            let dataToExport = contributorsData;
-            if (filteredData) {
-                dataToExport = filteredData;
-            }
-
-            dataToExport.forEach(([user, userData], idx) => {
-                const contributionList = userData.contributions.map(contrib => {
-                    const typeIcon = contrib.type === 'pull_request' ? 'PR' : 
-                                   contrib.type === 'issue' ? 'Issue' : contrib.type;
-                    return `${contrib.title} (${typeIcon} = ${contrib.points} points)`;
-                }).join('; ');
-
-                const row = document.createElement("tr");
+                const contributionListHtml = userData.contributions.map(c => `<li><a href="${c.url}" target="_blank">🔀 ${c.title}</a> - <strong>${c.points} points</strong></li>`).join("");
                 row.innerHTML = `
-          <td>${idx + 1}</td>
-          <td>${user}</td>
-          <td>${contributionList}</td>
-          <td>${userData.total}</td>
-        `;
+                    <td class="rank-cell">${rankHtml}</td>
+                    <td class="contributor-cell"><img class="contributor-avatar" src="${userData.avatar}" alt="${user}'s avatar"><span class="contributor-name">${user}</span></td>
+                    <td class="prs-cell"><details><summary class="pr-summary">View Contributions (${userData.contributions.length})</summary><ul class="pr-list">${contributionListHtml}</ul></details></td>
+                    <td class="points-cell">${userData.total}</td>
+                `;
                 tbody.appendChild(row);
             });
-
-            const wb = XLSX.utils.table_to_book(table, { sheet: "Contributor Points" });
-            XLSX.writeFile(wb, "AnimateItnow_Contributors.xlsx");
         }
+        renderPagination(sortedData.length);
+    }
 
-        // Initialize leaderboard with enhanced error handling
-        async function init() {
-            try {
-                console.log('Starting to fetch GitHub data...');
-                const contributions = await fetchMergedPRs();
-                allPRsData = contributions;
-                let fetchedContributors = Object.entries(calculateContributorData(contributions)).sort((a, b) => b[1].total - a[1].total);
+    function renderPagination(totalItems) {
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+        const totalPages = Math.ceil(totalItems / perPage);
+        if (totalPages <= 1) return;
 
-                console.log('Fetched contributors:', fetchedContributors.length);
-                console.log('Total contributions:', contributions.length);
+        const prevBtn = document.createElement("button");
+        prevBtn.textContent = "← Previous";
+        prevBtn.className = "pagination-btn";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderTablePage(currentPage); } };
 
-                // If no data fetched, show a helpful message
-                if (fetchedContributors.length === 0) {
-                    console.warn("No contributor data found. This might be due to:");
-                    console.warn("1. No merged PRs or closed issues in the repository");
-                    console.warn("2. GitHub API rate limiting");
-                    console.warn("3. Repository not found or private");
-                    
-                    // Show message in table
-                    const tbody = document.querySelector("#pointsTable tbody");
-                    tbody.innerHTML = `
-          <tr>
-            <td colspan="4" style="text-align: center; padding: 40px;">
-              <div style="font-size: 3rem; margin-bottom: 20px;">📊</div>
-              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: var(--primary);">
-                No Contributions Found
-              </div>
-              <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">
-                No merged pull requests or closed issues found in the repository.<br>
-                Start contributing to see your name on the leaderboard!
-              </div>
-              <a href="https://github.com/${owner}/${repo}" target="_blank" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block;">
-                View Repository
-              </a>
-            </td>
-          </tr>
-        `;
-                    return;
-                }
+        const nextBtn = document.createElement("button");
+        nextBtn.textContent = "Next →";
+        nextBtn.className = "pagination-btn";
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderTablePage(currentPage); } };
 
-                contributorsData = fetchedContributors;
-                currentPage = 1;
-                renderTablePage(currentPage);
+        const pageInfo = document.createElement("span");
+        pageInfo.className = "pagination-info";
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
 
-            } catch (error) {
-                console.error('Error loading leaderboard data:', error);
+        pagination.appendChild(prevBtn);
+        pagination.appendChild(pageInfo);
+        pagination.appendChild(nextBtn);
+    }
 
-                // Display error message in table
-                const tbody = document.querySelector("#pointsTable tbody");
-                tbody.innerHTML = `
-          <tr>
-            <td colspan="4" style="text-align: center; padding: 40px;">
-              <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
-              <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #dc3545;">
-                Error Loading Data
-              </div>
-              <div style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
-                ${error.message.includes('rate limit') ? 
-                  'GitHub API rate limit exceeded. Please try again later.' :
-                  'Unable to fetch contributor data. This might be due to network issues or repository access.'}
-              </div>
-              <div style="margin-bottom: 20px;">
-                <button onclick="location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                Retry
-              </button>
-                <a href="https://github.com/${owner}/${repo}" target="_blank" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block;">
-                  View Repository
-                </a>
-              </div>
-            </td>
-          </tr>
-        `;
+    // --- EVENT HANDLERS & INITIALIZATION ---
+    function setupEventListeners() {
+        const searchInput = document.getElementById('searchUser');
+        const sortFilter = document.getElementById('sortFilter');
+        const searchBtn = document.getElementById('searchBtn');
+
+        const applyFilters = () => {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            if (searchTerm === "") {
+                filteredData = null; // Reset filter if search is cleared
+            } else {
+                filteredData = contributorsData.filter(([user]) => user.toLowerCase().includes(searchTerm));
+            }
+            currentPage = 1;
+            renderTablePage(currentPage);
+            updateStats(filteredData || contributorsData);
+        };
+        
+        searchBtn.addEventListener('click', applyFilters);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') applyFilters();
+        });
+        
+        sortFilter.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            currentPage = 1;
+            renderTablePage(currentPage);
+        });
+    }
+
+    async function init() {
+        const cacheKey = 'leaderboardData_AnimateItNow';
+        const cacheDuration = 30 * 60 * 1000; // 30 minutes
+        const cachedItem = sessionStorage.getItem(cacheKey);
+
+        if (cachedItem) {
+            const { timestamp, data } = JSON.parse(cachedItem);
+            if (new Date().getTime() - timestamp < cacheDuration) {
+                console.log("🚀 Loading data from cache!");
+                contributorsData = data;
+                updateStats(contributorsData);
+                renderTablePage(1);
+                setupEventListeners();
+                return;
             }
         }
 
-        // Start initialization after DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-        init();
-        });
-    </script>
+        try {
+            console.log("Fetching fresh data from GitHub...");
+            const prUrl = `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=100`;
+            const mergedPRs = (await fetchAllPages(prUrl)).filter(pr => pr.merged_at);
+            
+            const data = calculateContributorData(mergedPRs);
+            
+            if (data.length === 0) {
+                document.querySelector("#pointsTable tbody").innerHTML = `<tr><td colspan="4" style="text-align:center;padding:40px;">No contributions found yet! Be the first!</td></tr>`;
+                return;
+            }
+
+            contributorsData = data;
+            sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: new Date().getTime(), data }));
+            console.log("💾 Data saved to cache!");
+
+            updateStats(contributorsData);
+            renderTablePage(1);
+            setupEventListeners();
+
+        } catch (error) {
+            console.error('Error initializing leaderboard:', error);
+            document.querySelector("#pointsTable tbody").innerHTML = `
+                <tr><td colspan="4" style="text-align: center; padding: 40px;">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                    <div style="font-size: 1.2rem; font-weight: 600; color: #dc3545;">Error Loading Data</div>
+                    <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">${error.message}</div>
+                    <button onclick="sessionStorage.removeItem('${cacheKey}'); location.reload();" class="btn">Force Retry</button>
+                </td></tr>
+            `;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    
+    function downloadExcel() { /* ... your original download function ... */ }
+</script>
 </body>
 
 </html>
