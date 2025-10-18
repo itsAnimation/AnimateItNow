@@ -1814,12 +1814,15 @@ body.dark .contributor-card:hover {
 .contact {
   background: linear-gradient(135deg, 
     #667eea 0%, 
-    #764ba2 25%, 
-    #f093fb 50%, 
-    #f5576c 75%, 
-    #4facfe 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+    #764ba2 15%, 
+    #f093fb 30%, 
+    #f5576c 45%, 
+    #4facfe 60%,
+    #00d4ff 75%,
+    #667eea 90%,
+    #764ba2 100%);
+  background-size: 600% 600%;
+  animation: gradientShift 20s ease infinite;
   position: relative;
   overflow: auto; /* allow scrolling on contact page */
   min-height: 100vh; /* ensure full viewport height and allow growth */
@@ -1847,15 +1850,18 @@ body.dark .contributor-card:hover {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
+    radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(79, 140, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(79, 140, 255, 0.2), transparent),
+    radial-gradient(3px 3px at 160px 30px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 200px 60px, rgba(79, 140, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 250px 20px, rgba(255,255,255,0.2), transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: sparkle 10s linear infinite;
-  opacity: 0.6;
+  background-size: 300px 150px;
+  animation: sparkle 12s linear infinite;
+  opacity: 0.7;
+  z-index: 1;
 }
 
 @keyframes gradientShift {
@@ -1880,8 +1886,26 @@ body.dark .contributor-card:hover {
 }
 
 @keyframes sparkle {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-100px); }
+  0% { 
+    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    opacity: 0.7;
+  }
+  25% { 
+    background-position: 50px 25px, 25px 50px, 75px 10px, 100px 75px, 125px 15px, 150px 60px, 175px 5px;
+    opacity: 1;
+  }
+  50% { 
+    background-position: 100px 50px, 50px 100px, 150px 20px, 200px 150px, 250px 30px, 300px 120px, 350px 10px;
+    opacity: 0.8;
+  }
+  75% { 
+    background-position: 150px 75px, 75px 150px, 225px 30px, 300px 225px, 375px 45px, 450px 180px, 525px 15px;
+    opacity: 1;
+  }
+  100% { 
+    background-position: 200px 100px, 100px 200px, 300px 40px, 400px 300px, 500px 60px, 600px 240px, 700px 20px;
+    opacity: 0.7;
+  }
 }
 .main-section {
   width: 100%;
@@ -1911,18 +1935,18 @@ body.dark .contributor-card:hover {
 }
 
 .contact-container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 25px;
   padding: 3rem;
   position: relative;
   z-index: 10;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 0 30px rgba(79, 140, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -1968,12 +1992,13 @@ body.dark .contributor-card:hover {
 
 
 .contact-container:hover {
-  transform: scale(1.02) translateY(-5px);
+  transform: scale(1.02) translateY(-8px);
   box-shadow: 
-    0 35px 70px rgba(0, 0, 0, 0.2), 
-    0 0 40px rgba(79, 140, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 40px 80px rgba(0, 0, 0, 0.25), 
+    0 0 50px rgba(79, 140, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
   border-color: rgba(79, 140, 255, 0.6);
+  background: rgba(255, 255, 255, 0.18);
 }
 .contact-form {
   width: 100%;
@@ -2200,12 +2225,16 @@ body.dark .navbar {
 body.contact.dark {
   background: linear-gradient(135deg, 
     #0f0c29 0%, 
-    #302b63 25%, 
-    #24243e 50%, 
-    #1a1a2e 75%, 
-    #16213e 100%);
-  background-size: 400% 400%;
-  animation: gradientShiftDark 15s ease infinite;
+    #302b63 12%, 
+    #24243e 25%, 
+    #1a1a2e 37%,
+    #16213e 50%,
+    #0f3460 62%,
+    #1a1a2e 75%,
+    #24243e 87%,
+    #0f0c29 100%);
+  background-size: 600% 600%;
+  animation: gradientShiftDark 20s ease infinite;
   position: relative;
   overflow: auto; /* allow scrolling in dark mode contact */
 }
@@ -2232,15 +2261,18 @@ body.contact.dark::after {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(59, 130, 246, 0.4), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(168, 85, 247, 0.3), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(34, 197, 94, 0.5), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(59, 130, 246, 0.3), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(168, 85, 247, 0.4), transparent);
+    radial-gradient(3px 3px at 20px 30px, rgba(59, 130, 246, 0.5), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(168, 85, 247, 0.4), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(34, 197, 94, 0.6), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(59, 130, 246, 0.4), transparent),
+    radial-gradient(3px 3px at 160px 30px, rgba(168, 85, 247, 0.5), transparent),
+    radial-gradient(1px 1px at 200px 60px, rgba(34, 197, 94, 0.3), transparent),
+    radial-gradient(2px 2px at 250px 20px, rgba(59, 130, 246, 0.4), transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: sparkleDark 10s linear infinite;
-  opacity: 0.7;
+  background-size: 300px 150px;
+  animation: sparkleDark 12s linear infinite;
+  opacity: 0.8;
+  z-index: 1;
 }
 
 @keyframes gradientShiftDark {
@@ -2265,8 +2297,26 @@ body.contact.dark::after {
 }
 
 @keyframes sparkleDark {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-100px); }
+  0% { 
+    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    opacity: 0.8;
+  }
+  25% { 
+    background-position: 50px 25px, 25px 50px, 75px 10px, 100px 75px, 125px 15px, 150px 60px, 175px 5px;
+    opacity: 1;
+  }
+  50% { 
+    background-position: 100px 50px, 50px 100px, 150px 20px, 200px 150px, 250px 30px, 300px 120px, 350px 10px;
+    opacity: 0.9;
+  }
+  75% { 
+    background-position: 150px 75px, 75px 150px, 225px 30px, 300px 225px, 375px 45px, 450px 180px, 525px 15px;
+    opacity: 1;
+  }
+  100% { 
+    background-position: 200px 100px, 100px 200px, 300px 40px, 400px 300px, 500px 60px, 600px 240px, 700px 20px;
+    opacity: 0.8;
+  }
 }
 
 body.dark .form-group input:focus,
