@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - AnimateItNow</title>
-  <link rel="icon" href="favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="signup.css">
-  
   <style>
     /* ---------- Base Styles ---------- */
     body {
@@ -85,11 +82,80 @@
       width: 1px;
       height: 1px;
       padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 50%, #fce4ec 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background elements */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      bottom: -80px;
+      right: -80px;
+      animation: float 12s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(50px, 50px) scale(1.1);
+      }
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background: #1a237e;
+      position: relative;
+      z-index: 100;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      letter-spacing: 1px;
     }
 
     input:focus, button:focus, a:focus {
@@ -113,16 +179,31 @@
       position: relative;
     }
 
-    #password {
-      padding-right: 2.5rem !important;
+    input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
     }
 
-    .password-toggle-btn {
-      position: absolute;
-      top: 50%;
-      right: 0.75rem;
-      transform: translateY(-50%);
-      background: transparent;
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
       border: none;
       cursor: pointer;
       color: #6b7280;
@@ -186,11 +267,11 @@
   </style>
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="logo" role="banner">AnimateItNow</div>
-    <ul class="nav-links" role="menubar">
-      <li role="none"><a href="index.html" role="menuitem">Home</a></li>
-      <li role="none"><a href="signup.html" role="menuitem">Sign Up</a></li>
+  <nav class="navbar">
+    <div class="logo">AnimateItNow</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
     </ul>
   </nav>
 
