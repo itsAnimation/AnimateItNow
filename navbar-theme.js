@@ -84,18 +84,28 @@ class NavbarThemeManager {
 
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+                navLinks.classList.toggle('show');
                 hamburger.classList.toggle('active');
                 
 
                 // Swap icon
-            if (navLinks.classList.contains('active')) {
+            if (navLinks.classList.contains('show')) {
                 hamburgerIcon.src = "svg/close.svg"; // menu open → show close
             } else {
                 hamburgerIcon.src = "svg/hamburger.svg"; // menu closed → show hamburger
             }
         });
-
+             //drop-down content
+             const dropBtn=document.querySelector('.dropdown');
+             const dropdownList=document.querySelector('.dropdown-content');
+             dropBtn.addEventListener('click',()=>{
+                if(dropdownList.style.display=='block'){
+                    dropdownList.style.display='none';
+                }
+                else{
+                    dropdownList.style.display='block';
+                }
+             })
  
 
             // Close mobile menu when clicking on a link
