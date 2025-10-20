@@ -1,4 +1,4 @@
-      // ⏳ Progress Bar on scroll
+// ⏳ Progress Bar on scroll
       window.addEventListener("scroll", () => {
         const winScroll =
           document.body.scrollTop || document.documentElement.scrollTop;
@@ -55,7 +55,7 @@
 
         const cardWidth = 380; // card width (350) + gap (30)
         const totalCards = testimonialCards.length;
-        const centerOffset = (testimonialCarousel.offsetWidth / 2) - (cardWidth / 2);
+        const centerOffset = (testimonialCarousel.offsetWidth) - (cardWidth / 2);
         const offset = centerOffset - index * cardWidth;
 
         if (testimonialCarousel) {
