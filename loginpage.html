@@ -173,102 +173,14 @@
       flex-direction: column;
       gap: 1.5rem;
     }
-
-    .input-group {
-      position: relative;
-    }
-
-    input {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      background: white;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-      transform: translateY(-2px);
-    }
-
-    input::placeholder {
-      color: #999;
-    }
-
-    .btn {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      margin-top: 1rem;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-    }
-
-    .btn:active {
-      transform: translateY(-1px);
-    }
-
-    .switch {
+    #forgotpass{
       text-align: center;
-      margin-top: 2rem;
-      color: #666;
-      font-size: 0.95rem;
+      margin-top: 0.25rem; 
+      margin-bottom: 0.25rem;
     }
-
-    .switch a {
-      color: #667eea;
+    #forgotpass a{
+      color: #4f46e5; 
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .switch a:hover {
-      color: #764ba2;
-      text-decoration: underline;
-    }
-
-    .decorative-line {
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      margin: 1.5rem auto;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem 3%;
-      }
-
-      .logo {
-        font-size: 1.5rem;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .form-card {
-        padding: 2rem 1.5rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
@@ -281,6 +193,203 @@
     </ul>
   </nav>
 
+  <main class="form-container" role="main">
+    <h1>Login</h1>
+    <p class="subtitle">Welcome back! Please log in to continue.</p>
+
+    <form id="loginForm" role="form" aria-labelledby="loginHeading">
+      <div class="visually-hidden" id="loginHeading">Login Form</div>
+      
+      <div class="input-group">
+        <label for="email" class="visually-hidden">Email Address</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          placeholder="Email Address" 
+          required
+          aria-required="true"
+          aria-describedby="emailError"
+          autocomplete="email"
+        >
+        <div id="emailError" class="error-message" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="password" class="visually-hidden">Password</label>
+        <input 
+          type="password" 
+          id="password"
+          name="password"
+          placeholder="Password" 
+          required
+          aria-required="true"
+          aria-describedby="passwordError"
+          autocomplete="current-password"
+        >
+        <button type="button" id="passwordToggle" class="password-toggle-btn" aria-label="Show password">
+          </button>
+        <div id="passwordError" class="error-message" role="alert" aria-live="polite"></div>
+      </div>
+      <p id="forgotpass">
+        <a href="forgot-password.html">Forgot Password?</a>
+      </p>
+
+      <button type="submit" class="btn" id="loginButton" aria-label="Login to your account">
+        <span id="buttonText">Login</span>
+        <span id="buttonSpinner" style="display: none;">⏳</span>
+      </button>
+    </form>
+
+    <p class="switch">Don't have an account? <a href="signup.html" aria-label="Navigate to sign up page">Sign up here</a></p>
+
+  </main>
+
+  <script>
+    // 🎯 Debug logging helper
+    const logDebug = (message, data = null) => {
+      console.log(`🔐 LoginDebug: ${message}`, data ? data : '');
+      
+      // Update debug info in development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const debugInfo = document.getElementById('debugInfo');
+        const debugStatus = document.getElementById('debugStatus');
+        if (debugInfo && debugStatus) {
+          debugInfo.style.display = 'block';
+          debugStatus.textContent = message;
+        }
+      }
+    };
+
+    // 🎯 Performance monitoring helper
+    const trackPerformance = (operation, startTime) => {
+      const duration = performance.now() - startTime;
+      logDebug(`⏱️ ${operation} Performance`, { duration: `${duration.toFixed(2)}ms` });
+      return duration;
+    };
+
+    // 🎯 Security monitoring
+    const securityMonitor = {
+      loginAttempts: 0,
+      lastAttempt: null,
+      maxAttempts: 5,
+      trackAttempt: function() { this.loginAttempts++; this.lastAttempt = new Date(); logDebug('🔒 Login attempt tracked', { attemptNumber: this.loginAttempts, timestamp: this.lastAttempt.toISOString() }); if (this.loginAttempts >= this.maxAttempts) { logDebug('🚨 Maximum login attempts reached', { attempts: this.loginAttempts, limit: this.maxAttempts }); } },
+      resetAttempts: function() { this.loginAttempts = 0; this.lastAttempt = null; logDebug('🔄 Login attempts reset'); },
+      isRateLimited: function() { return this.loginAttempts >= this.maxAttempts; }
+    };
+
+    // 🎯 Form validation
+    const formValidator = {
+      email: function(email) { const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; const isValid = emailRegex.test(email); logDebug('📧 Email validation', { email: email.substring(0, 3) + '...', isValid: isValid }); return isValid; },
+      password: function(password) { const isValid = password.length >= 6; logDebug('🔑 Password validation', { length: password.length, isValid: isValid }); return isValid; },
+      showError: function(fieldId, message) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.add('input-error'); field.classList.remove('input-success'); errorElement.textContent = message; errorElement.style.display = 'block'; logDebug('❌ Field error shown', { field: fieldId, message: message }); } },
+      showSuccess: function(fieldId) { const field = document.getElementById(fieldId); const errorElement = document.getElementById(fieldId + 'Error'); if (field && errorElement) { field.classList.remove('input-error'); field.classList.add('input-success'); errorElement.style.display = 'none'; logDebug('✅ Field validation passed', { field: fieldId }); } },
+      clearErrors: function() { const errorElements = document.querySelectorAll('.error-message'); const inputFields = document.querySelectorAll('input'); errorElements.forEach(el => { el.style.display = 'none'; el.textContent = ''; }); inputFields.forEach(field => { field.classList.remove('input-error', 'input-success'); }); logDebug('🧹 All form errors cleared'); }
+    };
+
+    // 🎯 Page initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadStartTime = performance.now();
+      logDebug('🚀 Login page initialized');
+      
+      const form = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const loginButton = document.getElementById('loginButton');
+      const buttonText = document.getElementById('buttonText');
+      const buttonSpinner = document.getElementById('buttonSpinner');
+
+      // ✨ Logic for the SVG eye icon starts here! ✨
+      const passwordToggle = document.getElementById('passwordToggle');
+
+      const eyeIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639l4.423-4.423a1.012 1.012 0 0 1 1.428 0l4.028 4.028a1.012 1.012 0 0 1 0 1.428l-4.423 4.423a1.012 1.012 0 0 1-1.428 0l-4.028-4.028a1.012 1.012 0 0 1 0-1.428Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`;
+      const eyeSlashIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.243 4.243L6.228 6.228" /></svg>`;
+
+      passwordToggle.innerHTML = eyeIconSVG;
+
+      passwordToggle.addEventListener('click', function() {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        this.innerHTML = isPassword ? eyeSlashIconSVG : eyeIconSVG;
+        this.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+      });
+      // ✨ Eye icon logic ends here. ✨
+
+      // Track page load performance
+      window.addEventListener('load', () => {
+        const loadDuration = trackPerformance('Page Load', loadStartTime);
+        logDebug('✅ Page fully loaded', { loadTime: `${loadDuration.toFixed(2)}ms` });
+      });
+
+      // 🎯 Real-time validation
+      emailInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.email(this.value)) { formValidator.showSuccess('email'); } else { formValidator.showError('email', 'Please enter a valid email address'); } } });
+      passwordInput.addEventListener('blur', function() { if (this.value.trim()) { if (formValidator.password(this.value)) { formValidator.showSuccess('password'); } else { formValidator.showError('password', 'Password must be at least 6 characters'); } } });
+
+      // 🎯 Form submission handler
+      form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const submitStartTime = performance.now();
+        logDebug('🎯 Form submission started');
+        formValidator.clearErrors();
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        let isValid = true;
+        
+        if (!email) { formValidator.showError('email', 'Email is required'); isValid = false; } else if (!formValidator.email(email)) { formValidator.showError('email', 'Please enter a valid email address'); isValid = false; }
+        if (!password) { formValidator.showError('password', 'Password is required'); isValid = false; } else if (!formValidator.password(password)) { formValidator.showError('password', 'Password must be at least 6 characters'); isValid = false; }
+        if (!isValid) { logDebug('❌ Form validation failed', { email: !!email, password: !!password }); return; }
+        if (securityMonitor.isRateLimited()) { formValidator.showError('password', 'Too many login attempts. Please try again later.'); logDebug('🚨 Rate limiting applied', { attempts: securityMonitor.loginAttempts }); return; }
+        
+        securityMonitor.trackAttempt();
+        
+        loginButton.disabled = true;
+        loginButton.classList.add('loading');
+        buttonText.style.display = 'none';
+        buttonSpinner.style.display = 'inline';
+        logDebug('⏳ Authentication in progress', { email: email.substring(0, 3) + '...', attempt: securityMonitor.loginAttempts });
+        
+        try {
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          const submitDuration = trackPerformance('Form Submission', submitStartTime);
+          logDebug('✅ Login successful', { duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
+          securityMonitor.resetAttempts();
+          alert('Login successful! Redirecting...');
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+        } catch (error) {
+          const submitDuration = trackPerformance('Form Submission', submitStartTime);
+          logDebug('❌ Login failed', { error: error.message, duration: `${submitDuration.toFixed(2)}ms`, attempts: securityMonitor.loginAttempts });
+          formValidator.showError('password', 'Invalid email or password. Please try again.');
+        } finally {
+          loginButton.disabled = false;
+          loginButton.classList.remove('loading');
+          buttonText.style.display = 'inline';
+          buttonSpinner.style.display = 'none';
+        }
+      });
+
+      // 🎯 Keyboard navigation enhancements
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') { form.reset(); formValidator.clearErrors(); logDebug('⌨️ Form cleared with Escape key'); }
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); form.dispatchEvent(new Event('submit')); logDebug('⌨️ Form submitted with Ctrl+Enter'); }
+      });
+
+      // 🎯 Input field tracking for analytics
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() { logDebug('🎯 Field focused', { field: this.id }); });
+        input.addEventListener('input', function() { logDebug('📝 Field input', { field: this.id, valueLength: this.value.length, hasValue: !!this.value.trim() }); });
+      });
+
+      logDebug('🔧 Event listeners initialized');
+    });
+
+    // 🎯 Error boundary for unhandled errors
+    window.addEventListener('error', function(event) { logDebug('🚨 Unhandled error', { message: event.message, filename: event.filename, lineno: event.lineno, colno: event.colno }); });
+
+    // 🎯 Page visibility tracking
+    document.addEventListener('visibilitychange', function() { logDebug('👀 Page visibility changed', { hidden: document.hidden, visibilityState: document.visibilityState }); });
+  </script>
   <section class="form-container">
     <div class="form-card">
       <h1>Welcome Back</h1>

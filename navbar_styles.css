@@ -138,6 +138,9 @@
 
         h2 {
             font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         h3 {
@@ -206,14 +209,14 @@
 
         
         .nav-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 0 186px;
+            
 }
 
         .nav-links li {
@@ -254,9 +257,9 @@
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
+            left: -57px;
             background-color: var(--bg);
-            min-width: 200px;
+            min-width: 216px;
             box-shadow: var(--shadow);
             border-radius: var(--radius-sm);
             border: 1px solid var(--border);
@@ -282,9 +285,7 @@
             color: var(--primary);
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+       
 
         .dropdown-content a::after {
             display: none;
@@ -475,9 +476,8 @@
             justify-content: space-between;
             align-items: center;
             height: 100%;
-            width:100%;
-            max-width: 1200px;
-             margin: 0 auto;
+            width:100%;  
+            margin: 0 auto;
             position: relative;
         }
 
@@ -519,7 +519,7 @@
             background-color: var(--bg-tertiary);
         }
 
-        .hamburger {
+        .nav-actions .hamburger img{
             display: none;
             flex-direction: column;
             background: none;
@@ -529,6 +529,8 @@
             height: 30px;
             justify-content: center;
         }
+
+        
 
        
        .hamburger img{
@@ -543,9 +545,23 @@
                 flex-direction: row;
                 justify-content: space-between;
             }
-            .nav-links {
+            .nav-links{
                 display: none; /* Hide links, show hamburger */
+                flex-direction: column;
+                background-color: white;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                text-align: center;
             }
+            .dropdown-content{
+                display: none;
+            }
+            .nav-actions .hamburger img{
+                display: block;
+                
+            }
+            
             .nav-links.active {
                 display: flex;
                 flex-direction: column;
@@ -565,9 +581,7 @@
             .logo-container {
                 min-width: 0;
             }
-            .hamburger {
-                display: flex;
-            }
+            
         }
 
         @media (max-width: 768px) {
@@ -579,6 +593,7 @@
             }
             .nav-links.active li {
                 margin: 10px 0;
+                flex-direction: column;
             }
             .nav-links.active a {
                 font-size: 1.1rem;
@@ -586,12 +601,14 @@
             }
             .dropdown-content {
                 position: static;
-                display: block;
+                display: none;
                 box-shadow: none;
                 border: none;
                 background: var(--bg-secondary);
                 margin: 10px 0;
             }
+            
+            
         }
 
 /* ========================= */
@@ -620,9 +637,23 @@
 }
 
 .nav-links {
-  display: flex;
   align-items: center;
   gap: 16px;
+ 
+}
+ .nav-links.show{
+    background-color:white;
+    padding: 15px 45px;
+    border-top: 1px solid ;
+    transition:all 0.3s ease;
+    height: auto;
+    display: flex;
+}
+.nav-links.show li a{
+    margin: 10px;
+}
+.dark-theme .nav-links.show{
+     background-color: var(--bg);
 }
 
 .nav-actions {
@@ -722,7 +753,7 @@
 
 
 .logo h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     background: linear-gradient(270deg, #6c63ff, #36d1dc, #ff6584);
     background-size: 600% 600%;
@@ -759,7 +790,7 @@
 
 
 .logo {
-    padding: 6px 12px;
+    padding: 6px 1px;
     border-radius: 12px;
     backdrop-filter: blur(12px);
     background: rgba(255,255,255,0.2);
