@@ -44,38 +44,53 @@
       display: block;
     }
       /* Contact Header - Better Spacing */
+
+        body{
+          background:rgb(247, 245, 245);
+        }
+
+
+      .contact-main{
+        background:transparent;
+      }
+
+
       .contact-header {
+        background: transparent;
+        padding: 80px 0 50px;
+        text-align: center;
         position: relative;
         overflow: hidden;
-        padding: 60px 20px 40px;
-        text-align: center;
       }
       
       .contact-header::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-        pointer-events: none;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 30%, rgba(99, 132, 255, 0.08), transparent 60%),
+                    radial-gradient(circle at 80% 70%, rgba(164, 207, 255, 0.08), transparent 60%);
+        z-index: 0;
       }
       
       .contact-header .container {
-        max-width: 1200px;
-        margin: 0 auto;
+        /* max-width: 1200px;
+        margin: 0 auto; */
         position: relative;
-        z-index: 1;
+        z-index: 1000;
       }
       
       .contact-heading {
+        position:absolute;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 15px;
         margin-bottom: 20px;
         animation: fadeInDown 0.8s ease;
+        border:1ps solid black;
       }
    
       @keyframes fadeInDown {
@@ -90,12 +105,21 @@
       }
       
       .contact-heading i {
-        font-size: 48px;
-        color: #667eea;
-        animation: float 3s ease-in-out infinite;
-        filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.3));
+        /* border:1px solid black; */
+        width:300px;
+        z-index:1000;
+        height:300px;
+        position:relative;
+        font-size: 200px;
+        color:rgb(189, 188, 188);
+        background:rgb(240, 239, 239);
+        padding: 20px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        left:20px;
+        /* animation: float 3s ease-in-out infinite; */
       }
-      
+
       @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-15px); }
@@ -156,6 +180,7 @@
         padding: 60px 20px;
         max-width: 1200px;
         margin: 0 auto;
+        z-index:-1;
       }
       
       .contact-container {
@@ -215,8 +240,25 @@
       .form-group:hover label i {
         transform: scale(1.2) rotate(5deg);
       }
+
+      .form-input{
+        border:1px solid black;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius:12px;
+      }
       
-      .form-group input,
+      .form-input i{
+        font-size: 1.1rem;
+        color: #667eea;
+        transition: transform 0.3s ease;
+        /* border:1px solid black; */
+        padding:10px;
+        margin-right:10px;
+      }
+      
       .form-group textarea {
         width: 100%;
         padding: 15px 18px;
@@ -226,6 +268,16 @@
         background: rgba(255, 255, 255, 0.8);
         color: #2d3748;
         transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .form-group input{
+        width: 90%;
+        padding: 15px 18px;
+        font-size: 1rem;
+        color: #2d3748;
+        border:none;
+        /* transition: all 0.3s ease; */
         font-family: inherit;
       }
       
@@ -258,7 +310,9 @@
       }
       
       .btn-primary {
-        width: 100%;
+        width:300px;
+        cursor: pointer;
+        margin-left:18rem; 
         padding: 16px 32px;
         font-size: 1.1rem;
         font-weight: 600;
@@ -278,7 +332,7 @@
         position: absolute;
         top: 0;
         left: -100%;
-        width: 100%;
+        width: 12rem;
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         transition: left 0.6s ease;
@@ -317,8 +371,8 @@
         padding: 30px;
         background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
         border-radius: 16px;
-        border: 1px solid rgba(102, 126, 234, 0.2);
-        backdrop-filter: blur(10px);
+        /* border: 1px solid rgba(102, 126, 234, 0.2); */
+        /* backdrop-filter: blur(10px); */
         position: relative;
         overflow: hidden;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -327,7 +381,7 @@
         font-size: 1.05rem;
         line-height: 1.8;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
         color: #2d3748;
         width: 100%;
         max-width: 350px;
@@ -638,8 +692,8 @@
         <div class="container">
           <div class="contact-heading">
             <i class="fa-solid fa-envelope"></i>
-            <h1 class="fade-in mob-res">Get in Touch</h1>
           </div>
+          <h1 class="fade-in mob-res">Contact Us</h1>
           <p class="contact-subtitle">
             Have questions or feedback? We'd love to hear from you.
           </p>
@@ -654,36 +708,45 @@
           <!-- 📧 Contact Form -->
           <form class="contact-form" id="contactForm">
             <div class="form-group scroll-fade">
-              <label for="name"><i class="fa-solid fa-user"></i> Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your name"
-                required
-              />
+              <label for="name"> Name</label>
+              <div class="form-input">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
             </div>
 
             <div class="form-group scroll-fade">
-              <label for="email"><i class="fa-solid fa-square-envelope"></i> Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email id (e.g. john@gmail.com)"
-                required
-              />
+              <label for="email"> Email</label>
+              <div class="form-input">
+                <i class="fa-solid fa-square-envelope"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email id (e.g. john@gmail.com)"
+                  required
+                />
+              </div>
             </div>
 
             <div class="form-group scroll-fade">
-              <label for="subject"><i class="fa-solid fa-pen-to-square"></i> Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Enter the subject"
-                required
-              />
+              <label for="subject"> Subject</label>
+              <div class="form-input">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder="Enter the subject"
+                  required
+                />
+              </div>
             </div>
 
             <div class="form-group scroll-fade">
